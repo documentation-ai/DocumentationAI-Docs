@@ -1,0 +1,17 @@
+{
+  "name": "Documentation AI App",
+  "initialRoute": "introduction",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting Started",
+        "pages": [
+          {
+            "title": "Introduction",
+            "path": "introduction"
+          }
+        ]
+      }
+    ]
+  }
+}
