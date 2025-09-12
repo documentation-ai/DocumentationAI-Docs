@@ -1,0 +1,126 @@
+---
+title: Components Overview
+description: Overview of all available UCC components and editor extensions for creating rich documentation
+---
+
+# Components Overview
+
+DocumentationAI provides a comprehensive set of User Content Components (UCC) and editor extensions that enable you to create rich, interactive documentation. These components are designed to be accessible, performant, and semantically meaningful.
+
+## Component Categories
+
+### Content Components
+Components for basic content structure and formatting.
+
+- **[Paragraph](/components/paragraph)** - Basic text content with formatting support
+- **[Heading](/components/heading)** - Section headings with hierarchy levels
+- **[List](/components/list)** - Ordered and unordered lists for structured information
+
+### Code Components
+Components for displaying and organizing code examples.
+
+- **[CodeBlock](/components/codeblock)** - Syntax-highlighted code snippets with optional features
+- **[CodeGroup](/components/codegroup)** - Group related code blocks for multiple language examples
+
+### Interactive Components
+Components that provide interactive functionality.
+
+- **[Callout](/components/callout)** - Highlighted information panels for notes, warnings, and tips
+- **[Expandable](/components/expandable)** - Collapsible content sections for detailed information
+- **[ExpandableGroup](/components/expandablegroup)** - Organized groups of expandable sections
+
+### API Documentation Components
+Specialized components for API reference documentation.
+
+- **[ParamField](/components/paramfield)** - Document API parameters with type information
+- **[Request](/components/request)** - HTTP request documentation and examples
+- **[Response](/components/response)** - HTTP response documentation and examples
+- **[ResponseField](/components/responsefield)** - Document API response fields and structure
+
+### Media Components
+Components for embedding multimedia content.
+
+- **[Image](/components/image)** - Responsive images with metadata and accessibility features
+- **[Video](/components/video)** - Embedded video content with playback controls
+- **[Iframe](/components/iframe)** - Embedded external content and interactive demos
+
+### Data Components
+Components for displaying structured data.
+
+- **[Table](/components/table)** - Data grids with plain-text cells and formatting options
+
+## Quick Start
+
+### Using Components in MDX
+
+All components can be used directly in your MDX files. Here are some basic examples:
+
+<Callout kind="note">
+This is a note callout that highlights important information.
+</Callout>
+
+<CodeBlock language="typescript" filename="example.ts">
+```typescript
+const greeting = 'Hello, World!';
+console.log(greeting);
+```
+</CodeBlock>
+
+<ParamField path="userId" paramType="string" required={true}>
+The unique identifier for the user account.
+</ParamField>
+
+### Component Structure
+
+Each component follows a consistent structure:
+
+- **Unique ID**: Every component instance has a unique identifier
+- **Type**: Defines the component type (e.g., "callout", "codeBlock")
+- **Attributes**: Component-specific properties and configuration
+- **Content**: Nested content or text depending on the component type
+
+### Schema Validation
+
+All components are validated against JSON schemas to ensure:
+- Data integrity and consistency
+- Proper nesting of content
+- Required properties are provided
+- Type safety for all attributes
+
+## Accessibility Features
+
+All components include built-in accessibility features:
+
+- **Semantic HTML**: Proper HTML structure and elements
+- **ARIA Roles**: Appropriate roles for screen readers
+- **Keyboard Navigation**: Full keyboard support
+- **Focus Management**: Proper focus handling
+- **Alt Text**: Required for images and media content
+
+## Performance Considerations
+
+Components are optimized for performance:
+
+- **Lazy Loading**: Large components load on demand
+- **Memoization**: React components prevent unnecessary re-renders
+- **Virtualization**: Long lists and tables use virtual scrolling
+- **Schema Caching**: Validation schemas are cached
+
+## Best Practices
+
+1. **Use Semantic Components**: Choose the right component for your content type
+2. **Provide Accessibility**: Always include alt text, titles, and descriptions
+3. **Validate Content**: Ensure all required properties are provided
+4. **Test Interactions**: Verify keyboard navigation and screen reader support
+5. **Optimize Performance**: Use appropriate nesting and avoid deep hierarchies
+
+## Getting Help
+
+- Check individual component documentation for detailed usage examples
+- Review the [API Reference](/api-reference) for technical specifications
+- See [Common Patterns](/common-patterns) for typical use cases
+- Visit [Troubleshooting](/troubleshooting) for common issues and solutions
+
+<Callout kind="tip">
+Start with basic components like Paragraph and Heading, then gradually incorporate more complex components like CodeGroup and ParamField as needed.
+</Callout>

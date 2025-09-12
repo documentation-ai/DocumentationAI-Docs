@@ -9,6 +9,27 @@
           {
             "title": "Introduction",
             "path": "introduction"
+          },
+          {
+            "title": "Components Overview",
+            "path": "components-overview"
+          }
+        ]
+      },
+      {
+        "group": "Content Components",
+        "pages": [
+          {
+            "title": "Callout",
+            "path": "callout"
+          },
+          {
+            "title": "CodeBlock",
+            "path": "codeblock"
+          },
+          {
+            "title": "ParamField",
+            "path": "paramfield"
           }
         ]
       }

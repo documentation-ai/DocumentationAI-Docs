@@ -1,0 +1,228 @@
+---
+title: Callout Component
+description: Highlight important information with callout panels for notes, warnings, tips, and more
+---
+
+# Callout Component
+
+The Callout component is an admonition panel used to highlight important information with different severity levels. It's perfect for drawing attention to notes, warnings, tips, and other critical content.
+
+## Basic Usage
+
+<Callout kind="note">
+This is a basic note callout that provides additional information to readers.
+</Callout>
+
+```mdx
+<Callout kind="note">
+This is a basic note callout that provides additional information to readers.
+</Callout>
+```
+
+## Callout Types
+
+The Callout component supports five different types, each with distinct styling:
+
+### Note (Default)
+<Callout kind="note">
+Use note callouts for general information and helpful context.
+</Callout>
+
+### Tip
+<Callout kind="tip">
+Use tip callouts to share best practices and helpful suggestions.
+</Callout>
+
+### Warning
+<Callout kind="warning">
+Use warning callouts to alert users about potential issues or important considerations.
+</Callout>
+
+### Danger
+<Callout kind="danger">
+Use danger callouts for critical warnings about destructive actions or serious risks.
+</Callout>
+
+### Success
+<Callout kind="success">
+Use success callouts to highlight positive outcomes or completed actions.
+</Callout>
+
+```mdx
+<Callout kind="note">Note callout content</Callout>
+<Callout kind="tip">Tip callout content</Callout>
+<Callout kind="warning">Warning callout content</Callout>
+<Callout kind="danger">Danger callout content</Callout>
+<Callout kind="success">Success callout content</Callout>
+```
+
+## Collapsible Callouts
+
+Callouts can be made collapsible to save space while keeping important information accessible:
+
+<Callout kind="tip" collapsed={true}>
+This callout starts in a collapsed state. Click to expand and see the full content.
+
+You can include any content inside a collapsible callout, including:
+- Lists and bullet points
+- Code examples
+- Additional paragraphs
+- Even nested components
+</Callout>
+
+```mdx
+<Callout kind="tip" collapsed={true}>
+This callout starts in a collapsed state. Click to expand and see the full content.
+
+You can include multiple paragraphs and other content here.
+</Callout>
+```
+
+## Rich Content Support
+
+Callouts support rich content including text formatting, lists, and even code blocks:
+
+<Callout kind="note">
+**Important Setup Steps:**
+
+1. Install the required dependencies
+2. Configure your environment variables
+3. Run the initialization script
+
+```bash
+npm install
+cp .env.example .env
+npm run init
+```
+
+Remember to update your `.env` file with the correct values before proceeding.
+</Callout>
+
+```mdx
+<Callout kind="note">
+**Important Setup Steps:**
+
+1. Install the required dependencies
+2. Configure your environment variables  
+3. Run the initialization script
+
+```bash
+npm install
+cp .env.example .env
+npm run init
+```
+
+Remember to update your `.env` file with the correct values.
+</Callout>
+```
+
+## Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `kind` | `"note" \| "tip" \| "warning" \| "danger" \| "success"` | `"note"` | The type of callout, which determines the styling and icon |
+| `collapsed` | `boolean` | `false` | Whether the callout starts in a collapsed state |
+| `uid` | `string` | Auto-generated | Unique identifier for the component instance |
+
+## Accessibility
+
+The Callout component includes built-in accessibility features:
+
+- **ARIA Role**: Uses `region` role for screen readers
+- **Semantic Labels**: Automatically labeled with the callout type
+- **Keyboard Navigation**: Collapsible callouts are fully keyboard accessible
+- **Focus Management**: Proper focus handling for interactive elements
+
+## Best Practices
+
+### When to Use Callouts
+
+✅ **Good uses:**
+- Highlighting important warnings or cautions
+- Providing helpful tips and best practices
+- Drawing attention to critical information
+- Offering additional context or explanations
+
+❌ **Avoid using callouts for:**
+- Regular content that should be in the main flow
+- Excessive highlighting (too many callouts reduce their impact)
+- Non-critical information that doesn't need emphasis
+
+### Content Guidelines
+
+1. **Keep it concise**: Callouts should be brief and to the point
+2. **Use appropriate types**: Match the callout type to the content severity
+3. **Provide context**: Explain why the information is important
+4. **Use clear language**: Write in plain, understandable terms
+
+### Visual Design
+
+- Use callouts sparingly to maintain their impact
+- Don't nest callouts inside other callouts
+- Ensure sufficient contrast for accessibility
+- Test with screen readers and keyboard navigation
+
+## Common Patterns
+
+### API Warnings
+<Callout kind="warning">
+**Rate Limiting**: This endpoint is rate-limited to 100 requests per minute. Exceeding this limit will result in a 429 status code.
+</Callout>
+
+### Setup Instructions
+<Callout kind="tip">
+**Pro Tip**: Use environment variables for configuration values that change between development and production environments.
+</Callout>
+
+### Breaking Changes
+<Callout kind="danger">
+**Breaking Change**: This feature will be removed in version 3.0. Please migrate to the new API before upgrading.
+</Callout>
+
+### Success Confirmations
+<Callout kind="success">
+**Setup Complete**: Your application is now configured and ready to use. You can start making API calls immediately.
+</Callout>
+
+## Technical Details
+
+### Schema Structure
+
+```json
+{
+  "type": "callout",
+  "uid": "550e8400-e29b-41d4-a716-446655440000",
+  "kind": "warning",
+  "collapsed": false,
+  "children": [
+    {
+      "type": "paragraph",
+      "uid": "550e8400-e29b-41d4-a716-446655440001", 
+      "children": [
+        {
+          "text": "This is the callout content."
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Supported Child Components
+
+Callouts can contain the following child components:
+- Paragraph
+- Heading  
+- CodeBlock
+- List
+
+### Styling Classes
+
+The component uses these CSS classes for styling:
+- `[data-component="Callout"]` - Base callout styles
+- `[data-kind="note|tip|warning|danger|success"]` - Type-specific styles
+- `[data-collapsed="true|false"]` - Collapsed state styles
+
+<Callout kind="note">
+The Callout component is one of the most versatile components for enhancing your documentation. Use it strategically to guide readers and highlight the most important information.
+</Callout>

@@ -1,0 +1,362 @@
+---
+title: CodeBlock Component
+description: Display syntax-highlighted code snippets with optional filename and line highlighting features
+---
+
+# CodeBlock Component
+
+The CodeBlock component displays syntax-highlighted code snippets with support for multiple programming languages, optional filenames, line numbers, and line highlighting. It's essential for technical documentation and tutorials.
+
+## Basic Usage
+
+<CodeBlock language="javascript">
+```javascript
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet('World'));
+```
+</CodeBlock>
+
+```mdx
+<CodeBlock language="javascript">
+```javascript
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet('World'));
+```
+</CodeBlock>
+```
+
+## Language Support
+
+The CodeBlock component supports syntax highlighting for numerous programming languages:
+
+### JavaScript/TypeScript
+<CodeBlock language="typescript" filename="example.ts">
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+const createUser = (userData: Partial<User>): User => {
+  return {
+    id: Math.random(),
+    name: 'Anonymous',
+    email: 'user@example.com',
+    ...userData
+  };
+};
+```
+</CodeBlock>
+
+### Python
+<CodeBlock language="python" filename="main.py">
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# Generate first 10 fibonacci numbers
+for i in range(10):
+    print(f"F({i}) = {fibonacci(i)}")
+```
+</CodeBlock>
+
+### JSON
+<CodeBlock language="json" filename="config.json">
+```json
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "react": "^18.0.0",
+    "typescript": "^4.9.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  }
+}
+```
+</CodeBlock>
+
+### Shell/Bash
+<CodeBlock language="bash" filename="setup.sh">
+```bash
+#!/bin/bash
+
+# Install dependencies
+npm install
+
+# Set up environment
+cp .env.example .env
+
+# Start development server
+npm run dev
+```
+</CodeBlock>
+
+## Features
+
+### Filename Display
+
+Add a filename to provide context about the code:
+
+<CodeBlock language="css" filename="styles.css">
+```css
+.button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+```
+</CodeBlock>
+
+```mdx
+<CodeBlock language="css" filename="styles.css">
+```css
+.button {
+  background-color: #007bff;
+  /* ... rest of styles */
+}
+```
+</CodeBlock>
+```
+
+### Line Numbers
+
+Line numbers are shown by default and help with code references:
+
+<CodeBlock language="go" filename="main.go" show-lines={true}>
+```go
+package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
+}
+
+func main() {
+    http.HandleFunc("/", handler)
+    http.ListenAndServe(":8080", nil)
+}
+```
+</CodeBlock>
+
+### Line Highlighting
+
+Highlight specific lines to draw attention to important parts:
+
+<CodeBlock language="javascript" filename="api.js" highlight={[[3, 5], [8, 8]]}>
+```javascript
+const express = require('express');
+const app = express();
+
+// Highlighted: Middleware setup
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.get('/api/users', (req, res) => {
+  // Highlighted: This line shows the response
+  res.json({ users: [] });
+});
+
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
+```
+</CodeBlock>
+
+```mdx
+<CodeBlock language="javascript" filename="api.js" highlight={[[3, 5], [8, 8]]}>
+```javascript
+// Lines 3-5 and line 8 will be highlighted
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.get('/api/users', (req, res) => {
+  res.json({ users: [] });
+});
+```
+</CodeBlock>
+```
+
+## Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `language` | `string` | `"text"` | Programming language for syntax highlighting |
+| `filename` | `string` | - | Optional filename to display above the code |
+| `show-lines` | `boolean` | `true` | Whether to show line numbers |
+| `highlight` | `number[][]` | - | Array of line ranges to highlight `[[start, end], ...]` |
+| `uid` | `string` | Auto-generated | Unique identifier for the component instance |
+
+## Supported Languages
+
+The component supports syntax highlighting for these languages:
+
+**Web Technologies:**
+- `html`, `css`, `scss`, `sass`, `less`
+- `javascript`, `typescript`, `jsx`, `tsx`
+- `json`, `xml`, `yaml`, `toml`
+
+**Backend Languages:**
+- `python`, `java`, `csharp`, `cpp`, `c`
+- `php`, `ruby`, `go`, `rust`, `swift`
+- `kotlin`, `scala`, `clojure`
+
+**Shell & Config:**
+- `bash`, `shell`, `powershell`
+- `dockerfile`, `makefile`
+- `ini`, `properties`
+
+**Database:**
+- `sql`, `mysql`, `postgresql`
+- `mongodb`, `redis`
+
+**Other:**
+- `markdown`, `latex`, `r`
+- `graphql`, `protobuf`
+- `diff`, `patch`
+
+## Best Practices
+
+### Choosing Languages
+
+✅ **Good practices:**
+- Use specific language identifiers (`typescript` vs `javascript`)
+- Match the language to your actual code
+- Use `text` for plain text or pseudo-code
+- Use `bash` for shell commands
+
+❌ **Avoid:**
+- Generic language names when specific ones exist
+- Mismatched language highlighting
+- Empty or undefined language properties
+
+### Code Content
+
+1. **Keep it relevant**: Only include code that supports your documentation
+2. **Use comments**: Add explanatory comments for complex logic
+3. **Show complete examples**: Provide working, runnable code when possible
+4. **Handle long lines**: Break long lines appropriately for readability
+
+### Accessibility
+
+- Provide meaningful filenames when relevant
+- Use line highlighting sparingly to avoid confusion
+- Ensure sufficient color contrast in syntax highlighting
+- Consider providing text descriptions for complex code examples
+
+## Common Patterns
+
+### API Examples
+<CodeBlock language="javascript" filename="api-client.js">
+```javascript
+// POST request example
+const response = await fetch('/api/users', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    name: 'John Doe',
+    email: 'john@example.com'
+  })
+});
+
+const user = await response.json();
+```
+</CodeBlock>
+
+### Configuration Files
+<CodeBlock language="yaml" filename="docker-compose.yml">
+```yaml
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=myapp
+      - POSTGRES_PASSWORD=secret
+```
+</CodeBlock>
+
+### Installation Commands
+<CodeBlock language="bash">
+```bash
+# Install via npm
+npm install @my-org/my-package
+
+# Install via yarn
+yarn add @my-org/my-package
+
+# Install globally
+npm install -g @my-org/my-package
+```
+</CodeBlock>
+
+## Technical Details
+
+### Schema Structure
+
+```json
+{
+  "type": "code",
+  "uid": "550e8400-e29b-41d4-a716-446655440000",
+  "language": "typescript",
+  "filename": "example.ts",
+  "show-lines": true,
+  "highlight": [[3, 5], [8, 8]],
+  "code": "const greeting = 'Hello, World!';\nconsole.log(greeting);"
+}
+```
+
+### Styling Classes
+
+- `[data-component="CodeBlock"]` - Base code block styles
+- `[data-language="javascript"]` - Language-specific styles
+- `.hljs` - Syntax highlighting styles
+- `.line-highlight` - Highlighted line styles
+
+### Performance Considerations
+
+- Large code blocks are virtualized for performance
+- Syntax highlighting is applied client-side
+- Line highlighting is optimized for minimal re-renders
+
+<Callout kind="tip">
+Use CodeBlock components strategically throughout your documentation to provide clear, actionable examples that readers can copy and use immediately.
+</Callout>

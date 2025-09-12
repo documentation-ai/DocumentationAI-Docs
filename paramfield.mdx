@@ -1,0 +1,343 @@
+---
+title: ParamField Component
+description: Document API parameters with type information, validation rules, and detailed descriptions
+---
+
+# ParamField Component
+
+The ParamField component is designed specifically for API documentation. It provides a structured way to document parameters with type information, validation rules, and detailed descriptions.
+
+## Basic Usage
+
+<ParamField path="userId" paramType="string" required={true}>
+The unique identifier for the user account. This ID is generated automatically when a user is created and cannot be changed.
+</ParamField>
+
+```mdx
+<ParamField path="userId" paramType="string" required={true}>
+The unique identifier for the user account. This ID is generated automatically when a user is created and cannot be changed.
+</ParamField>
+```
+
+## Parameter Types
+
+### Path Parameters
+
+Document URL path parameters that are part of the endpoint URL:
+
+<ParamField path="organizationId" paramType="string" required={true}>
+The unique identifier for the organization. Found in the URL path as `/api/organizations/{organizationId}`.
+</ParamField>
+
+<ParamField path="documentId" paramType="uuid" required={true}>
+The document identifier in UUID format. Must be a valid UUID v4.
+</ParamField>
+
+```mdx
+<ParamField path="organizationId" paramType="string" required={true}>
+The unique identifier for the organization.
+</ParamField>
+
+<ParamField path="documentId" paramType="uuid" required={true}>
+The document identifier in UUID format.
+</ParamField>
+```
+
+### Query Parameters
+
+Document URL query string parameters:
+
+<ParamField query="limit" paramType="integer" required={false}>
+The maximum number of items to return. Must be between 1 and 100. Default is 20.
+</ParamField>
+
+<ParamField query="offset" paramType="integer" required={false}>
+The number of items to skip before starting to return results. Used for pagination. Default is 0.
+</ParamField>
+
+<ParamField query="filter" paramType="string" required={false}>
+Filter results by name or description. Supports partial matching and is case-insensitive.
+</ParamField>
+
+```mdx
+<ParamField query="limit" paramType="integer" required={false}>
+The maximum number of items to return. Must be between 1 and 100.
+</ParamField>
+```
+
+### Request Body Parameters
+
+Document parameters that are sent in the request body:
+
+<ParamField body="name" paramType="string" required={true}>
+The full name of the user. Must be between 2 and 100 characters long.
+</ParamField>
+
+<ParamField body="email" paramType="string" required={true}>
+The user's email address. Must be a valid email format and unique across the system.
+</ParamField>
+
+<ParamField body="age" paramType="integer" required={false}>
+The user's age in years. Must be between 13 and 120. Optional field.
+</ParamField>
+
+<ParamField body="preferences" paramType="object" required={false}>
+User preferences object containing notification and display settings.
+
+<ParamField body="preferences.notifications" paramType="boolean" required={false}>
+Whether to send email notifications. Default is true.
+</ParamField>
+
+<ParamField body="preferences.theme" paramType="string" required={false}>
+UI theme preference. Can be "light", "dark", or "auto". Default is "auto".
+</ParamField>
+</ParamField>
+
+```mdx
+<ParamField body="name" paramType="string" required={true}>
+The full name of the user.
+</ParamField>
+
+<!-- Nested parameters -->
+<ParamField body="preferences" paramType="object" required={false}>
+User preferences object.
+
+<ParamField body="preferences.notifications" paramType="boolean" required={false}>
+Whether to send email notifications.
+</ParamField>
+</ParamField>
+```
+
+### Header Parameters
+
+Document HTTP headers required for the request:
+
+<ParamField header="Authorization" paramType="string" required={true}>
+Bearer token for authentication. Format: `Bearer {token}`. The token must be obtained through the authentication endpoint.
+</ParamField>
+
+<ParamField header="Content-Type" paramType="string" required={true}>
+Must be set to `application/json` for JSON requests or `multipart/form-data` for file uploads.
+</ParamField>
+
+<ParamField header="X-API-Version" paramType="string" required={false}>
+API version to use. Supported versions: "v1", "v2". Default is "v2" if not specified.
+</ParamField>
+
+```mdx
+<ParamField header="Authorization" paramType="string" required={true}>
+Bearer token for authentication. Format: `Bearer {token}`.
+</ParamField>
+```
+
+## Parameter Types
+
+The `paramType` property supports various data types:
+
+### Basic Types
+- `string` - Text values
+- `integer` - Whole numbers
+- `number` - Decimal numbers  
+- `boolean` - True/false values
+- `array` - List of values
+- `object` - Complex nested data
+
+### Specialized Types
+- `uuid` - UUID format strings
+- `email` - Email address format
+- `url` - URL format strings
+- `date` - Date strings (ISO 8601)
+- `datetime` - Date and time strings
+- `enum` - Predefined set of values
+
+<ParamField body="status" paramType="enum" required={true}>
+The status of the document. Must be one of: "draft", "published", "archived".
+</ParamField>
+
+<ParamField body="createdAt" paramType="datetime" required={false}>
+The creation timestamp in ISO 8601 format. Automatically set by the server if not provided.
+</ParamField>
+
+<ParamField body="tags" paramType="array" required={false}>
+Array of tag strings. Each tag must be 1-50 characters long and contain only letters, numbers, and hyphens.
+</ParamField>
+
+## Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `path` | `string` | - | Path parameter name (for URL path parameters) |
+| `query` | `string` | - | Query parameter name (for URL query parameters) |
+| `body` | `string` | - | Body parameter name (for request body parameters) |
+| `header` | `string` | - | Header parameter name (for HTTP headers) |
+| `paramType` | `string` | `"string"` | Data type of the parameter |
+| `required` | `boolean` | `false` | Whether the parameter is required |
+| `deprecated` | `boolean` | `false` | Whether the parameter is deprecated |
+| `uid` | `string` | Auto-generated | Unique identifier for the component instance |
+
+## Advanced Features
+
+### Deprecated Parameters
+
+Mark parameters as deprecated to indicate they will be removed in future versions:
+
+<ParamField body="oldField" paramType="string" required={false} deprecated={true}>
+**Deprecated**: This field will be removed in v3.0. Use `newField` instead.
+
+Legacy field that was used in earlier versions of the API. Still supported for backward compatibility but should not be used in new implementations.
+</ParamField>
+
+```mdx
+<ParamField body="oldField" paramType="string" deprecated={true}>
+**Deprecated**: This field will be removed in v3.0. Use `newField` instead.
+</ParamField>
+```
+
+### Nested Parameters
+
+Document complex object structures with nested parameters:
+
+<ParamField body="user" paramType="object" required={true}>
+User information object containing personal details and preferences.
+
+<ParamField body="user.profile" paramType="object" required={true}>
+User profile information.
+
+<ParamField body="user.profile.firstName" paramType="string" required={true}>
+User's first name. Must be 1-50 characters.
+</ParamField>
+
+<ParamField body="user.profile.lastName" paramType="string" required={true}>
+User's last name. Must be 1-50 characters.
+</ParamField>
+
+<ParamField body="user.profile.avatar" paramType="string" required={false}>
+URL to user's avatar image. Must be a valid image URL (jpg, png, gif).
+</ParamField>
+</ParamField>
+
+<ParamField body="user.settings" paramType="object" required={false}>
+User account settings.
+
+<ParamField body="user.settings.language" paramType="string" required={false}>
+Preferred language code (ISO 639-1). Default is "en".
+</ParamField>
+
+<ParamField body="user.settings.timezone" paramType="string" required={false}>
+Timezone identifier (IANA). Default is "UTC".
+</ParamField>
+</ParamField>
+</ParamField>
+
+## Best Practices
+
+### Documentation Guidelines
+
+✅ **Good practices:**
+- Provide clear, descriptive parameter names
+- Include validation rules and constraints
+- Specify default values when applicable
+- Use appropriate parameter types
+- Include examples for complex parameters
+
+❌ **Avoid:**
+- Vague or unclear parameter descriptions
+- Missing required/optional indicators
+- Inconsistent naming conventions
+- Overly complex nested structures
+
+### Parameter Organization
+
+1. **Group related parameters**: Use nested structures for related fields
+2. **Order by importance**: List required parameters first
+3. **Use consistent naming**: Follow your API's naming conventions
+4. **Provide examples**: Include sample values for clarity
+
+### Type Safety
+
+- Use specific types (`uuid`, `email`) instead of generic `string`
+- Document enum values explicitly
+- Specify array item types when relevant
+- Include format requirements for strings
+
+## Common Patterns
+
+### Authentication Parameters
+<ParamField header="Authorization" paramType="string" required={true}>
+Bearer token for API authentication. Obtain from `/auth/login` endpoint.
+</ParamField>
+
+### Pagination Parameters
+<ParamField query="page" paramType="integer" required={false}>
+Page number for pagination. Starts at 1. Default is 1.
+</ParamField>
+
+<ParamField query="per_page" paramType="integer" required={false}>
+Number of items per page. Must be between 1 and 100. Default is 20.
+</ParamField>
+
+### Filter Parameters
+<ParamField query="search" paramType="string" required={false}>
+Search term to filter results. Searches across name and description fields.
+</ParamField>
+
+<ParamField query="status" paramType="enum" required={false}>
+Filter by status. Allowed values: "active", "inactive", "pending".
+</ParamField>
+
+### File Upload Parameters
+<ParamField body="file" paramType="file" required={true}>
+File to upload. Supported formats: PDF, DOC, DOCX. Maximum size: 10MB.
+</ParamField>
+
+<ParamField body="description" paramType="string" required={false}>
+Optional description for the uploaded file. Maximum 500 characters.
+</ParamField>
+
+## Technical Details
+
+### Schema Structure
+
+```json
+{
+  "type": "paramField",
+  "uid": "550e8400-e29b-41d4-a716-446655440000",
+  "path": "userId",
+  "paramType": "string", 
+  "required": true,
+  "deprecated": false,
+  "children": [
+    {
+      "type": "paragraph",
+      "uid": "550e8400-e29b-41d4-a716-446655440001",
+      "children": [
+        {
+          "text": "The unique identifier for the user."
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Supported Child Components
+
+ParamField can contain:
+- Paragraph
+- Heading
+- CodeBlock
+- List
+- Other ParamField components (for nesting)
+- ResponseField components
+- Expandable components
+
+### Styling Classes
+
+- `[data-component="ParamField"]` - Base parameter field styles
+- `[data-required="true"]` - Required parameter styles
+- `[data-deprecated="true"]` - Deprecated parameter styles
+- `[data-param-type="string"]` - Type-specific styles
+
+<Callout kind="tip">
+Use ParamField components consistently throughout your API documentation to create a professional, easy-to-navigate reference that developers can quickly understand and implement.
+</Callout>
