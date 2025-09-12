@@ -1,0 +1,264 @@
+---
+title: Installation & Local Development
+description: Set up Documentation.AI for local development and testing
+---
+
+# Installation & Local Development
+
+Set up Documentation.AI locally for development, testing, and offline work. This guide covers both the web-based editor and local development tools.
+
+## Web Editor (Recommended)
+
+The fastest way to get started is with our web-based editor:
+
+1. **Visit** [app.documentation.ai](https://app.documentation.ai)
+2. **Sign in** with your GitHub account
+3. **Start editing** immediately - no installation required
+
+<Callout kind="note">
+The web editor includes all AI features, real-time collaboration, and automatic syncing.
+</Callout>
+
+## CLI Installation
+
+For local development and advanced workflows, install our command-line interface:
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+- Git
+
+### Install the CLI
+
+```bash
+npm install -g @documentation-ai/cli
+```
+
+Or with yarn:
+
+```bash
+yarn global add @documentation-ai/cli
+```
+
+### Verify Installation
+
+```bash
+docai --version
+```
+
+## Local Development Setup
+
+### 1. Initialize a New Project
+
+```bash
+# Create a new project
+docai init my-docs
+cd my-docs
+
+# Install dependencies
+npm install
+```
+
+### 2. Start Development Server
+
+```bash
+# Start local development server
+docai dev
+
+# Server will start at http://localhost:3000
+```
+
+### 3. Project Structure
+
+Your local project will have this structure:
+
+```
+my-docs/
+├── docs/                 # Your documentation files
+│   ├── introduction.mdx
+│   └── getting-started.mdx
+├── components/           # Custom components
+├── public/              # Static assets
+├── docai.config.js      # Configuration file
+└── package.json
+```
+
+## Configuration
+
+### Basic Configuration
+
+Create or edit `docai.config.js`:
+
+```javascript
+module.exports = {
+  name: "My Documentation",
+  description: "AI-powered documentation site",
+  theme: {
+    primaryColor: "#3B82F6",
+    logo: "/logo.svg"
+  },
+  ai: {
+    enabled: true,
+    model: "gpt-4",
+    suggestions: true
+  },
+  integrations: {
+    github: {
+      repo: "username/repo-name",
+      branch: "main"
+    }
+  }
+};
+```
+
+### Environment Variables
+
+Create a `.env.local` file for sensitive configuration:
+
+```bash
+DOCAI_API_KEY=your_api_key_here
+GITHUB_TOKEN=your_github_token
+OPENAI_API_KEY=your_openai_key
+```
+
+## Development Workflow
+
+### 1. Create Content
+
+```bash
+# Create a new page
+docai create page "API Reference"
+
+# Generate content with AI
+docai generate --topic "REST API endpoints"
+```
+
+### 2. Preview Changes
+
+```bash
+# Start development server with hot reload
+docai dev --watch
+
+# Build for production preview
+docai build
+docai preview
+```
+
+### 3. Sync with Cloud
+
+```bash
+# Push changes to Documentation.AI cloud
+docai sync push
+
+# Pull latest changes from cloud
+docai sync pull
+```
+
+## Advanced Setup
+
+### Custom Components
+
+Create custom components in the `components/` directory:
+
+```jsx
+// components/CustomCallout.jsx
+export function CustomCallout({ children, type = "info" }) {
+  return (
+    <div className={`callout callout-${type}`}>
+      {children}
+    </div>
+  );
+}
+```
+
+Register components in `docai.config.js`:
+
+```javascript
+module.exports = {
+  components: {
+    CustomCallout: "./components/CustomCallout.jsx"
+  }
+};
+```
+
+### Plugin System
+
+Install and configure plugins:
+
+```bash
+# Install analytics plugin
+npm install @documentation-ai/plugin-analytics
+
+# Install search plugin
+npm install @documentation-ai/plugin-search
+```
+
+Configure in `docai.config.js`:
+
+```javascript
+module.exports = {
+  plugins: [
+    "@documentation-ai/plugin-analytics",
+    "@documentation-ai/plugin-search"
+  ]
+};
+```
+
+## Deployment
+
+### Deploy to Documentation.AI Cloud
+
+```bash
+# Deploy to production
+docai deploy
+
+# Deploy to staging
+docai deploy --env staging
+```
+
+### Self-Hosted Deployment
+
+```bash
+# Build static site
+docai build --static
+
+# Output will be in ./dist directory
+# Deploy to any static hosting service
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**CLI not found after installation:**
+```bash
+# Check global npm bin directory
+npm config get prefix
+
+# Add to PATH if needed
+export PATH=$PATH:$(npm config get prefix)/bin
+```
+
+**Permission errors on macOS/Linux:**
+```bash
+# Install with sudo if needed
+sudo npm install -g @documentation-ai/cli
+```
+
+**Build failures:**
+```bash
+# Clear cache and reinstall
+docai clean
+npm install
+```
+
+### Getting Help
+
+- **Check logs:** `docai logs`
+- **Debug mode:** `docai dev --debug`
+- **Report issues:** [GitHub Issues](https://github.com/documentation-ai/cli/issues)
+
+<Callout kind="tip">
+For the best development experience, use the web editor for content creation and the CLI for automation and deployment workflows.
+</Callout>

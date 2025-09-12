@@ -1,0 +1,435 @@
+---
+title: Media Components
+description: Components for embedding and managing multimedia content including images, videos, and interactive media
+---
+
+# Media Components
+
+Media components enable you to embed rich multimedia content in your documentation, including images, videos, interactive demos, and other visual elements. These components are optimized for performance, accessibility, and responsive design.
+
+## Image Components
+
+### Image
+
+Display responsive images with optimization and accessibility features.
+
+**Basic Usage:**
+```markdown
+<Image 
+  src="/images/api-workflow.png" 
+  alt="API workflow diagram showing request and response flow"
+  width={800}
+  height={400}
+/>
+```
+
+**Advanced Usage:**
+```markdown
+<Image 
+  src="/images/dashboard-screenshot.png"
+  alt="Dashboard interface showing user analytics and metrics"
+  width={1200}
+  height={800}
+  caption="Main dashboard with real-time analytics"
+  zoom={true}
+  lazy={true}
+  placeholder="blur"
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+/>
+```
+
+**Properties:**
+- `src`: Image source URL (required)
+- `alt`: Alternative text for accessibility (required)
+- `width`/`height`: Dimensions for aspect ratio
+- `caption`: Image caption text
+- `zoom`: Enable click-to-zoom functionality
+- `lazy`: Enable lazy loading
+- `placeholder`: Placeholder type ("blur", "empty")
+- `sizes`: Responsive image sizes
+- `priority`: Load image with high priority
+
+**Features:**
+- **Automatic Optimization**: WebP/AVIF format conversion
+- **Responsive Images**: Multiple sizes for different screen densities
+- **Lazy Loading**: Load images only when they enter viewport
+- **Zoom Functionality**: Click to view full-size images
+- **Accessibility**: Proper alt text and keyboard navigation
+
+### ImageGallery
+
+Create galleries of related images with navigation.
+
+**Usage:**
+```markdown
+<ImageGallery>
+  <Image 
+    src="/images/setup-step-1.png" 
+    alt="Step 1: Create new project"
+    caption="Click 'New Project' to get started"
+  />
+  <Image 
+    src="/images/setup-step-2.png" 
+    alt="Step 2: Configure project settings"
+    caption="Fill in your project details"
+  />
+  <Image 
+    src="/images/setup-step-3.png" 
+    alt="Step 3: Deploy your project"
+    caption="Deploy with one click"
+  />
+</ImageGallery>
+```
+
+**Properties:**
+- `layout`: "grid", "carousel", "masonry"
+- `columns`: Number of columns for grid layout
+- `spacing`: Gap between images
+- `showThumbnails`: Show thumbnail navigation
+- `autoplay`: Auto-advance carousel (with duration)
+
+### Figure
+
+Semantic figure element with caption and proper markup.
+
+**Usage:**
+```markdown
+<Figure>
+  <Image 
+    src="/images/architecture-diagram.svg" 
+    alt="System architecture showing microservices communication"
+    width={1000}
+    height={600}
+  />
+  <FigureCaption>
+    <Strong>Figure 1:</Strong> Microservices architecture overview showing 
+    API gateway, service mesh, and data layer interactions.
+  </FigureCaption>
+</Figure>
+```
+
+## Video Components
+
+### Video
+
+Embed videos with comprehensive controls and accessibility.
+
+**Usage:**
+```markdown
+<Video 
+  src="/videos/getting-started-tutorial.mp4"
+  poster="/images/video-thumbnail.jpg"
+  width={800}
+  height={450}
+  controls={true}
+  autoplay={false}
+  muted={false}
+  loop={false}
+  captions="/captions/tutorial-en.vtt"
+/>
+```
+
+**Properties:**
+- `src`: Video source URL or array of sources
+- `poster`: Thumbnail image for video
+- `width`/`height`: Video dimensions
+- `controls`: Show video controls
+- `autoplay`: Auto-play video (muted required)
+- `muted`: Start video muted
+- `loop`: Loop video playback
+- `captions`: Closed captions file (WebVTT)
+- `chapters`: Chapter markers for navigation
+
+**Multiple Sources:**
+```markdown
+<Video 
+  sources={[
+    { src: "/videos/demo.mp4", type: "video/mp4" },
+    { src: "/videos/demo.webm", type: "video/webm" }
+  ]}
+  poster="/images/demo-poster.jpg"
+  captions={[
+    { src: "/captions/demo-en.vtt", lang: "en", label: "English" },
+    { src: "/captions/demo-es.vtt", lang: "es", label: "Español" }
+  ]}
+/>
+```
+
+### VideoEmbed
+
+Embed videos from external platforms with privacy controls.
+
+**Usage:**
+```markdown
+<VideoEmbed 
+  platform="youtube"
+  videoId="dQw4w9WgXcQ"
+  title="Getting Started Tutorial"
+  width={800}
+  height={450}
+  privacyMode={true}
+  startTime={30}
+  autoplay={false}
+/>
+```
+
+**Supported Platforms:**
+- YouTube (youtube.com, youtu.be)
+- Vimeo (vimeo.com)
+- Wistia (wistia.com)
+- Loom (loom.com)
+- Custom iframe embeds
+
+**Properties:**
+- `platform`: Video platform identifier
+- `videoId`: Platform-specific video ID
+- `title`: Accessible title for the video
+- `privacyMode`: Enable privacy-enhanced mode
+- `startTime`: Start playback at specific time (seconds)
+- `endTime`: End playback at specific time
+- `playlist`: Playlist ID for YouTube playlists
+
+## Interactive Media
+
+### Iframe
+
+Embed external content and interactive demos safely.
+
+**Usage:**
+```markdown
+<Iframe 
+  src="https://codesandbox.io/embed/react-example"
+  title="React Component Example"
+  width={800}
+  height={500}
+  sandbox="allow-scripts allow-same-origin"
+  loading="lazy"
+/>
+```
+
+**Properties:**
+- `src`: Source URL for embedded content
+- `title`: Accessible title (required)
+- `width`/`height`: Frame dimensions
+- `sandbox`: Security sandbox attributes
+- `loading`: Loading behavior ("lazy", "eager")
+- `allowfullscreen`: Allow fullscreen mode
+- `referrerpolicy`: Referrer policy for requests
+
+**Security Features:**
+- **Sandbox Restrictions**: Limit iframe capabilities
+- **Content Security Policy**: Prevent malicious content
+- **Referrer Control**: Manage referrer information
+- **Loading Control**: Lazy load for performance
+
+### InteractiveDemo
+
+Create interactive product demonstrations.
+
+**Usage:**
+```markdown
+<InteractiveDemo 
+  title="API Explorer"
+  description="Try our API endpoints with live data"
+  height={600}
+>
+  <DemoStep title="Authentication" active={true}>
+    Enter your API key to authenticate requests.
+    <APIKeyInput placeholder="Enter your API key..." />
+  </DemoStep>
+  
+  <DemoStep title="Make Request">
+    Select an endpoint and customize parameters.
+    <EndpointSelector endpoints={apiEndpoints} />
+  </DemoStep>
+  
+  <DemoStep title="View Response">
+    See the live API response with syntax highlighting.
+    <ResponseViewer />
+  </DemoStep>
+</InteractiveDemo>
+```
+
+### CodePen
+
+Embed CodePen examples for live code demonstrations.
+
+**Usage:**
+```markdown
+<CodePen 
+  penId="abcdef"
+  user="username"
+  title="CSS Animation Example"
+  height={400}
+  defaultTab="css,result"
+  theme="dark"
+  editable={true}
+/>
+```
+
+## Audio Components
+
+### Audio
+
+Embed audio content with full accessibility support.
+
+**Usage:**
+```markdown
+<Audio 
+  src="/audio/pronunciation-guide.mp3"
+  title="API Terminology Pronunciation Guide"
+  controls={true}
+  preload="metadata"
+  transcript="/transcripts/pronunciation-guide.txt"
+/>
+```
+
+**Properties:**
+- `src`: Audio source URL or array of sources
+- `title`: Accessible title for the audio
+- `controls`: Show audio controls
+- `autoplay`: Auto-play audio (generally not recommended)
+- `loop`: Loop audio playback
+- `muted`: Start audio muted
+- `preload`: Preload behavior ("none", "metadata", "auto")
+- `transcript`: Link to audio transcript
+
+### Podcast
+
+Specialized component for podcast episodes.
+
+**Usage:**
+```markdown
+<Podcast 
+  title="Developer Discussions: API Design Best Practices"
+  description="In this episode, we explore modern API design patterns and best practices for creating developer-friendly interfaces."
+  audioSrc="/podcasts/episode-12.mp3"
+  duration="45:32"
+  publishDate="2024-01-15"
+  hosts={["Alice Johnson", "Bob Smith"]}
+  transcript="/transcripts/episode-12.txt"
+  chapters={[
+    { time: "00:00", title: "Introduction" },
+    { time: "05:30", title: "REST vs GraphQL" },
+    { time: "15:45", title: "Authentication Patterns" },
+    { time: "30:20", title: "Error Handling" },
+    { time: "40:10", title: "Conclusion" }
+  ]}
+/>
+```
+
+## File and Document Components
+
+### FileDownload
+
+Provide downloadable files with metadata and preview.
+
+**Usage:**
+```markdown
+<FileDownload 
+  src="/downloads/api-specification.pdf"
+  filename="API Specification v2.1"
+  size="2.3 MB"
+  type="PDF Document"
+  description="Complete API specification including all endpoints, parameters, and examples."
+  preview={true}
+/>
+```
+
+**Properties:**
+- `src`: Download URL
+- `filename`: Display name for the file
+- `size`: File size (human-readable)
+- `type`: File type description
+- `description`: File description
+- `preview`: Enable file preview if supported
+- `icon`: Custom file type icon
+
+### DocumentViewer
+
+Embed document viewers for PDFs and other formats.
+
+**Usage:**
+```markdown
+<DocumentViewer 
+  src="/documents/user-manual.pdf"
+  title="User Manual"
+  width={800}
+  height={600}
+  toolbar={true}
+  download={true}
+  print={true}
+/>
+```
+
+## Accessibility Features
+
+### Alternative Content
+
+All media components support comprehensive accessibility:
+
+**Image Accessibility:**
+- **Alt Text**: Required descriptive alternative text
+- **Long Descriptions**: Extended descriptions for complex images
+- **Keyboard Navigation**: Full keyboard support for interactive images
+- **Screen Reader Support**: Proper ARIA labels and roles
+
+**Video Accessibility:**
+- **Captions**: Closed captions in multiple languages
+- **Audio Descriptions**: Narrated descriptions of visual content
+- **Transcript**: Full text transcript of audio content
+- **Keyboard Controls**: Keyboard shortcuts for video controls
+
+**Interactive Content:**
+- **Focus Management**: Proper focus handling for embedded content
+- **Skip Links**: Allow users to bypass complex interactive content
+- **Alternative Formats**: Provide alternative ways to access information
+- **Reduced Motion**: Respect user preferences for reduced motion
+
+### Performance Optimization
+
+Media components are optimized for performance:
+
+**Image Optimization:**
+- **Format Selection**: Automatic WebP/AVIF format selection
+- **Responsive Images**: Multiple sizes for different devices
+- **Lazy Loading**: Load images only when needed
+- **Compression**: Automatic image compression
+
+**Video Optimization:**
+- **Adaptive Streaming**: Multiple quality levels for different connections
+- **Preload Control**: Smart preloading based on user behavior
+- **Poster Images**: Lightweight thumbnails for video previews
+- **Format Fallbacks**: Multiple video formats for browser compatibility
+
+## Best Practices
+
+### Content Strategy
+
+1. **Purpose-Driven**: Only include media that serves a clear purpose
+2. **Quality Standards**: Use high-quality, professional media
+3. **Consistency**: Maintain consistent style and formatting
+4. **Accessibility First**: Always provide alternative content
+
+### Performance
+
+1. **Optimization**: Compress and optimize all media files
+2. **Lazy Loading**: Use lazy loading for below-the-fold content
+3. **CDN Usage**: Serve media from content delivery networks
+4. **Caching**: Implement proper caching headers
+
+### User Experience
+
+1. **Loading States**: Show loading indicators for media content
+2. **Error Handling**: Provide fallbacks for failed media loads
+3. **Mobile Optimization**: Ensure media works well on mobile devices
+4. **Bandwidth Consideration**: Provide options for low-bandwidth users
+
+### Legal and Compliance
+
+1. **Copyright**: Ensure you have rights to all media content
+2. **Privacy**: Respect user privacy with external embeds
+3. **GDPR Compliance**: Handle embedded content privacy requirements
+4. **Attribution**: Properly attribute third-party content
+
+Media components enable rich, engaging documentation experiences while maintaining accessibility, performance, and user experience standards. Use them strategically to enhance understanding and engagement with your content.

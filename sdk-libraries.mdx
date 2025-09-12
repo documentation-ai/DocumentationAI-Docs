@@ -1,0 +1,532 @@
+---
+title: SDK Libraries
+description: Official SDKs and libraries for integrating Documentation.AI into your applications and workflows
+---
+
+# SDK Libraries
+
+Documentation.AI provides official SDKs and libraries to integrate our platform into your applications, CI/CD pipelines, and development workflows. Build custom tools, automate documentation processes, and create seamless integrations.
+
+## Available SDKs
+
+### JavaScript/TypeScript SDK
+
+Full-featured SDK for Node.js and browser environments:
+
+**Installation:**
+```bash
+npm install @documentation-ai/sdk
+# or
+yarn add @documentation-ai/sdk
+```
+
+**Basic Usage:**
+```typescript
+import { DocumentationAI } from '@documentation-ai/sdk';
+
+const client = new DocumentationAI({
+  apiKey: process.env.DOCAI_API_KEY,
+  projectId: 'your-project-id'
+});
+
+// Create a new page
+const page = await client.pages.create({
+  title: 'Getting Started',
+  content: '# Welcome to our API\n\nThis guide will help you...',
+  path: 'getting-started'
+});
+
+// Generate content with AI
+const generatedContent = await client.ai.generate({
+  prompt: 'Create API documentation for user authentication',
+  type: 'api-reference',
+  format: 'markdown'
+});
+```
+
+### Python SDK
+
+Comprehensive Python library for automation and data processing:
+
+**Installation:**
+```bash
+pip install documentation-ai
+```
+
+**Basic Usage:**
+```python
+from documentation_ai import DocumentationAI
+
+client = DocumentationAI(
+    api_key=os.getenv('DOCAI_API_KEY'),
+    project_id='your-project-id'
+)
+
+# Bulk upload documentation
+pages = [
+    {'title': 'Introduction', 'content': intro_content, 'path': 'intro'},
+    {'title': 'API Reference', 'content': api_content, 'path': 'api'}
+]
+
+result = client.pages.bulk_create(pages)
+
+# Generate documentation from code
+docs = client.ai.generate_from_code(
+    code_files=['./src/api.py', './src/models.py'],
+    output_format='markdown',
+    include_examples=True
+)
+```
+
+### Go SDK
+
+Lightweight Go library for backend integrations:
+
+**Installation:**
+```bash
+go get github.com/documentation-ai/go-sdk
+```
+
+**Basic Usage:**
+```go
+package main
+
+import (
+    "context"
+    "github.com/documentation-ai/go-sdk"
+)
+
+func main() {
+    client := docai.NewClient("your-api-key", "your-project-id")
+    
+    // Create documentation page
+    page := &docai.Page{
+        Title:   "API Overview",
+        Content: "# API Documentation\n\nWelcome to our API...",
+        Path:    "api-overview",
+    }
+    
+    result, err := client.Pages.Create(context.Background(), page)
+    if err != nil {
+        log.Fatal(err)
+    }
+    
+    fmt.Printf("Created page: %s\n", result.ID)
+}
+```
+
+### REST API
+
+Direct HTTP API access for any programming language:
+
+**Authentication:**
+```bash
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json" \
+     https://api.documentation.ai/v1/projects/PROJECT_ID/pages
+```
+
+**Create Page:**
+```bash
+curl -X POST \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Quick Start Guide",
+    "content": "# Getting Started\n\nFollow these steps...",
+    "path": "quickstart"
+  }' \
+  https://api.documentation.ai/v1/projects/PROJECT_ID/pages
+```
+
+## Core Features
+
+### Content Management
+
+Programmatically manage your documentation content:
+
+**Page Operations:**
+```typescript
+// Create, read, update, delete pages
+const page = await client.pages.create(pageData);
+const existingPage = await client.pages.get('page-id');
+await client.pages.update('page-id', updatedData);
+await client.pages.delete('page-id');
+
+// Bulk operations
+const pages = await client.pages.list({ limit: 100 });
+await client.pages.bulkUpdate(pageUpdates);
+```
+
+**Content Search:**
+```typescript
+// Search across all content
+const results = await client.search.query('authentication API', {
+  filters: { type: 'api-reference' },
+  limit: 10
+});
+
+// Advanced search with AI
+const aiResults = await client.ai.semanticSearch(
+  'How to implement OAuth2 flow',
+  { includeCodeExamples: true }
+);
+```
+
+### AI-Powered Generation
+
+Leverage AI capabilities programmatically:
+
+**Content Generation:**
+```python
+# Generate from templates
+content = client.ai.generate_from_template(
+    template='api-endpoint',
+    data={
+        'endpoint': '/users/{id}',
+        'method': 'GET',
+        'description': 'Retrieve user information'
+    }
+)
+
+# Generate from code analysis
+docs = client.ai.analyze_and_document(
+    repository_url='https://github.com/user/repo',
+    include_patterns=['*.py', '*.js'],
+    output_format='markdown'
+)
+```
+
+**Content Enhancement:**
+```typescript
+// Improve existing content
+const enhanced = await client.ai.enhance({
+  content: existingContent,
+  improvements: ['clarity', 'examples', 'structure'],
+  targetAudience: 'developers'
+});
+
+// Generate translations
+const translations = await client.ai.translate({
+  content: originalContent,
+  targetLanguages: ['es', 'fr', 'de'],
+  maintainFormatting: true
+});
+```
+
+### Workflow Integration
+
+Integrate with your development workflow:
+
+**Git Integration:**
+```bash
+# Sync with Git repository
+docai sync --repo https://github.com/user/docs-repo \
+           --branch main \
+           --path ./docs \
+           --auto-commit
+```
+
+**CI/CD Pipeline Integration:**
+```yaml
+# GitHub Actions example
+name: Update Documentation
+on:
+  push:
+    paths: ['src/**', 'api/**']
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Generate API Docs
+        uses: documentation-ai/generate-action@v1
+        with:
+          api-key: ${{ secrets.DOCAI_API_KEY }}
+          project-id: ${{ secrets.DOCAI_PROJECT_ID }}
+          source-path: './src'
+          output-path: './docs/api'
+```
+
+## Advanced Usage
+
+### Custom Integrations
+
+Build sophisticated integrations with advanced features:
+
+**Webhook Handling:**
+```typescript
+import express from 'express';
+
+const app = express();
+
+// Handle Documentation.AI webhooks
+app.post('/webhook/docai', (req, res) => {
+  const event = req.body;
+  
+  switch (event.type) {
+    case 'page.published':
+      // Trigger deployment or notification
+      deployDocumentation(event.data.page);
+      break;
+    case 'content.updated':
+      // Sync with external systems
+      syncWithCMS(event.data);
+      break;
+  }
+  
+  res.status(200).send('OK');
+});
+```
+
+**Custom AI Models:**
+```python
+# Use custom AI models for specialized content
+client.ai.configure_model(
+    model_id='custom-technical-writer',
+    parameters={
+        'temperature': 0.3,
+        'max_tokens': 2000,
+        'style_guide': 'technical-documentation'
+    }
+)
+
+# Generate with custom model
+content = client.ai.generate(
+    prompt='Document this API endpoint',
+    model='custom-technical-writer',
+    context={'audience': 'enterprise-developers'}
+)
+```
+
+### Batch Processing
+
+Handle large-scale documentation operations:
+
+**Bulk Content Processing:**
+```python
+import asyncio
+from documentation_ai import AsyncDocumentationAI
+
+async def process_documentation():
+    client = AsyncDocumentationAI(api_key=API_KEY)
+    
+    # Process multiple files concurrently
+    tasks = []
+    for file_path in documentation_files:
+        task = client.ai.generate_from_file(file_path)
+        tasks.append(task)
+    
+    results = await asyncio.gather(*tasks)
+    
+    # Bulk upload results
+    await client.pages.bulk_create(results)
+
+asyncio.run(process_documentation())
+```
+
+**Migration Tools:**
+```typescript
+// Migrate from other documentation platforms
+const migrator = new DocumentationMigrator(client);
+
+await migrator.fromGitBook({
+  exportPath: './gitbook-export.json',
+  preserveStructure: true,
+  convertAssets: true
+});
+
+await migrator.fromConfluence({
+  spaceKey: 'DOCS',
+  baseUrl: 'https://company.atlassian.net',
+  credentials: confluenceAuth
+});
+```
+
+## SDK Configuration
+
+### Authentication
+
+Secure your API access:
+
+**API Key Authentication:**
+```typescript
+const client = new DocumentationAI({
+  apiKey: process.env.DOCAI_API_KEY,
+  projectId: 'project-id'
+});
+```
+
+**OAuth2 Authentication:**
+```python
+from documentation_ai.auth import OAuth2Auth
+
+auth = OAuth2Auth(
+    client_id='your-client-id',
+    client_secret='your-client-secret',
+    redirect_uri='http://localhost:8080/callback'
+)
+
+client = DocumentationAI(auth=auth)
+```
+
+### Environment Configuration
+
+Configure SDKs for different environments:
+
+```typescript
+const config = {
+  // Production
+  production: {
+    baseUrl: 'https://api.documentation.ai',
+    timeout: 30000,
+    retries: 3
+  },
+  
+  // Staging
+  staging: {
+    baseUrl: 'https://staging-api.documentation.ai',
+    timeout: 60000,
+    retries: 1
+  },
+  
+  // Development
+  development: {
+    baseUrl: 'http://localhost:3000',
+    timeout: 10000,
+    retries: 0,
+    debug: true
+  }
+};
+
+const client = new DocumentationAI({
+  ...config[process.env.NODE_ENV],
+  apiKey: process.env.DOCAI_API_KEY
+});
+```
+
+### Error Handling
+
+Robust error handling and retry logic:
+
+```python
+from documentation_ai.exceptions import (
+    APIError, 
+    RateLimitError, 
+    ValidationError
+)
+
+try:
+    result = client.pages.create(page_data)
+except RateLimitError as e:
+    # Handle rate limiting
+    time.sleep(e.retry_after)
+    result = client.pages.create(page_data)
+except ValidationError as e:
+    # Handle validation errors
+    print(f"Validation failed: {e.errors}")
+except APIError as e:
+    # Handle general API errors
+    print(f"API error: {e.message}")
+```
+
+## Examples and Use Cases
+
+### Documentation Automation
+
+Automate documentation generation from code:
+
+```typescript
+// Generate API documentation from OpenAPI spec
+const apiDocs = await client.ai.generateFromOpenAPI({
+  specUrl: 'https://api.example.com/openapi.json',
+  includeExamples: true,
+  generateSDKExamples: ['javascript', 'python', 'curl']
+});
+
+// Create pages for each endpoint
+for (const endpoint of apiDocs.endpoints) {
+  await client.pages.create({
+    title: `${endpoint.method.toUpperCase()} ${endpoint.path}`,
+    content: endpoint.documentation,
+    path: `api/${endpoint.operationId}`,
+    tags: ['api', endpoint.method]
+  });
+}
+```
+
+### Content Synchronization
+
+Keep documentation in sync with external sources:
+
+```python
+# Sync with database schema
+def sync_database_docs():
+    schema = get_database_schema()
+    
+    for table in schema.tables:
+        content = client.ai.generate_table_docs(
+            table_name=table.name,
+            columns=table.columns,
+            relationships=table.relationships
+        )
+        
+        client.pages.upsert(
+            path=f'database/{table.name}',
+            title=f'{table.name} Table',
+            content=content
+        )
+
+# Schedule regular sync
+schedule.every(6).hours.do(sync_database_docs)
+```
+
+### Multi-Platform Publishing
+
+Publish to multiple platforms simultaneously:
+
+```go
+// Publish to multiple destinations
+func publishEverywhere(content *docai.Page) error {
+    // Publish to Documentation.AI
+    _, err := client.Pages.Create(ctx, content)
+    if err != nil {
+        return err
+    }
+    
+    // Convert and publish to Confluence
+    confluenceContent := convertToConfluence(content)
+    err = confluenceClient.CreatePage(confluenceContent)
+    if err != nil {
+        return err
+    }
+    
+    // Generate and commit to Git
+    markdownContent := convertToMarkdown(content)
+    return gitClient.CommitFile(content.Path+".md", markdownContent)
+}
+```
+
+## Support and Resources
+
+### Documentation
+
+- **[API Reference](/reference-api)**: Complete API documentation
+- **[SDK Examples](https://github.com/documentation-ai/sdk-examples)**: Sample code and use cases
+- **[Integration Guides](/integrations-workflows)**: Platform-specific integration instructions
+
+### Community and Support
+
+- **[GitHub Issues](https://github.com/documentation-ai/sdk/issues)**: Report bugs and request features
+- **[Community Forum](https://community.documentation.ai)**: Connect with other developers
+- **[Stack Overflow](https://stackoverflow.com/questions/tagged/documentation-ai)**: Get help from the community
+
+### Professional Services
+
+- **Custom Integration Development**: We can build custom integrations for your specific needs
+- **Migration Services**: Professional help migrating from other documentation platforms
+- **Training and Consulting**: Expert guidance on documentation automation strategies
+
+<Callout kind="success">
+Ready to integrate Documentation.AI into your workflow? Choose the SDK that matches your technology stack and start building powerful documentation automation today.
+</Callout>

@@ -1,0 +1,461 @@
+---
+title: Interactive Components
+description: Dynamic and interactive components that enhance user engagement and provide rich functionality
+---
+
+# Interactive Components
+
+Interactive components add dynamic functionality to your documentation, enabling users to engage with content, explore information progressively, and access contextual help. These components enhance the user experience while maintaining accessibility and performance.
+
+## Information Display Components
+
+### Callout
+
+Highlight important information with contextual styling and icons.
+
+**Usage:**
+```markdown
+<Callout kind="note">
+This is a note callout that provides additional context or helpful information.
+</Callout>
+
+<Callout kind="warning">
+This warning callout alerts users to potential issues or important considerations.
+</Callout>
+
+<Callout kind="error">
+This error callout highlights critical problems or failures that need attention.
+</Callout>
+
+<Callout kind="success">
+This success callout confirms positive outcomes or completed actions.
+</Callout>
+
+<Callout kind="tip">
+This tip callout offers helpful suggestions or best practices.
+</Callout>
+```
+
+**Properties:**
+- `kind`: "note", "warning", "error", "success", "tip", "info"
+- `title`: Custom title (optional)
+- `icon`: Custom icon (optional)
+- `collapsible`: Make the callout expandable/collapsible
+
+**Advanced Usage:**
+```markdown
+<Callout kind="warning" title="Breaking Change" collapsible={true}>
+Version 2.0 introduces breaking changes to the authentication API. 
+
+<List type="unordered">
+  <ListItem>API keys now require additional scopes</ListItem>
+  <ListItem>Token refresh intervals have changed</ListItem>
+  <ListItem>Legacy endpoints will be deprecated</ListItem>
+</List>
+
+See the [migration guide](/migration) for detailed upgrade instructions.
+</Callout>
+```
+
+### Expandable
+
+Create collapsible content sections for progressive disclosure.
+
+**Usage:**
+```markdown
+<Expandable title="Advanced Configuration Options">
+These advanced settings are for experienced users who need fine-grained control:
+
+<DefinitionList>
+  <DefinitionTerm>connectionPoolSize</DefinitionTerm>
+  <DefinitionDescription>Maximum number of concurrent connections</DefinitionDescription>
+  
+  <DefinitionTerm>queryTimeout</DefinitionTerm>
+  <DefinitionDescription>Timeout for database queries in milliseconds</DefinitionDescription>
+</DefinitionList>
+</Expandable>
+```
+
+**Properties:**
+- `title`: Section title (required)
+- `defaultOpen`: Whether section starts expanded
+- `icon`: Custom expand/collapse icon
+- `level`: Nesting level for styling
+
+### ExpandableGroup
+
+Organize multiple expandable sections with accordion-style behavior.
+
+**Usage:**
+```markdown
+<ExpandableGroup allowMultiple={false}>
+  <Expandable title="Authentication">
+    Learn how to authenticate API requests using tokens and API keys.
+  </Expandable>
+  
+  <Expandable title="Rate Limiting">
+    Understand rate limits and how to handle rate limit responses.
+  </Expandable>
+  
+  <Expandable title="Error Handling">
+    Best practices for handling API errors and edge cases.
+  </Expandable>
+</ExpandableGroup>
+```
+
+**Properties:**
+- `allowMultiple`: Allow multiple sections open simultaneously
+- `defaultOpen`: Array of initially open section indices
+- `variant`: "accordion" or "independent"
+
+## Navigation Components
+
+### Tabs
+
+Organize related content into tabbed interfaces.
+
+**Usage:**
+```markdown
+<Tabs defaultTab="javascript">
+  <Tab id="javascript" title="JavaScript">
+    ```javascript
+    const response = await fetch('/api/users', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const users = await response.json();
+    ```
+  </Tab>
+  
+  <Tab id="python" title="Python">
+    ```python
+    import requests
+    
+    response = requests.get('/api/users', 
+                          headers={'Authorization': f'Bearer {token}'})
+    users = response.json()
+    ```
+  </Tab>
+  
+  <Tab id="curl" title="cURL">
+    ```bash
+    curl -H "Authorization: Bearer $TOKEN" \
+         https://api.example.com/users
+    ```
+  </Tab>
+</Tabs>
+```
+
+**Properties:**
+- `defaultTab`: ID of initially active tab
+- `orientation`: "horizontal" or "vertical"
+- `variant`: "pills", "underline", or "bordered"
+
+### Accordion
+
+Collapsible content sections with smooth animations.
+
+**Usage:**
+```markdown
+<Accordion>
+  <AccordionItem title="What is an API key?" id="api-key">
+    An API key is a unique identifier that authenticates your application 
+    when making requests to our API. It ensures secure access and enables 
+    usage tracking.
+  </AccordionItem>
+  
+  <AccordionItem title="How do I get an API key?" id="get-key">
+    You can generate API keys from your developer dashboard. Navigate to 
+    Settings > API Keys and click "Generate New Key".
+  </AccordionItem>
+</Accordion>
+```
+
+## Interactive Helpers
+
+### Tooltip
+
+Provide contextual information on hover or focus.
+
+**Usage:**
+```markdown
+<Paragraph>
+  The <Tooltip content="Application Programming Interface">API</Tooltip> 
+  endpoint returns user data in 
+  <Tooltip content="JavaScript Object Notation - a lightweight data format">JSON</Tooltip> 
+  format.
+</Paragraph>
+```
+
+**Properties:**
+- `content`: Tooltip text or HTML content
+- `position`: "top", "bottom", "left", "right"
+- `trigger`: "hover", "click", "focus"
+- `delay`: Show/hide delay in milliseconds
+
+### Modal
+
+Display content in overlay dialogs for detailed information.
+
+**Usage:**
+```markdown
+<Modal trigger={<Button>View Full Example</Button>} title="Complete Implementation">
+  <CodeBlock language="javascript" filename="complete-example.js">
+    ```javascript
+    // Complete implementation with error handling
+    async function fetchUserData(userId) {
+      try {
+        const response = await fetch(`/api/users/${userId}`, {
+          headers: {
+            'Authorization': `Bearer ${getToken()}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        return await response.json();
+      } catch (error) {
+        console.error('Failed to fetch user data:', error);
+        throw error;
+      }
+    }
+    ```
+  </CodeBlock>
+</Modal>
+```
+
+### Popover
+
+Display rich content in positioned overlays.
+
+**Usage:**
+```markdown
+<Paragraph>
+  Click on any 
+  <Popover 
+    trigger={<InlineCode>status code</InlineCode>}
+    content={
+      <div>
+        <Heading level={4}>HTTP Status Codes</Heading>
+        <List type="unordered">
+          <ListItem>200: Success</ListItem>
+          <ListItem>400: Bad Request</ListItem>
+          <ListItem>401: Unauthorized</ListItem>
+          <ListItem>500: Server Error</ListItem>
+        </List>
+      </div>
+    }
+  />
+  to learn more about HTTP responses.
+</Paragraph>
+```
+
+## Form Components
+
+### CopyButton
+
+Enable easy copying of code snippets and text.
+
+**Usage:**
+```markdown
+<CopyButton text="npm install @documentation-ai/sdk" />
+
+<CodeBlock language="bash">
+```bash
+curl -X POST https://api.example.com/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "John Doe", "email": "john@example.com"}'
+```
+<CopyButton />
+</CodeBlock>
+```
+
+**Properties:**
+- `text`: Text to copy (uses parent content if not specified)
+- `successMessage`: Message shown after successful copy
+- `position`: Button position relative to content
+
+### SearchBox
+
+Provide in-page search functionality.
+
+**Usage:**
+```markdown
+<SearchBox 
+  placeholder="Search documentation..." 
+  onSearch={handleSearch}
+  suggestions={searchSuggestions}
+/>
+```
+
+**Features:**
+- Real-time search suggestions
+- Keyboard navigation
+- Search result highlighting
+- Integration with site-wide search
+
+## Feedback Components
+
+### Rating
+
+Collect user feedback on content quality.
+
+**Usage:**
+```markdown
+<Rating 
+  question="Was this page helpful?"
+  onRate={handleRating}
+  showComments={true}
+/>
+```
+
+**Properties:**
+- `question`: Rating prompt text
+- `scale`: Rating scale (1-5 or 1-10)
+- `showComments`: Allow text feedback
+- `anonymous`: Collect ratings anonymously
+
+### FeedbackForm
+
+Comprehensive feedback collection.
+
+**Usage:**
+```markdown
+<FeedbackForm 
+  title="Help us improve this documentation"
+  fields={["rating", "category", "comments", "email"]}
+  onSubmit={handleFeedback}
+/>
+```
+
+## Advanced Interactive Components
+
+### ProgressIndicator
+
+Show progress through multi-step processes.
+
+**Usage:**
+```markdown
+<ProgressIndicator 
+  steps={[
+    { id: "setup", title: "Setup", completed: true },
+    { id: "config", title: "Configuration", completed: true },
+    { id: "test", title: "Testing", completed: false, current: true },
+    { id: "deploy", title: "Deployment", completed: false }
+  ]}
+/>
+```
+
+### Timeline
+
+Display chronological information or process flows.
+
+**Usage:**
+```markdown
+<Timeline>
+  <TimelineItem date="2024-01-15" title="Project Initialization">
+    Set up the basic project structure and dependencies.
+  </TimelineItem>
+  
+  <TimelineItem date="2024-01-20" title="API Development">
+    Implemented core API endpoints and authentication.
+  </TimelineItem>
+  
+  <TimelineItem date="2024-01-25" title="Documentation">
+    Created comprehensive API documentation and guides.
+  </TimelineItem>
+</Timeline>
+```
+
+### Comparison Table
+
+Interactive tables for comparing features or options.
+
+**Usage:**
+```markdown
+<ComparisonTable>
+  <ComparisonColumn title="Feature" />
+  <ComparisonColumn title="Basic Plan" highlight={false} />
+  <ComparisonColumn title="Pro Plan" highlight={true} />
+  <ComparisonColumn title="Enterprise" highlight={false} />
+  
+  <ComparisonRow>
+    <ComparisonCell>API Calls/Month</ComparisonCell>
+    <ComparisonCell>10,000</ComparisonCell>
+    <ComparisonCell>100,000</ComparisonCell>
+    <ComparisonCell>Unlimited</ComparisonCell>
+  </ComparisonRow>
+</ComparisonTable>
+```
+
+## Accessibility Features
+
+### Keyboard Navigation
+
+All interactive components support full keyboard navigation:
+
+- **Tab Navigation**: Logical tab order through interactive elements
+- **Arrow Keys**: Navigate within component groups (tabs, accordions)
+- **Enter/Space**: Activate buttons and toggles
+- **Escape**: Close modals and popovers
+
+### Screen Reader Support
+
+- **ARIA Labels**: Descriptive labels for all interactive elements
+- **Live Regions**: Announce dynamic content changes
+- **Role Attributes**: Proper semantic roles for complex widgets
+- **State Announcements**: Communicate expanded/collapsed states
+
+### Focus Management
+
+- **Focus Indicators**: Clear visual focus indicators
+- **Focus Trapping**: Keep focus within modals and dialogs
+- **Focus Restoration**: Return focus to trigger elements when closing
+- **Skip Links**: Allow bypassing complex interactive regions
+
+## Performance Considerations
+
+### Lazy Loading
+
+Interactive components load efficiently:
+
+- **Code Splitting**: Components load only when needed
+- **Progressive Enhancement**: Basic functionality works without JavaScript
+- **Intersection Observer**: Load components when they enter viewport
+- **Resource Optimization**: Minimal bundle size impact
+
+### Animation Performance
+
+Smooth animations that don't impact performance:
+
+- **CSS Transforms**: Hardware-accelerated animations
+- **Reduced Motion**: Respect user preferences for reduced motion
+- **Frame Rate**: Maintain 60fps for smooth interactions
+- **Memory Management**: Efficient cleanup of animation resources
+
+## Best Practices
+
+### User Experience
+
+1. **Progressive Disclosure**: Use expandable components to manage information density
+2. **Consistent Interactions**: Maintain consistent behavior across similar components
+3. **Clear Affordances**: Make interactive elements obviously clickable/tappable
+4. **Feedback**: Provide immediate feedback for user actions
+
+### Content Organization
+
+1. **Logical Grouping**: Group related interactive elements together
+2. **Hierarchy**: Use appropriate nesting levels for expandable content
+3. **Scannable**: Make content easy to scan even when collapsed
+4. **Context**: Provide sufficient context for interactive elements
+
+### Performance
+
+1. **Lazy Loading**: Load interactive components only when needed
+2. **Debouncing**: Debounce search and filter interactions
+3. **Caching**: Cache expensive operations and API calls
+4. **Optimization**: Optimize for mobile and slower connections
+
+Interactive components transform static documentation into engaging, user-friendly experiences. Use them strategically to enhance comprehension and user satisfaction while maintaining accessibility and performance standards.

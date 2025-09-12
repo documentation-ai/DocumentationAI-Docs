@@ -7,61 +7,83 @@
         "group": "Getting Started",
         "pages": [
           { "title": "Introduction", "path": "introduction" },
-          { "title": "Tutorials Overview", "path": "tutorials" },
+          { "title": "Quickstart", "path": "quickstart" },
+          { "title": "Installation", "path": "installation" },
           { "title": "Create Your First Project", "path": "tutorial-create-first-project" }
         ]
       },
       {
-        "group": "Guides",
+        "group": "Core Features",
         "pages": [
-          { "title": "How-to Overview", "path": "how-to-guides" },
-          { "title": "Configure Custom Domain", "path": "how-to-configure-custom-domain" },
-          { "title": "Integrate with GitHub", "path": "how-to-integrate-github" },
-          { "title": "Invite Team and Set Roles", "path": "how-to-invite-team" },
-          { "title": "Configure CI Auto-publish", "path": "how-to-configure-ci-autopublish" },
-          { "title": "Migrate from MD/MDX Repo", "path": "how-to-migrate-from-mdx" }
+          { "title": "AI-Powered Documentation", "path": "ai-powered-documentation" },
+          { "title": "Intelligent Content Generation", "path": "intelligent-content-generation" },
+          { "title": "Collaborative Editing", "path": "collaborative-editing" },
+          { "title": "Architecture Overview", "path": "explanation-architecture" }
         ]
       },
       {
-        "group": "Reference",
+        "group": "Configuration",
         "pages": [
-          { "title": "Reference Overview", "path": "reference" },
-          { "title": "Components Overview", "path": "components-overview" },
-          { "title": "Components Reference", "path": "reference-components" },
+          { "title": "Project Settings", "path": "project-settings" },
+          { "title": "Theme Customization", "path": "theme-customization" },
+          { "title": "Custom Domain Setup", "path": "how-to-configure-custom-domain" },
+          { "title": "Environment Configuration", "path": "reference-configuration" }
+        ]
+      },
+      {
+        "group": "Content Creation",
+        "pages": [
+          { "title": "Writing with AI", "path": "writing-with-ai" },
+          { "title": "Components Guide", "path": "components-overview" },
+          { "title": "Markdown Extensions", "path": "markdown-extensions" },
+          { "title": "Media Management", "path": "media-management" }
+        ]
+      },
+      {
+        "group": "Integrations & Workflows",
+        "pages": [
+          { "title": "GitHub Integration", "path": "how-to-integrate-github" },
+          { "title": "CI/CD Automation", "path": "how-to-configure-ci-autopublish" },
+          { "title": "Team Collaboration", "path": "how-to-invite-team" },
+          { "title": "Migration Guide", "path": "how-to-migrate-from-mdx" }
+        ]
+      },
+      {
+        "group": "API & Development",
+        "pages": [
           { "title": "API Reference", "path": "reference-api" },
-          { "title": "Configuration Options", "path": "reference-configuration" },
-          { "title": "CLI", "path": "reference-cli" },
           { "title": "Webhooks", "path": "reference-webhooks" },
-          { "title": "Billing and Limits", "path": "reference-billing" },
-          { "title": "Callout", "path": "callout" },
-          { "title": "CodeBlock", "path": "codeblock" },
-          { "title": "ParamField", "path": "paramfield" }
+          { "title": "CLI Tools", "path": "reference-cli" },
+          { "title": "SDK Libraries", "path": "sdk-libraries" }
         ]
       },
       {
-        "group": "Concepts",
+        "group": "Components Reference",
         "pages": [
-          { "title": "Explanations Overview", "path": "explanation" },
-          { "title": "Architecture", "path": "explanation-architecture" },
-          { "title": "AI Features", "path": "explanation-ai-features" }
+          { "title": "Components Overview", "path": "reference-components" },
+          { "title": "Content Components", "path": "content-components" },
+          { "title": "Interactive Components", "path": "interactive-components" },
+          { "title": "API Components", "path": "api-components" },
+          { "title": "Media Components", "path": "media-components" }
         ]
       },
       {
-        "group": "Operations",
+        "group": "Support & Operations",
         "pages": [
-          { "title": "FAQ", "path": "faq" },
           { "title": "Troubleshooting", "path": "troubleshooting" },
           { "title": "Best Practices", "path": "best-practices" },
-          { "title": "Security and Compliance", "path": "operations-security-compliance" },
-          { "title": "Backups and Data Retention", "path": "operations-backups-retention" },
-          { "title": "Incident Response and Status", "path": "operations-incident-response" }
+          { "title": "Security & Compliance", "path": "operations-security-compliance" },
+          { "title": "Billing & Limits", "path": "reference-billing" },
+          { "title": "FAQ", "path": "faq" },
+          { "title": "Backups & Data Retention", "path": "operations-backups-retention" },
+          { "title": "Incident Response", "path": "operations-incident-response" }
         ]
       },
       {
-        "group": "Appendices",
+        "group": "Updates",
         "pages": [
-          { "title": "Glossary", "path": "glossary" },
-          { "title": "Release Notes", "path": "release-notes" }
+          { "title": "Changelog", "path": "changelog" },
+          { "title": "Glossary", "path": "glossary" }
         ]
       }
     ]
