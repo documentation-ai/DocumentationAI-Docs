@@ -1,0 +1,134 @@
+---
+title: CodeGroup Component
+description: Group related code blocks for multiple language examples and tabbed code displays
+---
+
+# CodeGroup Component
+
+The CodeGroup component organizes multiple related code examples into a tabbed interface, perfect for showing the same functionality across different programming languages or frameworks.
+
+## Overview
+
+Use CodeGroup components when you need to present multiple variations of the same concept, such as API examples in different languages or configuration options for different environments.
+
+## Properties
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `children` | `CodeBlock[]` | Yes | Array of CodeBlock components |
+| `defaultTab` | `string` | No | Default active tab (language name) |
+| `className` | `string` | No | Additional CSS classes for styling |
+
+## Usage Examples
+
+### Multi-Language API Example
+
+```mdx
+<CodeGroup>
+  <CodeBlock language="javascript" filename="api-call.js">
+  {`fetch('/api/users', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: 'John' })
+  })`}
+  </CodeBlock>
+  
+  <CodeBlock language="python" filename="api_call.py">
+  {`import requests
+
+response = requests.post('/api/users', 
+    json={'name': 'John'})`}
+  </CodeBlock>
+  
+  <CodeBlock language="curl" filename="api-call.sh">
+  {`curl -X POST /api/users \\
+  -H "Content-Type: application/json" \\
+  -d '{"name": "John"}'`}
+  </CodeBlock>
+</CodeGroup>
+```
+
+### Configuration Examples
+
+```mdx
+<CodeGroup defaultTab="yaml">
+  <CodeBlock language="yaml" filename="config.yaml">
+  {`database:
+    host: localhost
+    port: 5432
+    name: myapp`}
+  </CodeBlock>
+  
+  <CodeBlock language="json" filename="config.json">
+  {`{
+    "database": {
+      "host": "localhost",
+      "port": 5432,
+      "name": "myapp"
+    }
+  }`}
+  </CodeBlock>
+  
+  <CodeBlock language="toml" filename="config.toml">
+  {`[database]
+host = "localhost"
+port = 5432
+name = "myapp"`}
+  </CodeBlock>
+</CodeGroup>
+```
+
+### Framework Comparison
+
+```mdx
+<CodeGroup>
+  <CodeBlock language="javascript" filename="react-component.jsx">
+  {`function Button({ children, onClick }) {
+    return (
+      <button onClick={onClick}>
+        {children}
+      </button>
+    );
+  }`}
+  </CodeBlock>
+  
+  <CodeBlock language="javascript" filename="vue-component.vue">
+  {`<template>
+    <button @click="onClick">
+      <slot />
+    </button>
+  </template>`}
+  </CodeBlock>
+  
+  <CodeBlock language="javascript" filename="svelte-component.svelte">
+  {`<script>
+    export let onClick;
+  </script>
+  
+  <button on:click={onClick}>
+    <slot />
+  </button>`}
+  </CodeBlock>
+</CodeGroup>
+```
+
+## Accessibility
+
+- Uses ARIA tabs pattern for keyboard navigation
+- Supports arrow key navigation between tabs
+- Maintains focus management when switching tabs
+- Provides clear tab labels and content associations
+
+## Best Practices
+
+- Group logically related code examples
+- Use consistent naming conventions across tabs
+- Provide meaningful filenames for context
+- Keep the number of tabs manageable (3-6 recommended)
+- Ensure all code examples serve the same purpose
+
+## Related Components
+
+- [CodeBlock](/components/codeblock) - Individual code snippets
+- [Paragraph](/components/paragraph) - For explaining code groups
+- [Callout](/components/callout) - For important notes about code variations

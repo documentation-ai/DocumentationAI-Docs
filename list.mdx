@@ -1,0 +1,91 @@
+---
+title: List Component
+description: Ordered and unordered lists for presenting structured information in documentation
+---
+
+# List Component
+
+The List component creates organized collections of related items, supporting both ordered (numbered) and unordered (bulleted) formats.
+
+## Overview
+
+Use List components to present information in a structured, scannable format that helps users quickly understand related concepts or steps.
+
+## Properties
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | `'ordered' \| 'unordered'` | Yes | The list type (ol or ul) |
+| `children` | `ReactNode` | Yes | List items and content |
+| `className` | `string` | No | Additional CSS classes for styling |
+
+## Usage Examples
+
+### Unordered List
+
+```mdx
+<List type="unordered">
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+</List>
+```
+
+### Ordered List
+
+```mdx
+<List type="ordered">
+  <li>Step one</li>
+  <li>Step two</li>
+  <li>Step three</li>
+</List>
+```
+
+### Nested Lists
+
+```mdx
+<List type="unordered">
+  <li>Main category
+    <List type="unordered">
+      <li>Subcategory A</li>
+      <li>Subcategory B</li>
+    </List>
+  </li>
+  <li>Another main category</li>
+</List>
+```
+
+### Complex List Items
+
+```mdx
+<List type="ordered">
+  <li>
+    <strong>Setup Environment</strong>
+    <Paragraph>Install the required dependencies and configure your development environment.</Paragraph>
+  </li>
+  <li>
+    <strong>Create Project</strong>
+    <Paragraph>Initialize a new project using the CLI tool.</Paragraph>
+  </li>
+</List>
+```
+
+## Accessibility
+
+- Uses semantic list elements (ol, ul, li)
+- Maintains proper list structure for screen readers
+- Supports keyboard navigation
+- Provides clear item boundaries and relationships
+
+## Best Practices
+
+- Use ordered lists for sequential steps or ranked items
+- Use unordered lists for related but non-sequential items
+- Keep list items concise and parallel in structure
+- Limit nesting depth for better readability
+
+## Related Components
+
+- [Paragraph](/components/paragraph) - For content within list items
+- [Heading](/components/heading) - For list section titles
+- [Callout](/components/callout) - For highlighted list information

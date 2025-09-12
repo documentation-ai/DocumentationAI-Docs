@@ -1,0 +1,284 @@
+---
+title: Iframe Component
+description: Embedded external content and interactive demos for rich documentation experiences
+---
+
+# Iframe Component
+
+The Iframe component enables embedding of external content, interactive demos, and third-party applications directly within your documentation pages.
+
+## Overview
+
+Use Iframe components to embed interactive demos, external tools, code playgrounds, maps, forms, and other web-based content that enhances your documentation with live examples.
+
+## Properties
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `src` | `string` | Yes | URL of the content to embed |
+| `width` | `number \| string` | No | Frame width (pixels or percentage) |
+| `height` | `number \| string` | No | Frame height (pixels or percentage) |
+| `title` | `string` | Yes | Descriptive title for accessibility |
+| `allowFullscreen` | `boolean` | No | Allow fullscreen mode |
+| `sandbox` | `string` | No | Sandbox restrictions for security |
+| `loading` | `'lazy' \| 'eager'` | No | Loading behavior (default: lazy) |
+| `className` | `string` | No | Additional CSS classes for styling |
+
+## Usage Examples
+
+### Code Playground
+
+```mdx
+<Iframe 
+  src="https://codesandbox.io/embed/documentationai-example"
+  width="100%"
+  height={500}
+  title="DocumentationAI integration example"
+  allowFullscreen={true}
+/>
+```
+
+### Interactive Demo
+
+```mdx
+<Heading level={3}>Live Editor Demo</Heading>
+
+<Paragraph>
+  Try out the DocumentationAI editor in this interactive demo:
+</Paragraph>
+
+<Iframe 
+  src="https://demo.documentationai.com/editor"
+  width="100%"
+  height={600}
+  title="Interactive DocumentationAI editor demo"
+  sandbox="allow-scripts allow-same-origin"
+/>
+
+<Callout kind="tip">
+  This demo includes all the features available in the full editor. Your changes are not saved.
+</Callout>
+```
+
+### API Testing Interface
+
+```mdx
+<Heading level={3}>API Explorer</Heading>
+
+<Paragraph>
+  Test our API endpoints directly in your browser:
+</Paragraph>
+
+<Iframe 
+  src="https://api-explorer.documentationai.com"
+  width="100%"
+  height={700}
+  title="DocumentationAI API testing interface"
+  allowFullscreen={true}
+/>
+```
+
+### Embedded Documentation
+
+```mdx
+<Iframe 
+  src="https://docs.example.com/widget-docs"
+  width="100%"
+  height={400}
+  title="Widget configuration documentation"
+/>
+```
+
+### Video Embed
+
+```mdx
+<Heading level={3}>Product Overview</Heading>
+
+<Iframe 
+  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+  width={560}
+  height={315}
+  title="DocumentationAI product overview video"
+  allowFullscreen={true}
+/>
+```
+
+### Form Embed
+
+```mdx
+<Heading level={3}>Contact Support</Heading>
+
+<Paragraph>
+  Use the form below to get in touch with our support team:
+</Paragraph>
+
+<Iframe 
+  src="https://forms.documentationai.com/support"
+  width="100%"
+  height={500}
+  title="Support contact form"
+  sandbox="allow-forms allow-scripts allow-same-origin"
+/>
+```
+
+### Map Embed
+
+```mdx
+<Heading level={3}>Office Location</Heading>
+
+<Iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024...."
+  width="100%"
+  height={300}
+  title="DocumentationAI office location map"
+/>
+```
+
+### Code Editor
+
+```mdx
+<Heading level={3}>Try the Code</Heading>
+
+<Paragraph>
+  Experiment with this code example in the embedded editor:
+</Paragraph>
+
+<Iframe 
+  src="https://codepen.io/pen/example"
+  width="100%"
+  height={400}
+  title="Code example playground"
+  allowFullscreen={true}
+/>
+```
+
+### Dashboard Preview
+
+```mdx
+<Heading level={3}>Analytics Dashboard</Heading>
+
+<Paragraph>
+  Preview of the analytics dashboard you'll see after setup:
+</Paragraph>
+
+<Iframe 
+  src="https://demo.documentationai.com/analytics"
+  width="100%"
+  height={500}
+  title="Analytics dashboard preview"
+  sandbox="allow-scripts allow-same-origin"
+/>
+```
+
+## Security Considerations
+
+### Sandbox Attribute
+
+The `sandbox` attribute provides security restrictions:
+
+- `allow-forms` - Allow form submission
+- `allow-scripts` - Allow JavaScript execution
+- `allow-same-origin` - Allow same-origin requests
+- `allow-popups` - Allow popup windows
+- `allow-fullscreen` - Allow fullscreen mode
+
+### Example Sandbox Usage
+
+```mdx
+<Iframe 
+  src="https://untrusted-content.example.com"
+  sandbox="allow-scripts"
+  title="Sandboxed external content"
+/>
+```
+
+## Responsive Design
+
+### Aspect Ratio Containers
+
+```mdx
+<div style={{ aspectRatio: '16/9', width: '100%' }}>
+  <Iframe 
+    src="https://example.com/demo"
+    width="100%"
+    height="100%"
+    title="Responsive demo"
+  />
+</div>
+```
+
+### Mobile Considerations
+
+```mdx
+<Iframe 
+  src="https://mobile-friendly-demo.com"
+  width="100%"
+  height={400}
+  title="Mobile-optimized demo"
+  className="mobile-responsive"
+/>
+```
+
+## Accessibility Features
+
+- **Title Attribute**: Required for screen reader identification
+- **Keyboard Navigation**: Embedded content maintains keyboard accessibility
+- **Focus Management**: Proper focus handling when entering/exiting iframe
+- **Screen Reader Support**: Announces iframe content and purpose
+
+## Performance Considerations
+
+- **Lazy Loading**: Iframes load only when they enter the viewport
+- **Resource Impact**: External content affects page load time
+- **Network Requests**: Each iframe makes additional HTTP requests
+- **Memory Usage**: Embedded content consumes browser memory
+
+## Best Practices
+
+- Always provide descriptive titles for accessibility
+- Use appropriate sandbox restrictions for security
+- Consider the performance impact of embedded content
+- Test embedded content across different devices and browsers
+- Ensure embedded content is mobile-friendly
+- Provide fallback content for when iframes fail to load
+
+## Common Use Cases
+
+### Development Tools
+- Code playgrounds and editors
+- API testing interfaces
+- Live preview environments
+
+### Interactive Content
+- Product demos and tutorials
+- Interactive forms and surveys
+- Games and simulations
+
+### Third-Party Services
+- Maps and location services
+- Social media feeds
+- Analytics dashboards
+
+### Documentation
+- External documentation pages
+- Help systems and knowledge bases
+- Reference materials
+
+## Troubleshooting
+
+### Content Not Loading
+- Check if the source URL is accessible
+- Verify CORS and X-Frame-Options headers
+- Ensure the content allows embedding
+
+### Security Errors
+- Review sandbox restrictions
+- Check for mixed content issues (HTTP vs HTTPS)
+- Verify domain permissions
+
+## Related Components
+
+- [Video](/components/video) - For video content without external dependencies
+- [Image](/components/image) - For static visual content
+- [CodeBlock](/components/codeblock) - For code examples without interactivity
+- [Callout](/components/callout) - For notes about embedded content

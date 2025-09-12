@@ -60,11 +60,32 @@
       {
         "group": "Components Reference",
         "pages": [
-          { "title": "Components Overview", "path": "reference-components" },
+          { "title": "Components Overview", "path": "components-overview" },
           { "title": "Content Components", "path": "content-components" },
           { "title": "Interactive Components", "path": "interactive-components" },
           { "title": "API Components", "path": "api-components" },
           { "title": "Media Components", "path": "media-components" }
+        ]
+      },
+      {
+        "group": "Individual Components",
+        "pages": [
+          { "title": "Paragraph", "path": "paragraph" },
+          { "title": "Heading", "path": "heading" },
+          { "title": "List", "path": "list" },
+          { "title": "CodeBlock", "path": "codeblock" },
+          { "title": "CodeGroup", "path": "codegroup" },
+          { "title": "Callout", "path": "callout" },
+          { "title": "Expandable", "path": "expandable" },
+          { "title": "ExpandableGroup", "path": "expandablegroup" },
+          { "title": "ParamField", "path": "paramfield" },
+          { "title": "Request", "path": "request" },
+          { "title": "Response", "path": "response" },
+          { "title": "ResponseField", "path": "responsefield" },
+          { "title": "Image", "path": "image" },
+          { "title": "Video", "path": "video" },
+          { "title": "Iframe", "path": "iframe" },
+          { "title": "Table", "path": "table" }
         ]
       },
       {

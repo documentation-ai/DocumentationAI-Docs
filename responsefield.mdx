@@ -1,0 +1,245 @@
+---
+title: ResponseField Component
+description: Document API response fields and structure with detailed type information
+---
+
+# ResponseField Component
+
+The ResponseField component is designed for documenting API response fields, providing a structured way to describe field names, types, and detailed information about response data structure.
+
+## Overview
+
+Use ResponseField components in API documentation to clearly describe response object properties, nested fields, and data structures with consistent formatting and type information.
+
+## Properties
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `path` | `string` | Yes | The field name or nested path |
+| `type` | `string` | Yes | The field data type |
+| `required` | `boolean` | No | Whether the field is always present |
+| `children` | `ReactNode` | Yes | Description of the field |
+| `example` | `string` | No | Example value for the field |
+| `nullable` | `boolean` | No | Whether the field can be null |
+| `className` | `string` | No | Additional CSS classes for styling |
+
+## Usage Examples
+
+### Basic Response Field
+
+```mdx
+<ResponseField path="id" type="string">
+  Unique identifier for the user account.
+</ResponseField>
+```
+
+### Optional Field
+
+```mdx
+<ResponseField path="avatar" type="string" nullable={true}>
+  URL to the user's profile picture. Returns null if no avatar is set.
+</ResponseField>
+```
+
+### Field with Example
+
+```mdx
+<ResponseField path="email" type="string" example="user@example.com">
+  The user's email address used for authentication and notifications.
+</ResponseField>
+```
+
+### Nested Object Fields
+
+```mdx
+<ResponseField path="user" type="object">
+  User information object containing profile and account details.
+</ResponseField>
+
+<ResponseField path="user.id" type="string">
+  Unique identifier for the user.
+</ResponseField>
+
+<ResponseField path="user.profile" type="object">
+  User profile information.
+</ResponseField>
+
+<ResponseField path="user.profile.name" type="string">
+  The user's display name.
+</ResponseField>
+
+<ResponseField path="user.profile.bio" type="string" nullable={true}>
+  User's biography or description. Can be null if not provided.
+</ResponseField>
+```
+
+### Array Fields
+
+```mdx
+<ResponseField path="tags" type="array">
+  List of tags associated with the content.
+  <List type="unordered">
+    <li>Each item is a string representing a tag name</li>
+    <li>Array can be empty if no tags are assigned</li>
+    <li>Maximum 10 tags per item</li>
+  </List>
+</ResponseField>
+
+<ResponseField path="users" type="array">
+  Array of user objects in the response.
+</ResponseField>
+
+<ResponseField path="users[].id" type="string">
+  Unique identifier for each user in the array.
+</ResponseField>
+
+<ResponseField path="users[].name" type="string">
+  Display name for each user.
+</ResponseField>
+```
+
+### Complex Response Documentation
+
+```mdx
+<Heading level={3}>Response Structure</Heading>
+
+<ResponseField path="data" type="object">
+  Main data container for the API response.
+</ResponseField>
+
+<ResponseField path="data.project" type="object">
+  Project information and details.
+</ResponseField>
+
+<ResponseField path="data.project.id" type="string" example="proj_abc123">
+  Unique project identifier.
+</ResponseField>
+
+<ResponseField path="data.project.name" type="string" example="My Documentation Site">
+  Human-readable project name.
+</ResponseField>
+
+<ResponseField path="data.project.settings" type="object">
+  Project configuration settings.
+</ResponseField>
+
+<ResponseField path="data.project.settings.theme" type="string" example="dark">
+  UI theme preference: <code>light</code>, <code>dark</code>, or <code>auto</code>.
+</ResponseField>
+
+<ResponseField path="data.project.settings.publicAccess" type="boolean" example="true">
+  Whether the project is publicly accessible.
+</ResponseField>
+
+<ResponseField path="meta" type="object">
+  Response metadata and pagination information.
+</ResponseField>
+
+<ResponseField path="meta.timestamp" type="string" example="2024-01-15T10:30:00Z">
+  ISO 8601 timestamp of when the response was generated.
+</ResponseField>
+
+<ResponseField path="meta.version" type="string" example="v1.2.0">
+  API version used to generate this response.
+</ResponseField>
+```
+
+### Enum Fields
+
+```mdx
+<ResponseField path="status" type="string" example="active">
+  Account status. Possible values:
+  <List type="unordered">
+    <li><code>active</code> - Account is active and functional</li>
+    <li><code>suspended</code> - Account is temporarily suspended</li>
+    <li><code>pending</code> - Account is pending verification</li>
+    <li><code>deleted</code> - Account has been deleted</li>
+  </List>
+</ResponseField>
+```
+
+### Conditional Fields
+
+```mdx
+<ResponseField path="error" type="object" nullable={true}>
+  Error information object. Only present when an error occurs.
+</ResponseField>
+
+<ResponseField path="error.code" type="string" example="VALIDATION_ERROR">
+  Machine-readable error code for programmatic handling.
+</ResponseField>
+
+<ResponseField path="error.message" type="string" example="Invalid email format">
+  Human-readable error message for display to users.
+</ResponseField>
+
+<ResponseField path="error.details" type="array" nullable={true}>
+  Additional error details for validation errors. Each item contains field-specific error information.
+</ResponseField>
+```
+
+### Pagination Fields
+
+```mdx
+<ResponseField path="pagination" type="object">
+  Pagination information for list responses.
+</ResponseField>
+
+<ResponseField path="pagination.page" type="number" example="1">
+  Current page number (1-based).
+</ResponseField>
+
+<ResponseField path="pagination.limit" type="number" example="20">
+  Number of items per page.
+</ResponseField>
+
+<ResponseField path="pagination.total" type="number" example="150">
+  Total number of items available.
+</ResponseField>
+
+<ResponseField path="pagination.hasNext" type="boolean" example="true">
+  Whether there are more pages available.
+</ResponseField>
+
+<ResponseField path="pagination.hasPrev" type="boolean" example="false">
+  Whether there are previous pages available.
+</ResponseField>
+```
+
+## Field Types
+
+Common field types you can use:
+
+- `string` - Text values
+- `number` - Numeric values (integers and floats)
+- `integer` - Whole numbers only
+- `boolean` - True/false values
+- `array` - List of values
+- `object` - Nested data structures
+- `date` - Date values (ISO 8601)
+- `datetime` - Date and time values (ISO 8601)
+- `enum` - Predefined set of values
+- `null` - Null values
+
+## Accessibility
+
+- Uses semantic markup with proper field labels
+- Provides clear type and requirement information
+- Supports keyboard navigation and focus management
+- Compatible with screen readers and assistive technologies
+
+## Best Practices
+
+- Always provide clear, descriptive field descriptions
+- Include examples for complex or non-obvious fields
+- Document nullable fields explicitly
+- Use consistent naming conventions for nested paths
+- Group related fields logically
+- Document field constraints and possible values
+
+## Related Components
+
+- [Response](/components/response) - For documenting complete HTTP responses
+- [ParamField](/components/paramfield) - For documenting request parameters
+- [Request](/components/request) - For documenting HTTP requests
+- [CodeBlock](/components/codeblock) - For response examples

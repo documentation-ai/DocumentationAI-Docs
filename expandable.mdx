@@ -1,0 +1,142 @@
+---
+title: Expandable Component
+description: Collapsible content sections for detailed information and progressive disclosure
+---
+
+# Expandable Component
+
+The Expandable component creates collapsible content sections that allow users to show or hide detailed information, enabling progressive disclosure and cleaner page layouts.
+
+## Overview
+
+Use Expandable components to organize optional or detailed content that doesn't need to be visible by default, helping users focus on essential information while keeping additional details accessible.
+
+## Properties
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `title` | `string` | Yes | The clickable header text |
+| `children` | `ReactNode` | Yes | The collapsible content |
+| `defaultOpen` | `boolean` | No | Whether the section starts expanded |
+| `icon` | `ReactNode` | No | Custom icon for the toggle |
+| `className` | `string` | No | Additional CSS classes for styling |
+
+## Usage Examples
+
+### Basic Expandable
+
+```mdx
+<Expandable title="Advanced Configuration">
+  <Paragraph>
+    These advanced settings are for experienced users who need fine-grained control over the system behavior.
+  </Paragraph>
+  <CodeBlock language="json">
+  {`{
+    "advanced": {
+      "cacheTimeout": 3600,
+      "maxRetries": 3,
+      "debugMode": false
+    }
+  }`}
+  </CodeBlock>
+</Expandable>
+```
+
+### Default Open
+
+```mdx
+<Expandable title="Quick Start Guide" defaultOpen={true}>
+  <List type="ordered">
+    <li>Install the package</li>
+    <li>Configure your environment</li>
+    <li>Run the setup command</li>
+    <li>Start building!</li>
+  </List>
+</Expandable>
+```
+
+### FAQ Style
+
+```mdx
+<Expandable title="How do I reset my password?">
+  <Paragraph>
+    To reset your password, follow these steps:
+  </Paragraph>
+  <List type="ordered">
+    <li>Go to the login page</li>
+    <li>Click "Forgot Password"</li>
+    <li>Enter your email address</li>
+    <li>Check your email for reset instructions</li>
+  </List>
+</Expandable>
+
+<Expandable title="Can I change my subscription plan?">
+  <Paragraph>
+    Yes, you can upgrade or downgrade your subscription at any time from your account settings.
+  </Paragraph>
+</Expandable>
+```
+
+### Technical Details
+
+```mdx
+<Expandable title="API Response Schema">
+  <CodeBlock language="typescript">
+  {`interface ApiResponse {
+    data: {
+      id: string;
+      name: string;
+      email: string;
+      createdAt: Date;
+    };
+    meta: {
+      total: number;
+      page: number;
+      limit: number;
+    };
+  }`}
+  </CodeBlock>
+</Expandable>
+```
+
+### With Rich Content
+
+```mdx
+<Expandable title="Troubleshooting Common Issues">
+  <Callout kind="tip">
+    Most issues can be resolved by checking these common causes first.
+  </Callout>
+  
+  <Heading level={4}>Connection Problems</Heading>
+  <Paragraph>
+    If you're experiencing connection issues, try the following:
+  </Paragraph>
+  <List type="unordered">
+    <li>Check your internet connection</li>
+    <li>Verify your API credentials</li>
+    <li>Ensure the service is not under maintenance</li>
+  </List>
+</Expandable>
+```
+
+## Accessibility
+
+- Uses semantic disclosure pattern with proper ARIA attributes
+- Supports keyboard navigation (Enter/Space to toggle)
+- Provides clear focus indicators
+- Announces state changes to screen readers
+- Maintains focus management when expanding/collapsing
+
+## Best Practices
+
+- Use descriptive titles that clearly indicate the content
+- Group related expandable sections together
+- Don't nest expandables too deeply
+- Consider using ExpandableGroup for multiple related sections
+- Keep essential information outside of expandables
+
+## Related Components
+
+- [ExpandableGroup](/components/expandablegroup) - For organizing multiple expandables
+- [Callout](/components/callout) - For highlighted content within expandables
+- [Heading](/components/heading) - For section titles within expandables
