@@ -1,36 +1,67 @@
 {
-  "name": "Documentation AI App",
+  "name": "Documentation.AI",
   "initialRoute": "introduction",
   "navigation": {
     "groups": [
       {
         "group": "Getting Started",
         "pages": [
-          {
-            "title": "Introduction",
-            "path": "introduction"
-          },
-          {
-            "title": "Components Overview",
-            "path": "components-overview"
-          }
+          { "title": "Introduction", "path": "introduction" },
+          { "title": "Tutorials Overview", "path": "tutorials" },
+          { "title": "Create Your First Project", "path": "tutorial-create-first-project" }
         ]
       },
       {
-        "group": "Content Components",
+        "group": "Guides",
         "pages": [
-          {
-            "title": "Callout",
-            "path": "callout"
-          },
-          {
-            "title": "CodeBlock",
-            "path": "codeblock"
-          },
-          {
-            "title": "ParamField",
-            "path": "paramfield"
-          }
+          { "title": "How-to Overview", "path": "how-to-guides" },
+          { "title": "Configure Custom Domain", "path": "how-to-configure-custom-domain" },
+          { "title": "Integrate with GitHub", "path": "how-to-integrate-github" },
+          { "title": "Invite Team and Set Roles", "path": "how-to-invite-team" },
+          { "title": "Configure CI Auto-publish", "path": "how-to-configure-ci-autopublish" },
+          { "title": "Migrate from MD/MDX Repo", "path": "how-to-migrate-from-mdx" }
+        ]
+      },
+      {
+        "group": "Reference",
+        "pages": [
+          { "title": "Reference Overview", "path": "reference" },
+          { "title": "Components Overview", "path": "components-overview" },
+          { "title": "Components Reference", "path": "reference-components" },
+          { "title": "API Reference", "path": "reference-api" },
+          { "title": "Configuration Options", "path": "reference-configuration" },
+          { "title": "CLI", "path": "reference-cli" },
+          { "title": "Webhooks", "path": "reference-webhooks" },
+          { "title": "Billing and Limits", "path": "reference-billing" },
+          { "title": "Callout", "path": "callout" },
+          { "title": "CodeBlock", "path": "codeblock" },
+          { "title": "ParamField", "path": "paramfield" }
+        ]
+      },
+      {
+        "group": "Concepts",
+        "pages": [
+          { "title": "Explanations Overview", "path": "explanation" },
+          { "title": "Architecture", "path": "explanation-architecture" },
+          { "title": "AI Features", "path": "explanation-ai-features" }
+        ]
+      },
+      {
+        "group": "Operations",
+        "pages": [
+          { "title": "FAQ", "path": "faq" },
+          { "title": "Troubleshooting", "path": "troubleshooting" },
+          { "title": "Best Practices", "path": "best-practices" },
+          { "title": "Security and Compliance", "path": "operations-security-compliance" },
+          { "title": "Backups and Data Retention", "path": "operations-backups-retention" },
+          { "title": "Incident Response and Status", "path": "operations-incident-response" }
+        ]
+      },
+      {
+        "group": "Appendices",
+        "pages": [
+          { "title": "Glossary", "path": "glossary" },
+          { "title": "Release Notes", "path": "release-notes" }
         ]
       }
     ]
