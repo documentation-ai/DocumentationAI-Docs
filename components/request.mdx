@@ -78,9 +78,9 @@ Use Request components to document API endpoints with complete request informati
   }}
   title="Upload Document"
 >
-  <Paragraph>
-    Upload a new document to the specified project. Supports multiple file formats including PDF, DOCX, and Markdown.
-  </Paragraph>
+  
+Upload a new document to the specified project. Supports multiple file formats including PDF, DOCX, and Markdown.
+
   
   <ParamField path="file" paramType="file" required={true}>
     The document file to upload (max 10MB).
@@ -104,9 +104,9 @@ Use Request components to document API endpoints with complete request informati
 
 ```mdx
 <Request method="GET" url="/api/search?q={query}&limit={limit}&offset={offset}">
-  <Paragraph>
+
     Search for content across all documents with pagination support.
-  </Paragraph>
+  
   
   <ParamField path="q" paramType="string" required={true}>
     The search query string.
@@ -130,9 +130,9 @@ Use Request components to document API endpoints with complete request informati
 
 ```mdx
 <Request method="POST" url="/auth/login" title="User Authentication">
-  <Paragraph>
+
     Authenticate a user and receive an access token for API requests.
-  </Paragraph>
+
   
   <CodeBlock language="json">
   {`{
@@ -152,9 +152,9 @@ Use Request components to document API endpoints with complete request informati
 
 ```mdx
 <Request method="POST" url="/api/users/batch" title="Create Multiple Users">
-  <Paragraph>
+
     Create multiple users in a single request. Maximum 100 users per batch.
-  </Paragraph>
+
   
   <CodeBlock language="json">
   {`{
