@@ -1,461 +1,657 @@
 ---
-title: Interactive Components
-description: Dynamic and interactive components that enhance user engagement and provide rich functionality
+title: API Components
+description: >-
+  Specialized components for creating comprehensive API documentation with
+  examples, parameters, and responses
 ---
+# API Components
 
-# Interactive Components
+API components are specialized tools for creating comprehensive, interactive API documentation. These components help you document endpoints, parameters, responses, and provide live examples that developers can test directly in your documentation.
 
-Interactive components add dynamic functionality to your documentation, enabling users to engage with content, explore information progressively, and access contextual help. These components enhance the user experience while maintaining accessibility and performance.
+## Core API Components
 
-## Information Display Components
+### ParamField
 
-### Callout
-
-Highlight important information with contextual styling and icons.
+Document API parameters with detailed type information and validation rules.
 
 **Usage:**
+
 ```markdown
-<Callout kind="note">
-This is a note callout that provides additional context or helpful information.
-</Callout>
+<ParamField path="userId" paramType="string" required={true}>
+The unique identifier for the user account. Must be a valid UUID format.
+</ParamField>
 
-<Callout kind="warning">
-This warning callout alerts users to potential issues or important considerations.
-</Callout>
+<ParamField path="limit" paramType="integer" required={false} default={10}>
+Maximum number of results to return. Must be between 1 and 100.
+</ParamField>
 
-<Callout kind="error">
-This error callout highlights critical problems or failures that need attention.
-</Callout>
+<ParamField path="filters" paramType="object" required={false}>
+Optional filters to apply to the query:
 
-<Callout kind="success">
-This success callout confirms positive outcomes or completed actions.
-</Callout>
+<ParamField path="filters.status" paramType="string" required={false}>
+Filter by user status: "active", "inactive", or "pending"
+</ParamField>
 
-<Callout kind="tip">
-This tip callout offers helpful suggestions or best practices.
-</Callout>
+<ParamField path="filters.createdAfter" paramType="string" required={false}>
+ISO 8601 date string to filter users created after this date
+</ParamField>
+</ParamField>
 ```
 
 **Properties:**
-- `kind`: "note", "warning", "error", "success", "tip", "info"
-- `title`: Custom title (optional)
-- `icon`: Custom icon (optional)
-- `collapsible`: Make the callout expandable/collapsible
 
-**Advanced Usage:**
-```markdown
-<Callout kind="warning" title="Breaking Change" collapsible={true}>
-Version 2.0 introduces breaking changes to the authentication API. 
+- `path`: Parameter name or path (e.g., "user.email")
 
-<List type="unordered">
-  <ListItem>API keys now require additional scopes</ListItem>
-  <ListItem>Token refresh intervals have changed</ListItem>
-  <ListItem>Legacy endpoints will be deprecated</ListItem>
-</List>
+- `paramType`: Data type ("string", "integer", "boolean", "object", "array")
 
-See the [migration guide](/guides/how-to-migrate-from-mdx) for detailed upgrade instructions.
-</Callout>
-```
+- `required`: Whether the parameter is required
 
-### Expandable
+- `default`: Default value if not provided
 
-Create collapsible content sections for progressive disclosure.
+- `enum`: Array of allowed values
+
+- `format`: Format specification (e.g., "email", "uuid", "date-time")
+
+- `min`/`max`: Minimum/maximum values for numbers
+
+- `minLength`/`maxLength`: Length constraints for strings
+
+<Request uid="6f2555b7-adbe-4778-9c43-6c0bcc8cd6ea" show-lines="true" tabs="request,request.txt">
+  ```javascript request
+  // add request here
+
+  ```
+
+  ```text request.txt
+  // Add request here
+  this 
+  ```
+</Request>
+
+<Response uid="3e81a2bb-f6c7-4300-8ef4-6d53817dba3c" default-tab="1" show-lines="true" tabs="response,response.json">
+  ```javascript response
+  // add response here
+  asdas
+  ```
+
+  ```json response.json
+  // Add response here
+
+  asdasd
+  ```
+</Response>
+
+### Request
+
+Document HTTP request structure with headers, body, and examples.
 
 **Usage:**
-```markdown
-<Expandable title="Advanced Configuration Options">
-These advanced settings are for experienced users who need fine-grained control:
 
-<DefinitionList>
-  <DefinitionTerm>connectionPoolSize</DefinitionTerm>
-  <DefinitionDescription>Maximum number of concurrent connections</DefinitionDescription>
-  
-  <DefinitionTerm>queryTimeout</DefinitionTerm>
-  <DefinitionDescription>Timeout for database queries in milliseconds</DefinitionDescription>
-</DefinitionList>
-</Expandable>
+````markdown
+<Request method="POST" url="/api/users">
+
+**Headers:**
+<ParamField path="Authorization" paramType="string" required={true}>
+Bearer token for authentication
+</ParamField>
+
+<ParamField path="Content-Type" paramType="string" required={true} default="application/json">
+Request content type
+</ParamField>
+
+**Body Parameters:**
+<ParamField path="name" paramType="string" required={true}>
+Full name of the user
+</ParamField>
+
+<ParamField path="email" paramType="string" required={true} format="email">
+Valid email address for the user
+</ParamField>
+
+<ParamField path="preferences" paramType="object" required={false}>
+User preferences object:
+
+<ParamField path="preferences.theme" paramType="string" required={false} enum={["light", "dark", "auto"]}>
+UI theme preference
+</ParamField>
+</ParamField>
+
+**Example Request:**
+```json
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "preferences": {
+    "theme": "dark"
+  }
+}
 ```
+
+</Request>
+````
 
 **Properties:**
-- `title`: Section title (required)
-- `defaultOpen`: Whether section starts expanded
-- `icon`: Custom expand/collapse icon
-- `level`: Nesting level for styling
 
-### ExpandableGroup
+- `method`: HTTP method (GET, POST, PUT, DELETE, etc.)
 
-Organize multiple expandable sections with accordion-style behavior.
+- `url`: Endpoint URL with path parameters
+
+- `baseUrl`: Base URL for the API (optional)
+
+- `title`: Custom title for the request section
+
+### Response
+
+Document API responses with status codes, headers, and body structure.
 
 **Usage:**
-```markdown
-<ExpandableGroup allowMultiple={false}>
-  <Expandable title="Authentication">
-    Learn how to authenticate API requests using tokens and API keys.
-  </Expandable>
-  
-  <Expandable title="Rate Limiting">
-    Understand rate limits and how to handle rate limit responses.
-  </Expandable>
-  
-  <Expandable title="Error Handling">
-    Best practices for handling API errors and edge cases.
-  </Expandable>
-</ExpandableGroup>
+
+````markdown
+<Response status="201" description="User created successfully">
+
+**Headers:**
+<ParamField path="Location" paramType="string">
+URL of the newly created user resource
+</ParamField>
+
+<ParamField path="X-Rate-Limit-Remaining" paramType="integer">
+Number of requests remaining in the current rate limit window
+</ParamField>
+
+**Response Body:**
+<ResponseField path="id" type="string">
+Unique identifier for the created user
+</ResponseField>
+
+<ResponseField path="name" type="string">
+Full name of the user
+</ResponseField>
+
+<ResponseField path="email" type="string">
+Email address of the user
+</ResponseField>
+
+<ResponseField path="createdAt" type="string" format="date-time">
+ISO 8601 timestamp when the user was created
+</ResponseField>
+
+**Example Response:**
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "createdAt": "2024-01-15T10:30:00Z"
+}
 ```
 
-**Properties:**
-- `allowMultiple`: Allow multiple sections open simultaneously
-- `defaultOpen`: Array of initially open section indices
-- `variant`: "accordion" or "independent"
+</Response>
 
-## Navigation Components
+<Response status="400" description="Bad Request">
 
-### Tabs
+**Response Body:**
+<ResponseField path="error" type="object">
+Error information object:
 
-Organize related content into tabbed interfaces.
+<ResponseField path="error.code" type="string">
+Error code identifier
+</ResponseField>
 
-**Usage:**
-```markdown
-<Tabs defaultTab="javascript">
-  <Tab id="javascript" title="JavaScript">
-    ```javascript
-    const response = await fetch('/api/users', {
-      headers: { 'Authorization': 'Bearer ' + token }
-    });
-    const users = await response.json();
-    ```
-  </Tab>
-  
-  <Tab id="python" title="Python">
-    ```python
-    import requests
-    
-    response = requests.get('/api/users', 
-                          headers={'Authorization': f'Bearer {token}'})
-    users = response.json()
-    ```
-  </Tab>
-  
-  <Tab id="curl" title="cURL">
-    ```bash
-    curl -H "Authorization: Bearer $TOKEN" \
-         https://api.example.com/users
-    ```
-  </Tab>
-</Tabs>
-```
+<ResponseField path="error.message" type="string">
+Human-readable error message
+</ResponseField>
 
-**Properties:**
-- `defaultTab`: ID of initially active tab
-- `orientation`: "horizontal" or "vertical"
-- `variant`: "pills", "underline", or "bordered"
+<ResponseField path="error.details" type="array">
+Array of detailed error information
+</ResponseField>
+</ResponseField>
 
-### Accordion
-
-Collapsible content sections with smooth animations.
-
-**Usage:**
-```markdown
-<Accordion>
-  <AccordionItem title="What is an API key?" id="api-key">
-    An API key is a unique identifier that authenticates your application 
-    when making requests to our API. It ensures secure access and enables 
-    usage tracking.
-  </AccordionItem>
-  
-  <AccordionItem title="How do I get an API key?" id="get-key">
-    You can generate API keys from your developer dashboard. Navigate to 
-    Settings > API Keys and click "Generate New Key".
-  </AccordionItem>
-</Accordion>
-```
-
-## Interactive Helpers
-
-### Tooltip
-
-Provide contextual information on hover or focus.
-
-**Usage:**
-```markdown
-<Paragraph>
-  The <Tooltip content="Application Programming Interface">API</Tooltip> 
-  endpoint returns user data in 
-  <Tooltip content="JavaScript Object Notation - a lightweight data format">JSON</Tooltip> 
-  format.
-</Paragraph>
-```
-
-**Properties:**
-- `content`: Tooltip text or HTML content
-- `position`: "top", "bottom", "left", "right"
-- `trigger`: "hover", "click", "focus"
-- `delay`: Show/hide delay in milliseconds
-
-### Modal
-
-Display content in overlay dialogs for detailed information.
-
-**Usage:**
-```markdown
-<Modal trigger={<Button>View Full Example</Button>} title="Complete Implementation">
-  <CodeBlock language="javascript" filename="complete-example.js">
-    ```javascript
-    // Complete implementation with error handling
-    async function fetchUserData(userId) {
-      try {
-        const response = await fetch(`/api/users/${userId}`, {
-          headers: {
-            'Authorization': `Bearer ${getToken()}`,
-            'Content-Type': 'application/json'
-          }
-        });
-        
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        return await response.json();
-      } catch (error) {
-        console.error('Failed to fetch user data:', error);
-        throw error;
+**Example Error Response:**
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid input data",
+    "details": [
+      {
+        "field": "email",
+        "message": "Must be a valid email address"
       }
-    }
-    ```
-  </CodeBlock>
-</Modal>
+    ]
+  }
+}
 ```
 
-### Popover
+</Response>
+````
 
-Display rich content in positioned overlays.
+### ResponseField
+
+Document response object properties with detailed type information.
 
 **Usage:**
+
 ```markdown
-<Paragraph>
-  Click on any 
-  <Popover 
-    trigger={<InlineCode>status code</InlineCode>}
-    content={
-      <div>
-        <Heading level={4}>HTTP Status Codes</Heading>
-        <List type="unordered">
-          <ListItem>200: Success</ListItem>
-          <ListItem>400: Bad Request</ListItem>
-          <ListItem>401: Unauthorized</ListItem>
-          <ListItem>500: Server Error</ListItem>
-        </List>
-      </div>
-    }
-  />
-  to learn more about HTTP responses.
-</Paragraph>
-```
+<ResponseField path="user" type="object">
+User information object:
 
-## Form Components
+<ResponseField path="user.id" type="string" format="uuid">
+Unique user identifier
+</ResponseField>
 
-### CopyButton
+<ResponseField path="user.profile" type="object">
+User profile information:
 
-Enable easy copying of code snippets and text.
+<ResponseField path="user.profile.firstName" type="string">
+User's first name
+</ResponseField>
 
-**Usage:**
-```markdown
-<CopyButton text="npm install @documentation-ai/sdk" />
+<ResponseField path="user.profile.lastName" type="string">
+User's last name
+</ResponseField>
 
-<CodeBlock language="bash">
-```bash
-curl -X POST https://api.example.com/users \
-  -H "Content-Type: application/json" \
-  -d '{"name": "John Doe", "email": "john@example.com"}'
-```
-<CopyButton />
-</CodeBlock>
+<ResponseField path="user.profile.avatar" type="string" format="url">
+URL to user's profile image
+</ResponseField>
+</ResponseField>
+
+<ResponseField path="user.permissions" type="array">
+Array of user permissions:
+
+<ResponseField path="user.permissions[]" type="string">
+Individual permission string
+</ResponseField>
+</ResponseField>
+</ResponseField>
 ```
 
 **Properties:**
-- `text`: Text to copy (uses parent content if not specified)
-- `successMessage`: Message shown after successful copy
-- `position`: Button position relative to content
 
-### SearchBox
+- `path`: Field path in the response object
 
-Provide in-page search functionality.
+- `type`: Data type of the field
+
+- `format`: Format specification (url, email, date-time, etc.)
+
+- `required`: Whether the field is always present
+
+- `nullable`: Whether the field can be null
+
+- `description`: Additional description text
+
+## Advanced API Components
+
+### EndpointGroup
+
+Organize related endpoints into logical groups.
 
 **Usage:**
+
 ```markdown
-<SearchBox 
-  placeholder="Search documentation..." 
-  onSearch={handleSearch}
-  suggestions={searchSuggestions}
+<EndpointGroup title="User Management" description="Endpoints for managing user accounts">
+
+<Endpoint method="GET" url="/api/users">
+Retrieve a list of users with optional filtering and pagination.
+</Endpoint>
+
+<Endpoint method="POST" url="/api/users">
+Create a new user account with the provided information.
+</Endpoint>
+
+<Endpoint method="GET" url="/api/users/{id}">
+Retrieve detailed information for a specific user.
+</Endpoint>
+
+<Endpoint method="PUT" url="/api/users/{id}">
+Update an existing user's information.
+</Endpoint>
+
+<Endpoint method="DELETE" url="/api/users/{id}">
+Delete a user account and all associated data.
+</Endpoint>
+
+</EndpointGroup>
+```
+
+### APIPlayground
+
+Interactive API testing interface within documentation.
+
+**Usage:**
+
+```markdown
+<APIPlayground
+  method="POST"
+  url="/api/users"
+  auth="bearer"
+  headers={[
+    { name: "Content-Type", value: "application/json", required: true }
+  ]}
+  parameters={[
+    { name: "name", type: "string", required: true, description: "User's full name" },
+    { name: "email", type: "string", required: true, description: "User's email address" }
+  ]}
+  exampleRequest={{
+    name: "John Doe",
+    email: "john@example.com"
+  }}
 />
 ```
 
 **Features:**
-- Real-time search suggestions
-- Keyboard navigation
-- Search result highlighting
-- Integration with site-wide search
 
-## Feedback Components
+- Live API testing within documentation
 
-### Rating
+- Authentication handling (API keys, Bearer tokens, OAuth)
 
-Collect user feedback on content quality.
+- Request/response visualization
+
+- Code generation for multiple languages
+
+- Response validation and formatting
+
+### SchemaViewer
+
+Display JSON Schema or OpenAPI schema definitions.
 
 **Usage:**
+
 ```markdown
-<Rating 
-  question="Was this page helpful?"
-  onRate={handleRating}
-  showComments={true}
+<SchemaViewer
+  title="User Schema"
+  schema={{
+    type: "object",
+    required: ["name", "email"],
+    properties: {
+      name: {
+        type: "string",
+        description: "User's full name"
+      },
+      email: {
+        type: "string",
+        format: "email",
+        description: "User's email address"
+      },
+      preferences: {
+        type: "object",
+        properties: {
+          theme: {
+            type: "string",
+            enum: ["light", "dark", "auto"]
+          }
+        }
+      }
+    }
+  }}
 />
 ```
 
-**Properties:**
-- `question`: Rating prompt text
-- `scale`: Rating scale (1-5 or 1-10)
-- `showComments`: Allow text feedback
-- `anonymous`: Collect ratings anonymously
+## Code Example Components
 
-### FeedbackForm
+### CodeGroup
 
-Comprehensive feedback collection.
+Group related code examples for different languages or scenarios.
 
 **Usage:**
+
+````markdown
+<CodeGroup title="Create User Example">
+
+<CodeBlock language="javascript" title="JavaScript (fetch)">
+```javascript
+const response = await fetch('/api/users', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer ' + token,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'John Doe',
+    email: 'john@example.com'
+  })
+});
+
+const user = await response.json();
+console.log('Created user:', user);
+```
+</CodeBlock>
+
+<CodeBlock language="python" title="Python (requests)">
+```python
+import requests
+
+response = requests.post('/api/users',
+  headers={
+    'Authorization': f'Bearer {token}',
+    'Content-Type': 'application/json'
+  },
+  json={
+    'name': 'John Doe',
+    'email': 'john@example.com'
+  }
+)
+
+user = response.json()
+print(f'Created user: {user}')
+```
+</CodeBlock>
+
+<CodeBlock language="bash" title="cURL">
+```bash
+curl -X POST /api/users \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "John Doe",
+    "email": "john@example.com"
+  }'
+```
+</CodeBlock>
+
+</CodeGroup>
+````
+
+### SDKExample
+
+Show SDK-specific code examples with installation instructions.
+
+**Usage:**
+
+````markdown
+<SDKExample
+  language="javascript"
+  package="@myapi/sdk"
+  installation="npm install @myapi/sdk"
+>
+```javascript
+import { MyAPI } from '@myapi/sdk';
+
+const client = new MyAPI({
+  apiKey: 'your-api-key'
+});
+
+const user = await client.users.create({
+  name: 'John Doe',
+  email: 'john@example.com'
+});
+
+console.log('Created user:', user);
+```
+</SDKExample>
+````
+
+## Authentication Components
+
+### AuthMethod
+
+Document different authentication methods.
+
+**Usage:**
+
+````markdown
+<AuthMethod type="bearer" title="Bearer Token Authentication">
+
+Include your API token in the Authorization header:
+
+```http
+Authorization: Bearer your_api_token_here
+```
+
+<Callout kind="warning">
+Keep your API tokens secure and never expose them in client-side code.
+</Callout>
+
+</AuthMethod>
+
+<AuthMethod type="apikey" title="API Key Authentication">
+
+Include your API key as a query parameter or header:
+
+**Query Parameter:**
+```http
+GET /api/users?api_key=your_api_key_here
+```
+
+**Header:**
+```http
+X-API-Key: your_api_key_here
+```
+
+</AuthMethod>
+````
+
+### Scopes
+
+Document OAuth scopes and permissions.
+
+**Usage:**
+
 ```markdown
-<FeedbackForm 
-  title="Help us improve this documentation"
-  fields={["rating", "category", "comments", "email"]}
-  onSubmit={handleFeedback}
+<Scopes title="Required Scopes">
+
+<Scope name="users:read" description="Read access to user information" />
+<Scope name="users:write" description="Create and update user accounts" />
+<Scope name="users:delete" description="Delete user accounts" />
+
+</Scopes>
+```
+
+## Error Documentation Components
+
+### ErrorCode
+
+Document specific error codes and their meanings.
+
+**Usage:**
+
+````markdown
+<ErrorCode code="USER_NOT_FOUND" status="404">
+
+**Description:** The requested user ID does not exist in the system.
+
+**Possible Causes:**
+- User was deleted
+- Invalid user ID format
+- User ID was mistyped
+
+**Resolution:**
+- Verify the user ID is correct
+- Check if the user still exists
+- Use the user search endpoint to find valid users
+
+**Example Response:**
+```json
+{
+  "error": {
+    "code": "USER_NOT_FOUND",
+    "message": "User with ID '123' not found",
+    "timestamp": "2024-01-15T10:30:00Z"
+  }
+}
+```
+
+</ErrorCode>
+````
+
+### StatusCode
+
+Document HTTP status codes used by your API.
+
+**Usage:**
+
+```markdown
+<StatusCode code="201" title="Created">
+Resource was successfully created. The response includes the new resource data and a Location header with the resource URL.
+</StatusCode>
+
+<StatusCode code="400" title="Bad Request">
+The request was invalid or cannot be served. Check the request parameters and body format.
+</StatusCode>
+
+<StatusCode code="429" title="Too Many Requests">
+Rate limit exceeded. Wait before making additional requests or upgrade your plan for higher limits.
+</StatusCode>
+```
+
+## Integration Features
+
+### OpenAPI Integration
+
+Automatically generate components from OpenAPI specifications:
+
+```markdown
+<OpenAPIEndpoint
+  spec="/openapi.yaml"
+  operationId="createUser"
+  showExamples={true}
+  showSchemas={true}
 />
 ```
 
-## Advanced Interactive Components
+### Live API Testing
 
-### ProgressIndicator
+Enable live testing against real or mock APIs:
 
-Show progress through multi-step processes.
-
-**Usage:**
 ```markdown
-<ProgressIndicator 
-  steps={[
-    { id: "setup", title: "Setup", completed: true },
-    { id: "config", title: "Configuration", completed: true },
-    { id: "test", title: "Testing", completed: false, current: true },
-    { id: "deploy", title: "Deployment", completed: false }
-  ]}
+<LiveAPITest
+  endpoint="/api/users"
+  method="POST"
+  baseUrl="https://api.example.com"
+  mockUrl="https://mock.example.com"
+  enableMocking={true}
 />
 ```
-
-### Timeline
-
-Display chronological information or process flows.
-
-**Usage:**
-```markdown
-<Timeline>
-  <TimelineItem date="2024-01-15" title="Project Initialization">
-    Set up the basic project structure and dependencies.
-  </TimelineItem>
-  
-  <TimelineItem date="2024-01-20" title="API Development">
-    Implemented core API endpoints and authentication.
-  </TimelineItem>
-  
-  <TimelineItem date="2024-01-25" title="Documentation">
-    Created comprehensive API documentation and guides.
-  </TimelineItem>
-</Timeline>
-```
-
-### Comparison Table
-
-Interactive tables for comparing features or options.
-
-**Usage:**
-```markdown
-<ComparisonTable>
-  <ComparisonColumn title="Feature" />
-  <ComparisonColumn title="Basic Plan" highlight={false} />
-  <ComparisonColumn title="Pro Plan" highlight={true} />
-  <ComparisonColumn title="Enterprise" highlight={false} />
-  
-  <ComparisonRow>
-    <ComparisonCell>API Calls/Month</ComparisonCell>
-    <ComparisonCell>10,000</ComparisonCell>
-    <ComparisonCell>100,000</ComparisonCell>
-    <ComparisonCell>Unlimited</ComparisonCell>
-  </ComparisonRow>
-</ComparisonTable>
-```
-
-## Accessibility Features
-
-### Keyboard Navigation
-
-All interactive components support full keyboard navigation:
-
-- **Tab Navigation**: Logical tab order through interactive elements
-- **Arrow Keys**: Navigate within component groups (tabs, accordions)
-- **Enter/Space**: Activate buttons and toggles
-- **Escape**: Close modals and popovers
-
-### Screen Reader Support
-
-- **ARIA Labels**: Descriptive labels for all interactive elements
-- **Live Regions**: Announce dynamic content changes
-- **Role Attributes**: Proper semantic roles for complex widgets
-- **State Announcements**: Communicate expanded/collapsed states
-
-### Focus Management
-
-- **Focus Indicators**: Clear visual focus indicators
-- **Focus Trapping**: Keep focus within modals and dialogs
-- **Focus Restoration**: Return focus to trigger elements when closing
-- **Skip Links**: Allow bypassing complex interactive regions
-
-## Performance Considerations
-
-### Lazy Loading
-
-Interactive components load efficiently:
-
-- **Code Splitting**: Components load only when needed
-- **Progressive Enhancement**: Basic functionality works without JavaScript
-- **Intersection Observer**: Load components when they enter viewport
-- **Resource Optimization**: Minimal bundle size impact
-
-### Animation Performance
-
-Smooth animations that don't impact performance:
-
-- **CSS Transforms**: Hardware-accelerated animations
-- **Reduced Motion**: Respect user preferences for reduced motion
-- **Frame Rate**: Maintain 60fps for smooth interactions
-- **Memory Management**: Efficient cleanup of animation resources
 
 ## Best Practices
 
+### Documentation Structure
+
+1. **Logical Organization**: Group related endpoints together
+
+2. **Consistent Format**: Use the same structure for all endpoints
+
+3. **Complete Examples**: Provide realistic, working examples
+
+4. **Error Coverage**: Document all possible error scenarios
+
 ### User Experience
 
-1. **Progressive Disclosure**: Use expandable components to manage information density
-2. **Consistent Interactions**: Maintain consistent behavior across similar components
-3. **Clear Affordances**: Make interactive elements obviously clickable/tappable
-4. **Feedback**: Provide immediate feedback for user actions
+1. **Interactive Testing**: Enable developers to test APIs directly
 
-### Content Organization
+2. **Copy-Paste Ready**: Provide code that works without modification
 
-1. **Logical Grouping**: Group related interactive elements together
-2. **Hierarchy**: Use appropriate nesting levels for expandable content
-3. **Scannable**: Make content easy to scan even when collapsed
-4. **Context**: Provide sufficient context for interactive elements
+3. **Multiple Languages**: Show examples in popular programming languages
 
-### Performance
+4. **Clear Descriptions**: Write clear, concise parameter descriptions
 
-1. **Lazy Loading**: Load interactive components only when needed
-2. **Debouncing**: Debounce search and filter interactions
-3. **Caching**: Cache expensive operations and API calls
-4. **Optimization**: Optimize for mobile and slower connections
+### Maintenance
 
-Interactive components transform static documentation into engaging, user-friendly experiences. Use them strategically to enhance comprehension and user satisfaction while maintaining accessibility and performance standards.
+1. **Schema Validation**: Validate examples against actual API schemas
+
+2. **Automated Testing**: Test code examples in CI/CD pipelines
+
+3. **Version Synchronization**: Keep documentation in sync with API changes
+
+4. **Regular Reviews**: Periodically review and update documentation
+
+API components transform complex API documentation into clear, interactive guides that help developers integrate quickly and successfully. Use these components to create comprehensive API documentation that serves as both reference and tutorial.

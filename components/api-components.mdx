@@ -1,8 +1,9 @@
 ---
 title: API Components
-description: Specialized components for creating comprehensive API documentation with examples, parameters, and responses
+description: >-
+  Specialized components for creating comprehensive API documentation with
+  examples, parameters, and responses
 ---
-
 # API Components
 
 API components are specialized tools for creating comprehensive, interactive API documentation. These components help you document endpoints, parameters, responses, and provide live examples that developers can test directly in your documentation.
@@ -14,6 +15,7 @@ API components are specialized tools for creating comprehensive, interactive API
 Document API parameters with detailed type information and validation rules.
 
 **Usage:**
+
 ```markdown
 <ParamField path="userId" paramType="string" required={true}>
 The unique identifier for the user account. Must be a valid UUID format.
@@ -37,21 +39,55 @@ ISO 8601 date string to filter users created after this date
 ```
 
 **Properties:**
+
 - `path`: Parameter name or path (e.g., "user.email")
+
 - `paramType`: Data type ("string", "integer", "boolean", "object", "array")
+
 - `required`: Whether the parameter is required
+
 - `default`: Default value if not provided
+
 - `enum`: Array of allowed values
+
 - `format`: Format specification (e.g., "email", "uuid", "date-time")
+
 - `min`/`max`: Minimum/maximum values for numbers
+
 - `minLength`/`maxLength`: Length constraints for strings
+
+<Request uid="6f2555b7-adbe-4778-9c43-6c0bcc8cd6ea" show-lines="true" tabs="request,request.txt">
+  ```javascript request
+  // add request here
+
+  ```
+
+  ```text request.txt
+  // Add request here
+  this 
+  ```
+</Request>
+
+<Response uid="3e81a2bb-f6c7-4300-8ef4-6d53817dba3c" default-tab="1" show-lines="true" tabs="response,response.json">
+  ```javascript response
+  // add response here
+  asdas
+  ```
+
+  ```json response.json
+  // Add response here
+
+  asdasd
+  ```
+</Response>
 
 ### Request
 
 Document HTTP request structure with headers, body, and examples.
 
 **Usage:**
-```markdown
+
+````markdown
 <Request method="POST" url="/api/users">
 
 **Headers:**
@@ -92,12 +128,16 @@ UI theme preference
 ```
 
 </Request>
-```
+````
 
 **Properties:**
+
 - `method`: HTTP method (GET, POST, PUT, DELETE, etc.)
+
 - `url`: Endpoint URL with path parameters
+
 - `baseUrl`: Base URL for the API (optional)
+
 - `title`: Custom title for the request section
 
 ### Response
@@ -105,7 +145,8 @@ UI theme preference
 Document API responses with status codes, headers, and body structure.
 
 **Usage:**
-```markdown
+
+````markdown
 <Response status="201" description="User created successfully">
 
 **Headers:**
@@ -182,13 +223,14 @@ Array of detailed error information
 ```
 
 </Response>
-```
+````
 
 ### ResponseField
 
 Document response object properties with detailed type information.
 
 **Usage:**
+
 ```markdown
 <ResponseField path="user" type="object">
 User information object:
@@ -224,11 +266,17 @@ Individual permission string
 ```
 
 **Properties:**
+
 - `path`: Field path in the response object
+
 - `type`: Data type of the field
+
 - `format`: Format specification (url, email, date-time, etc.)
+
 - `required`: Whether the field is always present
+
 - `nullable`: Whether the field can be null
+
 - `description`: Additional description text
 
 ## Advanced API Components
@@ -238,6 +286,7 @@ Individual permission string
 Organize related endpoints into logical groups.
 
 **Usage:**
+
 ```markdown
 <EndpointGroup title="User Management" description="Endpoints for managing user accounts">
 
@@ -269,9 +318,10 @@ Delete a user account and all associated data.
 Interactive API testing interface within documentation.
 
 **Usage:**
+
 ```markdown
-<APIPlayground 
-  method="POST" 
+<APIPlayground
+  method="POST"
   url="/api/users"
   auth="bearer"
   headers={[
@@ -289,10 +339,15 @@ Interactive API testing interface within documentation.
 ```
 
 **Features:**
+
 - Live API testing within documentation
+
 - Authentication handling (API keys, Bearer tokens, OAuth)
+
 - Request/response visualization
+
 - Code generation for multiple languages
+
 - Response validation and formatting
 
 ### SchemaViewer
@@ -300,8 +355,9 @@ Interactive API testing interface within documentation.
 Display JSON Schema or OpenAPI schema definitions.
 
 **Usage:**
+
 ```markdown
-<SchemaViewer 
+<SchemaViewer
   title="User Schema"
   schema={{
     type: "object",
@@ -337,7 +393,8 @@ Display JSON Schema or OpenAPI schema definitions.
 Group related code examples for different languages or scenarios.
 
 **Usage:**
-```markdown
+
+````markdown
 <CodeGroup title="Create User Example">
 
 <CodeBlock language="javascript" title="JavaScript (fetch)">
@@ -363,7 +420,7 @@ console.log('Created user:', user);
 ```python
 import requests
 
-response = requests.post('/api/users', 
+response = requests.post('/api/users',
   headers={
     'Authorization': f'Bearer {token}',
     'Content-Type': 'application/json'
@@ -392,15 +449,16 @@ curl -X POST /api/users \
 </CodeBlock>
 
 </CodeGroup>
-```
+````
 
 ### SDKExample
 
 Show SDK-specific code examples with installation instructions.
 
 **Usage:**
-```markdown
-<SDKExample 
+
+````markdown
+<SDKExample
   language="javascript"
   package="@myapi/sdk"
   installation="npm install @myapi/sdk"
@@ -408,8 +466,8 @@ Show SDK-specific code examples with installation instructions.
 ```javascript
 import { MyAPI } from '@myapi/sdk';
 
-const client = new MyAPI({ 
-  apiKey: 'your-api-key' 
+const client = new MyAPI({
+  apiKey: 'your-api-key'
 });
 
 const user = await client.users.create({
@@ -420,7 +478,7 @@ const user = await client.users.create({
 console.log('Created user:', user);
 ```
 </SDKExample>
-```
+````
 
 ## Authentication Components
 
@@ -429,7 +487,8 @@ console.log('Created user:', user);
 Document different authentication methods.
 
 **Usage:**
-```markdown
+
+````markdown
 <AuthMethod type="bearer" title="Bearer Token Authentication">
 
 Include your API token in the Authorization header:
@@ -459,13 +518,14 @@ X-API-Key: your_api_key_here
 ```
 
 </AuthMethod>
-```
+````
 
 ### Scopes
 
 Document OAuth scopes and permissions.
 
 **Usage:**
+
 ```markdown
 <Scopes title="Required Scopes">
 
@@ -483,7 +543,8 @@ Document OAuth scopes and permissions.
 Document specific error codes and their meanings.
 
 **Usage:**
-```markdown
+
+````markdown
 <ErrorCode code="USER_NOT_FOUND" status="404">
 
 **Description:** The requested user ID does not exist in the system.
@@ -510,13 +571,14 @@ Document specific error codes and their meanings.
 ```
 
 </ErrorCode>
-```
+````
 
 ### StatusCode
 
 Document HTTP status codes used by your API.
 
 **Usage:**
+
 ```markdown
 <StatusCode code="201" title="Created">
 Resource was successfully created. The response includes the new resource data and a Location header with the resource URL.
@@ -538,8 +600,8 @@ Rate limit exceeded. Wait before making additional requests or upgrade your plan
 Automatically generate components from OpenAPI specifications:
 
 ```markdown
-<OpenAPIEndpoint 
-  spec="/openapi.yaml" 
+<OpenAPIEndpoint
+  spec="/openapi.yaml"
   operationId="createUser"
   showExamples={true}
   showSchemas={true}
@@ -551,7 +613,7 @@ Automatically generate components from OpenAPI specifications:
 Enable live testing against real or mock APIs:
 
 ```markdown
-<LiveAPITest 
+<LiveAPITest
   endpoint="/api/users"
   method="POST"
   baseUrl="https://api.example.com"
@@ -565,22 +627,31 @@ Enable live testing against real or mock APIs:
 ### Documentation Structure
 
 1. **Logical Organization**: Group related endpoints together
+
 2. **Consistent Format**: Use the same structure for all endpoints
+
 3. **Complete Examples**: Provide realistic, working examples
+
 4. **Error Coverage**: Document all possible error scenarios
 
 ### User Experience
 
 1. **Interactive Testing**: Enable developers to test APIs directly
+
 2. **Copy-Paste Ready**: Provide code that works without modification
+
 3. **Multiple Languages**: Show examples in popular programming languages
+
 4. **Clear Descriptions**: Write clear, concise parameter descriptions
 
 ### Maintenance
 
 1. **Schema Validation**: Validate examples against actual API schemas
+
 2. **Automated Testing**: Test code examples in CI/CD pipelines
+
 3. **Version Synchronization**: Keep documentation in sync with API changes
+
 4. **Regular Reviews**: Periodically review and update documentation
 
 API components transform complex API documentation into clear, interactive guides that help developers integrate quickly and successfully. Use these components to create comprehensive API documentation that serves as both reference and tutorial.
