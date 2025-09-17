@@ -6,105 +6,22 @@
       {
         "group": "Getting Started",
         "pages": [
-          { "title": "Introduction", "path": "getting-started/introduction" },
-          { "title": "Quickstart", "path": "getting-started/quickstart" },
-          { "title": "Installation", "path": "getting-started/installation" },
-          { "title": "Create Your First Project", "path": "tutorials/tutorial-create-first-project" }
-        ]
-      },
-      {
-        "group": "Core Features",
-        "pages": [
-          { "title": "AI-Powered Documentation", "path": "using-the-product/ai-powered-documentation" },
-          { "title": "Intelligent Content Generation", "path": "using-the-product/intelligent-content-generation" },
-          { "title": "Collaborative Editing", "path": "using-the-product/collaborative-editing" },
-          { "title": "Architecture Overview", "path": "explanations/explanation-architecture" }
-        ]
-      },
-      {
-        "group": "Configuration",
-        "pages": [
-          { "title": "Project Settings", "path": "using-the-product/project-settings" },
-          { "title": "Theme Customization", "path": "theme-customization" },
-          { "title": "Custom Domain Setup", "path": "guides/how-to-configure-custom-domain" },
-          { "title": "Environment Configuration", "path": "reference/reference-configuration" }
-        ]
-      },
-      {
-        "group": "Content Creation",
-        "pages": [
-          { "title": "Writing with AI", "path": "using-the-product/writing-with-ai" },
-          { "title": "Components Guide", "path": "components/components-overview" },
-          { "title": "Markdown Extensions", "path": "markdown-extensions" },
-          { "title": "Media Management", "path": "media-management" }
-        ]
-      },
-      {
-        "group": "Integrations & Workflows",
-        "pages": [
-          { "title": "GitHub Integration", "path": "guides/how-to-integrate-github" },
-          { "title": "CI/CD Automation", "path": "guides/how-to-configure-ci-autopublish" },
-          { "title": "Team Collaboration", "path": "guides/how-to-invite-team" },
-          { "title": "Migration Guide", "path": "guides/how-to-migrate-from-mdx" }
-        ]
-      },
-      {
-        "group": "API & Development",
-        "pages": [
-          { "title": "API Reference", "path": "reference/reference-api" },
-          { "title": "Webhooks", "path": "reference/reference-webhooks" },
-          { "title": "CLI Tools", "path": "reference/reference-cli" },
-          { "title": "SDK Libraries", "path": "reference/sdk-libraries" }
-        ]
-      },
-      {
-        "group": "Components Reference",
-        "pages": [
-          { "title": "Components Overview", "path": "components/components-overview" },
-          { "title": "Content Components", "path": "components/content-components" },
-          { "title": "Interactive Components", "path": "components/interactive-components" },
-          { "title": "API Components", "path": "components/api-components" },
-          { "title": "Media Components", "path": "components/media-components" }
-        ]
-      },
-      {
-        "group": "Individual Components",
-        "pages": [
-          { "title": "Paragraph", "path": "components/paragraph" },
-          { "title": "Heading", "path": "components/heading" },
-          { "title": "List", "path": "components/list" },
-          { "title": "CodeBlock", "path": "components/codeblock" },
-          { "title": "CodeGroup", "path": "components/codegroup" },
-          { "title": "Callout", "path": "components/callout" },
-          { "title": "Expandable", "path": "components/expandable" },
-          { "title": "ExpandableGroup", "path": "components/expandablegroup" },
-          { "title": "ParamField", "path": "components/paramfield" },
-          { "title": "Request", "path": "components/request" },
-          { "title": "Response", "path": "components/response" },
-          { "title": "ResponseField", "path": "components/responsefield" },
-          { "title": "Image", "path": "components/image" },
-          { "title": "Video", "path": "components/video" },
-          { "title": "Iframe", "path": "components/iframe" },
-          { "title": "Table", "path": "components/table" }
-        ]
-      },
-      {
-        "group": "Support & Operations",
-        "pages": [
-          { "title": "Troubleshooting", "path": "troubleshooting/troubleshooting" },
-          { "title": "Best Practices", "path": "troubleshooting/best-practices" },
-          { "title": "Security & Compliance", "path": "operations/operations-security-compliance" },
-          { "title": "Billing & Limits", "path": "reference/reference-billing" },
-          { "title": "FAQ", "path": "troubleshooting/faq" },
-          { "title": "Backups & Data Retention", "path": "operations/operations-backups-retention" },
-          { "title": "Incident Response", "path": "operations/operations-incident-response" }
-        ]
-      },
-      {
-        "group": "Updates",
-        "pages": [
-          { "title": "Changelog", "path": "changelog/changelog" },
-          { "title": "Glossary", "path": "glossary/glossary" }
+          {
+            "title": "Introduction",
+            "path": "getting-started/introduction"
+          },
+          {
+            "title": "Quickstart",
+            "path": "getting-started/quickstart"
+          },
+          {
+            "title": "Installation",
+            "path": "getting-started/installation"
+          },
+          {
+            "title": "Create Your First Project",
+            "path": "components/api-components"
+          }
         ]
       }
     ]
