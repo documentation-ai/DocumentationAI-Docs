@@ -2,21 +2,22 @@
 title: Installation & Local Development
 description: Set up Documentation.AI for local development and testing
 ---
-
 # Installation & Local Development
 
 Set up Documentation.AI locally for development, testing, and offline work. This guide covers both the web-based editor and local development tools.
 
 ## Web Editor (Recommended)
 
-The fastest way to get started is with our web-based editor:
+The fastest way to get started is with our web-based editor:.
 
 1. **Visit** [app.documentation.ai](https://app.documentation.ai)
+
 2. **Sign in** with your GitHub account
+
 3. **Start editing** immediately - no installation required
 
-<Callout kind="note">
-The web editor includes all AI features, real-time collaboration, and automatic syncing.
+<Callout uid="0f9fc937-b1ee-41f9-80c4-f63c29985218" kind="note" collapsed="false">
+  The web editor includes all AI features, real-time collaboration, and automatic syncing.
 </Callout>
 
 ## CLI Installation
@@ -25,8 +26,10 @@ For local development and advanced workflows, install our command-line interface
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
+
 - npm or yarn
+
 - Git
 
 ### Install the CLI
@@ -232,6 +235,7 @@ docai build --static
 ### Common Issues
 
 **CLI not found after installation:**
+
 ```bash
 # Check global npm bin directory
 npm config get prefix
@@ -241,12 +245,14 @@ export PATH=$PATH:$(npm config get prefix)/bin
 ```
 
 **Permission errors on macOS/Linux:**
+
 ```bash
 # Install with sudo if needed
 sudo npm install -g @documentation-ai/cli
 ```
 
 **Build failures:**
+
 ```bash
 # Clear cache and reinstall
 docai clean
@@ -256,9 +262,12 @@ npm install
 ### Getting Help
 
 - **Check logs:** `docai logs`
+
 - **Debug mode:** `docai dev --debug`
+
 - **Report issues:** [GitHub Issues](https://github.com/documentation-ai/cli/issues)
 
-<Callout kind="tip">
-For the best development experience, use the web editor for content creation and the CLI for automation and deployment workflows.
+<Callout uid="1206e5b0-f076-4e05-9c06-0bfa3f356029" kind="tip" collapsed="false">
+  For the best development experience, use the web editor for content creation and the CLI for automation and deployment workflows.
 </Callout>
+
