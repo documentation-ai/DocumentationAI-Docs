@@ -4,54 +4,559 @@
   "navigation": {
     "groups": [
       {
-        "group": "Overview",
+        "group": "Account And Billing",
         "pages": [
-          { "title": "Product Overview", "path": "introduction" }
+          {
+            "title": "Account Management",
+            "path": "account-and-billing/account-management"
+          },
+          {
+            "title": "Audit Logs",
+            "path": "account-and-billing/audit-logs"
+          },
+          {
+            "title": "Billing & Subscriptions",
+            "path": "account-and-billing/billing-and-subscriptions"
+          },
+          {
+            "title": "Data Export & Account Deletion",
+            "path": "account-and-billing/data-export-and-account-deletion"
+          },
+          {
+            "title": "Organizations, Workspaces & Projects",
+            "path": "account-and-billing/organizations-workspaces-and-projects"
+          },
+          {
+            "title": "SSO/SAML & SCIM Provisioning",
+            "path": "account-and-billing/sso-saml-and-scim"
+          },
+          {
+            "title": "Team Management / Roles & Permissions",
+            "path": "account-and-billing/team-management"
+          },
+          {
+            "title": "Upgrade / Downgrade",
+            "path": "account-and-billing/upgrade-downgrade"
+          },
+          {
+            "title": "Usage Limits",
+            "path": "account-and-billing/usage-limits"
+          }
+        ]
+      },
+      {
+        "group": "AI",
+        "pages": [
+          {
+            "title": "AI Privacy & Data Handling",
+            "path": "ai/ai-privacy-and-data"
+          },
+          {
+            "title": "AI Usage, Costs & Limits",
+            "path": "ai/ai-usage-costs"
+          },
+          {
+            "title": "Helpful Prompts",
+            "path": "ai/helpful-prompts"
+          },
+          {
+            "title": "On-Page AI Menu",
+            "path": "ai/ai-menu"
+          },
+          {
+            "title": "llms.txt",
+            "path": "ai/llms-txt"
+          },
+          {
+            "title": "Search Configuration",
+            "path": "ai/search-configuration"
+          },
+          {
+            "title": "Set Up the AI Assistant",
+            "path": "ai/ai-assistant-set-up"
+          },
+          {
+            "title": "Use Cursor with Documentation.AI",
+            "path": "ai/using-cursor"
+          }
+        ]
+      },
+      {
+        "group": "Analytics And Insights",
+        "pages": [
+          {
+            "title": "Collect & Triage User Feedback",
+            "path": "analytics-and-insights/user-feedback"
+          },
+          {
+            "title": "Search and AI Assistant Analytics",
+            "path": "analytics-and-insights/search-and-ai-assistant-analytics"
+          },
+          {
+            "title": "User Behavior Analytics",
+            "path": "analytics-and-insights/user-analytics"
+          }
+        ]
+      },
+      {
+        "group": "API Documentation & Playground",
+        "pages": [
+          {
+            "title": "API Authentication",
+            "path": "api-documentation-and-playground/api-authentication"
+          },
+          {
+            "title": "API Changelog",
+            "path": "api-documentation-and-playground/api-changelog"
+          },
+          {
+            "title": "API Errors & Error Codes",
+            "path": "api-documentation-and-playground/api-error-codes"
+          },
+          {
+            "title": "Code Generation",
+            "path": "api-documentation-and-playground/code-generation"
+          },
+          {
+            "title": "Code Samples & SDKs",
+            "path": "api-documentation-and-playground/code-samples-and-sdks"
+          },
+          {
+            "title": "GraphQL Support",
+            "path": "api-documentation-and-playground/graphql-support"
+          },
+          {
+            "title": "Interactive Playground Setup",
+            "path": "api-documentation-and-playground/interactive-playground-setup"
+          },
+          {
+            "title": "OpenAPI / JSON Schema Import",
+            "path": "api-documentation-and-playground/openapi-schema-import"
+          },
+          {
+            "title": "Organize API Reference",
+            "path": "api-documentation-and-playground/organize-api-reference"
+          },
+          {
+            "title": "Postman Collection / Export",
+            "path": "api-documentation-and-playground/postman-collection-export"
+          },
+          {
+            "title": "Rate Limits & Headers",
+            "path": "api-documentation-and-playground/rate-limits-and-headers"
+          },
+          {
+            "title": "Versioning & Deprecation Policy",
+            "path": "api-documentation-and-playground/versioning-and-deprecation-policy"
+          }
+        ]
+      },
+      {
+        "group": "Components",
+        "pages": [
+          {
+            "title": "Component Library",
+            "path": "components/component-library"
+          },
+          {
+            "title": "Components Overview",
+            "path": "components/components-overview"
+          }
+        ]
+      },
+      {
+        "group": "Component Library",
+        "pages": [
+          {
+            "title": "Api Components",
+            "path": "components/component-library/api-components"
+          },
+          {
+            "title": "Callout",
+            "path": "components/component-library/callout"
+          },
+          {
+            "title": "Codeblock",
+            "path": "components/component-library/codeblock"
+          },
+          {
+            "title": "Codegroup",
+            "path": "components/component-library/codegroup"
+          },
+          {
+            "title": "Expandable",
+            "path": "components/component-library/expandable"
+          },
+          {
+            "title": "Expandablegroup",
+            "path": "components/component-library/expandablegroup"
+          },
+          {
+            "title": "Heading",
+            "path": "components/component-library/heading"
+          },
+          {
+            "title": "Iframe",
+            "path": "components/component-library/iframe"
+          },
+          {
+            "title": "Image",
+            "path": "components/component-library/image"
+          },
+          {
+            "title": "Interactive Components",
+            "path": "components/component-library/interactive-components"
+          },
+          {
+            "title": "List",
+            "path": "components/component-library/list"
+          },
+          {
+            "title": "Media Components",
+            "path": "components/component-library/media-components"
+          },
+          {
+            "title": "Paragraph",
+            "path": "components/component-library/paragraph"
+          },
+          {
+            "title": "Paramfield",
+            "path": "components/component-library/paramfield"
+          },
+          {
+            "title": "Request",
+            "path": "components/component-library/request"
+          },
+          {
+            "title": "Response",
+            "path": "components/component-library/response"
+          },
+          {
+            "title": "Responsefield",
+            "path": "components/component-library/responsefield"
+          },
+          {
+            "title": "Table",
+            "path": "components/component-library/table"
+          },
+          {
+            "title": "Video",
+            "path": "components/component-library/video"
+          }
+        ]
+      },
+      {
+        "group": "Configuration",
+        "pages": [
+          {
+            "title": "Advanced Page / Front-matter Configuration",
+            "path": "configuration/page-front-matter-configuration"
+          },
+          {
+            "title": "API Configuration",
+            "path": "configuration/api-configuration"
+          },
+          {
+            "title": "documentation.json / Advanced Site Configuration",
+            "path": "configuration/documentation-json-site-configuration"
+          },
+          {
+            "title": "Page Metadata",
+            "path": "configuration/page-metadata"
+          }
+        ]
+      },
+      {
+        "group": "Deployment And Hosting",
+        "pages": [
+          {
+            "title": "Build Information",
+            "path": "deployment-and-hosting/build-information"
+          },
+          {
+            "title": "CI/CD Pipelines",
+            "path": "deployment-and-hosting/ci-cd-pipelines"
+          },
+          {
+            "title": "Custom Domain Setup",
+            "path": "deployment-and-hosting/custom-domain"
+          },
+          {
+            "title": "Custom Subpath Setup",
+            "path": "deployment-and-hosting/custom-subpath"
+          },
+          {
+            "title": "Deploy Your Documentation",
+            "path": "deployment-and-hosting/deploy-your-documentation"
+          },
+          {
+            "title": "Redirects & Rewrites",
+            "path": "deployment-and-hosting/redirects-and-rewrites"
+          }
+        ]
+      },
+      {
+        "group": "Design And Customization",
+        "pages": [
+          {
+            "title": "Accessibility",
+            "path": "design-and-customization/accessibility"
+          },
+          {
+            "title": "Branding",
+            "path": "design-and-customization/branding"
+          },
+          {
+            "title": "Colors & Typography",
+            "path": "design-and-customization/colors-and-typography"
+          },
+          {
+            "title": "Custom CSS & JavaScript",
+            "path": "design-and-customization/custom-css-and-javascript"
+          },
+          {
+            "title": "Custom Home Page",
+            "path": "design-and-customization/custom-home-page"
+          },
+          {
+            "title": "Header & Footer",
+            "path": "design-and-customization/header-and-footer"
+          },
+          {
+            "title": "Navigation & Sidebar",
+            "path": "design-and-customization/navigation-and-sidebar"
+          },
+          {
+            "title": "Theme",
+            "path": "design-and-customization/theme"
+          }
         ]
       },
       {
         "group": "Getting Started",
         "pages": [
-          { "title": "Introduction", "path": "getting-started/introduction" },
-          { "title": "Quickstart", "path": "getting-started/quickstart" },
-          { "title": "Installation", "path": "getting-started/installation" }
+          {
+            "title": "Create Your First Project",
+            "path": "getting-started/create-your-first-project"
+          },
+          {
+            "title": "How Documentation.AI Works",
+            "path": "getting-started/how-documentation-ai-works"
+          },
+          {
+            "title": "Import Existing Docs",
+            "path": "getting-started/import-existing-docs"
+          },
+          {
+            "title": "Introduction",
+            "path": "getting-started/introduction"
+          },
+          {
+            "title": "Quickstart",
+            "path": "getting-started/quickstart"
+          }
         ]
       },
       {
-        "group": "Components Reference",
+        "group": "Integrations And Workflows",
         "pages": [
-          { "title": "Components Overview", "path": "components/components-overview" },
-          { "title": "Content Components", "path": "components/content-components" },
-          { "title": "Interactive Components", "path": "components/interactive-components" },
-          { "title": "API Components", "path": "components/api-components" },
-          { "title": "Media Components", "path": "components/media-components" }
+          {
+            "title": "Analytics Integration",
+            "path": "integrations-and-workflows/analytics-integration"
+          },
+          {
+            "title": "GitHub Integration",
+            "path": "integrations-and-workflows/github-integration"
+          },
+          {
+            "title": "GitLab Integration",
+            "path": "integrations-and-workflows/gitlab-integration"
+          },
+          {
+            "title": "Issue Trackers",
+            "path": "integrations-and-workflows/issue-trackers"
+          },
+          {
+            "title": "Slack Notifications",
+            "path": "integrations-and-workflows/slack-notifications"
+          },
+          {
+            "title": "Support & Chat",
+            "path": "integrations-and-workflows/support-and-chat"
+          },
+          {
+            "title": "Third-party Tools",
+            "path": "integrations-and-workflows/third-party-tools"
+          },
+          {
+            "title": "Webhook Setup",
+            "path": "integrations-and-workflows/webhook-setup"
+          },
+          {
+            "title": "Zapier Integration",
+            "path": "integrations-and-workflows/zapier-integration"
+          }
         ]
       },
       {
-        "group": "Individual Components",
+        "group": "Migrations",
         "pages": [
-          { "title": "Paragraph", "path": "components/paragraph" },
-          { "title": "Heading", "path": "components/heading" },
-          { "title": "List", "path": "components/list" },
-          { "title": "CodeBlock", "path": "components/codeblock" },
-          { "title": "CodeGroup", "path": "components/codegroup" },
-          { "title": "Callout", "path": "components/callout" },
-          { "title": "Expandable", "path": "components/expandable" },
-          { "title": "ExpandableGroup", "path": "components/expandablegroup" },
-          { "title": "ParamField", "path": "components/paramfield" },
-          { "title": "Request", "path": "components/request" },
-          { "title": "Response", "path": "components/response" },
-          { "title": "ResponseField", "path": "components/responsefield" },
-          { "title": "Image", "path": "components/image" },
-          { "title": "Video", "path": "components/video" },
-          { "title": "Iframe", "path": "components/iframe" },
-          { "title": "Table", "path": "components/table" }
+          {
+            "title": "From Docusaurus",
+            "path": "migrations/from-docusaurus"
+          },
+          {
+            "title": "From GitBook",
+            "path": "migrations/from-gitbook"
+          },
+          {
+            "title": "From Markdown Files",
+            "path": "migrations/from-markdown"
+          },
+          {
+            "title": "From Mintlify",
+            "path": "migrations/from-mintlify"
+          },
+          {
+            "title": "From MkDocs",
+            "path": "migrations/from-mkdocs"
+          },
+          {
+            "title": "From Notion",
+            "path": "migrations/from-notion"
+          },
+          {
+            "title": "From ReadMe",
+            "path": "migrations/from-readme"
+          },
+          {
+            "title": "Migration Checklist",
+            "path": "migrations/migration-checklist"
+          }
+        ]
+      },
+      {
+        "group": "SEO and GEO",
+        "pages": [
+          {
+            "title": "Canonical URLs",
+            "path": "seo-and-geo/canonical-urls"
+          },
+          {
+            "title": "Hreflang",
+            "path": "seo-and-geo/hreflang-setup"
+          },
+          {
+            "title": "Meta Tags Setup",
+            "path": "seo-and-geo/meta-tags-setup"
+          },
+          {
+            "title": "Optimize for GEO",
+            "path": "seo-and-geo/optimize-for-geo"
+          },
+          {
+            "title": "Robots.txt & llm.txt",
+            "path": "seo-and-geo/robots-txt-and-llm-txt"
+          },
+          {
+            "title": "Sitemap",
+            "path": "seo-and-geo/sitemap"
+          },
+          {
+            "title": "Structured Data",
+            "path": "seo-and-geo/structured-data"
+          }
+        ]
+      },
+      {
+        "group": "Support",
+        "pages": [
+          {
+            "title": "Browser Support",
+            "path": "support/browser-support"
+          },
+          {
+            "title": "Contact Support",
+            "path": "support/contact-support"
+          },
+          {
+            "title": "Debugging Your Documentation",
+            "path": "support/debugging-your-documentation"
+          },
+          {
+            "title": "Error Codes",
+            "path": "support/error-codes"
+          },
+          {
+            "title": "FAQs",
+            "path": "support/faqs"
+          },
+          {
+            "title": "Fix Performance Issues",
+            "path": "support/fix-performance-issues"
+          },
+          {
+            "title": "Report Bugs",
+            "path": "support/report-bugs"
+          },
+          {
+            "title": "Resolve Authentication Problems",
+            "path": "support/resolve-authentication-problems"
+          },
+          {
+            "title": "Troubleshoot Build Failures",
+            "path": "support/troubleshoot-build-failures"
+          }
+        ]
+      },
+      {
+        "group": "Writing Content",
+        "pages": [
+          {
+            "title": "Code Editor",
+            "path": "writing-content/code-editor"
+          },
+          {
+            "title": "Content Versioning & History",
+            "path": "writing-content/content-versioning-and-history"
+          },
+          {
+            "title": "Documentation Best Practices",
+            "path": "writing-content/documentation-best-practices"
+          },
+          {
+            "title": "Images & Media",
+            "path": "writing-content/images-and-media"
+          },
+          {
+            "title": "Keyboard Shortcuts",
+            "path": "writing-content/keyboard-shortcuts"
+          },
+          {
+            "title": "Markdown Basics",
+            "path": "writing-content/markdown-basics"
+          },
+          {
+            "title": "Markdown Syntax",
+            "path": "writing-content/markdown-syntax"
+          },
+          {
+            "title": "Organize Content Structure",
+            "path": "writing-content/organize-content-structure"
+          },
+          {
+            "title": "Web Editor",
+            "path": "writing-content/web-editor"
+          }
         ]
       },
       {
         "group": "Updates",
         "pages": [
-          { "title": "Changelog", "path": "changelog/changelog" }
+          {
+            "title": "Changelog",
+            "path": "changelog/changelog"
+          }
         ]
       }
     ]
