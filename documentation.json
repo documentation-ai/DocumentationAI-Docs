@@ -55,23 +55,7 @@
               }
             ]
           },
-          {
-            "group": "Your First Project",
-            "icon": "folder-plus",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "Create Your First Project",
-                "path": "getting-started/create-your-first-project",
-                "icon": "plus-circle"
-              },
-              {
-                "title": "Import Existing Docs",
-                "path": "getting-started/import-existing-docs",
-                "icon": "upload"
-              }
-            ]
-          },
+          
           {
             "group": "Writing Content",
             "icon": "pen-tool",
