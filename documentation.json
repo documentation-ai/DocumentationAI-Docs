@@ -30,8 +30,8 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Getting Started",
-        "icon": "play",
+        "tab": "Documentation",
+        "icon": "book",
         "groups": [
           {
             "group": "Introduction",
@@ -71,13 +71,7 @@
                 "icon": "upload"
               }
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Guides",
-        "icon": "book-open",
-        "groups": [
+          },
           {
             "group": "Writing Content",
             "icon": "pen-tool",
@@ -483,13 +477,7 @@
                 "icon": "arrow-right"
               }
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Reference",
-        "icon": "book",
-        "groups": [
+          },
           {
             "group": "Configuration",
             "icon": "settings",
@@ -691,6 +679,24 @@
         ]
       },
       {
+        "tab": "Changelog",
+        "icon": "scroll",
+        "groups": [
+          {
+            "group": "Changelog",
+            "icon": "bell",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Changelog",
+                "path": "changelog/changelog",
+                "icon": "scroll"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Support",
         "icon": "help-circle",
         "groups": [
@@ -750,18 +756,6 @@
                 "title": "Report Bugs",
                 "path": "support/report-bugs",
                 "icon": "bug"
-              }
-            ]
-          },
-          {
-            "group": "Updates",
-            "icon": "bell",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Changelog",
-                "path": "changelog/changelog",
-                "icon": "scroll"
               }
             ]
           }
