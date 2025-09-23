@@ -8,7 +8,7 @@ Images enhance documentation by providing visual context and examples. Documenta
 
 ### MDX Image component
 
-Use the `<Image>` component in your MDX content with required alt text for SEO.
+Write the `<Image>` component directly in your MDX files to display images. The component accepts `src` and `alt` attributes.
 
 ```markdown
 <Image 
@@ -22,6 +22,63 @@ Use the `<Image>` component in your MDX content with required alt text for SEO.
 <Callout uid="eb484e25-ef2f-4919-a95e-7e67069d8c14" kind="info" collapsed="false">
   The `alt` attribute is mandatory for SEO and accessibility. Provide descriptive text that explains the image content.
 </Callout>
+
+### Image attributes and alignment
+
+The `<Image>` component supports additional attributes for sizing and positioning.
+
+#### Basic attributes
+
+```markdown
+<Image 
+  src="https://your-cdn.com/image.png" 
+  alt="Description" 
+  width="400" 
+  height="300"
+/>
+```
+
+#### Left alignment (default)
+
+```markdown
+<Image 
+  src="https://your-cdn.com/image.png" 
+  alt="Left aligned image" 
+  width="433" 
+  height="247" 
+  style="width: 433px; height: auto; cursor: pointer; margin: 0 auto 0 0;" 
+/>
+```
+
+<Image uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" width="433" height="247" alt="Left aligned abstract pattern" style="width: 433px; height: auto; cursor: pointer; margin: 0 auto 0 0;" />
+
+#### Center alignment
+
+```markdown
+<Image 
+  src="https://your-cdn.com/image.png" 
+  alt="Center aligned image" 
+  width="433" 
+  height="247" 
+  style="width: 433px; height: auto; cursor: pointer; margin: 0 auto;" 
+/>
+```
+
+<Image uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" width="433" height="247" alt="Center aligned abstract pattern" style="width: 433px; height: auto; cursor: pointer; margin: 0 auto;" />
+
+#### Right alignment
+
+```markdown
+<Image 
+  src="https://your-cdn.com/image.png" 
+  alt="Right aligned image" 
+  width="433" 
+  height="247" 
+  style="width: 433px; height: auto; cursor: pointer; margin: 0 0 0 auto;" 
+/>
+```
+
+<Image uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" width="433" height="247" alt="Right aligned abstract pattern" style="width: 433px; height: auto; cursor: pointer; margin: 0 0 0 auto;" />
 
 ### Adding images through the editor
 
