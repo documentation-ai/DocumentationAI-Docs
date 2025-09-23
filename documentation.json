@@ -510,14 +510,34 @@
                 "expandable": true,
                 "pages": [
                   {
-                    "title": "Api Components",
-                    "path": "components/component-library/api-components",
-                    "icon": "server"
+                    "title": "Headings and Text",
+                    "path": "components/component-library/heading-and-text",
+                    "icon": "type"
                   },
                   {
-                    "title": "Callout",
-                    "path": "components/component-library/callout",
-                    "icon": "megaphone"
+                    "title": "Lists and Tables",
+                    "path": "components/component-library/lists-and-tables",
+                    "icon": "list"
+                  },
+                  {
+                    "title": "Images",
+                    "path": "components/component-library/images",
+                    "icon": "image"
+                  },
+                  {
+                    "title": "Video",
+                    "path": "components/component-library/video",
+                    "icon": "video"
+                  },
+                  {
+                    "title": "Iframe",
+                    "path": "components/component-library/iframe",
+                    "icon": "square"
+                  },
+                  {
+                    "title": "Media Components",
+                    "path": "components/component-library/media-components",
+                    "icon": "play"
                   },
                   {
                     "title": "Codeblock",
@@ -530,6 +550,11 @@
                     "icon": "layers"
                   },
                   {
+                    "title": "Callout",
+                    "path": "components/component-library/callout",
+                    "icon": "megaphone"
+                  },
+                  {
                     "title": "Expandable",
                     "path": "components/component-library/expandable",
                     "icon": "chevron-down"
@@ -540,39 +565,14 @@
                     "icon": "chevrons-down"
                   },
                   {
-                    "title": "Heading",
-                    "path": "components/component-library/heading",
-                    "icon": "heading"
-                  },
-                  {
-                    "title": "Iframe",
-                    "path": "components/component-library/iframe",
-                    "icon": "square"
-                  },
-                  {
-                    "title": "Image",
-                    "path": "components/component-library/image",
-                    "icon": "image"
-                  },
-                  {
                     "title": "Interactive Components",
                     "path": "components/component-library/interactive-components",
                     "icon": "hand"
                   },
                   {
-                    "title": "List",
-                    "path": "components/component-library/list",
-                    "icon": "list"
-                  },
-                  {
-                    "title": "Media Components",
-                    "path": "components/component-library/media-components",
-                    "icon": "play"
-                  },
-                  {
-                    "title": "Paragraph",
-                    "path": "components/component-library/paragraph",
-                    "icon": "align-left"
+                    "title": "Api Components",
+                    "path": "components/component-library/api-components",
+                    "icon": "server"
                   },
                   {
                     "title": "Paramfield",
@@ -593,16 +593,6 @@
                     "title": "Responsefield",
                     "path": "components/component-library/responsefield",
                     "icon": "arrow-left"
-                  },
-                  {
-                    "title": "Table",
-                    "path": "components/component-library/table",
-                    "icon": "table"
-                  },
-                  {
-                    "title": "Video",
-                    "path": "components/component-library/video",
-                    "icon": "video"
                   }
                 ]
               }
