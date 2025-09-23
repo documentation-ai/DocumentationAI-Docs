@@ -1,0 +1,77 @@
+---
+title: Images
+description: Reference for adding images using the Image component and markdown syntax.
+---
+## Images
+
+Images enhance documentation by providing visual context and examples. Documentation.AI supports two methods for adding images: MDX Image component syntax and the visual editor.
+
+### MDX Image component
+
+Use the `<Image>` component in your MDX content with required alt text for SEO.
+
+```markdown
+<Image 
+  src="https://your-cdn.com/image.png" 
+  alt="Description of the image" 
+/>
+```
+
+<Image uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" width="1792" height="1024" alt="Abstract geometric pattern with colorful shapes" />
+
+<Callout uid="eb484e25-ef2f-4919-a95e-7e67069d8c14" kind="info" collapsed="false">
+  The `alt` attribute is mandatory for SEO and accessibility. Provide descriptive text that explains the image content.
+</Callout>
+
+### Adding images through the editor
+
+The recommended method is using the Documentation.AI editor for optimized images served from our CDN.
+
+#### Method 1: Type command
+
+In the editor, type `/image` to open the image selector.
+
+<Image uid="4fd1b667-7e9f-4dd4-8ff2-978ef3c40750" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758639375212-c39us34hlx5-uploadimage.png" width="716" height="240" alt="" style="width: 716px; height: auto; cursor: pointer;" />
+
+#### Method 2: Plus icon
+
+Click the "+" icon in the editor toolbar and select the image element.
+
+#### Method 3: Copy and paste
+
+Copy an image from anywhere (screenshot, file, web) and paste it directly into the editor. The image will automatically upload to our CDN.
+
+<Image uid="7f5e128a-a67e-4f54-8847-28ec48582e14" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758639813922-rribcizffxc-cp.png" width="1690" height="1128" alt="" />
+
+#### Image selector popup
+
+The image selector allows you to:
+
+- Browse uploaded images
+
+- Search existing images
+
+- Upload new images
+
+- Select and insert images
+
+<Image uid="4fd40bcf-5e85-497a-924e-a7d33927cced" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758639769608-9f5ai4kq28h-select-image.png" width="1690" height="1128" alt="" />
+
+<Callout uid="f00f39b5-820e-4982-a7f1-0a3299bff2fe" kind="success" collapsed="false">
+  We recommend using the editor method because images are served from our optimized CDN, improving your page speed index score.
+</Callout>
+
+### Image requirements
+
+- **URL format**: Only absolute URLs are supported
+
+- **Alt text**: Required for all images (SEO and accessibility)
+
+- **Formats**: JPEG, JPG, PNG, GIF, WebP, SVG, ICO
+
+- **CDN**: Editor-uploaded images are automatically optimized
+
+<Callout uid="4fe23ad5-cf3c-4bb6-b839-cf7c339aa0eb" kind="warning" collapsed="false">
+  External CDN images may not be optimized for performance. Use the editor upload for best results.
+</Callout>
+
