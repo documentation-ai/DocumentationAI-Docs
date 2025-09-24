@@ -506,52 +506,52 @@
                 "pages": [
                   {
                     "title": "Headings and Text",
-                    "path": "components/component-library/heading-and-text",
+                    "path": "components/heading-and-text",
                     "icon": "type"
                   },
                   {
                     "title": "Lists and Tables",
-                    "path": "components/component-library/lists-and-tables",
+                    "path": "components/lists-and-tables",
                     "icon": "list"
                   },
                   {
                     "title": "Images",
-                    "path": "components/component-library/images",
+                    "path": "components/images",
                     "icon": "image"
                   },
                   {
                     "title": "Videos and Iframes",
-                    "path": "components/component-library/videos-and-iframes",
+                    "path": "components/videos-and-iframes",
                     "icon": "video"
                   },
                   {
                     "title": "Code and Groups",
-                    "path": "components/component-library/code-blocks-and-groups",
+                    "path": "components/code-blocks-and-groups",
                     "icon": "code"
                   },
                   {
                     "title": "Callout",
-                    "path": "components/component-library/callout",
+                    "path": "components/callout",
                     "icon": "megaphone"
                   },
                   {
                     "title": "Expandables",
-                    "path": "components/component-library/expandables",
+                    "path": "components/expandables",
                     "icon": "chevron-down"
                   },
                   {
                     "title": "Param Field",
-                    "path": "components/component-library/paramfield",
+                    "path": "components/paramfield",
                     "icon": "settings"
                   },
                   {
                     "title": "Response Field",
-                    "path": "components/component-library/responsefield",
+                    "path": "components/responsefield",
                     "icon": "arrow-left"
                   },
                   {
                     "title": "API Components",
-                    "path": "components/component-library/api-components",
+                    "path": "components/api-components",
                     "icon": "code"
                   }
                 ]
