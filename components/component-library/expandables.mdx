@@ -1,0 +1,176 @@
+---
+title: Expandables
+description: Reference for creating collapsible content sections using Expandable and ExpandableGroup components.
+type: reference
+---
+
+## Overview
+
+Create collapsible content sections that users can expand and collapse. Use ExpandableGroup to organize multiple expandables together.
+
+Common use cases:
+- FAQ sections with collapsible answers
+- Optional configuration details
+- Advanced settings or features
+- Grouped related information
+
+<Expandable title="Getting Started Guide" default-open="true">
+This expandable starts open by default and contains helpful information for new users.
+</Expandable>
+
+## Expandable
+
+Use Expandable to create individual collapsible content sections.
+
+````jsx
+<Expandable title="Click to expand" default-open="false">
+  Add your content here...
+</Expandable>
+````
+
+<Expandable title="Click to expand" default-open="false">
+  Add your content here...
+</Expandable>
+
+### Default open
+
+````jsx
+<Expandable title="Getting Started Guide" default-open="true">
+  This expandable starts open by default.
+</Expandable>
+````
+
+<Expandable title="Getting Started Guide" default-open="true">
+  This expandable starts open by default.
+</Expandable>
+
+### Rich content
+
+Expandables can contain any content including headings, lists, code blocks, and other components:
+
+````jsx
+<Expandable title="API Configuration" default-open="false">
+## Environment Variables
+
+Set these variables in your `.env` file:
+
+- `API_KEY` - Your API authentication key
+- `API_URL` - Base URL for API calls (default: `https://api.example.com`)
+
+```bash
+# Example .env file
+API_KEY=your-secret-key
+API_URL=https://api.example.com
+```
+
+<Callout kind="warning">
+  Never commit API keys to version control.
+</Callout>
+</Expandable>
+````
+
+<Expandable title="API Configuration" default-open="false">
+## Environment Variables
+
+Set these variables in your `.env` file:
+
+- `API_KEY` - Your API authentication key
+- `API_URL` - Base URL for API calls (default: `https://api.example.com`)
+
+```bash
+# Example .env file
+API_KEY=your-secret-key
+API_URL=https://api.example.com
+```
+
+<Callout kind="warning">
+  Never commit API keys to version control.
+</Callout>
+</Expandable>
+
+### Attributes
+
+<ParamField path="title" param-type="string" required="false" showLocation="false">
+  Header text displayed in the expandable button (default: "Click to expand").
+</ParamField>
+
+<ParamField path="default-open" param-type="string" required="false" showLocation="false">
+  Initial state: `"true"` (open) or `"false"` (closed). Defaults to `"false"`.
+</ParamField>
+
+## ExpandableGroup
+
+Use ExpandableGroup to organize multiple expandables together. Provides consistent spacing and visual grouping.
+
+````jsx
+<ExpandableGroup>
+<Expandable title="Installation" default-open="true">
+Install the package using your preferred package manager:
+
+```bash
+npm install documentation-ai
+```
+</Expandable>
+
+<Expandable title="Configuration" default-open="false">
+Create a configuration file in your project root:
+
+```json
+{
+  "name": "My Documentation",
+  "theme": "light",
+  "sidebar": true
+}
+```
+</Expandable>
+
+<Expandable title="Deployment" default-open="false">
+Deploy your documentation using our CLI:
+
+```bash
+npm run deploy
+```
+</Expandable>
+</ExpandableGroup>
+````
+
+<ExpandableGroup>
+<Expandable title="Installation" default-open="true">
+Install the package using your preferred package manager:
+
+```bash
+npm install documentation-ai
+```
+</Expandable>
+
+<Expandable title="Configuration" default-open="false">
+Create a configuration file in your project root:
+
+```json
+{
+  "name": "My Documentation",
+  "theme": "light",
+  "sidebar": true
+}
+```
+</Expandable>
+
+<Expandable title="Deployment" default-open="false">
+Deploy your documentation using our CLI:
+
+```bash
+npm run deploy
+```
+</Expandable>
+</ExpandableGroup>
+
+### Attributes
+
+**No attributes** - ExpandableGroup is a simple wrapper for grouping multiple Expandable components with consistent styling.
+
+## Common patterns
+
+- **FAQ sections** - Descriptive titles with most important item open by default
+- **Configuration options** - Group related settings using ExpandableGroup
+- **Documentation sections** - Nested content typically stays within two levels
+- **Progressive disclosure** - Show essential information first, details in expandables

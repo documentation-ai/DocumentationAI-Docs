@@ -1,8 +1,72 @@
 ---
-title: paramfield
-description: "Reference for paramfield in the Documentation.AI component library."
+title: Param Field
+description: Reference for documenting API parameters with location badges, types, and status indicators.
+type: reference
 ---
 
-# paramfield
+## Basic syntax
 
-[Reference] paramfield is part of the component library. Use it to structure content consistently and accessibly.
+Use the `<ParamField>` component to document API parameters with their location, type, and requirements.
+
+````jsx
+<ParamField path="id" param-type="string" required="true">
+  Unique identifier for the resource.
+</ParamField>
+````
+
+<ParamField path="id" param-type="string" required="true">
+  Unique identifier for the resource.
+</ParamField>
+
+## Hide location badge
+
+Use `showLocation="false"` to hide the location badge:
+
+````jsx
+<ParamField query="token" param-type="string" showLocation="false" required="true">
+  Authentication token without location badge.
+</ParamField>
+````
+
+<ParamField query="token" param-type="string" showLocation="false" required="true">
+  Authentication token without location badge.
+</ParamField>
+
+## Attributes
+
+<ParamField path="path" param-type="string" required="false" showLocation="false">
+  Parameter name for URL path parameters.
+</ParamField>
+
+<ParamField query="query" param-type="string" required="false" showLocation="false">
+  Parameter name for query string parameters.
+</ParamField>
+
+<ParamField header="header" param-type="string" required="false" showLocation="false">
+  Parameter name for HTTP headers.
+</ParamField>
+
+<ParamField body="body" param-type="string" required="false" showLocation="false">
+  Parameter name for request body fields.
+</ParamField>
+
+<ParamField query="param-type" param-type="string" required="false" showLocation="false">
+  Data type: `string`, `integer`, `boolean`, `object`, `array`, etc.
+</ParamField>
+
+<ParamField query="required" param-type="string" required="false" showLocation="false">
+  Set to `"true"` for required parameters (default: `"false"`).
+</ParamField>
+
+<ParamField query="deprecated" param-type="string" required="false" showLocation="false">
+  Set to `"true"` to mark as deprecated (default: `"false"`).
+</ParamField>
+
+<ParamField query="showLocation" param-type="string" required="false" showLocation="false">
+  Set to `"false"` to hide the location badge (default: `"true"`).
+</ParamField>
+
+<Callout kind="alert">
+  Use exactly one location attribute (`path`, `query`, `header`, or `body`) per ParamField.
+</Callout>
+

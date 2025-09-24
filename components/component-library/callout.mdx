@@ -1,8 +1,87 @@
 ---
-title: callout
-description: "Reference for callout in the Documentation.AI component library."
+title: Callout
+description: Reference for displaying highlighted information and alerts using the Callout component.
+type: reference
 ---
 
-# callout
+## Basic syntax
 
-[Reference] callout is part of the component library. Use it to structure content consistently and accessibly.
+Use the `<Callout>` component to highlight important information, tips, warnings, and alerts.
+
+````jsx
+<Callout kind="info">
+  This is an informational callout.
+</Callout>
+````
+
+<Callout kind="info">
+  This is an informational callout.
+</Callout>
+
+## Callout types
+
+### Info callouts
+
+````jsx
+<Callout kind="info">
+  Configure your API key in the settings before making requests.
+</Callout>
+````
+
+<Callout kind="info">
+  Configure your API key in the settings before making requests.
+</Callout>
+
+### Tip callouts
+
+````jsx
+<Callout kind="tip">
+  Use environment variables to store sensitive configuration like API keys.
+</Callout>
+````
+
+<Callout kind="tip">
+  Use environment variables to store sensitive configuration like API keys.
+</Callout>
+
+### Success callouts
+
+````jsx
+<Callout kind="success">
+  Your documentation has been successfully deployed and is live.
+</Callout>
+````
+
+<Callout kind="success">
+  Your documentation has been successfully deployed and is live.
+</Callout>
+
+### Alert callouts
+
+````jsx
+<Callout kind="alert">
+  This action cannot be undone. Make sure you have a backup before proceeding.
+</Callout>
+````
+
+<Callout kind="alert">
+  This action cannot be undone. Make sure you have a backup before proceeding.
+</Callout>
+
+### Danger callouts
+
+````jsx
+<Callout kind="danger">
+  Deleting this workspace will permanently remove all documentation and cannot be recovered.
+</Callout>
+````
+
+<Callout kind="danger">
+  Deleting this workspace will permanently remove all documentation and cannot be recovered.
+</Callout>
+
+## Attributes
+
+<ParamField path="kind" param-type="string" required="false" showLocation="false">
+  Visual style and icon: `info` (default), `tip`, `success`, `alert`, `danger`.
+</ParamField>

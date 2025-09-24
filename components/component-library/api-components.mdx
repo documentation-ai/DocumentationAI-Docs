@@ -1,8 +1,137 @@
 ---
-title: api-components
-description: "Reference for api-components in the Documentation.AI component library."
+title: API Components
+description: Reference for Request and Response components that automatically display in the right panel for API documentation.
+type: reference
 ---
 
-# api-components
+## Overview
 
-[Reference] api-components is part of the component library. Use it to structure content consistently and accessibly.
+Display code blocks in the right sidebar on desktop devices. The `Request` and `Response` components create a two-column layout that keeps examples visible while users scroll through your content.
+
+Common use cases:
+- API endpoint documentation with request and response examples
+- Configuration examples alongside explanatory text  
+- Code samples that users reference while following instructions
+- Before and after examples in tutorials
+
+On mobile devices, components display as regular code blocks within the main content.
+
+<Request tabs="JavaScript,cURL">
+```javascript
+const response = await fetch('/api/docs', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer TOKEN',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ title: 'Getting Started' })
+});
+```
+
+```bash
+curl -X POST https://api.example.com/docs \
+  -H "Authorization: Bearer TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Getting Started"}'
+```
+</Request>
+
+<Response tabs="200,404">
+```json
+{
+  "id": "doc-123",
+  "title": "Getting Started",
+  "status": "published",
+  "created_at": "2024-01-15T10:30:00Z"
+}
+```
+
+```json
+{
+  "error": "Document not found",
+  "code": "DOC_NOT_FOUND",
+  "message": "The requested document does not exist"
+}
+```
+</Response>
+
+## Request
+
+Use `Request` to display API request examples in the right sidebar. This component works like [CodeGroup](/components/code-blocks-and-groups) but displays in the sidebar instead of inline.
+
+````jsx
+<Request tabs="JavaScript,Python">
+```javascript
+const response = await fetch('/api/docs', {
+  method: 'POST',
+  headers: { 'Authorization': 'Bearer TOKEN' },
+  body: JSON.stringify({ title: 'Getting Started' })
+});
+```
+
+```python
+import requests
+response = requests.post('/api/docs',
+  headers={'Authorization': 'Bearer TOKEN'},
+  json={'title': 'Getting Started'}
+)
+```
+</Request>
+````
+
+### Attributes
+
+<ParamField path="tabs" param-type="string" required="false" showLocation="false">
+  Comma-separated tab names. Overrides auto-detected languages.
+</ParamField>
+
+<ParamField path="show-lines" param-type="string" required="false" showLocation="false">
+  Shows line numbers when set to `"true"`. Request shows lines by default.
+</ParamField>
+
+<ParamField path="default-tab" param-type="string" required="false" showLocation="false">
+  Default active tab index (1-based).
+</ParamField>
+
+## Response
+
+Use `Response` to display API response examples in the right sidebar beneath any `Request` content on the same page.
+
+````jsx
+<Response tabs="200,500">
+```json
+{
+  "id": "doc-123",
+  "status": "success"
+}
+```
+
+```json
+{
+  "error": "Internal server error",
+  "code": "INTERNAL_ERROR"
+}
+```
+</Response>
+````
+
+### Attributes
+
+<ParamField path="tabs" param-type="string" required="false" showLocation="false">
+  Comma-separated tab names. Commonly HTTP status codes or formats.
+</ParamField>
+
+<ParamField path="show-lines" param-type="string" required="false" showLocation="false">
+  Shows line numbers when set to `"true"`. Response hides lines by default.
+</ParamField>
+
+<ParamField path="default-tab" param-type="string" required="false" showLocation="false">
+  Default active tab index (1-based).
+</ParamField>
+
+## Common patterns
+
+- **API documentation** - One Request and one Response component per endpoint page
+- **Multi-language support** - Request tabs for different programming languages (JavaScript, Python, cURL)
+- **Status handling** - Response tabs for HTTP status codes (200, 400, 500)
+- **Two-column layout** - Components automatically display in right sidebar on desktop

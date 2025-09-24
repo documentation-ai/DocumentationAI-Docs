@@ -1,0 +1,178 @@
+---
+title: Code blocks and groups
+description: Reference for displaying syntax-highlighted code with copy functionality and organizing multiple code examples in tabbed interfaces.
+type: reference
+---
+
+## Overview
+
+Display syntax-highlighted code with automatic copy functionality. Use CodeGroup to organize multiple code examples in tabbed interfaces for easy comparison.
+
+Common use cases:
+- Single code snippets with syntax highlighting
+- Multiple language examples in tabs
+- Before and after code comparisons
+- API examples across different SDKs
+
+````typescript
+const myFunction = () => {
+  console.log("Hello Documentation.AI");
+};
+````
+
+## Inline code
+
+To denote a `word` or `phrase` as code, enclose it in backticks.
+
+````markdown
+To denote a `word` or `phrase` as code, enclose it in backticks.
+````
+
+## Code blocks
+
+Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) with three backticks and a language identifier for syntax highlighting.
+
+````typescript
+```typescript
+const apiCall = async () => {
+  const response = await fetch('/api/docs');
+  return response.json();
+};
+```
+````
+
+```typescript
+const apiCall = async () => {
+  const response = await fetch('/api/docs');
+  return response.json();
+};
+```
+
+### Supported languages
+
+**Popular:** `typescript`, `javascript`, `python`, `java`, `go`, `rust`, `php`, `ruby`, `csharp`  
+**Web:** `html`, `css`, `json`, `xml`, `graphql`  
+**Shell:** `bash`, `shell`, `yaml`, `dockerfile`, `sql`  
+**Other:** `cpp`, `swift`, `kotlin`, `dart`, `markdown`, `plaintext`
+
+### Nested code examples
+
+Use **four backticks** to show code block examples within documentation:
+
+`````markdown
+````typescript
+```typescript
+function calculateTotal(price: number, tax: number): number {
+  return price + (price * tax);
+}
+```
+````
+`````
+
+## CodeGroup
+
+Use CodeGroup to organize multiple code blocks in tabbed interfaces. Enables easy comparison between different languages or related examples.
+
+````jsx
+<CodeGroup tabs="TypeScript,Python,Bash">
+```typescript
+const response = await fetch('/api/docs', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ title: 'Getting Started' })
+});
+```
+
+```python
+import requests
+response = requests.post('/api/docs',
+  json={'title': 'Getting Started'}
+)
+```
+
+```bash
+curl -X POST https://api.example.com/docs \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Getting Started"}'
+```
+</CodeGroup>
+````
+
+<CodeGroup tabs="TypeScript,Python,Bash">
+```typescript
+const response = await fetch('/api/docs', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ title: 'Getting Started' })
+});
+```
+
+```python
+import requests
+response = requests.post('/api/docs',
+  json={'title': 'Getting Started'}
+)
+```
+
+```bash
+curl -X POST https://api.example.com/docs \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Getting Started"}'
+```
+</CodeGroup>
+
+### With line numbers
+
+Display line numbers for all code blocks in the group:
+
+````jsx
+<CodeGroup show-lines="true" tabs="TypeScript,Python">
+```typescript
+function calculateTotal(price: number, tax: number): number {
+  const taxAmount = price * tax;
+  const total = price + taxAmount;
+  return Math.round(total * 100) / 100;
+}
+```
+
+```python
+def calculate_total(price, tax):
+    tax_amount = price * tax
+    total = price + tax_amount
+    return round(total, 2)
+```
+</CodeGroup>
+````
+
+### Auto-detected tabs
+
+Without the `tabs` attribute, CodeGroup automatically uses language identifiers as tab names:
+
+````jsx
+<CodeGroup>
+```typescript
+const example = "This tab shows: typescript";
+```
+
+```python
+example = "This tab shows: python"
+```
+</CodeGroup>
+````
+
+### Attributes
+
+<ParamField path="tabs" param-type="string" required="false" showLocation="false">
+  Comma-separated custom tab names. Overrides auto-detected languages.
+</ParamField>
+
+<ParamField path="show-lines" param-type="string" required="false" showLocation="false">
+  Set to `"true"` to show line numbers for all code blocks in the group.
+</ParamField>
+
+## Common patterns
+
+- **Syntax highlighting** - Language identifiers enable automatic highlighting
+- **Multi-language examples** - CodeGroup tabs for SDK comparisons (JavaScript, Python, Go)
+- **Related code samples** - Group request/response, before/after, or setup/usage examples
+- **Documentation examples** - Nested code blocks using four backticks for meta-documentation

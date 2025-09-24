@@ -1,66 +1,52 @@
 ---
 title: Lists and Tables
-description: >-
-  Reference for creating ordered lists, unordered lists, nested lists, and
-  tables in MDX.
+description: Reference for creating ordered lists, unordered lists, nested lists, and tables in MDX.
+type: reference
 ---
-## Lists
 
-Lists organize information into readable sequences. Markdown supports ordered (numbered) and unordered (bulleted) lists, with nesting capabilities. Lists follow the official [Markdown Guide - Lists](https://www.markdownguide.org/basic-syntax/#lists-1).
+## Overview
+
+Organize information with ordered lists, unordered lists, and tables. All standard Markdown list and table syntax is supported.
+
+## Lists
 
 ### Ordered lists
 
-Use numbers followed by periods to create numbered lists.
+Use numbers followed by periods:
 
-```markdown
+````markdown
 1. First item
 2. Second item
 3. Third item
-```
+````
 
 1. First item
-
 2. Second item
-
 3. Third item
 
-<Callout uid="e0ed01e2-7e1a-4dd9-8b33-c59a5fbebd34" kind="info" collapsed="false">
-  The actual numbers don't matter; Markdown will automatically sequence them. You can use `1.` for all items.
+<Callout kind="info">
+  The actual numbers don't matter; Markdown automatically sequences them. You can use `1.` for all items.
 </Callout>
 
 ### Unordered lists
 
-Use dashes (`-`), asterisks (`*`), or plus signs (`+`) to create bulleted lists.
+Use dashes (`-`), asterisks (`*`), or plus signs (`+`):
 
-```markdown
+````markdown
 - First item
 - Second item
 - Third item
-```
+````
 
 - First item
-
 - Second item
-
-- Third item
-
-```markdown
-* First item
-* Second item
-* Third item
-```
-
-- First item
-
-- Second item
-
 - Third item
 
 ### Nested lists
 
-Indent items with spaces to create nested lists. Use consistent indentation (typically 2 or 4 spaces).
+Indent items with spaces (typically 2 or 4 spaces):
 
-```markdown
+````markdown
 1. First item
    - Nested unordered item
    - Another nested item
@@ -68,41 +54,31 @@ Indent items with spaces to create nested lists. Use consistent indentation (typ
    1. Nested ordered item
    2. Another nested ordered item
 3. Third item
-```
+````
 
 1. First item
-
    - Nested unordered item
-
    - Another nested item
-
 2. Second item
-
    1. Nested ordered item
-
    2. Another nested ordered item
-
 3. Third item
 
-<Callout uid="26571f91-5d79-4a34-becd-6d6957e61625" kind="warning" collapsed="false">
-  Mixing different list markers (`-`, `*`, `+`) in the same list can cause inconsistent rendering across Markdown processors.
+<Callout kind="warning">
+  Mixing different list markers (`-`, `*`, `+`) in the same list can cause inconsistent rendering.
 </Callout>
 
 ## Tables
 
-Tables display structured data in rows and columns. Use pipes (`|`) to separate columns and dashes (`-`) to create headers. Tables follow the official [Markdown Guide - Tables.](https://www.markdownguide.org/extended-syntax/#tables)
+Use pipes (`|`) to separate columns and dashes (`-`) to create headers:
 
-### Basic syntax
-
-Use pipes (`|`) to separate columns and dashes (`-`) to create headers. Tables work best for structured data with clear relationships between rows and columns.
-
-```markdown
+````markdown
 | Feature | Description | Status |
 |---------|-------------|--------|
 | Authentication | User login system | Complete |
 | Dashboard | Main user interface | In progress |
 | Reports | Data analytics | Planned |
-```
+````
 
 | Feature        | Description         | Status      |
 | -------------- | ------------------- | ----------- |
@@ -112,17 +88,23 @@ Use pipes (`|`) to separate columns and dashes (`-`) to create headers. Tables w
 
 ### Table formatting
 
-You don't need to make the raw Markdown line up perfectly, but it improves readability.
+Raw Markdown doesn't need to align perfectly, but it improves readability:
 
-```markdown
+````markdown
 | Name | Role | Status |
 |---|---|---|
 | Alice | Developer | Active |
 | Bob | Designer | Inactive |
-```
+````
 
 | Name  | Role      | Status   |
 | ----- | --------- | -------- |
 | Alice | Developer | Active   |
 | Bob   | Designer  | Inactive |
 
+## Common patterns
+
+- **Sequential content** - Ordered lists for steps, procedures, rankings
+- **Related items** - Unordered lists for features, requirements, options  
+- **Structured data** - Tables for comparisons, specifications, status tracking
+- **Hierarchical information** - Nested lists with consistent 2 or 4-space indentation

@@ -1,134 +1,141 @@
 ---
 title: Images
 description: Reference for adding images using the Image component and markdown syntax.
+type: reference
 ---
-## Images
 
-Images enhance documentation by providing visual context and examples. Documentation.AI supports two methods for adding images: MDX Image component syntax and the visual editor.
+## Overview
 
-### MDX Image component
+Add images with automatic optimization, accessibility features, and responsive behavior. Images uploaded via the editor are served from an optimized CDN.
 
-Write the `<Image>` component directly in your MDX files to display images. The component accepts `src` and `alt` attributes.
-
-```markdown
+````jsx
 <Image 
   src="https://your-cdn.com/image.png" 
   alt="Description of the image" 
+  width="800"
+  height="600"
 />
-```
+````
 
-<Image uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" width="1792" height="1024" alt="Abstract geometric pattern with colorful shapes" />
+<Image
+  uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802"
+  src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp"
+  width="672"
+  height="343"
+  alt="Abstract geometric pattern with colorful shapes"
+/>
 
-<Callout uid="eb484e25-ef2f-4919-a95e-7e67069d8c14" kind="info" collapsed="false">
+<Callout kind="info">
   The `alt` attribute is mandatory for SEO and accessibility. Provide descriptive text that explains the image content.
 </Callout>
 
-### Image attributes and alignment
+## Attributes
 
-The `<Image>` component supports additional attributes for sizing and positioning.
+<ParamField path="src" param-type="string" required="true" showLocation="false">
+  Image URL (absolute URLs only). Use CDN URLs for optimized delivery.
+</ParamField>
 
-#### Basic attributes
+<ParamField path="alt" param-type="string" required="true" showLocation="false">
+  Descriptive text for accessibility and SEO. Explains image content to screen readers.
+</ParamField>
 
-```markdown
-<Image 
-  src="https://your-cdn.com/image.png" 
-  alt="Description" 
-  width="400" 
-  height="300"
-/>
-```
+<ParamField path="width" param-type="string" required="false" showLocation="false">
+  Image width in pixels. Used for layout optimization and preventing layout shift.
+</ParamField>
 
-#### Left alignment (default)
+<ParamField path="height" param-type="string" required="false" showLocation="false">
+  Image height in pixels. Used for layout optimization and preventing layout shift.
+</ParamField>
 
-```markdown
-<Image 
-  src="https://your-cdn.com/image.png" 
-  alt="Left aligned image" 
-  width="433" 
-  height="247" 
-  style="width: 433px; height: auto; cursor: pointer; margin: 0 auto 0 0;" 
-/>
-```
+<ParamField path="style" param-type="string" required="false" showLocation="false">
+  CSS styles for alignment, sizing, and positioning. Use for responsive behavior.
+</ParamField>
 
-<Image uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" width="433" height="247" alt="Left aligned abstract pattern" style="width: 433px; height: auto; cursor: pointer; margin: 0 auto 0 0;" />
+<ParamField path="priority" param-type="boolean" required="false" showLocation="false">
+  Load immediately instead of lazy loading. Use for above-the-fold images (default: `false`).
+</ParamField>
 
-#### Center alignment
+<ParamField path="fetchpriority" param-type="string" required="false" showLocation="false">
+  Browser loading priority: `high`, `low`, `auto`. Use `high` for critical images.
+</ParamField>
 
-```markdown
+## Alignment and sizing
+
+Control image dimensions and positioning with `width`, `height`, and `style` attributes:
+
+````jsx
 <Image 
   src="https://your-cdn.com/image.png" 
   alt="Center aligned image" 
-  width="433" 
-  height="247" 
-  style="width: 433px; height: auto; cursor: pointer; margin: 0 auto;" 
+  width="400" 
+  height="300"
+  style="width: 400px; height: auto; margin: 0 auto;" 
 />
-```
+````
 
-<Image uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" width="433" height="247" alt="Center aligned abstract pattern" style="width: 433px; height: auto; cursor: pointer; margin: 0 auto;" />
+<Image
+  uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802"
+  src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp"
+  width="400"
+  height="229"
+  alt="Center aligned abstract pattern"
+  style="width: 400px; height: auto; margin: 0 auto;"
+/>
 
-#### Right alignment
+## Performance optimization
 
-```markdown
+Use `priority` and `fetchpriority` attributes for above-the-fold images that affect loading performance:
+
+````jsx
 <Image 
-  src="https://your-cdn.com/image.png" 
-  alt="Right aligned image" 
-  width="433" 
-  height="247" 
-  style="width: 433px; height: auto; cursor: pointer; margin: 0 0 0 auto;" 
+  src="https://your-cdn.com/hero-image.png" 
+  alt="Hero banner showing product features" 
+  width="1200" 
+  height="600"
+  priority={true}
+  fetchpriority="high"
 />
-```
+````
 
-<Image uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" width="433" height="247" alt="Right aligned abstract pattern" style="width: 433px; height: auto; cursor: pointer; margin: 0 0 0 auto;" />
-
-### Adding images through the editor
-
-The recommended method is using the Documentation.AI editor for optimized images served from our CDN.
-
-#### Method 1: Type command
-
-In the editor, type `/image` to open the image selector.
-
-<Image uid="4fd1b667-7e9f-4dd4-8ff2-978ef3c40750" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758639375212-c39us34hlx5-uploadimage.png" width="716" height="240" alt="" style="width: 716px; height: auto; cursor: pointer;" />
-
-#### Method 2: Plus icon
-
-Click the "+" icon in the editor toolbar and select the image element.
-
-#### Method 3: Copy and paste
-
-Copy an image from anywhere (screenshot, file, web) and paste it directly into the editor. The image will automatically upload to our CDN.
-
-<Image uid="7f5e128a-a67e-4f54-8847-28ec48582e14" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758639813922-rribcizffxc-cp.png" width="1690" height="1128" alt="" />
-
-#### Image selector popup
-
-The image selector allows you to:
-
-- Browse uploaded images
-
-- Search existing images
-
-- Upload new images
-
-- Select and insert images
-
-<Image uid="4fd40bcf-5e85-497a-924e-a7d33927cced" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758639769608-9f5ai4kq28h-select-image.png" width="1690" height="1128" alt="" />
-
-<Callout uid="f00f39b5-820e-4982-a7f1-0a3299bff2fe" kind="success" collapsed="false">
-  We recommend using the editor method because images are served from our optimized CDN, improving your page speed index score.
+<Callout kind="info">
+  Use performance attributes only for above-the-fold images. Overusing `priority` can hurt overall page performance.
 </Callout>
 
-### Image requirements
+## Adding images
+
+### Editor upload
+
+Use the Documentation.AI editor for automatic CDN optimization:
+
+1. Type `/image` command in the editor
+2. Click the "+" icon and select image element  
+3. Copy and paste images directly into the editor
+4. Browse and select from uploaded images
+
+<Callout kind="success">
+  Editor-uploaded images are automatically optimized and served from our CDN for better performance.
+</Callout>
+
+### External URLs
+
+Use absolute URLs for external images. Note that external images may not be optimized.
+
+````jsx
+<Image 
+  src="https://external-cdn.com/image.jpg" 
+  alt="External image description"
+  width="600"
+  height="400"
+/>
+````
+
+## Specifications
 
 - **URL format**: Only absolute URLs are supported
-
-- **Alt text**: Required for all images (SEO and accessibility)
-
+- **Alt text**: Required for all images (SEO and accessibility)  
 - **Formats**: JPEG, JPG, PNG, GIF, WebP, SVG, ICO
-
 - **CDN**: Editor-uploaded images are automatically optimized
 
-<Callout kind="warning" collapsed="false">
+<Callout kind="warning">
   External CDN images may not be optimized for performance. Use the editor upload for best results.
 </Callout>
-

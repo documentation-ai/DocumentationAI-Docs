@@ -55,7 +55,7 @@
               }
             ]
           },
-          
+
           {
             "group": "Writing Content",
             "icon": "pen-tool",
@@ -500,12 +500,7 @@
                 "icon": "eye"
               },
               {
-                "title": "Component Library",
-                "path": "components/component-library",
-                "icon": "library"
-              },
-              {
-                "group": "Component Library",
+                "group": "Components",
                 "icon": "box",
                 "expandable": true,
                 "pages": [
@@ -525,29 +520,14 @@
                     "icon": "image"
                   },
                   {
-                    "title": "Video",
-                    "path": "components/component-library/video",
+                    "title": "Videos and Iframes",
+                    "path": "components/component-library/videos-and-iframes",
                     "icon": "video"
                   },
                   {
-                    "title": "Iframe",
-                    "path": "components/component-library/iframe",
-                    "icon": "square"
-                  },
-                  {
-                    "title": "Media Components",
-                    "path": "components/component-library/media-components",
-                    "icon": "play"
-                  },
-                  {
-                    "title": "Codeblock",
-                    "path": "components/component-library/codeblock",
+                    "title": "Code and Groups",
+                    "path": "components/component-library/code-blocks-and-groups",
                     "icon": "code"
-                  },
-                  {
-                    "title": "Codegroup",
-                    "path": "components/component-library/codegroup",
-                    "icon": "layers"
                   },
                   {
                     "title": "Callout",
@@ -555,44 +535,24 @@
                     "icon": "megaphone"
                   },
                   {
-                    "title": "Expandable",
-                    "path": "components/component-library/expandable",
+                    "title": "Expandables",
+                    "path": "components/component-library/expandables",
                     "icon": "chevron-down"
                   },
                   {
-                    "title": "Expandablegroup",
-                    "path": "components/component-library/expandablegroup",
-                    "icon": "chevrons-down"
-                  },
-                  {
-                    "title": "Interactive Components",
-                    "path": "components/component-library/interactive-components",
-                    "icon": "hand"
-                  },
-                  {
-                    "title": "Api Components",
-                    "path": "components/component-library/api-components",
-                    "icon": "server"
-                  },
-                  {
-                    "title": "Paramfield",
+                    "title": "Param Field",
                     "path": "components/component-library/paramfield",
                     "icon": "settings"
                   },
                   {
-                    "title": "Request",
-                    "path": "components/component-library/request",
-                    "icon": "send"
-                  },
-                  {
-                    "title": "Response",
-                    "path": "components/component-library/response",
-                    "icon": "corner-down-left"
-                  },
-                  {
-                    "title": "Responsefield",
+                    "title": "Response Field",
                     "path": "components/component-library/responsefield",
                     "icon": "arrow-left"
+                  },
+                  {
+                    "title": "API Components",
+                    "path": "components/component-library/api-components",
+                    "icon": "code"
                   }
                 ]
               }

@@ -1,87 +1,92 @@
 ---
 title: Headings and Text
-description: 'Reference for headings, paragraphs, inline styles, links, and spacing in MDX.'
+description: Reference for headings, paragraphs, inline styles, links, and spacing in MDX.
+type: reference
 ---
+
+## Overview
+
+Structure your content with headings, paragraphs, inline emphasis, and links. All standard Markdown text formatting is supported.
+
+<Callout kind="info">
+  The page title renders as H1. Body headings typically begin at `##`.
+</Callout>
+
 ## Headings
 
-Headings provide structure and create anchor targets used by in‑page navigation. They also determine entries in the table of contents.
+Use `#` symbols to create headers for structure and navigation:
 
-Use `#` symbols to create headers
-
-```markdown
+````markdown
 ## Section
-
-### Subsection
-
-#### Detail (use H4 as the deepest level)
-```
-
-<Callout uid="9dc86e4a-ad54-42e2-ac1c-0aad001124dc" kind="info" collapsed="false">
-  The page title renders as H1. Body headings typically begin at `##.`
-</Callout>
+### Subsection  
+#### Detail (use H4 as deepest level)
+````
 
 ## Paragraphs
 
-Separate paragraphs with a blank line.
+Separate paragraphs with a blank line:
 
-```markdown
+````markdown
 This is a paragraph with one idea.
 
 This is another paragraph that advances the topic.
-```
+````
+
+This is a paragraph with one idea.
+
+This is another paragraph that advances the topic.
 
 ## Inline emphasis
 
-- Bold highlights labels, UI terms, or important actions.
-
-- Italic introduces terms, references titles, or adds light emphasis.
-
-- Strikethrough is rare; use only to indicate deprecation in changelogs.
-
-- Inline code marks technical tokens (identifiers, commands, filenames, HTTP methods/paths); wrap with backticks.
-
-| Style         | Usage                    | Result             |
+| Style         | Syntax                   | Result             |
 | ------------- | ------------------------ | ------------------ |
 | Bold          | `**Create project**`     | **Create project** |
 | Italic        | `*idempotent*`           | *idempotent*       |
 | Strikethrough | `~~Legacy token~~`       | ~~Legacy token~~   |
 | Inline code   | `` `GET /v1/projects` `` | `GET /v1/projects` |
 
+### Style effects
+
+- **Bold** - Renders text in strong weight for emphasis
+- *Italic* - Renders text in slanted style for subtle emphasis  
+- ~~Strikethrough~~ - Renders text with line through for deletions/deprecation
+- `Inline code` - Renders text in monospace font with background highlight
+
 ## Links
 
 ### Internal links
 
-Use explicit relative slugs rooted at the docs site.
+Use relative slugs rooted at the docs site:
 
-```markdown
+````markdown
 [Quickstart](/getting-started/quickstart)
-[Code blocks](/components/component-library/codeblock)
-```
+[Components](/components/component-library/callout)
+````
 
 [Quickstart](/getting-started/quickstart)
-[Code blocks](/components/component-library/codeblock)
+[Components](/components/component-library/callout)
 
 ### External links
 
-Use absolute URLs.
+Use absolute URLs:
 
-```markdown
-[The AI Documentation](https://documentation.ai/)
-```
+````markdown
+[Documentation.AI](https://documentation.ai/)
+````
 
-[The AI Documentation](https://documentation.ai/)
+[Documentation.AI](https://documentation.ai/)
 
 ## Line breaks and spacing
 
 ### Paragraph breaks
 
-Paragraph break: leave a blank line between paragraphs.
+Leave a blank line between paragraphs:
 
-```markdown
+````markdown
 First paragraph.
 
 Second paragraph.
-```
+````
 
 First paragraph.
 
@@ -89,25 +94,16 @@ Second paragraph.
 
 ### Manual line breaks
 
-Manual line break: insert `<br />` sparingly for controlled breaks inside a paragraph (avoid for layout).
+Insert `<br />` for controlled breaks within a paragraph:
 
-```markdown
+````markdown
 First line with an intentional break.<br />
 Second line continues the same paragraph.
-```
+````
 
-First line with an intentional break.\
+First line with an intentional break.<br />
 Second line continues the same paragraph.
 
-<Callout kind="info" collapsed="false">
-Avoid stacking multiple blank lines. Use headings and paragraphs for structure, not repeated breaks.
+<Callout kind="info">
+  Avoid stacking multiple blank lines. Use headings and paragraphs for structure, not repeated breaks.
 </Callout>
-
-## Related / See also
-
-- [Components overview](/components/components-overview)
-
-- [Code blocks](/components/component-library/codeblock)
-
-- [Lists](/components/component-library/list)
-

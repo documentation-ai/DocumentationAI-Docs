@@ -1,8 +1,79 @@
 ---
-title: responsefield
-description: "Reference for responsefield in the Documentation.AI component library."
+title: Response Field
+description: Reference for documenting API response fields with types, requirements, and status indicators.
+type: reference
 ---
 
-# responsefield
+## Basic syntax
 
-[Reference] responsefield is part of the component library. Use it to structure content consistently and accessibly.
+Use the `<ResponseField>` component to document API response fields with their type and status.
+
+<Callout kind="info">
+  ResponseField is similar to [ParamField](/components/param-field) but specifically designed for documenting API response fields and returned data structures.
+</Callout>
+
+````jsx
+<ResponseField name="id" field-type="string" required="true">
+  Unique identifier for the resource.
+</ResponseField>
+````
+
+<ResponseField name="id" field-type="string" required="true">
+  Unique identifier for the resource.
+</ResponseField>
+
+## Examples
+
+### Optional field
+
+````jsx
+<ResponseField name="description" field-type="string">
+  Optional description text for the resource.
+</ResponseField>
+````
+
+<ResponseField name="description" field-type="string">
+  Optional description text for the resource.
+</ResponseField>
+
+### Deprecated field
+
+````jsx
+<ResponseField name="legacy_id" field-type="integer" deprecated="true">
+  Deprecated legacy identifier. Use `id` instead.
+</ResponseField>
+````
+
+<ResponseField name="legacy_id" field-type="integer" deprecated="true">
+  Deprecated legacy identifier. Use `id` instead.
+</ResponseField>
+
+### Complex type
+
+````jsx
+<ResponseField name="user" field-type="object" required="true">
+  User object containing profile information and preferences.
+</ResponseField>
+````
+
+<ResponseField name="user" field-type="object" required="true">
+  User object containing profile information and preferences.
+</ResponseField>
+
+## Attributes
+
+<ParamField path="name" param-type="string" required="false" showLocation="false">
+  Field name displayed in the response documentation (default: "response").
+</ParamField>
+
+<ParamField path="field-type" param-type="string" required="false" showLocation="false">
+  Data type: `string`, `integer`, `boolean`, `object`, `array`, etc.
+</ParamField>
+
+<ParamField path="required" param-type="string" required="false" showLocation="false">
+  Set to `"true"` for required fields (default: `"false"`).
+</ParamField>
+
+<ParamField path="deprecated" param-type="string" required="false" showLocation="false">
+  Set to `"true"` to mark as deprecated (default: `"false"`).
+</ParamField>
