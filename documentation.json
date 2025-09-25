@@ -364,6 +364,102 @@
             ]
           },
           {
+            "group": "Configuration",
+            "icon": "settings",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "documentation.json / Advanced Site Configuration",
+                "path": "configuration/documentation-json-site-configuration",
+                "icon": "file-cog"
+              },
+              {
+                "title": "Advanced Page / Front-matter Configuration",
+                "path": "configuration/page-front-matter-configuration",
+                "icon": "file-text"
+              },
+              {
+                "title": "API Configuration",
+                "path": "configuration/api-configuration",
+                "icon": "code"
+              },
+              {
+                "title": "Page Metadata",
+                "path": "configuration/page-metadata",
+                "icon": "info"
+              }
+            ]
+          },
+          {
+            "group": "Components",
+            "icon": "package",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "Components Overview",
+                "path": "components/components-overview",
+                "icon": "eye"
+              },
+              {
+                "group": "Components",
+                "icon": "box",
+                "expandable": true,
+                "pages": [
+                  {
+                    "title": "Headings and Text",
+                    "path": "components/heading-and-text",
+                    "icon": "type"
+                  },
+                  {
+                    "title": "Lists and Tables",
+                    "path": "components/lists-and-tables",
+                    "icon": "list"
+                  },
+                  {
+                    "title": "Images",
+                    "path": "components/images",
+                    "icon": "image"
+                  },
+                  {
+                    "title": "Videos and Iframes",
+                    "path": "components/videos-and-iframes",
+                    "icon": "video"
+                  },
+                  {
+                    "title": "Code and Groups",
+                    "path": "components/code-blocks-and-groups",
+                    "icon": "code"
+                  },
+                  {
+                    "title": "Callout",
+                    "path": "components/callout",
+                    "icon": "megaphone"
+                  },
+                  {
+                    "title": "Expandables",
+                    "path": "components/expandables",
+                    "icon": "chevron-down"
+                  },
+                  {
+                    "title": "Param Field",
+                    "path": "components/paramfield",
+                    "icon": "settings"
+                  },
+                  {
+                    "title": "Response Field",
+                    "path": "components/responsefield",
+                    "icon": "arrow-left"
+                  },
+                  {
+                    "title": "API Components",
+                    "path": "components/api-components",
+                    "icon": "code"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "group": "Integrations",
             "icon": "plug",
             "expandable": true,
@@ -459,102 +555,6 @@
                 "title": "From Markdown Files",
                 "path": "migrations/from-markdown",
                 "icon": "arrow-right"
-              }
-            ]
-          },
-          {
-            "group": "Configuration",
-            "icon": "settings",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "documentation.json / Advanced Site Configuration",
-                "path": "configuration/documentation-json-site-configuration",
-                "icon": "file-cog"
-              },
-              {
-                "title": "Advanced Page / Front-matter Configuration",
-                "path": "configuration/page-front-matter-configuration",
-                "icon": "file-text"
-              },
-              {
-                "title": "API Configuration",
-                "path": "configuration/api-configuration",
-                "icon": "code"
-              },
-              {
-                "title": "Page Metadata",
-                "path": "configuration/page-metadata",
-                "icon": "info"
-              }
-            ]
-          },
-          {
-            "group": "Components",
-            "icon": "package",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "Components Overview",
-                "path": "components/components-overview",
-                "icon": "eye"
-              },
-              {
-                "group": "Components",
-                "icon": "box",
-                "expandable": true,
-                "pages": [
-                  {
-                    "title": "Headings and Text",
-                    "path": "components/heading-and-text",
-                    "icon": "type"
-                  },
-                  {
-                    "title": "Lists and Tables",
-                    "path": "components/lists-and-tables",
-                    "icon": "list"
-                  },
-                  {
-                    "title": "Images",
-                    "path": "components/images",
-                    "icon": "image"
-                  },
-                  {
-                    "title": "Videos and Iframes",
-                    "path": "components/videos-and-iframes",
-                    "icon": "video"
-                  },
-                  {
-                    "title": "Code and Groups",
-                    "path": "components/code-blocks-and-groups",
-                    "icon": "code"
-                  },
-                  {
-                    "title": "Callout",
-                    "path": "components/callout",
-                    "icon": "megaphone"
-                  },
-                  {
-                    "title": "Expandables",
-                    "path": "components/expandables",
-                    "icon": "chevron-down"
-                  },
-                  {
-                    "title": "Param Field",
-                    "path": "components/paramfield",
-                    "icon": "settings"
-                  },
-                  {
-                    "title": "Response Field",
-                    "path": "components/responsefield",
-                    "icon": "arrow-left"
-                  },
-                  {
-                    "title": "API Components",
-                    "path": "components/api-components",
-                    "icon": "code"
-                  }
-                ]
               }
             ]
           },
