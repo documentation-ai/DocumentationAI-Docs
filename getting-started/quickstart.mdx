@@ -74,7 +74,7 @@ If you're migrating from another platform, check our [migration guides](../migra
    - **Site Description**: `Comprehensive documentation for my product`
    - **Primary Color**: `#2563eb` (or choose your brand color)
 
-[SCREENSHOT: SETTINGS PAGE SHOWING GENERAL CONFIGURATION OPTIONS]
+[SCREENSHOT: Settings page showing general configuration options]
 
 3. Click **Save Changes**
 
@@ -87,9 +87,9 @@ If you're migrating from another platform, check our [migration guides](../migra
 1. Navigate to **Content → Pages** in your project dashboard
 2. You'll see the default pages created from the template. Let's add more:
 
-<CodeGroup tabs="Pages to Create,Navigation Structure">
-```markdown
-Pages to Create:
+<ExpandableGroup>
+<Expandable title="Pages to Create">
+
 - Introduction (already exists)
 - Getting Started Guide
 - API Reference (if applicable)
@@ -98,24 +98,27 @@ Pages to Create:
   - Examples
 - Guides & Tutorials
 - FAQ
-```
+
+</Expandable>
+<Expandable title="Navigation Structure">
 
 ```json
-Navigation Structure:
 {
   "Getting Started": ["Introduction", "Getting Started Guide"],
-  "API Reference": ["Authentication", "Endpoints", "Examples"], 
+  "API Reference": ["Authentication", "Endpoints", "Examples"],
   "Resources": ["Guides & Tutorials", "FAQ"]
 }
 ```
-</CodeGroup>
+
+</Expandable>
+</ExpandableGroup>
 
 3. Click **+ New Page** and create each page:
    - **Page Title**: `Getting Started Guide` (or choose your own page name)
    - **URL Slug**: `getting-started-guide` 
    - **Parent**: `Getting Started`
 
-[SCREENSHOT: NEW PAGE CREATION MODAL WITH PAGE DETAILS FILLED OUT]
+[SCREENSHOT: New page creation modal with page details filled out]
 
 4. Repeat for all pages in the structure above
 
@@ -125,19 +128,20 @@ Navigation Structure:
 
 Documentation.AI supports two workflows for creating content. Choose the approach that works best for you:
 
-<CodeGroup tabs="Web-Based Editor,Code/IDE Workflow">
-```markdown
-Web-Based Block Editor:
+<ExpandableGroup>
+<Expandable title="Web-Based Editor">
 
 1. Open the "Getting Started Guide" page in the web editor
 2. Click the AI Assistant button (robot icon) in the toolbar
 3. Enter this prompt (customize for your product):
 
-"Write a getting started guide for my product documentation. Include:
-- Overview of key features  
+```text
+Write a getting started guide for my product documentation. Include:
+- Overview of key features
 - Step-by-step setup instructions
 - Basic usage examples
-- Common troubleshooting tips"
+- Common troubleshooting tips
+```
 
 4. Review the AI-generated content and click "Insert"
 5. Edit content using the visual block editor
@@ -145,14 +149,16 @@ Web-Based Block Editor:
 7. Publish directly from the web interface
 
 Benefits: Real-time collaboration, visual editing, no git knowledge required
-```
 
-```markdown
-Code/IDE Workflow:
+</Expandable>
+<Expandable title="Code/IDE Workflow">
 
 1. Set up GitHub integration in Settings → Integrations
 2. Clone your documentation repository locally:
-   git clone https://github.com/your-username/your-docs.git
+
+```bash
+git clone https://github.com/your-username/your-docs.git
+```
 
 3. Open in your preferred editor (VS Code, etc.)
 4. Create/edit MDX files directly:
@@ -166,17 +172,21 @@ Code/IDE Workflow:
    - Copy/paste between web editor and IDE
 
 6. Commit and push changes:
-   git add .
-   git commit -m "Add getting started guide"
-   git push origin main
+
+```bash
+git add .
+git commit -m "Add getting started guide"
+git push origin main
+```
 
 7. Changes auto-deploy to your live site
 
 Benefits: Version control, IDE features, git workflows, CI/CD integration
-```
-</CodeGroup>
 
-[SCREENSHOT: SPLIT VIEW SHOWING WEB EDITOR ON LEFT AND VS CODE WITH MDX FILE ON RIGHT]
+</Expandable>
+</ExpandableGroup>
+
+[SCREENSHOT: Split view showing web editor on left and VS Code with MDX file on right]
 
 <Callout kind="success">
 Both workflows support the same AI features and components. You can even switch between them - start in the web editor and later move to git-based workflows as your team grows.
@@ -186,15 +196,13 @@ Both workflows support the same AI features and components. You can even switch 
 
 Now let's enhance your Getting Started Guide with interactive components. The process differs slightly between workflows:
 
-<CodeGroup tabs="Web Editor Components,Code/IDE Components">
-```markdown
-Web-Based Block Editor:
+<ExpandableGroup>
+<Expandable title="Web Editor Components">
 
 1. Position your cursor after the overview section
 2. Type `/callout` and select the Callout component
 3. Choose "Info" type and add helpful information:
    "Make sure to follow the setup steps in order for the best experience."
-
 4. Type `/codegroup` to add multi-language code examples
 5. Configure tabs: "Installation,Configuration,Usage"
 6. Fill in code examples for each tab
@@ -204,10 +212,9 @@ Web-Based Block Editor:
    - Custom embeds and iframes
 
 Benefits: Visual component insertion, live preview, drag-and-drop
-```
 
-```markdown
-Code/IDE Workflow:
+</Expandable>
+<Expandable title="Code/IDE Components">
 
 1. Edit your MDX file directly in your code editor
 2. Add components using JSX syntax:
@@ -239,10 +246,11 @@ const client = new YourProduct();
 4. Preview changes by pushing to git or using local development
 
 Benefits: Code completion, version control, bulk editing, find/replace
-```
-</CodeGroup>
 
-[SCREENSHOT: SPLIT VIEW SHOWING COMPONENT PICKER IN WEB EDITOR AND MDX CODE IN VS CODE]
+</Expandable>
+</ExpandableGroup>
+
+[SCREENSHOT: Split view showing component picker in web editor and MDX code in VS Code]
 
 > **Result**: Your Getting Started Guide now has professional, interactive components that work seamlessly in both workflows.
 
@@ -254,7 +262,7 @@ Benefits: Code completion, version control, bulk editing, find/replace
    - **Search Suggestions**: Toggle **On** 
    - **Content Analysis**: Toggle **On**
 
-[SCREENSHOT: AI ASSISTANT SETTINGS PAGE WITH TOGGLES ENABLED]
+[SCREENSHOT: AI Assistant settings page with toggles enabled]
 
 3. Click **Configure Search** and add:
    - **Search Placeholder**: `Search documentation...` (or customize for your product)
@@ -272,7 +280,7 @@ Benefits: Code completion, version control, bulk editing, find/replace
    - **Dark Mode Logo**: Upload or use default
    - **Favicon**: Upload a 32x32 icon
 
-[SCREENSHOT: BRANDING SETTINGS SHOWING LOGO UPLOAD AREAS AND PREVIEW]
+[SCREENSHOT: Branding settings showing logo upload areas and preview]
 
 3. Configure colors:
    - **Primary Color**: `#2563eb`
@@ -292,33 +300,33 @@ Benefits: Code completion, version control, bulk editing, find/replace
 1. Go to **Deploy → Settings**
 2. Choose your deployment option:
 
-<CodeGroup tabs="Documentation.AI Hosting,Custom Domain">
-```markdown
-Documentation.AI Hosting (Recommended):
+<ExpandableGroup>
+<Expandable title="Documentation.AI Hosting (Recommended)">
+
 - Automatic SSL certificates
 - Global CDN
 - Built-in analytics
 - Zero configuration
 
-Your site will be available at:
-https://your-project-name.documentationai.io
-```
+Your site will be available at: `https://your-project-name.documentationai.io`
 
-```markdown
-Custom Domain Setup:
-1. Add your domain: docs.yourcompany.com
+</Expandable>
+<Expandable title="Custom Domain Setup">
+
+1. Add your domain: `docs.yourcompany.com`
 2. Update DNS records (provided)
 3. SSL certificate auto-generated
 4. Custom subdomain support
 
 Requires domain ownership verification.
-```
-</CodeGroup>
+
+</Expandable>
+</ExpandableGroup>
 
 3. For this tutorial, select **Documentation.AI Hosting**
 4. Click **Deploy Now**
 
-[SCREENSHOT: DEPLOYMENT SETTINGS SHOWING HOSTING OPTIONS AND DEPLOY BUTTON]
+[SCREENSHOT: Deployment settings showing hosting options and deploy button]
 
 5. Wait for deployment (usually 2-3 minutes)
 
@@ -355,15 +363,22 @@ Now that your documentation site is live, consider these enhancements:
 
 ### Workflow-specific next steps
 
-**If using Web-Based Editor:**
+<ExpandableGroup>
+<Expandable title="If using Web-Based Editor">
+
 - Invite team members for real-time collaboration
 - Explore advanced components and templates
 - Set up content approval workflows
 
-**If using Code/IDE Workflow:**
+</Expandable>
+<Expandable title="If using Code/IDE Workflow">
+
 - Set up local development environment
 - Configure CI/CD pipelines for automated deployments
 - Implement content review processes via pull requests
+
+</Expandable>
+</ExpandableGroup>
 
 ### Advanced features
 - **[Custom domain setup](../deployment-and-hosting/custom-domain)** for branded URLs like `docs.yourcompany.com`
@@ -383,25 +398,36 @@ Join our [community Discord](https://discord.gg/documentationai) to connect with
 
 ### Common issues and solutions
 
-**Deployment failed**
+<ExpandableGroup>
+<Expandable title="Deployment failed">
+
 - Check that all required fields are filled in Settings → General
 - Ensure your project has at least one published page
 - Contact support if the issue persists
 
-**AI assistant not working**
+</Expandable>
+<Expandable title="AI assistant not working">
+
 - Verify AI features are enabled in Settings → AI Assistant
 - Check your account plan includes AI features
 - Try refreshing the page and testing again
 
-**Custom branding not appearing**
+</Expandable>
+<Expandable title="Custom branding not appearing">
+
 - Clear your browser cache and reload the page
 - Verify images are uploaded in supported formats (PNG, JPG, SVG)
 - Check that colors are in valid hex format (#000000)
 
-**Search not finding content**
+</Expandable>
+<Expandable title="Search not finding content">
+
 - Allow 5-10 minutes after publishing for search indexing
 - Ensure pages are published (not draft status)
 - Try different search terms or use the AI assistant
+
+</Expandable>
+</ExpandableGroup>
 
 ## Related
 
