@@ -55,7 +55,6 @@
               }
             ]
           },
-
           {
             "group": "Write and Publish",
             "icon": "pen-tool",
@@ -570,7 +569,7 @@
               },
               {
                 "title": "Organizations, Workspaces & Projects",
-                "path": "account-and-billing/organizations-workspaces-and-projects",
+                "path": "account-and-billing/organizations-and-projects",
                 "icon": "building"
               },
               {
