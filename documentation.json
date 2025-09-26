@@ -57,53 +57,53 @@
           },
 
           {
-            "group": "Writing Content",
+            "group": "Write and Publish",
             "icon": "pen-tool",
             "expandable": true,
             "pages": [
               {
                 "title": "Web Editor",
-                "path": "writing-content/web-editor",
+                "path": "write-and-publish/web-editor",
                 "icon": "globe"
               },
               {
                 "title": "Code Editor",
-                "path": "writing-content/code-editor",
+                "path": "write-and-publish/code-editor",
                 "icon": "code"
               },
               {
                 "title": "Markdown Basics",
-                "path": "writing-content/markdown-basics",
+                "path": "write-and-publish/markdown-basics",
                 "icon": "file-text"
               },
               {
                 "title": "Markdown Syntax",
-                "path": "writing-content/markdown-syntax",
+                "path": "write-and-publish/markdown-syntax",
                 "icon": "hash"
               },
               {
                 "title": "Images & Media",
-                "path": "writing-content/images-and-media",
+                "path": "write-and-publish/images-and-media",
                 "icon": "image"
               },
               {
                 "title": "Organize Content Structure",
-                "path": "writing-content/organize-content-structure",
+                "path": "write-and-publish/organize-content-structure",
                 "icon": "folder-tree"
               },
               {
                 "title": "Content Versioning & History",
-                "path": "writing-content/content-versioning-and-history",
+                "path": "write-and-publish/content-versioning-and-history",
                 "icon": "git-branch"
               },
               {
                 "title": "Keyboard Shortcuts",
-                "path": "writing-content/keyboard-shortcuts",
+                "path": "write-and-publish/keyboard-shortcuts",
                 "icon": "keyboard"
               },
               {
                 "title": "Documentation Best Practices",
-                "path": "writing-content/documentation-best-practices",
+                "path": "write-and-publish/documentation-best-practices",
                 "icon": "check-circle"
               }
             ]
