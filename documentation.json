@@ -568,12 +568,12 @@
                 "icon": "user-cog"
               },
               {
-                "title": "Organizations, Workspaces & Projects",
+                "title": "Organizations & Projects",
                 "path": "account-and-billing/organizations-and-projects",
                 "icon": "building"
               },
               {
-                "title": "Team Management / Roles & Permissions",
+                "title": "Team Management & Roles",
                 "path": "account-and-billing/team-management",
                 "icon": "users"
               },
@@ -593,7 +593,7 @@
                 "icon": "gauge"
               },
               {
-                "title": "Upgrade / Downgrade",
+                "title": "Upgrade/Downgrade Plan",
                 "path": "account-and-billing/upgrade-downgrade",
                 "icon": "trending-up"
               },
