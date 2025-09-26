@@ -26,6 +26,31 @@ const response = await fetch('/api/docs', {
   },
   body: JSON.stringify({ title: 'Getting Started' })
 });
+const response = await fetch('/api/docs', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer TOKEN',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ title: 'Getting Started' })
+});
+const response = await fetch('/api/docs', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer TOKEN',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ title: 'Getting Started' })
+});
+const response = await fetch('/api/docs', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer TOKEN',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ title: 'Getting Started' })
+});
+
 ```
 
 ```bash
@@ -38,6 +63,18 @@ curl -X POST https://api.example.com/docs \
 
 <Response tabs="200,404">
 ```json
+{
+  "id": "doc-123",
+  "title": "Getting Started",
+  "status": "published",
+  "created_at": "2024-01-15T10:30:00Z"
+}
+{
+  "id": "doc-123",
+  "title": "Getting Started",
+  "status": "published",
+  "created_at": "2024-01-15T10:30:00Z"
+}
 {
   "id": "doc-123",
   "title": "Getting Started",

@@ -1,8 +1,80 @@
 ---
-title: Advanced Page / Front-matter Configuration
-description: "Site configuration: Advanced Page options and examples."
+title: Page Configuration (Front Matter)
+description: Reference for configuring page-level metadata using MDX front matter, including title, description, SEO properties, and structured data.
+type: reference
 ---
 
-# Advanced Page / Front-matter Configuration
+Front matter is a block of YAML configuration placed at the very top of an MDX file, enclosed by triple-dashed lines (`---`). It allows you to define metadata for each page individually.
 
-[Reference] Configure Advanced Page / Front-matter Configuration with practical examples and recommendations for common setups.
+<CodeGroup tabs="Basic Page,Article with SEO">
+
+```yaml
+---
+title: "Introduction"
+description: "Learn about the core concepts and get started with our platform."
+---
+```
+
+```yaml
+---
+title: "How to Integrate our API"
+description: "A step-by-step guide to integrating our API into your application, with code samples."
+ogImage: "https://example.com/images/api-integration-social.png"
+canonical: "https://docs.example.com/api/integration"
+jsonLd:
+  "@context": "https://schema.org"
+  "@type": "HowTo"
+  "step": [
+    {
+      "@type": "HowToStep",
+      "text": "Get your API keys from the dashboard."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Authenticate your requests."
+    }
+  ]
+---
+```
+</CodeGroup>
+
+## Properties
+
+<ParamField path="title" param-type="string" required="true" showLocation="false">
+  The main title of the page. Used for the browser tab, navigation, search results, and social sharing cards.
+</ParamField>
+
+<ParamField path="description" param-type="string" required="false" showLocation="false">
+  A brief summary of the page content (120-160 characters). Used for SEO meta descriptions and social sharing cards.
+</ParamField>
+
+<ParamField path="ogImage" param-type="string" required="false" showLocation="false">
+  The URL for a custom Open Graph image (1200x630px recommended) to use for social sharing cards. Overrides the auto-generated image.
+</ParamField>
+
+<ParamField path="canonical" param-type="string" required="false" showLocation="false">
+  The canonical URL for the page to prevent duplicate content issues. Defaults to the page's own URL.
+</ParamField>
+
+<ParamField path="jsonLd" param-type="object | array" required="false" showLocation="false">
+  Adds JSON-LD structured data for rich search results, conforming to [Schema.org](https://schema.org/) vocabulary. The key can also be `jsonld` (lowercase).
+
+  <Expandable title="Example Schema.org Properties">
+    <ParamField path="@context" param-type="string" required="true" showLocation="false">
+      The schema context, typically `https://schema.org`.
+    </ParamField>
+    <ParamField path="@type" param-type="string" required="true" showLocation="false">
+      The schema type, such as `Article`, `TechArticle`, or `FAQPage`.
+    </ParamField>
+    <ParamField path="headline" param-type="string" required="false" showLocation="false">
+      The headline of the article.
+    </ParamField>
+    <ParamField path="author" param-type="object" required="false" showLocation="false">
+      An object defining the author, with `@type` (e.g., `Person` or `Organization`) and `name`.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<Callout>
+You can also include any other custom key-value pairs in your front matter. This data is not used by default but can be accessed for custom component or theme logic.
+</Callout>
