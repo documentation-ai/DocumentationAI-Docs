@@ -1,0 +1,758 @@
+openapi: 3.0.3
+info:
+  title: Example Documentation API
+  description: |
+    A comprehensive example API for testing documentation generation.
+    
+    This API demonstrates various OpenAPI features including:
+    - Multiple authentication methods
+    - Complex request/response schemas
+    - Path and query parameters
+    - File uploads and downloads
+    - Error handling
+    
+    ## Authentication
+    
+    This API supports multiple authentication methods:
+    - **API Key**: Simple API key authentication
+    - **Bearer Token**: JWT-based authentication
+    - **OAuth 2.0**: Full OAuth 2.0 flow support
+  version: 2.1.0
+  contact:
+    name: API Support
+    url: https://example.com/support
+    email: support@example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.example.com/v2
+    description: Production server
+  - url: https://staging-api.example.com/v2
+    description: Staging server
+  - url: http://localhost:3000/v2
+    description: Development server
+
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []
+  - OAuth2: [read, write]
+
+tags:
+  - name: Users
+    description: User management operations
+  - name: Projects
+    description: Project and workspace management
+  - name: Files
+    description: File upload and management
+  - name: Analytics
+    description: Analytics and reporting endpoints
+
+paths:
+  # Users endpoints
+  /users:
+    get:
+      tags: [Users]
+      summary: List all users
+      description: Retrieve a paginated list of users with optional filtering
+      operationId: listUsers
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+            example: 1
+        - name: limit
+          in: query
+          description: Number of users per page
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+            example: 20
+        - name: role
+          in: query
+          description: Filter users by role
+          required: false
+          schema:
+            type: string
+            enum: [admin, user, viewer]
+            example: user
+        - name: search
+          in: query
+          description: Search users by name or email
+          required: false
+          schema:
+            type: string
+            example: "john"
+        - name: X-Request-ID
+          in: header
+          description: Unique request identifier for tracing
+          required: false
+          schema:
+            type: string
+            format: uuid
+            example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Successfully retrieved users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationInfo'
+              examples:
+                success:
+                  summary: Successful response
+                  value:
+                    users:
+                      - id: 1
+                        name: "John Doe"
+                        email: "john@example.com"
+                        role: "user"
+                        created_at: "2024-01-15T10:00:00Z"
+                        last_active: "2024-12-25T15:30:00Z"
+                      - id: 2
+                        name: "Jane Smith"
+                        email: "jane@example.com"
+                        role: "admin"
+                        created_at: "2024-02-20T14:30:00Z"
+                        last_active: "2024-12-24T09:15:00Z"
+                    pagination:
+                      page: 1
+                      limit: 20
+                      total: 150
+                      has_next: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      tags: [Users]
+      summary: Create a new user
+      description: Create a new user account with the provided information
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - password
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 100
+                  example: "John Doe"
+                email:
+                  type: string
+                  format: email
+                  example: "john@example.com"
+                password:
+                  type: string
+                  format: password
+                  minLength: 8
+                  example: "secretPassword123"
+                role:
+                  type: string
+                  enum: [admin, user, viewer]
+                  default: user
+                  example: "user"
+                profile:
+                  type: object
+                  properties:
+                    bio:
+                      type: string
+                      maxLength: 500
+                      example: "Software developer passionate about APIs"
+                    avatar_url:
+                      type: string
+                      format: uri
+                      example: "https://example.com/avatars/john.jpg"
+                    preferences:
+                      type: object
+                      properties:
+                        theme:
+                          type: string
+                          enum: [light, dark]
+                          default: light
+                        notifications:
+                          type: boolean
+                          default: true
+            examples:
+              basic_user:
+                summary: Basic user creation
+                value:
+                  name: "John Doe"
+                  email: "john@example.com"
+                  password: "secretPassword123"
+              admin_user:
+                summary: Admin user with profile
+                value:
+                  name: "Jane Admin"
+                  email: "jane@example.com"
+                  password: "adminPassword456"
+                  role: "admin"
+                  profile:
+                    bio: "System administrator"
+                    preferences:
+                      theme: "dark"
+                      notifications: false
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              example:
+                id: 123
+                name: "John Doe"
+                email: "john@example.com"
+                role: "user"
+                created_at: "2024-12-25T10:00:00Z"
+                last_active: "2024-12-25T10:00:00Z"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "CONFLICT"
+                message: "User with this email already exists"
+                code: 409
+
+  /users/{userId}:
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        description: Unique identifier for the user
+        schema:
+          type: integer
+          example: 123
+    
+    get:
+      tags: [Users]
+      summary: Get user by ID
+      description: Retrieve detailed information about a specific user
+      operationId: getUserById
+      responses:
+        '200':
+          description: User details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDetailed'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      tags: [Users]
+      summary: Update user
+      description: Update an existing user's information
+      operationId: updateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "John Updated"
+                email:
+                  type: string
+                  format: email
+                  example: "john.updated@example.com"
+                role:
+                  type: string
+                  enum: [admin, user, viewer]
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      tags: [Users]
+      summary: Delete user
+      description: Permanently delete a user account
+      operationId: deleteUser
+      responses:
+        '204':
+          description: User deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # Projects endpoints
+  /projects:
+    get:
+      tags: [Projects]
+      summary: List projects
+      description: Get all projects accessible to the current user
+      operationId: listProjects
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, archived, draft]
+      responses:
+        '200':
+          description: Projects retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+
+    post:
+      tags: [Projects]
+      summary: Create project
+      description: Create a new project
+      operationId: createProject
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+
+  # File upload endpoint
+  /files/upload:
+    post:
+      tags: [Files]
+      summary: Upload file
+      description: Upload a file to the system
+      operationId: uploadFile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The file to upload
+                category:
+                  type: string
+                  enum: [document, image, video, other]
+                  default: other
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: ["important", "project-a"]
+      responses:
+        '201':
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileInfo'
+        '413':
+          description: File too large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Analytics endpoint
+  /analytics/metrics:
+    get:
+      tags: [Analytics]
+      summary: Get analytics metrics
+      description: Retrieve various analytics metrics for the specified time period
+      operationId: getMetrics
+      security:
+        - OAuth2: [read]
+      parameters:
+        - name: start_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+            example: "2024-01-01"
+        - name: end_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+            example: "2024-12-31"
+        - name: metrics
+          in: query
+          description: Comma-separated list of metrics to include
+          schema:
+            type: string
+            example: "users,projects,storage"
+      responses:
+        '200':
+          description: Analytics metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsResponse'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Get your API key from the dashboard.
+    
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT Bearer token authentication
+    
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication flow
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.example.com/oauth/authorize
+          tokenUrl: https://api.example.com/oauth/token
+          scopes:
+            read: Read access to resources
+            write: Write access to resources
+            admin: Administrative access
+
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - role
+        - created_at
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: "John Doe"
+        email:
+          type: string
+          format: email
+          example: "john@example.com"
+        role:
+          type: string
+          enum: [admin, user, viewer]
+          example: "user"
+        created_at:
+          type: string
+          format: date-time
+          example: "2024-01-15T10:00:00Z"
+        last_active:
+          type: string
+          format: date-time
+          nullable: true
+          example: "2024-12-25T15:30:00Z"
+
+    UserDetailed:
+      allOf:
+        - $ref: '#/components/schemas/User'
+        - type: object
+          properties:
+            profile:
+              type: object
+              properties:
+                bio:
+                  type: string
+                  nullable: true
+                  example: "Software developer passionate about APIs"
+                avatar_url:
+                  type: string
+                  format: uri
+                  nullable: true
+                  example: "https://example.com/avatars/john.jpg"
+                preferences:
+                  type: object
+                  properties:
+                    theme:
+                      type: string
+                      enum: [light, dark]
+                      example: "light"
+                    notifications:
+                      type: boolean
+                      example: true
+            stats:
+              type: object
+              properties:
+                projects_count:
+                  type: integer
+                  example: 5
+                files_uploaded:
+                  type: integer
+                  example: 42
+
+    Project:
+      type: object
+      required:
+        - id
+        - name
+        - status
+        - created_at
+      properties:
+        id:
+          type: integer
+          example: 456
+        name:
+          type: string
+          example: "My Awesome Project"
+        description:
+          type: string
+          nullable: true
+          example: "A project for building amazing things"
+        status:
+          type: string
+          enum: [active, archived, draft]
+          example: "active"
+        owner_id:
+          type: integer
+          example: 123
+        created_at:
+          type: string
+          format: date-time
+          example: "2024-03-01T12:00:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          example: "2024-12-20T16:45:00Z"
+
+    ProjectCreate:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          example: "New Project"
+        description:
+          type: string
+          maxLength: 500
+          example: "Description of the new project"
+        status:
+          type: string
+          enum: [active, draft]
+          default: draft
+
+    FileInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "file_abc123"
+        filename:
+          type: string
+          example: "document.pdf"
+        size:
+          type: integer
+          description: File size in bytes
+          example: 1048576
+        mime_type:
+          type: string
+          example: "application/pdf"
+        category:
+          type: string
+          enum: [document, image, video, other]
+          example: "document"
+        url:
+          type: string
+          format: uri
+          example: "https://files.example.com/document.pdf"
+        uploaded_at:
+          type: string
+          format: date-time
+          example: "2024-12-25T14:30:00Z"
+        tags:
+          type: array
+          items:
+            type: string
+          example: ["important", "project-a"]
+
+    PaginationInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 20
+        total:
+          type: integer
+          example: 150
+        has_next:
+          type: boolean
+          example: true
+        has_previous:
+          type: boolean
+          example: false
+
+    AnalyticsResponse:
+      type: object
+      properties:
+        period:
+          type: object
+          properties:
+            start_date:
+              type: string
+              format: date
+              example: "2024-01-01"
+            end_date:
+              type: string
+              format: date
+              example: "2024-12-31"
+        metrics:
+          type: object
+          properties:
+            users:
+              type: object
+              properties:
+                total:
+                  type: integer
+                  example: 1250
+                new_this_period:
+                  type: integer
+                  example: 150
+                active_this_period:
+                  type: integer
+                  example: 800
+            projects:
+              type: object
+              properties:
+                total:
+                  type: integer
+                  example: 456
+                active:
+                  type: integer
+                  example: 320
+            storage:
+              type: object
+              properties:
+                total_bytes:
+                  type: integer
+                  example: 1073741824
+                files_count:
+                  type: integer
+                  example: 2500
+
+    Error:
+      type: object
+      required:
+        - error
+        - message
+        - code
+      properties:
+        error:
+          type: string
+          example: "BAD_REQUEST"
+        message:
+          type: string
+          example: "The request was invalid"
+        code:
+          type: integer
+          example: 400
+        details:
+          type: object
+          additionalProperties: true
+          example:
+            field: "email"
+            issue: "Invalid email format"
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "BAD_REQUEST"
+            message: "The request was invalid"
+            code: 400
+
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "UNAUTHORIZED"
+            message: "Authentication required"
+            code: 401
+
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "FORBIDDEN"
+            message: "Insufficient permissions"
+            code: 403
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "NOT_FOUND"
+            message: "The requested resource was not found"
+            code: 404
