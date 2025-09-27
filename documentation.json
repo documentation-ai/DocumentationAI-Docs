@@ -730,8 +730,8 @@
                 "icon": "bug"
               },
               {
-                "group": "API Documentation",
-                "openapi": "openapi.yaml"
+                "title": "API Documentation",
+                "openapi": "api-documentation/openapi.yaml"
               }
             ]
           }
