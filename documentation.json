@@ -66,24 +66,39 @@
                 "expandable": true,
                 "pages": [
                   {
-                    "title": "Web Editor Overview",
-                    "path": "write-and-publish/web-editor",
+                    "title": "Overview",
+                    "path": "write-and-publish/web-editor/overview",
                     "icon": "info"
                   },
                   {
-                    "title": "First Draft in Web Editor",
-                    "path": "write-and-publish/web-editor/first-draft",
-                    "icon": "edit"
+                    "title": "Images & Media",
+                    "path": "write-and-publish/web-editor/images-and-media",
+                    "icon": "image"
                   },
                   {
-                    "title": "Review and Publish",
-                    "path": "write-and-publish/web-editor/review-and-publish",
-                    "icon": "check-circle"
+                    "title": "Organize",
+                    "path": "write-and-publish/web-editor/organize",
+                    "icon": "folder-tree"
                   },
                   {
-                    "title": "Web Editor Features",
-                    "path": "write-and-publish/web-editor/features",
-                    "icon": "star"
+                    "title": "Collaboration & Review",
+                    "path": "write-and-publish/web-editor/collaboration",
+                    "icon": "users"
+                  },
+                  {
+                    "title": "Publishing Workflow",
+                    "path": "write-and-publish/web-editor/publish",
+                    "icon": "upload"
+                  },
+                  {
+                    "title": "Keyboard Shortcuts",
+                    "path": "write-and-publish/web-editor/keyboard-shortcuts",
+                    "icon": "keyboard"
+                  },
+                  {
+                    "title": "Troubleshooting",
+                    "path": "write-and-publish/web-editor/troubleshooting",
+                    "icon": "alert-circle"
                   }
                 ]
               },
@@ -93,66 +108,48 @@
                 "expandable": true,
                 "pages": [
                   {
-                    "title": "Code Editor Overview",
-                    "path": "write-and-publish/code-editor",
+                    "title": "Overview",
+                    "path": "write-and-publish/code-editor/overview",
                     "icon": "info"
                   },
                   {
-                    "title": "Install Code Editor",
-                    "path": "write-and-publish/code-editor/install",
-                    "icon": "download"
-                  },
-                  {
-                    "title": "Configure Repository",
-                    "path": "write-and-publish/code-editor/configure-repo",
-                    "icon": "settings"
+                    "title": "Images & Media",
+                    "path": "write-and-publish/code-editor/images-and-media",
+                    "icon": "image"
                   },
                   {
                     "title": "Git Workflow",
                     "path": "write-and-publish/code-editor/git-workflow",
                     "icon": "git-branch"
+                  },
+                  {
+                    "title": "Organize",
+                    "path": "write-and-publish/code-editor/organize",
+                    "icon": "folder-tree"
+                  },
+                  {
+                    "title": "Publishing Process",
+                    "path": "write-and-publish/code-editor/publish",
+                    "icon": "upload"
+                  },
+                  {
+                    "title": "Troubleshooting",
+                    "path": "write-and-publish/code-editor/troubleshooting",
+                    "icon": "alert-circle"
                   }
                 ]
               },
               {
-                "title": "Authoring Modes",
-                "path": "write-and-publish/authoring-modes",
-                "icon": "layers"
-              },
-              {
-                "title": "Markdown Basics",
-                "path": "write-and-publish/markdown-basics",
-                "icon": "file-text"
-              },
-              {
-                "title": "Markdown Syntax",
-                "path": "write-and-publish/markdown-syntax",
-                "icon": "hash"
-              },
-              {
-                "title": "Images & Media",
-                "path": "write-and-publish/images-and-media",
-                "icon": "image"
-              },
-              {
-                "title": "Organize Content Structure",
-                "path": "write-and-publish/organize-content-structure",
-                "icon": "folder-tree"
-              },
-              {
-                "title": "Content Versioning & History",
-                "path": "write-and-publish/content-versioning-and-history",
-                "icon": "git-branch"
-              },
-              {
-                "title": "Keyboard Shortcuts",
-                "path": "write-and-publish/keyboard-shortcuts",
-                "icon": "keyboard"
-              },
-              {
-                "title": "Documentation Best Practices",
-                "path": "write-and-publish/documentation-best-practices",
-                "icon": "check-circle"
+                "group": "Common",
+                "icon": "book-open",
+                "expandable": true,
+                "pages": [
+                  {
+                    "title": "Best Practices",
+                    "path": "write-and-publish/documentation-best-practices",
+                    "icon": "check-circle"
+                  }
+                ]
               }
             ]
           },
@@ -161,16 +158,6 @@
             "icon": "palette",
             "expandable": true,
             "pages": [
-              {
-                "title": "Site Configuration",
-                "path": "customization-and-configuration/site-configuration",
-                "icon": "file-cog"
-              },
-              {
-                "title": "Page Configuration",
-                "path": "customization-and-configuration/page-configuration",
-                "icon": "file-text"
-              },
               {
                 "title": "Theme",
                 "path": "customization-and-configuration/theme",
@@ -210,6 +197,16 @@
                 "title": "Accessibility",
                 "path": "customization-and-configuration/accessibility",
                 "icon": "accessibility"
+              },
+              {
+                "title": "Site Configuration",
+                "path": "customization-and-configuration/site-configuration",
+                "icon": "file-cog"
+              },
+              {
+                "title": "Page Configuration",
+                "path": "customization-and-configuration/page-configuration",
+                "icon": "file-text"
               }
             ]
           },
