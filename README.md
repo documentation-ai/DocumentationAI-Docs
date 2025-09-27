@@ -6,6 +6,4 @@ Access the live documentation at [documentation.ai/docs](https://documentation.a
 
 Visit the Documentation.AI website: [documentation.ai](https://documentation.ai)
 
-Content is authored in MDX and navigation is configured via `documentation.json`.
-
-
+Content is authored in MDX and navigation is configured via `documentation.json`
