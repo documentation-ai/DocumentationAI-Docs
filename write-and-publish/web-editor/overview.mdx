@@ -1,28 +1,219 @@
 ---
-title: Web Editor
-description: 'Leate how to write and manage and publish documentation using web editor '
+title: Web Editor Overview
+description: Learn how to write and manage documentation using the web editor in Documentation.AI
 ---
-As discussed in the core concepts section, there are two authoring modes web editor and code editor.
 
-This section primarily focuses on the web editor. If you are non technical user, probably web editor is the easiest way to create and publish documentation
+```json
+{
+  "summary": "Overview of Documentation.AI's web editor for creating and managing documentation content",
+  "target_audience": "Non-technical users, content creators, documentation writers",
+  "prerequisites": ["Documentation.AI account", "Project access"],
+  "key_features": ["Visual WYSIWYG editor", "Markdown mode", "Block-based editing", "Real-time collaboration"],
+  "related_topics": ["Code editor", "Publishing", "Collaboration", "Content organization"],
+  "content_type": "explanation",
+  "last_updated": "2024"
+}
+```
 
-Webeditor is block based WYSIWYG editor, if you are familar with tools such as Notion, its should be very easy.
+The web editor is a visual interface for creating, editing, and managing documentation directly in your browser. No local setup required - start writing immediately from your dashboard.
+
+<Callout kind="success">
+  **No setup required**: Unlike code editors, the web editor works entirely in your browser. Just log in and start writing immediately.
+</Callout>
+
+**Key capabilities:**
+- **Visual editing**: Make changes using a WYSIWYG editor that shows how your content will look when published
+- **Real-time collaboration**: Multiple team members can work simultaneously on the same content
+- **Auto-save and sync**: Changes are automatically saved and synced across your team
+- **Component integration**: Add callouts, code blocks, and other components using slash commands
+- **Dual editing modes**: Switch between visual and markdown modes based on your preference
+
+## Web Editor Workflow
+
+<Callout kind="info">
+  **Prerequisites**: You'll need a Documentation.AI account and access to a project to use the web editor.
+</Callout>
+
+Here's how you'll typically work in the web editor:
+
+<ExpandableGroup>
+  <Expandable title="1. Access Your Project">
+    Navigate to your Documentation.AI dashboard and select your project. Click `Web Editor` to enter the editing interface.
+    
+    **What you'll see:**
+    - File explorer sidebar with your documentation structure
+    - Main editing area with toolbar
+    - Preview options and publishing controls
+  </Expandable>
+
+  <Expandable title="2. Navigate to Your Content">
+    Use the file explorer sidebar to:
+    - Open an existing page for editing
+    - Create a new page by clicking the `+` button
+    - Browse through your documentation structure
+    - Search for specific pages using the search function
+    
+    **Pro tip**: Use the search function to quickly locate specific pages in large documentation projects.
+  </Expandable>
+
+  <Expandable title="3. Choose Your Editing Mode">
+    Switch between editing modes using the toggle in the editor toolbar:
+    - **Visual mode**: For WYSIWYG editing with immediate preview
+    - **Markdown mode**: For direct MDX code editing
+    
+    **When to use each mode:**
+    - Use Visual mode for content creation and formatting
+    - Use Markdown mode for precise component control or code editing
+  </Expandable>
+
+  <Expandable title="4. Create and Edit Content">
+    **In Visual Mode:**
+    - Type content directly and see real-time formatting
+    - Press `/` to open the component menu
+    - Select from available blocks: headings, lists, callouts, code blocks, images
+    - Drag and drop to reorganize content blocks
+    - Use the formatting toolbar for text styling
+
+    **In Markdown Mode:**
+    - Write directly in MDX syntax
+    - Access Documentation.AI components using JSX syntax
+    - Add custom HTML when needed
+    - View syntax highlighting for better readability
+  </Expandable>
+
+  <Expandable title="5. Preview Your Changes">
+    Visual mode shows you exactly how your content will appear on your published site. Use this to:
+    - Verify formatting and layout
+    - Check component rendering
+    - Ensure images and media display correctly
+    - Test responsive behavior
+    
+    **Quality checks**: Always preview before publishing to catch formatting issues early.
+  </Expandable>
+
+  <Expandable title="6. Save and Publish">
+    Your changes are automatically saved as you type. When ready to publish:
+    - Review your content in preview mode
+    - Click `Publish` to deploy changes to your live documentation
+    - View your published page to confirm everything looks correct
+    
+    **Auto-save**: Changes save automatically every few seconds, so you won't lose work.
+  </Expandable>
+</ExpandableGroup>
 
 ## Editor Modes
 
-There are two modes visual and markdown mode
+<Callout kind="info">
+  Use the toggle in the top right corner of the editor toolbar to switch between editing modes based on your preference and current needs.
+</Callout>
 
-### Visual Mode
+<ExpandableGroup>
+  <Expandable title="Visual Mode">
+    Visual mode provides a WYSIWYG editing experience where changes you make in the editor are exactly what will appear on your published documentation site. This mode is ideal when you want to see your changes in real-time.
 
-Visual mode you can write content using a WYSIWYG editor. Its simple block based. you can type `/` to see the various options
+    **Working in Visual Mode:**
+    - Type content directly and see immediate formatting
+    - Press `/` to open the component menu and add:
+      - Headings (H1, H2, H3, etc.)
+      - Text formatting (bold, italic, code)
+      - Lists (bulleted, numbered)
+      - Callouts and alerts
+      - Code blocks with syntax highlighting
+      - Images and media
+      - Tables and data structures
+      - Documentation.AI components
 
+    - Use drag-and-drop to reorganize content blocks
+    - Apply text formatting using the toolbar or keyboard shortcuts
+    - See live preview of how components will render
 
+    **Best for**: Content creators, writers, and anyone who prefers seeing immediate visual results.
 
-<Image uid="2a25d802-288a-4248-ba14-39049b0c3a71" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758969189972-ffhirpzqmjn-web-editor-visual-mode.png" width="2880" height="1800" alt="" />
+    <Image uid="2a25d802-288a-4248-ba14-39049b0c3a71" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758969189972-ffhirpzqmjn-web-editor-visual-mode.png" width="2880" height="1800" alt="Screenshot of Documentation.AI web editor in visual mode showing the block-based interface with content blocks and formatting toolbar" />
+  </Expandable>
 
-### Markdown Mode
+  <Expandable title="Markdown Mode">
+    Markdown mode provides direct access to the underlying MDX code of your documentation. This mode is ideal when you need precise control over component properties or prefer writing in markdown syntax.
 
-Markdown mode provides  access to the underlying mdx file.&#x20;
+    **Working in Markdown Mode:**
+    - Write using standard markdown syntax
+    - Access Documentation.AI components with JSX syntax:
+      ```jsx
+      <Callout type="info">
+        This is an info callout
+      </Callout>
+      ```
+    - Add custom HTML when needed for advanced formatting
+    - Edit component properties directly
+    - View syntax highlighting for better code readability
+    - Copy and paste markdown content from other sources
 
-<Image uid="97561b52-718d-4675-a865-28c7f023d4a6" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758969349905-n4jqnh9cai-web-editor-mode-markdown.png" width="2880" height="1800" alt="" />
+    **Best for**: Developers, technical writers, and users who need precise control over component properties.
 
+    <Image uid="97561b52-718d-4675-a865-28c7f023d4a6" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758969349905-n4jqnh9cai-web-editor-mode-markdown.png" width="2880" height="1800" alt="Screenshot of Documentation.AI web editor in markdown mode showing the raw MDX code with syntax highlighting" />
+  </Expandable>
+</ExpandableGroup>
+
+## Slash Commands and Components
+
+The `/` command opens a menu of available content blocks and components:
+
+<ExpandableGroup>
+  <Expandable title="Basic Content">
+    **Text and Structure:**
+    - **Text blocks**: Paragraphs and headings (H1-H6)
+    - **Lists**: Bulleted, numbered, and to-do lists
+    - **Dividers**: Horizontal rules and spacers
+    - **Quotes**: Block quotes and citations
+    
+    **When to use**: For foundational content structure and basic formatting.
+  </Expandable>
+
+  <Expandable title="Rich Content">
+    **Advanced Formatting:**
+    - **Code blocks**: Syntax-highlighted code with language selection
+    - **Tables**: Data displays with sorting and formatting options
+    - **Images**: File uploads with automatic optimization
+    - **Math**: LaTeX equations and mathematical notation
+    
+    **Best practices**: Use code blocks for examples, tables for data, and optimize images before uploading.
+  </Expandable>
+
+  <Expandable title="Documentation.AI Components">
+    **Specialized Components:**
+    - **Callouts**: Highlight important information with different types (info, warning, success, error)
+    - **Expandables**: Collapsible sections for detailed content organization
+    - **ParamField**: Document API parameters with types and requirements
+    - **ResponseField**: Document API response fields and data structures
+    - **Request/Response**: API documentation with automatic right-panel display
+    
+    **Pro tip**: These components are specifically designed for technical documentation and provide consistent styling.
+  </Expandable>
+
+  <Expandable title="Media and Embeds">
+    **Interactive Content:**
+    - **Images**: Upload with automatic CDN optimization and responsive behavior
+    - **Videos**: YouTube, Vimeo, and Loom embeds with custom sizing
+    - **Iframes**: External content embedding with security controls
+    - **Interactive demos**: Embed live examples and tools
+    
+    **Performance note**: All uploaded media is automatically optimized and served from a CDN.
+  </Expandable>
+</ExpandableGroup>
+
+<Callout kind="success">
+  **Quick access**: Type `/` anywhere in your document to see all available components. The most recently used components appear at the top for faster access.
+</Callout>
+
+## Next Steps
+
+Explore specific web editor features:
+
+- [Organization and Navigation](organize): Structure your content with proper hierarchy
+- [Images and Media](images-and-media): Add and manage visual content
+- [Collaboration](collaboration): Work with team members effectively  
+- [Publishing](publish): Deploy your documentation changes
+- [Keyboard Shortcuts](keyboard-shortcuts): Speed up your editing workflow
+- [Troubleshooting](troubleshooting): Resolve common issues
+
+For advanced customization and local development workflows, see the [code editor overview](../code-editor/overview).

@@ -1,83 +1,275 @@
 ---
-title: Images & Media in Code Editor
-description: Learn how to manage images and media files using markdown in your code editor
+title: Images & Media in Web Editor
+description: Learn how to add, manage, and optimize images and media using the Documentation.AI web editor
 ---
-## Images
 
-There are multiple ways to upload image 
+```json
+{
+  "summary": "Complete guide to working with images and media files in Documentation.AI's web editor",
+  "target_audience": "Content creators, documentation writers using the web editor",
+  "prerequisites": ["Documentation.AI account", "Project access", "Web editor access"],
+  "key_features": ["Slash command uploads", "Copy-paste images", "CDN optimization", "Video embeds", "Media management"],
+  "related_topics": ["Image component", "Video component", "Web editor overview", "Components"],
+  "content_type": "how-to",
+  "last_updated": "2024"
+}
+```
 
-- By typing /image in the editor and you will see already uploaded image and images. You will also see an option to upload image if required.&#x20;
+Add images, videos, and other media to your documentation using the Documentation.AI web editor. All uploaded media is automatically optimized and served from a CDN for fast loading.
 
-<Image uid="c7b7424c-3cb5-4f47-a2d1-1493fb903f88" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758972756524-ya5ldumv1vo-Web-editor-upload-image.png" width="2880" height="1800" alt="" />
+## Adding Images
 
-- You can also upload image by copy pasting.&#x20;
+### Upload with Slash Command
 
-### File Size.
+Use the `/image` command to access your media library and upload new images:
 
-The maximum file size that we allow at this point is 20 MB. If there is a requirement to meet.&#x20;
+1. In the web editor, type `/image` where you want to add an image
+2. Select `Image` from the component menu
+3. Choose from options:
+   - **Browse uploaded images**: Select from your existing media library
+   - **Upload new image**: Click the upload button to add new files
+   - **Paste image URL**: Enter an external image URL
 
-For images, for best page speed insights, try to keep each size to 100-200KB. We also do dynamic image optimization at our end, but having the base file in the minimum size helps.&#x20;
+<Image uid="c7b7424c-3cb5-4f47-a2d1-1493fb903f88" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758972756524-ya5ldumv1vo-Web-editor-upload-image.png" width="2880" height="1800" alt="Screenshot of Documentation.AI web editor showing the slash command menu with image upload options" />
 
-## Video and Embed
+### Copy and Paste Images
 
-Video are supported via iframes. You can uploade videos to youtube or loom
+Directly paste images from your clipboard:
 
-<Callout uid="45336d03-87a0-4d1d-952d-72fbae1a1710" kind="alert" collapsed="false">
-  As of now, the only way you can see all your media is via / command in the editor. We will soon provide an option to upload and manage all the media outside the editor as well.&#x20;
+1. Copy an image from any source (screenshot, image file, web browser)
+2. Place your cursor where you want the image
+3. Paste using `Ctrl+V` (Windows/Linux) or `Cmd+V` (Mac)
+4. The image will automatically upload and insert
+
+### Image Configuration
+
+After adding an image, configure its properties in the component panel:
+
+<ParamField path="alt" param-type="string" required="true" showLocation="false">
+  Descriptive text for accessibility and SEO. Required for all images.
+</ParamField>
+
+<ParamField path="width" param-type="string" required="false" showLocation="false">
+  Image width in pixels. Used for layout optimization and preventing layout shift.
+</ParamField>
+
+<ParamField path="height" param-type="string" required="false" showLocation="false">
+  Image height in pixels. Used for layout optimization and preventing layout shift.
+</ParamField>
+
+<ParamField path="style" param-type="string" required="false" showLocation="false">
+  CSS styles for alignment and positioning. Use for center, left, or right alignment.
+</ParamField>
+
+<ParamField path="priority" param-type="boolean" required="false" showLocation="false">
+  Load immediately instead of lazy loading. Enable only for above-the-fold images (default: `false`).
+</ParamField>
+
+## Adding Videos and Media
+
+### Video Uploads
+
+Add videos using the `/video` command or component menu:
+
+1. Type `/video` in the editor
+2. Select the Video component
+3. Choose your video source:
+   - **Platform embed**: YouTube, Vimeo, Loom URLs
+   - **Direct video file**: Upload MP4, WebM, or other video files
+   - **External video URL**: Link to hosted video files
+
+### Platform Video Embeds
+
+For YouTube, Vimeo, and Loom videos:
+
+```jsx
+<Video 
+  src="https://www.youtube.com/embed/VIDEO_ID" 
+  title="Descriptive video title"
+  width="560" 
+  height="315"
+/>
+```
+
+#### Video Component Attributes
+
+<ParamField path="src" param-type="string" required="true" showLocation="false">
+  Video embed URL from platform or direct video file URL.
+</ParamField>
+
+<ParamField path="title" param-type="string" required="false" showLocation="false">
+  Accessible title for screen readers and video description.
+</ParamField>
+
+<ParamField path="width" param-type="string" required="false" showLocation="false">
+  Video player width in pixels (default: `560`).
+</ParamField>
+
+<ParamField path="height" param-type="string" required="false" showLocation="false">
+  Video player height in pixels (default: `315`).
+</ParamField>
+
+<ParamField path="controls" param-type="boolean" required="false" showLocation="false">
+  Show video controls for HTML5 videos (default: `true`).
+</ParamField>
+
+<ParamField path="priority" param-type="boolean" required="false" showLocation="false">
+  Load immediately instead of lazy loading (default: `false`).
+</ParamField>
+
+### Iframe Embeds
+
+Embed external content using the Iframe component:
+
+1. Type `/iframe` to add an iframe
+2. Enter the URL of the content to embed
+3. Set dimensions and accessibility title
+4. Configure security settings if needed
+
+#### Iframe Component Attributes
+
+<ParamField path="src" param-type="string" required="true" showLocation="false">
+  URL of external content to embed.
+</ParamField>
+
+<ParamField path="title" param-type="string" required="false" showLocation="false">
+  Accessible title for screen readers describing the embedded content.
+</ParamField>
+
+<ParamField path="width" param-type="string" required="false" showLocation="false">
+  Iframe width in pixels or percentage (default: `100%`).
+</ParamField>
+
+<ParamField path="height" param-type="string" required="false" showLocation="false">
+  Iframe height in pixels or percentage (default: `600`).
+</ParamField>
+
+<ParamField path="sandbox" param-type="string" required="false" showLocation="false">
+  Security restrictions for embedded content (default: `"allow-scripts allow-same-origin"`).
+</ParamField>
+
+<Callout kind="info">
+  Use the Iframe component for forms, interactive tools, or other web content that needs to be embedded directly in your documentation.
 </Callout>
 
-# Images & Media in Code Editor
+## Supported File Types
 
-Learn how to effectively work with images and media files using markdown syntax in your code editor.
+### Images
+- **JPEG/JPG**: Standard photo format
+- **PNG**: Graphics with transparency
+- **GIF**: Animated images
+- **WebP**: Modern, efficient format
+- **SVG**: Scalable vector graphics
+- **ICO**: Icon files
 
-## Overview
+### Videos
+- **MP4**: Most compatible video format
+- **WebM**: Modern web video format
+- **OGV**: Open-source video format
 
-When using a code editor, you'll manage images and media through file paths and markdown syntax.
+## File Size Limits and Optimization
 
-check out&#x20;
+### Upload Limits
+- **Maximum file size**: 20 MB per file
+- **Recommended image size**: 100-200 KB for optimal performance
+- **CDN optimization**: Automatic resizing and format conversion
 
-For mode details check the the Image componenet, video componenent, Embed Componen
+### Performance Best Practices
 
+1. **Compress images** before uploading when possible
+2. **Use appropriate formats**: JPEG for photos, PNG for graphics with transparency
+3. **Set dimensions** to prevent layout shift during loading
+4. **Enable priority loading** only for above-the-fold images
+5. **Add descriptive alt text** for all images
 
+### Image Optimization Tips
 
-## Supported Files
+- Keep file sizes under 200 KB when possible
+- Use WebP format for better compression
+- Set explicit width and height to improve Core Web Vitals
+- Documentation.AI automatically optimizes uploaded images
 
+## Media Management
 
+### Current Limitations
 
-'image/jpeg',\
-'image/jpg',\
-'image/png',\
-'image/gif',\
-'image/webp',\
-'image/svg+xml',\
-'image/x-icon',\
-'image/[vnd.microsoft](http://vnd.microsoft).icon
+<Callout kind="warning">
+  Currently, you can only view and manage media through the `/` command in the editor. A dedicated media management interface will be available soon.
+</Callout>
 
-### File Path Management
+### Viewing Uploaded Media
 
-### Asset Organization
+Access your media library:
 
-## Media File Structure
+1. Type `/image` or `/video` in any document
+2. Browse through previously uploaded files
+3. Select and reuse existing media across different pages
+4. View file details and usage information
 
-### Recommended Folder Structure
+### Organizing Media
 
-### File Naming Conventions
+- **Use descriptive filenames** when uploading
+- **Add comprehensive alt text** for searchability
+- **Group related media** by uploading them during related content creation
+- **Reuse media** across multiple pages to maintain consistency
 
-### Asset Optimization
+## Component References
 
-## Advanced Techniques
+For detailed technical specifications and advanced usage:
 
-### Relative vs Absolute Paths
+- [Image Component Reference](../../components/images): Complete Image component documentation
+- [Video Component Reference](../../components/videos-and-iframes): Video and Iframe component details
+- [Components Overview](../../components/components-overview): All available components
 
-### Image Sizing with HTML
+## Troubleshooting
 
-### Responsive Images
+### Common Issues
 
-## Best Practices
+<ExpandableGroup>
+  <Expandable title="Image not displaying">
+    **Possible causes and solutions:**
+    
+    - **Image upload failed**: Check your internet connection and try uploading again
+    - **Missing alt text**: All images require alt text for accessibility - add a descriptive alt attribute
+    - **Unsupported format**: Ensure you're using JPEG, PNG, GIF, WebP, SVG, or ICO formats
+    - **File too large**: Reduce file size to under 20 MB
+    - **External URL issues**: If using external URLs, verify the image is publicly accessible
+  </Expandable>
 
-### File Organization
+  <Expandable title="Video not loading">
+    **Possible causes and solutions:**
+    
+    - **Wrong URL format**: Use embed URLs (e.g., `youtube.com/embed/VIDEO_ID`) not watch URLs
+    - **Privacy settings**: Ensure the video is publicly accessible or properly configured for embedding
+    - **Platform restrictions**: Some platforms block embedding - check the video's embed settings
+    - **Network issues**: Try refreshing the page or check your internet connection
+    - **Unsupported platform**: Verify the platform is supported (YouTube, Vimeo, Loom work best)
+  </Expandable>
 
-### Version Control for Assets
+  <Expandable title="Slow loading performance">
+    **Optimization strategies:**
+    
+    - **Compress images**: Reduce file sizes to 100-200 KB when possible
+    - **Use modern formats**: WebP provides better compression than JPEG/PNG
+    - **Set priority loading**: Enable only for above-the-fold images to avoid performance issues
+    - **Optimize dimensions**: Set explicit width/height to prevent layout shift
+    - **CDN benefits**: Upload through the editor to use automatic CDN optimization
+  </Expandable>
+</ExpandableGroup>
 
-### Performance Optimization
+### Getting Help
+
+If you encounter issues with media uploads or display:
+
+1. Check the [Troubleshooting guide](troubleshooting) for web editor issues
+2. Review [Error Codes](../../support/error-codes) for specific error messages
+3. [Contact Support](../../support/contact-support) for technical assistance
+
+## Next Steps
+
+Continue building your documentation:
+
+- [Organize Content](organize): Structure your documentation effectively
+- [Web Editor Overview](overview): Learn more web editor features
+- [Publishing Process](publish): Deploy your documentation changes
 
