@@ -140,16 +140,9 @@
                 ]
               },
               {
-                "group": "Common",
-                "icon": "book-open",
-                "expandable": true,
-                "pages": [
-                  {
-                    "title": "Best Practices",
-                    "path": "write-and-publish/documentation-best-practices",
-                    "icon": "check-circle"
-                  }
-                ]
+                "title": "Best Practices",
+                "path": "write-and-publish/documentation-best-practices",
+                "icon": "check-circle"
               }
             ]
           },
