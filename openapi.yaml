@@ -3,16 +3,16 @@ info:
   title: Example Documentation API
   description: |
     A comprehensive example API for testing documentation generation.
-    
+
     This API demonstrates various OpenAPI features including:
     - Multiple authentication methods
     - Complex request/response schemas
     - Path and query parameters
     - File uploads and downloads
     - Error handling
-    
-    ## Authentication
-    
+
+    ## Authentication.
+        
     This API supports multiple authentication methods:
     - **API Key**: Simple API key authentication
     - **Bearer Token**: JWT-based authentication
@@ -91,7 +91,7 @@ paths:
           required: false
           schema:
             type: string
-            example: "john"
+            example: 'john'
         - name: X-Request-ID
           in: header
           description: Unique request identifier for tracing
@@ -99,7 +99,7 @@ paths:
           schema:
             type: string
             format: uuid
-            example: "123e4567-e89b-12d3-a456-426614174000"
+            example: '123e4567-e89b-12d3-a456-426614174000'
       responses:
         '200':
           description: Successfully retrieved users
@@ -120,17 +120,17 @@ paths:
                   value:
                     users:
                       - id: 1
-                        name: "John Doe"
-                        email: "john@example.com"
-                        role: "user"
-                        created_at: "2024-01-15T10:00:00Z"
-                        last_active: "2024-12-25T15:30:00Z"
+                        name: 'John Doe'
+                        email: 'john@example.com'
+                        role: 'user'
+                        created_at: '2024-01-15T10:00:00Z'
+                        last_active: '2024-12-25T15:30:00Z'
                       - id: 2
-                        name: "Jane Smith"
-                        email: "jane@example.com"
-                        role: "admin"
-                        created_at: "2024-02-20T14:30:00Z"
-                        last_active: "2024-12-24T09:15:00Z"
+                        name: 'Jane Smith'
+                        email: 'jane@example.com'
+                        role: 'admin'
+                        created_at: '2024-02-20T14:30:00Z'
+                        last_active: '2024-12-24T09:15:00Z'
                     pagination:
                       page: 1
                       limit: 20
@@ -163,32 +163,32 @@ paths:
                   type: string
                   minLength: 2
                   maxLength: 100
-                  example: "John Doe"
+                  example: 'John Doe'
                 email:
                   type: string
                   format: email
-                  example: "john@example.com"
+                  example: 'john@example.com'
                 password:
                   type: string
                   format: password
                   minLength: 8
-                  example: "secretPassword123"
+                  example: 'secretPassword123'
                 role:
                   type: string
                   enum: [admin, user, viewer]
                   default: user
-                  example: "user"
+                  example: 'user'
                 profile:
                   type: object
                   properties:
                     bio:
                       type: string
                       maxLength: 500
-                      example: "Software developer passionate about APIs"
+                      example: 'Software developer passionate about APIs'
                     avatar_url:
                       type: string
                       format: uri
-                      example: "https://example.com/avatars/john.jpg"
+                      example: 'https://example.com/avatars/john.jpg'
                     preferences:
                       type: object
                       properties:
@@ -203,20 +203,20 @@ paths:
               basic_user:
                 summary: Basic user creation
                 value:
-                  name: "John Doe"
-                  email: "john@example.com"
-                  password: "secretPassword123"
+                  name: 'John Doe'
+                  email: 'john@example.com'
+                  password: 'secretPassword123'
               admin_user:
                 summary: Admin user with profile
                 value:
-                  name: "Jane Admin"
-                  email: "jane@example.com"
-                  password: "adminPassword456"
-                  role: "admin"
+                  name: 'Jane Admin'
+                  email: 'jane@example.com'
+                  password: 'adminPassword456'
+                  role: 'admin'
                   profile:
-                    bio: "System administrator"
+                    bio: 'System administrator'
                     preferences:
-                      theme: "dark"
+                      theme: 'dark'
                       notifications: false
       responses:
         '201':
@@ -227,11 +227,11 @@ paths:
                 $ref: '#/components/schemas/User'
               example:
                 id: 123
-                name: "John Doe"
-                email: "john@example.com"
-                role: "user"
-                created_at: "2024-12-25T10:00:00Z"
-                last_active: "2024-12-25T10:00:00Z"
+                name: 'John Doe'
+                email: 'john@example.com'
+                role: 'user'
+                created_at: '2024-12-25T10:00:00Z'
+                last_active: '2024-12-25T10:00:00Z'
         '400':
           $ref: '#/components/responses/BadRequest'
         '409':
@@ -241,8 +241,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
               example:
-                error: "CONFLICT"
-                message: "User with this email already exists"
+                error: 'CONFLICT'
+                message: 'User with this email already exists'
                 code: 409
 
   /users/{userId}:
@@ -254,7 +254,7 @@ paths:
         schema:
           type: integer
           example: 123
-    
+
     get:
       tags: [Users]
       summary: Get user by ID
@@ -284,11 +284,11 @@ paths:
               properties:
                 name:
                   type: string
-                  example: "John Updated"
+                  example: 'John Updated'
                 email:
                   type: string
                   format: email
-                  example: "john.updated@example.com"
+                  example: 'john.updated@example.com'
                 role:
                   type: string
                   enum: [admin, user, viewer]
@@ -385,7 +385,7 @@ paths:
                   type: array
                   items:
                     type: string
-                  example: ["important", "project-a"]
+                  example: ['important', 'project-a']
       responses:
         '201':
           description: File uploaded successfully
@@ -416,20 +416,20 @@ paths:
           schema:
             type: string
             format: date
-            example: "2024-01-01"
+            example: '2024-01-01'
         - name: end_date
           in: query
           required: true
           schema:
             type: string
             format: date
-            example: "2024-12-31"
+            example: '2024-12-31'
         - name: metrics
           in: query
           description: Comma-separated list of metrics to include
           schema:
             type: string
-            example: "users,projects,storage"
+            example: 'users,projects,storage'
       responses:
         '200':
           description: Analytics metrics retrieved successfully
@@ -445,13 +445,13 @@ components:
       in: header
       name: X-API-Key
       description: API key for authentication. Get your API key from the dashboard.
-    
+
     BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
       description: JWT Bearer token authentication
-    
+
     OAuth2:
       type: oauth2
       description: OAuth 2.0 authentication flow
@@ -479,24 +479,24 @@ components:
           example: 123
         name:
           type: string
-          example: "John Doe"
+          example: 'John Doe'
         email:
           type: string
           format: email
-          example: "john@example.com"
+          example: 'john@example.com'
         role:
           type: string
           enum: [admin, user, viewer]
-          example: "user"
+          example: 'user'
         created_at:
           type: string
           format: date-time
-          example: "2024-01-15T10:00:00Z"
+          example: '2024-01-15T10:00:00Z'
         last_active:
           type: string
           format: date-time
           nullable: true
-          example: "2024-12-25T15:30:00Z"
+          example: '2024-12-25T15:30:00Z'
 
     UserDetailed:
       allOf:
@@ -509,19 +509,19 @@ components:
                 bio:
                   type: string
                   nullable: true
-                  example: "Software developer passionate about APIs"
+                  example: 'Software developer passionate about APIs'
                 avatar_url:
                   type: string
                   format: uri
                   nullable: true
-                  example: "https://example.com/avatars/john.jpg"
+                  example: 'https://example.com/avatars/john.jpg'
                 preferences:
                   type: object
                   properties:
                     theme:
                       type: string
                       enum: [light, dark]
-                      example: "light"
+                      example: 'light'
                     notifications:
                       type: boolean
                       example: true
@@ -548,26 +548,26 @@ components:
           example: 456
         name:
           type: string
-          example: "My Awesome Project"
+          example: 'My Awesome Project'
         description:
           type: string
           nullable: true
-          example: "A project for building amazing things"
+          example: 'A project for building amazing things'
         status:
           type: string
           enum: [active, archived, draft]
-          example: "active"
+          example: 'active'
         owner_id:
           type: integer
           example: 123
         created_at:
           type: string
           format: date-time
-          example: "2024-03-01T12:00:00Z"
+          example: '2024-03-01T12:00:00Z'
         updated_at:
           type: string
           format: date-time
-          example: "2024-12-20T16:45:00Z"
+          example: '2024-12-20T16:45:00Z'
 
     ProjectCreate:
       type: object
@@ -578,11 +578,11 @@ components:
           type: string
           minLength: 1
           maxLength: 100
-          example: "New Project"
+          example: 'New Project'
         description:
           type: string
           maxLength: 500
-          example: "Description of the new project"
+          example: 'Description of the new project'
         status:
           type: string
           enum: [active, draft]
@@ -593,34 +593,34 @@ components:
       properties:
         id:
           type: string
-          example: "file_abc123"
+          example: 'file_abc123'
         filename:
           type: string
-          example: "document.pdf"
+          example: 'document.pdf'
         size:
           type: integer
           description: File size in bytes
           example: 1048576
         mime_type:
           type: string
-          example: "application/pdf"
+          example: 'application/pdf'
         category:
           type: string
           enum: [document, image, video, other]
-          example: "document"
+          example: 'document'
         url:
           type: string
           format: uri
-          example: "https://files.example.com/document.pdf"
+          example: 'https://files.example.com/document.pdf'
         uploaded_at:
           type: string
           format: date-time
-          example: "2024-12-25T14:30:00Z"
+          example: '2024-12-25T14:30:00Z'
         tags:
           type: array
           items:
             type: string
-          example: ["important", "project-a"]
+          example: ['important', 'project-a']
 
     PaginationInfo:
       type: object
@@ -650,11 +650,11 @@ components:
             start_date:
               type: string
               format: date
-              example: "2024-01-01"
+              example: '2024-01-01'
             end_date:
               type: string
               format: date
-              example: "2024-12-31"
+              example: '2024-12-31'
         metrics:
           type: object
           properties:
@@ -698,10 +698,10 @@ components:
       properties:
         error:
           type: string
-          example: "BAD_REQUEST"
+          example: 'BAD_REQUEST'
         message:
           type: string
-          example: "The request was invalid"
+          example: 'The request was invalid'
         code:
           type: integer
           example: 400
@@ -709,8 +709,8 @@ components:
           type: object
           additionalProperties: true
           example:
-            field: "email"
-            issue: "Invalid email format"
+            field: 'email'
+            issue: 'Invalid email format'
 
   responses:
     BadRequest:
@@ -720,8 +720,8 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
           example:
-            error: "BAD_REQUEST"
-            message: "The request was invalid"
+            error: 'BAD_REQUEST'
+            message: 'The request was invalid'
             code: 400
 
     Unauthorized:
@@ -731,8 +731,8 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
           example:
-            error: "UNAUTHORIZED"
-            message: "Authentication required"
+            error: 'UNAUTHORIZED'
+            message: 'Authentication required'
             code: 401
 
     Forbidden:
@@ -742,8 +742,8 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
           example:
-            error: "FORBIDDEN"
-            message: "Insufficient permissions"
+            error: 'FORBIDDEN'
+            message: 'Insufficient permissions'
             code: 403
 
     NotFound:
@@ -753,6 +753,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
           example:
-            error: "NOT_FOUND"
-            message: "The requested resource was not found"
+            error: 'NOT_FOUND'
+            message: 'The requested resource was not found'
             code: 404
