@@ -157,48 +157,58 @@
             ]
           },
           {
-            "group": "Design & Customization",
+            "group": "Customization & Configuration",
             "icon": "palette",
             "expandable": true,
             "pages": [
               {
+                "title": "Site Configuration",
+                "path": "customization-and-configuration/site-configuration",
+                "icon": "file-cog"
+              },
+              {
+                "title": "Page Configuration",
+                "path": "customization-and-configuration/page-configuration",
+                "icon": "file-text"
+              },
+              {
                 "title": "Theme",
-                "path": "design-and-customization/theme",
+                "path": "customization-and-configuration/theme",
                 "icon": "moon"
               },
               {
                 "title": "Colors & Typography",
-                "path": "design-and-customization/colors-and-typography",
+                "path": "customization-and-configuration/colors-and-typography",
                 "icon": "type"
               },
               {
                 "title": "Navigation & Sidebar",
-                "path": "design-and-customization/navigation-and-sidebar",
+                "path": "customization-and-configuration/navigation-and-sidebar",
                 "icon": "menu"
               },
               {
                 "title": "Header & Footer",
-                "path": "design-and-customization/header-and-footer",
+                "path": "customization-and-configuration/header-and-footer",
                 "icon": "layout"
               },
               {
                 "title": "Branding",
-                "path": "design-and-customization/branding",
+                "path": "customization-and-configuration/branding",
                 "icon": "award"
               },
               {
                 "title": "Custom Home Page",
-                "path": "design-and-customization/custom-home-page",
+                "path": "customization-and-configuration/custom-home-page",
                 "icon": "home"
               },
               {
                 "title": "Custom CSS & JavaScript",
-                "path": "design-and-customization/custom-css-and-javascript",
+                "path": "customization-and-configuration/custom-css-and-javascript",
                 "icon": "code-2"
               },
               {
                 "title": "Accessibility",
-                "path": "design-and-customization/accessibility",
+                "path": "customization-and-configuration/accessibility",
                 "icon": "accessibility"
               }
             ]
@@ -416,16 +426,6 @@
             "icon": "settings",
             "expandable": true,
             "pages": [
-              {
-                "title": "documentation.json / Advanced Site Configuration",
-                "path": "configuration/documentation-json-site-configuration",
-                "icon": "file-cog"
-              },
-              {
-                "title": "Advanced Page / Front-matter Configuration",
-                "path": "configuration/page-front-matter-configuration",
-                "icon": "file-text"
-              },
               {
                 "title": "API Configuration",
                 "path": "configuration/api-configuration",
