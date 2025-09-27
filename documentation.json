@@ -731,7 +731,7 @@
               },
               {
                 "title": "API Documentation",
-                "openapi": "api-documentation/openapi.yaml"
+                "openapi": "api-documentation-and-playground/openapi.yaml"
               }
             ]
           }
