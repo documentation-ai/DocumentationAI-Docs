@@ -728,6 +728,10 @@
                 "title": "Report Bugs",
                 "path": "support/report-bugs",
                 "icon": "bug"
+              },
+              {
+                "title": "API Documentation",
+                "openapi": "openapi.yaml"
               }
             ]
           }
