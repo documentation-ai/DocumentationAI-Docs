@@ -45,25 +45,12 @@ Directly paste images from your clipboard:
 
 After adding an image, configure its properties in the component panel:
 
-<ParamField path="alt" param-type="string" required="true" showLocation="false">
-  Descriptive text for accessibility and SEO. Required for all images.
-</ParamField>
+- **Alt text** (required): Add descriptive text for accessibility
+- **Dimensions**: Set width and height for layout optimization
+- **Alignment**: Use CSS styles for positioning
+- **Priority loading**: Enable only for above-the-fold images
 
-<ParamField path="width" param-type="string" required="false" showLocation="false">
-  Image width in pixels. Used for layout optimization and preventing layout shift.
-</ParamField>
-
-<ParamField path="height" param-type="string" required="false" showLocation="false">
-  Image height in pixels. Used for layout optimization and preventing layout shift.
-</ParamField>
-
-<ParamField path="style" param-type="string" required="false" showLocation="false">
-  CSS styles for alignment and positioning. Use for center, left, or right alignment.
-</ParamField>
-
-<ParamField path="priority" param-type="boolean" required="false" showLocation="false">
-  Load immediately instead of lazy loading. Enable only for above-the-fold images (default: `false`).
-</ParamField>
+For complete Image component options, see the [Image component reference](../../components/images).
 
 ## Adding Videos and Media
 
@@ -80,7 +67,7 @@ Add videos using the `/video` command or component menu:
 
 ### Platform Video Embeds
 
-For YouTube, Vimeo, and Loom videos:
+For YouTube, Vimeo, and Loom videos, use embed URLs (not watch URLs):
 
 ```jsx
 <Video 
@@ -91,66 +78,19 @@ For YouTube, Vimeo, and Loom videos:
 />
 ```
 
-#### Video Component Attributes
-
-<ParamField path="src" param-type="string" required="true" showLocation="false">
-  Video embed URL from platform or direct video file URL.
-</ParamField>
-
-<ParamField path="title" param-type="string" required="false" showLocation="false">
-  Accessible title for screen readers and video description.
-</ParamField>
-
-<ParamField path="width" param-type="string" required="false" showLocation="false">
-  Video player width in pixels (default: `560`).
-</ParamField>
-
-<ParamField path="height" param-type="string" required="false" showLocation="false">
-  Video player height in pixels (default: `315`).
-</ParamField>
-
-<ParamField path="controls" param-type="boolean" required="false" showLocation="false">
-  Show video controls for HTML5 videos (default: `true`).
-</ParamField>
-
-<ParamField path="priority" param-type="boolean" required="false" showLocation="false">
-  Load immediately instead of lazy loading (default: `false`).
-</ParamField>
+Configure video dimensions and accessibility title in the component panel. For complete Video component options, see the [Video component reference](../../components/videos-and-iframes).
 
 ### Iframe Embeds
 
-Embed external content using the Iframe component:
+Embed forms, tools, or other external content:
 
 1. Type `/iframe` to add an iframe
 2. Enter the URL of the content to embed
 3. Set dimensions and accessibility title
 4. Configure security settings if needed
 
-#### Iframe Component Attributes
+Use iframes for Google Forms, interactive demos, or other web tools. For complete Iframe component options, see the [Video and Iframe reference](../../components/videos-and-iframes).
 
-<ParamField path="src" param-type="string" required="true" showLocation="false">
-  URL of external content to embed.
-</ParamField>
-
-<ParamField path="title" param-type="string" required="false" showLocation="false">
-  Accessible title for screen readers describing the embedded content.
-</ParamField>
-
-<ParamField path="width" param-type="string" required="false" showLocation="false">
-  Iframe width in pixels or percentage (default: `100%`).
-</ParamField>
-
-<ParamField path="height" param-type="string" required="false" showLocation="false">
-  Iframe height in pixels or percentage (default: `600`).
-</ParamField>
-
-<ParamField path="sandbox" param-type="string" required="false" showLocation="false">
-  Security restrictions for embedded content (default: `"allow-scripts allow-same-origin"`).
-</ParamField>
-
-<Callout kind="info">
-  Use the Iframe component for forms, interactive tools, or other web content that needs to be embedded directly in your documentation.
-</Callout>
 
 ## Supported File Types
 
@@ -212,14 +152,6 @@ Access your media library:
 - **Add comprehensive alt text** for searchability
 - **Group related media** by uploading them during related content creation
 - **Reuse media** across multiple pages to maintain consistency
-
-## Component References
-
-For detailed technical specifications and advanced usage:
-
-- [Image Component Reference](../../components/images): Complete Image component documentation
-- [Video Component Reference](../../components/videos-and-iframes): Video and Iframe component details
-- [Components Overview](../../components/components-overview): All available components
 
 ## Troubleshooting
 
