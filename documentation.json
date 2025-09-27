@@ -62,14 +62,63 @@
             "expandable": true,
             "pages": [
               {
-                "title": "Web Editor",
-                "path": "write-and-publish/web-editor",
-                "icon": "globe"
+                "group": "Web Editor",
+                "icon": "globe",
+                "expandable": true,
+                "pages": [
+                  {
+                    "title": "Web Editor Overview",
+                    "path": "write-and-publish/web-editor",
+                    "icon": "info"
+                  },
+                  {
+                    "title": "First Draft in Web Editor",
+                    "path": "write-and-publish/web-editor/first-draft",
+                    "icon": "edit"
+                  },
+                  {
+                    "title": "Review and Publish",
+                    "path": "write-and-publish/web-editor/review-and-publish",
+                    "icon": "check-circle"
+                  },
+                  {
+                    "title": "Web Editor Features",
+                    "path": "write-and-publish/web-editor/features",
+                    "icon": "star"
+                  }
+                ]
               },
               {
-                "title": "Code Editor",
-                "path": "write-and-publish/code-editor",
-                "icon": "code"
+                "group": "Code Editor",
+                "icon": "code",
+                "expandable": true,
+                "pages": [
+                  {
+                    "title": "Code Editor Overview",
+                    "path": "write-and-publish/code-editor",
+                    "icon": "info"
+                  },
+                  {
+                    "title": "Install Code Editor",
+                    "path": "write-and-publish/code-editor/install",
+                    "icon": "download"
+                  },
+                  {
+                    "title": "Configure Repository",
+                    "path": "write-and-publish/code-editor/configure-repo",
+                    "icon": "settings"
+                  },
+                  {
+                    "title": "Git Workflow",
+                    "path": "write-and-publish/code-editor/git-workflow",
+                    "icon": "git-branch"
+                  }
+                ]
+              },
+              {
+                "title": "Authoring Modes",
+                "path": "write-and-publish/authoring-modes",
+                "icon": "layers"
               },
               {
                 "title": "Markdown Basics",
