@@ -152,11 +152,6 @@
             "expandable": true,
             "pages": [
               {
-                "title": "Theme",
-                "path": "customization-and-configuration/theme",
-                "icon": "moon"
-              },
-              {
                 "title": "Colors & Typography",
                 "path": "customization-and-configuration/colors-and-typography",
                 "icon": "type"
@@ -167,8 +162,8 @@
                 "icon": "menu"
               },
               {
-                "title": "Header & Footer",
-                "path": "customization-and-configuration/header-and-footer",
+                "title": "Header & Navbar",
+                "path": "customization-and-configuration/header-and-navbar",
                 "icon": "layout"
               },
               {
