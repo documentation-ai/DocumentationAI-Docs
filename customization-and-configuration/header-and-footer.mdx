@@ -1,8 +1,155 @@
 ---
-title: Header & Footer
-description: "Customize your docs site: Header & Footer in Documentation.AI."
+title: Header and Footer
+description: Configure the top navigation bar with action buttons and links for your documentation site header.
 ---
 
-# Header & Footer
+```json
+{
+  "configType": "navbar",
+  "scope": "site-wide", 
+  "configFile": "documentation.json",
+  "properties": ["navbar.actions.primary", "navbar.actions.links"],
+  "supports": ["external URLs", "mailto", "tel protocols"]
+}
+```
 
-[How-to Guide] Use Header & Footer to tailor the look and feel of your docs while maintaining accessibility and performance.
+Configure the top navigation bar with action buttons and links using the `navbar` configuration in `documentation.json`. The navbar appears at the top of every page and provides primary user actions.
+
+## Navbar Configuration
+
+Configure the top navigation bar with action buttons and links.
+
+```json
+{
+  "navbar": {
+    "actions": {
+      "primary": {
+        "title": "Get Started",
+        "link": "https://dashboard.example.com/signup"
+      },
+      "links": [
+        {
+          "title": "Login", 
+          "link": "https://dashboard.example.com/login"
+        },
+        {
+          "title": "Support",
+          "link": "mailto:support@example.com"
+        }
+      ]
+    }
+  }
+}
+```
+
+## Primary Action Button
+
+Configure the main call-to-action button that appears prominently in your navbar.
+
+<ParamField path="primary" param-type="object" required="false" showLocation="false">
+  Main action button for user engagement (e.g., "Get Started", "Sign Up", "Try Now").
+  
+  <Expandable title="Button Configuration" defaultOpen="false">
+    <ParamField path="title" param-type="string" required="true" showLocation="false">
+      Text displayed on the button.
+    </ParamField>
+
+    <ParamField path="link" param-type="string" required="true" showLocation="false">
+      Destination URL when clicked.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Primary Button Example
+
+```json
+{
+  "primary": {
+    "title": "Get Started",
+    "link": "https://dashboard.example.com/signup"
+  }
+}
+```
+
+## Secondary Navigation Links
+
+Add supplementary text links for additional navigation options.
+
+<ParamField path="links" param-type="array" required="false" showLocation="false">
+  Array of secondary navigation links displayed as text in the navbar.
+  
+  <Expandable title="Link Configuration" defaultOpen="false">
+    <ParamField path="title" param-type="string" required="true" showLocation="false">
+      Display text for the link.
+    </ParamField>
+
+    <ParamField path="link" param-type="string" required="true" showLocation="false">
+      Target URL. Supports `mailto:` and `tel:` protocols for contact links.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Secondary Links Examples
+
+```json
+{
+  "links": [
+    {
+      "title": "Login",
+      "link": "https://dashboard.example.com/login"
+    },
+    {
+      "title": "Support",
+      "link": "mailto:support@example.com"
+    },
+    {
+      "title": "Call Us",
+      "link": "tel:+1-555-0123"
+    }
+  ]
+}
+```
+
+## Supported Link Types
+
+### External URLs
+- Standard web links (`https://example.com`)
+- Opens in the same tab by default
+
+### Contact Protocols
+- Email links (`mailto:support@example.com`)
+- Phone links (`tel:+1-555-0123`)
+- Automatically opens appropriate applications
+
+## Complete Navbar Example
+
+```json
+{
+  "navbar": {
+    "actions": {
+      "primary": {
+        "title": "Get Started",
+        "link": "https://dashboard.example.com/signup"
+      },
+      "links": [
+        {
+          "title": "Login",
+          "link": "https://dashboard.example.com/login"
+        },
+        {
+          "title": "Documentation",
+          "link": "https://docs.example.com"
+        },
+        {
+          "title": "Contact Support",
+          "link": "mailto:support@example.com"
+        }
+      ]
+    }
+  }
+}
+```
+
+<Callout>
+Both primary actions and secondary links are optional. You can configure just a primary button, just secondary links, or both depending on your site's needs.
+</Callout>

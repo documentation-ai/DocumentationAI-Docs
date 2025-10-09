@@ -1,8 +1,315 @@
 ---
-title: Navigation & Sidebar
-description: "Customize your docs site: Navigation & Sidebar in Documentation.AI."
+title: Navigation and Sidebar
+description: Configure your documentation site's navigation hierarchy using pages, groups, tabs, menus, versions, and dropdowns for optimal content organization.
 ---
 
-# Navigation & Sidebar
+```json
+{
+  "configType": "navigation",
+  "scope": "site-wide",
+  "configFile": "documentation.json",
+  "containers": ["pages", "groups", "tabs", "menus", "versions", "dropdowns"],
+  "iconLibrary": "Lucide React"
+}
+```
 
-[How-to Guide] Use Navigation & Sidebar to tailor the look and feel of your docs while maintaining accessibility and performance.
+Configure your documentation site's navigation hierarchy using different container types in `documentation.json`. Each container must choose exactly ONE child container type for proper structure.
+
+## Pages Navigation
+
+Use flat page lists for simple sites with minimal hierarchy.
+
+```json
+{
+  "navigation": {
+    "pages": [
+      {
+        "title": "Introduction",
+        "path": "getting-started/introduction",
+        "icon": "star"
+      },
+      {
+        "title": "API Reference",
+        "path": "api/overview",
+        "icon": "code"
+      },
+      {
+        "title": "External Resource",
+        "href": "https://github.com/company/repo",
+        "icon": "github"
+      }
+    ]
+  }
+}
+```
+
+**Supported Children:** Individual page items only
+
+## Groups Navigation
+
+Use section-based organization with collapsible groups. Groups can contain nested groups for deeper hierarchical organization.
+
+```json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting Started",
+        "icon": "rocket",
+        "expandable": false,
+        "pages": [
+          {
+            "title": "Introduction",
+            "path": "getting-started/introduction",
+            "icon": "star"
+          },
+          {
+            "group": "Advanced Setup",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "Configuration",
+                "path": "getting-started/configuration"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Supported Children:** Pages arrays (containing individual page items and nested group items)
+
+## Tabs Navigation
+
+Use tabbed navigation interface with horizontal navigation bar. Creates distinct sections with separate URL paths.
+
+```json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              {
+                "title": "Introduction",
+                "path": "docs/introduction"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "code",
+        "pages": [
+          {
+            "title": "Authentication",
+            "path": "api/authentication"
+          }
+        ]
+      },
+      {
+        "tab": "Blog",
+        "icon": "newspaper",
+        "href": "https://blog.example.com"
+      }
+    ]
+  }
+}
+```
+
+**Supported Children:** Menus, Groups, or Pages
+
+## Menus Navigation
+
+Use menu-based navigation for sub-sections within other containers.
+
+```json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Developer Tools",
+        "icon": "terminal",
+        "menus": [
+          {
+            "menu": "API Reference",
+            "icon": "api",
+            "description": "Complete API documentation",
+            "groups": [
+              {
+                "group": "Core Endpoints",
+                "pages": [
+                  {
+                    "title": "Users API",
+                    "path": "api/users"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Supported Children:** Groups or Pages
+
+## Versions Navigation
+
+Use version-based organization with dropdown selector for different product versions or API versions.
+
+```json
+{
+  "navigation": {
+    "versions": [
+      {
+        "version": "v2.0",
+        "icon": "version",
+        "tabs": [
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Endpoints",
+                "pages": [
+                  {
+                    "title": "Users API",
+                    "path": "v2/api/users"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Supported Children:** Dropdowns, Tabs, Menus, Groups, or Pages
+
+## Dropdowns Navigation
+
+Use dropdown menu navigation for complex sites with expandable sections in the sidebar.
+
+```json
+{
+  "navigation": {
+    "dropdowns": [
+      {
+        "dropdown": "Documentation",
+        "icon": "book",
+        "description": "Complete documentation",
+        "tabs": [
+          {
+            "tab": "Getting Started",
+            "pages": [
+              {
+                "title": "Introduction",
+                "path": "introduction"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Supported Children:** Tabs, Menus, Groups, or Pages
+
+## Page Configuration
+
+Configure properties for individual pages within your navigation structure.
+
+<ParamField path="title" param-type="string" required="true" showLocation="false">
+  Display name shown in navigation and browser title.
+</ParamField>
+
+<ParamField path="path" param-type="string" required="false" showLocation="false">
+  Relative path to your MDX file. Specify the path without the `.mdx` extension (e.g., `"getting-started/introduction"`).
+</ParamField>
+
+<ParamField path="href" param-type="string" required="false" showLocation="false">
+  External URL for links that open in new tabs. Use instead of `path` for external links.
+</ParamField>
+
+<ParamField path="icon" param-type="string" required="false" showLocation="false">
+  Page icon from the Lucide React icon library.
+</ParamField>
+
+<ParamField path="method" param-type="string" required="false" showLocation="false">
+  HTTP method for API endpoint pages (e.g., `"GET"`, `"POST"`, `"DELETE"`).
+</ParamField>
+
+<ParamField path="tags" param-type="string" required="false" showLocation="false">
+  Categorization tags for organizing related content.
+</ParamField>
+
+## Group Configuration
+
+Configure collapsible sections that organize related pages together.
+
+<ParamField path="group" param-type="string" required="true" showLocation="false">
+  Display name shown in the sidebar navigation.
+</ParamField>
+
+<ParamField path="icon" param-type="string" required="false" showLocation="false">
+  Visual icon from the Lucide React icon library.
+</ParamField>
+
+<ParamField path="expandable" param-type="boolean" required="false" showLocation="false">
+  Whether users can collapse/expand this group. Default: `true`.
+</ParamField>
+
+<ParamField path="openapi" param-type="string" required="false" showLocation="false">
+  Path to OpenAPI specification file for automatic API documentation generation. Supports JSON and YAML formats.
+</ParamField>
+
+<ParamField path="pages" param-type="array" required="true" showLocation="false">
+  Array of pages and nested groups contained within this group.
+</ParamField>
+
+## Mixed Content in Pages Arrays
+
+Pages arrays can contain both individual page items AND group items mixed together:
+
+```json
+{
+  "pages": [
+    {
+      "title": "Components Overview",
+      "path": "components/components-overview",
+      "icon": "eye"
+    },
+    {
+      "group": "Components",
+      "icon": "box", 
+      "expandable": true,
+      "pages": [
+        {
+          "title": "Headings and Text",
+          "path": "components/heading-and-text",
+          "icon": "type"
+        }
+      ]
+    }
+  ]
+}
+```
+
+<Callout type="info">
+**MDX File Format Required**: All documentation pages must be in MDX format. When referencing files in your configuration, always omit the `.mdx` extension from the path.
+</Callout>

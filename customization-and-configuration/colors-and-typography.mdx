@@ -1,8 +1,90 @@
 ---
-title: Colors & Typography
-description: "Customize your docs site: Colors & Typography in Documentation.AI."
+title: Colors and Typography
+description: Customize your site's color scheme and typography for both light and dark themes with automatic contrast optimization.
 ---
 
-# Colors & Typography
+```json
+{
+  "configType": "colors-typography",
+  "scope": "site-wide",
+  "configFile": "documentation.json", 
+  "properties": ["colors.light.brand", "colors.light.heading", "colors.light.text", "colors.dark.brand", "colors.dark.heading", "colors.dark.text"],
+  "format": "hex colors"
+}
+```
 
-[How-to Guide] Use Colors & Typography to tailor the look and feel of your docs while maintaining accessibility and performance.
+Configure your documentation site's visual appearance using color schemes that support both light and dark themes. The system automatically optimizes contrast and accessibility for all color combinations.
+
+## Brand Colors Configuration
+
+Customize your site's color scheme with automatic contrast optimization for both themes.
+
+```json
+{
+  "colors": {
+    "light": {
+      "brand": "#3143e3",
+      "heading": "#1a1a1a", 
+      "text": "#374151"
+    },
+    "dark": {
+      "brand": "#85a1ff",
+      "heading": "#f2f2f2",
+      "text": "#c1c1c1"
+    }
+  }
+}
+```
+
+## Light Theme Colors
+
+<ParamField path="brand" param-type="string" required="false" showLocation="false">
+  Primary brand color for buttons, links, and accents in light mode. Use hex format (e.g., `#3143e3`).
+</ParamField>
+
+<ParamField path="heading" param-type="string" required="false" showLocation="false">
+  Heading and title text color for light mode. Default: `#1a1a1a`.
+</ParamField>
+
+<ParamField path="text" param-type="string" required="false" showLocation="false">
+  Body text color for readability in light mode. Default: `#374151`.
+</ParamField>
+
+## Dark Theme Colors
+
+<ParamField path="brand" param-type="string" required="false" showLocation="false">
+  Primary brand color optimized for dark backgrounds. Use hex format (e.g., `#85a1ff`).
+</ParamField>
+
+<ParamField path="heading" param-type="string" required="false" showLocation="false">
+  Heading and title text color for dark mode. Default: `#f2f2f2`.
+</ParamField>
+
+<ParamField path="text" param-type="string" required="false" showLocation="false">
+  Body text color for dark mode readability. Default: `#c1c1c1`.
+</ParamField>
+
+## Color Guidelines
+
+### Format Requirements
+
+- Use hex color format for all values (e.g., `#3143e3`)
+- Include the `#` symbol at the beginning
+- Support both 6-digit (`#3143e3`) and 3-digit (`#333`) hex codes
+
+### Accessibility Considerations
+
+- Colors automatically optimize for contrast ratios
+- Brand colors should maintain readability against their respective backgrounds  
+- The system ensures accessibility compliance across both light and dark themes
+- Text colors are automatically adjusted for optimal readability
+
+### Theme Switching
+
+- Users can toggle between light and dark themes
+- Colors automatically adapt based on the selected theme
+- System preference detection is supported for automatic theme selection
+
+<Callout>
+All color configurations are optional. If not specified, the documentation site will use default colors that maintain proper contrast and accessibility standards.
+</Callout>

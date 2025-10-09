@@ -1,8 +1,156 @@
 ---
-title: Branding (Logo, Favicon)
-description: "Customize your docs site: Branding (Logo, Favicon) in Documentation.AI."
+title: Branding
+description: Configure your site's logo variants, brand colors, and visual identity for both light and dark themes.
 ---
 
-# Branding (Logo, Favicon)
+```json
+{
+  "configType": "branding",
+  "scope": "site-wide",
+  "configFile": "documentation.json",
+  "properties": ["name", "logo-dark", "logo-light", "logo-small-dark", "logo-small-light", "colors"],
+  "formats": ["PNG", "SVG", "WEBP"]
+}
+```
 
-[How-to Guide] Use Branding (Logo, Favicon) to tailor the look and feel of your docs while maintaining accessibility and performance.
+Configure your documentation site's visual branding using logo variants and brand colors in `documentation.json`. All logo fields are optional and fallback to default assets.
+
+## Site Identity
+
+Configure your site's basic identity and name.
+
+```json
+{
+  "name": "Documentation.AI"
+}
+```
+
+<ParamField path="name" param-type="string" required="true" showLocation="false">
+  Site name displayed in the browser title, navigation header, and social media previews.
+</ParamField>
+
+## Logo Configuration
+
+Configure logo variants for different themes and sizes. All logo fields are optional and fallback to default assets.
+
+```json
+{
+  "logo-dark": "https://example.com/logo-dark.svg",
+  "logo-light": "https://example.com/logo-light.svg", 
+  "logo-small-dark": "https://example.com/favicon-dark.svg",
+  "logo-small-light": "https://example.com/favicon-light.svg"
+}
+```
+
+### Main Logos
+
+<ParamField path="logo-dark" param-type="string" required="false" showLocation="false">
+  Main logo displayed in dark theme. Supports PNG, SVG, WEBP formats.
+</ParamField>
+
+<ParamField path="logo-light" param-type="string" required="false" showLocation="false">
+  Main logo displayed in light theme. Supports PNG, SVG, WEBP formats.
+</ParamField>
+
+### Small Logos and Favicons
+
+<ParamField path="logo-small-dark" param-type="string" required="false" showLocation="false">
+  Small logo/favicon for dark theme. Used in browser tabs and mobile view.
+</ParamField>
+
+<ParamField path="logo-small-light" param-type="string" required="false" showLocation="false">
+  Small logo/favicon for light theme. Used in browser tabs and mobile view.
+</ParamField>
+
+## Brand Colors
+
+Customize your site's color scheme with automatic contrast optimization. Brand colors are part of your overall visual identity.
+
+```json
+{
+  "colors": {
+    "light": {
+      "brand": "#3143e3",
+      "heading": "#1a1a1a", 
+      "text": "#374151"
+    },
+    "dark": {
+      "brand": "#85a1ff",
+      "heading": "#f2f2f2",
+      "text": "#c1c1c1"
+    }
+  }
+}
+```
+
+### Light Theme Brand Colors
+
+<ParamField path="brand" param-type="string" required="false" showLocation="false">
+  Primary brand color for buttons, links, and accents in light mode. Use hex format (e.g., `#3143e3`).
+</ParamField>
+
+<ParamField path="heading" param-type="string" required="false" showLocation="false">
+  Heading and title text color for light mode. Default: `#1a1a1a`.
+</ParamField>
+
+<ParamField path="text" param-type="string" required="false" showLocation="false">
+  Body text color for readability in light mode. Default: `#374151`.
+</ParamField>
+
+### Dark Theme Brand Colors
+
+<ParamField path="brand" param-type="string" required="false" showLocation="false">
+  Primary brand color optimized for dark backgrounds. Use hex format (e.g., `#85a1ff`).
+</ParamField>
+
+<ParamField path="heading" param-type="string" required="false" showLocation="false">
+  Heading and title text color for dark mode. Default: `#f2f2f2`.
+</ParamField>
+
+<ParamField path="text" param-type="string" required="false" showLocation="false">
+  Body text color for dark mode readability. Default: `#c1c1c1`.
+</ParamField>
+
+## Logo Requirements
+
+### Supported Formats
+- **PNG**: Recommended for photographs or complex images
+- **SVG**: Recommended for scalable vector graphics and icons
+- **WEBP**: Modern format with better compression
+
+### Size Recommendations
+- **Main logos**: Optimized for header display (typically 120-200px width)
+- **Small logos**: Square format recommended for favicons (16x16, 32x32, 64x64px)
+
+### Theme Considerations
+- Provide both light and dark variants for optimal visibility
+- Dark logos should work well on light backgrounds
+- Light logos should work well on dark backgrounds
+
+## Complete Branding Example
+
+```json
+{
+  "name": "Documentation.AI",
+  "logo-dark": "https://example.com/logo-dark.svg",
+  "logo-light": "https://example.com/logo-light.svg", 
+  "logo-small-dark": "https://example.com/favicon-dark.svg",
+  "logo-small-light": "https://example.com/favicon-light.svg",
+  "colors": {
+    "light": {
+      "brand": "#3143e3",
+      "heading": "#1a1a1a",
+      "text": "#374151"
+    },
+    "dark": {
+      "brand": "#85a1ff", 
+      "heading": "#f2f2f2",
+      "text": "#c1c1c1"
+    }
+  }
+}
+```
+
+<Callout>
+All branding elements are optional except for the site name. If logos are not provided, the site will use the text-based site name. If colors are not specified, default theme-appropriate colors will be used.
+</Callout>
