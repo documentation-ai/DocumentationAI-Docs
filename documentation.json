@@ -172,21 +172,6 @@
                 "icon": "award"
               },
               {
-                "title": "Custom Home Page",
-                "path": "customization-and-configuration/custom-home-page",
-                "icon": "home"
-              },
-              {
-                "title": "Custom CSS & JavaScript",
-                "path": "customization-and-configuration/custom-css-and-javascript",
-                "icon": "code-2"
-              },
-              {
-                "title": "Accessibility",
-                "path": "customization-and-configuration/accessibility",
-                "icon": "accessibility"
-              },
-              {
                 "title": "Site Configuration",
                 "path": "customization-and-configuration/site-configuration",
                 "icon": "file-cog"
