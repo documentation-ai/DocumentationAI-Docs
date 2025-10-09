@@ -392,23 +392,6 @@
             ]
           },
           {
-          "group": "Configuration",
-          "icon": "settings",
-          "expandable": true,
-          "pages": [
-            {
-              "title": "Site Configuration",
-              "path": "customization-and-configuration/site-configuration",
-              "icon": "file-cog"
-            },
-            {
-              "title": "Page Configuration",
-              "path": "customization-and-configuration/page-configuration",
-              "icon": "file-text"
-            }
-          ]
-          },
-          {
             "group": "Components",
             "icon": "package",
             "expandable": true,
