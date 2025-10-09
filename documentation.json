@@ -143,6 +143,11 @@
                 "title": "Best Practices",
                 "path": "write-and-publish/documentation-best-practices",
                 "icon": "check-circle"
+              },
+              {
+                "title": "Helpful Prompts",
+                "path": "write-and-publish/prompts",
+                "icon": "check-circle"
               }
             ]
           },
