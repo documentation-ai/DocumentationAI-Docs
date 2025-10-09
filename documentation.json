@@ -412,21 +412,21 @@
             ]
           },
           {
-            "group": "Configuration",
-            "icon": "settings",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "API Configuration",
-                "path": "configuration/api-configuration",
-                "icon": "code"
-              },
-              {
-                "title": "Page Metadata",
-                "path": "configuration/page-metadata",
-                "icon": "info"
-              }
-            ]
+          "group": "Configuration",
+          "icon": "settings",
+          "expandable": true,
+          "pages": [
+            {
+              "title": "Site Configuration",
+              "path": "customization-and-configuration/site-configuration",
+              "icon": "file-cog"
+            },
+            {
+              "title": "Page Configuration",
+              "path": "customization-and-configuration/page-configuration",
+              "icon": "file-text"
+            }
+          ]
           },
           {
             "group": "Components",
