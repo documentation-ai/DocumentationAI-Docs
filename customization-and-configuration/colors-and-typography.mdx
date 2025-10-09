@@ -1,23 +1,42 @@
 ---
-title: Colors and Typography
-description: Customize your site's color scheme and typography for both light and dark themes with automatic contrast optimization.
+title: Customize Colors and Typography
+description: Fine-tune your documentation site's visual appearance by customizing brand colors, text colors, and typography for optimal readability and brand consistency.
 ---
 
 ```json
 {
-  "configType": "colors-typography",
-  "scope": "site-wide",
+  "taskType": "visual-customization",
+  "goal": "Fine-tune colors and typography for brand consistency",
   "configFile": "documentation.json", 
-  "properties": ["colors.light.brand", "colors.light.heading", "colors.light.text", "colors.dark.brand", "colors.dark.heading", "colors.dark.text"],
-  "format": "hex colors"
+  "estimatedTime": "10 minutes"
 }
 ```
 
-Configure your documentation site's visual appearance using color schemes that support both light and dark themes. The system automatically optimizes contrast and accessibility for all color combinations.
+Fine-tune your documentation site's visual appearance by customizing specific color elements and typography. This guide focuses on detailed color customization beyond basic theme setup to achieve perfect brand alignment.
 
-## Brand Colors Configuration
+These site-wide color settings work together with [page-level front matter](page-configuration) to create a cohesive brand experience across all documentation pages.
 
-Customize your site's color scheme with automatic contrast optimization for both themes.
+## Prerequisites
+
+- Completed [basic theme setup](theme) 
+- Your brand color palette or style guide
+- Access to your `documentation.json` file
+- Understanding of hex color codes and contrast ratios
+
+## Customize Brand Colors
+
+Follow these steps to align your documentation colors with your brand identity.
+
+### Step 1: Identify your color requirements
+
+Gather your brand colors in hex format:
+- Primary brand color (for buttons, links, call-to-actions)
+- Text hierarchy colors (headings vs body text)
+- Ensure colors work for both light and dark backgrounds
+
+### Step 2: Configure light theme colors
+
+In your `documentation.json`, customize the light theme colors:
 
 ```json
 {
@@ -26,7 +45,32 @@ Customize your site's color scheme with automatic contrast optimization for both
       "brand": "#3143e3",
       "heading": "#1a1a1a", 
       "text": "#374151"
-    },
+    }
+  }
+}
+```
+
+**Configure each color property:**
+
+<ParamField path="brand" param-type="string" required="false" showLocation="false">
+  Set your primary brand color for interactive elements. Use hex format (e.g., `#3143e3`).
+</ParamField>
+
+<ParamField path="heading" param-type="string" required="false" showLocation="false">
+  Choose a strong color for headings and titles. Default: `#1a1a1a`.
+</ParamField>
+
+<ParamField path="text" param-type="string" required="false" showLocation="false">
+  Select a readable color for body text. Ensure good contrast. Default: `#374151`.
+</ParamField>
+
+### Step 3: Configure dark theme colors
+
+Add complementary colors for dark mode that maintain brand consistency:
+
+```json
+{
+  "colors": {
     "dark": {
       "brand": "#85a1ff",
       "heading": "#f2f2f2",
@@ -36,55 +80,87 @@ Customize your site's color scheme with automatic contrast optimization for both
 }
 ```
 
-## Light Theme Colors
+**Dark theme considerations:**
 
 <ParamField path="brand" param-type="string" required="false" showLocation="false">
-  Primary brand color for buttons, links, and accents in light mode. Use hex format (e.g., `#3143e3`).
+  Use a lighter/brighter version of your brand color. Use hex format (e.g., `#85a1ff`).
 </ParamField>
 
 <ParamField path="heading" param-type="string" required="false" showLocation="false">
-  Heading and title text color for light mode. Default: `#1a1a1a`.
+  Choose high contrast colors for readability in dark mode. Default: `#f2f2f2`.
 </ParamField>
 
 <ParamField path="text" param-type="string" required="false" showLocation="false">
-  Body text color for readability in light mode. Default: `#374151`.
+  Ensure sufficient contrast against dark backgrounds. Default: `#c1c1c1`.
 </ParamField>
 
-## Dark Theme Colors
+### Step 4: Test color combinations
 
-<ParamField path="brand" param-type="string" required="false" showLocation="false">
-  Primary brand color optimized for dark backgrounds. Use hex format (e.g., `#85a1ff`).
-</ParamField>
+1. Save your configuration
+2. Deploy or preview your changes
+3. Test both light and dark modes
+4. Check text readability in various lighting conditions
+5. Verify brand colors maintain visual hierarchy
 
-<ParamField path="heading" param-type="string" required="false" showLocation="false">
-  Heading and title text color for dark mode. Default: `#f2f2f2`.
-</ParamField>
+## Typography Best Practices
 
-<ParamField path="text" param-type="string" required="false" showLocation="false">
-  Body text color for dark mode readability. Default: `#c1c1c1`.
-</ParamField>
+The Documentation.AI platform automatically handles typography optimization, but consider these guidelines when choosing colors:
 
-## Color Guidelines
+### Contrast Requirements
 
-### Format Requirements
+- Maintain WCAG AA compliance (4.5:1 contrast ratio minimum)
+- Test colors with accessibility tools
+- Ensure readability for users with visual impairments
 
-- Use hex color format for all values (e.g., `#3143e3`)
-- Include the `#` symbol at the beginning
-- Support both 6-digit (`#3143e3`) and 3-digit (`#333`) hex codes
+### Brand Consistency
 
-### Accessibility Considerations
+- Use your brand's primary color for interactive elements
+- Maintain consistent color relationships between themes
+- Consider your brand's tone (professional, friendly, technical)
 
-- Colors automatically optimize for contrast ratios
-- Brand colors should maintain readability against their respective backgrounds  
-- The system ensures accessibility compliance across both light and dark themes
-- Text colors are automatically adjusted for optimal readability
+### Visual Hierarchy
 
-### Theme Switching
+- Make headings distinctly different from body text
+- Use your brand color strategically to guide user attention
+- Ensure navigation elements stand out appropriately
 
-- Users can toggle between light and dark themes
-- Colors automatically adapt based on the selected theme
-- System preference detection is supported for automatic theme selection
+## Advanced Color Customization
+
+### Step 5: Test across devices
+
+1. View on different screen sizes (mobile, tablet, desktop)
+2. Test in various lighting conditions
+3. Check color accuracy across different displays
+4. Verify accessibility with screen readers
+
+### Step 6: Document your color choices
+
+Keep a record of your color decisions:
+- Brand color hex codes and their usage
+- Contrast ratio measurements  
+- Any accessibility considerations
+- Brand guideline compliance notes
+
+## Verify Your Color Setup
+
+1. **Visual check**: Compare with your brand guidelines
+2. **Contrast test**: Use tools like WebAIM Contrast Checker
+3. **User testing**: Get feedback on readability
+4. **Cross-browser testing**: Ensure consistency across browsers
+5. **Accessibility audit**: Test with screen readers and accessibility tools
+
+## Troubleshooting Common Issues
+
+- **Low contrast**: Darken light theme text or lighten dark theme text
+- **Brand mismatch**: Adjust colors to better match your style guide
+- **Poor readability**: Increase contrast between text and background colors
+
+## What's Next
+
+- [Set up your site branding and logos](branding)
+- [Configure navigation structure](navigation-and-sidebar)
+- [Customize header and footer](header-and-footer)
 
 <Callout>
-All color configurations are optional. If not specified, the documentation site will use default colors that maintain proper contrast and accessibility standards.
+Color customization is entirely optional. Documentation.AI provides carefully designed defaults that meet accessibility standards. Only customize colors if you need specific brand alignment or have particular visual requirements.
 </Callout>

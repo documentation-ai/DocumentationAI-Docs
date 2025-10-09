@@ -1,23 +1,38 @@
 ---
-title: Theme Configuration
-description: Configure light and dark theme modes for your documentation site using color schemes and automatic theme switching.
+title: Configure Your Site Theme
+description: Set up light and dark mode themes for your documentation site with custom colors that automatically adapt to user preferences.
 ---
 
 ```json
 {
-  "configType": "theme",
-  "scope": "site-wide", 
+  "taskType": "theme-setup",
+  "goal": "Configure dual light/dark theme modes",
   "configFile": "documentation.json",
-  "properties": ["colors.light", "colors.dark"],
-  "requirements": ["hex color format"]
+  "estimatedTime": "5 minutes"
 }
 ```
 
-Configure your documentation site's theme using the `colors` object in `documentation.json`. The theme system supports both light and dark modes with automatic contrast optimization.
+Set up light and dark theme modes for your documentation site. The Documentation.AI platform automatically switches themes based on user preference or system settings while maintaining optimal contrast and accessibility.
 
-## Light and Dark Mode Configuration
+Theme colors apply site-wide to all pages, but individual pages inherit these settings and can be customized further using [page-level front matter configuration](page-configuration).
 
-Set up dual themes that automatically adapt based on user preference or system settings.
+## Prerequisites
+
+- Access to your Documentation.AI project
+- Basic understanding of hex color codes
+- Your `documentation.json` file (located in your project root)
+
+## Configure Dual Theme Support
+
+Follow these steps to set up both light and dark themes for your documentation site.
+
+### Step 1: Open your configuration file
+
+Locate and open the `documentation.json` file in your project root directory.
+
+### Step 2: Add the colors object
+
+Add a `colors` object to your `documentation.json` file. If it already exists, you can modify the existing configuration.
 
 ```json
 {
@@ -36,57 +51,63 @@ Set up dual themes that automatically adapt based on user preference or system s
 }
 ```
 
-## Light Theme Colors
+### Step 3: Configure light theme colors
 
-Configure the color scheme for light mode appearance.
+Set up colors for light mode by defining these properties under `colors.light`:
 
-<ParamField path="light" param-type="object" required="false" showLocation="false">
-  Color scheme for light mode appearance.
-  
-  <Expandable title="Light Mode Color Options" defaultOpen="false">
-    <ParamField path="brand" param-type="string" required="false" showLocation="false">
-      Primary brand color for buttons, links, and accents. Use hex format (e.g., `#3143e3`).
-    </ParamField>
-
-    <ParamField path="heading" param-type="string" required="false" showLocation="false">
-      Heading and title text color. Default: `#1a1a1a`.
-    </ParamField>
-
-    <ParamField path="text" param-type="string" required="false" showLocation="false">
-      Body text color for readability. Default: `#374151`.
-    </ParamField>
-  </Expandable>
+<ParamField path="brand" param-type="string" required="false" showLocation="false">
+  Primary color for buttons, links, and accents. Use hex format (e.g., `#3143e3`).
 </ParamField>
 
-## Dark Theme Colors
-
-Configure the color scheme for dark mode appearance.
-
-<ParamField path="dark" param-type="object" required="false" showLocation="false">
-  Color scheme for dark mode appearance.
-  
-  <Expandable title="Dark Mode Color Options" defaultOpen="false">
-    <ParamField path="brand" param-type="string" required="false" showLocation="false">
-      Primary brand color optimized for dark backgrounds. Use hex format (e.g., `#85a1ff`).
-    </ParamField>
-
-    <ParamField path="heading" param-type="string" required="false" showLocation="false">
-      Heading and title text color for dark mode. Default: `#f2f2f2`.
-    </ParamField>
-
-    <ParamField path="text" param-type="string" required="false" showLocation="false">
-      Body text color for dark mode readability. Default: `#c1c1c1`.
-    </ParamField>
-  </Expandable>
+<ParamField path="heading" param-type="string" required="false" showLocation="false">
+  Color for headings and titles. Default: `#1a1a1a`.
 </ParamField>
 
-## Theme Requirements
+<ParamField path="text" param-type="string" required="false" showLocation="false">
+  Color for body text for optimal readability. Default: `#374151`.
+</ParamField>
 
-- Use hex color format for all color values (e.g., `#3143e3`)
-- Colors automatically optimize for contrast and accessibility
-- Both light and dark themes are optional but recommended for better user experience
-- Brand colors should maintain adequate contrast ratios in their respective themes
+### Step 4: Configure dark theme colors
+
+Set up colors for dark mode by defining these properties under `colors.dark`:
+
+<ParamField path="brand" param-type="string" required="false" showLocation="false">
+  Primary color optimized for dark backgrounds. Use hex format (e.g., `#85a1ff`).
+</ParamField>
+
+<ParamField path="heading" param-type="string" required="false" showLocation="false">
+  Color for headings in dark mode. Default: `#f2f2f2`.
+</ParamField>
+
+<ParamField path="text" param-type="string" required="false" showLocation="false">
+  Color for body text in dark mode for optimal readability. Default: `#c1c1c1`.
+</ParamField>
+
+### Step 5: Use proper hex format
+
+Ensure all color values use hex format:
+- Include the `#` symbol at the beginning
+- Use 6-digit (`#3143e3`) or 3-digit (`#333`) hex codes
+- Valid examples: `#3143e3`, `#fff`, `#1a1a1a`
+
+### Step 6: Save and deploy
+
+Save your `documentation.json` file and deploy your changes to see the theme configuration take effect.
+
+## Verify Your Theme Setup
+
+1. Visit your documentation site
+2. Look for a theme toggle button (usually in the header)
+3. Switch between light and dark modes
+4. Confirm colors display correctly in both themes
+5. Check that text remains readable in both modes
+
+## What's Next
+
+- [Customize additional branding elements](branding)
+- [Configure navigation and sidebar](navigation-and-sidebar)
+- [Set up header and footer](header-and-footer)
 
 <Callout>
-The theme system automatically handles contrast optimization and ensures your colors maintain accessibility standards across both light and dark modes.
+All theme colors are optional. If not specified, Documentation.AI uses default colors that maintain proper contrast and accessibility standards. The platform automatically handles theme switching and contrast optimization.
 </Callout>

@@ -1,23 +1,51 @@
 ---
-title: Navigation and Sidebar
-description: Configure your documentation site's navigation hierarchy using pages, groups, tabs, menus, versions, and dropdowns for optimal content organization.
+title: Set Up Navigation and Sidebar
+description: Create an organized navigation structure for your documentation site using the optimal hierarchy for your content and users.
 ---
 
 ```json
 {
-  "configType": "navigation",
-  "scope": "site-wide",
+  "taskType": "navigation-setup",
+  "goal": "Build organized navigation structure",
   "configFile": "documentation.json",
-  "containers": ["pages", "groups", "tabs", "menus", "versions", "dropdowns"],
-  "iconLibrary": "Lucide React"
+  "estimatedTime": "15-30 minutes"
 }
 ```
 
-Configure your documentation site's navigation hierarchy using different container types in `documentation.json`. Each container must choose exactly ONE child container type for proper structure.
+Create a well-organized navigation structure for your documentation site. The Documentation.AI platform offers multiple navigation patterns - choose the one that best fits your content structure and user needs.
 
-## Pages Navigation
+## Prerequisites
 
-Use flat page lists for simple sites with minimal hierarchy.
+- Your content structure planned out
+- List of your documentation pages and their organization
+- Access to your `documentation.json` file  
+- Understanding of your user navigation patterns
+
+## Choose Your Navigation Pattern
+
+Select the structure that matches your content complexity:
+
+- **Pages**: Simple flat list (5-10 pages)
+- **Groups**: Section-based organization (10-50 pages)  
+- **Tabs**: Multiple product areas (50+ pages)
+- **Menus**: Complex hierarchical structure
+- **Versions**: Multiple product versions
+- **Dropdowns**: Very complex sites with multiple sections
+
+## Set Up Basic Navigation
+
+### Step 1: Plan your content structure
+
+Before configuring navigation, organize your content:
+
+1. List all your documentation pages (each should be an MDX file)
+2. Group related topics together  
+3. Determine logical user paths through your content
+4. Choose appropriate icons from the [Lucide React library](https://lucide.dev/icons/)
+
+### Step 2: Configure simple page navigation
+
+For sites with fewer than 10 pages, use a simple pages structure:
 
 ```json
 {
@@ -30,24 +58,37 @@ Use flat page lists for simple sites with minimal hierarchy.
       },
       {
         "title": "API Reference",
-        "path": "api/overview",
+        "path": "api/overview", 
         "icon": "code"
-      },
-      {
-        "title": "External Resource",
-        "href": "https://github.com/company/repo",
-        "icon": "github"
       }
     ]
   }
 }
 ```
 
-**Supported Children:** Individual page items only
+### Step 3: Add page properties
 
-## Groups Navigation
+For each page in your navigation, configure:
 
-Use section-based organization with collapsible groups. Groups can contain nested groups for deeper hierarchical organization.
+<ParamField path="title" param-type="string" required="true" showLocation="false">
+  Display name shown in navigation and browser title.
+</ParamField>
+
+<ParamField path="path" param-type="string" required="false" showLocation="false">
+  Relative path to your MDX file. Specify the path without the `.mdx` extension.
+</ParamField>
+
+<ParamField path="icon" param-type="string" required="false" showLocation="false">
+  Page icon from the Lucide React icon library.
+</ParamField>
+
+<ParamField path="href" param-type="string" required="false" showLocation="false">
+  External URL for links that open in new tabs. Use instead of `path` for external links.
+</ParamField>
+
+### Step 4: Set up groups for larger sites
+
+For organized sections, use groups:
 
 ```json
 {
@@ -60,18 +101,7 @@ Use section-based organization with collapsible groups. Groups can contain neste
         "pages": [
           {
             "title": "Introduction",
-            "path": "getting-started/introduction",
-            "icon": "star"
-          },
-          {
-            "group": "Advanced Setup",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "Configuration",
-                "path": "getting-started/configuration"
-              }
-            ]
+            "path": "getting-started/introduction"
           }
         ]
       }
@@ -80,18 +110,18 @@ Use section-based organization with collapsible groups. Groups can contain neste
 }
 ```
 
-**Supported Children:** Pages arrays (containing individual page items and nested group items)
+## Advanced Navigation Setup
 
-## Tabs Navigation
+### Step 5: Add tabbed navigation
 
-Use tabbed navigation interface with horizontal navigation bar. Creates distinct sections with separate URL paths.
+For multiple product areas or distinct sections:
 
 ```json
 {
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Documentation", 
         "icon": "book",
         "groups": [
           {
@@ -104,212 +134,97 @@ Use tabbed navigation interface with horizontal navigation bar. Creates distinct
             ]
           }
         ]
-      },
-      {
-        "tab": "API Reference",
-        "icon": "code",
-        "pages": [
-          {
-            "title": "Authentication",
-            "path": "api/authentication"
-          }
-        ]
-      },
-      {
-        "tab": "Blog",
-        "icon": "newspaper",
-        "href": "https://blog.example.com"
       }
     ]
   }
 }
 ```
 
-**Supported Children:** Menus, Groups, or Pages
+### Step 6: Configure expandable groups
 
-## Menus Navigation
-
-Use menu-based navigation for sub-sections within other containers.
+Control which sections can collapse:
 
 ```json
 {
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Developer Tools",
-        "icon": "terminal",
-        "menus": [
-          {
-            "menu": "API Reference",
-            "icon": "api",
-            "description": "Complete API documentation",
-            "groups": [
-              {
-                "group": "Core Endpoints",
-                "pages": [
-                  {
-                    "title": "Users API",
-                    "path": "api/users"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+  "group": "Advanced Topics",
+  "expandable": true,
+  "pages": [...]
 }
 ```
 
-**Supported Children:** Groups or Pages
+Set `expandable: false` for sections you want always visible.
 
-## Versions Navigation
+### Step 7: Add external links
 
-Use version-based organization with dropdown selector for different product versions or API versions.
+Include links to external resources:
 
 ```json
 {
-  "navigation": {
-    "versions": [
-      {
-        "version": "v2.0",
-        "icon": "version",
-        "tabs": [
-          {
-            "tab": "API Reference",
-            "groups": [
-              {
-                "group": "Endpoints",
-                "pages": [
-                  {
-                    "title": "Users API",
-                    "path": "v2/api/users"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+  "title": "GitHub Repository",
+  "href": "https://github.com/your-org/repo", 
+  "icon": "github"
 }
 ```
 
-**Supported Children:** Dropdowns, Tabs, Menus, Groups, or Pages
+## Add API Documentation
 
-## Dropdowns Navigation
+### Step 8: Integrate OpenAPI specs
 
-Use dropdown menu navigation for complex sites with expandable sections in the sidebar.
-
-```json
-{
-  "navigation": {
-    "dropdowns": [
-      {
-        "dropdown": "Documentation",
-        "icon": "book",
-        "description": "Complete documentation",
-        "tabs": [
-          {
-            "tab": "Getting Started",
-            "pages": [
-              {
-                "title": "Introduction",
-                "path": "introduction"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-**Supported Children:** Tabs, Menus, Groups, or Pages
-
-## Page Configuration
-
-Configure properties for individual pages within your navigation structure.
-
-<ParamField path="title" param-type="string" required="true" showLocation="false">
-  Display name shown in navigation and browser title.
-</ParamField>
-
-<ParamField path="path" param-type="string" required="false" showLocation="false">
-  Relative path to your MDX file. Specify the path without the `.mdx` extension (e.g., `"getting-started/introduction"`).
-</ParamField>
-
-<ParamField path="href" param-type="string" required="false" showLocation="false">
-  External URL for links that open in new tabs. Use instead of `path` for external links.
-</ParamField>
-
-<ParamField path="icon" param-type="string" required="false" showLocation="false">
-  Page icon from the Lucide React icon library.
-</ParamField>
-
-<ParamField path="method" param-type="string" required="false" showLocation="false">
-  HTTP method for API endpoint pages (e.g., `"GET"`, `"POST"`, `"DELETE"`).
-</ParamField>
-
-<ParamField path="tags" param-type="string" required="false" showLocation="false">
-  Categorization tags for organizing related content.
-</ParamField>
-
-## Group Configuration
-
-Configure collapsible sections that organize related pages together.
-
-<ParamField path="group" param-type="string" required="true" showLocation="false">
-  Display name shown in the sidebar navigation.
-</ParamField>
-
-<ParamField path="icon" param-type="string" required="false" showLocation="false">
-  Visual icon from the Lucide React icon library.
-</ParamField>
-
-<ParamField path="expandable" param-type="boolean" required="false" showLocation="false">
-  Whether users can collapse/expand this group. Default: `true`.
-</ParamField>
-
-<ParamField path="openapi" param-type="string" required="false" showLocation="false">
-  Path to OpenAPI specification file for automatic API documentation generation. Supports JSON and YAML formats.
-</ParamField>
-
-<ParamField path="pages" param-type="array" required="true" showLocation="false">
-  Array of pages and nested groups contained within this group.
-</ParamField>
-
-## Mixed Content in Pages Arrays
-
-Pages arrays can contain both individual page items AND group items mixed together:
+For automatic API documentation generation:
 
 ```json
 {
+  "group": "API Reference",
+  "openapi": "api/openapi.json",
   "pages": [
     {
-      "title": "Components Overview",
-      "path": "components/components-overview",
-      "icon": "eye"
-    },
-    {
-      "group": "Components",
-      "icon": "box", 
-      "expandable": true,
-      "pages": [
-        {
-          "title": "Headings and Text",
-          "path": "components/heading-and-text",
-          "icon": "type"
-        }
-      ]
+      "title": "Authentication",
+      "path": "api/authentication"
     }
   ]
 }
 ```
 
+The `openapi` property accepts:
+- JSON files (`.json`)
+- YAML files (`.yaml`, `.yml`)
+- Relative paths within your project
+
+## Test Your Navigation
+
+### Step 9: Verify navigation structure
+
+1. Save your `documentation.json` file
+2. Deploy or preview your site
+3. Test all navigation links work correctly
+4. Verify page titles display properly
+5. Check that expandable groups function as expected
+6. Test external links open correctly
+
+### Step 10: Optimize user experience
+
+- Keep navigation depth under 3 levels
+- Use clear, descriptive page titles
+- Group related content logically
+- Add icons to improve visual scanning
+- Test navigation on mobile devices
+
+## Troubleshooting Navigation Issues
+
+**Missing pages**: Verify file paths match your MDX files (without `.mdx` extension)
+
+**Broken icons**: Check icon names against the [Lucide React library](https://lucide.dev/icons/)
+
+**Navigation too deep**: Reorganize content into broader categories
+
+**Unclear hierarchy**: Use more descriptive group and page names
+
+## What's Next
+
+- [Customize your site branding](branding)
+- [Set up header and footer elements](header-and-footer) 
+- [Configure theme colors](theme)
+
 <Callout type="info">
-**MDX File Format Required**: All documentation pages must be in MDX format. When referencing files in your configuration, always omit the `.mdx` extension from the path.
+Navigation configuration is completely flexible. You can mix and match structures as your content grows. Start simple and add complexity only as needed for better user experience.
 </Callout>

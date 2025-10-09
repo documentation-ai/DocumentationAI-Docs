@@ -1,37 +1,59 @@
 ---
-title: Branding
-description: Configure your site's logo variants, brand colors, and visual identity for both light and dark themes.
+title: Set Up Site Branding
+description: Add your logos, colors, and visual identity to create a branded documentation site that matches your company's look and feel.
 ---
 
 ```json
 {
-  "configType": "branding",
-  "scope": "site-wide",
+  "taskType": "branding-setup",
+  "goal": "Apply brand identity to documentation site",
   "configFile": "documentation.json",
-  "properties": ["name", "logo-dark", "logo-light", "logo-small-dark", "logo-small-light", "colors"],
-  "formats": ["PNG", "SVG", "WEBP"]
+  "estimatedTime": "10-15 minutes"
 }
 ```
 
-Configure your documentation site's visual branding using logo variants and brand colors in `documentation.json`. All logo fields are optional and fallback to default assets.
+Apply your brand identity to your documentation site using logos, colors, and visual elements. The Documentation.AI platform supports comprehensive branding customization to ensure your documentation aligns with your company's visual identity.
 
-## Site Identity
+## Prerequisites
 
-Configure your site's basic identity and name.
+- Your brand assets (logos in different formats and themes)
+- Brand color palette in hex format
+- Access to your `documentation.json` file
+- Understanding of your brand guidelines and requirements
+
+## Set Up Your Brand Identity
+
+Follow these steps to apply your brand to your documentation site.
+
+### Step 1: Configure site name
+
+Set your site's primary identity in `documentation.json`:
 
 ```json
 {
-  "name": "Documentation.AI"
+  "name": "Your Company Name"
 }
 ```
 
 <ParamField path="name" param-type="string" required="true" showLocation="false">
-  Site name displayed in the browser title, navigation header, and social media previews.
+  Site name displayed in browser title, navigation header, and social media previews. Appears as "Page Title - Site Name" format in browser tabs.
 </ParamField>
 
-## Logo Configuration
+<Callout>
+Individual pages can customize their titles using [page front matter](page-configuration). The browser tab will show "Page Title - Site Name" format, combining both site-wide and page-level configuration.
+</Callout>
 
-Configure logo variants for different themes and sizes. All logo fields are optional and fallback to default assets.
+### Step 2: Prepare your logo assets
+
+Before adding logos, ensure you have:
+- **Main logos**: For header display (120-200px width recommended)
+- **Small logos/favicons**: Square format for browser tabs (16x16, 32x32, 64x64px)
+- **Theme variants**: Light and dark versions of each logo
+- **Supported formats**: PNG, SVG, or WEBP files
+
+### Step 3: Upload and configure logos
+
+Add your logo URLs to `documentation.json`:
 
 ```json
 {
@@ -42,8 +64,6 @@ Configure logo variants for different themes and sizes. All logo fields are opti
 }
 ```
 
-### Main Logos
-
 <ParamField path="logo-dark" param-type="string" required="false" showLocation="false">
   Main logo displayed in dark theme. Supports PNG, SVG, WEBP formats.
 </ParamField>
@@ -51,8 +71,6 @@ Configure logo variants for different themes and sizes. All logo fields are opti
 <ParamField path="logo-light" param-type="string" required="false" showLocation="false">
   Main logo displayed in light theme. Supports PNG, SVG, WEBP formats.
 </ParamField>
-
-### Small Logos and Favicons
 
 <ParamField path="logo-small-dark" param-type="string" required="false" showLocation="false">
   Small logo/favicon for dark theme. Used in browser tabs and mobile view.
@@ -62,9 +80,9 @@ Configure logo variants for different themes and sizes. All logo fields are opti
   Small logo/favicon for light theme. Used in browser tabs and mobile view.
 </ParamField>
 
-## Brand Colors
+### Step 4: Apply brand colors
 
-Customize your site's color scheme with automatic contrast optimization. Brand colors are part of your overall visual identity.
+Set your brand colors for consistent visual identity:
 
 ```json
 {
@@ -83,59 +101,49 @@ Customize your site's color scheme with automatic contrast optimization. Brand c
 }
 ```
 
-### Light Theme Brand Colors
+**Color configuration:**
+- **brand**: Primary brand color for buttons and links
+- **heading**: Color for headings and titles
+- **text**: Color for body text and content
 
-<ParamField path="brand" param-type="string" required="false" showLocation="false">
-  Primary brand color for buttons, links, and accents in light mode. Use hex format (e.g., `#3143e3`).
-</ParamField>
+### Step 5: Test your branding
 
-<ParamField path="heading" param-type="string" required="false" showLocation="false">
-  Heading and title text color for light mode. Default: `#1a1a1a`.
-</ParamField>
+1. Save your `documentation.json` file
+2. Deploy or preview your site
+3. Verify logos display correctly in both themes
+4. Check brand colors appear consistently
+5. Test browser tab favicon and title
+6. Verify mobile responsiveness
 
-<ParamField path="text" param-type="string" required="false" showLocation="false">
-  Body text color for readability in light mode. Default: `#374151`.
-</ParamField>
+## Optimize Your Brand Implementation
 
-### Dark Theme Brand Colors
+### Logo best practices
+- **Use SVG when possible**: Scalable and crisp at all sizes
+- **Provide theme variants**: Ensure visibility in both light and dark modes
+- **Optimize file sizes**: Compress images for fast loading
+- **Test readability**: Ensure logos are clear at small sizes
 
-<ParamField path="brand" param-type="string" required="false" showLocation="false">
-  Primary brand color optimized for dark backgrounds. Use hex format (e.g., `#85a1ff`).
-</ParamField>
+### Color guidelines
+- **Maintain brand consistency**: Use official brand colors
+- **Ensure accessibility**: Meet WCAG contrast requirements
+- **Test both themes**: Verify colors work in light and dark modes
+- **Consider user experience**: Avoid overly bright or dark colors that strain eyes
 
-<ParamField path="heading" param-type="string" required="false" showLocation="false">
-  Heading and title text color for dark mode. Default: `#f2f2f2`.
-</ParamField>
+### Brand compliance tips
+- Follow your company's brand guidelines
+- Maintain consistent color usage across all elements
+- Use approved logo variants and formats
+- Ensure proper spacing and sizing ratios
 
-<ParamField path="text" param-type="string" required="false" showLocation="false">
-  Body text color for dark mode readability. Default: `#c1c1c1`.
-</ParamField>
-
-## Logo Requirements
-
-### Supported Formats
-- **PNG**: Recommended for photographs or complex images
-- **SVG**: Recommended for scalable vector graphics and icons
-- **WEBP**: Modern format with better compression
-
-### Size Recommendations
-- **Main logos**: Optimized for header display (typically 120-200px width)
-- **Small logos**: Square format recommended for favicons (16x16, 32x32, 64x64px)
-
-### Theme Considerations
-- Provide both light and dark variants for optimal visibility
-- Dark logos should work well on light backgrounds
-- Light logos should work well on dark backgrounds
-
-## Complete Branding Example
+## Complete Branding Setup
 
 ```json
 {
   "name": "Documentation.AI",
-  "logo-dark": "https://example.com/logo-dark.svg",
-  "logo-light": "https://example.com/logo-light.svg", 
-  "logo-small-dark": "https://example.com/favicon-dark.svg",
-  "logo-small-light": "https://example.com/favicon-light.svg",
+  "logo-dark": "https://cdn.example.com/logo-dark.svg",
+  "logo-light": "https://cdn.example.com/logo-light.svg", 
+  "logo-small-dark": "https://cdn.example.com/favicon-dark.png",
+  "logo-small-light": "https://cdn.example.com/favicon-light.png",
   "colors": {
     "light": {
       "brand": "#3143e3",
@@ -151,6 +159,22 @@ Customize your site's color scheme with automatic contrast optimization. Brand c
 }
 ```
 
+## Troubleshooting Branding Issues
+
+**Logo not displaying**: Check URL accessibility and file format support
+
+**Colors not applying**: Verify hex format and proper JSON syntax
+
+**Mobile logo issues**: Ensure small logo variants are provided
+
+**Theme switching problems**: Test both light and dark logo variants
+
+## What's Next
+
+- [Configure site theme colors](theme)
+- [Set up header navigation](header-and-footer)
+- [Organize your site navigation](navigation-and-sidebar)
+
 <Callout>
-All branding elements are optional except for the site name. If logos are not provided, the site will use the text-based site name. If colors are not specified, default theme-appropriate colors will be used.
+All branding elements are optional except for the site name. Documentation.AI provides professional defaults for any missing assets. You can start with basic branding and add more elements over time as your brand assets become available.
 </Callout>

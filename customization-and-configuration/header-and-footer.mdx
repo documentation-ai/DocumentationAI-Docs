@@ -1,23 +1,40 @@
 ---
-title: Header and Footer
-description: Configure the top navigation bar with action buttons and links for your documentation site header.
+title: Set Up Header and Footer
+description: Add action buttons and navigation links to your documentation site's header to guide users to key actions and resources.
 ---
 
 ```json
 {
-  "configType": "navbar",
-  "scope": "site-wide", 
+  "taskType": "header-setup",
+  "goal": "Add navigation and action buttons to site header",
   "configFile": "documentation.json",
-  "properties": ["navbar.actions.primary", "navbar.actions.links"],
-  "supports": ["external URLs", "mailto", "tel protocols"]
+  "estimatedTime": "5-10 minutes"
 }
 ```
 
-Configure the top navigation bar with action buttons and links using the `navbar` configuration in `documentation.json`. The navbar appears at the top of every page and provides primary user actions.
+Set up your documentation site's header with action buttons and navigation links. The Documentation.AI platform displays your navbar at the top of every page, providing users with easy access to key actions and external resources.
 
-## Navbar Configuration
+## Prerequisites
 
-Configure the top navigation bar with action buttons and links.
+- Access to your `documentation.json` file
+- List of key actions you want users to take (signup, login, contact, etc.)
+- URLs for external resources or contact methods
+- Understanding of your user journey and primary conversion goals
+
+## Set Up Your Header Navigation
+
+Follow these steps to add action buttons and links to your site header.
+
+### Step 1: Plan your header strategy
+
+Determine what actions you want users to take:
+- Primary action: Main conversion goal (signup, trial, demo)
+- Secondary actions: Supporting links (login, support, external resources)
+- Contact methods: Email, phone, or chat support
+
+### Step 2: Add navbar configuration
+
+Open your `documentation.json` file and add the navbar section:
 
 ```json
 {
@@ -31,10 +48,6 @@ Configure the top navigation bar with action buttons and links.
         {
           "title": "Login", 
           "link": "https://dashboard.example.com/login"
-        },
-        {
-          "title": "Support",
-          "link": "mailto:support@example.com"
         }
       ]
     }
@@ -42,25 +55,13 @@ Configure the top navigation bar with action buttons and links.
 }
 ```
 
-## Primary Action Button
+### Step 3: Configure primary action button
 
-Configure the main call-to-action button that appears prominently in your navbar.
+Set up your main call-to-action button:
 
-<ParamField path="primary" param-type="object" required="false" showLocation="false">
-  Main action button for user engagement (e.g., "Get Started", "Sign Up", "Try Now").
-  
-  <Expandable title="Button Configuration" defaultOpen="false">
-    <ParamField path="title" param-type="string" required="true" showLocation="false">
-      Text displayed on the button.
-    </ParamField>
-
-    <ParamField path="link" param-type="string" required="true" showLocation="false">
-      Destination URL when clicked.
-    </ParamField>
-  </Expandable>
-</ParamField>
-
-### Primary Button Example
+1. Choose action-oriented text ("Get Started", "Try Free", "Sign Up")
+2. Link to your primary conversion URL
+3. Ensure the URL works and loads quickly
 
 ```json
 {
@@ -71,25 +72,23 @@ Configure the main call-to-action button that appears prominently in your navbar
 }
 ```
 
-## Secondary Navigation Links
-
-Add supplementary text links for additional navigation options.
-
-<ParamField path="links" param-type="array" required="false" showLocation="false">
-  Array of secondary navigation links displayed as text in the navbar.
+<ParamField path="primary" param-type="object" required="false" showLocation="false">
+  Main call-to-action button for user engagement.
   
-  <Expandable title="Link Configuration" defaultOpen="false">
+  <Expandable title="Button Configuration" defaultOpen="false">
     <ParamField path="title" param-type="string" required="true" showLocation="false">
-      Display text for the link.
+      Text displayed on the button.
     </ParamField>
-
+    
     <ParamField path="link" param-type="string" required="true" showLocation="false">
-      Target URL. Supports `mailto:` and `tel:` protocols for contact links.
+      Destination URL when clicked.
     </ParamField>
   </Expandable>
 </ParamField>
 
-### Secondary Links Examples
+### Step 4: Add secondary navigation links
+
+Include additional helpful links:
 
 ```json
 {
@@ -101,47 +100,95 @@ Add supplementary text links for additional navigation options.
     {
       "title": "Support",
       "link": "mailto:support@example.com"
+    }
+  ]
+}
+```
+
+<ParamField path="links" param-type="array" required="false" showLocation="false">
+  Array of secondary navigation links displayed as text in the navbar.
+  
+  <Expandable title="Link Configuration" defaultOpen="false">
+    <ParamField path="title" param-type="string" required="true" showLocation="false">
+      Display text for the link.
+    </ParamField>
+    
+    <ParamField path="link" param-type="string" required="true" showLocation="false">
+      Target URL. Supports `mailto:` and `tel:` protocols for contact links.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Step 5: Add contact links
+
+Include direct contact options using special protocols:
+
+```json
+{
+  "links": [
+    {
+      "title": "Email Support",
+      "link": "mailto:support@example.com"
     },
     {
-      "title": "Call Us",
+      "title": "Call Sales",
       "link": "tel:+1-555-0123"
     }
   ]
 }
 ```
 
-## Supported Link Types
+**Supported link types:**
+- **Web URLs**: `https://example.com` 
+- **Email**: `mailto:support@example.com`
+- **Phone**: `tel:+1-555-0123`
 
-### External URLs
-- Standard web links (`https://example.com`)
-- Opens in the same tab by default
+### Step 6: Test your header setup
 
-### Contact Protocols
-- Email links (`mailto:support@example.com`)
-- Phone links (`tel:+1-555-0123`)
-- Automatically opens appropriate applications
+1. Save your `documentation.json` file
+2. Deploy or preview your changes
+3. Verify all links work correctly
+4. Test on different screen sizes (mobile, tablet, desktop)
+5. Check that contact links open appropriate applications
 
-## Complete Navbar Example
+## Optimize Your Header
+
+### Choose effective button text
+- Use action verbs: "Get Started", "Try Free", "Sign Up"
+- Keep text short (1-3 words)
+- Match your brand voice and user expectations
+
+### Prioritize link order
+- Place most important links first
+- Limit secondary links to 3-4 items
+- Consider user workflow and priority
+
+### Test across devices
+- Ensure header works on mobile devices
+- Verify touch targets are appropriately sized
+- Check that text remains readable at all sizes
+
+## Complete Header Example
 
 ```json
 {
   "navbar": {
     "actions": {
       "primary": {
-        "title": "Get Started",
-        "link": "https://dashboard.example.com/signup"
+        "title": "Start Free Trial",
+        "link": "https://app.example.com/signup"
       },
       "links": [
         {
-          "title": "Login",
-          "link": "https://dashboard.example.com/login"
+          "title": "Sign In",
+          "link": "https://app.example.com/login"
         },
         {
-          "title": "Documentation",
-          "link": "https://docs.example.com"
+          "title": "Pricing",
+          "link": "https://example.com/pricing"
         },
         {
-          "title": "Contact Support",
+          "title": "Get Help",
           "link": "mailto:support@example.com"
         }
       ]
@@ -150,6 +197,22 @@ Add supplementary text links for additional navigation options.
 }
 ```
 
+## Troubleshooting Header Issues
+
+**Button not appearing**: Verify JSON syntax and proper nesting under `navbar.actions`
+
+**Links not working**: Check URLs are complete and accessible
+
+**Mobile display issues**: Test responsive behavior on different screen sizes
+
+**Contact links not opening**: Ensure proper `mailto:` or `tel:` protocol format
+
+## What's Next
+
+- [Set up your site branding and logos](branding)
+- [Configure navigation structure](navigation-and-sidebar)
+- [Customize theme colors](theme)
+
 <Callout>
-Both primary actions and secondary links are optional. You can configure just a primary button, just secondary links, or both depending on your site's needs.
+Header configuration is completely optional. You can include just a primary button, just secondary links, or both. The platform automatically handles responsive design and optimal placement across all device sizes.
 </Callout>
