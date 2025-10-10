@@ -336,14 +336,13 @@
             "icon": "package",
             "expandable": true,
             "pages": [
-              
-                  {
-                    "title": "Headings and Text",
-                    "path": "components/heading-and-text",
-                    "icon": "type"
-                  },
-                  {
-                    "title": "Lists and Tables",
+              {
+                "title": "Headings and Text",
+                "path": "components/heading-and-text",
+                "icon": "type"
+              },
+              {
+                "title": "Lists and Tables",
                     "path": "components/lists-and-tables",
                     "icon": "list"
                   },
@@ -388,159 +387,6 @@
                     "icon": "code"
                   }
                 ]
-             
-            
-          },
-          {
-            "group": "Integrations",
-            "icon": "plug",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "GitHub Integration",
-                "path": "integrations-and-workflows/github-integration",
-                "icon": "github"
-              },
-              {
-                "title": "GitLab Integration",
-                "path": "integrations-and-workflows/gitlab-integration",
-                "icon": "gitlab"
-              },
-              {
-                "title": "Slack Notifications",
-                "path": "integrations-and-workflows/slack-notifications",
-                "icon": "slack"
-              },
-              {
-                "title": "Zapier Integration",
-                "path": "integrations-and-workflows/zapier-integration",
-                "icon": "zap"
-              },
-              {
-                "title": "Analytics Integration",
-                "path": "integrations-and-workflows/analytics-integration",
-                "icon": "pie-chart"
-              },
-              {
-                "title": "Issue Trackers",
-                "path": "integrations-and-workflows/issue-trackers",
-                "icon": "bug"
-              },
-              {
-                "title": "Support & Chat",
-                "path": "integrations-and-workflows/support-and-chat",
-                "icon": "headphones"
-              },
-              {
-                "title": "Third-party Tools",
-                "path": "integrations-and-workflows/third-party-tools",
-                "icon": "tool"
-              },
-              {
-                "title": "Webhook Setup",
-                "path": "integrations-and-workflows/webhook-setup",
-                "icon": "webhook"
-              }
-            ]
-          },
-          {
-            "group": "Migrations",
-            "icon": "move",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "Migration Checklist",
-                "path": "migrations/migration-checklist",
-                "icon": "check-square"
-              },
-              {
-                "title": "From Mintlify",
-                "path": "migrations/from-mintlify",
-                "icon": "arrow-right"
-              },
-              {
-                "title": "From Docusaurus",
-                "path": "migrations/from-docusaurus",
-                "icon": "arrow-right"
-              },
-              {
-                "title": "From GitBook",
-                "path": "migrations/from-gitbook",
-                "icon": "arrow-right"
-              },
-              {
-                "title": "From ReadMe",
-                "path": "migrations/from-readme",
-                "icon": "arrow-right"
-              },
-              {
-                "title": "From MkDocs",
-                "path": "migrations/from-mkdocs",
-                "icon": "arrow-right"
-              },
-              {
-                "title": "From Notion",
-                "path": "migrations/from-notion",
-                "icon": "arrow-right"
-              },
-              {
-                "title": "From Markdown Files",
-                "path": "migrations/from-markdown",
-                "icon": "arrow-right"
-              }
-            ]
-          },
-          {
-            "group": "Account & Billing",
-            "icon": "user",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "Account Management",
-                "path": "account-and-billing/account-management",
-                "icon": "user-cog"
-              },
-              {
-                "title": "Organizations & Projects",
-                "path": "account-and-billing/organizations-and-projects",
-                "icon": "building"
-              },
-              {
-                "title": "Team Management & Roles",
-                "path": "account-and-billing/team-management",
-                "icon": "users"
-              },
-              {
-                "title": "SSO/SAML & SCIM Provisioning",
-                "path": "account-and-billing/sso-saml-and-scim",
-                "icon": "key"
-              },
-              {
-                "title": "Billing & Subscriptions",
-                "path": "account-and-billing/billing-and-subscriptions",
-                "icon": "credit-card"
-              },
-              {
-                "title": "Usage Limits",
-                "path": "account-and-billing/usage-limits",
-                "icon": "gauge"
-              },
-              {
-                "title": "Upgrade/Downgrade Plan",
-                "path": "account-and-billing/upgrade-downgrade",
-                "icon": "trending-up"
-              },
-              {
-                "title": "Data Export & Account Deletion",
-                "path": "account-and-billing/data-export-and-account-deletion",
-                "icon": "download"
-              },
-              {
-                "title": "Audit Logs",
-                "path": "account-and-billing/audit-logs",
-                "icon": "scroll"
-              }
-            ]
           }
         ]
       },
