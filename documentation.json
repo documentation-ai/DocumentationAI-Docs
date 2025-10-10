@@ -336,11 +336,7 @@
             "icon": "package",
             "expandable": true,
             "pages": [
-              {
-                "group": "Components",
-                "icon": "box",
-                "expandable": true,
-                "pages": [
+              
                   {
                     "title": "Headings and Text",
                     "path": "components/heading-and-text",
@@ -392,8 +388,7 @@
                     "icon": "code"
                   }
                 ]
-              }
-            ]
+             
             
           },
           {
