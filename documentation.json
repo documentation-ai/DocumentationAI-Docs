@@ -212,46 +212,6 @@
                 "title": "Code Generation",
                 "path": "api-documentation-and-playground/code-generation",
                 "icon": "terminal"
-              },
-              {
-                "title": "Code Samples & SDKs",
-                "path": "api-documentation-and-playground/code-samples-and-sdks",
-                "icon": "package"
-              },
-              {
-                "title": "API Authentication",
-                "path": "api-documentation-and-playground/api-authentication",
-                "icon": "key"
-              },
-              {
-                "title": "API Errors & Error Codes",
-                "path": "api-documentation-and-playground/api-error-codes",
-                "icon": "alert-triangle"
-              },
-              {
-                "title": "Rate Limits & Headers",
-                "path": "api-documentation-and-playground/rate-limits-and-headers",
-                "icon": "gauge"
-              },
-              {
-                "title": "Versioning & Deprecation Policy",
-                "path": "api-documentation-and-playground/versioning-and-deprecation-policy",
-                "icon": "git-branch"
-              },
-              {
-                "title": "API Changelog",
-                "path": "api-documentation-and-playground/api-changelog",
-                "icon": "scroll"
-              },
-              {
-                "title": "GraphQL Support",
-                "path": "api-documentation-and-playground/graphql-support",
-                "icon": "database"
-              },
-              {
-                "title": "Postman Collection / Export",
-                "path": "api-documentation-and-playground/postman-collection-export",
-                "icon": "download"
               }
             ]
           },
