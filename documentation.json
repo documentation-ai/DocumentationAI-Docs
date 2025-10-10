@@ -184,6 +184,63 @@
             ]
           },
           {
+            "group": "Components",
+            "icon": "package",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "Headings and Text",
+                "path": "components/heading-and-text",
+                "icon": "type"
+              },
+              {
+                "title": "Lists and Tables",
+                    "path": "components/lists-and-tables",
+                    "icon": "list"
+                  },
+                  {
+                    "title": "Images",
+                    "path": "components/images",
+                    "icon": "image"
+                  },
+                  {
+                    "title": "Videos and Iframes",
+                    "path": "components/videos-and-iframes",
+                    "icon": "video"
+                  },
+                  {
+                    "title": "Code and Groups",
+                    "path": "components/code-blocks-and-groups",
+                    "icon": "code"
+                  },
+                  {
+                    "title": "Callout",
+                    "path": "components/callout",
+                    "icon": "megaphone"
+                  },
+                  {
+                    "title": "Expandables",
+                    "path": "components/expandables",
+                    "icon": "chevron-down"
+                  },
+                  {
+                    "title": "Param Field",
+                    "path": "components/paramfield",
+                    "icon": "settings"
+                  },
+                  {
+                    "title": "Response Field",
+                    "path": "components/responsefield",
+                    "icon": "arrow-left"
+                  },
+                  {
+                    "title": "API Components",
+                    "path": "components/api-components",
+                    "icon": "code"
+                  }
+                ]
+          },
+          {
             "group": "API Documentation",
             "icon": "server",
             "expandable": true,
@@ -330,63 +387,6 @@
                 "icon": "activity"
               }
             ]
-          },
-          {
-            "group": "Components",
-            "icon": "package",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "Headings and Text",
-                "path": "components/heading-and-text",
-                "icon": "type"
-              },
-              {
-                "title": "Lists and Tables",
-                    "path": "components/lists-and-tables",
-                    "icon": "list"
-                  },
-                  {
-                    "title": "Images",
-                    "path": "components/images",
-                    "icon": "image"
-                  },
-                  {
-                    "title": "Videos and Iframes",
-                    "path": "components/videos-and-iframes",
-                    "icon": "video"
-                  },
-                  {
-                    "title": "Code and Groups",
-                    "path": "components/code-blocks-and-groups",
-                    "icon": "code"
-                  },
-                  {
-                    "title": "Callout",
-                    "path": "components/callout",
-                    "icon": "megaphone"
-                  },
-                  {
-                    "title": "Expandables",
-                    "path": "components/expandables",
-                    "icon": "chevron-down"
-                  },
-                  {
-                    "title": "Param Field",
-                    "path": "components/paramfield",
-                    "icon": "settings"
-                  },
-                  {
-                    "title": "Response Field",
-                    "path": "components/responsefield",
-                    "icon": "arrow-left"
-                  },
-                  {
-                    "title": "API Components",
-                    "path": "components/api-components",
-                    "icon": "code"
-                  }
-                ]
           }
         ]
       },
@@ -401,7 +401,7 @@
             "pages": [
               {
                 "title": "Changelog",
-                "path": "changelog/changelog",
+                "path": "changelog",
                 "icon": "scroll"
               }
             ]
