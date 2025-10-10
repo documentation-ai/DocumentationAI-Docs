@@ -222,7 +222,7 @@
             "pages": [
               {
                 "title": "Set Up the AI Assistant",
-                "path": "ai/ai-assistant-set-up",
+                "path": "ai/ai-assistant",
                 "icon": "settings"
               },
               {
@@ -239,26 +239,6 @@
                 "title": "llms.txt",
                 "path": "ai/llms-txt",
                 "icon": "file-text"
-              },
-              {
-                "title": "Helpful Prompts",
-                "path": "ai/helpful-prompts",
-                "icon": "message-square"
-              },
-              {
-                "title": "Use Cursor with Documentation.AI",
-                "path": "ai/using-cursor",
-                "icon": "cursor"
-              },
-              {
-                "title": "AI Usage, Costs & Limits",
-                "path": "ai/ai-usage-costs",
-                "icon": "credit-card"
-              },
-              {
-                "title": "AI Privacy & Data Handling",
-                "path": "ai/ai-privacy-and-data",
-                "icon": "shield"
               }
             ]
           },
