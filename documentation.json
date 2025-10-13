@@ -214,6 +214,11 @@
                     "icon": "code"
                   },
                   {
+                    "title": "Mermaid diagrams",
+                    "path": "components/mermaid",
+                    "icon": "git-branch"
+                  },
+                  {
                     "title": "Callout",
                     "path": "components/callout",
                     "icon": "megaphone"
