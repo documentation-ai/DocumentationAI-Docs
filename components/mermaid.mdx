@@ -1,474 +1,98 @@
 ---
 title: Mermaid diagrams
-description: Create interactive diagrams and flowcharts using Mermaid syntax with automatic theme support, zoom controls, and fullscreen viewing.
+description: Create interactive diagrams using Mermaid syntax with automatic theme support and zoom controls.
 type: reference
 ---
 
 ## Overview
 
-Create interactive diagrams using Mermaid syntax. Diagrams automatically adapt to your documentation theme and include zoom controls, fullscreen viewing, and copy functionality.
+Create interactive diagrams using [Mermaid](https://mermaid.js.org/) syntax. Diagrams automatically adapt to your documentation theme and include zoom controls and fullscreen viewing.
 
-Common use cases:
-- Flowcharts and process diagrams
-- Sequence diagrams for API interactions
-- Class and entity relationship diagrams
-- State machines and user journeys
-- Architecture and system diagrams
-
-```mermaid
-flowchart TD
-    A[Documentation.AI] --> B{Choose Diagram}
-    B --> C[Flowchart]
-    B --> D[Sequence]
-    B --> E[Class Diagram]
-    C --> F[Interactive View]
-    D --> F
-    E --> F
-```
+For complete syntax reference and all diagram types, visit the [official Mermaid documentation](https://mermaid.js.org/intro/getting-started.html).
 
 ## Basic syntax
 
-Use fenced code blocks with the `mermaid` language identifier to create diagrams:
+Use fenced code blocks with the `mermaid` language identifier:
 
 ````markdown
 ```mermaid
 flowchart TD
-    A[Start] --> B[Process]
-    B --> C[End]
+    A[Start] --> B[Process] --> C[End]
 ```
 ````
 
-## Flowcharts
+## Examples
 
-Create process flows and decision trees with various node shapes and connections:
+### Flowchart
 
 ```mermaid
 flowchart TD
-    A[User Request] --> B{Authentication}
-    B -->|Valid| C[Process Request]
-    B -->|Invalid| D[Return Error]
-    C --> E[Query Database]
-    E --> F[Return Response]
-    D --> G[End]
-    F --> G
+    A[User Request] --> B{Valid?}
+    B -->|Yes| C[Process]
+    B -->|No| D[Error]
+    C --> E[Success]
 ```
 
 ````markdown
 ```mermaid
 flowchart TD
-    A[User Request] --> B{Authentication}
-    B -->|Valid| C[Process Request]
-    B -->|Invalid| D[Return Error]
-    C --> E[Query Database]
-    E --> F[Return Response]
-    D --> G[End]
-    F --> G
+    A[User Request] --> B{Valid?}
+    B -->|Yes| C[Process]
+    B -->|No| D[Error]
+    C --> E[Success]
 ```
 ````
 
-### Node shapes
-
-```mermaid
-flowchart LR
-    A[Rectangle] --> B(Rounded)
-    B --> C{Diamond}
-    C --> D((Circle))
-    D --> E>Flag]
-    E --> F[/Parallelogram/]
-    F --> G[\Trapezoid\]
-```
-
-````markdown
-```mermaid
-flowchart LR
-    A[Rectangle] --> B(Rounded)
-    B --> C{Diamond}
-    C --> D((Circle))
-    D --> E>Flag]
-    E --> F[/Parallelogram/]
-    F --> G[\Trapezoid\]
-```
-````
-
-## Sequence diagrams
-
-Document API interactions, user flows, and system communications:
+### Sequence Diagram
 
 ```mermaid
 sequenceDiagram
     participant User
-    participant App
     participant API
     participant Database
     
-    User->>App: Login Request
-    App->>API: POST /auth/login
-    API->>Database: Validate Credentials
+    User->>API: Login Request
+    API->>Database: Validate User
     Database-->>API: User Data
-    API-->>App: JWT Token
-    App-->>User: Login Success
+    API-->>User: Success Response
 ```
 
 ````markdown
 ```mermaid
 sequenceDiagram
     participant User
-    participant App
     participant API
     participant Database
     
-    User->>App: Login Request
-    App->>API: POST /auth/login
-    API->>Database: Validate Credentials
+    User->>API: Login Request
+    API->>Database: Validate User
     Database-->>API: User Data
-    API-->>App: JWT Token
-    App-->>User: Login Success
+    API-->>User: Success Response
 ```
 ````
 
-### Advanced sequence features
-
-```mermaid
-sequenceDiagram
-    participant A as Client
-    participant B as Load Balancer
-    participant C as Server
-    
-    rect rgb(191, 223, 255)
-    note right of A: User initiates request
-    A->>+B: HTTP Request
-    B->>+C: Forward Request
-    C-->>-B: Response
-    B-->>-A: HTTP Response
-    end
-    
-    alt Success
-        A->>A: Process Response
-    else Error
-        A->>A: Handle Error
-    end
-```
-
-````markdown
-```mermaid
-sequenceDiagram
-    participant A as Client
-    participant B as Load Balancer
-    participant C as Server
-    
-    rect rgb(191, 223, 255)
-    note right of A: User initiates request
-    A->>+B: HTTP Request
-    B->>+C: Forward Request
-    C-->>-B: Response
-    B-->>-A: HTTP Response
-    end
-    
-    alt Success
-        A->>A: Process Response
-    else Error
-        A->>A: Handle Error
-    end
-```
-````
-
-## Class diagrams
-
-Model data structures, relationships, and system architecture:
-
-```mermaid
-classDiagram
-    class User {
-        +String name
-        +String email
-        +String id
-        +login()
-        +logout()
-    }
-    
-    class Documentation {
-        +String title
-        +String content
-        +User author
-        +publish()
-        +update()
-    }
-    
-    class Project {
-        +String name
-        +User[] members
-        +Documentation[] docs
-        +addMember(User)
-        +createDoc()
-    }
-    
-    User ||--o{ Documentation : creates
-    Project ||--o{ Documentation : contains
-    Project ||--o{ User : has
-```
-
-````markdown
-```mermaid
-classDiagram
-    class User {
-        +String name
-        +String email
-        +String id
-        +login()
-        +logout()
-    }
-    
-    class Documentation {
-        +String title
-        +String content
-        +User author
-        +publish()
-        +update()
-    }
-    
-    User ||--o{ Documentation : creates
-```
-````
-
-## State diagrams
-
-Illustrate system states and transitions:
+### State Diagram
 
 ```mermaid
 stateDiagram-v2
     [*] --> Draft
-    
-    Draft --> Review : submit
-    Draft --> Archived : delete
-    
-    Review --> Approved : approve
-    Review --> Draft : request_changes
-    Review --> Rejected : reject
-    
-    Approved --> Published : publish
-    Approved --> Draft : edit
-    
+    Draft --> Published : publish
     Published --> Archived : archive
     Archived --> [*]
-    Rejected --> [*]
 ```
 
 ````markdown
 ```mermaid
 stateDiagram-v2
     [*] --> Draft
-    
-    Draft --> Review : submit
-    Review --> Approved : approve
-    Review --> Draft : request_changes
-    
-    Approved --> Published : publish
+    Draft --> Published : publish
     Published --> Archived : archive
     Archived --> [*]
 ```
 ````
 
-## Entity relationship diagrams
+## Features
 
-Design database schemas and data relationships:
-
-```mermaid
-erDiagram
-    USER ||--o{ DOCUMENTATION : creates
-    USER {
-        string id PK
-        string name
-        string email
-        date created_at
-    }
-    
-    DOCUMENTATION ||--o{ PAGE : contains
-    DOCUMENTATION {
-        string id PK
-        string title
-        string user_id FK
-        date created_at
-        date updated_at
-    }
-    
-    PAGE {
-        string id PK
-        string title
-        text content
-        string doc_id FK
-        int order_index
-    }
-```
-
-````markdown
-```mermaid
-erDiagram
-    USER ||--o{ DOCUMENTATION : creates
-    USER {
-        string id PK
-        string name
-        string email
-        date created_at
-    }
-    
-    DOCUMENTATION ||--o{ PAGE : contains
-```
-````
-
-## Gantt charts
-
-Project timelines and task scheduling:
-
-```mermaid
-gantt
-    title Documentation Project Timeline
-    dateFormat YYYY-MM-DD
-    section Planning
-    Requirements    :done, req, 2024-01-01, 2024-01-15
-    Design          :done, des, after req, 20d
-    section Development
-    Setup           :active, dev1, 2024-02-01, 10d
-    Implementation  :dev2, after dev1, 30d
-    Testing         :test, after dev2, 15d
-    section Deployment
-    Staging         :deploy1, after test, 5d
-    Production      :deploy2, after deploy1, 3d
-```
-
-````markdown
-```mermaid
-gantt
-    title Documentation Project Timeline
-    dateFormat YYYY-MM-DD
-    section Planning
-    Requirements    :done, req, 2024-01-01, 2024-01-15
-    Design          :done, des, after req, 20d
-    section Development
-    Setup           :active, dev1, 2024-02-01, 10d
-```
-````
-
-## Git graphs
-
-Visualize git workflows and branching strategies:
-
-```mermaid
-gitgraph
-    commit id: "Initial commit"
-    branch develop
-    checkout develop
-    commit id: "Add user auth"
-    commit id: "Add documentation"
-    checkout main
-    branch feature/api
-    checkout feature/api
-    commit id: "API endpoints"
-    commit id: "Add validation"
-    checkout develop
-    merge feature/api
-    commit id: "Integration tests"
-    checkout main
-    merge develop
-    commit id: "Release v1.0"
-```
-
-````markdown
-```mermaid
-gitgraph
-    commit id: "Initial commit"
-    branch develop
-    checkout develop
-    commit id: "Add user auth"
-    checkout main
-    merge develop
-    commit id: "Release v1.0"
-```
-````
-
-## User journey
-
-Map user interactions and experiences:
-
-```mermaid
-journey
-    title User Documentation Journey
-    section Discovery
-      Search for docs     : 3: User
-      Find relevant page  : 4: User
-    section Reading
-      Read content        : 5: User
-      Follow links        : 4: User
-      Copy code examples  : 5: User
-    section Implementation
-      Test examples       : 3: User, Developer
-      Implement solution  : 5: Developer
-      Verify results      : 4: Developer
-    section Feedback
-      Rate helpfulness    : 4: User
-      Report issues       : 3: User
-```
-
-````markdown
-```mermaid
-journey
-    title User Documentation Journey
-    section Discovery
-      Search for docs     : 3: User
-      Find relevant page  : 4: User
-    section Reading
-      Read content        : 5: User
-```
-````
-
-## Interactive features
-
-### Zoom controls
-All diagrams include zoom controls in the top-right corner:
-- **Zoom In** (+) - Increase diagram size up to 300%
-- **Zoom Out** (-) - Decrease diagram size down to 50%
-- **Fullscreen** (⛶) - View diagram in fullscreen mode
-
-### Theme adaptation
-Diagrams automatically adapt to your documentation theme:
-- **Light mode** - Clean, professional appearance
-- **Dark mode** - High contrast with appropriate colors
-
-### Copy functionality
-Click any diagram to copy the Mermaid source code to your clipboard for reuse.
-
-## Supported diagram types
-
-**Core diagrams:**  
-`flowchart`, `sequenceDiagram`, `classDiagram`, `stateDiagram`, `erDiagram`
-
-**Planning & tracking:**  
-`gantt`, `journey`, `timeline`, `gitgraph`
-
-**Data visualization:**  
-`pie`, `quadrantChart`, `xyChart`, `sankey`
-
-**Specialized:**  
-`mindmap`, `requirement`, `c4Context`, `architecture`, `block`
-
-Visit the [Mermaid documentation](https://mermaid.js.org/intro/getting-started.html) for complete syntax reference and advanced features.
-
-## Attributes
-
-<ParamField path="chart" param-type="string" required="true" showLocation="false">
-  Mermaid diagram syntax. Automatically extracted from code blocks with `language-mermaid` class.
-</ParamField>
-
-<ParamField path="id" param-type="string" required="false" showLocation="false">
-  Unique identifier for the diagram. Auto-generated if not provided.
-</ParamField>
-
-## Common patterns
-
-- **API documentation** - Sequence diagrams for request/response flows
-- **Architecture docs** - Flowcharts for system overviews and data flow
-- **Database design** - ER diagrams for schema documentation
-- **Process guides** - Flowcharts with decision points and user paths
-- **Project planning** - Gantt charts for timeline visualization
-- **State management** - State diagrams for application logic
-- **Git workflows** - Git graphs for branching strategies
-- **User experience** - Journey diagrams for user interaction mapping
+- **Zoom controls** - Zoom in/out and fullscreen viewing
+- **Theme adaptation** - Automatically matches light/dark mode
+- **Interactive** - Click to copy source code
