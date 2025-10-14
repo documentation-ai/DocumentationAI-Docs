@@ -170,49 +170,35 @@ jsonLd:
 
 See [page configuration reference](../../customization-and-configuration/page-configuration) for all options.
 
-## Content Management Strategies
+<Callout type="info">
+**AI Assistant Users**: If you're using Cursor, Windsurf, or similar AI coding agents, use our [configuration prompts](../prompts#configuration-prompt) to help generate proper `documentation.json` navigation structures and page configurations.
+</Callout>
 
-### Cross-referencing Pages
+## Content Management
 
-Use relative links between documentation pages:
+### Internal Links
+
+Link between pages using relative paths:
 
 ```markdown
-For setup instructions, see [Getting Started](../getting-started/introduction).
+See the [API authentication guide](../api/authentication) for setup.
 
-After authentication, you can [manage users](users) or [configure webhooks](../guides/webhook-setup).
+For troubleshooting, check our [support guide](../support/faqs).
 ```
 
-### Link Management
+### Cross-references
 
-**Internal links** - Use relative paths:
-```markdown
-[API Reference](../api/authentication)
-[Troubleshooting](troubleshooting)
-```
+**Same directory**: `[Quickstart](quickstart)`  
+**Parent directory**: `[Introduction](../getting-started/introduction)`  
+**Sibling directory**: `[API Auth](../api/authentication)`  
 
-**External links** - Use full URLs:
+### External Resources
+
+Link to external sites with full URLs:
+
 ```markdown
 [GitHub Repository](https://github.com/company/repo)
-[Support Portal](https://support.example.com)
-```
-
-### Shared Resources
-
-Organize reusable assets:
-
-```
-assets/
-├── images/
-│   ├── common/           # Shared across sections
-│   │   ├── logo.svg
-│   │   └── banner.jpg
-│   ├── api/              # API-specific images
-│   │   └── auth-flow.png
-│   └── guides/           # Guide-specific images
-│       └── webhook-setup.gif
-└── downloads/
-    ├── sdk.zip
-    └── postman-collection.json
+[Status Page](https://status.example.com)
 ```
 
 ## Editor Organization
