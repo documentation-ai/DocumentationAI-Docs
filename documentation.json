@@ -251,8 +251,8 @@
             "expandable": true,
             "pages": [
               {
-                "title": "OpenAPI / JSON Schema Import",
-                "path": "api-documentation-and-playground/openapi-schema-import",
+                "title": "OpenAPI Spec Import",
+                "path": "api-documentation-and-playground/openapi-import",
                 "icon": "file-code"
               },
               {
