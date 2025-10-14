@@ -1,8 +1,734 @@
 ---
 title: Code Generation
-description: "Document and explore your API: Code Generation in the API docs and playground."
+description: Automatically generate client code examples in multiple programming languages from OpenAPI specifications with customizable templates.
 ---
 
-# Code Generation
+```json
+{
+  "summary": "Generate client code examples automatically from OpenAPI specifications",
+  "primaryAction": "generate_code_samples",
+  "supportedLanguages": ["javascript", "python", "curl", "go", "php", "ruby", "java", "csharp"],
+  "features": ["automatic_generation", "custom_templates", "authentication_handling", "error_handling"],
+  "configLocation": "openapi_specification"
+}
+```
 
-[How-to Guide] This guide shows how to use Code Generation to build clear, testable API documentation and a great developer experience.
+## Overview
+
+Automatically generate client code examples in multiple programming languages from your OpenAPI specifications. Documentation.AI creates ready-to-use code snippets that developers can copy and integrate directly into their applications.
+
+Use code generation when you want to:
+- Provide immediate code examples for every endpoint
+- Support multiple programming languages consistently
+- Reduce manual maintenance of code samples
+- Ensure code examples match your API specification
+- Accelerate developer adoption with working code
+
+## Automatic Generation
+
+### From OpenAPI Specifications
+
+Code generation happens automatically when you include OpenAPI specifications in your documentation. Each endpoint generates code examples for supported languages.
+
+````yaml
+# Your OpenAPI specification automatically generates code
+paths:
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+````
+
+Generated code appears in `Request` components with tabbed language options:
+
+<Request tabs="JavaScript,Python,cURL,Go">
+```javascript
+const response = await fetch('/api/users/123', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer YOUR_TOKEN',
+    'Content-Type': 'application/json'
+  }
+});
+
+const user = await response.json();
+console.log(user);
+```
+
+```python
+import requests
+
+response = requests.get(
+    '/api/users/123',
+    headers={
+        'Authorization': 'Bearer YOUR_TOKEN',
+        'Content-Type': 'application/json'
+    }
+)
+
+user = response.json()
+print(user)
+```
+
+```bash
+curl -X GET '/api/users/123' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json'
+```
+
+```go
+package main
+
+import (
+    "fmt"
+    "net/http"
+    "io/ioutil"
+)
+
+func main() {
+    req, _ := http.NewRequest("GET", "/api/users/123", nil)
+    req.Header.Add("Authorization", "Bearer YOUR_TOKEN")
+    req.Header.Add("Content-Type", "application/json")
+    
+    client := &http.Client{}
+    resp, _ := client.Do(req)
+    defer resp.Body.Close()
+    
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}
+```
+</Request>
+
+## Supported Languages
+
+### JavaScript/TypeScript
+
+Generate modern JavaScript code with async/await patterns:
+
+````javascript
+// GET request with query parameters
+const response = await fetch('/api/users?page=1&limit=20', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer YOUR_TOKEN'
+  }
+});
+
+if (!response.ok) {
+  throw new Error(`HTTP error! status: ${response.status}`);
+}
+
+const users = await response.json();
+````
+
+Features include:
+- **Modern ES6+ syntax** with async/await
+- **Error handling** with status checking
+- **TypeScript interfaces** for response types
+- **Automatic JSON parsing** and serialization
+
+### Python
+
+Generate Pythonic code using the `requests` library:
+
+````python
+import requests
+import json
+
+# POST request with JSON body
+url = "/api/users"
+payload = {
+    "name": "John Doe",
+    "email": "john@example.com"
+}
+
+response = requests.post(
+    url,
+    json=payload,
+    headers={
+        "Authorization": "Bearer YOUR_TOKEN",
+        "Content-Type": "application/json"
+    }
+)
+
+response.raise_for_status()  # Raises an HTTPError for bad responses
+user = response.json()
+print(f"Created user: {user['id']}")
+````
+
+Features include:
+- **Requests library** for HTTP handling
+- **JSON serialization** for request bodies
+- **Error handling** with `raise_for_status()`
+- **Pythonic naming** conventions
+
+### cURL
+
+Generate command-line cURL examples for testing:
+
+````bash
+# Complex POST request with file upload
+curl -X POST '/api/users/123/avatar' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -F 'avatar=@profile-image.jpg' \
+  -F 'metadata={"alt_text":"User profile photo"};type=application/json'
+````
+
+Features include:
+- **Proper escaping** for shell safety
+- **File upload** syntax with `-F` flag
+- **JSON data** handling with `-d` flag
+- **Header management** with `-H` flags
+
+### Go
+
+Generate idiomatic Go code with proper error handling:
+
+````go
+package main
+
+import (
+    "bytes"
+    "encoding/json"
+    "fmt"
+    "net/http"
+)
+
+type User struct {
+    ID    string `json:"id"`
+    Name  string `json:"name"`
+    Email string `json:"email"`
+}
+
+func createUser() (*User, error) {
+    user := User{
+        Name:  "John Doe",
+        Email: "john@example.com",
+    }
+    
+    jsonData, err := json.Marshal(user)
+    if err != nil {
+        return nil, err
+    }
+    
+    req, err := http.NewRequest("POST", "/api/users", bytes.NewBuffer(jsonData))
+    if err != nil {
+        return nil, err
+    }
+    
+    req.Header.Set("Authorization", "Bearer YOUR_TOKEN")
+    req.Header.Set("Content-Type", "application/json")
+    
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        return nil, err
+    }
+    defer resp.Body.Close()
+    
+    var createdUser User
+    if err := json.NewDecoder(resp.Body).Decode(&createdUser); err != nil {
+        return nil, err
+    }
+    
+    return &createdUser, nil
+}
+````
+
+Features include:
+- **Struct definitions** from OpenAPI schemas
+- **Proper error handling** throughout
+- **JSON marshaling/unmarshaling** with struct tags
+- **Resource cleanup** with defer statements
+
+## Authentication Handling
+
+### API Key Authentication
+
+Code generation automatically includes API key handling based on your OpenAPI security schemes:
+
+````yaml
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+````
+
+Generated code includes proper authentication:
+
+<CodeGroup tabs="JavaScript,Python,cURL">
+
+```javascript
+const response = await fetch('/api/users', {
+  headers: {
+    'X-API-Key': 'YOUR_API_KEY'
+  }
+});
+```
+
+```python
+response = requests.get(
+    '/api/users',
+    headers={'X-API-Key': 'YOUR_API_KEY'}
+)
+```
+
+```bash
+curl -H 'X-API-Key: YOUR_API_KEY' '/api/users'
+```
+
+</CodeGroup>
+
+### Bearer Token Authentication
+
+OAuth and JWT authentication generates appropriate Bearer token usage:
+
+````yaml
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+````
+
+Generated examples include proper token handling:
+
+<CodeGroup tabs="JavaScript,Python,Go">
+
+```javascript
+const response = await fetch('/api/users', {
+  headers: {
+    'Authorization': 'Bearer YOUR_JWT_TOKEN'
+  }
+});
+```
+
+```python
+response = requests.get(
+    '/api/users',
+    headers={'Authorization': 'Bearer YOUR_JWT_TOKEN'}
+)
+```
+
+```go
+req.Header.Set("Authorization", "Bearer YOUR_JWT_TOKEN")
+```
+
+</CodeGroup>
+
+### OAuth 2.0 Flow
+
+For OAuth 2.0 APIs, generate complete authentication flow examples:
+
+<CodeGroup tabs="JavaScript,Python">
+
+```javascript
+// OAuth 2.0 client credentials flow
+async function getAccessToken() {
+  const response = await fetch('/oauth/token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic ' + btoa('CLIENT_ID:CLIENT_SECRET')
+    },
+    body: 'grant_type=client_credentials&scope=read write'
+  });
+  
+  const tokenData = await response.json();
+  return tokenData.access_token;
+}
+
+// Use token for API requests
+const token = await getAccessToken();
+const response = await fetch('/api/users', {
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+});
+```
+
+```python
+import requests
+import base64
+
+def get_access_token():
+    credentials = base64.b64encode(f"CLIENT_ID:CLIENT_SECRET".encode()).decode()
+    
+    response = requests.post(
+        '/oauth/token',
+        headers={
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': f'Basic {credentials}'
+        },
+        data='grant_type=client_credentials&scope=read write'
+    )
+    
+    token_data = response.json()
+    return token_data['access_token']
+
+# Use token for API requests  
+token = get_access_token()
+response = requests.get(
+    '/api/users',
+    headers={'Authorization': f'Bearer {token}'}
+)
+```
+
+</CodeGroup>
+
+## Request Body Handling
+
+### JSON Request Bodies
+
+Code generation handles complex JSON request bodies automatically:
+
+````yaml
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              profile:
+                type: object
+                properties:
+                  bio:
+                    type: string
+                  avatar_url:
+                    type: string
+````
+
+Generated code includes proper JSON handling:
+
+<CodeGroup tabs="JavaScript,Python,PHP">
+
+```javascript
+const userData = {
+  user: {
+    name: "John Doe",
+    email: "john@example.com",
+    profile: {
+      bio: "Software developer",
+      avatar_url: "https://example.com/avatar.jpg"
+    }
+  }
+};
+
+const response = await fetch('/api/users', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer YOUR_TOKEN'
+  },
+  body: JSON.stringify(userData)
+});
+```
+
+```python
+import json
+
+user_data = {
+    "user": {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "profile": {
+            "bio": "Software developer",
+            "avatar_url": "https://example.com/avatar.jpg"
+        }
+    }
+}
+
+response = requests.post(
+    '/api/users',
+    json=user_data,
+    headers={'Authorization': 'Bearer YOUR_TOKEN'}
+)
+```
+
+```php
+<?php
+$userData = [
+    'user' => [
+        'name' => 'John Doe',
+        'email' => 'john@example.com',
+        'profile' => [
+            'bio' => 'Software developer',
+            'avatar_url' => 'https://example.com/avatar.jpg'
+        ]
+    ]
+];
+
+$response = wp_remote_post('/api/users', [
+    'headers' => [
+        'Content-Type' => 'application/json',
+        'Authorization' => 'Bearer YOUR_TOKEN'
+    ],
+    'body' => json_encode($userData)
+]);
+?>
+```
+
+</CodeGroup>
+
+### File Upload Handling
+
+Generate code for multipart file uploads:
+
+<CodeGroup tabs="JavaScript,Python,cURL">
+
+```javascript
+const formData = new FormData();
+formData.append('file', fileInput.files[0]);
+formData.append('metadata', JSON.stringify({
+  alt_text: "User avatar",
+  category: "profile"
+}));
+
+const response = await fetch('/api/users/123/avatar', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_TOKEN'
+  },
+  body: formData
+});
+```
+
+```python
+import requests
+
+files = {'file': open('avatar.jpg', 'rb')}
+data = {
+    'metadata': json.dumps({
+        'alt_text': 'User avatar',
+        'category': 'profile'
+    })
+}
+
+response = requests.post(
+    '/api/users/123/avatar',
+    files=files,
+    data=data,
+    headers={'Authorization': 'Bearer YOUR_TOKEN'}
+)
+```
+
+```bash
+curl -X POST '/api/users/123/avatar' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -F 'file=@avatar.jpg' \
+  -F 'metadata={"alt_text":"User avatar","category":"profile"};type=application/json'
+```
+
+</CodeGroup>
+
+## Error Handling
+
+### HTTP Status Codes
+
+Generated code includes proper error handling for different HTTP status codes:
+
+<CodeGroup tabs="JavaScript,Python,Java">
+
+```javascript
+try {
+  const response = await fetch('/api/users/123', {
+    headers: { 'Authorization': 'Bearer YOUR_TOKEN' }
+  });
+  
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(`HTTP ${response.status}: ${errorData.message}`);
+  }
+  
+  const user = await response.json();
+  return user;
+} catch (error) {
+  console.error('Failed to fetch user:', error.message);
+  throw error;
+}
+```
+
+```python
+import requests
+from requests.exceptions import HTTPError, RequestException
+
+try:
+    response = requests.get(
+        '/api/users/123',
+        headers={'Authorization': 'Bearer YOUR_TOKEN'}
+    )
+    
+    response.raise_for_status()  # Raises HTTPError for bad responses
+    user = response.json()
+    return user
+    
+except HTTPError as e:
+    print(f"HTTP error occurred: {e}")
+    raise
+except RequestException as e:
+    print(f"Request failed: {e}")
+    raise
+```
+
+```java
+import java.net.http.*;
+import java.net.URI;
+import java.io.IOException;
+
+public class ApiClient {
+    public User getUser(String id) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("/api/users/" + id))
+            .header("Authorization", "Bearer YOUR_TOKEN")
+            .build();
+            
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+            
+        if (response.statusCode() != 200) {
+            throw new RuntimeException("HTTP " + response.statusCode() + 
+                ": " + response.body());
+        }
+        
+        // Parse JSON response
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(response.body(), User.class);
+    }
+}
+```
+
+</CodeGroup>
+
+## Customization Options
+
+### Custom Server URLs
+
+Code generation uses server URLs from your OpenAPI specification:
+
+````yaml
+servers:
+  - url: https://api.example.com/v2
+    description: Production server
+  - url: https://staging-api.example.com/v2
+    description: Staging server
+````
+
+Generated code includes configurable base URLs:
+
+<CodeGroup tabs="JavaScript,Python">
+
+```javascript
+const API_BASE_URL = 'https://api.example.com/v2';
+
+const response = await fetch(`${API_BASE_URL}/users`, {
+  headers: { 'Authorization': 'Bearer YOUR_TOKEN' }
+});
+```
+
+```python
+API_BASE_URL = 'https://api.example.com/v2'
+
+response = requests.get(
+    f'{API_BASE_URL}/users',
+    headers={'Authorization': 'Bearer YOUR_TOKEN'}
+)
+```
+
+</CodeGroup>
+
+### Environment Variables
+
+Generate code with environment variable placeholders:
+
+<CodeGroup tabs="JavaScript,Python,Go">
+
+```javascript
+const API_KEY = process.env.API_KEY;
+const BASE_URL = process.env.API_BASE_URL || 'https://api.example.com';
+
+const response = await fetch(`${BASE_URL}/users`, {
+  headers: { 'X-API-Key': API_KEY }
+});
+```
+
+```python
+import os
+
+API_KEY = os.getenv('API_KEY')
+BASE_URL = os.getenv('API_BASE_URL', 'https://api.example.com')
+
+response = requests.get(
+    f'{BASE_URL}/users',
+    headers={'X-API-Key': API_KEY}
+)
+```
+
+```go
+import "os"
+
+apiKey := os.Getenv("API_KEY")
+baseURL := os.Getenv("API_BASE_URL")
+if baseURL == "" {
+    baseURL = "https://api.example.com"
+}
+
+req, _ := http.NewRequest("GET", baseURL+"/users", nil)
+req.Header.Set("X-API-Key", apiKey)
+```
+
+</CodeGroup>
+
+## Best Practices
+
+### Code Quality Standards
+
+Generated code follows language-specific best practices:
+
+- **Consistent formatting** and indentation
+- **Proper variable naming** conventions
+- **Error handling** patterns appropriate for each language
+- **Resource cleanup** (closing files, connections)
+- **Modern language features** (async/await, type hints)
+
+### Documentation Integration
+
+Code examples are automatically integrated with your documentation:
+
+- **Parameter documentation** matches `ParamField` components
+- **Response examples** align with `Response` components  
+- **Authentication examples** reflect security scheme documentation
+- **Error scenarios** include expected error responses
+
+### Maintenance Benefits
+
+Automatic code generation provides ongoing benefits:
+
+- **API changes** automatically update all code examples
+- **Consistency** across all endpoints and languages
+- **Reduced maintenance** burden for documentation teams
+- **Accuracy** guaranteed through OpenAPI specification sync

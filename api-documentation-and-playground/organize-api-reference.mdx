@@ -1,8 +1,501 @@
 ---
-title: Organize API Reference (Tags, Groups, Ordering)
-description: "Document and explore your API: Organize API Reference (Tags, Groups, Ordering) in the API docs and playground."
+title: Organize API Reference
+description: Structure your API documentation using tags, groups, and custom ordering for optimal developer experience and navigation.
 ---
 
-# Organize API Reference (Tags, Groups, Ordering)
+```json
+{
+  "summary": "Organize API documentation with tags, groups, and custom ordering",
+  "primaryAction": "structure_api_docs",
+  "configMethods": ["openapi_tags", "navigation_groups", "custom_ordering"],
+  "organizationLevels": ["tabs", "groups", "pages", "endpoints"],
+  "sortingOptions": ["alphabetical", "custom", "method_based"]
+}
+```
 
-[How-to Guide] This guide shows how to use Organize API Reference (Tags, Groups, Ordering) to build clear, testable API documentation and a great developer experience.
+## Overview
+
+Structure your API documentation for optimal developer experience using tags, groups, and custom ordering. Documentation.AI provides flexible organization options that work with both imported OpenAPI specifications and manually created documentation pages.
+
+Use API organization when you need to:
+- Group related endpoints logically
+- Create hierarchical navigation structures
+- Control the order of endpoints in documentation
+- Separate different API versions or services
+- Provide multiple views of the same API
+
+## OpenAPI Tags Organization
+
+### Using OpenAPI Tags
+
+Tags in your OpenAPI specification automatically organize endpoints into logical groups:
+
+````yaml
+tags:
+  - name: Users
+    description: User management operations
+  - name: Projects
+    description: Project and workspace management
+  - name: Files
+    description: File upload and management
+
+paths:
+  /users:
+    get:
+      tags: [Users]
+      summary: List all users
+  /projects:
+    get:
+      tags: [Projects]
+      summary: List projects
+````
+
+### Tag-Based Groups
+
+Documentation.AI automatically creates navigation groups from OpenAPI tags:
+
+````json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "API Reference",
+        "openapi": "api/openapi.yaml"
+      }
+    ]
+  }
+}
+````
+
+This configuration generates separate sections for each tag:
+- **Users** - Contains all endpoints tagged with `Users`
+- **Projects** - Contains all endpoints tagged with `Projects`
+- **Files** - Contains all endpoints tagged with `Files`
+
+## Navigation Groups
+
+### Hierarchical Organization
+
+Create nested groups for complex API structures:
+
+````json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "API Documentation",
+        "icon": "code",
+        "expandable": true,
+        "pages": [
+          {
+            "group": "Core API",
+            "icon": "server",
+            "openapi": "api/core.yaml",
+            "pages": [
+              {
+                "title": "Authentication",
+                "path": "api/authentication"
+              },
+              {
+                "group": "User Management",
+                "icon": "users",
+                "pages": [
+                  {
+                    "title": "User Roles",
+                    "path": "api/users/roles"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Admin API",
+            "icon": "shield",
+            "openapi": "api/admin.yaml"
+          }
+        ]
+      }
+    ]
+  }
+}
+````
+
+### Group Configuration
+
+<ParamField path="group" param-type="string" required="true" showLocation="false">
+  Display name for the navigation group.
+</ParamField>
+
+<ParamField path="icon" param-type="string" required="false" showLocation="false">
+  Lucide React icon name for visual identification.
+</ParamField>
+
+<ParamField path="expandable" param-type="boolean" required="false" showLocation="false">
+  Whether users can collapse/expand the group. Default: `true`.
+</ParamField>
+
+<ParamField path="openapi" param-type="string" required="false" showLocation="false">
+  Path to OpenAPI specification for automatic endpoint generation within this group.
+</ParamField>
+
+<ParamField path="pages" param-type="array" required="true" showLocation="false">
+  Array containing individual pages and nested groups.
+</ParamField>
+
+## Custom Ordering
+
+### Manual Page Ordering
+
+Override automatic ordering by explicitly defining page sequences:
+
+````json
+{
+  "group": "Users API",
+  "openapi": "api/users.yaml",
+  "pages": [
+    {
+      "title": "User Overview",
+      "path": "api/users/overview"
+    },
+    {
+      "title": "Create User",
+      "path": "api/users/create",
+      "method": "POST"
+    },
+    {
+      "title": "Get User",
+      "path": "api/users/get",
+      "method": "GET"
+    },
+    {
+      "title": "Update User", 
+      "path": "api/users/update",
+      "method": "PUT"
+    },
+    {
+      "title": "Delete User",
+      "path": "api/users/delete",
+      "method": "DELETE"
+    }
+  ]
+}
+````
+
+### Method-Based Organization
+
+Group endpoints by HTTP method for operation-focused navigation:
+
+````json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Read Operations",
+            "icon": "eye",
+            "pages": [
+              {
+                "title": "Get User",
+                "path": "api/users/get",
+                "method": "GET"
+              },
+              {
+                "title": "List Projects",
+                "path": "api/projects/list",
+                "method": "GET"
+              }
+            ]
+          },
+          {
+            "group": "Write Operations", 
+            "icon": "edit",
+            "pages": [
+              {
+                "title": "Create User",
+                "path": "api/users/create",
+                "method": "POST"
+              },
+              {
+                "title": "Update Project",
+                "path": "api/projects/update", 
+                "method": "PUT"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+````
+
+## Advanced Organization Patterns
+
+### Multi-Service Architecture
+
+Organize microservices with separate tabs and groups:
+
+````json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "User Service",
+        "icon": "users",
+        "groups": [
+          {
+            "group": "Authentication",
+            "openapi": "api/auth-service.yaml"
+          },
+          {
+            "group": "User Management",
+            "openapi": "api/user-service.yaml"
+          }
+        ]
+      },
+      {
+        "tab": "Payment Service",
+        "icon": "credit-card",
+        "groups": [
+          {
+            "group": "Transactions",
+            "openapi": "api/payment-service.yaml"
+          },
+          {
+            "group": "Subscriptions",
+            "openapi": "api/subscription-service.yaml"
+          }
+        ]
+      }
+    ]
+  }
+}
+````
+
+### Version-Based Organization
+
+Structure multiple API versions with clear separation:
+
+````json
+{
+  "navigation": {
+    "versions": [
+      {
+        "version": "v2.0",
+        "icon": "star",
+        "tabs": [
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Core Endpoints",
+                "openapi": "api/v2/core.yaml"
+              },
+              {
+                "group": "Advanced Features",
+                "openapi": "api/v2/advanced.yaml"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "version": "v1.0",
+        "icon": "archive",
+        "groups": [
+          {
+            "group": "Legacy API",
+            "openapi": "api/v1/legacy.yaml",
+            "pages": [
+              {
+                "title": "Migration Guide",
+                "path": "api/v1/migration"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+````
+
+### Resource-Centric Organization
+
+Group endpoints around business resources:
+
+````json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "User Resources",
+        "icon": "user",
+        "expandable": true,
+        "pages": [
+          {
+            "group": "User Accounts",
+            "pages": [
+              {
+                "title": "Account Management",
+                "path": "api/users/accounts"
+              },
+              {
+                "title": "Profile Updates",
+                "path": "api/users/profiles"
+              }
+            ]
+          },
+          {
+            "group": "User Preferences",
+            "pages": [
+              {
+                "title": "Notification Settings",
+                "path": "api/users/notifications"
+              },
+              {
+                "title": "Privacy Controls",
+                "path": "api/users/privacy"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+````
+
+## Mixed Content Organization
+
+### Combining OpenAPI and Manual Pages
+
+Integrate generated API documentation with custom explanatory content:
+
+````json
+{
+  "group": "API Documentation",
+  "pages": [
+    {
+      "title": "Getting Started",
+      "path": "api/getting-started"
+    },
+    {
+      "title": "Authentication Guide",
+      "path": "api/authentication"
+    },
+    {
+      "group": "Core Endpoints",
+      "openapi": "api/core.yaml"
+    },
+    {
+      "title": "SDK Documentation",
+      "path": "api/sdks"
+    },
+    {
+      "group": "Advanced Features",
+      "openapi": "api/advanced.yaml",
+      "pages": [
+        {
+          "title": "Usage Examples",
+          "path": "api/examples"
+        }
+      ]
+    }
+  ]
+}
+````
+
+### Context-Aware Grouping
+
+Provide different organizational views for different user types:
+
+````json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Developer Guide",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Quick Start",
+            "pages": [
+              {
+                "title": "5-Minute Integration",
+                "path": "quick-start/integration"
+              }
+            ]
+          },
+          {
+            "group": "Essential Endpoints",
+            "openapi": "api/essential.yaml"
+          }
+        ]
+      },
+      {
+        "tab": "Complete Reference",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "All Endpoints",
+            "openapi": "api/complete.yaml"
+          },
+          {
+            "group": "Advanced Configuration",
+            "pages": [
+              {
+                "title": "Webhook Setup",
+                "path": "advanced/webhooks"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+````
+
+## Best Practices
+
+### Logical Grouping Principles
+
+- **Group by functionality** rather than technical implementation
+- **Use consistent naming** across similar endpoint groups
+- **Limit nesting depth** to 2-3 levels for optimal usability
+- **Place overview pages** at the beginning of each section
+
+### Navigation Guidelines
+
+- **Use descriptive icons** that clearly represent the content area
+- **Order groups** from most common to specialized use cases
+- **Provide context** with group descriptions when beneficial
+- **Keep group names** concise but descriptive
+
+### Documentation Flow
+
+- **Start with authentication** and basic concepts
+- **Follow with common operations** before advanced features
+- **End with administrative** and configuration endpoints
+- **Include cross-references** between related endpoints
+
+## Troubleshooting
+
+### Common Organization Issues
+
+<Callout type="warning">
+**Empty Groups**: If OpenAPI tags don't generate expected groups, verify that endpoints include the correct `tags` array in your specification.
+</Callout>
+
+<Callout type="info">
+**Missing Icons**: Use valid Lucide React icon names. Check the [Lucide icon library](https://lucide.dev/icons/) for available options.
+</Callout>
+
+### Navigation Problems
+
+- **Deep nesting issues**: Limit navigation depth to 2 levels for optimal mobile experience
+- **Duplicate page paths**: Ensure each page has a unique path within your documentation
+- **Broken references**: Verify that all `path` values correspond to existing MDX files

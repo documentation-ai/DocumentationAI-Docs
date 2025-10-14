@@ -1,8 +1,373 @@
 ---
 title: OpenAPI Spec Import
-description: "Document and explore your API: OpenAPI in the API docs and playground."
+description: Import OpenAPI 3.0+ specifications to automatically generate comprehensive API documentation with interactive examples.
 ---
 
-# OpenAPI Spec Import
+```json
+{
+  "summary": "Import OpenAPI specifications to generate API documentation",
+  "primaryAction": "import_openapi_spec",
+  "requiredFiles": ["openapi.json", "openapi.yaml"],
+  "configLocation": "documentation.json",
+  "supportedVersions": ["3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.1.0"],
+  "outputFormat": "mdx_files"
+}
+```
 
-[Tutorial] This guide shows how to use OpenAPI Spec Import to build clear, testable API documentation and a great developer experience.
+## Overview
+
+Import OpenAPI 3.0+ specifications to automatically generate comprehensive API documentation. Documentation.AI parses your OpenAPI files and creates individual MDX pages for each endpoint with interactive request/response examples.
+
+Use OpenAPI import when you have:
+- Existing OpenAPI specifications (JSON or YAML format)
+- APIs with multiple endpoints requiring documentation
+- Need for automatically generated parameter documentation
+- Requirements for interactive API testing capabilities
+
+## Basic Setup
+
+### Step 1: Add OpenAPI File
+
+Place your OpenAPI specification file in your documentation project:
+
+````
+your-docs/
+├── api/
+│   └── openapi.yaml    # Your OpenAPI spec
+├── documentation.json
+└── other-docs.mdx
+````
+
+### Step 2: Configure in documentation.json
+
+Add the `openapi` property to a group in your `documentation.json`:
+
+````json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "API Reference",
+        "icon": "code",
+        "openapi": "api/openapi.yaml",
+        "pages": [
+          {
+            "title": "Authentication",
+            "path": "api/authentication"
+          }
+        ]
+      }
+    ]
+  }
+}
+````
+
+<ParamField path="openapi" param-type="string" required="true" showLocation="false">
+  Relative path to your OpenAPI specification file. Supports `.json`, `.yaml`, and `.yml` formats.
+</ParamField>
+
+## OpenAPI Configuration
+
+### Supported File Formats
+
+Documentation.AI accepts OpenAPI specifications in multiple formats:
+
+<CodeGroup tabs="YAML Format,JSON Format">
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Your API
+  version: 1.0.0
+paths:
+  /users:
+    get:
+      summary: List users
+      responses:
+        '200':
+          description: Success
+```
+
+```json
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Your API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "List users",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+### File Organization
+
+Structure your OpenAPI files for optimal documentation generation:
+
+````
+docs/
+├── api/
+│   ├── openapi.yaml           # Main API specification
+│   ├── v1/
+│   │   └── legacy-api.json    # Version-specific specs
+│   └── schemas/
+│       └── components.yaml    # Shared components
+├── documentation.json
+└── getting-started.mdx
+````
+
+## Generated Documentation
+
+### Automatic Page Creation
+
+Documentation.AI automatically generates MDX files for each endpoint:
+
+- **Path-based naming**: `/users/{id}` becomes `users-id.mdx`
+- **Method inclusion**: Separate pages for each HTTP method
+- **Parameter documentation**: Automatic `ParamField` generation
+- **Response examples**: Interactive response samples
+
+### Generated File Structure
+
+For an endpoint `GET /users/{id}`, Documentation.AI creates:
+
+````mdx
+---
+title: Get User by ID
+method: GET
+path: /users/{id}
+---
+
+# Get User by ID
+
+Retrieve detailed information for a specific user.
+
+<ParamField path="id" param-type="string" required="true">
+  Unique identifier for the user.
+</ParamField>
+
+<Request>
+```javascript
+const response = await fetch('/api/users/123', {
+  headers: { 'Authorization': 'Bearer TOKEN' }
+});
+```
+</Request>
+
+<Response>
+```json
+{
+  "id": "123",
+  "name": "John Doe", 
+  "email": "john@example.com"
+}
+```
+</Response>
+
+**Response Fields:**
+
+<ResponseField name="id" field-type="string" required="true">
+  Unique identifier for the user.
+</ResponseField>
+
+<ResponseField name="name" field-type="string" required="true">
+  Full name of the user.
+</ResponseField>
+
+<ResponseField name="email" field-type="string" required="true">
+  Email address of the user.
+</ResponseField>
+````
+
+## Advanced Configuration
+
+### Nested OpenAPI Specifications
+
+Use multiple OpenAPI files for different API sections:
+
+````json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "Core API",
+        "openapi": "api/core.yaml",
+        "pages": [
+          {
+            "group": "User Management",
+            "openapi": "api/users.yaml",
+            "pages": [
+              {
+                "title": "User Overview",
+                "path": "api/users/overview"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+````
+
+### Mixed Content Pages
+
+Combine generated API documentation with custom content:
+
+````json
+{
+  "group": "API Reference",
+  "openapi": "api/openapi.yaml",
+  "pages": [
+    {
+      "title": "Getting Started",
+      "path": "api/getting-started"
+    },
+    {
+      "title": "Authentication Guide", 
+      "path": "api/authentication"
+    }
+  ]
+}
+````
+
+## OpenAPI Features Support
+
+### Authentication Schemes
+
+Documentation.AI supports all OpenAPI 3.0 security schemes:
+
+<ParamField path="apiKey" param-type="object" required="false" showLocation="false">
+  API key authentication in headers, query, or cookies.
+</ParamField>
+
+<ParamField path="http" param-type="object" required="false" showLocation="false">
+  HTTP authentication including Basic and Bearer token schemes.
+</ParamField>
+
+<ParamField path="oauth2" param-type="object" required="false" showLocation="false">
+  OAuth 2.0 flows with automatic authorization URL generation.
+</ParamField>
+
+<ParamField path="openIdConnect" param-type="object" required="false" showLocation="false">
+  OpenID Connect discovery with automatic configuration.
+</ParamField>
+
+### Parameter Types
+
+All OpenAPI parameter types generate appropriate `ParamField` components:
+
+- **Path parameters**: `<ParamField path="...">` with location badges
+- **Query parameters**: `<ParamField query="...">` with validation
+- **Headers**: `<ParamField header="...">` with optional indicators
+- **Request body**: `<ParamField body="...">` with schema validation
+
+### Response Documentation
+
+Multiple response formats automatically generate tabbed examples:
+
+- **Status codes**: Separate tabs for 200, 400, 500 responses
+- **Content types**: JSON, XML, plain text examples
+- **Error responses**: Detailed error schema documentation
+
+## Common Patterns
+
+### API Versioning
+
+Organize versioned APIs using separate OpenAPI files:
+
+````json
+{
+  "navigation": {
+    "versions": [
+      {
+        "version": "v2.0",
+        "groups": [
+          {
+            "group": "API Reference",
+            "openapi": "api/v2/openapi.yaml"
+          }
+        ]
+      },
+      {
+        "version": "v1.0", 
+        "groups": [
+          {
+            "group": "Legacy API",
+            "openapi": "api/v1/openapi.json"
+          }
+        ]
+      }
+    ]
+  }
+}
+````
+
+### Multi-Service APIs
+
+Document microservices with separate OpenAPI specifications:
+
+````json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "User Service",
+        "groups": [
+          {
+            "group": "Users API",
+            "openapi": "api/users-service.yaml"
+          }
+        ]
+      },
+      {
+        "tab": "Payment Service",
+        "groups": [
+          {
+            "group": "Payments API", 
+            "openapi": "api/payments-service.yaml"
+          }
+        ]
+      }
+    ]
+  }
+}
+````
+
+## Troubleshooting
+
+### Common Import Issues
+
+<Callout type="warning">
+**Invalid OpenAPI Format**: Ensure your specification follows OpenAPI 3.0+ standards. Use tools like Swagger Editor to validate your spec before importing.
+</Callout>
+
+<Callout type="info">
+**Missing Endpoints**: If endpoints don't appear, verify that all paths have valid `operationId` values and at least one response defined.
+</Callout>
+
+### File Path Resolution
+
+- Use relative paths from your documentation root
+- Ensure OpenAPI files are committed to your repository
+- Verify file extensions match the content format (.yaml for YAML, .json for JSON)
+
+### Validation Requirements
+
+Your OpenAPI specification must include:
+- Valid `openapi` version (3.0.0 or higher)
+- `info` object with title and version
+- At least one path with one operation
+- Response definitions for all operations
