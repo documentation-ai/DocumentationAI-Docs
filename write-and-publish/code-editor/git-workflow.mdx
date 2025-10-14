@@ -1,52 +1,165 @@
 ---
-title: "Git Workflow for Code Editor"
-description: "Master Git workflows for documentation development using code editors"
+title: Git Workflow for Code Editor
+description: Collaborate on documentation using Git workflows with Documentation.AI
 ---
 
 # Git Workflow for Code Editor
 
-Learn how to effectively use Git for version control when working with documentation in your code editor.
+Use Git for collaboration and version control when working on Documentation.AI projects. Changes pushed to your connected repository automatically trigger builds and deployments.
 
-## Overview
+## Documentation Git Workflow
 
-Code editor workflows leverage Git for powerful version control and collaboration capabilities.
+### Basic Workflow
 
-## Git Basics for Documentation
+Documentation.AI connects to your Git repository and automatically builds when you push changes:
+
+1. **Edit content** in your code editor
+2. **Commit changes** with descriptive messages
+3. **Push to your repository** 
+4. **Documentation.AI builds** and deploys automatically
 
 ### Repository Setup
 
-### Branching Strategies
+```bash
+# Clone your connected repository
+git clone https://github.com/your-org/docs.git
+cd docs
+```
 
-### Commit Best Practices
+**Repository structure**:
+```
+docs/
+├── documentation.json    # Site configuration 
+├── getting-started/
+│   └── introduction.mdx
+└── api/
+    └── authentication.mdx
+```
 
-## Collaborative Workflows
+## Branching for Documentation
 
-### Feature Branches
+### Feature Branch Workflow
 
-### Pull Request Process
+Use branches for documentation changes:
 
-### Code Reviews
+```bash
+# Create feature branch
+git checkout -b add-webhook-guide
 
-## Advanced Git Operations
+# Edit documentation files
+# Make changes in your editor
 
-### Merging and Rebasing
-
-### Conflict Resolution
-
-### History Management
-
-## Integration with Documentation.AI
-
-### Push-to-Deploy
-
-### Branch Previews
-
-### Automated Builds
-
-## Best Practices
-
-### Commit Messages
+# Commit and push
+git add .
+git commit -m "Add webhook setup guide"
+git push origin add-webhook-guide
+```
 
 ### Branch Naming
 
-### Collaboration Guidelines
+Use descriptive branch names:
+- `add-api-docs` - New documentation
+- `update-quickstart` - Content updates  
+- `fix-broken-links` - Bug fixes
+- `restructure-nav` - Navigation changes
+
+## Committing Changes
+
+### Commit Messages
+
+Write clear, descriptive commit messages:
+
+```bash
+# Good examples
+git commit -m "Add OAuth authentication guide"
+git commit -m "Fix broken links in API section"
+git commit -m "Update quickstart with new examples"
+
+# Avoid
+git commit -m "Update docs"    # Too vague
+git commit -m "WIP"           # Not descriptive
+```
+
+### Using Editor Git Features
+
+**VS Code**: Use Source Control panel (`Ctrl+Shift+G`)  
+**Cursor**: Use built-in Git panel with AI-suggested commit messages
+
+- Review changes in diff view
+- Stage specific files
+- Write descriptive commit messages
+- Push directly from editor
+
+## Team Collaboration
+
+### Pull Request Workflow
+
+1. **Create branch** for your changes
+2. **Edit documentation** in your code editor
+3. **Update navigation** in `documentation.json` if needed
+4. **Commit and push** changes
+5. **Create pull request** on your Git platform
+
+Documentation.AI automatically generates preview builds for pull requests.
+
+### Review Guidelines
+
+**Review checklist**:
+- [ ] Content accuracy and clarity
+- [ ] Navigation updates if new pages added
+- [ ] Internal links work correctly
+- [ ] Front matter complete
+- [ ] Images display properly
+
+### Merge Conflicts
+
+Resolve conflicts in your code editor:
+1. Pull latest changes from main branch
+2. Merge or rebase your feature branch
+3. Edit conflicted files using editor's merge tools
+4. Commit resolved conflicts
+
+## Documentation.AI Integration
+
+### Automatic Builds
+
+Documentation.AI monitors your connected repository:
+
+- **Push to main** → Production build and deployment
+- **Pull request** → Preview build for review
+- **Branch push** → Preview build (if configured)
+
+### Build Status
+
+Monitor builds in your Documentation.AI dashboard:
+- View build logs and status
+- Access preview URLs for branches
+- Check deployment history
+
+### Branch Previews
+
+Every pull request gets a preview URL for testing changes before merging to production.
+
+## Best Practices
+
+### Documentation Workflow
+
+1. **Use feature branches** for all documentation changes
+2. **Write descriptive commit messages** that explain what changed
+3. **Update navigation** when adding new pages
+4. **Test preview builds** before merging to main
+5. **Keep commits focused** on related changes
+
+### Team Coordination
+
+- **Communicate** major structural changes
+- **Use issues** to track documentation tasks
+- **Review pull requests** for accuracy and clarity
+- **Merge conflicts** - coordinate on `documentation.json` changes
+
+## Next Steps
+
+- [Organization](organize): Structure your documentation files
+- [Images & Media](images-and-media): Manage visual content with Git
+- [Publishing](publish): Understand the deployment process
+- [Troubleshooting](troubleshooting): Resolve Git and sync issues

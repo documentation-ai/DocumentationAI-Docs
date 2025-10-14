@@ -1,8 +1,173 @@
 ---
-title: Code Editor
-description: "Write and manage content: Code Editor in Documentation.AI."
+title: Code Editor Overview
+description: Write and manage documentation using code editors like VS Code and Cursor with Documentation.AI
 ---
 
-# Code Editor
+The code editor approach allows developers to write documentation using their preferred development environment. Work with MDX files locally and sync changes to Documentation.AI through Git integration.
 
-[How-to Guide] Learn Code Editor to create clear, maintainable documentation content at scale.
+**Key capabilities:**
+- **Local development workflow** - Edit MDX files using familiar code editors
+- **Git-based collaboration** - Use branching, pull requests, and code reviews
+- **Advanced search and replace** - Make bulk content changes across multiple files
+- **Extension ecosystem** - Leverage markdown, spell-check, and productivity extensions
+- **Offline editing** - Work on documentation without internet connectivity
+
+## Code Editor vs Web Editor
+
+Choose code editors when you need:
+
+- **Developer workflows** - Git branching, code reviews, and merge workflows
+- **Bulk editing** - Find and replace across multiple files simultaneously  
+- **Advanced file management** - Organize large documentation projects with complex structures
+- **Integration with development** - Edit docs alongside code in the same repository
+- **Offline capabilities** - Work without internet and sync changes later
+
+Use the [web editor](../web-editor/overview) for:
+- Real-time collaboration and visual editing
+- Quick content updates without Git workflows
+- Drag-and-drop media management
+- Immediate publishing without commits
+
+## Getting Started
+
+### 1. Connect Your Repository
+
+Link your Git repository to Documentation.AI:
+
+1. In your Documentation.AI dashboard, go to Settings
+2. Connect your GitHub, GitLab, or other Git provider
+3. Select the repository containing your documentation
+4. Choose the branch to deploy (usually `main`)
+
+### 2. Clone and Setup
+
+Clone your documentation repository:
+
+```bash
+git clone https://github.com/your-org/docs.git
+cd docs
+```
+
+### 3. Open in Your Editor
+
+**VS Code**: `code .` or File → Open Folder  
+**Cursor**: `cursor .` or drag the folder to the application
+
+## Project Structure
+
+Documentation.AI projects use this structure:
+
+```
+docs/
+├── documentation.json    # Site configuration
+├── getting-started/
+│   ├── introduction.mdx
+│   └── quickstart.mdx
+├── api/
+│   ├── authentication.mdx
+│   └── openapi.yaml
+└── components/
+    └── custom-component.mdx
+```
+
+- **`documentation.json`** - Controls navigation, branding, and site configuration
+- **`.mdx` files** - Your documentation pages with front matter and content
+- **`openapi.yaml`** - API specifications for automatic endpoint generation
+
+## Writing Content
+
+### MDX Format
+
+Write pages using MDX (Markdown + JSX):
+
+```mdx
+---
+title: API Authentication
+description: Learn how to authenticate with our API using JWT tokens
+---
+
+# API Authentication
+
+Authenticate using JWT tokens in the Authorization header.
+
+<Callout type="info">
+Tokens expire after 24 hours and must be refreshed.
+</Callout>
+
+```javascript
+const response = await fetch('/api/data', {
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+});
+```
+```
+
+### Documentation.AI Components
+
+Use specialized components for better documentation:
+
+```jsx
+<Callout type="warning">
+  Important: Always validate user input
+</Callout>
+
+<ParamField path="userId" param-type="string" required>
+  Unique identifier for the user
+</ParamField>
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+const user = await getUser(userId);
+```
+
+```python
+user = get_user(user_id)
+```
+</CodeGroup>
+```
+
+See the [component reference](../../components) for all available components.
+
+## Development Workflow
+
+### 1. Create Feature Branch
+
+```bash
+git checkout -b add-webhook-docs
+```
+
+### 2. Edit Documentation
+
+- Create or edit `.mdx` files in your editor
+- Update `documentation.json` for navigation changes
+- Add images to appropriate directories
+
+### 3. Preview Changes
+
+**VS Code**: Use markdown preview (`Ctrl+Shift+V`)  
+**Cursor**: Built-in preview panel with AI assistance
+
+### 4. Commit and Push
+
+```bash
+git add .
+git commit -m "Add webhook setup documentation"
+git push origin add-webhook-docs
+```
+
+### 5. Create Pull Request
+
+Use your Git platform's interface to create a pull request. Documentation.AI will automatically generate preview builds for review.
+
+## Next Steps
+
+Explore code editor workflows:
+
+- [Organization](organize): Structure files and configure navigation
+- [Git Workflow](git-workflow): Branching, reviews, and collaboration
+- [Images & Media](images-and-media): Manage assets in code editors
+- [Publishing](publish): Deploy changes to Documentation.AI
+- [Troubleshooting](troubleshooting): Resolve common issues
+
+For visual editing and real-time collaboration, try the [web editor](../web-editor/overview).

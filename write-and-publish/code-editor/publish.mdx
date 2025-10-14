@@ -1,60 +1,141 @@
 ---
-title: "Publishing Process for Code Editor"
-description: "Learn how to publish documentation from your code editor to Documentation.AI"
+title: Publishing Process for Code Editor
+description: Deploy documentation changes from your code editor to Documentation.AI through Git integration
 ---
 
 # Publishing Process for Code Editor
 
-Master the publishing workflow when using code editors with Documentation.AI.
+Publish documentation changes by pushing commits to your connected Git repository. Documentation.AI automatically builds and deploys your updates.
 
-## Overview
+## How Publishing Works
 
-Code editor publishing leverages Git integration for seamless deployment workflows.
+Documentation.AI monitors your connected Git repository and automatically triggers builds when you push changes:
 
-## Publishing Methods
+1. **Edit** documentation in your code editor
+2. **Commit** changes with Git
+3. **Push** to your repository 
+4. **Documentation.AI builds** and deploys automatically
+5. **Live site updates** with your changes
 
-### Git Push Deployment
+## Basic Publishing Workflow
 
-### Manual Deployment
+### Connect Your Repository
 
-### Automated Pipelines
+1. **Link repository** in Documentation.AI dashboard settings
+2. **Choose deployment branch** (usually `main`)
+3. **Configure build settings** if needed
 
-## Pre-publication Checks
+### Publish Changes
 
-### Local Preview
+Deploy with standard Git workflow:
 
-### Build Validation
+```bash
+# Edit documentation files
+# Make changes in your code editor
 
-### Link Testing
+# Commit changes
+git add .
+git commit -m "Add new API documentation"
 
-## Deployment Process
+# Push to trigger build
+git push origin main
+```
 
-### Branch Selection
+Documentation.AI detects the push and automatically builds and deploys your changes.
 
-### Build Configuration
+## Build Monitoring
 
-### Environment Variables
+### Check Build Status
 
-## Monitoring Deployments
+Monitor deployments in your Documentation.AI dashboard:
 
-### Build Status
+- **Build logs** - View detailed build output and errors
+- **Build history** - Track previous deployments and status
+- **Preview URLs** - Access branch preview builds for testing
 
-### Error Handling
+### Branch Previews
 
-### Rollback Procedures
+Pull requests automatically generate preview builds:
 
-## Advanced Workflows
+1. **Create pull request** with documentation changes
+2. **Documentation.AI builds** a preview version
+3. **Review preview URL** before merging
+4. **Merge to main** for production deployment
 
-### Staging Environments
+## Publishing Best Practices
 
-### A/B Testing
+### Pre-publish Checklist
 
-### Scheduled Deployments
+Before pushing changes:
 
-## Best Practices
+- [ ] **Test links** - Verify internal links work correctly
+- [ ] **Check navigation** - Ensure new pages appear in `documentation.json`
+- [ ] **Validate front matter** - All pages have title and description
+- [ ] **Review content** - Content is accurate and well-formatted
+- [ ] **Preview locally** - Use your editor's markdown preview
 
-### Testing Before Publishing
+### Common Issues
 
-### Deployment Strategies
+**Build fails**:
+- Check `documentation.json` syntax
+- Verify all navigation paths reference existing files
+- Ensure front matter is properly formatted
 
-### Monitoring and Maintenance
+**Missing pages**:
+- Add new pages to `documentation.json` navigation
+- Check file paths match navigation configuration
+- Verify MDX files have proper front matter
+
+## Troubleshooting Deployments
+
+### Build Failures
+
+**Common causes**:
+- Invalid `documentation.json` syntax
+- Missing files referenced in navigation
+- Malformed front matter in MDX files
+- Broken internal links
+
+**Solutions**:
+1. **Check build logs** in Documentation.AI dashboard
+2. **Validate JSON** syntax in `documentation.json`
+3. **Test locally** using your editor's markdown preview
+4. **Fix errors** and push again
+
+### Rollback Changes
+
+If you need to quickly revert:
+
+```bash
+# Revert last commit
+git revert HEAD
+git push origin main
+
+# Or reset to previous working commit
+git reset --hard <commit-hash>
+git push --force origin main  # Use carefully
+```
+
+## Integration with Development Workflow
+
+### Team Publishing
+
+**Multiple contributors**:
+- Use feature branches for documentation changes
+- Review changes via pull requests
+- Merge to main branch for production deployment
+- Use preview builds to test changes before merging
+
+**Content review process**:
+1. Create feature branch for documentation updates
+2. Make changes and push branch
+3. Open pull request with preview build
+4. Team reviews content and accuracy
+5. Merge to main for production deployment
+
+## Next Steps
+
+- [Git Workflow](git-workflow): Collaborate on documentation changes
+- [Organization](organize): Structure your documentation project
+- [Images & Media](images-and-media): Manage visual content
+- [Troubleshooting](troubleshooting): Resolve publishing issues

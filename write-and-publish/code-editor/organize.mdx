@@ -1,52 +1,282 @@
 ---
-title: "Organize Content in Code Editor"
-description: "Learn how to structure and organize your documentation files in a code editor environment"
+title: Organize Content Structure
+description: Structure documentation files and configure navigation in Documentation.AI using code editors
 ---
 
-# Organize Content in Code Editor
+# Organize Content Structure
 
-Master content organization and file structure management when using code editors for documentation.
+Organize documentation files and configure site navigation when working with code editors. Use `documentation.json` to control how your content appears in the published documentation.
 
-## Overview
+## File Organization
 
-Code editors offer powerful file organization capabilities for managing complex documentation projects.
+### Documentation Structure
 
-## File Structure
+Organize files to match your site's navigation:
 
-### Directory Organization
+```
+docs/
+├── documentation.json       # Navigation and site config
+├── getting-started/
+│   ├── introduction.mdx
+│   └── quickstart.mdx
+├── api/
+│   ├── authentication.mdx
+│   └── openapi.yaml
+└── guides/
+    └── integration.mdx
+```
 
-### File Naming Conventions
+### Naming Guidelines
 
-### Navigation Configuration
+- **Lowercase with hyphens**: `api-authentication.mdx`
+- **Descriptive paths**: Match your navigation structure
+- **No spaces**: Use hyphens instead of spaces
+- **Consistent depth**: Keep similar content at the same directory level
 
-## Content Management
+## Navigation Configuration
+
+Configure site navigation in `documentation.json`. The navigation structure controls how pages appear in your sidebar.
+
+### Basic Navigation
+
+```json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting Started",
+        "icon": "rocket",
+        "pages": [
+          {
+            "title": "Introduction", 
+            "path": "getting-started/introduction"
+          },
+          {
+            "title": "Quickstart",
+            "path": "getting-started/quickstart"
+          }
+        ]
+      },
+      {
+        "group": "API Reference",
+        "icon": "code", 
+        "openapi": "api/openapi.yaml",
+        "pages": [
+          {
+            "title": "Authentication",
+            "path": "api/authentication"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Nested Navigation
+
+Create nested groups for complex hierarchies:
+
+```json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "Guides",
+        "pages": [
+          {
+            "title": "Overview", 
+            "path": "guides/overview"
+          },
+          {
+            "group": "Integrations",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "Webhooks",
+                "path": "guides/webhooks"
+              },
+              {
+                "title": "Third-party Tools", 
+                "path": "guides/third-party"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Tab-based Navigation
+
+Separate major sections with tabs:
+
+```json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              {"title": "Introduction", "path": "intro"}
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference", 
+        "icon": "code",
+        "openapi": "api/openapi.yaml"
+      }
+    ]
+  }
+}
+```
+
+## Page Configuration
 
 ### Front Matter Setup
 
-### Cross-references
+Add metadata to each MDX file:
+
+```yaml
+---
+title: API Authentication
+description: Learn how to authenticate with our API using JWT tokens
+---
+```
+
+### SEO Enhancement
+
+Add structured data for better search results:
+
+```yaml
+---
+title: Webhook Integration Guide
+description: Step-by-step guide to setting up webhooks
+ogImage: https://your-cdn.com/webhook-guide.png
+jsonLd:
+  "@context": "https://schema.org"
+  "@type": "HowTo"
+  "name": "Setting Up Webhooks"
+---
+```
+
+See [page configuration reference](../../customization-and-configuration/page-configuration) for all options.
+
+## Content Management Strategies
+
+### Cross-referencing Pages
+
+Use relative links between documentation pages:
+
+```markdown
+For setup instructions, see [Getting Started](../getting-started/introduction).
+
+After authentication, you can [manage users](users) or [configure webhooks](../guides/webhook-setup).
+```
 
 ### Link Management
 
-## Project Organization
+**Internal links** - Use relative paths:
+```markdown
+[API Reference](../api/authentication)
+[Troubleshooting](troubleshooting)
+```
 
-### Multi-section Documentation
+**External links** - Use full URLs:
+```markdown
+[GitHub Repository](https://github.com/company/repo)
+[Support Portal](https://support.example.com)
+```
 
 ### Shared Resources
 
-### Template Management
+Organize reusable assets:
 
-## IDE Features
+```
+assets/
+├── images/
+│   ├── common/           # Shared across sections
+│   │   ├── logo.svg
+│   │   └── banner.jpg
+│   ├── api/              # API-specific images
+│   │   └── auth-flow.png
+│   └── guides/           # Guide-specific images
+│       └── webhook-setup.gif
+└── downloads/
+    ├── sdk.zip
+    └── postman-collection.json
+```
 
-### File Search
+## Editor Organization
 
-### Folder Navigation
+### VS Code Configuration
 
-### Project Management
+Optimize VS Code for documentation work:
+
+```json
+// .vscode/settings.json
+{
+  "files.associations": {
+    "*.mdx": "markdown"
+  },
+  "markdown.preview.breaks": true,
+  "cSpell.words": [
+    "Documentation", 
+    "OpenAPI",
+    "webhook"
+  ]
+}
+```
+
+### Cursor AI Features
+
+- **Content suggestions** - AI helps with documentation structure
+- **Smart completion** - Auto-complete for component syntax
+- **File organization** - AI suggests logical file placement
+
+### Navigation Tips
+
+**Quick file access**: `Ctrl+P` / `Cmd+P`  
+**Symbol navigation**: `Ctrl+Shift+O` / `Cmd+Shift+O`  
+**Multi-file search**: `Ctrl+Shift+F` / `Cmd+Shift+F`
 
 ## Best Practices
 
-### Scalable Structure
+### Maintainable Structure
 
-### Maintainable Organization
+- **Shallow nesting** - Keep directories 2-3 levels maximum
+- **Consistent naming** - Use the same patterns across sections  
+- **Logical grouping** - Group related content together
+- **Clear hierarchy** - Structure matches your navigation
 
-### Team Collaboration
+### Validation
+
+Regularly check your organization:
+
+- **Path accuracy** - All navigation paths reference existing files
+- **Link validation** - Internal links resolve correctly
+- **Front matter** - All pages have required metadata
+- **Navigation sync** - File structure matches `documentation.json`
+
+## Team Collaboration
+
+For team workflows:
+
+- Assign sections to team members
+- Use feature branches for major structural changes
+- Review navigation updates in pull requests
+- Keep `documentation.json` conflicts to minimum
+
+## Next Steps
+
+- [Git Workflow](git-workflow): Collaborate using version control
+- [Images & Media](images-and-media): Organize visual assets
+- [Publishing](publish): Deploy your organized documentation
