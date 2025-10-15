@@ -7,10 +7,10 @@
   "logo-small-light": "https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1757582228082-ivc7pj1d44p-doc_favicon.svg",
   "colors": {
     "light": {
-      "brand": "#3143e3"
+      "brand": "#E59507"
     },
     "dark": {
-      "brand": "#85a1ff"
+      "brand": "#EA9609"
     }
   },
   "navbar": {
@@ -195,55 +195,50 @@
               },
               {
                 "title": "Lists and Tables",
-                    "path": "components/lists-and-tables",
-                    "icon": "list"
-                  },
-                  {
-                    "title": "Images",
-                    "path": "components/images",
-                    "icon": "image"
-                  },
-                  {
-                    "title": "Videos and Iframes",
-                    "path": "components/videos-and-iframes",
-                    "icon": "video"
-                  },
-                  {
-                    "title": "Code and Groups",
-                    "path": "components/code-blocks-and-groups",
-                    "icon": "code"
-                  },
-                  {
-                    "title": "Mermaid Diagrams",
-                    "path": "components/mermaid",
-                    "icon": "git-branch"
-                  },
-                  {
-                    "title": "Callout",
-                    "path": "components/callout",
-                    "icon": "megaphone"
-                  },
-                  {
-                    "title": "Expandables",
-                    "path": "components/expandables",
-                    "icon": "chevron-down"
-                  },
-                  {
-                    "title": "Param Field",
-                    "path": "components/paramfield",
-                    "icon": "settings"
-                  },
-                  {
-                    "title": "Response Field",
-                    "path": "components/responsefield",
-                    "icon": "arrow-left"
-                  },
-                  {
-                    "title": "API Components",
-                    "path": "components/api-components",
-                    "icon": "code"
-                  }
-                ]
+                "path": "components/lists-and-tables",
+                "icon": "list"
+              },
+              {
+                "title": "Images",
+                "path": "components/images",
+                "icon": "image"
+              },
+              {
+                "title": "Videos and Iframes",
+                "path": "components/videos-and-iframes",
+                "icon": "video"
+              },
+              {
+                "title": "Code and Groups",
+                "path": "components/code-blocks-and-groups",
+                "icon": "code"
+              },
+              {
+                "title": "Callout",
+                "path": "components/callout",
+                "icon": "megaphone"
+              },
+              {
+                "title": "Expandables",
+                "path": "components/expandables",
+                "icon": "chevron-down"
+              },
+              {
+                "title": "Param Field",
+                "path": "components/paramfield",
+                "icon": "settings"
+              },
+              {
+                "title": "Response Field",
+                "path": "components/responsefield",
+                "icon": "arrow-left"
+              },
+              {
+                "title": "API Components",
+                "path": "components/api-components",
+                "icon": "code"
+              }
+            ]
           },
           {
             "group": "API Documentation",
@@ -251,8 +246,8 @@
             "expandable": true,
             "pages": [
               {
-                "title": "OpenAPI Spec Import",
-                "path": "api-documentation-and-playground/openapi-import",
+                "title": "OpenAPI / JSON Schema Import",
+                "path": "api-documentation-and-playground/openapi-schema-import",
                 "icon": "file-code"
               },
               {
