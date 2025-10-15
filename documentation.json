@@ -7,10 +7,10 @@
   "logo-small-light": "https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1757582228082-ivc7pj1d44p-doc_favicon.svg",
   "colors": {
     "light": {
-      "brand": "#E59507"
+      "brand": "#ea580c"
     },
     "dark": {
-      "brand": "#EA9609"
+      "brand": "#f97316"
     }
   },
   "navbar": {
