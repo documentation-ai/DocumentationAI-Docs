@@ -198,6 +198,16 @@
                 "path": "components/lists-and-tables",
                 "icon": "list"
               },
+                  {
+                    "title": "Card",
+                    "path": "components/card",
+                    "icon": "square"
+                  },
+                  {
+                    "title": "Columns",
+                    "path": "components/columns",
+                    "icon": "columns"
+                  },
               {
                 "title": "Images",
                 "path": "components/images",
