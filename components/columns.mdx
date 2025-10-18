@@ -20,7 +20,7 @@ Common use cases:
     Automatically adapts to mobile, tablet, and desktop screens.
   </Card>
   <Card title="Flexible" icon="grid" href="#">
-    Support for 2, 3, 4, or 5 column layouts.
+    Support for 2, 3, or 4 column layouts.
   </Card>
   <Card title="Consistent" icon="align-justify" href="#">
     Maintains consistent spacing between items.
@@ -143,61 +143,19 @@ Great for extensive feature lists or navigation grids:
   </Card>
 </Columns>
 
-### Five columns
-
-Maximum density for compact navigation or icon grids:
-
-````jsx
-<Columns cols={5}>
-  <Card title="JavaScript" icon="code" href="#" horizontal>
-    Learn JavaScript basics.
-  </Card>
-  <Card title="Python" icon="code" href="#" horizontal>
-    Master Python development.
-  </Card>
-  <Card title="Go" icon="code" href="#" horizontal>
-    Explore Go programming.
-  </Card>
-  <Card title="Rust" icon="code" href="#" horizontal>
-    Build with Rust.
-  </Card>
-  <Card title="TypeScript" icon="code" href="#" horizontal>
-    Type-safe JavaScript.
-  </Card>
-</Columns>
-````
-
-<Columns cols={5}>
-  <Card title="JavaScript" icon="code" href="#" horizontal>
-    Learn JavaScript basics.
-  </Card>
-  <Card title="Python" icon="code" href="#" horizontal>
-    Master Python development.
-  </Card>
-  <Card title="Go" icon="code" href="#" horizontal>
-    Explore Go programming.
-  </Card>
-  <Card title="Rust" icon="code" href="#" horizontal>
-    Build with Rust.
-  </Card>
-  <Card title="TypeScript" icon="code" href="#" horizontal>
-    Type-safe JavaScript.
-  </Card>
-</Columns>
-
 <Callout kind="tip">
-  Use horizontal cards with 4 or 5 columns for better content fit on desktop screens.
+  Use horizontal cards with 4 columns for better content fit on desktop screens.
 </Callout>
 
 ## Responsive behavior
 
 Columns automatically adapt to different screen sizes:
 
-| Screen Size | cols={2} | cols={3} | cols={4} | cols={5} |
-|-------------|----------|----------|----------|----------|
-| Mobile      | 1 column | 1 column | 1 column | 1 column |
-| Tablet      | 2 columns | 2 columns | 2 columns | 2 columns |
-| Desktop     | 2 columns | 3 columns | 4 columns | 5 columns |
+| Screen Size | cols={2} | cols={3} | cols={4} |
+|-------------|----------|----------|----------|
+| Mobile      | 1 column | 1 column | 1 column |
+| Tablet      | 2 columns | 2 columns | 2 columns |
+| Desktop     | 2 columns | 3 columns | 4 columns |
 
 <Callout kind="info">
   All column layouts stack to single column on mobile devices for optimal readability.
@@ -282,19 +240,19 @@ Columns handles uneven numbers of items gracefully:
 ## Attributes
 
 <ParamField path="cols" param-type="number" required="false" showLocation="false">
-  Number of columns: `1`, `2`, `3`, `4`, or `5`. Defaults to `1` if not specified.
+  Number of columns: `1`, `2`, `3`, or `4`. Defaults to `1` if not specified.
 </ParamField>
 
 ## Common patterns
 
 - **Feature grids** - 2-3 columns for showcasing product features with cards
 - **Navigation sections** - 2-4 columns for documentation navigation
-- **Resource links** - 3-5 columns for external resources or tools
+- **Resource links** - 3-4 columns for external resources or tools
 - **Comparison layouts** - 2 columns for before/after or option comparisons
 - **Image galleries** - 3-4 columns for visual content organization
 - **Quick actions** - 2-3 columns for common tasks or shortcuts
 - **Team members** - 3-4 columns for team or author profiles
-- **Integration showcase** - 4-5 columns for logos or integration cards
+- **Integration showcase** - 4 columns for logos or integration cards
 
 <Callout kind="warning">
   Avoid using more than 3 columns for content-heavy items. Use horizontal cards or reduce column count for better readability.
@@ -306,12 +264,11 @@ Columns handles uneven numbers of items gracefully:
 - **2 columns** - Detailed content, comparisons, or lengthy descriptions
 - **3 columns** - Standard feature showcases, most versatile option
 - **4 columns** - Compact navigation, icon grids, or simple cards
-- **5 columns** - Dense layouts with minimal text, best with horizontal cards
 
 **Content guidelines:**
 - Keep card descriptions similar in length for visual balance
 - Use consistent icons and styling across all items
-- Limit text for 4-5 column layouts
+- Limit text for 4 column layouts
 - Test on mobile to ensure readability
 
 **Accessibility:**

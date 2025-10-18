@@ -1,97 +1,471 @@
 ---
-title: Mermaid diagrams
-description: Create interactive diagrams using Mermaid syntax with automatic theme support and zoom controls.
+title: Mermaid Diagrams
+description: Reference for creating interactive diagrams using Mermaid syntax with zoom and fullscreen capabilities.
 type: reference
 ---
 
 ## Overview
 
-Create interactive diagrams using [Mermaid](https://mermaid.js.org/) syntax. Diagrams automatically adapt to your documentation theme and include zoom controls and fullscreen viewing.
+Create interactive diagrams using Mermaid syntax. The component automatically adapts to light and dark themes, provides zoom controls, and supports fullscreen viewing for better diagram exploration.
 
-For complete syntax reference and all diagram types, visit the [official Mermaid documentation](https://mermaid.js.org/intro/getting-started.html).
+Common use cases:
+- Flowcharts for processes and workflows
+- Sequence diagrams for API interactions
+- System architecture diagrams
+- State diagrams for application flows
+- Entity relationship diagrams for database schemas
+- Gantt charts for project timelines
+
+```mermaid
+graph LR
+    A[Start] --> B{Decision}
+    B -->|Yes| C[Process 1]
+    B -->|No| D[Process 2]
+    C --> E[End]
+    D --> E
+```
 
 ## Basic syntax
 
-Use fenced code blocks with the `mermaid` language identifier:
+Use Mermaid code blocks with triple backticks and the `mermaid` language identifier:
 
 ````markdown
 ```mermaid
-flowchart TD
-    A[Start] --> B[Process] --> C[End]
+graph TD
+    A[Start] --> B[Process]
+    B --> C[End]
 ```
 ````
 
-## Examples
+```mermaid
+graph TD
+    A[Start] --> B[Process]
+    B --> C[End]
+```
 
-### Flowchart
+<Callout kind="info">
+  Diagrams automatically switch between light and dark themes based on your site's theme settings.
+</Callout>
+
+## Interactive features
+
+### Zoom controls
+
+Hover over any diagram to reveal zoom controls in the top-right corner:
+
+- **Zoom In** - Magnify the diagram up to 300%
+- **Zoom Out** - Reduce the diagram down to 50%
+- **Reset** - Click the percentage to reset to 100%
+- **Fullscreen** - View the diagram in fullscreen mode
 
 ```mermaid
-flowchart TD
-    A[User Request] --> B{Valid?}
-    B -->|Yes| C[Process]
-    B -->|No| D[Error]
-    C --> E[Success]
+graph LR
+    Start[Hover Diagram] --> Show[Controls Appear]
+    Show --> Zoom[Use Zoom Buttons]
+    Show --> Full[Enter Fullscreen]
+    Zoom --> View[Better Visibility]
+    Full --> View
 ```
+
+<Callout kind="tip">
+  Use fullscreen mode for complex diagrams with many nodes and connections.
+</Callout>
+
+## Diagram types
+
+### Flowcharts
+
+Visualize processes, workflows, and decision trees:
 
 ````markdown
 ```mermaid
-flowchart TD
-    A[User Request] --> B{Valid?}
-    B -->|Yes| C[Process]
-    B -->|No| D[Error]
-    C --> E[Success]
+graph TD
+    A[User Request] --> B{Authenticated?}
+    B -->|Yes| C[Process Request]
+    B -->|No| D[Redirect to Login]
+    C --> E[Return Response]
+    D --> F[Show Login Page]
 ```
 ````
 
-### Sequence Diagram
+```mermaid
+graph TD
+    A[User Request] --> B{Authenticated?}
+    B -->|Yes| C[Process Request]
+    B -->|No| D[Redirect to Login]
+    C --> E[Return Response]
+    D --> F[Show Login Page]
+```
 
+### Sequence diagrams
+
+Document API calls, interactions, and message flows:
+
+````markdown
 ```mermaid
 sequenceDiagram
-    participant User
+    participant Client
     participant API
     participant Database
     
-    User->>API: Login Request
-    API->>Database: Validate User
-    Database-->>API: User Data
-    API-->>User: Success Response
+    Client->>API: POST /users
+    API->>Database: INSERT user
+    Database-->>API: Success
+    API-->>Client: 201 Created
 ```
+````
 
-````markdown
 ```mermaid
 sequenceDiagram
-    participant User
+    participant Client
     participant API
     participant Database
     
-    User->>API: Login Request
-    API->>Database: Validate User
-    Database-->>API: User Data
-    API-->>User: Success Response
+    Client->>API: POST /users
+    API->>Database: INSERT user
+    Database-->>API: Success
+    API-->>Client: 201 Created
+```
+
+### Class diagrams
+
+Show object-oriented structures and relationships:
+
+````markdown
+```mermaid
+classDiagram
+    class User {
+        +String name
+        +String email
+        +login()
+        +logout()
+    }
+    class Admin {
+        +String permissions
+        +manageUsers()
+    }
+    User <|-- Admin
 ```
 ````
 
-### State Diagram
-
 ```mermaid
-stateDiagram-v2
-    [*] --> Draft
-    Draft --> Published : publish
-    Published --> Archived : archive
-    Archived --> [*]
+classDiagram
+    class User {
+        +String name
+        +String email
+        +login()
+        +logout()
+    }
+    class Admin {
+        +String permissions
+        +manageUsers()
+    }
+    User <|-- Admin
 ```
+
+### State diagrams
+
+Illustrate application states and transitions:
 
 ````markdown
 ```mermaid
 stateDiagram-v2
-    [*] --> Draft
-    Draft --> Published : publish
-    Published --> Archived : archive
-    Archived --> [*]
+    [*] --> Idle
+    Idle --> Processing: Start
+    Processing --> Success: Complete
+    Processing --> Error: Fail
+    Success --> [*]
+    Error --> Idle: Retry
 ```
 ````
 
-## Features
+```mermaid
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Processing: Start
+    Processing --> Success: Complete
+    Processing --> Error: Fail
+    Success --> [*]
+    Error --> Idle: Retry
+```
 
-- **Zoom controls** - Zoom in/out and fullscreen viewing
-- **Theme adaptation** - Automatically matches light/dark mode
+### Entity relationship diagrams
+
+Design database schemas and relationships:
+
+````markdown
+```mermaid
+erDiagram
+    USER ||--o{ ORDER : places
+    USER {
+        string id PK
+        string name
+        string email
+    }
+    ORDER {
+        string id PK
+        string user_id FK
+        date created_at
+    }
+```
+````
+
+```mermaid
+erDiagram
+    USER ||--o{ ORDER : places
+    USER {
+        string id PK
+        string name
+        string email
+    }
+    ORDER {
+        string id PK
+        string user_id FK
+        date created_at
+    }
+```
+
+### Gantt charts
+
+Plan project timelines and milestones:
+
+````markdown
+```mermaid
+gantt
+    title Project Timeline
+    dateFormat YYYY-MM-DD
+    section Phase 1
+    Design           :2024-01-01, 30d
+    Development      :2024-01-15, 45d
+    section Phase 2
+    Testing          :2024-02-15, 20d
+    Deployment       :2024-03-07, 10d
+```
+````
+
+```mermaid
+gantt
+    title Project Timeline
+    dateFormat YYYY-MM-DD
+    section Phase 1
+    Design           :2024-01-01, 30d
+    Development      :2024-01-15, 45d
+    section Phase 2
+    Testing          :2024-02-15, 20d
+    Deployment       :2024-03-07, 10d
+```
+
+### Git graphs
+
+Visualize branching strategies and workflows:
+
+````markdown
+```mermaid
+gitGraph
+    commit
+    branch develop
+    checkout develop
+    commit
+    branch feature
+    checkout feature
+    commit
+    commit
+    checkout develop
+    merge feature
+    checkout main
+    merge develop
+```
+````
+
+```mermaid
+gitGraph
+    commit
+    branch develop
+    checkout develop
+    commit
+    branch feature
+    checkout feature
+    commit
+    commit
+    checkout develop
+    merge feature
+    checkout main
+    merge develop
+```
+
+## Graph directions
+
+Control flowchart layout orientation:
+
+| Direction | Code | Description |
+|-----------|------|-------------|
+| Top to Bottom | `graph TD` | Vertical flow (default) |
+| Left to Right | `graph LR` | Horizontal flow |
+| Bottom to Top | `graph BT` | Reverse vertical |
+| Right to Left | `graph RL` | Reverse horizontal |
+
+````markdown
+```mermaid
+graph LR
+    A[Input] --> B[Process] --> C[Output]
+```
+````
+
+```mermaid
+graph LR
+    A[Input] --> B[Process] --> C[Output]
+```
+
+## Node shapes
+
+Customize node appearance in flowcharts:
+
+````markdown
+```mermaid
+graph TD
+    A[Rectangle]
+    B(Rounded Rectangle)
+    C([Stadium Shape])
+    D[[Subroutine]]
+    E[(Database)]
+    F((Circle))
+    G>Asymmetric]
+    H{Diamond}
+    I{{Hexagon}}
+```
+````
+
+```mermaid
+graph TD
+    A[Rectangle]
+    B(Rounded Rectangle)
+    C([Stadium Shape])
+    D[[Subroutine]]
+    E[(Database)]
+    F((Circle))
+    G>Asymmetric]
+    H{Diamond}
+    I{{Hexagon}}
+```
+
+## Arrow types
+
+Define different connection styles:
+
+````markdown
+```mermaid
+graph LR
+    A --> B
+    C --- D
+    E -.-> F
+    G ==> H
+    I -- Text --> J
+```
+````
+
+```mermaid
+graph LR
+    A --> B
+    C --- D
+    E -.-> F
+    G ==> H
+    I -- Text --> J
+```
+
+## Loading and error states
+
+### Loading skeleton
+
+Displays animated skeleton while diagram renders:
+
+<Callout kind="info">
+  The skeleton loader provides visual feedback during diagram initialization and rendering.
+</Callout>
+
+### Error handling
+
+If a diagram fails to render, a friendly error message appears:
+
+````markdown
+```mermaid
+invalid diagram syntax here
+```
+````
+
+<Callout kind="warning">
+  Verify your Mermaid syntax if diagrams fail to render. Use the [Mermaid Live Editor](https://mermaid.live) to test syntax.
+</Callout>
+
+## Theme support
+
+Diagrams automatically match your documentation theme:
+
+- **Light mode** - Uses default Mermaid theme with light backgrounds
+- **Dark mode** - Uses dark Mermaid theme with appropriate colors
+- **Automatic switching** - Updates when theme changes
+
+<Callout kind="success">
+  No additional configuration needed. Theme switching is automatic and instant.
+</Callout>
+
+## Syntax
+
+<ParamField path="language" param-type="string" required="true" showLocation="false">
+  Use `mermaid` as the language identifier in fenced code blocks.
+</ParamField>
+
+<ParamField path="chart" param-type="string" required="true" showLocation="false">
+  Mermaid diagram definition using valid Mermaid syntax.
+</ParamField>
+
+<ParamField path="id" param-type="string" required="false" showLocation="false">
+  Custom identifier for the diagram. Auto-generated if not provided.
+</ParamField>
+
+## Common patterns
+
+- **API documentation** - Sequence diagrams showing request/response flows
+- **Architecture diagrams** - Flowcharts illustrating system components
+- **State machines** - State diagrams for complex application logic
+- **Database design** - ER diagrams showing table relationships
+- **Project planning** - Gantt charts with milestones and deadlines
+- **Git workflows** - Branch strategies and merge patterns
+- **Process documentation** - Flowcharts with decision points
+- **Tutorial flows** - Step-by-step visual guides
+
+## Best practices
+
+**Diagram complexity:**
+- Keep diagrams focused on a single concept
+- Break complex systems into multiple diagrams
+- Use subgraphs for logical grouping
+- Limit nodes to 10-15 for readability
+
+**Labeling:**
+- Use clear, concise node labels
+- Add descriptive text to connections
+- Include legends for complex diagrams
+- Maintain consistent terminology
+
+**Layout:**
+- Choose appropriate direction (TD, LR, etc.)
+- Use proper node shapes for context
+- Space nodes evenly for clarity
+- Test in both light and dark themes
+
+**Accessibility:**
+- Provide text descriptions for complex diagrams
+- Use sufficient color contrast
+- Include alternative text explanations
+- Test zoom functionality for details
+
+## Mermaid resources
+
+- **Official Documentation** - [mermaid.js.org](https://mermaid.js.org)
+- **Live Editor** - [mermaid.live](https://mermaid.live) for testing syntax
+- **Syntax Reference** - Complete guide to all diagram types
+- **Examples Gallery** - Collection of diagram templates
+
+<Callout kind="tip">
+  Use the Mermaid Live Editor to prototype and validate your diagrams before adding them to documentation.
+</Callout>
