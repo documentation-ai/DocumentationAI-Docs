@@ -1,19 +1,26 @@
 ---
 title: Mermaid Diagrams
-description: Reference for creating interactive diagrams using Mermaid syntax with zoom and fullscreen capabilities.
+description: >-
+  Reference for creating interactive diagrams using Mermaid syntax with zoom and
+  fullscreen capabilities.
 type: reference
 ---
-
 ## Overview
 
-Create interactive diagrams using Mermaid syntax. The component automatically adapts to light and dark themes, provides zoom controls, and supports fullscreen viewing for better diagram exploration.
+Create interactive diagrams using Mermaid syntax.&#x20;
 
-Common use cases:
+Common use cases for using Mermaid component:
+
 - Flowcharts for processes and workflows
+
 - Sequence diagrams for API interactions
+
 - System architecture diagrams
+
 - State diagrams for application flows
+
 - Entity relationship diagrams for database schemas
+
 - Gantt charts for project timelines
 
 ```mermaid
@@ -43,7 +50,7 @@ graph TD
     B --> C[End]
 ```
 
-<Callout kind="info">
+<Callout uid="562fec20-5d54-4363-99fd-401f92562fd2" kind="info" collapsed="false">
   Diagrams automatically switch between light and dark themes based on your site's theme settings.
 </Callout>
 
@@ -54,8 +61,11 @@ graph TD
 Hover over any diagram to reveal zoom controls in the top-right corner:
 
 - **Zoom In** - Magnify the diagram up to 300%
+
 - **Zoom Out** - Reduce the diagram down to 50%
+
 - **Reset** - Click the percentage to reset to 100%
+
 - **Fullscreen** - View the diagram in fullscreen mode
 
 ```mermaid
@@ -67,7 +77,7 @@ graph LR
     Full --> View
 ```
 
-<Callout kind="tip">
+<Callout uid="a28b0777-7bbf-48ac-91d8-b496d69c500b" kind="tip" collapsed="false">
   Use fullscreen mode for complex diagrams with many nodes and connections.
 </Callout>
 
@@ -297,12 +307,12 @@ gitGraph
 
 Control flowchart layout orientation:
 
-| Direction | Code | Description |
-|-----------|------|-------------|
+| Direction     | Code       | Description             |
+| ------------- | ---------- | ----------------------- |
 | Top to Bottom | `graph TD` | Vertical flow (default) |
-| Left to Right | `graph LR` | Horizontal flow |
-| Bottom to Top | `graph BT` | Reverse vertical |
-| Right to Left | `graph RL` | Reverse horizontal |
+| Left to Right | `graph LR` | Horizontal flow         |
+| Bottom to Top | `graph BT` | Reverse vertical        |
+| Right to Left | `graph RL` | Reverse horizontal      |
 
 ````markdown
 ```mermaid
@@ -377,71 +387,100 @@ graph LR
 Diagrams automatically match your documentation theme:
 
 - **Light mode** - Uses default Mermaid theme with light backgrounds
+
 - **Dark mode** - Uses dark Mermaid theme with appropriate colors
+
 - **Automatic switching** - Updates when theme changes
 
-<Callout kind="success">
+<Callout uid="a0ea90a5-38d3-46ae-a40d-1bac20e6c7ed" kind="success" collapsed="false">
   No additional configuration needed. Theme switching is automatic and instant.
 </Callout>
 
 ## Syntax
 
-<ParamField path="language" param-type="string" required="true" showLocation="false">
+<ParamField uid="b9443f2a-d60b-48d3-8f3d-0f142273ba3a" path="language" param-type="string" required="true" deprecated="false">
   Use `mermaid` as the language identifier in fenced code blocks.
 </ParamField>
 
-<ParamField path="chart" param-type="string" required="true" showLocation="false">
+<ParamField uid="a9c43f85-dce0-4532-9bcc-c54ca55d0740" path="chart" param-type="string" required="true" deprecated="false">
   Mermaid diagram definition using valid Mermaid syntax.
 </ParamField>
 
-<ParamField path="id" param-type="string" required="false" showLocation="false">
+<ParamField uid="27814981-54fd-471c-a667-e2f13d55e5ce" path="id" param-type="string" required="false" deprecated="false">
   Custom identifier for the diagram. Auto-generated if not provided.
 </ParamField>
 
 ## Common patterns
 
 - **API documentation** - Sequence diagrams showing request/response flows
+
 - **Architecture diagrams** - Flowcharts illustrating system components
+
 - **State machines** - State diagrams for complex application logic
+
 - **Database design** - ER diagrams showing table relationships
+
 - **Project planning** - Gantt charts with milestones and deadlines
+
 - **Git workflows** - Branch strategies and merge patterns
+
 - **Process documentation** - Flowcharts with decision points
+
 - **Tutorial flows** - Step-by-step visual guides
 
 ## Best practices
 
 **Diagram complexity:**
+
 - Keep diagrams focused on a single concept
+
 - Break complex systems into multiple diagrams
+
 - Use subgraphs for logical grouping
+
 - Limit nodes to 10-15 for readability
 
 **Labeling:**
+
 - Use clear, concise node labels
+
 - Add descriptive text to connections
+
 - Include legends for complex diagrams
+
 - Maintain consistent terminology
 
 **Layout:**
+
 - Choose appropriate direction (TD, LR, etc.)
+
 - Use proper node shapes for context
+
 - Space nodes evenly for clarity
+
 - Test in both light and dark themes
 
 **Accessibility:**
+
 - Provide text descriptions for complex diagrams
+
 - Use sufficient color contrast
+
 - Include alternative text explanations
+
 - Test zoom functionality for details
 
 ## Mermaid resources
 
 - **Official Documentation** - [mermaid.js.org](https://mermaid.js.org)
+
 - **Live Editor** - [mermaid.live](https://mermaid.live) for testing syntax
+
 - **Syntax Reference** - Complete guide to all diagram types
+
 - **Examples Gallery** - Collection of diagram templates
 
-<Callout kind="tip">
+<Callout uid="735ec957-4933-4a7c-b56c-ae850d34057e" kind="tip" collapsed="false">
   Use the Mermaid Live Editor to prototype and validate your diagrams before adding them to documentation.
 </Callout>
+
