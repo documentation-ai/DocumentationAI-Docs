@@ -224,6 +224,11 @@
                 "icon": "code"
               },
               {
+                "title": "Mermaid Diagrams",
+                "path": "components/mermaid",
+                "icon": "network"
+              },
+              {
                 "title": "Callout",
                 "path": "components/callout",
                 "icon": "megaphone"
