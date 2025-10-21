@@ -1,0 +1,381 @@
+---
+title: Steps
+description: Display sequential instructions or processes with numbered or icon-based steps and connecting lines.
+type: reference
+---
+
+## Overview
+
+The `<Steps>` component creates visually connected step-by-step instructions with automatic numbering, custom icons, and gradient connecting lines. Each step includes a title, optional icon, and rich content support.
+
+Common use cases:
+- Installation and setup guides with sequential instructions
+- Multi-step tutorials and onboarding flows
+- Process documentation showing workflow stages
+- Configuration guides with ordered steps
+- Migration or upgrade procedures
+
+````jsx
+<Steps>
+  <Step title="Install dependencies" icon="download">
+    Run the installation command to add required packages to your project.
+    
+    ```bash
+    npm install documentation-ai
+    ```
+  </Step>
+  <Step title="Configure settings" icon="settings">
+    Create a configuration file in your project root with your API credentials.
+    
+    ```javascript
+    module.exports = {
+      apiKey: process.env.DOC_AI_KEY
+    }
+    ```
+  </Step>
+  <Step title="Deploy documentation" icon="rocket">
+    Push your changes and deploy to production.
+    
+    ```bash
+    npm run deploy
+    ```
+  </Step>
+</Steps>
+````
+
+<Steps>
+  <Step title="Install dependencies" icon="download">
+    Run the installation command to add required packages to your project.
+    
+    ```bash
+    npm install documentation-ai
+    ```
+  </Step>
+  <Step title="Configure settings" icon="settings">
+    Create a configuration file in your project root with your API credentials.
+    
+    ```javascript
+    module.exports = {
+      apiKey: process.env.DOC_AI_KEY
+    }
+    ```
+  </Step>
+  <Step title="Deploy documentation" icon="rocket">
+    Push your changes and deploy to production.
+    
+    ```bash
+    npm run deploy
+    ```
+  </Step>
+</Steps>
+
+## Basic syntax
+
+Use the `<Steps>` component as a container with individual `<Step>` components for each instruction:
+
+````jsx
+<Steps>
+  <Step title="First step" icon="circle-check">
+    Description and content for the first step.
+  </Step>
+  <Step title="Second step" icon="circle-check">
+    Description and content for the second step.
+  </Step>
+</Steps>
+````
+
+<Steps>
+  <Step title="First step" icon="circle-check">
+    Description and content for the first step.
+  </Step>
+  <Step title="Second step" icon="circle-check">
+    Description and content for the second step.
+  </Step>
+</Steps>
+
+## Automatic numbering
+
+Omit the `icon` attribute to display automatic sequential numbering:
+
+````jsx
+<Steps>
+  <Step title="Create your account">
+    Sign up with your email address and create a secure password.
+  </Step>
+  <Step title="Verify your email">
+    Check your inbox for the verification link and click to confirm.
+  </Step>
+  <Step title="Complete your profile">
+    Add your organization details and team information.
+  </Step>
+  <Step title="Start building">
+    Create your first documentation project and invite team members.
+  </Step>
+</Steps>
+````
+
+<Steps>
+  <Step title="Create your account">
+    Sign up with your email address and create a secure password.
+  </Step>
+  <Step title="Verify your email">
+    Check your inbox for the verification link and click to confirm.
+  </Step>
+  <Step title="Complete your profile">
+    Add your organization details and team information.
+  </Step>
+  <Step title="Start building">
+    Create your first documentation project and invite team members.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Automatic numbering is ideal for sequential processes where order matters and each step builds on the previous one.
+</Callout>
+
+## Custom icons
+
+Add visual context to each step using Lucide icons:
+
+````jsx
+<Steps>
+  <Step title="Clone repository" icon="git-branch">
+    Clone the project repository to your local machine.
+    
+    ```bash
+    git clone https://github.com/your-org/project.git
+    ```
+  </Step>
+  <Step title="Install packages" icon="package">
+    Install all project dependencies using your package manager.
+    
+    ```bash
+    npm install
+    ```
+  </Step>
+  <Step title="Start development" icon="play-circle">
+    Launch the development server and open in your browser.
+    
+    ```bash
+    npm run dev
+    ```
+  </Step>
+</Steps>
+````
+
+<Steps>
+  <Step title="Clone repository" icon="git-branch">
+    Clone the project repository to your local machine.
+    
+    ```bash
+    git clone https://github.com/your-org/project.git
+    ```
+  </Step>
+  <Step title="Install packages" icon="package">
+    Install all project dependencies using your package manager.
+    
+    ```bash
+    npm install
+    ```
+  </Step>
+  <Step title="Start development" icon="play-circle">
+    Launch the development server and open in your browser.
+    
+    ```bash
+    npm run dev
+    ```
+  </Step>
+</Steps>
+
+<Callout kind="info">
+  Icon names use Lucide icon library. Reference the [Lucide icon directory](https://lucide.dev/icons/) for available options.
+</Callout>
+
+## Heading levels
+
+Control the semantic heading level of step titles using the `titleType` attribute:
+
+````jsx
+<Steps>
+  <Step title="Database setup" titleType="h2" icon="database">
+    Configure your database connection and run initial migrations.
+  </Step>
+  <Step title="API configuration" titleType="h2" icon="server">
+    Set up API endpoints and authentication middleware.
+  </Step>
+  <Step title="Frontend integration" titleType="h2" icon="monitor">
+    Connect your frontend application to the API.
+  </Step>
+</Steps>
+````
+
+<Steps>
+  <Step title="Database setup" titleType="h2" icon="database">
+    Configure your database connection and run initial migrations.
+  </Step>
+  <Step title="API configuration" titleType="h2" icon="server">
+    Set up API endpoints and authentication middleware.
+  </Step>
+  <Step title="Frontend integration" titleType="h2" icon="monitor">
+    Connect your frontend application to the API.
+  </Step>
+</Steps>
+
+### SEO and accessibility
+
+Use appropriate heading levels to maintain proper document structure and improve SEO:
+
+````jsx
+<Steps>
+  <Step title="Planning phase" titleType="h3" icon="clipboard-list">
+    Define project requirements and create technical specifications.
+  </Step>
+  <Step title="Development phase" titleType="h3" icon="code">
+    Build features according to specifications and coding standards.
+  </Step>
+  <Step title="Testing phase" titleType="h3" icon="bug">
+    Conduct thorough testing including unit, integration, and end-to-end tests.
+  </Step>
+  <Step title="Deployment phase" titleType="h3" icon="cloud-upload">
+    Deploy to staging environment and prepare for production release.
+  </Step>
+</Steps>
+````
+
+<Steps>
+  <Step title="Planning phase" titleType="h3" icon="clipboard-list">
+    Define project requirements and create technical specifications.
+  </Step>
+  <Step title="Development phase" titleType="h3" icon="code">
+    Build features according to specifications and coding standards.
+  </Step>
+  <Step title="Testing phase" titleType="h3" icon="bug">
+    Conduct thorough testing including unit, integration, and end-to-end tests.
+  </Step>
+  <Step title="Deployment phase" titleType="h3" icon="cloud-upload">
+    Deploy to staging environment and prepare for production release.
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+  Choose heading levels that fit your document hierarchy. Avoid skipping levels to maintain proper semantic structure.
+</Callout>
+
+## Rich content support
+
+Steps support any MDX content including code blocks, callouts, lists, and other components:
+
+````jsx
+<Steps>
+  <Step title="Environment setup" icon="folder-cog">
+    Create environment variables for different deployment stages.
+    
+    <Callout kind="info">
+      Store sensitive credentials in environment variables, never commit them to version control.
+    </Callout>
+    
+    ```bash
+    # .env.local
+    DATABASE_URL=postgresql://localhost:5432/mydb
+    API_KEY=your-api-key-here
+    NEXT_PUBLIC_APP_URL=http://localhost:3000
+    ```
+  </Step>
+  <Step title="Security checklist" icon="shield-check">
+    Verify your security configuration before deploying:
+    
+    - Enable HTTPS for all production environments
+    - Configure CORS policies for API endpoints
+    - Implement rate limiting on public endpoints
+    - Set up monitoring and alerting for suspicious activity
+    - Review and update dependency versions
+  </Step>
+  <Step title="Deploy to production" icon="rocket">
+    Run the production deployment command and verify the deployment.
+    
+    ```bash
+    npm run build
+    npm run start
+    ```
+    
+    <Callout kind="success">
+      Monitor application logs and performance metrics for the first 24 hours after deployment.
+    </Callout>
+  </Step>
+</Steps>
+````
+
+<Steps>
+  <Step title="Environment setup" icon="folder-cog">
+    Create environment variables for different deployment stages.
+    
+    <Callout kind="info">
+      Store sensitive credentials in environment variables, never commit them to version control.
+    </Callout>
+    
+    ```bash
+    # .env.local
+    DATABASE_URL=postgresql://localhost:5432/mydb
+    API_KEY=your-api-key-here
+    NEXT_PUBLIC_APP_URL=http://localhost:3000
+    ```
+  </Step>
+  <Step title="Security checklist" icon="shield-check">
+    Verify your security configuration before deploying:
+    
+    - Enable HTTPS for all production environments
+    - Configure CORS policies for API endpoints
+    - Implement rate limiting on public endpoints
+    - Set up monitoring and alerting for suspicious activity
+    - Review and update dependency versions
+  </Step>
+  <Step title="Deploy to production" icon="rocket">
+    Run the production deployment command and verify the deployment.
+    
+    ```bash
+    npm run build
+    npm run start
+    ```
+    
+    <Callout kind="success">
+      Monitor application logs and performance metrics for the first 24 hours after deployment.
+    </Callout>
+  </Step>
+</Steps>
+
+## Attributes
+
+### Steps component
+
+The `<Steps>` component acts as a container and has no configurable attributes. It automatically manages step numbering and layout.
+
+### Step component
+
+<ParamField path="title" param-type="string" required="true" showLocation="false">
+  The heading text displayed for this step. Serves as the main identifier for each instruction.
+</ParamField>
+<ParamField path="icon" param-type="string" required="false" showLocation="false">
+  Lucide icon name to display instead of automatic numbering. Omit this attribute to show sequential numbers. Reference [Lucide icons](https://lucide.dev/icons/) for available options.
+</ParamField>
+<ParamField path="titleType" param-type="string" required="false" showLocation="false">
+  The HTML heading level for the step title. Accepts: `p`, `h2`, `h3`, `h4`, `h5`, or `h6`. Default: `p`. Use heading levels to maintain proper document structure and improve accessibility.
+</ParamField>
+<ParamField path="children" param-type="node" required="true" showLocation="false">
+  The content of the step. Supports all MDX content including text, code blocks, callouts, lists, images, and other components.
+</ParamField>
+
+## Common patterns
+
+- **Installation guides** - Use automatic numbering for clear sequential installation instructions where each step depends on the previous one being completed.
+- **Configuration workflows** - Combine custom icons with rich content including code blocks and callouts to guide users through complex configuration processes.
+- **Migration procedures** - Structure multi-phase migrations with heading levels (h2/h3) to create a clear hierarchy and improve document navigation.
+- **Troubleshooting flows** - Use diagnostic icons (bug, alert-triangle, check-circle) to create visual troubleshooting guides that help users identify and resolve issues.
+- **Onboarding sequences** - Create welcoming onboarding experiences with icons that represent each phase (user, settings, check, party-popper) and rich content explaining features.
+- **API integration guides** - Document API integration steps with code examples, authentication setup, and testing procedures in a clear sequential format.
+- **Deployment checklists** - Build pre-deployment checklists with nested callouts for warnings and success criteria, ensuring teams follow best practices.
+- **Feature tutorials** - Break down complex features into digestible steps with screenshots, code samples, and explanations that users can follow at their own pace.
+
+<Callout kind="success">
+  Steps components automatically generate visual connecting lines between steps, creating a polished, professional appearance without additional styling.
+</Callout>
+
