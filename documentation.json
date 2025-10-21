@@ -239,6 +239,11 @@
                 "icon": "chevron-down"
               },
               {
+                "title": "Steps",
+                "path": "components/steps",
+                "icon": "list-ordered"
+              },
+              {
                 "title": "Param Field",
                 "path": "components/paramfield",
                 "icon": "settings"
