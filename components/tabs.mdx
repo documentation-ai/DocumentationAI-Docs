@@ -1,0 +1,466 @@
+---
+title: Tabs
+description: Organize content into tabbed interfaces with optional icons and smooth animated transitions.
+type: reference
+---
+
+## Overview
+
+The `<Tabs>` component creates an interactive tabbed interface with smooth animations and optional icons. Each tab includes a title, optional icon, and supports any MDX content including code blocks, callouts, and other components.
+
+Common use cases:
+- Platform-specific installation instructions across different operating systems
+- API examples showing multiple programming languages side by side
+- Feature documentation with different implementation approaches
+- Configuration options for various environments or frameworks
+- Version-specific documentation showing differences between releases
+
+````jsx
+<Tabs>
+  <Tab title="macOS" icon="apple">
+    Install using Homebrew for the best experience on macOS.
+    
+    ```bash
+    brew install documentation-ai
+    ```
+  </Tab>
+  <Tab title="Windows" icon="monitor">
+    Download and run the Windows installer from the releases page.
+    
+    ```bash
+    winget install documentation-ai
+    ```
+  </Tab>
+  <Tab title="Linux" icon="terminal">
+    Use your package manager or download the binary directly.
+    
+    ```bash
+    sudo apt install documentation-ai
+    ```
+  </Tab>
+</Tabs>
+````
+
+<Tabs>
+  <Tab title="macOS" icon="apple">
+    Install using Homebrew for the best experience on macOS.
+    
+    ```bash
+    brew install documentation-ai
+    ```
+  </Tab>
+  <Tab title="Windows" icon="monitor">
+    Download and run the Windows installer from the releases page.
+    
+    ```bash
+    winget install documentation-ai
+    ```
+  </Tab>
+  <Tab title="Linux" icon="terminal">
+    Use your package manager or download the binary directly.
+    
+    ```bash
+    sudo apt install documentation-ai
+    ```
+  </Tab>
+</Tabs>
+
+## Basic syntax
+
+Use the `<Tabs>` component as a container with individual `<Tab>` components for each section:
+
+````jsx
+<Tabs>
+  <Tab title="JavaScript">
+    Content for JavaScript tab
+  </Tab>
+  <Tab title="Python">
+    Content for Python tab
+  </Tab>
+</Tabs>
+````
+
+<Tabs>
+  <Tab title="JavaScript">
+    Content for JavaScript tab
+  </Tab>
+  <Tab title="Python">
+    Content for Python tab
+  </Tab>
+</Tabs>
+
+## Code examples
+
+Display code examples in multiple programming languages with tabbed navigation:
+
+````jsx
+<Tabs>
+  <Tab title="JavaScript" icon="code">
+    ```javascript
+    const client = new DocumentationAI({
+      apiKey: process.env.DOC_AI_KEY,
+      projectId: 'your-project-id'
+    });
+    
+    await client.deploy();
+    ```
+  </Tab>
+  <Tab title="Python" icon="code">
+    ```python
+    from documentation_ai import Client
+    
+    client = Client(
+        api_key=os.environ['DOC_AI_KEY'],
+        project_id='your-project-id'
+    )
+    
+    client.deploy()
+    ```
+  </Tab>
+  <Tab title="Go" icon="code">
+    ```go
+    client := documentationai.NewClient(
+        documentationai.WithAPIKey(os.Getenv("DOC_AI_KEY")),
+        documentationai.WithProjectID("your-project-id"),
+    )
+    
+    client.Deploy()
+    ```
+  </Tab>
+</Tabs>
+````
+
+<Tabs>
+  <Tab title="JavaScript" icon="code">
+    ```javascript
+    const client = new DocumentationAI({
+      apiKey: process.env.DOC_AI_KEY,
+      projectId: 'your-project-id'
+    });
+    
+    await client.deploy();
+    ```
+  </Tab>
+  <Tab title="Python" icon="code">
+    ```python
+    from documentation_ai import Client
+    
+    client = Client(
+        api_key=os.environ['DOC_AI_KEY'],
+        project_id='your-project-id'
+    )
+    
+    client.deploy()
+    ```
+  </Tab>
+  <Tab title="Go" icon="code">
+    ```go
+    client := documentationai.NewClient(
+        documentationai.WithAPIKey(os.Getenv("DOC_AI_KEY")),
+        documentationai.WithProjectID("your-project-id"),
+    )
+    
+    client.Deploy()
+    ```
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+  Tabs automatically maintain state during the user's session, making it easy to switch between examples without losing context.
+</Callout>
+
+## Tab icons
+
+Add visual context to tabs using Lucide icons for better recognition:
+
+````jsx
+<Tabs>
+  <Tab title="Overview" icon="book-open">
+    Get started with the fundamentals of DocumentationAI and learn core concepts.
+  </Tab>
+  <Tab title="Installation" icon="download">
+    Follow step-by-step instructions to install and configure your environment.
+  </Tab>
+  <Tab title="Configuration" icon="settings">
+    Customize your setup with advanced configuration options and best practices.
+  </Tab>
+  <Tab title="Deployment" icon="rocket">
+    Deploy your documentation to production with automated CI/CD workflows.
+  </Tab>
+</Tabs>
+````
+
+<Tabs>
+  <Tab title="Overview" icon="book-open">
+    Get started with the fundamentals of DocumentationAI and learn core concepts.
+  </Tab>
+  <Tab title="Installation" icon="download">
+    Follow step-by-step instructions to install and configure your environment.
+  </Tab>
+  <Tab title="Configuration" icon="settings">
+    Customize your setup with advanced configuration options and best practices.
+  </Tab>
+  <Tab title="Deployment" icon="rocket">
+    Deploy your documentation to production with automated CI/CD workflows.
+  </Tab>
+</Tabs>
+
+<Callout kind="info">
+  Icon names use the Lucide icon library. Reference the [Lucide icon directory](https://lucide.dev/icons/) for all available options.
+</Callout>
+
+## Rich content support
+
+Tabs support any MDX content including nested components, callouts, images, and complex layouts:
+
+````jsx
+<Tabs>
+  <Tab title="Quick Start" icon="zap">
+    Get up and running in under 5 minutes with our streamlined setup process.
+    
+    <Callout kind="success">
+      All dependencies are automatically installed and configured for you.
+    </Callout>
+    
+    ```bash
+    npm create documentation-ai@latest
+    cd my-docs
+    npm run dev
+    ```
+  </Tab>
+  <Tab title="Manual Setup" icon="wrench">
+    For advanced users who want full control over their configuration.
+    
+    <Steps>
+      <Step title="Create project directory" icon="folder">
+        Set up your project structure and initialize package.json.
+      </Step>
+      <Step title="Install dependencies" icon="package">
+        Add DocumentationAI and required peer dependencies.
+      </Step>
+      <Step title="Configure settings" icon="settings">
+        Create your documentation.json configuration file.
+      </Step>
+    </Steps>
+    
+    <Callout kind="alert">
+      Manual setup requires Node.js 18 or higher and npm 8 or higher.
+    </Callout>
+  </Tab>
+  <Tab title="Migration" icon="move">
+    Migrate from existing documentation platforms to DocumentationAI.
+    
+    Supported migration sources:
+    - GitBook documentation
+    - Docusaurus sites
+    - ReadTheDocs projects
+    - Custom static sites
+    
+    <Callout kind="info">
+      Contact our migration team for assistance with large-scale projects.
+    </Callout>
+  </Tab>
+</Tabs>
+````
+
+<Tabs>
+  <Tab title="Quick Start" icon="zap">
+    Get up and running in under 5 minutes with our streamlined setup process.
+    
+    <Callout kind="success">
+      All dependencies are automatically installed and configured for you.
+    </Callout>
+    
+    ```bash
+    npm create documentation-ai@latest
+    cd my-docs
+    npm run dev
+    ```
+  </Tab>
+  <Tab title="Manual Setup" icon="wrench">
+    For advanced users who want full control over their configuration.
+    
+    <Steps>
+      <Step title="Create project directory" icon="folder">
+        Set up your project structure and initialize package.json.
+      </Step>
+      <Step title="Install dependencies" icon="package">
+        Add DocumentationAI and required peer dependencies.
+      </Step>
+      <Step title="Configure settings" icon="settings">
+        Create your documentation.json configuration file.
+      </Step>
+    </Steps>
+    
+    <Callout kind="alert">
+      Manual setup requires Node.js 18 or higher and npm 8 or higher.
+    </Callout>
+  </Tab>
+  <Tab title="Migration" icon="move">
+    Migrate from existing documentation platforms to DocumentationAI.
+    
+    Supported migration sources:
+    - GitBook documentation
+    - Docusaurus sites
+    - ReadTheDocs projects
+    - Custom static sites
+    
+    <Callout kind="info">
+      Contact our migration team for assistance with large-scale projects.
+    </Callout>
+  </Tab>
+</Tabs>
+
+## Platform-specific instructions
+
+Create platform-specific guides that adapt to your users' operating systems:
+
+````jsx
+<Tabs>
+  <Tab title="npm" icon="package">
+    ```bash
+    npm install @documentation-ai/sdk
+    npm install --save-dev @documentation-ai/cli
+    ```
+    
+    Add scripts to your package.json:
+    
+    ```json
+    {
+      "scripts": {
+        "docs:dev": "doc-ai dev",
+        "docs:build": "doc-ai build",
+        "docs:deploy": "doc-ai deploy"
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="pnpm" icon="package">
+    ```bash
+    pnpm add @documentation-ai/sdk
+    pnpm add -D @documentation-ai/cli
+    ```
+    
+    Add scripts to your package.json:
+    
+    ```json
+    {
+      "scripts": {
+        "docs:dev": "doc-ai dev",
+        "docs:build": "doc-ai build",
+        "docs:deploy": "doc-ai deploy"
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Yarn" icon="package">
+    ```bash
+    yarn add @documentation-ai/sdk
+    yarn add --dev @documentation-ai/cli
+    ```
+    
+    Add scripts to your package.json:
+    
+    ```json
+    {
+      "scripts": {
+        "docs:dev": "doc-ai dev",
+        "docs:build": "doc-ai build",
+        "docs:deploy": "doc-ai deploy"
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+````
+
+<Tabs>
+  <Tab title="npm" icon="package">
+    ```bash
+    npm install @documentation-ai/sdk
+    npm install --save-dev @documentation-ai/cli
+    ```
+    
+    Add scripts to your package.json:
+    
+    ```json
+    {
+      "scripts": {
+        "docs:dev": "doc-ai dev",
+        "docs:build": "doc-ai build",
+        "docs:deploy": "doc-ai deploy"
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="pnpm" icon="package">
+    ```bash
+    pnpm add @documentation-ai/sdk
+    pnpm add -D @documentation-ai/cli
+    ```
+    
+    Add scripts to your package.json:
+    
+    ```json
+    {
+      "scripts": {
+        "docs:dev": "doc-ai dev",
+        "docs:build": "doc-ai build",
+        "docs:deploy": "doc-ai deploy"
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Yarn" icon="package">
+    ```bash
+    yarn add @documentation-ai/sdk
+    yarn add --dev @documentation-ai/cli
+    ```
+    
+    Add scripts to your package.json:
+    
+    ```json
+    {
+      "scripts": {
+        "docs:dev": "doc-ai dev",
+        "docs:build": "doc-ai build",
+        "docs:deploy": "doc-ai deploy"
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Attributes
+
+### Tabs component
+
+The `<Tabs>` component acts as a container and has no configurable attributes. It automatically manages tab state and animations.
+
+### Tab component
+
+<ParamField path="title" param-type="string" required="true" showLocation="false">
+  The tab label displayed in the navigation bar. This text identifies each tab and should be concise and descriptive.
+</ParamField>
+<ParamField path="icon" param-type="string" required="false" showLocation="false">
+  Optional Lucide icon name to display alongside the tab title. Enhances visual recognition and improves user experience. Reference [Lucide icons](https://lucide.dev/icons/) for available options.
+</ParamField>
+<ParamField path="children" param-type="node" required="true" showLocation="false">
+  The content displayed when the tab is active. Supports all MDX content including text, code blocks, callouts, images, lists, tables, and other components.
+</ParamField>
+
+## Common patterns
+
+- **Multi-language code examples** - Display the same functionality implemented across different programming languages, making it easy for developers to find examples in their preferred language.
+- **Platform installation guides** - Provide operating system-specific instructions for Windows, macOS, and Linux users, ensuring everyone can follow the correct setup process.
+- **Framework integrations** - Document how to integrate with various frameworks like React, Vue, Angular, or Svelte in separate tabs for clarity and organization.
+- **Environment configurations** - Show different configuration options for development, staging, and production environments without cluttering a single view.
+- **API authentication methods** - Present multiple authentication approaches such as API keys, OAuth, JWT tokens, or SAML in an organized tabbed interface.
+- **Package manager instructions** - Provide installation commands for npm, yarn, pnpm, and other package managers so users can choose their preferred tool.
+- **Version migration guides** - Compare features and breaking changes between different versions, helping users understand what changed and how to upgrade.
+- **Feature comparison tables** - Display plan tiers, pricing options, or feature availability across different subscription levels in an interactive format.
+
+<Callout kind="success">
+  Tabs include an animated underline indicator that smoothly transitions between selections, providing clear visual feedback to users.
+</Callout>
+

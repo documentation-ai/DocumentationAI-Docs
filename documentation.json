@@ -244,6 +244,11 @@
                 "icon": "list-ordered"
               },
               {
+                "title": "Tabs",
+                "path": "components/tabs",
+                "icon": "panels-top-left"
+              },
+              {
                 "title": "Param Field",
                 "path": "components/paramfield",
                 "icon": "settings"
