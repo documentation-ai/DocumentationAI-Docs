@@ -249,6 +249,11 @@
                 "icon": "panels-top-left"
               },
               {
+                "title": "Update",
+                "path": "components/update",
+                "icon": "clock"
+              },
+              {
                 "title": "Param Field",
                 "path": "components/paramfield",
                 "icon": "settings"
