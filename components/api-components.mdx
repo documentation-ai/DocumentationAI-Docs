@@ -1,95 +1,103 @@
 ---
 title: API Components
-description: Reference for Request and Response components that automatically display in the right panel for API documentation.
+description: >-
+  Reference for Request and Response components that automatically display in
+  the right panel for API documentation.
+
+
+  ui12312311
 type: reference
 ---
-
 ## Overview
 
 Display code blocks in the right sidebar on desktop devices. The `Request` and `Response` components create a two-column layout that keeps examples visible while users scroll through your content.
 
 Common use cases:
+
 - API endpoint documentation with request and response examples
-- Configuration examples alongside explanatory text  
+
+- Configuration examples alongside explanatory text
+
 - Code samples that users reference while following instructions
+
 - Before and after examples in tutorials
 
 On mobile devices, components display as regular code blocks within the main content.
 
-<Request tabs="JavaScript,cURL">
-```javascript
-const response = await fetch('/api/docs', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer TOKEN',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ title: 'Getting Started' })
-});
-const response = await fetch('/api/docs', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer TOKEN',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ title: 'Getting Started' })
-});
-const response = await fetch('/api/docs', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer TOKEN',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ title: 'Getting Started' })
-});
-const response = await fetch('/api/docs', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer TOKEN',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ title: 'Getting Started' })
-});
+<Request uid="c6ca1719-456a-4c7f-aae8-06b2b5aaa11a" show-lines="true" tabs={[]}>
+  ```javascript
+  const response = await fetch('/api/docs', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer TOKEN',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ title: 'Getting Started' })
+  });
+  const response = await fetch('/api/docs', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer TOKEN',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ title: 'Getting Started' })
+  });
+  const response = await fetch('/api/docs', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer TOKEN',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ title: 'Getting Started' })
+  });
+  const response = await fetch('/api/docs', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer TOKEN',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ title: 'Getting Started' })
+  });
 
-```
+  ```
 
-```bash
-curl -X POST https://api.example.com/docs \
-  -H "Authorization: Bearer TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"title": "Getting Started"}'
-```
+  ```bash
+  curl -X POST https://api.example.com/docs \
+    -H "Authorization: Bearer TOKEN" \
+    -H "Content-Type: application/json" \
+    -d '{"title": "Getting Started"}'
+  ```
 </Request>
 
-<Response tabs="200,404">
-```json
-{
-  "id": "doc-123",
-  "title": "Getting Started",
-  "status": "published",
-  "created_at": "2024-01-15T10:30:00Z"
-}
-{
-  "id": "doc-123",
-  "title": "Getting Started",
-  "status": "published",
-  "created_at": "2024-01-15T10:30:00Z"
-}
-{
-  "id": "doc-123",
-  "title": "Getting Started",
-  "status": "published",
-  "created_at": "2024-01-15T10:30:00Z"
-}
-```
+<Response uid="a1a2053a-c2e9-494d-b580-d6604d9e7788" show-lines="true" tabs={[]}>
+  ```json
+  {
+    "id": "doc-123",
+    "title": "Getting Started",
+    "status": "published",
+    "created_at": "2024-01-15T10:30:00Z"
+  }
+  {
+    "id": "doc-123",
+    "title": "Getting Started",
+    "status": "published",
+    "created_at": "2024-01-15T10:30:00Z"
+  }
+  {
+    "id": "doc-123",
+    "title": "Getting Started",
+    "status": "published",
+    "created_at": "2024-01-15T10:30:00Z"
+  }
+  ```
 
-```json
-{
-  "error": "Document not found",
-  "code": "DOC_NOT_FOUND",
-  "message": "The requested document does not exist"
-}
-```
+  ```json
+  {
+    "error": "Document not found",
+    "code": "DOC_NOT_FOUND",
+    "message": "The requested document does not exist"
+  }
+  ```
 </Response>
 
 ## Request
@@ -118,15 +126,15 @@ response = requests.post('/api/docs',
 
 ### Attributes
 
-<ParamField path="tabs" param-type="string" required="false" showLocation="false">
+<ParamField uid="329c19b1-2df8-4b4b-8b1d-a7d4653542be" path="tabs" param-type="string" required="false" deprecated="false">
   Comma-separated tab names. Overrides auto-detected languages.
 </ParamField>
 
-<ParamField path="show-lines" param-type="string" required="false" showLocation="false">
+<ParamField uid="575ba8e6-f64b-4e83-b3aa-52db47eaf171" path="show-lines" param-type="string" required="false" deprecated="false">
   Shows line numbers when set to `"true"`. Request shows lines by default.
 </ParamField>
 
-<ParamField path="default-tab" param-type="string" required="false" showLocation="false">
+<ParamField uid="970358b1-b814-4be7-b606-018115239bb1" path="default-tab" param-type="string" required="false" deprecated="false">
   Default active tab index (1-based).
 </ParamField>
 
@@ -154,21 +162,25 @@ Use `Response` to display API response examples in the right sidebar beneath any
 
 ### Attributes
 
-<ParamField path="tabs" param-type="string" required="false" showLocation="false">
+<ParamField uid="bfac6f1e-b49a-4364-8e8e-5e3e6ec25e00" path="tabs" param-type="string" required="false" deprecated="false">
   Comma-separated tab names. Commonly HTTP status codes or formats.
 </ParamField>
 
-<ParamField path="show-lines" param-type="string" required="false" showLocation="false">
+<ParamField uid="5c39a939-d9c2-4947-9dce-ca3b3e232530" path="show-lines" param-type="string" required="false" deprecated="false">
   Shows line numbers when set to `"true"`. Response hides lines by default.
 </ParamField>
 
-<ParamField path="default-tab" param-type="string" required="false" showLocation="false">
+<ParamField uid="d90140ed-94dd-48e0-af5c-ea0a0854bab9" path="default-tab" param-type="string" required="false" deprecated="false">
   Default active tab index (1-based).
 </ParamField>
 
 ## Common patterns
 
 - **API documentation** - One Request and one Response component per endpoint page
+
 - **Multi-language support** - Request tabs for different programming languages (JavaScript, Python, cURL)
+
 - **Status handling** - Response tabs for HTTP status codes (200, 400, 500)
+
 - **Two-column layout** - Components automatically display in right sidebar on desktop
+
