@@ -1,0 +1,448 @@
+---
+title: Update
+description: Display changelog entries, version updates, and product announcements with labeled sections and timeline layouts.
+type: reference
+---
+
+## Overview
+
+The `<Update>` component creates visually structured changelog entries and product updates with a sticky label sidebar and dedicated content area. Perfect for documenting releases, feature announcements, and product evolution over time.
+
+Common use cases:
+- Changelog entries with version numbers and release dates
+- Product update announcements with timestamps
+- Feature release timelines and roadmaps
+- API version deprecation notices
+- Release notes documentation
+- Monthly or weekly update summaries
+
+````jsx
+<Update label="2024-10-11" description="v0.1.0">
+  ## New features
+
+  We've added support for real-time collaboration and team workspaces.
+  
+  - Multi-user editing with live cursor tracking
+  - Team workspace management
+  - Enhanced permission controls
+  - Activity feed and notifications
+</Update>
+````
+
+<Update label="2024-10-11" description="v0.1.0">
+  ## New features
+
+  We've added support for real-time collaboration and team workspaces.
+  
+  - Multi-user editing with live cursor tracking
+  - Team workspace management
+  - Enhanced permission controls
+  - Activity feed and notifications
+</Update>
+
+## Basic syntax
+
+Use the `<Update>` component to create changelog entries with labels and descriptions:
+
+````jsx
+<Update label="2024-10-15" description="v1.2.0">
+  Released new analytics dashboard with real-time metrics and custom reporting.
+</Update>
+````
+
+<Update label="2024-10-15" description="v1.2.0">
+  Released new analytics dashboard with real-time metrics and custom reporting.
+</Update>
+
+<Callout kind="info">
+  The label sidebar uses sticky positioning and remains visible as users scroll through long update content.
+</Callout>
+
+## Version releases
+
+Document software releases with version numbers and detailed changes:
+
+````jsx
+<Update label="2024-10-20" description="v2.0.0">
+  ## Major release
+  
+  This release includes breaking changes and new features.
+  
+  **Breaking changes:**
+  - Updated API authentication flow requiring new credentials
+  - Removed deprecated webhook endpoints
+  
+  **New features:**
+  - Advanced search with filters and operators
+  - Export functionality for reports and data
+  - Dark mode support across all interfaces
+  
+  **Bug fixes:**
+  - Fixed race condition in real-time sync
+  - Resolved memory leak in large document rendering
+</Update>
+````
+
+<Update label="2024-10-20" description="v2.0.0">
+  ## Major release
+  
+  This release includes breaking changes and new features.
+  
+  **Breaking changes:**
+  - Updated API authentication flow requiring new credentials
+  - Removed deprecated webhook endpoints
+  
+  **New features:**
+  - Advanced search with filters and operators
+  - Export functionality for reports and data
+  - Dark mode support across all interfaces
+  
+  **Bug fixes:**
+  - Fixed race condition in real-time sync
+  - Resolved memory leak in large document rendering
+</Update>
+
+## Feature announcements
+
+Communicate new feature launches with rich content:
+
+````jsx
+<Update label="2024-10-18" description="Feature Launch">
+  ## Interactive API Playground
+  
+  Test API endpoints directly from documentation with our new interactive playground.
+  
+  <Columns cols={2}>
+    <Card title="Try it now" icon="play-circle" href="/docs/playground">
+      Explore the playground with live examples
+    </Card>
+    <Card title="API Reference" icon="book-open" href="/docs/api">
+      View complete endpoint documentation
+    </Card>
+  </Columns>
+  
+  <Callout kind="tip">
+    The playground supports all authentication methods and provides instant response previews.
+  </Callout>
+</Update>
+````
+
+<Update label="2024-10-18" description="Feature Launch">
+  ## Interactive API Playground
+  
+  Test API endpoints directly from documentation with our new interactive playground.
+  
+  <Columns cols={2}>
+    <Card title="Try it now" icon="play-circle" href="/docs/playground">
+      Explore the playground with live examples
+    </Card>
+    <Card title="API Reference" icon="book-open" href="/docs/api">
+      View complete endpoint documentation
+    </Card>
+  </Columns>
+  
+  <Callout kind="tip">
+    The playground supports all authentication methods and provides instant response previews.
+  </Callout>
+</Update>
+
+## Rich content support
+
+Updates support all MDX components including code blocks, images, cards, and callouts:
+
+````jsx
+<Update label="2024-10-12" description="Integration Update">
+  ## GitHub Integration
+  
+  Automatically sync documentation with your GitHub repositories.
+  
+  <Image
+    src="https://example.com/github-integration.png"
+    alt="GitHub integration dashboard"
+    width="800"
+    height="450"
+  />
+  
+  **Setup instructions:**
+  
+  <Steps>
+    <Step title="Connect repository" icon="git-branch">
+      Link your GitHub account and select repositories to sync.
+    </Step>
+    <Step title="Configure webhooks" icon="webhook">
+      Set up automatic deployment triggers for documentation updates.
+    </Step>
+    <Step title="Deploy" icon="rocket">
+      Push changes to trigger automatic documentation builds.
+    </Step>
+  </Steps>
+  
+  <Callout kind="success">
+    Your documentation stays in sync with every commit to the main branch.
+  </Callout>
+</Update>
+````
+
+<Update label="2024-10-12" description="Integration Update">
+  ## GitHub Integration
+  
+  Automatically sync documentation with your GitHub repositories.
+  
+  <Image
+    src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp"
+    alt="GitHub integration dashboard"
+    width="800"
+    height="450"
+  />
+  
+  **Setup instructions:**
+  
+  <Steps>
+    <Step title="Connect repository" icon="git-branch">
+      Link your GitHub account and select repositories to sync.
+    </Step>
+    <Step title="Configure webhooks" icon="webhook">
+      Set up automatic deployment triggers for documentation updates.
+    </Step>
+    <Step title="Deploy" icon="rocket">
+      Push changes to trigger automatic documentation builds.
+    </Step>
+  </Steps>
+  
+  <Callout kind="success">
+    Your documentation stays in sync with every commit to the main branch.
+  </Callout>
+</Update>
+
+## Code examples in updates
+
+Include code snippets to demonstrate changes and new features:
+
+````jsx
+<Update label="2024-10-05" description="API Enhancement">
+  ## New authentication method
+  
+  We've added support for OAuth 2.0 authentication alongside existing API keys.
+  
+  <CodeGroup tabs="JavaScript,Python,cURL">
+  ```javascript
+  const response = await fetch('https://api.example.com/data', {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`
+    }
+  });
+  ```
+  
+  ```python
+  import requests
+  
+  response = requests.get(
+    'https://api.example.com/data',
+    headers={'Authorization': f'Bearer {access_token}'}
+  )
+  ```
+  
+  ```bash
+  curl -H "Authorization: Bearer YOUR_TOKEN" \
+    https://api.example.com/data
+  ```
+  </CodeGroup>
+  
+  <Callout kind="alert">
+    API key authentication will be deprecated in version 3.0. Migrate to OAuth 2.0 before December 2024.
+  </Callout>
+</Update>
+````
+
+<Update label="2024-10-05" description="API Enhancement">
+  ## New authentication method
+  
+  We've added support for OAuth 2.0 authentication alongside existing API keys.
+  
+  <CodeGroup tabs="JavaScript,Python,cURL">
+  ```javascript
+  const response = await fetch('https://api.example.com/data', {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`
+    }
+  });
+  ```
+  
+  ```python
+  import requests
+  
+  response = requests.get(
+    'https://api.example.com/data',
+    headers={'Authorization': f'Bearer {access_token}'}
+  )
+  ```
+  
+  ```bash
+  curl -H "Authorization: Bearer YOUR_TOKEN" \
+    https://api.example.com/data
+  ```
+  </CodeGroup>
+  
+  <Callout kind="alert">
+    API key authentication will be deprecated in version 3.0. Migrate to OAuth 2.0 before December 2024.
+  </Callout>
+</Update>
+
+## Sequential updates
+
+Stack multiple updates to create a complete changelog timeline:
+
+````jsx
+<Update label="2024-10-22" description="v2.1.1">
+  ## Patch release
+  
+  - Fixed authentication token refresh issue
+  - Improved error messages for API validation
+  - Updated dependencies for security patches
+</Update>
+
+<Update label="2024-10-15" description="v2.1.0">
+  ## Minor release
+  
+  - Added bulk export functionality
+  - Implemented advanced search filters
+  - Enhanced mobile responsive design
+</Update>
+
+<Update label="2024-10-01" description="v2.0.0">
+  ## Major release
+  
+  - Complete UI redesign with modern interface
+  - New team collaboration features
+  - Performance improvements across all modules
+</Update>
+````
+
+<Update label="2024-10-22" description="v2.1.1">
+  ## Patch release
+  
+  - Fixed authentication token refresh issue
+  - Improved error messages for API validation
+  - Updated dependencies for security patches
+</Update>
+
+<Update label="2024-10-15" description="v2.1.0">
+  ## Minor release
+  
+  - Added bulk export functionality
+  - Implemented advanced search filters
+  - Enhanced mobile responsive design
+</Update>
+
+<Update label="2024-10-01" description="v2.0.0">
+  ## Major release
+  
+  - Complete UI redesign with modern interface
+  - New team collaboration features
+  - Performance improvements across all modules
+</Update>
+
+<Callout kind="tip">
+  List updates in reverse chronological order with the most recent at the top for better user experience.
+</Callout>
+
+## Deprecation notices
+
+Communicate breaking changes and deprecations clearly:
+
+````jsx
+<Update label="2024-11-01" description="Deprecation Notice">
+  ## API v1 deprecation timeline
+  
+  API version 1 will be deprecated according to the following schedule:
+  
+  <Callout kind="alert">
+    All API v1 endpoints will be removed on January 1, 2025.
+  </Callout>
+  
+  **Migration timeline:**
+  - **October 2024**: API v2 released with migration guide
+  - **November 2024**: Warning headers added to v1 responses
+  - **December 2024**: Rate limits reduced on v1 endpoints
+  - **January 2025**: API v1 permanently disabled
+  
+  **Migration resources:**
+  
+  <Columns cols={2}>
+    <Card title="Migration Guide" icon="arrow-right-left" href="/docs/migration">
+      Step-by-step instructions for upgrading to v2
+    </Card>
+    <Card title="API v2 Reference" icon="book-open" href="/docs/api/v2">
+      Complete documentation for new endpoints
+    </Card>
+  </Columns>
+</Update>
+````
+
+<Update label="2024-11-01" description="Deprecation Notice">
+  ## API v1 deprecation timeline
+  
+  API version 1 will be deprecated according to the following schedule:
+  
+  <Callout kind="alert">
+    All API v1 endpoints will be removed on January 1, 2025.
+  </Callout>
+  
+  **Migration timeline:**
+  - **October 2024**: API v2 released with migration guide
+  - **November 2024**: Warning headers added to v1 responses
+  - **December 2024**: Rate limits reduced on v1 endpoints
+  - **January 2025**: API v1 permanently disabled
+  
+  **Migration resources:**
+  
+  <Columns cols={2}>
+    <Card title="Migration Guide" icon="arrow-right-left" href="/docs/migration">
+      Step-by-step instructions for upgrading to v2
+    </Card>
+    <Card title="API v2 Reference" icon="book-open" href="/docs/api/v2">
+      Complete documentation for new endpoints
+    </Card>
+  </Columns>
+</Update>
+
+## Attributes
+
+<ParamField path="label" param-type="string" required="true" showLocation="false">
+  The primary label displayed in the sidebar. Typically used for dates (YYYY-MM-DD format), version identifiers, or update categories.
+</ParamField>
+<ParamField path="description" param-type="string" required="true" showLocation="false">
+  Supporting description displayed below the label. Commonly used for version numbers, release types, or brief categorizations.
+</ParamField>
+<ParamField path="children" param-type="node" required="true" showLocation="false">
+  The main content of the update. Supports all MDX content including headings, text, code blocks, images, cards, callouts, and other components.
+</ParamField>
+
+## Layout behavior
+
+The Update component uses a responsive grid layout:
+
+- **Desktop (lg breakpoint and above)**: Four-column grid with label sidebar taking one column and content spanning three columns
+- **Mobile and tablet**: Stacks vertically with label section above content
+- **Sidebar positioning**: Label section uses sticky positioning (top: 1.5rem) on desktop to remain visible during scroll
+- **Spacing**: Vertical padding of 2rem (py-8) separates updates when stacked
+
+<Callout kind="info">
+  The label sidebar automatically adjusts from sticky to static positioning on mobile devices for optimal readability.
+</Callout>
+
+## Common patterns
+
+- **Release changelogs** - Document software versions with labels as dates and descriptions as version numbers, organizing features, fixes, and breaking changes.
+- **Product roadmap updates** - Share development progress with labels indicating quarters or months and descriptions showing milestone names.
+- **Feature announcements** - Highlight new capabilities with launch dates as labels and feature categories as descriptions, including demos and documentation links.
+- **API versioning** - Communicate API changes with version numbers as descriptions and release dates as labels, providing migration guides and code examples.
+- **Security advisories** - Publish security updates with CVE identifiers or severity levels in descriptions and disclosure dates as labels.
+- **Maintenance notifications** - Announce scheduled maintenance windows with dates as labels and service impact descriptions.
+- **Beta program updates** - Track beta feature evolution with phase indicators (Alpha, Beta, GA) and release dates for early adopter programs.
+- **Integration launches** - Document new third-party integrations with partner names and integration capabilities in rich content sections.
+
+<Callout kind="success">
+  Combine Update components with other MDX components to create comprehensive, visually engaging changelog and announcement pages.
+</Callout>
+
