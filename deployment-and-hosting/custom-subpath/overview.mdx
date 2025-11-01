@@ -5,20 +5,24 @@ description: "Deploy your documentation at a custom subpath like yoursite.com/do
 
 ## What is a Custom Subpath Deployment?
 
-A custom subpath deployment allows you to host your documentation at a specific path on your domain, such as `yoursite.com/docs` or `yoursite.com/help`, rather than on a separate subdomain like `docs.yoursite.com`.
+A custom subpath deployment allows you to host your documentation at a specific path on your domain, such as `yoursite.com/docs`, `yoursite.com/help`, `yoursite.com/documentation`, or any custom path you choose, rather than on a separate subdomain like `docs.yoursite.com`.
 
 This approach integrates your documentation seamlessly into your main website while maintaining a unified domain structure.
+
+<Callout kind="info">
+  You have complete flexibility in choosing your subpath. Throughout this guide, we use `/docs` as an example, but you can replace it with any path like `/help`, `/guide`, `/api-docs`, `/support`, or `/documentation`.
+</Callout>
 
 ## How It Works
 
 Custom subpath deployments use a **reverse proxy** to route traffic:
 
-1. **User visits** `yoursite.com/docs`
+1. **User visits** `yoursite.com/[your-subpath]` (e.g., `/docs`, `/help`, `/guide`)
 2. **Reverse proxy intercepts** the request
 3. **Proxy forwards** the request to your documentation hosting
 4. **Documentation responds** with the content
 5. **Proxy returns** the response to the user
-6. **Browser displays** content at `yoursite.com/docs`
+6. **Browser displays** content at `yoursite.com/[your-subpath]`
 
 <Callout kind="info">
   The reverse proxy acts as an intermediary, allowing you to serve documentation from a different hosting provider while maintaining your primary domain.
@@ -85,16 +89,16 @@ The reverse proxy:
 Before setting up a custom subpath deployment, ensure you have:
 
 <Steps>
-  <Step title="Documentation Hosted" icon="server">
+  <Step title="Documentation Hosted">
     Your documentation must be deployed and accessible at `[SUBDOMAIN].documentationai.io`.
   </Step>
-  <Step title="Domain Access" icon="key">
+  <Step title="Domain Access">
     Administrative access to your domain's DNS settings and hosting configuration.
   </Step>
-  <Step title="SSL Certificate" icon="shield">
+  <Step title="SSL Certificate">
     A valid SSL certificate for your domain (most providers offer free SSL).
   </Step>
-  <Step title="Reverse Proxy Platform" icon="cloud">
+  <Step title="Reverse Proxy Platform">
     An account with Vercel, Cloudflare, AWS, or another reverse proxy service.
   </Step>
 </Steps>

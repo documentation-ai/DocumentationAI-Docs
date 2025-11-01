@@ -5,7 +5,11 @@ description: "Host documentation at a custom subpath using Cloudflare Workers fo
 
 ## Overview
 
-Deploy your documentation at a custom subpath such as `yoursite.com/docs` using Cloudflare Workers. This guide provides a complete setup for using Cloudflare's edge computing platform to proxy documentation requests with minimal latency and maximum flexibility.
+Deploy your documentation at a custom subpath such as `yoursite.com/docs`, `yoursite.com/help`, or any path you choose using Cloudflare Workers. This guide provides a complete setup for using Cloudflare's edge computing platform to proxy documentation requests with minimal latency and maximum flexibility.
+
+<Callout kind="info">
+  **Flexible Subpath**: Throughout this guide, we use `/docs` as an example, but you can use any subpath such as `/help`, `/guide`, `/documentation`, `/api-docs`, or `/support`. Simply replace `/docs` with your chosen path in the Worker script.
+</Callout>
 
 <Callout kind="info">
   Before you begin, you need a Cloudflare account and a domain (can be managed on or off Cloudflare). Your documentation should already be accessible at `[SUBDOMAIN].documentationai.io`.
@@ -42,19 +46,19 @@ Your documentation files must be organized to match your chosen subpath structur
 ## Setup Steps
 
 <Steps>
-  <Step title="Create Cloudflare Worker" icon="code">
+  <Step title="Create Cloudflare Worker">
     Set up a new Worker in your Cloudflare dashboard.
   </Step>
   
-  <Step title="Configure Worker Script" icon="settings">
+  <Step title="Configure Worker Script">
     Add the proxying logic to route documentation requests.
   </Step>
   
-  <Step title="Add Custom Domain" icon="globe">
+  <Step title="Add Custom Domain">
     Connect your domain to the Worker.
   </Step>
   
-  <Step title="Test Configuration" icon="check-circle">
+  <Step title="Test Configuration">
     Verify documentation loads correctly at your custom subpath.
   </Step>
 </Steps>
@@ -62,15 +66,15 @@ Your documentation files must be organized to match your chosen subpath structur
 ## Create a Cloudflare Worker
 
 <Steps>
-  <Step title="Navigate to Workers" icon="layers">
+  <Step title="Navigate to Workers">
     Log in to your [Cloudflare dashboard](https://dash.cloudflare.com/) and navigate to **Workers & Pages**.
   </Step>
   
-  <Step title="Create Worker" icon="plus">
+  <Step title="Create Worker">
     Click **Create application** → **Create Worker** → **Deploy**.
   </Step>
   
-  <Step title="Name Your Worker" icon="tag">
+  <Step title="Name Your Worker">
     Give your Worker a descriptive name like `docs-proxy` or `documentation-router`.
   </Step>
 </Steps>
@@ -101,7 +105,11 @@ Ensure that the `HOST` header is correctly forwarded in your Worker configuratio
 In your Cloudflare dashboard, select **Edit Code** and add the following script. This script intercepts requests and proxies documentation traffic to your documentation hosting.
 
 <Callout kind="alert">
-  Replace `[SUBDOMAIN]` with your unique subdomain, `[YOUR_DOMAIN]` with your website's base URL, and `/docs` with your desired subpath if different.
+  **Important Replacements:**
+  - Replace `[SUBDOMAIN]` with your unique subdomain from Documentation.AI
+  - Replace `[YOUR_DOMAIN]` with your website's base URL
+  - Replace `/docs` with your chosen subpath (e.g., `/help`, `/guide`, `/documentation`)
+  - Update the regex pattern `/^\/docs/` to match your subpath (e.g., `/^\/help/`, `/^\/guide/`)
 </Callout>
 
 ````javascript
@@ -180,7 +188,7 @@ if (/^\/docs/.test(urlObject.pathname)) {
   // Proxy to documentation hosting
 }
 ```
-Matches any path starting with `/docs` and proxies to your documentation.
+Matches any path starting with `/docs` (or your chosen subpath) and proxies to your documentation. Update the regex pattern to match your subpath (e.g., `/^\/help/` for `/help`, `/^\/api-docs/` for `/api-docs`).
 
 **Header Configuration**
 ```javascript
@@ -202,15 +210,15 @@ Maintains client IP information for analytics and rate limiting.
 ## Deploy Your Worker
 
 <Steps>
-  <Step title="Save Script" icon="save">
+  <Step title="Save Script">
     After adding your Worker script, click **Save and Deploy**.
   </Step>
   
-  <Step title="Wait for Deployment" icon="clock">
+  <Step title="Wait for Deployment">
     Wait for the changes to propagate (usually takes a few seconds).
   </Step>
   
-  <Step title="Test Worker URL" icon="globe">
+  <Step title="Test Worker URL">
     Test using the Worker's preview URL: `your-worker.your-subdomain.workers.dev/docs`
   </Step>
 </Steps>
@@ -222,19 +230,19 @@ Maintains client IP information for analytics and rate limiting.
 ## Add Custom Domain
 
 <Steps>
-  <Step title="Navigate to Settings" icon="settings">
+  <Step title="Navigate to Settings">
     In your [Cloudflare dashboard](https://dash.cloudflare.com/), navigate to your Worker.
   </Step>
   
-  <Step title="Access Domains & Routes" icon="route">
+  <Step title="Access Domains & Routes">
     Go to **Settings** → **Domains & Routes** → **Add** → **Custom Domain**.
   </Step>
   
-  <Step title="Add Your Domain" icon="globe">
+  <Step title="Add Your Domain">
     Enter your domain (e.g., `yoursite.com`).
   </Step>
   
-  <Step title="Add www Variant" icon="globe">
+  <Step title="Add www Variant">
     Repeat the process to add the www variant (`www.yoursite.com`).
   </Step>
 </Steps>
@@ -250,15 +258,15 @@ For more information, see [Add a custom domain](https://developers.cloudflare.co
 If your domain already points to another service, you must remove the existing DNS record before the Worker can control traffic for your domain.
 
 <Steps>
-  <Step title="Delete Existing Record" icon="trash">
+  <Step title="Delete Existing Record">
     In your Cloudflare DNS settings, delete the existing A or CNAME record for your domain.
   </Step>
   
-  <Step title="Add Custom Domain" icon="plus">
+  <Step title="Add Custom Domain">
     Return to your Worker and add your custom domain as described above.
   </Step>
   
-  <Step title="Verify Configuration" icon="check">
+  <Step title="Verify Configuration">
     Test that your Worker is handling traffic correctly.
   </Step>
 </Steps>
@@ -276,19 +284,19 @@ If you use Webflow to host your main site and want to serve documentation at `/d
 ### Setup Process
 
 <Steps>
-  <Step title="Create Landing Page" icon="layout">
+  <Step title="Create Landing Page">
     In Webflow, set up a landing page for your main site like `landing.yoursite.com`.
   </Step>
   
-  <Step title="Deploy Main Site" icon="upload">
+  <Step title="Deploy Main Site">
     Deploy your main site to the landing page to ensure it remains accessible.
   </Step>
   
-  <Step title="Update URLs" icon="link">
+  <Step title="Update URLs">
     Update any absolute URLs in your main site to be relative to avoid conflicts.
   </Step>
   
-  <Step title="Configure Worker" icon="code">
+  <Step title="Configure Worker">
     Update your Worker script with the enhanced routing logic below.
   </Step>
 </Steps>
@@ -360,23 +368,23 @@ async function handleRequest(request) {
 After deploying your Worker:
 
 <Steps>
-  <Step title="Test Documentation Root" icon="home">
+  <Step title="Test Documentation Root">
     Visit `yoursite.com/docs` and verify the documentation homepage loads.
   </Step>
   
-  <Step title="Test Nested Pages" icon="folder">
+  <Step title="Test Nested Pages">
     Navigate to nested pages like `yoursite.com/docs/getting-started/introduction`.
   </Step>
   
-  <Step title="Check Main Site" icon="layout">
+  <Step title="Check Main Site">
     Verify your main site at `yoursite.com` still loads correctly.
   </Step>
   
-  <Step title="Verify Assets" icon="image">
+  <Step title="Verify Assets">
     Open browser DevTools and check that all assets load without errors.
   </Step>
   
-  <Step title="Test Search" icon="search">
+  <Step title="Test Search">
     Use the documentation search to ensure API routes work properly.
   </Step>
 </Steps>

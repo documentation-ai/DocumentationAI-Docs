@@ -5,7 +5,11 @@ description: "Host documentation at a custom subpath using AWS Route 53 and Clou
 
 ## Overview
 
-Deploy your documentation at a custom subpath such as `yoursite.com/docs` using AWS Route 53 for DNS management and CloudFront for content delivery. This guide provides a complete enterprise-grade setup with advanced caching, security, and global distribution.
+Deploy your documentation at a custom subpath such as `yoursite.com/docs`, `yoursite.com/help`, or any path you choose using AWS Route 53 for DNS management and CloudFront for content delivery. This guide provides a complete enterprise-grade setup with advanced caching, security, and global distribution.
+
+<Callout kind="info">
+  **Flexible Subpath**: Throughout this guide, we use `/docs` as an example, but you can use any subpath such as `/help`, `/guide`, `/documentation`, `/api-docs`, or `/support`. Simply replace `/docs` with your chosen path in all CloudFront behavior configurations.
+</Callout>
 
 <Callout kind="info">
   Before you begin, ensure you have an AWS account with access to Route 53 and CloudFront. Your documentation should already be accessible at `[SUBDOMAIN].documentationai.io`.
@@ -34,10 +38,14 @@ You'll configure CloudFront behaviors to route traffic based on path patterns:
 | Path Pattern | Cache Policy | Origin | Purpose |
 |--------------|--------------|--------|---------|
 | `/.well-known/*` | CachingDisabled | Documentation | Domain verification |
-| `/docs/*` | CachingOptimized | Documentation | Documentation pages |
-| `/docs` | CachingOptimized | Documentation | Documentation root |
+| `/docs/*` (or your subpath) | CachingOptimized | Documentation | Documentation pages |
+| `/docs` (or your subpath) | CachingOptimized | Documentation | Documentation root |
 | `/dai-assets/_next/static/*` | CachingOptimized | Documentation | Static assets |
 | `Default (*)` | CachingOptimized | Main Site | Landing page |
+
+<Callout kind="tip">
+  Replace `/docs` with your chosen subpath in the behavior configurations. For example, if you want `/help`, create behaviors for `/help` and `/help/*` instead.
+</Callout>
 
 <Callout kind="alert">
   All behaviors must use the origin request policy `AllViewerExceptHostHeader` to ensure proper header forwarding.
@@ -46,19 +54,19 @@ You'll configure CloudFront behaviors to route traffic based on path patterns:
 ## Prerequisites
 
 <Steps>
-  <Step title="AWS Account" icon="cloud">
+  <Step title="AWS Account">
     Active AWS account with billing enabled.
   </Step>
   
-  <Step title="Domain in Route 53" icon="globe">
+  <Step title="Domain in Route 53">
     Your domain managed in Route 53 (or ability to update DNS).
   </Step>
   
-  <Step title="Staging URL" icon="layout">
+  <Step title="Staging URL">
     A staging URL for your main site (e.g., Vercel preview URL, Webflow staging).
   </Step>
   
-  <Step title="Documentation Subdomain" icon="book">
+  <Step title="Documentation Subdomain">
     Your documentation accessible at `[SUBDOMAIN].documentationai.io`.
   </Step>
 </Steps>
@@ -66,23 +74,23 @@ You'll configure CloudFront behaviors to route traffic based on path patterns:
 ## Step 1: Create CloudFront Distribution
 
 <Steps>
-  <Step title="Navigate to CloudFront" icon="cloud">
+  <Step title="Navigate to CloudFront">
     Open the [AWS Console](https://console.aws.amazon.com/) and navigate to **CloudFront**.
   </Step>
   
-  <Step title="Create Distribution" icon="plus">
+  <Step title="Create Distribution">
     Click **Create distribution**.
   </Step>
   
-  <Step title="Configure Origin" icon="server">
+  <Step title="Configure Origin">
     Set the **Origin domain** to `[SUBDOMAIN].documentationai.io` (replace with your actual subdomain).
   </Step>
   
-  <Step title="Enable WAF" icon="shield">
+  <Step title="Enable WAF">
     For **Web Application Firewall (WAF)**, select **Enable security protections**.
   </Step>
   
-  <Step title="Create" icon="check">
+  <Step title="Create">
     Leave other settings as default and click **Create distribution**.
   </Step>
 </Steps>
@@ -96,22 +104,22 @@ You'll configure CloudFront behaviors to route traffic based on path patterns:
 Your CloudFront distribution needs two origins: one for documentation and one for your main site.
 
 <Steps>
-  <Step title="Navigate to Origins" icon="layers">
+  <Step title="Navigate to Origins">
     In your distribution, go to the **Origins** tab.
   </Step>
   
-  <Step title="Find Staging URL" icon="search">
+  <Step title="Find Staging URL">
     Locate your main site's staging URL:
     - **Vercel**: Use your `.vercel.app` preview domain
     - **Webflow**: Use your `.webflow.io` staging domain
     - **Netlify**: Use your `.netlify.app` domain
   </Step>
   
-  <Step title="Create Origin" icon="plus">
+  <Step title="Create Origin">
     Click **Create origin** and enter your staging URL as the **Origin domain**.
   </Step>
   
-  <Step title="Save" icon="save">
+  <Step title="Save">
     Keep default settings and click **Create origin**.
   </Step>
 </Steps>
@@ -129,35 +137,35 @@ Behaviors control how CloudFront routes and caches requests based on URL pattern
 Create a behavior for domain verification and SSL certificate provisioning.
 
 <Steps>
-  <Step title="Navigate to Behaviors" icon="route">
+  <Step title="Navigate to Behaviors">
     Go to the **Behaviors** tab in your distribution.
   </Step>
   
-  <Step title="Create Behavior" icon="plus">
+  <Step title="Create Behavior">
     Click **Create behavior**.
   </Step>
   
-  <Step title="Configure Path" icon="folder">
+  <Step title="Configure Path">
     Set **Path pattern** to `/.well-known/*`.
   </Step>
   
-  <Step title="Set Origin" icon="server">
+  <Step title="Set Origin">
     Set **Origin** to your documentation origin (`[SUBDOMAIN].documentationai.io`).
   </Step>
   
-  <Step title="Disable Caching" icon="x-circle">
+  <Step title="Disable Caching">
     Set **Cache policy** to **CachingDisabled**.
   </Step>
   
-  <Step title="Set Request Policy" icon="settings">
+  <Step title="Set Request Policy">
     Set **Origin request policy** to **AllViewerExceptHostHeader**.
   </Step>
   
-  <Step title="Force HTTPS" icon="lock">
+  <Step title="Force HTTPS">
     Set **Viewer protocol policy** to **Redirect HTTP to HTTPS**.
   </Step>
   
-  <Step title="Create" icon="check">
+  <Step title="Create">
     Click **Create behavior**.
   </Step>
 </Steps>
@@ -171,31 +179,31 @@ Create a behavior for domain verification and SSL certificate provisioning.
 Create a behavior for the documentation root (e.g., `/docs`).
 
 <Steps>
-  <Step title="Create Behavior" icon="plus">
+  <Step title="Create Behavior">
     Click **Create behavior** again.
   </Step>
   
-  <Step title="Set Path" icon="folder">
-    Set **Path pattern** to `/docs` (or your chosen subpath).
+  <Step title="Set Path">
+    Set **Path pattern** to your chosen subpath (e.g., `/docs`, `/help`, `/guide`).
   </Step>
   
-  <Step title="Set Origin" icon="server">
+  <Step title="Set Origin">
     Set **Origin** to your documentation origin (`[SUBDOMAIN].documentationai.io`).
   </Step>
   
-  <Step title="Enable Caching" icon="database">
+  <Step title="Enable Caching">
     Set **Cache policy** to **CachingOptimized**.
   </Step>
   
-  <Step title="Set Request Policy" icon="settings">
+  <Step title="Set Request Policy">
     Set **Origin request policy** to **AllViewerExceptHostHeader**.
   </Step>
   
-  <Step title="Force HTTPS" icon="lock">
+  <Step title="Force HTTPS">
     Set **Viewer protocol policy** to **Redirect HTTP to HTTPS**.
   </Step>
   
-  <Step title="Create" icon="check">
+  <Step title="Create">
     Click **Create behavior**.
   </Step>
 </Steps>
@@ -205,15 +213,15 @@ Create a behavior for the documentation root (e.g., `/docs`).
 Create a behavior for all documentation pages (e.g., `/docs/*`).
 
 <Steps>
-  <Step title="Create Behavior" icon="plus">
+  <Step title="Create Behavior">
     Click **Create behavior**.
   </Step>
   
-  <Step title="Set Wildcard Path" icon="folder">
-    Set **Path pattern** to `/docs/*` (adds wildcard to match nested paths).
+  <Step title="Set Wildcard Path">
+    Set **Path pattern** to your subpath with wildcard (e.g., `/docs/*`, `/help/*`, `/guide/*`) to match all nested pages.
   </Step>
   
-  <Step title="Match Previous Settings" icon="copy">
+  <Step title="Match Previous Settings">
     Use the same settings as Behavior 2:
     - **Origin**: Documentation origin
     - **Cache policy**: CachingOptimized
@@ -221,7 +229,7 @@ Create a behavior for all documentation pages (e.g., `/docs/*`).
     - **Viewer protocol policy**: Redirect HTTP to HTTPS
   </Step>
   
-  <Step title="Create" icon="check">
+  <Step title="Create">
     Click **Create behavior**.
   </Step>
 </Steps>
@@ -231,15 +239,15 @@ Create a behavior for all documentation pages (e.g., `/docs/*`).
 Create a behavior for documentation static assets.
 
 <Steps>
-  <Step title="Create Behavior" icon="plus">
+  <Step title="Create Behavior">
     Click **Create behavior**.
   </Step>
   
-  <Step title="Set Asset Path" icon="image">
+  <Step title="Set Asset Path">
     Set **Path pattern** to `/dai-assets/_next/static/*`.
   </Step>
   
-  <Step title="Configure Caching" icon="database">
+  <Step title="Configure Caching">
     Use the same settings as the documentation behaviors:
     - **Origin**: Documentation origin
     - **Cache policy**: CachingOptimized
@@ -247,7 +255,7 @@ Create a behavior for documentation static assets.
     - **Viewer protocol policy**: Redirect HTTP to HTTPS
   </Step>
   
-  <Step title="Create" icon="check">
+  <Step title="Create">
     Click **Create behavior**.
   </Step>
 </Steps>
@@ -257,27 +265,27 @@ Create a behavior for documentation static assets.
 Modify the default behavior to route all other traffic to your main site.
 
 <Steps>
-  <Step title="Select Default" icon="star">
+  <Step title="Select Default">
     Find the **Default (*)** behavior and click **Edit**.
   </Step>
   
-  <Step title="Change Origin" icon="server">
+  <Step title="Change Origin">
     Change **Origin** to your main site staging URL origin.
   </Step>
   
-  <Step title="Enable Caching" icon="database">
+  <Step title="Enable Caching">
     Set **Cache policy** to **CachingOptimized**.
   </Step>
   
-  <Step title="Set Request Policy" icon="settings">
+  <Step title="Set Request Policy">
     Set **Origin request policy** to **AllViewerExceptHostHeader**.
   </Step>
   
-  <Step title="Force HTTPS" icon="lock">
+  <Step title="Force HTTPS">
     Set **Viewer protocol policy** to **Redirect HTTP to HTTPS**.
   </Step>
   
-  <Step title="Save" icon="save">
+  <Step title="Save">
     Click **Save changes**.
   </Step>
 </Steps>
@@ -301,19 +309,19 @@ Your final behavior list should look like this (order matters):
 Before connecting your domain, test the distribution using the CloudFront URL.
 
 <Steps>
-  <Step title="Find Distribution URL" icon="globe">
+  <Step title="Find Distribution URL">
     In the **General** tab, copy the **Distribution domain name** (e.g., `d123456abcdef.cloudfront.net`).
   </Step>
   
-  <Step title="Test Root" icon="home">
+  <Step title="Test Root">
     Visit `https://d123456abcdef.cloudfront.net` - should show your main site.
   </Step>
   
-  <Step title="Test Documentation" icon="book">
+  <Step title="Test Documentation">
     Visit `https://d123456abcdef.cloudfront.net/docs` - should show your documentation.
   </Step>
   
-  <Step title="Test Nested Page" icon="folder">
+  <Step title="Test Nested Page">
     Visit a documentation page like `https://d123456abcdef.cloudfront.net/docs/getting-started/introduction`.
   </Step>
 </Steps>
@@ -327,31 +335,31 @@ Before connecting your domain, test the distribution using the CloudFront URL.
 Now connect your custom domain to the CloudFront distribution.
 
 <Steps>
-  <Step title="Navigate to Route 53" icon="route">
+  <Step title="Navigate to Route 53">
     Open [Route 53](https://console.aws.amazon.com/route53/) in the AWS Console.
   </Step>
   
-  <Step title="Select Hosted Zone" icon="folder">
+  <Step title="Select Hosted Zone">
     Navigate to **Hosted zones** and select your domain.
   </Step>
   
-  <Step title="Create Record" icon="plus">
+  <Step title="Create Record">
     Click **Create record**.
   </Step>
   
-  <Step title="Enable Alias" icon="link">
+  <Step title="Enable Alias">
     Toggle **Alias** to ON.
   </Step>
   
-  <Step title="Route to CloudFront" icon="cloud">
+  <Step title="Route to CloudFront">
     Set **Route traffic to** → **Alias to CloudFront distribution**.
   </Step>
   
-  <Step title="Select Distribution" icon="select">
+  <Step title="Select Distribution">
     Choose your CloudFront distribution from the dropdown.
   </Step>
   
-  <Step title="Create Record" icon="check">
+  <Step title="Create Record">
     Click **Create records**.
   </Step>
 </Steps>
@@ -369,37 +377,37 @@ Repeat the process above to create an alias record for `www.yoursite.com` pointi
 CloudFront requires an SSL certificate for HTTPS.
 
 <Steps>
-  <Step title="Request Certificate" icon="shield">
+  <Step title="Request Certificate">
     In your distribution, go to **General** → **Settings** → **Edit**.
   </Step>
   
-  <Step title="Add Alternate Domain" icon="globe">
+  <Step title="Add Alternate Domain">
     Under **Alternate domain names (CNAMEs)**, add your domain (e.g., `yoursite.com`).
   </Step>
   
-  <Step title="Request Certificate" icon="key">
+  <Step title="Request Certificate">
     Click **Request certificate** to open AWS Certificate Manager.
   </Step>
   
-  <Step title="Add Domain Names" icon="list">
+  <Step title="Add Domain Names">
     Add your domain and www variant:
     - `yoursite.com`
     - `www.yoursite.com`
   </Step>
   
-  <Step title="Validate Domain" icon="check-circle">
+  <Step title="Validate Domain">
     Choose **DNS validation** and follow the prompts to add validation records to Route 53.
   </Step>
   
-  <Step title="Wait for Validation" icon="clock">
+  <Step title="Wait for Validation">
     Certificate validation typically takes 5-30 minutes.
   </Step>
   
-  <Step title="Attach Certificate" icon="link">
+  <Step title="Attach Certificate">
     Return to CloudFront settings and select your validated certificate.
   </Step>
   
-  <Step title="Save Changes" icon="save">
+  <Step title="Save Changes">
     Click **Save changes** and wait for distribution to redeploy.
   </Step>
 </Steps>
@@ -409,23 +417,23 @@ CloudFront requires an SSL certificate for HTTPS.
 After DNS propagation (usually 5-60 minutes):
 
 <Steps>
-  <Step title="Test Main Domain" icon="home">
+  <Step title="Test Main Domain">
     Visit `https://yoursite.com` - should display your main site.
   </Step>
   
-  <Step title="Test Documentation" icon="book">
+  <Step title="Test Documentation">
     Visit `https://yoursite.com/docs` - should display documentation.
   </Step>
   
-  <Step title="Test HTTPS" icon="lock">
+  <Step title="Test HTTPS">
     Verify the SSL certificate is valid and showing your domain.
   </Step>
   
-  <Step title="Test Nested Pages" icon="folder">
+  <Step title="Test Nested Pages">
     Navigate through multiple documentation pages.
   </Step>
   
-  <Step title="Check Performance" icon="zap">
+  <Step title="Check Performance">
     Use browser DevTools to verify fast load times and proper caching.
   </Step>
 </Steps>
@@ -458,17 +466,17 @@ Optimize your cache hit ratio to reduce origin load and improve performance:
 Clear cached content when you update documentation:
 
 <Steps>
-  <Step title="Create Invalidation" icon="refresh-cw">
+  <Step title="Create Invalidation">
     Go to **Invalidations** tab → **Create invalidation**.
   </Step>
   
-  <Step title="Specify Paths" icon="folder">
+  <Step title="Specify Paths">
     Enter paths to invalidate:
     - `/docs/*` - All documentation
     - `/docs/specific-page` - Single page
   </Step>
   
-  <Step title="Submit" icon="check">
+  <Step title="Submit">
     Click **Create invalidation** (usually completes in 1-5 minutes).
   </Step>
 </Steps>
@@ -559,15 +567,15 @@ AWS Free Tier includes:
 Configure custom error responses:
 
 <Steps>
-  <Step title="Navigate to Error Pages" icon="alert-triangle">
+  <Step title="Navigate to Error Pages">
     Go to **Error pages** tab → **Create custom error response**.
   </Step>
   
-  <Step title="Configure 404" icon="file-question">
+  <Step title="Configure 404">
     Set HTTP error code to **404** and customize the response.
   </Step>
   
-  <Step title="Add More Errors" icon="plus">
+  <Step title="Add More Errors">
     Repeat for 403, 500, 502, 503, 504 as needed.
   </Step>
 </Steps>
@@ -577,15 +585,15 @@ Configure custom error responses:
 Restrict content by geography:
 
 <Steps>
-  <Step title="Navigate to Restrictions" icon="globe">
+  <Step title="Navigate to Restrictions">
     Go to **Restrictions** tab → **Edit**.
   </Step>
   
-  <Step title="Enable Restrictions" icon="lock">
+  <Step title="Enable Restrictions">
     Choose whitelist or blacklist and select countries.
   </Step>
   
-  <Step title="Save" icon="save">
+  <Step title="Save">
     Click **Save changes**.
   </Step>
 </Steps>
@@ -595,15 +603,15 @@ Restrict content by geography:
 Enable Origin Shield for additional caching layer:
 
 <Steps>
-  <Step title="Edit Origin" icon="settings">
+  <Step title="Edit Origin">
     Go to **Origins** → Select origin → **Edit**.
   </Step>
   
-  <Step title="Enable Shield" icon="shield">
+  <Step title="Enable Shield">
     Enable **Origin Shield** and select optimal region.
   </Step>
   
-  <Step title="Save" icon="save">
+  <Step title="Save">
     Click **Save changes**.
   </Step>
 </Steps>

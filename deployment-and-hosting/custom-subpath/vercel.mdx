@@ -5,7 +5,11 @@ description: "Host documentation at a custom subpath using Vercel rewrites confi
 
 ## Overview
 
-Deploy your documentation at a custom subpath such as `yoursite.com/docs` using Vercel's powerful rewrite functionality. This guide walks you through configuring your Vercel project to proxy requests from your chosen subpath to your documentation hosting.
+Deploy your documentation at a custom subpath such as `yoursite.com/docs`, `yoursite.com/help`, or any path you choose using Vercel's powerful rewrite functionality. This guide walks you through configuring your Vercel project to proxy requests from your chosen subpath to your documentation hosting.
+
+<Callout kind="info">
+  **Flexible Subpath**: Throughout this guide, we use `/docs` as an example, but you can use any subpath such as `/help`, `/guide`, `/documentation`, `/api-docs`, or `/support`. Simply replace `/docs` with your chosen path in all configuration examples.
+</Callout>
 
 <Callout kind="info">
   Before you begin, ensure your main site is already deployed on Vercel and your documentation is accessible at `[SUBDOMAIN].documentationai.io`.
@@ -28,7 +32,7 @@ sequenceDiagram
 
 ## Repository Structure
 
-Your documentation files must be organized to match your chosen subpath. For example, if you want documentation at `yoursite.com/docs`, organize your repository accordingly:
+Your main site repository structure remains unchanged. The subpath configuration is handled entirely through `vercel.json`:
 
 ```
 your-project/
@@ -45,19 +49,19 @@ your-project/
 ## Configuration Steps
 
 <Steps>
-  <Step title="Create vercel.json" icon="file-text">
+  <Step title="Create vercel.json">
     In the root of your Vercel project, create or update the `vercel.json` file with the rewrite configuration.
   </Step>
   
-  <Step title="Configure Rewrites" icon="settings">
+  <Step title="Configure Rewrites">
     Add the complete rewrite rules to proxy documentation requests.
   </Step>
   
-  <Step title="Deploy to Vercel" icon="upload">
+  <Step title="Deploy to Vercel">
     Commit your changes and deploy to Vercel.
   </Step>
   
-  <Step title="Test the Configuration" icon="check-circle">
+  <Step title="Test the Configuration">
     Verify that your documentation is accessible at the custom subpath.
   </Step>
 </Steps>
@@ -67,7 +71,10 @@ your-project/
 Create a `vercel.json` file in your project root with the following configuration:
 
 <Callout kind="alert">
-  Replace `[SUBDOMAIN]` with your actual subdomain from Documentation.AI, and adjust `/docs` to your preferred subpath if different.
+  **Important Replacements:**
+  - Replace `[SUBDOMAIN]` with your actual subdomain from Documentation.AI
+  - Replace `/docs` with your chosen subpath (e.g., `/help`, `/guide`, `/documentation`)
+  - Update all instances consistently throughout the configuration
 </Callout>
 
 ````json
@@ -200,23 +207,23 @@ Vercel requires domain verification for custom domains. The rewrite configuratio
 After deploying your configuration:
 
 <Steps>
-  <Step title="Test Root Path" icon="home">
+  <Step title="Test Root Path">
     Visit `yoursite.com/docs` and verify the documentation loads correctly.
   </Step>
   
-  <Step title="Test Nested Pages" icon="folder">
+  <Step title="Test Nested Pages">
     Navigate to a nested documentation page like `yoursite.com/docs/getting-started/introduction`.
   </Step>
   
-  <Step title="Check Assets" icon="image">
+  <Step title="Check Assets">
     Open browser DevTools and verify all assets (images, CSS, JavaScript) load without errors.
   </Step>
   
-  <Step title="Verify SEO Files" icon="search">
+  <Step title="Verify SEO Files">
     Test access to `yoursite.com/docs/sitemap.xml` and `yoursite.com/docs/robots.txt`.
   </Step>
   
-  <Step title="Test Search" icon="search">
+  <Step title="Test Search">
     Use the documentation search functionality to ensure the API routes work correctly.
   </Step>
 </Steps>
