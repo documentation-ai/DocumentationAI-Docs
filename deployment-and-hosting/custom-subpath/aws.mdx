@@ -8,11 +8,7 @@ description: "Host documentation at a custom subpath using AWS Route 53 and Clou
 Deploy your documentation at a custom subpath such as `yoursite.com/docs`, `yoursite.com/help`, or any path you choose using AWS Route 53 for DNS management and CloudFront for content delivery. This guide provides a complete enterprise-grade setup with advanced caching, security, and global distribution.
 
 <Callout kind="info">
-  **Flexible Subpath**: Throughout this guide, we use <kbd>/docs</kbd> as an example, but you can use any subpath such as <kbd>/help</kbd>, <kbd>/guide</kbd>, <kbd>/documentation</kbd>, <kbd>/api-docs</kbd>, or <kbd>/support</kbd>. Simply replace <kbd>/docs</kbd> with your chosen path in all CloudFront behavior configurations.
-</Callout>
-
-<Callout kind="info">
-  Before you begin, ensure you have an AWS account with access to Route 53 and CloudFront. Your documentation should already be accessible at <kbd>[SUBDOMAIN].documentationai.io</kbd>.
+  Use any subpath: <kbd>/docs</kbd>, <kbd>/help</kbd>, <kbd>/guide</kbd>, etc. Replace <kbd>/docs</kbd> in examples with your path.
 </Callout>
 
 ## Architecture Overview
@@ -43,12 +39,8 @@ You'll configure CloudFront behaviors to route traffic based on path patterns:
 | `/dai-assets/_next/static/*` | CachingOptimized | Documentation | Static assets |
 | `Default (*)` | CachingOptimized | Main Site | Landing page |
 
-<Callout kind="tip">
-  Replace <kbd>/docs</kbd> with your chosen subpath in the behavior configurations. For example, if you want <kbd>/help</kbd>, create behaviors for <kbd>/help</kbd> and <kbd>/help/\*</kbd> instead.
-</Callout>
-
 <Callout kind="alert">
-  All behaviors must use the origin request policy <kbd>AllViewerExceptHostHeader</kbd> to ensure proper header forwarding.
+  All behaviors must use origin request policy <kbd>AllViewerExceptHostHeader</kbd>.
 </Callout>
 
 ## Prerequisites
@@ -95,9 +87,6 @@ You'll configure CloudFront behaviors to route traffic based on path patterns:
   </Step>
 </Steps>
 
-<Callout kind="tip">
-  CloudFront distributions can take 10-15 minutes to deploy. You can continue configuration while it deploys.
-</Callout>
 
 ## Step 2: Add Main Site Origin
 
@@ -170,9 +159,6 @@ Create a behavior for domain verification and SSL certificate provisioning.
   </Step>
 </Steps>
 
-<Callout kind="info">
-  If <kbd>/.well-known/\*</kbd> is too broad, you can create two separate behaviors for <kbd>/.well-known/vercel/\*</kbd> and <kbd>/.well-known/acme-challenge/\*</kbd>.
-</Callout>
 
 ### Behavior 2: Documentation Root Path
 
@@ -300,9 +286,6 @@ Your final behavior list should look like this (order matters):
 4. `/dai-assets/_next/static/*` → Documentation origin (CachingOptimized)
 5. `Default (*)` → Main site origin (CachingOptimized)
 
-<Callout kind="alert">
-  CloudFront evaluates behaviors in order from top to bottom. The first matching pattern wins.
-</Callout>
 
 ## Step 4: Test Your Distribution
 
@@ -326,9 +309,6 @@ Before connecting your domain, test the distribution using the CloudFront URL.
   </Step>
 </Steps>
 
-<Callout kind="tip">
-  If you see errors, check the CloudFront behavior configuration and origin settings. Allow 5-10 minutes for changes to propagate.
-</Callout>
 
 ## Step 5: Connect Route 53
 
@@ -364,9 +344,6 @@ Now connect your custom domain to the CloudFront distribution.
   </Step>
 </Steps>
 
-<Callout kind="alert">
-  You may need to remove existing A or CNAME records for your domain before creating the alias record.
-</Callout>
 
 ### Add www Subdomain (Optional)
 
@@ -438,9 +415,6 @@ After DNS propagation (usually 5-60 minutes):
   </Step>
 </Steps>
 
-<Callout kind="success">
-  After configuring your DNS, custom domains are usually available within a few minutes. DNS propagation can sometimes take 1-4 hours, and in rare cases up to 48 hours.
-</Callout>
 
 ## Monitoring and Optimization
 
@@ -481,9 +455,6 @@ Clear cached content when you update documentation:
   </Step>
 </Steps>
 
-<Callout kind="tip">
-  You get 1,000 free invalidation paths per month. Use wildcard patterns to minimize invalidation requests.
-</Callout>
 
 ## Troubleshooting
 
@@ -618,9 +589,6 @@ Enable Origin Shield for additional caching layer:
   </Step>
 </Steps>
 
-<Callout kind="info">
-  Origin Shield adds a small fee but can significantly reduce origin load and improve cache hit rates.
-</Callout>
 
 ## Next Steps
 
@@ -633,6 +601,6 @@ After successfully deploying your documentation with AWS:
 5. Create runbooks for common maintenance tasks
 
 <Callout kind="success">
-  Your documentation is now deployed on AWS with enterprise-grade performance, security, and global distribution!
+  ✅ Your documentation is now live on AWS!
 </Callout>
 

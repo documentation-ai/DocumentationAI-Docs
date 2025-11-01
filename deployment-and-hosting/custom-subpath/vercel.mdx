@@ -8,11 +8,7 @@ description: "Host documentation at a custom subpath using Vercel rewrites confi
 Deploy your documentation at a custom subpath such as `yoursite.com/docs`, `yoursite.com/help`, or any path you choose using Vercel's powerful rewrite functionality. This guide walks you through configuring your Vercel project to proxy requests from your chosen subpath to your documentation hosting.
 
 <Callout kind="info">
-  **Flexible Subpath**: Throughout this guide, we use <kbd>/docs</kbd> as an example, but you can use any subpath such as <kbd>/help</kbd>, <kbd>/guide</kbd>, <kbd>/documentation</kbd>, <kbd>/api-docs</kbd>, or <kbd>/support</kbd>. Simply replace <kbd>/docs</kbd> with your chosen path in all configuration examples.
-</Callout>
-
-<Callout kind="info">
-  Before you begin, ensure your main site is already deployed on Vercel and your documentation is accessible at <kbd>[SUBDOMAIN].documentationai.io</kbd>.
+  Use any subpath: <kbd>/docs</kbd>, <kbd>/help</kbd>, <kbd>/guide</kbd>, etc. Replace <kbd>/docs</kbd> in examples with your chosen path.
 </Callout>
 
 ## How Vercel Rewrites Work
@@ -42,9 +38,6 @@ your-project/
 └── package.json
 ```
 
-<Callout kind="tip">
-  The actual documentation content is hosted separately. You're only configuring Vercel to proxy requests to the documentation hosting service.
-</Callout>
 
 ## Configuration Steps
 
@@ -71,10 +64,7 @@ your-project/
 Create a `vercel.json` file in your project root with the following configuration:
 
 <Callout kind="alert">
-  **Important Replacements:**
-  - Replace <kbd>[SUBDOMAIN]</kbd> with your actual subdomain from Documentation.AI
-  - Replace <kbd>[SUBPATH]</kbd> with your chosen subpath (e.g., <kbd>/docs</kbd>, <kbd>/help</kbd>, <kbd>/guide</kbd>, <kbd>/documentation</kbd>)
-  - Update all instances consistently throughout the configuration
+  Replace <kbd>[SUBDOMAIN]</kbd> with your subdomain and <kbd>[SUBPATH]</kbd> with your chosen path.
 </Callout>
 
 ````json
@@ -179,9 +169,6 @@ Proxies all documentation page requests with the `:path*` wildcard matching any 
 
 Maps SEO-critical files (LLM discovery, sitemap, robots.txt) from the documentation host to your subpath.
 
-<Callout kind="tip">
-  These files help search engines and AI assistants discover and index your documentation properly.
-</Callout>
 
 ## Domain Verification
 
@@ -190,9 +177,6 @@ Vercel requires domain verification for custom domains. The rewrite configuratio
 - `/.well-known/acme-challenge/*` - Let's Encrypt SSL certificate verification
 - `/.well-known/vercel/*` - Vercel domain ownership verification
 
-<Callout kind="success">
-  Vercel handles these verification paths automatically. No additional configuration is needed.
-</Callout>
 
 ## Testing Your Configuration
 
@@ -329,9 +313,6 @@ Redirect old documentation URLs to the new subpath:
 
 ## Performance Considerations
 
-<Callout kind="tip">
-  Vercel rewrites add minimal latency (typically &lt;50ms) but benefit from Vercel's global edge network for fast response times worldwide.
-</Callout>
 
 ### Caching
 
@@ -356,6 +337,6 @@ After successfully configuring your Vercel subpath deployment:
 5. Update any internal links to use the new subpath
 
 <Callout kind="success">
-  Your documentation is now live at your custom subpath! Users can access it seamlessly from your main domain.
+  ✅ Your documentation is now live!
 </Callout>
 

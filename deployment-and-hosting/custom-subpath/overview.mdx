@@ -63,10 +63,10 @@ Meet corporate policies that require all public-facing content on the primary do
 
 ````mermaid
 graph LR
-    A[User Browser] -->|yoursite.com/[SUBPATH]| B[Reverse Proxy]
-    B -->|Strips [SUBPATH]| C[Documentation Host]
+    A[User Browser] -->|yoursite.com/subpath| B[Reverse Proxy]
+    B -->|Strips subpath| C[Documentation Host]
     C -->|Returns Content| B
-    B -->|Adds [SUBPATH] back| A
+    B -->|Adds subpath back| A
     B -->|yoursite.com/*| D[Main Site]
 ````
 

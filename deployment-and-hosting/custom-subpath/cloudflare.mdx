@@ -8,10 +8,7 @@ description: "Host documentation at a custom subpath using Cloudflare Workers fo
 Use Cloudflare Workers to host your documentation at a custom subpath like `yoursite.com/docs`. Workers act as a reverse proxy, routing documentation requests to your Documentation.AI hosting while keeping your main site intact.
 
 <Callout kind="info">
-  **Prerequisites:**
-  - Cloudflare account
-  - Domain added to Cloudflare (or using Cloudflare DNS)
-  - Documentation accessible at <kbd>[SUBDOMAIN].documentationai.io</kbd>
+  Requires: Cloudflare account, domain on Cloudflare, documentation at <kbd>[SUBDOMAIN].documentationai.io</kbd>
 </Callout>
 
 ## How It Works
@@ -68,10 +65,7 @@ The Worker intercepts all requests to your domain:
 </Steps>
 
 <Callout kind="alert">
-  **Required Replacements:**
-  - <kbd>[SUBDOMAIN]</kbd> → Your Documentation.AI subdomain (e.g., <kbd>acme</kbd>)
-  - <kbd>[YOUR_DOMAIN]</kbd> → Your domain (e.g., <kbd>yoursite.com</kbd>)
-  - <kbd>/docs</kbd> → Your chosen subpath (e.g., <kbd>/docs</kbd>, <kbd>/help</kbd>, <kbd>/guide</kbd>)
+  Replace: <kbd>[SUBDOMAIN]</kbd> with your subdomain, <kbd>[YOUR_DOMAIN]</kbd> with your domain, <kbd>/docs</kbd> with your path.
 </Callout>
 
 ### Worker Script
@@ -118,9 +112,7 @@ async function handleRequest(request) {
 ```
 
 <Callout kind="tip">
-  **Using a Different Subpath?** Change <kbd>/docs</kbd> on line 17 to your chosen path. For example:
-  - For <kbd>/help</kbd>: Change to <kbd>if (url.pathname.startsWith('/help'))</kbd>
-  - For <kbd>/api-docs</kbd>: Change to <kbd>if (url.pathname.startsWith('/api-docs'))</kbd>
+  Change <kbd>/docs</kbd> on line 17 to your path (e.g., <kbd>/help</kbd>, <kbd>/api-docs</kbd>).
 </Callout>
 
 ## Step 3: Deploy Worker
@@ -155,9 +147,6 @@ async function handleRequest(request) {
   </Step>
 </Steps>
 
-<Callout kind="info">
-  If you already have DNS records pointing to your main site, Cloudflare will automatically route traffic through your Worker. No DNS changes needed!
-</Callout>
 
 ## Step 5: Test Your Setup
 
@@ -273,6 +262,3 @@ return await fetch(mainSiteUrl, {
 - Configure custom error pages if needed
 - Test from different locations to verify global performance
 
-<Callout kind="tip">
-  Cloudflare Workers run at 300+ data centers worldwide, providing fast response times globally.
-</Callout>
