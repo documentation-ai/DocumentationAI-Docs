@@ -44,7 +44,7 @@ You'll configure CloudFront behaviors to route traffic based on path patterns:
 | `Default (*)` | CachingOptimized | Main Site | Landing page |
 
 <Callout kind="tip">
-  Replace <kbd>/docs</kbd> with your chosen subpath in the behavior configurations. For example, if you want <kbd>/help</kbd>, create behaviors for <kbd>/help</kbd> and <kbd>/help/*</kbd> instead.
+  Replace <kbd>/docs</kbd> with your chosen subpath in the behavior configurations. For example, if you want <kbd>/help</kbd>, create behaviors for <kbd>/help</kbd> and <kbd>/help/\*</kbd> instead.
 </Callout>
 
 <Callout kind="alert">
@@ -171,7 +171,7 @@ Create a behavior for domain verification and SSL certificate provisioning.
 </Steps>
 
 <Callout kind="info">
-  If <kbd>/.well-known/*</kbd> is too broad, you can create two separate behaviors for <kbd>/.well-known/vercel/*</kbd> and <kbd>/.well-known/acme-challenge/*</kbd>.
+  If <kbd>/.well-known/\*</kbd> is too broad, you can create two separate behaviors for <kbd>/.well-known/vercel/\*</kbd> and <kbd>/.well-known/acme-challenge/\*</kbd>.
 </Callout>
 
 ### Behavior 2: Documentation Root Path
