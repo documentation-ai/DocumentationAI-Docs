@@ -8,11 +8,11 @@ description: "Host documentation at a custom subpath using AWS Route 53 and Clou
 Deploy your documentation at a custom subpath such as `yoursite.com/docs`, `yoursite.com/help`, or any path you choose using AWS Route 53 for DNS management and CloudFront for content delivery. This guide provides a complete enterprise-grade setup with advanced caching, security, and global distribution.
 
 <Callout kind="info">
-  **Flexible Subpath**: Throughout this guide, we use `/docs` as an example, but you can use any subpath such as `/help`, `/guide`, `/documentation`, `/api-docs`, or `/support`. Simply replace `/docs` with your chosen path in all CloudFront behavior configurations.
+  **Flexible Subpath**: Throughout this guide, we use <kbd>/docs</kbd> as an example, but you can use any subpath such as <kbd>/help</kbd>, <kbd>/guide</kbd>, <kbd>/documentation</kbd>, <kbd>/api-docs</kbd>, or <kbd>/support</kbd>. Simply replace <kbd>/docs</kbd> with your chosen path in all CloudFront behavior configurations.
 </Callout>
 
 <Callout kind="info">
-  Before you begin, ensure you have an AWS account with access to Route 53 and CloudFront. Your documentation should already be accessible at `[SUBDOMAIN].documentationai.io`.
+  Before you begin, ensure you have an AWS account with access to Route 53 and CloudFront. Your documentation should already be accessible at <kbd>[SUBDOMAIN].documentationai.io</kbd>.
 </Callout>
 
 ## Architecture Overview
@@ -44,11 +44,11 @@ You'll configure CloudFront behaviors to route traffic based on path patterns:
 | `Default (*)` | CachingOptimized | Main Site | Landing page |
 
 <Callout kind="tip">
-  Replace `/docs` with your chosen subpath in the behavior configurations. For example, if you want `/help`, create behaviors for `/help` and `/help/*` instead.
+  Replace <kbd>/docs</kbd> with your chosen subpath in the behavior configurations. For example, if you want <kbd>/help</kbd>, create behaviors for <kbd>/help</kbd> and <kbd>/help/*</kbd> instead.
 </Callout>
 
 <Callout kind="alert">
-  All behaviors must use the origin request policy `AllViewerExceptHostHeader` to ensure proper header forwarding.
+  All behaviors must use the origin request policy <kbd>AllViewerExceptHostHeader</kbd> to ensure proper header forwarding.
 </Callout>
 
 ## Prerequisites
@@ -171,7 +171,7 @@ Create a behavior for domain verification and SSL certificate provisioning.
 </Steps>
 
 <Callout kind="info">
-  If `/.well-known/*` is too broad, you can create two separate behaviors for `/.well-known/vercel/*` and `/.well-known/acme-challenge/*`.
+  If <kbd>/.well-known/*</kbd> is too broad, you can create two separate behaviors for <kbd>/.well-known/vercel/*</kbd> and <kbd>/.well-known/acme-challenge/*</kbd>.
 </Callout>
 
 ### Behavior 2: Documentation Root Path
@@ -422,7 +422,7 @@ After DNS propagation (usually 5-60 minutes):
   </Step>
   
   <Step title="Test Documentation">
-    Visit `https://yoursite.com/docs` - should display documentation.
+    Visit `https://yoursite.com/[SUBPATH]` - should display documentation.
   </Step>
   
   <Step title="Test HTTPS">
@@ -472,8 +472,8 @@ Clear cached content when you update documentation:
   
   <Step title="Specify Paths">
     Enter paths to invalidate:
-    - `/docs/*` - All documentation
-    - `/docs/specific-page` - Single page
+    - `/[SUBPATH]/*` - All documentation
+    - `/[SUBPATH]/specific-page` - Single page
   </Step>
   
   <Step title="Submit">
@@ -487,54 +487,56 @@ Clear cached content when you update documentation:
 
 ## Troubleshooting
 
-### 403 Forbidden Errors
+<ExpandableGroup>
+  <Expandable title="403 Forbidden Errors">
+    **Problem:** Accessing documentation returns 403 errors.
 
-**Problem:** Accessing documentation returns 403 errors.
+    **Solution:**
+    1. Verify origin is set to `[SUBDOMAIN].documentationai.io` (not the full URL with https://)
+    2. Check origin request policy is `AllViewerExceptHostHeader`
+    3. Verify behaviors are ordered correctly
+  </Expandable>
 
-**Solution:**
-1. Verify origin is set to `[SUBDOMAIN].documentationai.io` (not the full URL with https://)
-2. Check origin request policy is `AllViewerExceptHostHeader`
-3. Verify behaviors are ordered correctly
+  <Expandable title="Slow Performance">
+    **Problem:** Pages load slowly.
 
-### Slow Performance
+    **Solution:**
+    1. Check cache hit ratio in CloudWatch
+    2. Verify caching policies are set to `CachingOptimized`
+    3. Review origin response times
+    4. Consider enabling Origin Shield for frequently accessed content
+  </Expandable>
 
-**Problem:** Pages load slowly.
+  <Expandable title="SSL Certificate Errors">
+    **Problem:** SSL certificate warnings or errors.
 
-**Solution:**
-1. Check cache hit ratio in CloudWatch
-2. Verify caching policies are set to `CachingOptimized`
-3. Review origin response times
-4. Consider enabling Origin Shield for frequently accessed content
+    **Solution:**
+    1. Verify certificate includes your domain in alternate names
+    2. Check certificate status in AWS Certificate Manager
+    3. Ensure DNS validation records are present in Route 53
+    4. Wait for certificate renewal if expired
+  </Expandable>
 
-### SSL Certificate Errors
+  <Expandable title="502 Bad Gateway">
+    **Problem:** CloudFront returns 502 errors.
 
-**Problem:** SSL certificate warnings or errors.
+    **Solution:**
+    1. Verify documentation origin is accessible
+    2. Check that `[SUBDOMAIN].documentationai.io` resolves correctly
+    3. Review CloudFront error logs
+    4. Ensure origin is not blocking CloudFront IP ranges
+  </Expandable>
 
-**Solution:**
-1. Verify certificate includes your domain in alternate names
-2. Check certificate status in AWS Certificate Manager
-3. Ensure DNS validation records are present in Route 53
-4. Wait for certificate renewal if expired
+  <Expandable title="Cache Not Working">
+    **Problem:** Content not caching properly.
 
-### 502 Bad Gateway
-
-**Problem:** CloudFront returns 502 errors.
-
-**Solution:**
-1. Verify documentation origin is accessible
-2. Check that `[SUBDOMAIN].documentationai.io` resolves correctly
-3. Review CloudFront error logs
-4. Ensure origin is not blocking CloudFront IP ranges
-
-### Cache Not Working
-
-**Problem:** Content not caching properly.
-
-**Solution:**
-1. Verify cache policy is `CachingOptimized`
-2. Check that origin is sending proper `Cache-Control` headers
-3. Review CloudFront cache statistics
-4. Create invalidation if stale content is cached
+    **Solution:**
+    1. Verify cache policy is `CachingOptimized`
+    2. Check that origin is sending proper `Cache-Control` headers
+    3. Review CloudFront cache statistics
+    4. Create invalidation if stale content is cached
+  </Expandable>
+</ExpandableGroup>
 
 ## Cost Optimization
 

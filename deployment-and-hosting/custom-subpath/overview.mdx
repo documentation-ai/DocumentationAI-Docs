@@ -10,19 +10,19 @@ A custom subpath deployment allows you to host your documentation at a specific 
 This approach integrates your documentation seamlessly into your main website while maintaining a unified domain structure.
 
 <Callout kind="info">
-  You have complete flexibility in choosing your subpath. Throughout this guide, we use `/docs` as an example, but you can replace it with any path like `/help`, `/guide`, `/api-docs`, `/support`, or `/documentation`.
+  You have complete flexibility in choosing your subpath. Throughout this guide, we use <kbd>/docs</kbd> as an example, but you can replace it with any path like <kbd>/help</kbd>, <kbd>/guide</kbd>, <kbd>/api-docs</kbd>, <kbd>/support</kbd>, or <kbd>/documentation</kbd>.
 </Callout>
 
 ## How It Works
 
 Custom subpath deployments use a **reverse proxy** to route traffic:
 
-1. **User visits** `yoursite.com/[your-subpath]` (e.g., `/docs`, `/help`, `/guide`)
+1. **User visits** `yoursite.com/[SUBPATH]`
 2. **Reverse proxy intercepts** the request
 3. **Proxy forwards** the request to your documentation hosting
 4. **Documentation responds** with the content
 5. **Proxy returns** the response to the user
-6. **Browser displays** content at `yoursite.com/[your-subpath]`
+6. **Browser displays** content at `yoursite.com/[SUBPATH]`
 
 <Callout kind="info">
   The reverse proxy acts as an intermediary, allowing you to serve documentation from a different hosting provider while maintaining your primary domain.
@@ -63,15 +63,15 @@ Meet corporate policies that require all public-facing content on the primary do
 
 ````mermaid
 graph LR
-    A[User Browser] -->|yoursite.com/docs| B[Reverse Proxy]
-    B -->|Strips /docs| C[Documentation Host]
+    A[User Browser] -->|yoursite.com/[SUBPATH]| B[Reverse Proxy]
+    B -->|Strips [SUBPATH]| C[Documentation Host]
     C -->|Returns Content| B
-    B -->|Adds /docs back| A
+    B -->|Adds [SUBPATH] back| A
     B -->|yoursite.com/*| D[Main Site]
 ````
 
 The reverse proxy:
-- Routes `/docs/*` traffic to your documentation hosting
+- Routes `/[SUBPATH]/*` traffic to your documentation hosting
 - Routes all other traffic to your main website
 - Handles SSL termination
 - Forwards necessary headers for domain verification
@@ -106,7 +106,7 @@ Before setting up a custom subpath deployment, ensure you have:
 ## Important Considerations
 
 <Callout kind="alert">
-  **Domain Verification Required**: When using a custom subpath, you must configure your reverse proxy to allow traffic to `/.well-known/*` paths. These paths are required for SSL certificate verification and domain ownership validation.
+  **Domain Verification Required**: When using a custom subpath, you must configure your reverse proxy to allow traffic to <kbd>/.well-known/*</kbd> paths. These paths are required for SSL certificate verification and domain ownership validation.
 </Callout>
 
 ### Required Path Allowlist

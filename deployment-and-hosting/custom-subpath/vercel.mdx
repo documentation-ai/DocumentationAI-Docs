@@ -8,11 +8,11 @@ description: "Host documentation at a custom subpath using Vercel rewrites confi
 Deploy your documentation at a custom subpath such as `yoursite.com/docs`, `yoursite.com/help`, or any path you choose using Vercel's powerful rewrite functionality. This guide walks you through configuring your Vercel project to proxy requests from your chosen subpath to your documentation hosting.
 
 <Callout kind="info">
-  **Flexible Subpath**: Throughout this guide, we use `/docs` as an example, but you can use any subpath such as `/help`, `/guide`, `/documentation`, `/api-docs`, or `/support`. Simply replace `/docs` with your chosen path in all configuration examples.
+  **Flexible Subpath**: Throughout this guide, we use <kbd>/docs</kbd> as an example, but you can use any subpath such as <kbd>/help</kbd>, <kbd>/guide</kbd>, <kbd>/documentation</kbd>, <kbd>/api-docs</kbd>, or <kbd>/support</kbd>. Simply replace <kbd>/docs</kbd> with your chosen path in all configuration examples.
 </Callout>
 
 <Callout kind="info">
-  Before you begin, ensure your main site is already deployed on Vercel and your documentation is accessible at `[SUBDOMAIN].documentationai.io`.
+  Before you begin, ensure your main site is already deployed on Vercel and your documentation is accessible at <kbd>[SUBDOMAIN].documentationai.io</kbd>.
 </Callout>
 
 ## How Vercel Rewrites Work
@@ -24,10 +24,10 @@ sequenceDiagram
     participant Browser
     participant Vercel
     participant Docs as Documentation Host
-    Browser->>Vercel: GET yoursite.com/docs/page
-    Vercel->>Docs: GET [SUBDOMAIN].documentationai.io/docs/page
+    Browser->>Vercel: GET yoursite.com/[SUBPATH]/page
+    Vercel->>Docs: GET [SUBDOMAIN].documentationai.io/[SUBPATH]/page
     Docs-->>Vercel: HTML Content
-    Vercel-->>Browser: HTML Content (URL stays as yoursite.com/docs/page)
+    Vercel-->>Browser: HTML Content (URL stays as yoursite.com/[SUBPATH]/page)
 ````
 
 ## Repository Structure
@@ -72,8 +72,8 @@ Create a `vercel.json` file in your project root with the following configuratio
 
 <Callout kind="alert">
   **Important Replacements:**
-  - Replace `[SUBDOMAIN]` with your actual subdomain from Documentation.AI
-  - Replace `/docs` with your chosen subpath (e.g., `/help`, `/guide`, `/documentation`)
+  - Replace <kbd>[SUBDOMAIN]</kbd> with your actual subdomain from Documentation.AI
+  - Replace <kbd>[SUBPATH]</kbd> with your chosen subpath (e.g., <kbd>/docs</kbd>, <kbd>/help</kbd>, <kbd>/guide</kbd>, <kbd>/documentation</kbd>)
   - Update all instances consistently throughout the configuration
 </Callout>
 
@@ -89,27 +89,23 @@ Create a `vercel.json` file in your project root with the following configuratio
       "destination": "http://[SUBDOMAIN].documentationai.io/dai-assets/:path+"
     },
     {
-      "source": "/docs",
-      "destination": "http://[SUBDOMAIN].documentationai.io/docs"
+      "source": "/[SUBPATH]",
+      "destination": "http://[SUBDOMAIN].documentationai.io/[SUBPATH]"
     },
     {
-      "source": "/docs/:path*",
-      "destination": "http://[SUBDOMAIN].documentationai.io/docs/:path*"
+      "source": "/[SUBPATH]/:path*",
+      "destination": "http://[SUBDOMAIN].documentationai.io/[SUBPATH]/:path*"
     },
     {
-      "source": "/docs/llms.txt",
+      "source": "/[SUBPATH]/llms.txt",
       "destination": "http://[SUBDOMAIN].documentationai.io/llms.txt"
     },
     {
-      "source": "/docs/llms-full.txt",
-      "destination": "http://[SUBDOMAIN].documentationai.io/llms-full.txt"
-    },
-    {
-      "source": "/docs/sitemap.xml",
+      "source": "/[SUBPATH]/sitemap.xml",
       "destination": "http://[SUBDOMAIN].documentationai.io/sitemap.xml"
     },
     {
-      "source": "/docs/robots.txt",
+      "source": "/[SUBPATH]/robots.txt",
       "destination": "http://[SUBDOMAIN].documentationai.io/robots.txt"
     }
   ]
@@ -146,19 +142,19 @@ Forwards requests for documentation assets (CSS, JavaScript, images) to the docu
 
 ```json
 {
-  "source": "/docs",
-  "destination": "http://[SUBDOMAIN].documentationai.io/docs"
+  "source": "/[SUBPATH]",
+  "destination": "http://[SUBDOMAIN].documentationai.io/[SUBPATH]"
 }
 ```
 
-Handles requests to the documentation root path (e.g., `yoursite.com/docs`).
+Handles requests to the documentation root path (e.g., `yoursite.com/[SUBPATH]`).
 
 ### 4. Documentation Pages
 
 ```json
 {
-  "source": "/docs/:path*",
-  "destination": "http://[SUBDOMAIN].documentationai.io/docs/:path*"
+  "source": "/[SUBPATH]/:path*",
+  "destination": "http://[SUBDOMAIN].documentationai.io/[SUBPATH]/:path*"
 }
 ```
 
@@ -168,19 +164,15 @@ Proxies all documentation page requests with the `:path*` wildcard matching any 
 
 ```json
 {
-  "source": "/docs/llms.txt",
+  "source": "/[SUBPATH]/llms.txt",
   "destination": "http://[SUBDOMAIN].documentationai.io/llms.txt"
 },
 {
-  "source": "/docs/llms-full.txt",
-  "destination": "http://[SUBDOMAIN].documentationai.io/llms-full.txt"
-},
-{
-  "source": "/docs/sitemap.xml",
+  "source": "/[SUBPATH]/sitemap.xml",
   "destination": "http://[SUBDOMAIN].documentationai.io/sitemap.xml"
 },
 {
-  "source": "/docs/robots.txt",
+  "source": "/[SUBPATH]/robots.txt",
   "destination": "http://[SUBDOMAIN].documentationai.io/robots.txt"
 }
 ```
@@ -208,11 +200,11 @@ After deploying your configuration:
 
 <Steps>
   <Step title="Test Root Path">
-    Visit `yoursite.com/docs` and verify the documentation loads correctly.
+    Visit `yoursite.com/[SUBPATH]` and verify the documentation loads correctly.
   </Step>
   
   <Step title="Test Nested Pages">
-    Navigate to a nested documentation page like `yoursite.com/docs/getting-started/introduction`.
+    Navigate to a nested documentation page like `yoursite.com/[SUBPATH]/getting-started/introduction`.
   </Step>
   
   <Step title="Check Assets">
@@ -220,7 +212,7 @@ After deploying your configuration:
   </Step>
   
   <Step title="Verify SEO Files">
-    Test access to `yoursite.com/docs/sitemap.xml` and `yoursite.com/docs/robots.txt`.
+    Test access to `yoursite.com/[SUBPATH]/sitemap.xml` and `yoursite.com/[SUBPATH]/robots.txt`.
   </Step>
   
   <Step title="Test Search">
@@ -238,8 +230,8 @@ Add custom headers to your rewrite rules if needed:
 {
   "rewrites": [
     {
-      "source": "/docs/:path*",
-      "destination": "http://[SUBDOMAIN].documentationai.io/docs/:path*",
+      "source": "/[SUBPATH]/:path*",
+      "destination": "http://[SUBDOMAIN].documentationai.io/[SUBPATH]/:path*",
       "headers": {
         "X-Custom-Header": "value"
       }
@@ -256,12 +248,12 @@ Host different documentation instances on different subpaths:
 {
   "rewrites": [
     {
-      "source": "/docs/:path*",
-      "destination": "http://[SUBDOMAIN-1].documentationai.io/docs/:path*"
+      "source": "/[SUBPATH-1]/:path*",
+      "destination": "http://[SUBDOMAIN-1].documentationai.io/[SUBPATH-1]/:path*"
     },
     {
-      "source": "/api-docs/:path*",
-      "destination": "http://[SUBDOMAIN-2].documentationai.io/api-docs/:path*"
+      "source": "/[SUBPATH-2]/:path*",
+      "destination": "http://[SUBDOMAIN-2].documentationai.io/[SUBPATH-2]/:path*"
     }
   ]
 }
@@ -276,7 +268,7 @@ Redirect old documentation URLs to the new subpath:
   "redirects": [
     {
       "source": "/documentation/:path*",
-      "destination": "/docs/:path*",
+      "destination": "/[SUBPATH]/:path*",
       "permanent": true
     }
   ],
@@ -288,50 +280,52 @@ Redirect old documentation URLs to the new subpath:
 
 ## Troubleshooting
 
-### Documentation Not Loading
+<ExpandableGroup>
+  <Expandable title="Documentation Not Loading">
+    **Problem:** Visiting `yoursite.com/[SUBPATH]` shows a 404 error.
 
-**Problem:** Visiting `yoursite.com/docs` shows a 404 error.
+    **Solution:** 
+    1. Verify your `vercel.json` file is in the project root
+    2. Check that the subdomain in the configuration matches your actual subdomain
+    3. Redeploy your Vercel project after making changes
+  </Expandable>
 
-**Solution:** 
-1. Verify your `vercel.json` file is in the project root
-2. Check that the subdomain in the configuration matches your actual subdomain
-3. Redeploy your Vercel project after making changes
+  <Expandable title="Assets Failing to Load">
+    **Problem:** Documentation loads but images or styles are missing.
 
-### Assets Failing to Load
+    **Solution:**
+    1. Check browser DevTools Console for 404 errors
+    2. Verify the `/dai-assets/:path+` rewrite rule is present
+    3. Ensure the destination URL is correct
+  </Expandable>
 
-**Problem:** Documentation loads but images or styles are missing.
+  <Expandable title="SSL Certificate Errors">
+    **Problem:** Browser shows SSL certificate warnings.
 
-**Solution:**
-1. Check browser DevTools Console for 404 errors
-2. Verify the `/dai-assets/:path+` rewrite rule is present
-3. Ensure the destination URL is correct
+    **Solution:**
+    1. Ensure your custom domain is properly configured in Vercel
+    2. Wait for SSL certificate provisioning (can take up to 24 hours)
+    3. Verify `.well-known` paths are not blocked
+  </Expandable>
 
-### SSL Certificate Errors
+  <Expandable title="Search Not Working">
+    **Problem:** Documentation search returns no results or errors.
 
-**Problem:** Browser shows SSL certificate warnings.
+    **Solution:**
+    1. Verify the `/_dai/api/:path*` rewrite rule is configured
+    2. Check browser DevTools Network tab for failed API requests
+    3. Ensure CORS is not blocking the requests
+  </Expandable>
 
-**Solution:**
-1. Ensure your custom domain is properly configured in Vercel
-2. Wait for SSL certificate provisioning (can take up to 24 hours)
-3. Verify `.well-known` paths are not blocked
+  <Expandable title="Deployment Takes Too Long">
+    **Problem:** Vercel deployment is slow or times out.
 
-### Search Not Working
-
-**Problem:** Documentation search returns no results or errors.
-
-**Solution:**
-1. Verify the `/_dai/api/:path*` rewrite rule is configured
-2. Check browser DevTools Network tab for failed API requests
-3. Ensure CORS is not blocking the requests
-
-### Deployment Takes Too Long
-
-**Problem:** Vercel deployment is slow or times out.
-
-**Solution:**
-1. Verify you're not proxying large files through rewrites
-2. Check Vercel's status page for outages
-3. Contact Vercel support if the issue persists
+    **Solution:**
+    1. Verify you're not proxying large files through rewrites
+    2. Check Vercel's status page for outages
+    3. Contact Vercel support if the issue persists
+  </Expandable>
+</ExpandableGroup>
 
 ## Performance Considerations
 

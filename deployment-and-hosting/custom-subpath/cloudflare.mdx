@@ -5,486 +5,274 @@ description: "Host documentation at a custom subpath using Cloudflare Workers fo
 
 ## Overview
 
-Deploy your documentation at a custom subpath such as `yoursite.com/docs`, `yoursite.com/help`, or any path you choose using Cloudflare Workers. This guide provides a complete setup for using Cloudflare's edge computing platform to proxy documentation requests with minimal latency and maximum flexibility.
+Use Cloudflare Workers to host your documentation at a custom subpath like `yoursite.com/docs`. Workers act as a reverse proxy, routing documentation requests to your Documentation.AI hosting while keeping your main site intact.
 
 <Callout kind="info">
-  **Flexible Subpath**: Throughout this guide, we use `/docs` as an example, but you can use any subpath such as `/help`, `/guide`, `/documentation`, `/api-docs`, or `/support`. Simply replace `/docs` with your chosen path in the Worker script.
+  **Prerequisites:**
+  - Cloudflare account
+  - Domain added to Cloudflare (or using Cloudflare DNS)
+  - Documentation accessible at <kbd>[SUBDOMAIN].documentationai.io</kbd>
 </Callout>
 
-<Callout kind="info">
-  Before you begin, you need a Cloudflare account and a domain (can be managed on or off Cloudflare). Your documentation should already be accessible at `[SUBDOMAIN].documentationai.io`.
-</Callout>
+## How It Works
 
-## How Cloudflare Workers Work
-
-Cloudflare Workers run JavaScript code at the edge, intercepting HTTP requests before they reach your origin server. This allows you to route `/docs` traffic to your documentation hosting while sending all other traffic to your main site.
-
-````mermaid
+```mermaid
 sequenceDiagram
     participant Browser
     participant Worker as Cloudflare Worker
     participant Docs as Documentation Host
     participant Main as Main Site
-    Browser->>Worker: GET yoursite.com/docs/page
+    
+    Browser->>Worker: yoursite.com/docs
     Worker->>Docs: Proxy to [SUBDOMAIN].documentationai.io
-    Docs-->>Worker: Return Content
-    Worker-->>Browser: Return Content
-    Browser->>Worker: GET yoursite.com/about
-    Worker->>Main: Forward to Main Site
-    Main-->>Worker: Return Content
-    Worker-->>Browser: Return Content
-````
+    Docs-->>Browser: Documentation Content
+    
+    Browser->>Worker: yoursite.com/about
+    Worker-->>Browser: Main Site Content
+```
 
-## Repository Structure
+The Worker intercepts all requests to your domain:
+- Requests to `/docs` (or your chosen subpath) → Proxied to Documentation.AI
+- All other requests → Passed through to your main site
 
-Your documentation files must be organized to match your chosen subpath structure. For example, if you want documentation at `yoursite.com/docs`, ensure your documentation content reflects this structure.
-
-<Callout kind="tip">
-  The actual documentation content is hosted separately on Documentation.AI. The Worker only handles routing.
-</Callout>
-
-## Setup Steps
+## Step 1: Create Worker
 
 <Steps>
-  <Step title="Create Cloudflare Worker">
-    Set up a new Worker in your Cloudflare dashboard.
+  <Step title="Open Cloudflare Dashboard">
+    Go to [Cloudflare Dashboard](https://dash.cloudflare.com/) → **Workers & Pages**.
   </Step>
   
-  <Step title="Configure Worker Script">
-    Add the proxying logic to route documentation requests.
-  </Step>
-  
-  <Step title="Add Custom Domain">
-    Connect your domain to the Worker.
-  </Step>
-  
-  <Step title="Test Configuration">
-    Verify documentation loads correctly at your custom subpath.
-  </Step>
-</Steps>
-
-## Create a Cloudflare Worker
-
-<Steps>
-  <Step title="Navigate to Workers">
-    Log in to your [Cloudflare dashboard](https://dash.cloudflare.com/) and navigate to **Workers & Pages**.
-  </Step>
-  
-  <Step title="Create Worker">
+  <Step title="Create New Worker">
     Click **Create application** → **Create Worker** → **Deploy**.
   </Step>
   
   <Step title="Name Your Worker">
-    Give your Worker a descriptive name like `docs-proxy` or `documentation-router`.
+    Give it a name like `docs-proxy` and click **Deploy**.
+  </Step>
+</Steps>
+
+## Step 2: Configure Worker Script
+
+<Steps>
+  <Step title="Edit Worker Code">
+    Click **Edit Code** to open the code editor.
+  </Step>
+  
+  <Step title="Replace Default Code">
+    Delete all existing code and paste the script below.
+  </Step>
+  
+  <Step title="Update Configuration">
+    Replace the placeholders with your actual values (see callout below).
   </Step>
 </Steps>
 
 <Callout kind="alert">
-  If your DNS provider is Cloudflare, do not use proxying (orange cloud) for the CNAME record pointing to your documentation. This can cause conflicts with Worker routing.
+  **Required Replacements:**
+  - <kbd>[SUBDOMAIN]</kbd> → Your Documentation.AI subdomain (e.g., <kbd>acme</kbd>)
+  - <kbd>[YOUR_DOMAIN]</kbd> → Your domain (e.g., <kbd>yoursite.com</kbd>)
+  - <kbd>/docs</kbd> → Your chosen subpath (e.g., <kbd>/docs</kbd>, <kbd>/help</kbd>, <kbd>/guide</kbd>)
 </Callout>
 
-## Domain Verification Requirements
+### Worker Script
 
-### Required Path Allowlist
-
-Your Cloudflare Worker must allow traffic to these specific paths without blocking or redirecting:
-
-- `/.well-known/acme-challenge/*` - Required for Let's Encrypt certificate verification
-- `/.well-known/vercel/*` - Required for domain verification
-
-<Callout kind="info">
-  While Cloudflare automatically handles many verification rules, creating custom routing logic may inadvertently block this critical traffic.
-</Callout>
-
-### Header Forwarding
-
-Ensure that the `HOST` header is correctly forwarded in your Worker configuration. Failure to properly forward headers will cause verification requests to fail.
-
-## Worker Script Configuration
-
-In your Cloudflare dashboard, select **Edit Code** and add the following script. This script intercepts requests and proxies documentation traffic to your documentation hosting.
-
-<Callout kind="alert">
-  **Important Replacements:**
-  - Replace `[SUBDOMAIN]` with your unique subdomain from Documentation.AI
-  - Replace `[YOUR_DOMAIN]` with your website's base URL
-  - Replace `/docs` with your chosen subpath (e.g., `/help`, `/guide`, `/documentation`)
-  - Update the regex pattern `/^\/docs/` to match your subpath (e.g., `/^\/help/`, `/^\/guide/`)
-</Callout>
-
-````javascript
+```javascript
 addEventListener("fetch", (event) => {
   event.respondWith(handleRequest(event.request));
 });
 
 async function handleRequest(request) {
   try {
-    const urlObject = new URL(request.url);
+    const url = new URL(request.url);
     
-    // Allow verification paths to pass through for SSL and domain verification
-    if (urlObject.pathname.startsWith('/.well-known/')) {
+    // Allow SSL verification paths to pass through
+    if (url.pathname.startsWith('/.well-known/')) {
       return await fetch(request);
     }
     
-    // If the request is to the docs subdirectory, proxy to documentation hosting
-    if (/^\/docs/.test(urlObject.pathname)) {
-      // Configuration
-      const DOCS_URL = "[SUBDOMAIN].documentationai.io";
-      const CUSTOM_URL = "[YOUR_DOMAIN]";
+    // Route documentation requests to Documentation.AI
+    // Change /docs to your chosen subpath (e.g., /help, /guide, /api-docs)
+    if (url.pathname.startsWith('/docs')) {
+      const DOCS_HOST = "[SUBDOMAIN].documentationai.io";
+      const YOUR_DOMAIN = "[YOUR_DOMAIN]";
       
-      // Create new URL with documentation host
-      let url = new URL(request.url);
-      url.hostname = DOCS_URL;
+      // Update the URL to point to documentation host
+      url.hostname = DOCS_HOST;
       
       // Create proxy request with proper headers
-      let proxyRequest = new Request(url, request);
-      proxyRequest.headers.set("Host", DOCS_URL);
-      proxyRequest.headers.set("X-Forwarded-Host", CUSTOM_URL);
+      const proxyRequest = new Request(url, request);
+      proxyRequest.headers.set("Host", DOCS_HOST);
+      proxyRequest.headers.set("X-Forwarded-Host", YOUR_DOMAIN);
       proxyRequest.headers.set("X-Forwarded-Proto", "https");
-      
-      // Preserve client IP for analytics and security
-      const clientIP = request.headers.get("CF-Connecting-IP");
-      if (clientIP) {
-        proxyRequest.headers.set("CF-Connecting-IP", clientIP);
-      }
       
       return await fetch(proxyRequest);
     }
     
-    // For all other requests, pass through to the main site
+    // Pass all other requests to your main site
     return await fetch(request);
     
   } catch (error) {
-    // If an error occurs, fall back to passing through the request
-    console.error("Worker error:", error);
-    return await fetch(request);
+    return new Response("Error: " + error.message, { status: 500 });
   }
 }
-````
-
-### Understanding the Worker Script
-
-Let's break down the key components:
-
-**Event Listener**
-```javascript
-addEventListener("fetch", (event) => {
-  event.respondWith(handleRequest(event.request));
-});
 ```
-Intercepts all HTTP requests to your domain.
 
-**Verification Path Handling**
-```javascript
-if (urlObject.pathname.startsWith('/.well-known/')) {
-  return await fetch(request);
-}
-```
-Allows SSL certificate and domain verification requests to pass through unchanged.
+<Callout kind="tip">
+  **Using a Different Subpath?** Change <kbd>/docs</kbd> on line 17 to your chosen path. For example:
+  - For <kbd>/help</kbd>: Change to <kbd>if (url.pathname.startsWith('/help'))</kbd>
+  - For <kbd>/api-docs</kbd>: Change to <kbd>if (url.pathname.startsWith('/api-docs'))</kbd>
+</Callout>
 
-**Documentation Routing**
-```javascript
-if (/^\/docs/.test(urlObject.pathname)) {
-  // Proxy to documentation hosting
-}
-```
-Matches any path starting with `/docs` (or your chosen subpath) and proxies to your documentation. Update the regex pattern to match your subpath (e.g., `/^\/help/` for `/help`, `/^\/api-docs/` for `/api-docs`).
-
-**Header Configuration**
-```javascript
-proxyRequest.headers.set("Host", DOCS_URL);
-proxyRequest.headers.set("X-Forwarded-Host", CUSTOM_URL);
-proxyRequest.headers.set("X-Forwarded-Proto", "https");
-```
-Ensures proper routing and preserves the original request context.
-
-**Client IP Preservation**
-```javascript
-const clientIP = request.headers.get("CF-Connecting-IP");
-if (clientIP) {
-  proxyRequest.headers.set("CF-Connecting-IP", clientIP);
-}
-```
-Maintains client IP information for analytics and rate limiting.
-
-## Deploy Your Worker
+## Step 3: Deploy Worker
 
 <Steps>
-  <Step title="Save Script">
-    After adding your Worker script, click **Save and Deploy**.
-  </Step>
-  
-  <Step title="Wait for Deployment">
-    Wait for the changes to propagate (usually takes a few seconds).
+  <Step title="Save and Deploy">
+    Click **Save and Deploy** in the top-right corner.
   </Step>
   
   <Step title="Test Worker URL">
-    Test using the Worker's preview URL: `your-worker.your-subdomain.workers.dev/docs`
+    Copy your Worker URL (shown as `your-worker.your-subdomain.workers.dev`).
+  </Step>
+  
+  <Step title="Test Documentation">
+    Visit `your-worker.your-subdomain.workers.dev/docs` to verify it loads your documentation.
   </Step>
 </Steps>
 
-<Callout kind="tip">
-  After configuring your DNS, custom subdomains are usually available within a few minutes. DNS propagation can sometimes take 1-4 hours, and in rare cases up to 48 hours.
-</Callout>
-
-## Add Custom Domain
+## Step 4: Connect Your Domain
 
 <Steps>
-  <Step title="Navigate to Settings">
-    In your [Cloudflare dashboard](https://dash.cloudflare.com/), navigate to your Worker.
-  </Step>
-  
-  <Step title="Access Domains & Routes">
-    Go to **Settings** → **Domains & Routes** → **Add** → **Custom Domain**.
-  </Step>
-  
-  <Step title="Add Your Domain">
-    Enter your domain (e.g., `yoursite.com`).
-  </Step>
-  
-  <Step title="Add www Variant">
-    Repeat the process to add the www variant (`www.yoursite.com`).
-  </Step>
-</Steps>
-
-<Callout kind="tip">
-  We recommend adding your domain both with and without `www.` prepended for complete coverage.
-</Callout>
-
-For more information, see [Add a custom domain](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/#add-a-custom-domain) in the Cloudflare documentation.
-
-## Resolve DNS Conflicts
-
-If your domain already points to another service, you must remove the existing DNS record before the Worker can control traffic for your domain.
-
-<Steps>
-  <Step title="Delete Existing Record">
-    In your Cloudflare DNS settings, delete the existing A or CNAME record for your domain.
-  </Step>
-  
   <Step title="Add Custom Domain">
-    Return to your Worker and add your custom domain as described above.
+    In the Worker page, go to **Settings** → **Triggers** → **Add Custom Domain**.
   </Step>
   
-  <Step title="Verify Configuration">
-    Test that your Worker is handling traffic correctly.
+  <Step title="Enter Your Domain">
+    Enter your domain (e.g., `yoursite.com`) and click **Add Custom Domain**.
+  </Step>
+  
+  <Step title="Add WWW Subdomain">
+    Repeat to add `www.yoursite.com` if you use the www subdomain.
   </Step>
 </Steps>
 
-See [Delete DNS records](https://developers.cloudflare.com/dns/manage-dns-records/how-to/create-dns-records/#delete-dns-records) in the Cloudflare documentation for more information.
-
-## Advanced: Webflow Custom Routing
-
-If you use Webflow to host your main site and want to serve documentation at `/docs` on the same domain, you'll need to configure custom routing through Cloudflare Workers to proxy all non-docs traffic to your main site.
-
-<Callout kind="alert">
-  Make sure your main site is set up on a landing page before deploying this Worker, or visitors to your main site will see errors.
+<Callout kind="info">
+  If you already have DNS records pointing to your main site, Cloudflare will automatically route traffic through your Worker. No DNS changes needed!
 </Callout>
 
-### Setup Process
+## Step 5: Test Your Setup
 
 <Steps>
-  <Step title="Create Landing Page">
-    In Webflow, set up a landing page for your main site like `landing.yoursite.com`.
+  <Step title="Test Documentation">
+    Visit `yoursite.com/docs` (or your chosen subpath) - should show documentation.
   </Step>
   
-  <Step title="Deploy Main Site">
-    Deploy your main site to the landing page to ensure it remains accessible.
-  </Step>
-  
-  <Step title="Update URLs">
-    Update any absolute URLs in your main site to be relative to avoid conflicts.
-  </Step>
-  
-  <Step title="Configure Worker">
-    Update your Worker script with the enhanced routing logic below.
-  </Step>
-</Steps>
-
-### Enhanced Worker Script for Webflow
-
-````javascript
-addEventListener("fetch", (event) => {
-  event.respondWith(handleRequest(event.request));
-});
-
-async function handleRequest(request) {
-  try {
-    const urlObject = new URL(request.url);
-    
-    // Allow verification paths to pass through
-    if (urlObject.pathname.startsWith('/.well-known/')) {
-      return await fetch(request);
-    }
-    
-    // If the request is to the docs subdirectory, proxy to documentation
-    if (/^\/docs/.test(urlObject.pathname)) {
-      const DOCS_URL = "[SUBDOMAIN].documentationai.io";
-      const CUSTOM_URL = "[YOUR_DOMAIN]";
-      
-      let url = new URL(request.url);
-      url.hostname = DOCS_URL;
-      
-      let proxyRequest = new Request(url, request);
-      proxyRequest.headers.set("Host", DOCS_URL);
-      proxyRequest.headers.set("X-Forwarded-Host", CUSTOM_URL);
-      proxyRequest.headers.set("X-Forwarded-Proto", "https");
-      
-      const clientIP = request.headers.get("CF-Connecting-IP");
-      if (clientIP) {
-        proxyRequest.headers.set("CF-Connecting-IP", clientIP);
-      }
-      
-      return await fetch(proxyRequest);
-    }
-    
-    // Route everything else to main site (Webflow landing page)
-    const MAIN_SITE_URL = "[LANDING_DOMAIN]";
-    
-    if (MAIN_SITE_URL && MAIN_SITE_URL !== "[LANDING_DOMAIN]") {
-      let mainSiteUrl = new URL(request.url);
-      mainSiteUrl.hostname = MAIN_SITE_URL;
-      
-      return await fetch(mainSiteUrl, {
-        method: request.method,
-        headers: request.headers,
-        body: request.body
-      });
-    }
-    
-  } catch (error) {
-    console.error("Worker error:", error);
-    return await fetch(request);
-  }
-}
-````
-
-<Callout kind="tip">
-  Replace `[LANDING_DOMAIN]` with your Webflow landing page domain (e.g., `landing.yoursite.webflow.io`).
-</Callout>
-
-## Testing Your Configuration
-
-After deploying your Worker:
-
-<Steps>
-  <Step title="Test Documentation Root">
-    Visit `yoursite.com/docs` and verify the documentation homepage loads.
+  <Step title="Test Main Site">
+    Visit `yoursite.com` - should show your main site.
   </Step>
   
   <Step title="Test Nested Pages">
-    Navigate to nested pages like `yoursite.com/docs/getting-started/introduction`.
+    Visit `yoursite.com/docs/any-page` - should show documentation pages.
   </Step>
   
-  <Step title="Check Main Site">
-    Verify your main site at `yoursite.com` still loads correctly.
-  </Step>
-  
-  <Step title="Verify Assets">
-    Open browser DevTools and check that all assets load without errors.
-  </Step>
-  
-  <Step title="Test Search">
-    Use the documentation search to ensure API routes work properly.
+  <Step title="Check Browser Console">
+    Open DevTools → Console - should have no errors.
   </Step>
 </Steps>
 
-## Troubleshooting
-
-### Documentation Returns 404
-
-**Problem:** Visiting `yoursite.com/docs` shows a 404 error.
-
-**Solution:**
-1. Verify the Worker script is deployed
-2. Check that `[SUBDOMAIN]` is replaced with your actual subdomain
-3. Ensure custom domain is properly configured
-4. Test the Worker preview URL to isolate DNS issues
-
-### Main Site Not Loading
-
-**Problem:** Main site returns errors after deploying Worker.
-
-**Solution:**
-1. Check that non-docs traffic is passing through correctly
-2. Verify your main site's origin server is accessible
-3. Review Worker error logs in the Cloudflare dashboard
-
-### SSL Certificate Errors
-
-**Problem:** Browser shows SSL warnings.
-
-**Solution:**
-1. Ensure `.well-known/*` paths are not blocked
-2. Verify SSL certificate is active in Cloudflare dashboard
-3. Check that Universal SSL is enabled for your domain
-
-### Headers Not Forwarding
-
-**Problem:** Documentation doesn't recognize the custom domain.
-
-**Solution:**
-1. Verify `X-Forwarded-Host` header is set correctly
-2. Check that `Host` header matches the documentation domain
-3. Review Worker logs for header-related errors
-
-### Slow Response Times
-
-**Problem:** Documentation loads slowly.
-
-**Solution:**
-1. Check Cloudflare's status page for outages
-2. Verify Worker is deployed to appropriate data centers
-3. Review Worker CPU usage in the dashboard
-4. Consider enabling Cloudflare caching for static assets
-
-## Performance Optimization
-
-<Callout kind="tip">
-  Cloudflare Workers run at the edge with sub-millisecond cold start times, providing excellent global performance.
+<Callout kind="success">
+  ✅ Your documentation is now live at your custom subpath!
 </Callout>
 
-### Caching Strategy
+## Advanced: Webflow Integration
 
-Enable caching for static documentation assets:
+If your main site is hosted on Webflow, you need to route non-docs traffic to your Webflow landing page. Add this configuration to your Worker script:
 
-````javascript
-// Add to your Worker script
-const cache = caches.default;
-const cacheKey = new Request(url.toString(), request);
-let response = await cache.match(cacheKey);
+```javascript
+// Add after line 27 (after the /docs routing)
 
-if (!response) {
-  response = await fetch(proxyRequest);
-  // Cache static assets for 1 hour
-  if (urlObject.pathname.match(/\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2)$/)) {
-    const newHeaders = new Headers(response.headers);
-    newHeaders.set('Cache-Control', 'public, max-age=3600');
-    response = new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: newHeaders
-    });
-    event.waitUntil(cache.put(cacheKey, response.clone()));
-  }
-}
-````
+// Route all other traffic to Webflow landing page
+const WEBFLOW_LANDING = "landing.yoursite.webflow.io";
+const mainSiteUrl = new URL(request.url);
+mainSiteUrl.hostname = WEBFLOW_LANDING;
 
-### Geographic Routing
+return await fetch(mainSiteUrl, {
+  method: request.method,
+  headers: request.headers,
+  body: request.body
+});
+```
 
-Workers automatically run in the Cloudflare data center closest to your users, minimizing latency globally.
+<Callout kind="alert">
+  Replace <kbd>landing.yoursite.webflow.io</kbd> with your actual Webflow landing page domain.
+</Callout>
+
+## Troubleshooting
+
+<ExpandableGroup>
+  <Expandable title="Documentation Shows 404">
+    **Problem:** `yoursite.com/docs` returns 404.
+
+    **Solutions:**
+    1. Verify Worker is deployed (check Workers dashboard)
+    2. Confirm `[SUBDOMAIN]` matches your actual subdomain
+    3. Test Worker URL directly: `your-worker.workers.dev/docs`
+    4. Check custom domain is added in Worker settings
+  </Expandable>
+
+  <Expandable title="Main Site Not Working">
+    **Problem:** Main site broken after adding Worker.
+
+    **Solutions:**
+    1. Ensure Worker only intercepts `/docs` requests
+    2. Check that `return await fetch(request)` is present for non-docs traffic
+    3. Verify DNS records for main site still exist
+  </Expandable>
+
+  <Expandable title="SSL Certificate Errors">
+    **Problem:** Browser shows SSL warnings.
+
+    **Solutions:**
+    1. Wait 24 hours for SSL certificate provisioning
+    2. Verify Universal SSL is enabled in Cloudflare dashboard
+    3. Check that `.well-known/*` paths are not blocked in Worker
+  </Expandable>
+
+  <Expandable title="Worker Not Intercepting Requests">
+    **Problem:** Worker doesn't seem to run.
+
+    **Solutions:**
+    1. Confirm custom domain is added to Worker
+    2. Check Worker routes in **Triggers** tab
+    3. Verify Worker is deployed (status should show "Active")
+    4. Clear browser cache and try again
+  </Expandable>
+</ExpandableGroup>
+
+## Configuration Reference
+
+### Key Headers
+
+| Header | Value | Purpose |
+|--------|-------|---------|
+| `Host` | `[SUBDOMAIN].documentationai.io` | Tell documentation host which site to serve |
+| `X-Forwarded-Host` | `yoursite.com` | Preserve original domain for analytics |
+| `X-Forwarded-Proto` | `https` | Ensure secure connections |
+
+### Path Handling
+
+| Path | Action | Destination |
+|------|--------|-------------|
+| `/.well-known/*` | Pass through | Original request (for SSL verification) |
+| `/docs/*` | Proxy | Documentation.AI hosting |
+| All others | Pass through | Your main site |
 
 ## Next Steps
 
-After successfully configuring your Cloudflare Worker:
+- Monitor Worker performance in Cloudflare Dashboard
+- Set up analytics to track documentation traffic
+- Configure custom error pages if needed
+- Test from different locations to verify global performance
 
-1. Monitor Worker metrics in the Cloudflare dashboard
-2. Set up alerts for errors or performance issues
-3. Configure analytics to track documentation usage
-4. Test thoroughly across different geographic locations
-5. Document your configuration for team members
-
-<Callout kind="success">
-  Your documentation is now live at your custom subpath with Cloudflare's global edge network!
+<Callout kind="tip">
+  Cloudflare Workers run at 300+ data centers worldwide, providing fast response times globally.
 </Callout>
-
