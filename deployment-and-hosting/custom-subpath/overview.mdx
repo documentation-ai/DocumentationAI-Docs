@@ -1,0 +1,154 @@
+---
+title: Custom Subpath Setup Overview
+description: "Deploy your documentation at a custom subpath like yoursite.com/docs using reverse proxy configuration."
+---
+
+## What is a Custom Subpath Deployment?
+
+A custom subpath deployment allows you to host your documentation at a specific path on your domain, such as `yoursite.com/docs` or `yoursite.com/help`, rather than on a separate subdomain like `docs.yoursite.com`.
+
+This approach integrates your documentation seamlessly into your main website while maintaining a unified domain structure.
+
+## How It Works
+
+Custom subpath deployments use a **reverse proxy** to route traffic:
+
+1. **User visits** `yoursite.com/docs`
+2. **Reverse proxy intercepts** the request
+3. **Proxy forwards** the request to your documentation hosting
+4. **Documentation responds** with the content
+5. **Proxy returns** the response to the user
+6. **Browser displays** content at `yoursite.com/docs`
+
+<Callout kind="info">
+  The reverse proxy acts as an intermediary, allowing you to serve documentation from a different hosting provider while maintaining your primary domain.
+</Callout>
+
+## Benefits
+
+<Columns cols={2}>
+  <Card title="Unified Domain" icon="globe">
+    Keep everything under one domain for better brand consistency and user experience.
+  </Card>
+  <Card title="SEO Benefits" icon="trending-up">
+    Consolidate domain authority and improve search engine rankings.
+  </Card>
+  <Card title="Simplified SSL" icon="shield">
+    Manage SSL certificates in one place rather than across multiple subdomains.
+  </Card>
+  <Card title="User Trust" icon="check-circle">
+    Users stay on your main domain, building trust and reducing confusion.
+  </Card>
+</Columns>
+
+## Use Cases
+
+**Marketing Sites with Docs**
+Integrate documentation directly into your product marketing site without requiring users to navigate to a separate subdomain.
+
+**Developer Portals**
+Create unified developer experiences where API docs, guides, and product pages coexist under the same domain.
+
+**Multi-Product Documentation**
+Use different subpaths for different products: `yoursite.com/product-a/docs` and `yoursite.com/product-b/docs`.
+
+**Enterprise Requirements**
+Meet corporate policies that require all public-facing content on the primary domain.
+
+## Architecture Overview
+
+````mermaid
+graph LR
+    A[User Browser] -->|yoursite.com/docs| B[Reverse Proxy]
+    B -->|Strips /docs| C[Documentation Host]
+    C -->|Returns Content| B
+    B -->|Adds /docs back| A
+    B -->|yoursite.com/*| D[Main Site]
+````
+
+The reverse proxy:
+- Routes `/docs/*` traffic to your documentation hosting
+- Routes all other traffic to your main website
+- Handles SSL termination
+- Forwards necessary headers for domain verification
+
+## Deployment Options Comparison
+
+| Provider | Setup Complexity | Performance | Cost | Best For |
+|----------|-----------------|-------------|------|----------|
+| **Vercel** | Low | Excellent | Free tier available | Next.js sites, fast setup |
+| **Cloudflare Workers** | Medium | Excellent | Free tier generous | Global distribution, flexibility |
+| **AWS CloudFront** | High | Excellent | Pay as you go | Enterprise, AWS ecosystem |
+
+## Prerequisites
+
+Before setting up a custom subpath deployment, ensure you have:
+
+<Steps>
+  <Step title="Documentation Hosted" icon="server">
+    Your documentation must be deployed and accessible at `[SUBDOMAIN].documentationai.io`.
+  </Step>
+  <Step title="Domain Access" icon="key">
+    Administrative access to your domain's DNS settings and hosting configuration.
+  </Step>
+  <Step title="SSL Certificate" icon="shield">
+    A valid SSL certificate for your domain (most providers offer free SSL).
+  </Step>
+  <Step title="Reverse Proxy Platform" icon="cloud">
+    An account with Vercel, Cloudflare, AWS, or another reverse proxy service.
+  </Step>
+</Steps>
+
+## Important Considerations
+
+<Callout kind="alert">
+  **Domain Verification Required**: When using a custom subpath, you must configure your reverse proxy to allow traffic to `/.well-known/*` paths. These paths are required for SSL certificate verification and domain ownership validation.
+</Callout>
+
+### Required Path Allowlist
+
+Your reverse proxy configuration must allow these paths to pass through without modification:
+
+- `/.well-known/acme-challenge/*` - Required for Let's Encrypt SSL certificate verification
+- `/.well-known/vercel/*` - Required for domain verification (if using Vercel)
+
+### Header Forwarding
+
+Ensure your reverse proxy forwards the following headers:
+
+```
+Host: [SUBDOMAIN].documentationai.io
+X-Forwarded-Host: yoursite.com
+X-Forwarded-Proto: https
+```
+
+## Choosing a Provider
+
+Select the guide that matches your infrastructure:
+
+<Columns cols={3}>
+  <Card title="Vercel" icon="triangle" href="/deployment-and-hosting/custom-subpath/vercel">
+    Simple JSON configuration for Vercel deployments.
+  </Card>
+  <Card title="Cloudflare Workers" icon="cloud" href="/deployment-and-hosting/custom-subpath/cloudflare">
+    Flexible worker scripts for advanced routing.
+  </Card>
+  <Card title="AWS Route 53 & CloudFront" icon="cloud-cog" href="/deployment-and-hosting/custom-subpath/aws">
+    Enterprise-grade AWS infrastructure setup.
+  </Card>
+</Columns>
+
+## Next Steps
+
+Choose your deployment platform and follow the corresponding guide:
+
+1. Review the platform-specific guide
+2. Configure your reverse proxy
+3. Update DNS settings
+4. Test your deployment
+5. Monitor for proper routing
+
+<Callout kind="tip">
+  Start with a staging environment to test your configuration before applying it to production.
+</Callout>
+

@@ -340,9 +340,31 @@
                 "icon": "globe"
               },
               {
-                "title": "Custom Subpath Setup",
-                "path": "deployment-and-hosting/custom-subpath",
-                "icon": "link"
+                "group": "Custom Subpath Setup",
+                "icon": "link",
+                "expandable": true,
+                "pages": [
+                  {
+                    "title": "Overview",
+                    "path": "deployment-and-hosting/custom-subpath/overview",
+                    "icon": "info"
+                  },
+                  {
+                    "title": "Vercel",
+                    "path": "deployment-and-hosting/custom-subpath/vercel",
+                    "icon": "triangle"
+                  },
+                  {
+                    "title": "Cloudflare Workers",
+                    "path": "deployment-and-hosting/custom-subpath/cloudflare",
+                    "icon": "cloud"
+                  },
+                  {
+                    "title": "AWS Route 53 & CloudFront",
+                    "path": "deployment-and-hosting/custom-subpath/aws",
+                    "icon": "cloud-cog"
+                  }
+                ]
               },
               {
                 "title": "Build Information",

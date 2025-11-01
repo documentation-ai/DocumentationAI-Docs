@@ -1,0 +1,360 @@
+---
+title: Vercel Subpath Setup
+description: "Host documentation at a custom subpath using Vercel rewrites configuration."
+---
+
+## Overview
+
+Deploy your documentation at a custom subpath such as `yoursite.com/docs` using Vercel's powerful rewrite functionality. This guide walks you through configuring your Vercel project to proxy requests from your chosen subpath to your documentation hosting.
+
+<Callout kind="info">
+  Before you begin, ensure your main site is already deployed on Vercel and your documentation is accessible at `[SUBDOMAIN].documentationai.io`.
+</Callout>
+
+## How Vercel Rewrites Work
+
+Vercel rewrites allow you to map incoming request paths to different destinations without changing the URL in the browser. When a user visits `yoursite.com/docs`, Vercel internally proxies the request to your documentation hosting and returns the content seamlessly.
+
+````mermaid
+sequenceDiagram
+    participant Browser
+    participant Vercel
+    participant Docs as Documentation Host
+    Browser->>Vercel: GET yoursite.com/docs/page
+    Vercel->>Docs: GET [SUBDOMAIN].documentationai.io/docs/page
+    Docs-->>Vercel: HTML Content
+    Vercel-->>Browser: HTML Content (URL stays as yoursite.com/docs/page)
+````
+
+## Repository Structure
+
+Your documentation files must be organized to match your chosen subpath. For example, if you want documentation at `yoursite.com/docs`, organize your repository accordingly:
+
+```
+your-project/
+├── vercel.json          # Rewrite configuration
+├── public/              # Main site assets
+├── src/                 # Main site source
+└── package.json
+```
+
+<Callout kind="tip">
+  The actual documentation content is hosted separately. You're only configuring Vercel to proxy requests to the documentation hosting service.
+</Callout>
+
+## Configuration Steps
+
+<Steps>
+  <Step title="Create vercel.json" icon="file-text">
+    In the root of your Vercel project, create or update the `vercel.json` file with the rewrite configuration.
+  </Step>
+  
+  <Step title="Configure Rewrites" icon="settings">
+    Add the complete rewrite rules to proxy documentation requests.
+  </Step>
+  
+  <Step title="Deploy to Vercel" icon="upload">
+    Commit your changes and deploy to Vercel.
+  </Step>
+  
+  <Step title="Test the Configuration" icon="check-circle">
+    Verify that your documentation is accessible at the custom subpath.
+  </Step>
+</Steps>
+
+## Complete Vercel Configuration
+
+Create a `vercel.json` file in your project root with the following configuration:
+
+<Callout kind="alert">
+  Replace `[SUBDOMAIN]` with your actual subdomain from Documentation.AI, and adjust `/docs` to your preferred subpath if different.
+</Callout>
+
+````json
+{
+  "rewrites": [
+    {
+      "source": "/_dai/api/:path*",
+      "destination": "http://[SUBDOMAIN].documentationai.io/_dai/api/:path*"
+    },
+    {
+      "source": "/dai-assets/:path+",
+      "destination": "http://[SUBDOMAIN].documentationai.io/dai-assets/:path+"
+    },
+    {
+      "source": "/docs",
+      "destination": "http://[SUBDOMAIN].documentationai.io/docs"
+    },
+    {
+      "source": "/docs/:path*",
+      "destination": "http://[SUBDOMAIN].documentationai.io/docs/:path*"
+    },
+    {
+      "source": "/docs/llms.txt",
+      "destination": "http://[SUBDOMAIN].documentationai.io/llms.txt"
+    },
+    {
+      "source": "/docs/llms-full.txt",
+      "destination": "http://[SUBDOMAIN].documentationai.io/llms-full.txt"
+    },
+    {
+      "source": "/docs/sitemap.xml",
+      "destination": "http://[SUBDOMAIN].documentationai.io/sitemap.xml"
+    },
+    {
+      "source": "/docs/robots.txt",
+      "destination": "http://[SUBDOMAIN].documentationai.io/robots.txt"
+    }
+  ]
+}
+````
+
+## Understanding the Rewrite Rules
+
+Let's break down each rewrite rule and its purpose:
+
+### 1. API Routes
+
+```json
+{
+  "source": "/_dai/api/:path*",
+  "destination": "http://[SUBDOMAIN].documentationai.io/_dai/api/:path*"
+}
+```
+
+Proxies internal API requests required for documentation features like search, analytics, and interactive playground.
+
+### 2. Static Assets
+
+```json
+{
+  "source": "/dai-assets/:path+",
+  "destination": "http://[SUBDOMAIN].documentationai.io/dai-assets/:path+"
+}
+```
+
+Forwards requests for documentation assets (CSS, JavaScript, images) to the documentation hosting.
+
+### 3. Documentation Root
+
+```json
+{
+  "source": "/docs",
+  "destination": "http://[SUBDOMAIN].documentationai.io/docs"
+}
+```
+
+Handles requests to the documentation root path (e.g., `yoursite.com/docs`).
+
+### 4. Documentation Pages
+
+```json
+{
+  "source": "/docs/:path*",
+  "destination": "http://[SUBDOMAIN].documentationai.io/docs/:path*"
+}
+```
+
+Proxies all documentation page requests with the `:path*` wildcard matching any nested paths.
+
+### 5. SEO and Discovery Files
+
+```json
+{
+  "source": "/docs/llms.txt",
+  "destination": "http://[SUBDOMAIN].documentationai.io/llms.txt"
+},
+{
+  "source": "/docs/llms-full.txt",
+  "destination": "http://[SUBDOMAIN].documentationai.io/llms-full.txt"
+},
+{
+  "source": "/docs/sitemap.xml",
+  "destination": "http://[SUBDOMAIN].documentationai.io/sitemap.xml"
+},
+{
+  "source": "/docs/robots.txt",
+  "destination": "http://[SUBDOMAIN].documentationai.io/robots.txt"
+}
+```
+
+Maps SEO-critical files (LLM discovery, sitemap, robots.txt) from the documentation host to your subpath.
+
+<Callout kind="tip">
+  These files help search engines and AI assistants discover and index your documentation properly.
+</Callout>
+
+## Domain Verification
+
+Vercel requires domain verification for custom domains. The rewrite configuration automatically allows verification paths to pass through:
+
+- `/.well-known/acme-challenge/*` - Let's Encrypt SSL certificate verification
+- `/.well-known/vercel/*` - Vercel domain ownership verification
+
+<Callout kind="success">
+  Vercel handles these verification paths automatically. No additional configuration is needed.
+</Callout>
+
+## Testing Your Configuration
+
+After deploying your configuration:
+
+<Steps>
+  <Step title="Test Root Path" icon="home">
+    Visit `yoursite.com/docs` and verify the documentation loads correctly.
+  </Step>
+  
+  <Step title="Test Nested Pages" icon="folder">
+    Navigate to a nested documentation page like `yoursite.com/docs/getting-started/introduction`.
+  </Step>
+  
+  <Step title="Check Assets" icon="image">
+    Open browser DevTools and verify all assets (images, CSS, JavaScript) load without errors.
+  </Step>
+  
+  <Step title="Verify SEO Files" icon="search">
+    Test access to `yoursite.com/docs/sitemap.xml` and `yoursite.com/docs/robots.txt`.
+  </Step>
+  
+  <Step title="Test Search" icon="search">
+    Use the documentation search functionality to ensure the API routes work correctly.
+  </Step>
+</Steps>
+
+## Advanced Configuration
+
+### Custom Headers
+
+Add custom headers to your rewrite rules if needed:
+
+````json
+{
+  "rewrites": [
+    {
+      "source": "/docs/:path*",
+      "destination": "http://[SUBDOMAIN].documentationai.io/docs/:path*",
+      "headers": {
+        "X-Custom-Header": "value"
+      }
+    }
+  ]
+}
+````
+
+### Multiple Subpaths
+
+Host different documentation instances on different subpaths:
+
+````json
+{
+  "rewrites": [
+    {
+      "source": "/docs/:path*",
+      "destination": "http://[SUBDOMAIN-1].documentationai.io/docs/:path*"
+    },
+    {
+      "source": "/api-docs/:path*",
+      "destination": "http://[SUBDOMAIN-2].documentationai.io/api-docs/:path*"
+    }
+  ]
+}
+````
+
+### Redirects for Old Paths
+
+Redirect old documentation URLs to the new subpath:
+
+````json
+{
+  "redirects": [
+    {
+      "source": "/documentation/:path*",
+      "destination": "/docs/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    // ... your existing rewrites
+  ]
+}
+````
+
+## Troubleshooting
+
+### Documentation Not Loading
+
+**Problem:** Visiting `yoursite.com/docs` shows a 404 error.
+
+**Solution:** 
+1. Verify your `vercel.json` file is in the project root
+2. Check that the subdomain in the configuration matches your actual subdomain
+3. Redeploy your Vercel project after making changes
+
+### Assets Failing to Load
+
+**Problem:** Documentation loads but images or styles are missing.
+
+**Solution:**
+1. Check browser DevTools Console for 404 errors
+2. Verify the `/dai-assets/:path+` rewrite rule is present
+3. Ensure the destination URL is correct
+
+### SSL Certificate Errors
+
+**Problem:** Browser shows SSL certificate warnings.
+
+**Solution:**
+1. Ensure your custom domain is properly configured in Vercel
+2. Wait for SSL certificate provisioning (can take up to 24 hours)
+3. Verify `.well-known` paths are not blocked
+
+### Search Not Working
+
+**Problem:** Documentation search returns no results or errors.
+
+**Solution:**
+1. Verify the `/_dai/api/:path*` rewrite rule is configured
+2. Check browser DevTools Network tab for failed API requests
+3. Ensure CORS is not blocking the requests
+
+### Deployment Takes Too Long
+
+**Problem:** Vercel deployment is slow or times out.
+
+**Solution:**
+1. Verify you're not proxying large files through rewrites
+2. Check Vercel's status page for outages
+3. Contact Vercel support if the issue persists
+
+## Performance Considerations
+
+<Callout kind="tip">
+  Vercel rewrites add minimal latency (typically <50ms) but benefit from Vercel's global edge network for fast response times worldwide.
+</Callout>
+
+### Caching
+
+Vercel automatically caches responses based on the documentation host's cache headers. To optimize:
+
+- Ensure your documentation includes proper `Cache-Control` headers
+- Static assets should have long cache durations
+- API responses should have short or no cache durations
+
+### Edge Network
+
+Vercel's edge network serves content from the location closest to your users, reducing latency and improving performance globally.
+
+## Next Steps
+
+After successfully configuring your Vercel subpath deployment:
+
+1. Monitor your Vercel dashboard for traffic and errors
+2. Set up custom domain SSL if not already configured
+3. Configure analytics to track documentation usage
+4. Test your documentation thoroughly across different pages
+5. Update any internal links to use the new subpath
+
+<Callout kind="success">
+  Your documentation is now live at your custom subpath! Users can access it seamlessly from your main domain.
+</Callout>
+
