@@ -12,19 +12,32 @@ Configure your documentation site using the `documentation.json` file. This file
 
 Basic site settings that control your documentation's identity and behavior.
 
-````json
+```json
 {
   "name": "Documentation.AI",
   "initialRoute": "getting-started/introduction"
 }
-````
+```
 
-<ParamField path="name" param-type="string" required="true" showLocation="false">
-  Site name displayed in the browser title, navigation header, and social media previews.
+<ParamField
+  path="name"
+  param-type="string"
+  required="true"2
+  showLocation="false"
+>
+  Site name displayed in the browser title, navigation header, and social media
+  previews.
 </ParamField>
 
-<ParamField path="initialRoute" param-type="string" required="false" showLocation="false">
-  Default page path when users visit the root URL. Points to an MDX file in your documentation project (all pages must be in MDX format). Specify the path without the `.mdx` extension.
+<ParamField
+  path="initialRoute"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Default page path when users visit the root URL. Points to an MDX file in your
+  documentation project (all pages must be in MDX format). Specify the path
+  without the `.mdx` extension.
 </ParamField>
 
 ## Branding Configuration
@@ -33,28 +46,48 @@ Basic site settings that control your documentation's identity and behavior.
 
 Configure logo variants for different themes and sizes. All logo fields are optional and fallback to default assets.
 
-````json
+```json
 {
   "logo-dark": "https://example.com/logo-dark.svg",
-  "logo-light": "https://example.com/logo-light.svg", 
+  "logo-light": "https://example.com/logo-light.svg",
   "logo-small-dark": "https://example.com/favicon-dark.svg",
   "logo-small-light": "https://example.com/favicon-light.svg"
 }
-````
+```
 
-<ParamField path="logo-dark" param-type="string" required="false" showLocation="false">
+<ParamField
+  path="logo-dark"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
   Main logo displayed in dark theme. Supports PNG, SVG, WEBP formats.
 </ParamField>
 
-<ParamField path="logo-light" param-type="string" required="false" showLocation="false">
+<ParamField
+  path="logo-light"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
   Main logo displayed in light theme.
 </ParamField>
 
-<ParamField path="logo-small-dark" param-type="string" required="false" showLocation="false">
+<ParamField
+  path="logo-small-dark"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
   Small logo/favicon for dark theme. Used in browser tabs and mobile view.
 </ParamField>
 
-<ParamField path="logo-small-light" param-type="string" required="false" showLocation="false">
+<ParamField
+  path="logo-small-light"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
   Small logo/favicon for light theme.
 </ParamField>
 
@@ -62,12 +95,12 @@ Configure logo variants for different themes and sizes. All logo fields are opti
 
 Customize your site's color scheme with automatic contrast optimization.
 
-````json
+```json
 {
   "colors": {
     "light": {
       "brand": "#3143e3",
-      "heading": "#1a1a1a", 
+      "heading": "#1a1a1a",
       "text": "#374151"
     },
     "dark": {
@@ -77,7 +110,7 @@ Customize your site's color scheme with automatic contrast optimization.
     }
   }
 }
-````
+```
 
 ### Light Theme Colors
 
@@ -96,6 +129,7 @@ Customize your site's color scheme with automatic contrast optimization.
     <ParamField path="text" param-type="string" required="false" showLocation="false">
       Body text color for readability. Default: `#374151`.
     </ParamField>
+
   </Expandable>
 </ParamField>
 
@@ -116,6 +150,7 @@ Customize your site's color scheme with automatic contrast optimization.
     <ParamField path="text" param-type="string" required="false" showLocation="false">
       Body text color for dark mode readability. Default: `#c1c1c1`.
     </ParamField>
+
   </Expandable>
 </ParamField>
 
@@ -123,7 +158,7 @@ Customize your site's color scheme with automatic contrast optimization.
 
 Configure the top navigation bar with action buttons and links.
 
-````json
+```json
 {
   "navbar": {
     "actions": {
@@ -133,7 +168,7 @@ Configure the top navigation bar with action buttons and links.
       },
       "links": [
         {
-          "title": "Login", 
+          "title": "Login",
           "link": "https://dashboard.example.com/login"
         },
         {
@@ -144,7 +179,7 @@ Configure the top navigation bar with action buttons and links.
     }
   }
 }
-````
+```
 
 ### Primary Action Button
 
@@ -161,6 +196,7 @@ Configure the main call-to-action button that appears prominently in your navbar
     <ParamField path="link" param-type="string" required="true" showLocation="false">
       Destination URL when clicked.
     </ParamField>
+
   </Expandable>
 </ParamField>
 
@@ -179,97 +215,364 @@ Add supplementary text links for additional navigation options.
     <ParamField path="link" param-type="string" required="true" showLocation="false">
       Target URL. Supports `mailto:` and `tel:` protocols for contact links.
     </ParamField>
+
   </Expandable>
 </ParamField>
 
-## Navigation Structure
+## Navigation Architecture
 
-Configure your documentation site's navigation hierarchy using different container types. Each container must choose exactly ONE child container type.
+Our documentation system organizes information in three conceptual layers to help developers, writers, and AI agents reason about structure, rendering, and content discovery.
 
+```mermaid
+flowchart LR
+  A[Dimensions<br/>Define Context] --> B[Views<br/>Define Navigation]
+  B --> C[Content<br/>Define Documentation]
+```
 
-### Pages Navigation
+### Understanding the Three Layers
 
-Flat page list for simple sites with minimal hierarchy.
+**Dimensions → Views → Content**
 
-````json
+1. **Dimensions** define _where_ in your documentation the reader currently is (e.g., which product, version, or language)
+2. **Views** define _how_ content is organized and navigated within that context (e.g., tabs or dropdowns)
+3. **Content** defines _what_ the reader sees (e.g., groups and pages of documentation)
+
+<Callout type="info">
+  **Navigation Rule**: Each container must choose exactly ONE child type. For
+  example, a tab can contain `groups` OR `pages` OR `dropdowns`, but not
+  multiple types simultaneously.
+</Callout>
+
+---
+
+## Dimensions Layer
+
+Dimensions describe the organizational axes of your documentation. They define contextual boundaries that filter what content appears to readers.
+
+### Supported Dimension Types
+
+<ParamField
+  path="products"
+  param-type="array"
+  required="false"
+  showLocation="false"
+>
+  Organize documentation by different products or services your company offers.
+</ParamField>
+
+<ParamField
+  path="versions"
+  param-type="array"
+  required="false"
+  showLocation="false"
+>
+  Organize documentation by product versions or API versions.
+</ParamField>
+
+<ParamField
+  path="languages"
+  param-type="array"
+  required="false"
+  showLocation="false"
+>
+  Organize documentation by language for internationalization.
+</ParamField>
+
+### Dimension Behavior
+
+- **Optional**: Use dimensions only when needed for your documentation structure
+- **Flexible Order**: Dimensions can be nested in any order (e.g., `products → versions → languages` or `versions → languages`)
+- **Single Root**: Navigation must start with one dimension type at the root level
+- **User Selection**: When users select a dimension value, the system filters content to show only what belongs to that context
+- **UI Display**: Currently rendered as dropdown selectors at the top of your documentation
+
+### Dimension Configuration
+
+Each dimension item must have a unique identifier and can contain nested dimensions or views.
+
+<CodeGroup tabs="Products Dimension,Versions Dimension,Languages Dimension">
+
+```json
 {
   "navigation": {
-    "pages": [
+    "products": [
       {
-        "title": "Introduction",
-        "path": "getting-started/introduction",
-        "icon": "star"
-      },
-      {
-        "title": "API Reference",
-        "path": "api/overview",
-        "icon": "code"
-      },
-      {
-        "title": "External Resource",
-        "href": "https://github.com/company/repo",
-        "icon": "github"
-      }
-    ]
-  }
-}
-````
-
-**Supported Children:** Individual page items only (see [Page Properties](#page-properties))
-
-### Groups Navigation
-
-Section-based organization with collapsible groups. Groups can contain nested groups for deeper hierarchical organization.
-
-````json
-{
-  "navigation": {
-    "groups": [
-      {
-        "group": "Getting Started",
-        "icon": "rocket",
-        "expandable": false,
-        "pages": [
-          {
-            "title": "Introduction",
-            "path": "getting-started/introduction",
-            "icon": "star"
-          },
-          {
-            "group": "Advanced Setup",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "Configuration",
-                "path": "getting-started/configuration"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "group": "API Reference",
+        "product": "API Platform",
         "icon": "code",
-        "openapi": "api/openapi.json",
-        "pages": [
+        "tabs": [
           {
-            "title": "Authentication",
-            "path": "api/authentication"
+            "tab": "Documentation",
+            "groups": [...]
           }
         ]
+      },
+      {
+        "product": "Dashboard",
+        "icon": "layout-dashboard",
+        "pages": [...]
       }
     ]
   }
 }
-````
+```
 
-**Supported Children:** [Pages Arrays](#mixed-content-in-pages-arrays) (containing individual page items and nested group items)
+```json
+{
+  "navigation": {
+    "versions": [
+      {
+        "version": "v2.0",
+        "icon": "badge",
+        "tabs": [
+          {
+            "tab": "API Reference",
+            "groups": [...]
+          }
+        ]
+      },
+      {
+        "version": "v1.0",
+        "icon": "badge",
+        "groups": [...]
+      }
+    ]
+  }
+}
+```
 
-### Tabs Navigation
+```json
+{
+  "navigation": {
+    "languages": [
+      {
+        "language": "English",
+        "icon": "languages",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "groups": [...]
+          }
+        ]
+      },
+      {
+        "language": "Español",
+        "icon": "languages",
+        "tabs": [...]
+      }
+    ]
+  }
+}
+```
 
-Tabbed navigation interface with horizontal navigation bar. Creates distinct sections with separate URL paths.
+</CodeGroup>
 
-````json
+---
+
+## Views Layer
+
+Views control how content is organized and navigated within a chosen dimension context. They determine the navigation layout and user interaction patterns.
+
+### Supported View Types
+
+<ParamField
+  path="tabs"
+  param-type="array"
+  required="false"
+  showLocation="false"
+>
+  Horizontal navigation bar for switching between parallel sections like
+  "Guides" and "API Reference".
+</ParamField>
+
+<ParamField
+  path="dropdowns"
+  param-type="array"
+  required="false"
+  showLocation="false"
+>
+  Collapsible dropdown menus for selecting between sub-categories in the
+  sidebar.
+</ParamField>
+
+### View Nesting Patterns
+
+Our standard UI templates support these view combinations:
+
+| Pattern       | Structure                    | Use Case                                     |
+| ------------- | ---------------------------- | -------------------------------------------- |
+| **Pattern 1** | `Dropdown → Tabs → Dropdown` | Complex navigation with categorized sections |
+| **Pattern 2** | `Dropdown → Dropdown`        | Hierarchical categorization without tabs     |
+| **Pattern 3** | `Tabs → Dropdown → Dropdown` | Tab-based sections with nested categories    |
+
+<Callout type="info">
+  **Enterprise Customization**: Custom UI templates can support additional view
+  combinations beyond these standard patterns. Contact support for enterprise
+  options.
+</Callout>
+
+### Tab Configuration
+
+Tabs create horizontal navigation sections that are visible at the top of your documentation.
+
+```json
+{
+  "tabs": [
+    {
+      "tab": "Documentation",
+      "icon": "book",
+      "groups": [
+        {
+          "group": "Getting Started",
+          "pages": [
+            {
+              "title": "Introduction",
+              "path": "introduction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tab": "API Reference",
+      "icon": "code",
+      "pages": [
+        {
+          "title": "Authentication",
+          "path": "api/auth"
+        }
+      ]
+    },
+    {
+      "tab": "External Link",
+      "icon": "external-link",
+      "href": "https://blog.example.com"
+    }
+  ]
+}
+```
+
+**Tab Properties:**
+
+<ParamField path="tab" param-type="string" required="true" showLocation="false">
+  Display name for the tab shown in the navigation bar.
+</ParamField>
+
+<ParamField
+  path="icon"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Visual icon from the Lucide React icon library.
+</ParamField>
+
+<ParamField
+  path="href"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  External URL for tabs that link outside your documentation. Use instead of
+  nested content.
+</ParamField>
+
+**Tab Children** (choose ONE):
+
+- `dropdowns` - Array of dropdown items
+- `groups` - Array of content groups
+- `pages` - Array of individual pages
+
+### Dropdown Configuration
+
+Dropdowns create collapsible sections in the sidebar for hierarchical navigation.
+
+```json
+{
+  "dropdowns": [
+    {
+      "dropdown": "Core Features",
+      "icon": "lightbulb",
+      "description": "Essential platform capabilities",
+      "tabs": [
+        {
+          "tab": "User Guide",
+          "groups": [...]
+        }
+      ]
+    },
+    {
+      "dropdown": "Advanced Topics",
+      "icon": "graduation-cap",
+      "dropdowns": [
+        {
+          "dropdown": "Integrations",
+          "pages": [...]
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Dropdown Properties:**
+
+<ParamField
+  path="dropdown"
+  param-type="string"
+  required="true"
+  showLocation="false"
+>
+  Display name for the dropdown shown in the sidebar.
+</ParamField>
+
+<ParamField
+  path="icon"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Visual icon from the Lucide React icon library.
+</ParamField>
+
+<ParamField
+  path="description"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Optional descriptive text shown below the dropdown title.
+</ParamField>
+
+<ParamField
+  path="href"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  External URL for dropdowns that link outside your documentation. Use instead
+  of nested content.
+</ParamField>
+
+**Dropdown Children** (choose ONE):
+
+- `tabs` - Array of tab items
+- `dropdowns` - Array of nested dropdown items
+- `groups` - Array of content groups
+- `pages` - Array of individual pages
+
+---
+
+## Content Layer
+
+The content layer contains your actual documentation files organized into groups and pages. This is what readers consume after selecting their context and navigation path.
+
+### Simple Navigation (No Dimensions)
+
+For straightforward documentation without version or product variants, start directly with views or content.
+
+<CodeGroup tabs="Tabs Only,Groups Only,Pages Only">
+
+```json
 {
   "navigation": {
     "tabs": [
@@ -282,303 +585,285 @@ Tabbed navigation interface with horizontal navigation bar. Creates distinct sec
             "pages": [
               {
                 "title": "Introduction",
-                "path": "docs/introduction"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "icon": "code",
-        "pages": [
-          {
-            "title": "Authentication",
-            "path": "api/authentication"
-          }
-        ]
-      },
-      {
-        "tab": "Blog",
-        "icon": "newspaper",
-        "href": "https://blog.example.com"
-      }
-    ]
-  }
-}
-````
-
-**Supported Children:** [Menus](#menus-navigation), [Groups](#groups-navigation), or [Pages](#pages-navigation)
-
-### Menus Navigation
-
-Menu-based navigation for sub-sections within other containers.
-
-````json
-{
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Developer Tools",
-        "icon": "terminal",
-        "menus": [
-          {
-            "menu": "API Reference",
-            "icon": "api",
-            "description": "Complete API documentation",
-            "groups": [
-              {
-                "group": "Core Endpoints",
-                "pages": [
-                  {
-                    "title": "Users API",
-                    "path": "api/users"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "menu": "SDKs",
-            "icon": "package",
-            "pages": [
-              {
-                "title": "JavaScript SDK",
-                "path": "sdk/javascript"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-````
-
-**Supported Children:** [Groups](#groups-navigation) or [Pages](#pages-navigation)
-
-### Versions Navigation
-
-Version-based organization with dropdown selector for different product versions or API versions.
-
-````json
-{
-  "navigation": {
-    "versions": [
-      {
-        "version": "v2.0",
-        "icon": "version",
-        "tabs": [
-          {
-            "tab": "API Reference",
-            "groups": [
-              {
-                "group": "Endpoints",
-                "pages": [
-                  {
-                    "title": "Users API",
-                    "path": "v2/api/users"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "version": "v1.0",
-        "groups": [
-          {
-            "group": "Legacy API",
-            "pages": [
-              {
-                "title": "Migration Guide",
-                "path": "v1/migration-guide"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-````
-
-**Supported Children:** [Dropdowns](#dropdowns-navigation), [Tabs](#tabs-navigation), [Menus](#menus-navigation), [Groups](#groups-navigation), or [Pages](#pages-navigation)
-
-### Dropdowns Navigation
-
-Dropdown menu navigation for complex sites with expandable sections in the sidebar.
-
-````json
-{
-  "navigation": {
-    "dropdowns": [
-      {
-        "dropdown": "Documentation",
-        "icon": "book",
-        "description": "Complete documentation",
-        "tabs": [
-          {
-            "tab": "Getting Started",
-            "pages": [
-              {
-                "title": "Introduction",
                 "path": "introduction"
               }
             ]
           }
         ]
-      },
-      {
-        "dropdown": "API Reference",
-        "icon": "code",
-        "groups": [
-          {
-            "group": "Core API",
-            "pages": [
-              {
-                "title": "Authentication",
-                "path": "api/authentication"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "dropdown": "External Resources",
-        "href": "https://resources.example.com"
       }
     ]
   }
 }
-````
+```
 
-**Supported Children:** [Tabs](#tabs-navigation), [Menus](#menus-navigation), [Groups](#groups-navigation), or [Pages](#pages-navigation)
-
-
-### Page Properties
-
-Individual page configuration within any navigation structure.
-
-````json
+```json
 {
-  "title": "OpenAPI Schema Import",
-  "path": "api-documentation/openapi-import", 
-  "icon": "key",
-  "href": "https://external-link.com",
-  "method": "GET",
-  "tags": "API"
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting Started",
+        "icon": "rocket",
+        "expandable": false,
+        "pages": [
+          {
+            "title": "Introduction",
+            "path": "introduction"
+          }
+        ]
+      }
+    ]
+  }
 }
-````
+```
 
-## Individual Page Configuration
-
-Configure properties for individual pages within your navigation structure.
-
-<Callout type="info">
-**MDX File Format Required**: All documentation pages must be in MDX format. When referencing files in your configuration, always omit the `.mdx` extension from the path (e.g., use `"getting-started/introduction"` instead of `"getting-started/introduction.mdx"`).
-</Callout>
-
-### Basic Page Settings
-
-<ParamField path="title" param-type="string" required="true" showLocation="false">
-  Display name shown in navigation and browser title.
-</ParamField>
-
-<ParamField path="path" param-type="string" required="false" showLocation="false">
-  Relative path to your MDX file in your documentation project. All pages must be in MDX format - specify the path without the `.mdx` extension (e.g., `"getting-started/introduction"` for the file `getting-started/introduction.mdx`).
-</ParamField>
-
-<ParamField path="href" param-type="string" required="false" showLocation="false">
-  External URL for links that open in new tabs. Use instead of `path` for external links.
-</ParamField>
-
-### Visual Customization
-
-<ParamField path="icon" param-type="string" required="false" showLocation="false">
-  Page icon from the Lucide React icon library.
-</ParamField>
-
-### API Documentation Pages
-
-<ParamField path="method" param-type="string" required="false" showLocation="false">
-  HTTP method for API endpoint pages (e.g., `"GET"`, `"POST"`, `"DELETE"`).
-</ParamField>
-
-<ParamField path="tags" param-type="string" required="false" showLocation="false">
-  Categorization tags for organizing related content.
-</ParamField>
-
-## Navigation Group Configuration 
-
-Configure collapsible sections that organize related pages together.
-
-### Group Identity
-
-<ParamField path="group" param-type="string" required="true" showLocation="false">
-  Display name shown in the sidebar navigation.
-</ParamField>
-
-<ParamField path="icon" param-type="string" required="false" showLocation="false">
-  Visual icon from the Lucide React icon library.
-</ParamField>
-
-### Group Behavior
-
-<ParamField path="expandable" param-type="boolean" required="false" showLocation="false">
-  Whether users can collapse/expand this group. Default: `true`.
-</ParamField>
-
-### API Documentation Integration
-
-<ParamField path="openapi" param-type="string" required="false" showLocation="false">
-  Path to OpenAPI specification file for automatic API documentation generation within this group. Supports both JSON (`.json`) and YAML (`.yaml`, `.yml`) formats.
-</ParamField>
-
-### Group Contents
-
-<ParamField path="pages" param-type="array" required="true" showLocation="false">
-  Array of pages and nested groups contained within this group. See [Mixed Content in Pages Arrays](#mixed-content-in-pages-arrays) for details.
-</ParamField>
-
-### Mixed Content in Pages Arrays
-
-Pages arrays can contain both individual page items AND group items mixed together:
-
-````json
+```json
 {
-  "pages": [
+  "navigation": {
+    "pages": [
+      {
+        "title": "Introduction",
+        "path": "introduction",
+        "icon": "star"
+      },
+      {
+        "title": "API Reference",
+        "path": "api/overview",
+        "icon": "code"
+      }
+    ]
+  }
+}
+```
+
+</CodeGroup>
+
+### Groups Configuration
+
+Groups organize related pages into collapsible sections within your sidebar navigation.
+
+```json
+{
+  "groups": [
     {
-      "group": "Components",
-      "icon": "box",
-      "expandable": true,
+      "group": "Getting Started",
+      "icon": "rocket",
+      "expandable": false,
       "pages": [
         {
-          "title": "Headings and Text",
-          "path": "components/heading-and-text",
-          "icon": "type"
+          "title": "Introduction",
+          "path": "introduction"
         },
         {
-          "title": "Code and Groups",
-          "path": "components/code-blocks-and-groups",
-          "icon": "code"
+          "title": "Quickstart",
+          "path": "quickstart"
         }
       ]
     },
     {
-      "title": "External Resource",
-      "href": "https://external.com",
-      "icon": "link"
+      "group": "API Reference",
+      "icon": "code",
+      "openapi": "api/openapi.yaml",
+      "expandable": true,
+      "pages": [
+        {
+          "title": "Authentication",
+          "path": "api/authentication"
+        }
+      ]
     }
   ]
 }
-````
+```
 
-This demonstrates how:
-- **Individual pages** (`Components Overview`, `External Resource`) exist alongside
-- **Group items** (`Components` group) with their own nested pages
-- All within the same `pages` array
+**Group Properties:**
+
+<ParamField
+  path="group"
+  param-type="string"
+  required="true"
+  showLocation="false"
+>
+  Display name shown in the sidebar navigation.
+</ParamField>
+
+<ParamField
+  path="icon"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Visual icon from the Lucide React icon library.
+</ParamField>
+
+<ParamField
+  path="expandable"
+  param-type="boolean"
+  required="false"
+  showLocation="false"
+>
+  Whether users can collapse/expand this group. Default: `true`.
+</ParamField>
+
+<ParamField
+  path="openapi"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Path to OpenAPI specification file for automatic API documentation generation.
+  Supports both JSON (`.json`) and YAML (`.yaml`, `.yml`) formats.
+</ParamField>
+
+<ParamField
+  path="pages"
+  param-type="array"
+  required="true"
+  showLocation="false"
+>
+  Array of pages and nested groups. Pages arrays can contain both individual
+  page items AND nested group items mixed together.
+</ParamField>
+
+**Group Children** (choose ONE):
+
+- Array of individual page items
+- Array mixing page items with nested group items
+
+### Pages Configuration
+
+Pages are the individual documentation files that contain your content.
+
+```json
+{
+  "pages": [
+    {
+      "title": "Introduction",
+      "path": "getting-started/introduction",
+      "icon": "star"
+    },
+    {
+      "title": "API Endpoints",
+      "path": "api/endpoints",
+      "icon": "code",
+      "method": "GET",
+      "tags": "API"
+    },
+    {
+      "title": "External Resource",
+      "href": "https://github.com/company/repo",
+      "icon": "external-link"
+    }
+  ]
+}
+```
+
+<Callout type="info">
+  **MDX File Format Required**: All documentation pages must be in MDX format.
+  When referencing files in your configuration, always omit the `.mdx` extension
+  from the path (e.g., use `"getting-started/introduction"` instead of
+  `"getting-started/introduction.mdx"`).
+</Callout>
+
+**Page Properties:**
+
+<ParamField
+  path="title"
+  param-type="string"
+  required="true"
+  showLocation="false"
+>
+  Display name shown in navigation and browser title.
+</ParamField>
+
+<ParamField
+  path="path"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Relative path to your MDX file without the `.mdx` extension (e.g.,
+  `"getting-started/introduction"`). Required unless using `href`.
+</ParamField>
+
+<ParamField
+  path="href"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  External URL for links that open in new tabs. Use instead of `path` for
+  external resources.
+</ParamField>
+
+<ParamField
+  path="icon"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Page icon from the Lucide React icon library.
+</ParamField>
+
+<ParamField
+  path="method"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  HTTP method for API endpoint pages (e.g., `"GET"`, `"POST"`, `"DELETE"`). Used
+  for visual indicators in API documentation.
+</ParamField>
+
+<ParamField
+  path="tags"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Categorization tags for organizing related content.
+</ParamField>
+
+### Mixed Content in Pages Arrays
+
+Pages arrays support flexible organization by mixing individual pages with nested groups:
+
+```json
+{
+  "pages": [
+    {
+      "title": "Overview",
+      "path": "components/overview",
+      "icon": "eye"
+    },
+    {
+      "group": "Layout Components",
+      "icon": "layout",
+      "expandable": true,
+      "pages": [
+        {
+          "title": "Grid",
+          "path": "components/grid"
+        },
+        {
+          "title": "Container",
+          "path": "components/container"
+        }
+      ]
+    },
+    {
+      "title": "External Design System",
+      "href": "https://design.example.com",
+      "icon": "palette"
+    }
+  ]
+}
+```
+
+This example demonstrates:
+
+- **Individual pages** (`Overview`, `External Design System`) appear alongside
+- **Nested group items** (`Layout Components`) with their own page collections
+- All coexisting within the same `pages` array
 
 ## OpenAPI Integration
 
@@ -640,8 +925,14 @@ Generate comprehensive API documentation automatically from OpenAPI specificatio
 
 </CodeGroup>
 
-<ParamField path="openapi" param-type="string" required="false" showLocation="false">
-  Path to OpenAPI 3.0+ specification file within your documentation project. Supports both JSON (`.json`) and YAML (`.yaml`, `.yml`) formats.
+<ParamField
+  path="openapi"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Path to OpenAPI 3.0+ specification file within your documentation project.
+  Supports both JSON (`.json`) and YAML (`.yaml`, `.yml`) formats.
 </ParamField>
 
 ### OpenAPI Features
@@ -653,50 +944,350 @@ Generate comprehensive API documentation automatically from OpenAPI specificatio
 - **Status code handling** - Multiple response examples per endpoint
 - **Inheritance** - Child elements inherit parent OpenAPI specs unless overridden
 
-
 ## SEO Configuration
 
 Configure search engine optimization and meta tag behavior.
 
-````json
+```json
 {
   "seo": {
     "robots:index": true,
     "robots:follow": true
   }
 }
-````
+```
 
 ### Search Engine Indexing
 
-<ParamField path="robots:index" param-type="boolean" required="false" showLocation="false">
+<ParamField
+  path="robots:index"
+  param-type="boolean"
+  required="false"
+  showLocation="false"
+>
   Allow search engines to index your documentation pages. Default: `true`.
 </ParamField>
 
 ### Search Engine Link Following
 
-<ParamField path="robots:follow" param-type="boolean" required="false" showLocation="false">
-  Allow search engines to follow links within your documentation. Default: `true`.
+<ParamField
+  path="robots:follow"
+  param-type="boolean"
+  required="false"
+  showLocation="false"
+>
+  Allow search engines to follow links within your documentation. Default:
+  `true`.
 </ParamField>
 
-## Complete Example
+## Navigation Examples
 
-````json
+Comprehensive examples demonstrating different navigation architectures for various use cases.
+
+### Example 1: Simple Documentation (No Dimensions)
+
+Basic documentation site with tabs and groups, no version or product variants.
+
+```json
 {
   "name": "Documentation.AI",
   "initialRoute": "getting-started/introduction",
+  "colors": {
+    "light": { "brand": "#3143e3" },
+    "dark": { "brand": "#85a1ff" }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Introduction",
+                "path": "getting-started/introduction",
+                "icon": "star"
+              },
+              {
+                "title": "Quickstart",
+                "path": "getting-started/quickstart",
+                "icon": "zap"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Endpoints",
+            "openapi": "api/openapi.json",
+            "pages": [
+              {
+                "title": "Authentication",
+                "path": "api/auth"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Example 2: Version Dimension Only
+
+Documentation with multiple versions but single product.
+
+```json
+{
+  "name": "API Documentation",
+  "navigation": {
+    "versions": [
+      {
+        "version": "v2.0",
+        "icon": "badge",
+        "tabs": [
+          {
+            "tab": "Guides",
+            "icon": "book",
+            "groups": [
+              {
+                "group": "Getting Started",
+                "pages": [
+                  {
+                    "title": "Introduction",
+                    "path": "v2/introduction"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "icon": "code",
+            "groups": [
+              {
+                "group": "Core API",
+                "openapi": "api/v2/openapi.yaml",
+                "pages": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "version": "v1.0",
+        "icon": "badge",
+        "groups": [
+          {
+            "group": "Legacy Documentation",
+            "pages": [
+              {
+                "title": "Migration Guide",
+                "path": "v1/migration"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Example 3: Multiple Dimensions (Products → Versions → Languages)
+
+Complex documentation with products, versions, and language support.
+
+```json
+{
+  "name": "Multi-Product Documentation",
+  "navigation": {
+    "products": [
+      {
+        "product": "API Platform",
+        "icon": "cloud",
+        "versions": [
+          {
+            "version": "v2",
+            "languages": [
+              {
+                "language": "English",
+                "tabs": [
+                  {
+                    "tab": "Documentation",
+                    "groups": [
+                      {
+                        "group": "Getting Started",
+                        "pages": [
+                          {
+                            "title": "Introduction",
+                            "path": "api/v2/en/introduction"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "language": "Español",
+                "tabs": [
+                  {
+                    "tab": "Documentación",
+                    "groups": [
+                      {
+                        "group": "Comenzar",
+                        "pages": [
+                          {
+                            "title": "Introducción",
+                            "path": "api/v2/es/introduccion"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product": "Dashboard",
+        "icon": "layout-dashboard",
+        "tabs": [
+          {
+            "tab": "User Guide",
+            "pages": [
+              {
+                "title": "Overview",
+                "path": "dashboard/overview"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Example 4: View Nesting Patterns
+
+Demonstrating the three standard UI template patterns.
+
+<CodeGroup tabs="Pattern 1: Dropdown→Tabs→Dropdown,Pattern 2: Dropdown→Dropdown,Pattern 3: Tabs→Dropdown→Dropdown">
+
+```json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "dropdowns": [
+          {
+            "dropdown": "User Guide",
+            "dropdowns": [
+              {
+                "dropdown": "Getting Started",
+                "pages": [
+                  {
+                    "title": "Introduction",
+                    "path": "intro"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+```json
+{
+  "navigation": {
+    "dropdowns": [
+      {
+        "dropdown": "Platform",
+        "dropdowns": [
+          {
+            "dropdown": "Core Features",
+            "pages": [
+              {
+                "title": "Authentication",
+                "path": "auth"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+```json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "dropdowns": [
+          {
+            "dropdown": "Features",
+            "dropdowns": [
+              {
+                "dropdown": "Advanced",
+                "pages": [
+                  {
+                    "title": "Webhooks",
+                    "path": "webhooks"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</CodeGroup>
+
+### Example 5: Complete Real-World Configuration
+
+Full example with all features including dimensions, views, OpenAPI integration, and mixed content.
+
+```json
+{
+  "name": "Paperguide Documentation",
+  "initialRoute": "introduction",
   "logo-dark": "https://example.com/logo-dark.svg",
   "logo-light": "https://example.com/logo-light.svg",
-  "logo-small-dark": "https://example.com/favicon-dark.svg", 
+  "logo-small-dark": "https://example.com/favicon-dark.svg",
   "logo-small-light": "https://example.com/favicon-light.svg",
   "colors": {
     "light": {
-      "brand": "#3143e3",
+      "brand": "#3B82F6",
       "heading": "#1a1a1a",
       "text": "#374151"
     },
     "dark": {
-      "brand": "#85a1ff", 
+      "brand": "#60A5FA",
       "heading": "#f2f2f2",
       "text": "#c1c1c1"
     }
@@ -705,54 +1296,93 @@ Configure search engine optimization and meta tag behavior.
     "actions": {
       "primary": {
         "title": "Get Started",
-        "link": "https://dashboard.example.com/signup"
+        "link": "https://dashboard.paperguide.com/signup"
       },
       "links": [
         {
           "title": "Login",
-          "link": "https://dashboard.example.com/login"
+          "link": "https://dashboard.paperguide.com/login"
         }
       ]
     }
   },
   "navigation": {
-    "tabs": [
+    "products": [
       {
-        "tab": "Documentation",
-        "icon": "book", 
-        "groups": [
+        "product": "Paperguide",
+        "versions": [
           {
-            "group": "Getting Started",
-            "icon": "rocket",
-            "expandable": false,
-            "pages": [
+            "version": "v1",
+            "languages": [
               {
-                "title": "Introduction", 
-                "path": "getting-started/introduction",
-                "icon": "star"
-              },
-              {
-                "title": "Quickstart",
-                "path": "getting-started/quickstart", 
-                "icon": "zap"
-              }
-            ]
-          },
-          {
-            "group": "API Reference",
-            "icon": "code",
-            "openapi": "api/openapi.json",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "Authentication",
-                "path": "api/authentication", 
-                "icon": "key"
-              },
-              {
-                "title": "Users API",
-                "path": "api/users",
-                "icon": "users"
+                "language": "English",
+                "tabs": [
+                  {
+                    "tab": "Getting Started",
+                    "icon": "rocket",
+                    "pages": [
+                      {
+                        "title": "Introduction",
+                        "path": "introduction",
+                        "icon": "home"
+                      }
+                    ]
+                  },
+                  {
+                    "tab": "Documentation",
+                    "icon": "book",
+                    "dropdowns": [
+                      {
+                        "dropdown": "Core Features",
+                        "icon": "lightbulb",
+                        "dropdowns": [
+                          {
+                            "dropdown": "Content Management",
+                            "pages": [
+                              {
+                                "title": "Spaces",
+                                "path": "spaces",
+                                "icon": "folder"
+                              },
+                              {
+                                "title": "Pages",
+                                "path": "pages",
+                                "icon": "file-text"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "dropdown": "Advanced Features",
+                        "icon": "zap",
+                        "pages": [
+                          {
+                            "title": "Webhooks",
+                            "path": "webhooks",
+                            "icon": "link"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tab": "API Reference",
+                    "icon": "code",
+                    "groups": [
+                      {
+                        "group": "REST API",
+                        "openapi": "api/openapi.yaml",
+                        "pages": [
+                          {
+                            "title": "Authentication",
+                            "path": "api/authentication"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -765,4 +1395,44 @@ Configure search engine optimization and meta tag behavior.
     "robots:follow": true
   }
 }
-````
+```
+
+---
+
+## Visualization: How It All Works Together
+
+```mermaid
+flowchart TB
+    subgraph dim["LAYER 1: Dimensions (Context)"]
+        prod["Product: Paperguide"]
+        ver["Version: v1"]
+        lang["Language: English"]
+    end
+
+    subgraph view["LAYER 2: Views (Navigation)"]
+        tabs["Tabs: Getting Started | Documentation | API"]
+        drop1["Dropdown: Core Features"]
+        drop2["Dropdown: Content Management"]
+    end
+
+    subgraph content["LAYER 3: Content (Documentation)"]
+        group1["Group: Advanced Features"]
+        page1["Page: Spaces"]
+        page2["Page: Pages"]
+        page3["Page: Webhooks"]
+    end
+
+    prod --> ver
+    ver --> lang
+    lang --> tabs
+    tabs --> drop1
+    tabs --> group1
+    drop1 --> drop2
+    drop2 --> page1
+    drop2 --> page2
+    group1 --> page3
+
+    style dim fill:#e3f2fd
+    style view fill:#fff3e0
+    style content fill:#f3e5f5
+```
