@@ -224,7 +224,7 @@ Add supplementary text links for additional navigation options.
 Our documentation system organizes information in three conceptual layers to help developers, writers, and AI agents reason about structure, rendering, and content discovery.
 
 ```mermaid
-flowchart LR
+flowchart TB
   A[Dimensions<br/>Define Context] --> B[Views<br/>Define Navigation]
   B --> C[Content<br/>Define Documentation]
 ```
@@ -365,6 +365,219 @@ Each dimension item must have a unique identifier and can contain nested dimensi
 ```
 
 </CodeGroup>
+
+### Multi-Dimension Configuration
+
+You can nest multiple dimensions to create sophisticated organizational structures. Dimensions can be combined in any order based on your documentation needs.
+
+<CodeGroup tabs="Products + Versions,Versions + Products,Products + Versions + Languages,Versions + Languages">
+
+```json
+{
+  "navigation": {
+    "products": [
+      {
+        "product": "API Platform",
+        "icon": "code",
+        "versions": [
+          {
+            "version": "v2.0",
+            "icon": "badge",
+            "tabs": [
+              {
+                "tab": "Documentation",
+                "groups": [
+                  {
+                    "group": "Getting Started",
+                    "pages": [
+                      {
+                        "title": "Introduction",
+                        "path": "api-v2/introduction"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "version": "v1.0",
+            "icon": "badge",
+            "tabs": [...]
+          }
+        ]
+      },
+      {
+        "product": "Dashboard",
+        "icon": "layout-dashboard",
+        "versions": [
+          {
+            "version": "v2.0",
+            "icon": "badge",
+            "tabs": [...]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+```json
+{
+  "navigation": {
+    "versions": [
+      {
+        "version": "v2.0",
+        "icon": "badge",
+        "products": [
+          {
+            "product": "API Platform",
+            "icon": "code",
+            "tabs": [
+              {
+                "tab": "Documentation",
+                "groups": [
+                  {
+                    "group": "Getting Started",
+                    "pages": [
+                      {
+                        "title": "Introduction",
+                        "path": "v2/api/introduction"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "product": "Dashboard",
+            "icon": "layout-dashboard",
+            "tabs": [...]
+          }
+        ]
+      },
+      {
+        "version": "v1.0",
+        "icon": "badge",
+        "products": [...]
+      }
+    ]
+  }
+}
+```
+
+```json
+{
+  "navigation": {
+    "products": [
+      {
+        "product": "API Platform",
+        "icon": "code",
+        "versions": [
+          {
+            "version": "v2.0",
+            "icon": "badge",
+            "languages": [
+              {
+                "language": "English",
+                "icon": "languages",
+                "tabs": [
+                  {
+                    "tab": "Documentation",
+                    "groups": [
+                      {
+                        "group": "Getting Started",
+                        "pages": [
+                          {
+                            "title": "Introduction",
+                            "path": "api-v2/en/introduction"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "language": "Español",
+                "icon": "languages",
+                "tabs": [
+                  {
+                    "tab": "Documentación",
+                    "groups": [...]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+```json
+{
+  "navigation": {
+    "versions": [
+      {
+        "version": "v2.0",
+        "icon": "badge",
+        "languages": [
+          {
+            "language": "English",
+            "icon": "languages",
+            "tabs": [
+              {
+                "tab": "Documentation",
+                "groups": [
+                  {
+                    "group": "Getting Started",
+                    "pages": [
+                      {
+                        "title": "Introduction",
+                        "path": "v2/en/introduction"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "language": "Español",
+            "icon": "languages",
+            "tabs": [
+              {
+                "tab": "Documentación",
+                "groups": [...]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "version": "v1.0",
+        "icon": "badge",
+        "languages": [...]
+      }
+    ]
+  }
+}
+```
+
+</CodeGroup>
+
+<Callout type="tip">
+  **Dimension Order Matters**: The order of nested dimensions affects user
+  experience. Consider what users will select first. For example, `products →
+  versions` works well when users first choose a product, then its version. Use
+  `versions → products` if version selection is more important for your use
+  case.
+</Callout>
 
 ---
 
