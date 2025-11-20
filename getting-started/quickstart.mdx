@@ -1,22 +1,26 @@
 ---
-title: "Quickstart"
-description: "Create and deploy your first documentation site with Documentation.AI in under 20 minutes. Build a complete site from setup to live deployment."
-type: "tutorial"
+title: Quickstart
+description: >-
+  Create and deploy your first documentation site with Documentation.AI in under
+  20 minutes. Build a complete site from setup to live deployment.
+type: tutorial
 ---
-
-
 ## What you'll build
 
-In this tutorial, you'll create a complete documentation site for your product or service. By the end, you'll have:
+In this tutorial, you'll create a complete documentation site for your product or service. By the end, you'll have:&#x20;
 
 - A live documentation site with multiple pages
+
 - Custom branding and navigation
+
 - AI-powered search and assistance
+
 - Interactive API documentation
+
 - A custom domain (optional)
 
-<Callout kind="info">
-This tutorial takes approximately 15-20 minutes to complete and requires no coding experience.
+<Callout uid="09bc7bb5-5c0e-4e4e-810c-51f750ea21f1" kind="info" collapsed="false">
+  This tutorial takes approximately 15-20 minutes to complete and requires no coding experience.
 </Callout>
 
 ## Prerequisites
@@ -24,11 +28,15 @@ This tutorial takes approximately 15-20 minutes to complete and requires no codi
 Before starting, ensure you have:
 
 - A Documentation.AI account ([sign up here](https://dashboard.documentationai.app/signup) if needed)
+
 - A modern web browser (Chrome, Firefox, Safari, or Edge)
+
 - Basic familiarity with documentation concepts
 
 **Choose your workflow:**
+
 - **Web-based workflow**: No additional setup required - work directly in your browser
+
 - **Code/IDE workflow**: Git repository and your preferred code editor (VS Code, etc.)
 
 ## Setup
@@ -36,284 +44,326 @@ Before starting, ensure you have:
 ### Step 1: Create your first project
 
 1. Log in to your [Documentation.AI dashboard](https://dashboard.documentationai.app)
-2. Click **Create New Project** 
+
+2. Click **Create New Project**
+
 3. Enter the following details:
+
    - **Project Name**: `My Product Documentation` (or your product name)
+
    - **Description**: `Complete documentation for my product`
+
    - **Template**: Select **API Documentation** template (or choose the template that best fits your needs)
 
-[SCREENSHOT: DASHBOARD SHOWING NEW PROJECT CREATION FORM WITH FIELDS FILLED OUT]
+\[SCREENSHOT: DASHBOARD SHOWING NEW PROJECT CREATION FORM WITH FIELDS FILLED OUT]
 
-4. Click **Create Project**
-
-> **Result**: You'll see the project dashboard with a welcome message and setup checklist.
+1. Click **Create Project**
 
 ### Step 2: Configure basic settings
 
 1. In your project dashboard, click **Settings → General**
+
 2. Update the following:
+
    - **Site Title**: `My Product Docs` (or your preferred title)
+
    - **Site Description**: `Comprehensive documentation for my product`
+
    - **Primary Color**: `#2563eb` (or choose your brand color)
 
-[SCREENSHOT: Settings page showing general configuration options]
+\[SCREENSHOT: Settings page showing general configuration options]
 
-3. Click **Save Changes**
-
-> **Result**: Your site now has custom branding that will appear in the navigation and metadata.
+1. Click **Save Changes**
 
 ## Steps
 
 ### Step 3: Create your site structure
 
 1. Navigate to **Content → Pages** in your project dashboard
+
 2. You'll see the default pages created from the template. Let's add more:
 
-<ExpandableGroup>
-<Expandable title="Pages to Create">
+<ExpandableGroup uid="ad8ce14b-7952-462f-96b4-93441fd4d600">
+  <Expandable title="Pages to Create" default-open="false">
+    - Introduction (already exists)
 
-- Introduction (already exists)
-- Getting Started Guide
-- API Reference (if applicable)
-  - Endpoints
-  - Authentication  
-  - Examples
-- Guides & Tutorials
-- FAQ
+    - Getting Started Guide
 
-</Expandable>
-<Expandable title="Navigation Structure">
+    - API Reference (if applicable)
 
-```json
-{
-  "Getting Started": ["Introduction", "Getting Started Guide"],
-  "API Reference": ["Authentication", "Endpoints", "Examples"],
-  "Resources": ["Guides & Tutorials", "FAQ"]
-}
-```
+      - Endpoints
 
-</Expandable>
+      - Authentication
+
+      - Examples
+
+    - Guides & Tutorials
+
+    - FAQ
+  </Expandable>
+
+  <Expandable title="Navigation Structure" default-open="false">
+    ```json
+    {
+      "Getting Started": ["Introduction", "Getting Started Guide"],
+      "API Reference": ["Authentication", "Endpoints", "Examples"],
+      "Resources": ["Guides & Tutorials", "FAQ"]
+    }
+    ```
+  </Expandable>
 </ExpandableGroup>
 
-3. Click **+ New Page** and create each page:
+1. Click **+ New Page** and create each page:
+
    - **Page Title**: `Getting Started Guide` (or choose your own page name)
-   - **URL Slug**: `getting-started-guide` 
+
+   - **URL Slug**: `getting-started-guide`
+
    - **Parent**: `Getting Started`
 
-[SCREENSHOT: New page creation modal with page details filled out]
+\[SCREENSHOT: New page creation modal with page details filled out]
 
-4. Repeat for all pages in the structure above
-
-> **Result**: Your site now has a complete navigation structure visible in the sidebar.
+1. Repeat for all pages in the structure above
 
 ### Step 4: Write content with AI assistance
 
 Documentation.AI supports two workflows for creating content. Choose the approach that works best for you:
 
-<ExpandableGroup>
-<Expandable title="Web-Based Editor">
+<ExpandableGroup uid="9756fb2d-14a6-4b6b-8a06-cd26e58b6158">
+  <Expandable title="Web-Based Editor" default-open="false">
+    1. Open the "Getting Started Guide" page in the web editor
 
-1. Open the "Getting Started Guide" page in the web editor
-2. Click the AI Assistant button (robot icon) in the toolbar
-3. Enter this prompt (customize for your product):
+    2. Click the AI Assistant button (robot icon) in the toolbar
 
-```text
-Write a getting started guide for my product documentation. Include:
-- Overview of key features
-- Step-by-step setup instructions
-- Basic usage examples
-- Common troubleshooting tips
-```
+    3. Enter this prompt (customize for your product):
 
-4. Review the AI-generated content and click "Insert"
-5. Edit content using the visual block editor
-6. Add components by typing "/" commands (e.g., /callout, /card, /mermaid, /codegroup)
-7. Publish directly from the web interface
+    ```text
+    Write a getting started guide for my product documentation. Include:
+    - Overview of key features
+    - Step-by-step setup instructions
+    - Basic usage examples
+    - Common troubleshooting tips
+    ```
 
-Benefits: Real-time collaboration, visual editing, no git knowledge required
+    1. Review the AI-generated content and click "Insert"
 
-</Expandable>
-<Expandable title="Code/IDE Workflow">
+    2. Edit content using the visual block editor
 
-1. Set up GitHub integration in Settings → Integrations
-2. Clone your documentation repository locally:
+    3. Add components by typing "/" commands (e.g., /callout, /card, /mermaid, /codegroup)
 
-```bash
-git clone https://github.com/your-username/your-docs.git
-```
+    4. Publish directly from the web interface
 
-3. Open in your preferred editor (VS Code, etc.)
-4. Create/edit MDX files directly:
-   - getting-started/getting-started-guide.mdx
-   - Use frontmatter for page metadata
-   - Write in Markdown with JSX components
+    Benefits: Real-time collaboration, visual editing, no git knowledge required
+  </Expandable>
 
-5. Use AI assistance via:
-   - Documentation.AI web interface for content generation
-   - AI coding assistants in your IDE
-   - Copy/paste between web editor and IDE
+  <Expandable title="Code/IDE Workflow" default-open="false">
+    1. Set up GitHub integration in Settings → Integrations
 
-6. Commit and push changes:
+    2. Clone your documentation repository locally:
 
-```bash
-git add .
-git commit -m "Add getting started guide"
-git push origin main
-```
+    ```bash
+    git clone https://github.com/your-username/your-docs.git
+    ```
 
-7. Changes auto-deploy to your live site
+    1. Open in your preferred editor (VS Code, etc.)
 
-Benefits: Version control, IDE features, git workflows, CI/CD integration
+    2. Create/edit MDX files directly:
 
-</Expandable>
+       - getting-started/getting-started-guide.mdx
+
+       - Use frontmatter for page metadata
+
+       - Write in Markdown with JSX components
+
+    3. Use AI assistance via:
+
+       - Documentation.AI web interface for content generation
+
+       - AI coding assistants in your IDE
+
+       - Copy/paste between web editor and IDE
+
+    4. Commit and push changes:
+
+    ```bash
+    git add .
+    git commit -m "Add getting started guide"
+    git push origin main
+    ```
+
+    1. Changes auto-deploy to your live site
+
+    Benefits: Version control, IDE features, git workflows, CI/CD integration
+  </Expandable>
 </ExpandableGroup>
 
-[SCREENSHOT: Split view showing web editor on left and VS Code with MDX file on right]
+\[SCREENSHOT: Split view showing web editor on left and VS Code with MDX file on right]
 
-<Callout kind="success">
-Both workflows support the same AI features and components. You can even switch between them - start in the web editor and later move to git-based workflows as your team grows.
+<Callout uid="c89f5c9e-f9ce-454f-be7a-3b3ac7aaacbf" kind="success" collapsed="false">
+  Both workflows support the same AI features and components. You can even switch between them - start in the web editor and later move to git-based workflows as your team grows.
 </Callout>
 
 ### Step 5: Add interactive components
 
 Now let's enhance your Getting Started Guide with interactive components. The process differs slightly between workflows:
 
-<ExpandableGroup>
-<Expandable title="Web Editor Components">
+<ExpandableGroup uid="729396c1-5dcf-47e4-a6ae-e0431482918c">
+  <Expandable title="Web Editor Components" default-open="false">
+    1. Position your cursor after the overview section
 
-1. Position your cursor after the overview section
-2. Type `/callout` and select the Callout component
-3. Choose "Info" type and add helpful information:
-   "Make sure to follow the setup steps in order for the best experience."
-4. Type `/codegroup` to add multi-language code examples
-5. Configure tabs: "Installation,Configuration,Usage"
-6. Fill in code examples for each tab
-7. Use the component picker (+) for more options:
-   - Tables, images, cards, expandables
-   - Mermaid diagrams and flowcharts
-   - API documentation components
-   - Custom embeds and iframes
+    2. Type `/callout` and select the Callout component
 
-Benefits: Visual component insertion, live preview, drag-and-drop
+    3. Choose "Info" type and add helpful information:
+       "Make sure to follow the setup steps in order for the best experience."
 
-</Expandable>
-<Expandable title="Code/IDE Components">
+    4. Type `/codegroup` to add multi-language code examples
 
-1. Edit your MDX file directly in your code editor
-2. Add components using JSX syntax:
+    5. Configure tabs: "Installation,Configuration,Usage"
 
-<Callout kind="info">
-Make sure to follow the setup steps in order for the best experience.
-</Callout>
+    6. Fill in code examples for each tab
 
-<CodeGroup tabs="Installation,Configuration,Usage">
-```bash
-# Install your product
-npm install your-product
-```
+    7. Use the component picker (+) for more options:
 
-```yaml
-# Configuration
-config:
-  api_key: "your-api-key"
-```
+       - Tables, images, cards, expandables
 
-```javascript
-// Usage example
-import YourProduct from 'your-product';
-const client = new YourProduct();
-```
-</CodeGroup>
+       - Mermaid diagrams and flowcharts
 
-3. Use autocomplete and syntax highlighting in your IDE
-4. Preview changes by pushing to git or using local development
+       - API documentation components
 
-Benefits: Code completion, version control, bulk editing, find/replace
+       - Custom embeds and iframes
 
-</Expandable>
+    Benefits: Visual component insertion, live preview, drag-and-drop
+  </Expandable>
+
+  <Expandable title="Code/IDE Components" default-open="false">
+    1. Edit your MDX file directly in your code editor
+
+    2. Add components using JSX syntax:
+
+    <Callout kind="info" collapsed="false">
+      Make sure to follow the setup steps in order for the best experience.
+    </Callout>
+
+    <CodeGroup show-lines="true" tabs={[]}>
+      ```bash
+      # Install your product
+      npm install your-product
+      ```
+
+      ```yaml
+      # Configuration
+      config:
+        api_key: "your-api-key"
+      ```
+
+      ```javascript
+      // Usage example
+      import YourProduct from 'your-product';
+      const client = new YourProduct();
+      ```
+    </CodeGroup>
+
+    1. Use autocomplete and syntax highlighting in your IDE
+
+    2. Preview changes by pushing to git or using local development
+
+    Benefits: Code completion, version control, bulk editing, find/replace
+  </Expandable>
 </ExpandableGroup>
 
-[SCREENSHOT: Split view showing component picker in web editor and MDX code in VS Code]
-
-> **Result**: Your Getting Started Guide now has professional, interactive components that work seamlessly in both workflows.
+\[SCREENSHOT: Split view showing component picker in web editor and MDX code in VS Code]
 
 ### Step 6: Set up AI-powered search
 
 1. Go to **Settings → AI Assistant**
+
 2. Enable the following features:
+
    - **AI Search**: Toggle **On**
-   - **Search Suggestions**: Toggle **On** 
+
+   - **Search Suggestions**: Toggle **On**
+
    - **Content Analysis**: Toggle **On**
 
-[SCREENSHOT: AI Assistant settings page with toggles enabled]
+\[SCREENSHOT: AI Assistant settings page with toggles enabled]
 
-3. Click **Configure Search** and add:
+1. Click **Configure Search** and add:
+
    - **Search Placeholder**: `Search documentation...` (or customize for your product)
+
    - **No Results Message**: `No results found. Try asking our AI assistant for help.`
 
-4. Click **Save Configuration**
-
-> **Result**: Your documentation now has intelligent search that understands context and provides AI-powered answers.
+2. Click **Save Configuration**
 
 ### Step 7: Customize branding
 
 1. Navigate to **Settings → Branding**
+
 2. Upload your logo (or use the placeholder):
+
    - **Light Mode Logo**: Upload or use default
+
    - **Dark Mode Logo**: Upload or use default
+
    - **Favicon**: Upload a 32x32 icon
 
-[SCREENSHOT: Branding settings showing logo upload areas and preview]
+\[SCREENSHOT: Branding settings showing logo upload areas and preview]
 
-3. Configure colors:
+1. Configure colors:
+
    - **Primary Color**: `#2563eb`
+
    - **Accent Color**: `#1d4ed8`
+
    - **Background**: Keep default
 
-4. Set typography:
+2. Set typography:
+
    - **Heading Font**: `Inter`
+
    - **Body Font**: `Inter`
 
-5. Click **Save Branding**
-
-> **Result**: Your documentation site now reflects your brand identity with custom colors, fonts, and logos.
+3. Click **Save Branding**
 
 ### Step 8: Deploy your documentation
 
 1. Go to **Deploy → Settings**
+
 2. Choose your deployment option:
 
-<ExpandableGroup>
-<Expandable title="Documentation.AI Hosting (Recommended)">
+<ExpandableGroup uid="f9ce901b-6d16-4f93-90b7-89ea829133af">
+  <Expandable title="Documentation.AI Hosting (Recommended)" default-open="false">
+    - Automatic SSL certificates
 
-- Automatic SSL certificates
-- Global CDN
-- Built-in analytics
-- Zero configuration
+    - Global CDN
 
-Your site will be available at: `https://your-project-name.documentationai.io`
+    - Built-in analytics
 
-</Expandable>
-<Expandable title="Custom Domain Setup">
+    - Zero configuration
 
-1. Add your domain: `docs.yourcompany.com`
-2. Update DNS records (provided)
-3. SSL certificate auto-generated
-4. Custom subdomain support
+    Your site will be available at: `https://your-project-name.documentationai.io`
+  </Expandable>
 
-Requires domain ownership verification.
+  <Expandable title="Custom Domain Setup" default-open="false">
+    1. Add your domain: `docs.yourcompany.com`
 
-</Expandable>
+    2. Update DNS records (provided)
+
+    3. SSL certificate auto-generated
+
+    4. Custom subdomain support
+
+    Requires domain ownership verification.
+  </Expandable>
 </ExpandableGroup>
 
-3. For this tutorial, select **Documentation.AI Hosting**
-4. Click **Deploy Now**
+1. For this tutorial, select **Documentation.AI Hosting**
 
-[SCREENSHOT: Deployment settings showing hosting options and deploy button]
+2. Click **Deploy Now**
 
-5. Wait for deployment (usually 2-3 minutes)
+\[SCREENSHOT: Deployment settings showing hosting options and deploy button]
 
-> **Result**: Your documentation is now live and accessible via the provided URL.
+1. Wait for deployment (usually 2-3 minutes)
 
 ## Validate
 
@@ -331,8 +381,8 @@ To confirm your documentation site is working correctly:
 
 6. **Verify branding**: Confirm your custom colors, fonts, and logos appear correctly
 
-<Callout kind="success">
-Congratulations! You've successfully created and deployed a professional documentation site with Documentation.AI.
+<Callout uid="20b28627-25b8-456b-860a-c91133c0d9dd" kind="success" collapsed="false">
+  Congratulations! You've successfully created and deployed a professional documentation site with Documentation.AI.
 </Callout>
 
 ## Next steps
@@ -341,94 +391,113 @@ Now that your documentation site is live, consider these enhancements:
 
 ### Immediate improvements
 
-<Columns cols={2}>
-<Card title="Import API Schema" icon="code" href="../api-documentation-and-playground/openapi-import" cta="Import Now">
-  Auto-generate API reference pages from your OpenAPI specification.
-</Card>
-<Card title="Configure Analytics" icon="bar-chart" href="../analytics-and-insights/user-analytics" cta="Set Up">
-  Track user behavior and identify your most popular content.
-</Card>
+<Columns uid="f8846cc0-6d56-4b25-b027-52d6de94990c" cols="2">
+  <Card title="Import API Schema" href="../api-documentation-and-playground/openapi-import" icon="code" cta="Import Now" horizontal="false">
+    Auto-generate API reference pages from your OpenAPI specification.
+  </Card>
+
+  <Card title="Configure Analytics" href="../analytics-and-insights/user-analytics" icon="bar-chart" cta="Set Up" horizontal="false">
+    Track user behavior and identify your most popular content.
+  </Card>
 </Columns>
 
 ### Workflow-specific next steps
 
-<ExpandableGroup>
-<Expandable title="If using Web-Based Editor">
+<ExpandableGroup uid="9319634c-bcb1-44fc-bc41-23cbd5c6dda5">
+  <Expandable title="If using Web-Based Editor" default-open="false">
+    - Invite team members for real-time collaboration
 
-- Invite team members for real-time collaboration
-- Explore advanced components and templates
-- Set up content approval workflows
+    - Explore advanced components and templates
 
-</Expandable>
-<Expandable title="If using Code/IDE Workflow">
+    - Set up content approval workflows
+  </Expandable>
 
-- Set up local development environment
-- Configure CI/CD pipelines for automated deployments
-- Implement content review processes via pull requests
+  <Expandable title="If using Code/IDE Workflow" default-open="false">
+    - Set up local development environment
 
-</Expandable>
+    - Configure CI/CD pipelines for automated deployments
+
+    - Implement content review processes via pull requests
+  </Expandable>
 </ExpandableGroup>
 
 ### Advanced features
-- **[Custom domain setup](../deployment-and-hosting/custom-domain)** for branded URLs like `docs.yourcompany.com`
-- **[CI/CD integration](../deployment-and-hosting/ci-cd-pipelines)** for automated deployments
+
+- [**Custom domain setup**](../deployment-and-hosting/custom-domain) for branded URLs like `docs.yourcompany.com`
+
+- [**CI/CD integration**](../deployment-and-hosting/ci-cd-pipelines) for automated deployments
 
 ### Content expansion
-- **[Add more components](../components)** like cards, mermaid diagrams, expandables, tables, and API playground
-- **[Optimize for SEO](../seo-and-geo/meta-tags-setup)** with meta tags and structured data
-- **[Set up user feedback](../analytics-and-insights/user-feedback)** to collect insights from your documentation users
 
-<Callout kind="tip">
-Join our [community Discord](https://discord.gg/documentationai) to connect with other Documentation.AI users and get help with advanced configurations.
+- [**Add more components**](../components) like cards, mermaid diagrams, expandables, tables, and API playground
+
+- [**Optimize for SEO**](../seo-and-geo/meta-tags-setup) with meta tags and structured data
+
+- [**Set up user feedback**](../analytics-and-insights/user-feedback) to collect insights from your documentation users
+
+<Callout uid="83ccc4e6-9be2-4612-b59c-d5dcc242086e" kind="tip" collapsed="false">
+  Join our [community Discord](https://discord.gg/documentationai) to connect with other Documentation.AI users and get help with advanced configurations.
 </Callout>
 
 ## Troubleshooting
 
 ### Common issues and solutions
 
-<ExpandableGroup>
-<Expandable title="Deployment failed">
+<ExpandableGroup uid="b7b0af53-139f-4ba0-952a-1ba974cee0ac">
+  <Expandable title="Deployment failed" default-open="false">
+    - Check that all required fields are filled in Settings → General
 
-- Check that all required fields are filled in Settings → General
-- Ensure your project has at least one published page
-- Contact support if the issue persists
+    - Ensure your project has at least one published page
 
-</Expandable>
-<Expandable title="AI assistant not working">
+    - Contact support if the issue persists
+  </Expandable>
 
-- Verify AI features are enabled in Settings → AI Assistant
-- Check your account plan includes AI features
-- Try refreshing the page and testing again
+  <Expandable title="AI assistant not working" default-open="false">
+    - Verify AI features are enabled in Settings → AI Assistant
 
-</Expandable>
-<Expandable title="Custom branding not appearing">
+    - Check your account plan includes AI features
 
-- Clear your browser cache and reload the page
-- Verify images are uploaded in supported formats (PNG, JPG, SVG)
-- Check that colors are in valid hex format (#000000)
+    - Try refreshing the page and testing again
+  </Expandable>
 
-</Expandable>
-<Expandable title="Search not finding content">
+  <Expandable title="Custom branding not appearing" default-open="false">
+    - Clear your browser cache and reload the page
 
-- Allow 5-10 minutes after publishing for search indexing
-- Ensure pages are published (not draft status)
-- Try different search terms or use the AI assistant
+    - Verify images are uploaded in supported formats (PNG, JPG, SVG)
 
-</Expandable>
+    - Check that colors are in valid hex format (#000000)
+  </Expandable>
+
+  <Expandable title="Search not finding content" default-open="false">
+    - Allow 5-10 minutes after publishing for search indexing
+
+    - Ensure pages are published (not draft status)
+
+    - Try different search terms or use the AI assistant
+  </Expandable>
 </ExpandableGroup>
 
 ## Related
 
 ### Getting started
+
 - [Core concepts](core-concepts) - Understanding Documentation.AI architecture
+
 - [Import existing docs](import-existing-docs) - Migrate from other platforms
 
-### Essential features  
+### Essential features
+
 - [Web editor](../write-and-publish/web-editor/overview) - Master the editing interface
+
 - [AI assistant setup](../ai/ai-assistant) - Configure AI features
+
 - [Component library](../components) - Available documentation components
 
 ### Going live
+
 - [Deploy your documentation](../deployment-and-hosting/deploy-your-documentation) - Deployment options and configuration
+
 - [Custom domain setup](../deployment-and-hosting/custom-domain) - Use your own domain
+
 - [Analytics setup](../analytics-and-insights/user-analytics) - Track usage and performance
+
