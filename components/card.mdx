@@ -16,10 +16,10 @@ Common use cases:
 - Getting started guides and tutorials
 
 <Columns cols={2}>
-<Card title="Getting Started" icon="book-open" href="/docs/quickstart">
+<Card title="Getting Started" icon="book-open" href="getting-started/quickstart">
 Learn the fundamentals and get your project up and running in minutes.
 </Card>
-<Card title="API Reference" icon="code" href="/docs/api">
+<Card title="API Reference" icon="code" href="api-documentation-and-playground/api-authentication">
 Explore our complete API documentation with interactive examples.
 </Card>
 </Columns>
@@ -29,12 +29,12 @@ Explore our complete API documentation with interactive examples.
 Use the `<Card>` component to create clickable cards with titles, icons, and descriptions:
 
 ````jsx
-<Card title="Getting Started" icon="book-open" href="/docs/quickstart">
+<Card title="Getting Started" icon="book-open" href="getting-started/quickstart">
   Learn the fundamentals and get your project up and running in minutes.
 </Card>
 ````
 
-<Card title="Getting Started" icon="book-open" href="/docs/quickstart">
+<Card title="Getting Started" icon="book-open" href="getting-started/quickstart">
   Learn the fundamentals and get your project up and running in minutes.
 </Card>
 
@@ -49,12 +49,12 @@ Use the `<Card>` component to create clickable cards with titles, icons, and des
 Default layout with icon and content stacked vertically:
 
 ````jsx
-<Card title="Authentication" icon="lock" href="/docs/auth">
+<Card title="Authentication" icon="lock" href="api-documentation-and-playground/api-authentication">
   Secure your application with built-in authentication features.
 </Card>
 ````
 
-<Card title="Authentication" icon="lock" href="/docs/auth">
+<Card title="Authentication" icon="lock" href="api-documentation-and-playground/api-authentication">
   Secure your application with built-in authentication features.
 </Card>
 
@@ -63,12 +63,12 @@ Default layout with icon and content stacked vertically:
 Use `horizontal` prop for side-by-side icon and content layout:
 
 ````jsx
-<Card title="Team Collaboration" icon="users" href="/docs/teams" horizontal>
+<Card title="Team Collaboration" icon="users" href="account-and-billing/team-management" horizontal>
   Work together seamlessly with role-based access control.
 </Card>
 ````
 
-<Card title="Team Collaboration" icon="users" href="/docs/teams" horizontal>
+<Card title="Team Collaboration" icon="users" href="account-and-billing/team-management" horizontal>
   Work together seamlessly with role-based access control.
 </Card>
 
@@ -94,7 +94,7 @@ Add visual appeal with header images:
 <Card 
   title="Database Management" 
   icon="database" 
-  href="/docs/database"
+  href="#database"
   image="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp"
 >
   Master database operations with best practices for schema design and migrations.
@@ -112,7 +112,7 @@ Add explicit CTAs to encourage user interaction:
 <Card 
   title="Component Library" 
   icon="box" 
-  href="/docs/components" 
+  href="components/heading-and-text" 
   cta="Browse Components"
 >
   Build beautiful UIs with our extensive collection of pre-built components.
@@ -122,7 +122,7 @@ Add explicit CTAs to encourage user interaction:
 <Card 
   title="Component Library" 
   icon="box" 
-  href="/docs/components" 
+  href="components/heading-and-text" 
   cta="Browse Components"
 >
   Build beautiful UIs with our extensive collection of pre-built components.
@@ -134,7 +134,7 @@ Add explicit CTAs to encourage user interaction:
 <Card 
   title="Analytics Dashboard" 
   icon="bar-chart" 
-  href="/docs/analytics" 
+  href="analytics-and-insights/user-analytics" 
   horizontal 
   cta="Explore"
 >
@@ -145,7 +145,7 @@ Add explicit CTAs to encourage user interaction:
 <Card 
   title="Analytics Dashboard" 
   icon="bar-chart" 
-  href="/docs/analytics" 
+  href="analytics-and-insights/user-analytics" 
   horizontal 
   cta="Explore"
 >
@@ -158,26 +158,26 @@ Organize multiple cards in responsive grid layouts using the `<Columns>` compone
 
 ````jsx
 <Columns cols={2}>
-  <Card title="Cloud Deployment" icon="cloud" href="/docs/deploy">
+  <Card title="Cloud Deployment" icon="cloud" href="deployment-and-hosting/deploy-your-documentation">
     Deploy your application to the cloud with step-by-step guides.
   </Card>
-  <Card title="CLI Tools" icon="terminal" href="/docs/cli">
+  <Card title="CLI Tools" icon="terminal" href="write-and-publish/code-editor/overview">
     Streamline your workflow with powerful command-line tools.
   </Card>
-  <Card title="Configuration" icon="settings" href="/docs/config">
+  <Card title="Configuration" icon="settings" href="customization-and-configuration/site-configuration">
     Customize every aspect of your application.
   </Card>
 </Columns>
 ````
 
 <Columns cols={2}>
-  <Card title="Cloud Deployment" icon="cloud" href="/docs/deploy">
+  <Card title="Cloud Deployment" icon="cloud" href="deployment-and-hosting/deploy-your-documentation">
     Deploy your application to the cloud with step-by-step guides.
   </Card>
-  <Card title="CLI Tools" icon="terminal" href="/docs/cli">
+  <Card title="CLI Tools" icon="terminal" href="write-and-publish/code-editor/overview">
     Streamline your workflow with powerful command-line tools.
   </Card>
-  <Card title="Configuration" icon="settings" href="/docs/config">
+  <Card title="Configuration" icon="settings" href="customization-and-configuration/site-configuration">
     Customize every aspect of your application.
   </Card>
 </Columns>
@@ -212,26 +212,26 @@ Cards support [Lucide icons](https://lucide.dev) for visual identification. Use 
 
 ````jsx
 <Columns cols={3}>
-  <Card title="Security" icon="shield" href="/docs/security">
+  <Card title="Security" icon="shield" href="#security">
     Implement industry-standard security measures.
   </Card>
-  <Card title="Performance" icon="zap" href="/docs/performance">
+  <Card title="Performance" icon="zap" href="faqs/fix-performance-issues">
     Optimize for speed and efficiency.
   </Card>
-  <Card title="Analytics" icon="bar-chart" href="/docs/analytics">
+  <Card title="Analytics" icon="bar-chart" href="analytics-and-insights/user-analytics">
     Track metrics and user behavior.
   </Card>
 </Columns>
 ````
 
 <Columns cols={3}>
-  <Card title="Security" icon="shield" href="/docs/security">
+  <Card title="Security" icon="shield" href="#security">
     Implement industry-standard security measures.
   </Card>
-  <Card title="Performance" icon="zap" href="/docs/performance">
+  <Card title="Performance" icon="zap" href="faqs/fix-performance-issues">
     Optimize for speed and efficiency.
   </Card>
-  <Card title="Analytics" icon="bar-chart" href="/docs/analytics">
+  <Card title="Analytics" icon="bar-chart" href="analytics-and-insights/user-analytics">
     Track metrics and user behavior.
   </Card>
 </Columns>
@@ -290,7 +290,7 @@ Combining all features for a rich card experience:
   <Card 
     title="API Reference" 
     icon="code" 
-    href="/docs/api"
+    href="api-documentation-and-playground/api-authentication"
     cta="View Docs"
     image="https://example.com/api-reference.jpg"
   >
