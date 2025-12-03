@@ -1,9 +1,9 @@
 ---
 title: Images & Media in Web Editor
-description: Learn how to add, manage, and optimize images and media using the Documentation.AI web editor
+description: >-
+  Learn how to add, manage, and optimize images and media using the
+  Documentation.AI web editor
 ---
-
-
 Add images, videos, and other media to your documentation using the Documentation.AI web editor. All uploaded media is automatically optimized and served from a CDN for fast loading.
 
 ## Adding Images
@@ -13,10 +13,15 @@ Add images, videos, and other media to your documentation using the Documentatio
 Use the `/image` command to access your media library and upload new images:
 
 1. In the web editor, type `/image` where you want to add an image
+
 2. Select `Image` from the component menu
+
 3. Choose from options:
+
    - **Browse uploaded images**: Select from your existing media library
+
    - **Upload new image**: Click the upload button to add new files
+
    - **Paste image URL**: Enter an external image URL
 
 <Image uid="c7b7424c-3cb5-4f47-a2d1-1493fb903f88" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758972756524-ya5ldumv1vo-Web-editor-upload-image.png" width="2880" height="1800" alt="Screenshot of Documentation.AI web editor showing the slash command menu with image upload options" />
@@ -26,8 +31,11 @@ Use the `/image` command to access your media library and upload new images:
 Directly paste images from your clipboard:
 
 1. Copy an image from any source (screenshot, image file, web browser)
+
 2. Place your cursor where you want the image
+
 3. Paste using <kbd>Ctrl</kbd>+<kbd>V</kbd> (Windows/Linux) or <kbd>Cmd</kbd>+<kbd>V</kbd> (Mac)
+
 4. The image will automatically upload and insert
 
 ### Image Configuration
@@ -35,8 +43,11 @@ Directly paste images from your clipboard:
 After adding an image, configure its properties in the component panel:
 
 - **Alt text** (required): Add descriptive text for accessibility
+
 - **Dimensions**: Set width and height for layout optimization
+
 - **Alignment**: Use CSS styles for positioning
+
 - **Priority loading**: Enable only for above-the-fold images
 
 For complete Image component options, see the [Image component reference](/components/images).
@@ -48,10 +59,15 @@ For complete Image component options, see the [Image component reference](/compo
 Add videos using the `/video` command or component menu:
 
 1. Type `/video` in the editor
+
 2. Select the Video component
+
 3. Choose your video source:
+
    - **Platform embed**: YouTube, Vimeo, Loom URLs
+
    - **Direct video file**: Upload MP4, WebM, or other video files
+
    - **External video URL**: Link to hosted video files
 
 ### Platform Video Embeds
@@ -74,55 +90,76 @@ Configure video dimensions and accessibility title in the component panel. For c
 Embed forms, tools, or other external content:
 
 1. Type `/iframe` to add an iframe
+
 2. Enter the URL of the content to embed
+
 3. Set dimensions and accessibility title
+
 4. Configure security settings if needed
 
 Use iframes for Google Forms, interactive demos, or other web tools. For complete Iframe component options, see the [Video and Iframe reference](/components/videos-and-iframes).
 
-
 ## Supported File Types
 
 ### Images
+
 - **JPEG/JPG**: Standard photo format
+
 - **PNG**: Graphics with transparency
+
 - **GIF**: Animated images
+
 - **WebP**: Modern, efficient format
+
 - **SVG**: Scalable vector graphics
+
 - **ICO**: Icon files
 
 ### Videos
+
 - **MP4**: Most compatible video format
+
 - **WebM**: Modern web video format
+
 - **OGV**: Open-source video format
 
 ## File Size Limits and Optimization
 
 ### Upload Limits
+
 - **Maximum file size**: 20 MB per file
-- **Recommended image size**: 100-200 KB for optimal performance
+
+- **Recommended image size**: 100-200 KB for large banners and 10-50 KB for small images or icons for optimal performance
+
 - **CDN optimization**: Automatic resizing and format conversion
 
 ### Performance Best Practices
 
 1. **Compress images** before uploading when possible
+
 2. **Use appropriate formats**: JPEG for photos, PNG for graphics with transparency
+
 3. **Set dimensions** to prevent layout shift during loading
+
 4. **Enable priority loading** only for above-the-fold images
+
 5. **Add descriptive alt text** for all images
 
 ### Image Optimization Tips
 
 - Keep file sizes under 200 KB when possible
+
 - Use WebP format for better compression
+
 - Set explicit width and height to improve Core Web Vitals
+
 - Documentation.AI automatically optimizes uploaded images
 
 ## Media Management
 
 ### Current Limitations
 
-<Callout kind="warning">
+<Callout kind="warning" collapsed="false">
   Currently, you can only view and manage media through the `/` command in the editor. A dedicated media management interface will be available soon.
 </Callout>
 
@@ -131,15 +168,21 @@ Use iframes for Google Forms, interactive demos, or other web tools. For complet
 Access your media library:
 
 1. Type `/image` or `/video` in any document
+
 2. Browse through previously uploaded files
+
 3. Select and reuse existing media across different pages
+
 4. View file details and usage information
 
 ### Organizing Media
 
 - **Use descriptive filenames** when uploading
+
 - **Add comprehensive alt text** for searchability
+
 - **Group related media** by uploading them during related content creation
+
 - **Reuse media** across multiple pages to maintain consistency
 
 ## Troubleshooting
@@ -147,33 +190,45 @@ Access your media library:
 ### Common Issues
 
 <ExpandableGroup>
-  <Expandable title="Image not displaying">
+  <Expandable title="Image not displaying" default-open="false">
     **Possible causes and solutions:**
-    
+
     - **Image upload failed**: Check your internet connection and try uploading again
+
     - **Missing alt text**: All images require alt text for accessibility - add a descriptive alt attribute
+
     - **Unsupported format**: Ensure you're using JPEG, PNG, GIF, WebP, SVG, or ICO formats
+
     - **File too large**: Reduce file size to under 20 MB
+
     - **External URL issues**: If using external URLs, verify the image is publicly accessible
   </Expandable>
 
-  <Expandable title="Video not loading">
+  <Expandable title="Video not loading" default-open="false">
     **Possible causes and solutions:**
-    
+
     - **Wrong URL format**: Use embed URLs (e.g., `youtube.com/embed/VIDEO_ID`) not watch URLs
+
     - **Privacy settings**: Ensure the video is publicly accessible or properly configured for embedding
+
     - **Platform restrictions**: Some platforms block embedding - check the video's embed settings
+
     - **Network issues**: Try refreshing the page or check your internet connection
+
     - **Unsupported platform**: Verify the platform is supported (YouTube, Vimeo, Loom work best)
   </Expandable>
 
-  <Expandable title="Slow loading performance">
+  <Expandable title="Slow loading performance" default-open="false">
     **Optimization strategies:**
-    
+
     - **Compress images**: Reduce file sizes to 100-200 KB when possible
+
     - **Use modern formats**: WebP provides better compression than JPEG/PNG
+
     - **Set priority loading**: Enable only for above-the-fold images to avoid performance issues
+
     - **Optimize dimensions**: Set explicit width/height to prevent layout shift
+
     - **CDN benefits**: Upload through the editor to use automatic CDN optimization
   </Expandable>
 </ExpandableGroup>
@@ -183,7 +238,9 @@ Access your media library:
 If you encounter issues with media uploads or display:
 
 1. Check the [Troubleshooting guide](troubleshooting) for web editor issues
+
 2. Review [Error Codes](/faqs/error-codes) for specific error messages
+
 3. [Contact Support](/faqs/contact-support) for technical assistance
 
 ## Next Steps
@@ -191,6 +248,8 @@ If you encounter issues with media uploads or display:
 Continue building your documentation:
 
 - [Organize Content](organize): Structure your documentation effectively
+
 - [Web Editor Overview](overview): Learn more web editor features
+
 - [Publishing Process](publish): Deploy your documentation changes
 
