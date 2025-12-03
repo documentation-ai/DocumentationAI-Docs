@@ -1,53 +1,150 @@
 ---
 title: Core Concepts
-description: Core concepts and architecture that underpin Documentation.AI.
+description: 'A clear, beginner‑friendly overview of how Documentation.AI works'
 ---
+Documentation.AI helps teams create clear, accurate docs without needing deep technical skills. Writers can work visually, developers can use files and version control, and everyone benefits from built‑in AI support.
 
-Documentation.AI focuses on four concepts. Use these to choose workflows and architecture.
+## What Documentation.AI Does
 
-## AI-native architecture
+Documentation.AI provides a single place to write, organize, and publish documentation and knowledge bases. It blends simple tools for non‑technical authors with flexible file‑based workflows for developers.
 
-- AI assists across the lifecycle: draft, revise, evaluate, and search.
+- Write in plain language using markdown with optional components.
 
-- Private-by-default controls and clear data handling. See [AI assistant setup](/ai/ai-assistant).
+- Let AI help with drafting, editing, and search quality.
 
-- Tune retrieval and answers with [search configuration](/ai/search-configuration).
+- Keep everything versioned and reviewable.
 
-- Keep humans in control: AI suggests; you review and publish.
+- Publish to a fast, secure site with little setup.
 
-## MDX + component system
+<Callout kind="info" collapsed="false">
+  Documentation.AI works equally well for product documentation, internal knowledge bases, onboarding guides, or API references.
+</Callout>
 
-- Content is MDX with a rich [component library](/components).
+## Your Content and Knowledge Base
 
-- Keep prose in markdown; use components for structure, interactivity, and API reference.
+Your project is made of text files you control. Most pages are MDX files, which means regular markdown plus optional components. A small config file named `documentation.json` helps structure navigation. If you have an API, an `openapi.yaml` file describes your endpoints.
 
-- Common building blocks: callouts, code blocks/groups, tables, API request/response.
+- Organize pages visually or using folders.
 
-- Prefer small, reusable sections over long monolithic pages.
+- Mix simple markdown with richer components.
 
-## Web and git workflows
+- Add metadata to pages with frontmatter.
 
-- Web editor: collaborative, visual, component-aware. See [Web editor](/write-and-publish/web-editor/overview).
+- Reuse shared sections across your knowledge base.
 
-- Git workflow: file-first, PR reviews, branches. See [Code editor](/write-and-publish/code-editor/overview).
+<Expandable title="What is MDX?" default-open="false">
+  MDX is markdown with the option to insert components. You can write plain text or drop in structured blocks like tabs, cards, or steps.
+</Expandable>
 
-- When to use: web for quick edits and non-developers; git for reviews, branching, CI.
+## Two Ways to Work: Web Editor and Code Editor
 
-- Hybrid is common: authors in web; reviewers in git.
+You can write and manage your docs using the web editor or a code editor. Both stay in sync.
 
-## Deployment options
+- The [Web Editor Overview](/write-and-publish/web-editor/overview) shows a simple visual editor.
 
-- Managed hosting with global CDN, SSL, and custom domains. See [Deploy your documentation](/deployment-and-hosting/deploy-your-documentation).
+- The [Code Editor Overview](/write-and-publish/code-editor/overview) covers a file‑first, git‑friendly workflow.
 
-- Self-hosted export for custom infra and CI/CD. See [Build information](/deployment-and-hosting/build-information).
+- Use the web editor for quick edits or non‑technical contributors.
 
-- Public or private spaces; map subpaths or separate domains.
+- Use a code editor for reviews, branches, and automation.
 
-## Related
+<Columns cols="2">
+  <Card title="Web Editor" href="/write-and-publish/web-editor/overview" icon="monitor" horizontal="false">
+    The easiest way to write, edit, and preview content.
+  </Card>
 
-- [Introduction](introduction)
+  <Card title="Code Editor" href="/write-and-publish/code-editor/overview" icon="code" horizontal="false">
+    Ideal for developers who prefer local files and git workflows.
+  </Card>
+</Columns>
 
-- [Quickstart](quickstart)
+## Components: Rich, Reusable Blocks
 
-- [Site configuration](/customization-and-configuration/site-configuration)
+You can enhance pages with structured building blocks called components. They provide layout, interactivity, and clear patterns for docs.
+
+- See all components in the [Components pages](/components/heading-and-text).
+
+- Use cards, tabs, steps, callouts, code groups, and more.
+
+- Keep text readable while adding structure where it helps.
+
+- Reuse components across concepts, guides, and API pages.
+
+<CodeGroup show-lines="true" tabs={[]}>
+  ```markdown
+  Simple text using standard markdown.
+  ```
+
+  ```tsx
+  <Callout kind="tip">
+
+  Helpful guidance inside a styled block.
+
+  </Callout>
+  ```
+</CodeGroup>
+
+## API Documentation and Playground (If You Have an API)
+
+If your product includes an API, Documentation.AI lets you import your OpenAPI file, organize endpoints, and offer an interactive playground.
+
+- Import schemas: [OpenAPI Import](/api-documentation-and-playground/openapi-import).
+
+- Structure your reference: [Organize API Reference](/api-documentation-and-playground/organize-api-reference).
+
+- Enable live testing with Authentication and Playground setup.
+
+- Keep your API docs synced with code by updating `openapi.yaml`.
+
+<Request show-lines="true" tabs={[]}>
+  ```javascript
+  await api.fetchExample();
+  ```
+
+  ```bash
+  curl https://api.example.com/example
+  ```
+</Request>
+
+## AI Assistant and On-Page AI
+
+AI helps with writing, proofreading, search quality, and on‑page assistance for readers. You stay in control of what the AI can access.
+
+- Configure the assistant in [Set Up the AI Assistant](/ai/ai-assistant).
+
+- Tune answer accuracy with [Search Configuration](/ai/search-configuration).
+
+- Add interactive help with the [AI Menu](/ai/ai-menu).
+
+- Manage what external AI tools can access using [`llms.txt`](/ai/llms-txt).
+
+<Callout kind="tip" collapsed="false">
+  AI suggestions help you work faster, but you review and publish changes manually.
+</Callout>
+
+## Choosing How to Get Started
+
+Pick the path that fits your team. You can switch at any time.
+
+- Follow the [Quickstart](/getting-started/quickstart) for a fast setup.
+
+- Start in the web editor to explore content and components.
+
+- Use a code editor if you already manage docs in git.
+
+- Read [Documentation Best Practices](/write-and-publish/documentation-best-practices) for writing tips.
+
+<Tabs>
+  <Tab title="Web-first" icon="monitor">
+    Use the visual editor, then add structure or components as needed.
+  </Tab>
+
+  <Tab title="Code-first" icon="code">
+    Work with MDX files locally, commit to git, and publish via CI.
+  </Tab>
+
+  <Tab title="Tab 1">
+    ##
+  </Tab>
+</Tabs>
 
