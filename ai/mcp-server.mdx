@@ -1,0 +1,36 @@
+---
+title: MCP Server
+description: >-
+  Documentation.AI provides MCP Server for your documentation to let external AI
+  tools make use of your documentation effectively
+---
+## Overview
+
+<Image uid="9ef599bb-281e-4f46-a200-492b0b64b8d3" src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1764859320855-pzuc976fquo-mcp-server.png" width="2770" height="1316" alt="" />
+
+The **MCP Server** exposes your own documentation hosted in Documentation.AI to external AI tools. It provides a single tool, `searchDocumentation`, which performs a grounded search over your product's content exactly as your in-product AI Assistant does.
+
+It allows AI tools such as Chatgpt, Claude , Cursor, and other MCP-compatible IDE or CLI clients to retrieve and reference **your documentation**. In most MCP chat clients, you simply chat normally and the model will call `searchDocumentation` automatically when it needs context from your docs.
+
+## What the MCP Server provides
+
+- The `searchDocumentation` tool for querying **your** indexed documentation
+
+- Unified search across your pages, headings, API reference, and snippets
+
+- The same ranking and grounding used by your in-app AI Assistant
+
+- Read-only access intended for retrieval, not content modification
+
+
+
+<Callout kind="alert" collapsed="false">
+  MCP server will be available by default when you publish the first version of the documentation.&#x20;
+</Callout>
+
+## Where to Access MCP Server
+
+You can access your MCP URL from the dashboard of the side menu under the tam MCP server.\
+\
+Usually its in the format https\://docs.customdomain.com/\_mcp or https\://customdomain.com/docs/\_mcp
+
