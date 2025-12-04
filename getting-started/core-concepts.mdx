@@ -8,19 +8,21 @@ If you want a quick end-to-end setup, see the [Quickstart](/getting-started/quic
 
 ## AI native
 
-AI-native documentation means your content is structured so both humans and AI systems can understand it. This improves search, boosts answer accuracy, and gives teams automated help when writing or maintaining docs.
+Being AI native means Documentation.AI uses AI and AI-integrated features throughout the product to support both writers and readers. Structured components still matter, but they are only one part of a broader, AI‑driven workflow.
 
-Here are the key capabilities that support AI-native workflows:
+- **AI Agent for writing and maintenance**: Helps draft, rewrite, and refine content in the web editor.
 
-- **Shared search index**: Search and the AI Assistant pull from the same index. When you tune search, you improve AI answers. See [Search Configuration](/ai/search-configuration).
+- **AI Assistant for readers**: Provides context-aware answers sourced from your documentation. See [Set Up the AI Assistant](/ai/ai-assistant).
 
-- **On-page help for readers**: The AI Assistant gives context-aware answers directly on your docs. Configure access and behavior in [Set Up the AI Assistant](/ai/ai-assistant).
+- **On-page AI features**: Includes quick actions such as copy helpers and the AI menu for fast explanations. See [On-Page AI Menu](/ai/ai-menu).
 
-- **Authoring support**: The AI Agent helps writers draft, edit, and refine content in the web editor.
+- **MCP server for docs**: Enables AI tools to work with your content safely and predictably.
 
-- **Controlled external access**: Use `llms.txt` to manage what parts of your site external AI tools can crawl. See [llms.txt](/ai/llms-txt).
+- **Structured components**: Provide semantic cues that improve AI retrieval and help models understand page structure.
 
-- **Structured components**: Components provide semantic structure that improves AI retrieval and answer quality.
+- **And more**: llms-txt, best practice etc
+
+AI-native features work together so your documentation becomes easier to write, maintain, and explore.
 
 ## Two ways to work
 
@@ -34,7 +36,7 @@ The web editor is ideal for non-technical contributors or teams that want a visu
 
 - Use slash commands to insert components.
 
-- No local setup or tooling required.
+- Use built-in AI agent to write documentation effortlessly.&#x20;
 
 ### Code editor
 
@@ -85,48 +87,4 @@ If your product includes an API, Documentation.AI provides a complete workflow f
 - Enable live request testing in the interactive playground.
 
 - Keep your API docs synced by updating `openapi.yaml` in your repo.
-
-## AI features for writers and readers
-
-Documentation.AI includes two AI capabilities, each serving a different audience.
-
-### AI Agent for writers
-
-The AI Agent assists authors working in the web editor. It helps with:
-
-- Drafting or rewriting content
-
-- Proofreading and tightening language
-
-- Suggesting structural improvements
-
-- Speeding up configuration tasks
-
-You remain in control of what is accepted and published.
-
-<Tabs>
-  <Tab title="Learn more" icon="info">
-    Visit [Set Up the AI Assistant](/ai/ai-assistant) to understand how AI interacts with your documentation.
-  </Tab>
-
-  <Tab title="Improve search" icon="search">
-    Configure search relevance in [Search Configuration](/ai/search-configuration).
-  </Tab>
-</Tabs>
-
-### AI Assistant for readers
-
-The AI Assistant helps readers get fast, context-aware answers while staying aligned with your documentation.
-
-- Uses your indexed content as its primary source.
-
-- Appears on the site where you choose.
-
-- Improves alongside your search tuning.
-
-- Respects visibility rules and access controls.
-
-<Callout kind="tip" collapsed="false">
-  AI suggestions speed up reading and writing, but all published changes remain fully under your team's control.
-</Callout>
 
