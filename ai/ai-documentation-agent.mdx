@@ -14,7 +14,7 @@ The AI Documentation Agent is a workspace-aware writing assistant built directly
 
 ## Where to find it in the Web Editor
 
-You can open the Agent by clicking on the "AI Agent" icon from the bottom right corner of the Editor. When open, it displays a conversational panel where you can request changes.&#x20;
+You can open the Agent by clicking on the "AI Agent" icon from the bottom right corner of the Editor. When open, it displays a conversational panel where you can request changes.
 
 ## Core capabilities
 
@@ -22,39 +22,29 @@ The Agent focuses on practical, page-level actions that accelerate your writing 
 
 ### Draft new pages
 
-Ask the Agent to create structured content aligned to your component patterns.
+You can ask the Agent to create structured content aligned to your component patterns. Useful prompt styles include:
 
-<Steps>
-  <Step title="Open a new page" icon="file-plus" title-type="p">
-    Create an empty page in the Web Editor.
-  </Step>
+- *Draft a high-level overview of authentication options using clear sections and a Callout.*
 
-  <Step title="Give the Agent a clear task" icon="zap" title-type="p">
-    For example: *Draft a high-level overview of authentication options. Use Steps and Callout components.*
-  </Step>
+- *Create a conceptual introduction to our API docs with Tabs for language variations.*
 
-  <Step title="Insert or replace content" icon="arrow-right" title-type="p">
-    The Agent will propose a complete MDX draft you can place directly into the editor.
-  </Step>
-</Steps>
+- *Turn these raw notes into a well‑structured guide with Columns and Cards.*
+
+- *Generate a clean MDX draft for a new page that follows existing heading patterns.*
 
 ### Rewrite and edit existing content
 
 The Agent can revise the current page while preserving structure, improving clarity, or applying components more consistently.
 
-<Tabs>
-  <Tab title="Rewrite example" icon="edit">
-    *Rewrite this section for clarity and shorten sentences without changing the technical meaning.*
-  </Tab>
+- *Rewrite this section for clarity and shorten sentences without changing the technical meaning.*
 
-  <Tab title="Structure example" icon="list">
-    *Refactor this page so that it begins with context, then prerequisites, then a Steps section.*
-  </Tab>
-</Tabs>
+- *Refactor this page so that it begins with context, then prerequisites, then a Steps section.*
+
+- *Improve the flow of this page while keeping all technical details intact.*
 
 ### Apply Documentation.AI components
 
-You can ask the Agent to add Cards, Columns, Steps, Mermaid diagrams, Tabs, Callouts, Expandables, and more.&#x20;
+You can ask the Agent to add Cards, Columns, Steps, Mermaid diagrams, Tabs, Callouts, Expandables, and more.
 
 <Callout kind="tip" collapsed="false">
   Ask for component-aware edits like *Convert this unordered list into a Steps sequence* or *Wrap these three links in a Columns layout using Cards.*
@@ -64,17 +54,20 @@ You can ask the Agent to add Cards, Columns, Steps, Mermaid diagrams, Tabs, Call
 
 The Agent can help you write request and response examples, create structured ParamField or ResponseField sections, or draft introductions for endpoints already imported via OpenAPI.
 
+- *Generate a client-side fetch sample for this POST endpoint.*
+
+- *Write a Python example for the same request.*
+
+- *Add ParamField and ResponseField examples for this endpoint.*
+
 <CodeGroup show-lines="true" tabs={[]}>
   ```ts
-  // Example prompt for code samples
-  // "Generate a client-side fetch sample for this POST endpoint."
   const res = await fetch("/v1/payments", {
     method: "POST"
   });
   ```
 
   ```python
-  # Same prompt example
   import requests
   res = requests.post("/v1/payments")
   ```
@@ -92,27 +85,23 @@ If a page has grown too long or disorganized, ask the Agent to propose a more re
 
 - Apply component-based layouts to replace long text blocks.
 
-<Expandable title="Prompt template for restructuring" default-open="false">
-  Use: *Review this entire page. Propose a clearer structure following overview → key concepts → steps → examples → next steps. Show me the full rewritten MDX.*
+<Expandable title="Prompt templates for restructuring" default-open="false">
+  * *Review this entire page and propose a clearer structure.*
+
+  * *Rewrite this page following overview → key concepts → steps → examples → next steps.*
+
+  * *Suggest how to break this page into smaller, focused pages.*
 </Expandable>
 
 ## Example prompts you can use immediately
 
 Below are practical prompts tailored for Web Editor flows.
 
-<Columns cols="3">
-  <Card title="Turn notes into a draft" href="/write-and-publish/prompts" icon="file-text" horizontal="false">
-    *Here are my raw notes. Turn them into a clean conceptual page using Callout and Columns components.*
-  </Card>
+- *Here are my raw notes. Turn them into a clean conceptual page using Callout and Columns components.*
 
-  <Card title="Fix component syntax" href="/write-and-publish/prompts" icon="code" horizontal="false">
-    *Check this page for component errors and rewrite with valid MDX.*
-  </Card>
+- *Check this page for component errors and rewrite with valid MDX.*
 
-  <Card title="Summaries and edits" href="/write-and-publish/prompts" icon="scissors" horizontal="false">
-    *Summarize this section and keep only essential details.*
-  </Card>
-</Columns>
+- *Summarize this section and keep only essential details.*
 
 ## Limitations to keep in mind
 
