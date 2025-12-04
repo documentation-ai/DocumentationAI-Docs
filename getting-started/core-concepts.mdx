@@ -1,94 +1,132 @@
 ---
 title: Core Concepts
-description: 'An overview of the core concepts behind Documentation.AI '
+description: An overview of the core concepts behind Documentation.AI
 ---
-Understand the below core concepts for you take advantage of the [Documentation.AI](http://Documentation.AI) &#x20;
+Documentation.AI helps you build documentation that stays accurate, readable, and AI-ready. These core concepts give you a clear mental model of how the platform works, why it is AI-native, and how teams write and maintain content using either the web editor or a code editor.
 
-Documentation.AI is build on the principles that docs or knowledge bases should be accessable to both humans and AI. Both developers and non developers should be able to write and update. Documentation should be intellegent and always updated with the help of AI agents.
+If you want a quick end-to-end setup, see the [Quickstart](/getting-started/quickstart).
 
-## AI Native&#x20;
+## AI native
 
-[Documentation.AI](http://Documentation.AI) has built-in AI features help your users find answers with the help AI assistand and your team maintain content more efficiently with AI Agent. Along with this we also have other features such as struture of documenttion, llms.txt, mcp server, on page copy etc for AI agents to&#x20;
+AI-native documentation means your content is structured so both humans and AI systems can understand it. This improves search, boosts answer accuracy, and gives teams automated help when writing or maintaining docs.
 
-## Two Ways to Work: Web Editor and Code Editor
+Here are the key capabilities that support AI-native workflows:
 
-You can write and manage your docs using the web editor or a code editor. Both always stay in sync.
+- **Shared search index**: Search and the AI Assistant pull from the same index. When you tune search, you improve AI answers. See [Search Configuration](/ai/search-configuration).
 
-- The [Web Editor Overview](/write-and-publish/web-editor/overview) shows a simple visual editor.
+- **On-page help for readers**: The AI Assistant gives context-aware answers directly on your docs. Configure access and behavior in [Set Up the AI Assistant](/ai/ai-assistant).
 
-- The [Code Editor Overview](/write-and-publish/code-editor/overview) covers a file‑first, git‑friendly workflow.
+- **Authoring support**: The AI Agent helps writers draft, edit, and refine content in the web editor.
 
-- Use the web editor for quick edits or non‑technical contributors.
+- **Controlled external access**: Use `llms.txt` to manage what parts of your site external AI tools can crawl. See [llms.txt](/ai/llms-txt).
 
-- Use a code editor for reviews, branches, and automation.
+- **Structured components**: Components provide semantic structure that improves AI retrieval and answer quality.
 
-<Columns cols="2">
-  <Card title="Web Editor" href="/write-and-publish/web-editor/overview" icon="monitor" horizontal="false">
-    The easiest way to write, edit, and preview content.
-  </Card>
+## Two ways to work
 
-  <Card title="Code Editor" href="/write-and-publish/code-editor/overview" icon="code" horizontal="false">
-    Ideal for developers who prefer local files and git workflows.
-  </Card>
-</Columns>
+Documentation.AI offers two fully synced workflows so every contributor can work in the environment they prefer.
 
-## Components: Rich, Reusable Blocks
+### Web editor
 
-You can enhance pages with structured building blocks called components. They provide layout, interactivity, and clear patterns for docs.
+The web editor is ideal for non-technical contributors or teams that want a visual, in-browser editing experience.
 
-- See all components in the [Components pages](/components/heading-and-text).
+- Edit content with a WYSIWYG interface.
 
-- Use cards, tabs, steps, callouts, code groups, and more.
+- Use slash commands to insert components.
 
-- Keep text readable while adding structure where it helps.
+- No local setup or tooling required.
 
-- Reuse components across concepts, guides, and API pages.
+### Code editor
+
+Use the code editor workflow if your team prefers working with local files, git branches, and CI.
+
+- Keep docs versioned alongside your codebase.
+
+- Use your preferred editor, linters, and review tools.
+
+- Commit and merge documentation changes like any other code.
+
+- Ideal for engineering-heavy teams or API reference work.
+
+## Components: rich, reusable blocks
+
+Components help you structure content consistently and make pages more readable. They also give AI clearer signals about the meaning of your content.
+
+- Explore all components in [Headings and Text](/components/heading-and-text).
+
+- Use cards, tabs, steps, callouts, and code groups to add structure.
+
+- Combine components to create predictable patterns across your docs.
+
+- Keep content readable while adding hierarchy and clarity.
 
 <CodeGroup show-lines="true" tabs={[]}>
   ```markdown
-  Simple text using standard markdown.
+  Use simple markdown for most text. Components can be added only where structure helps.
   ```
 
   ```tsx
   <Callout kind="tip">
 
-  Helpful guidance inside a styled block.
+  Place important guidance or reminders inside a styled block.
 
   </Callout>
   ```
 </CodeGroup>
 
-## API Documentation and Playground (If You Have an API)
+## API documentation and playground
 
-If your product includes an API, Documentation.AI lets you import your OpenAPI file, organize endpoints, and offer an interactive playground.
+If your product includes an API, Documentation.AI provides a complete workflow for importing, organizing, and testing endpoints.
 
-- Import schemas: [OpenAPI Import](/api-documentation-and-playground/openapi-import).
+- Import schemas with [OpenAPI Import](/api-documentation-and-playground/openapi-import).
 
-- Structure your reference: [Organize API Reference](/api-documentation-and-playground/organize-api-reference).
+- Structure your reference using [Organize API Reference](/api-documentation-and-playground/organize-api-reference).
 
-- Enable live testing with Authentication and Playground setup.
+- Enable live request testing in the interactive playground.
 
-- Keep your API docs synced with code by updating `openapi.yaml`.
+- Keep your API docs synced by updating `openapi.yaml` in your repo.
 
-## AI Agent
+## AI features for writers and readers
 
-AI Agent helps with writing, proofreading, configuration, and on‑page assistance for writers using a web editor.&#x20;
+Documentation.AI includes two AI capabilities, each serving a different audience.
 
-## AI Assistant
+### AI Agent for writers
 
-AI helps with writing, proofreading, search quality, and on‑page assistance for readers. You stay in control of what the AI can access.
+The AI Agent assists authors working in the web editor. It helps with:
 
-- Configure the assistant in [Set Up the AI Assistant](/ai/ai-assistant).
+- Drafting or rewriting content
 
-- Tune answer accuracy with [Search Configuration](/ai/search-configuration).
+- Proofreading and tightening language
 
-- Add interactive help with the [AI Menu](/ai/ai-menu).
+- Suggesting structural improvements
 
-- Manage what external AI tools can access using [`llms.txt`](/ai/llms-txt).
+- Speeding up configuration tasks
+
+You remain in control of what is accepted and published.
+
+<Tabs>
+  <Tab title="Learn more" icon="info">
+    Visit [Set Up the AI Assistant](/ai/ai-assistant) to understand how AI interacts with your documentation.
+  </Tab>
+
+  <Tab title="Improve search" icon="search">
+    Configure search relevance in [Search Configuration](/ai/search-configuration).
+  </Tab>
+</Tabs>
+
+### AI Assistant for readers
+
+The AI Assistant helps readers get fast, context-aware answers while staying aligned with your documentation.
+
+- Uses your indexed content as its primary source.
+
+- Appears on the site where you choose.
+
+- Improves alongside your search tuning.
+
+- Respects visibility rules and access controls.
 
 <Callout kind="tip" collapsed="false">
-  AI suggestions help you work faster, but you review and publish changes manually.
+  AI suggestions speed up reading and writing, but all published changes remain fully under your team's control.
 </Callout>
-
-##
 
