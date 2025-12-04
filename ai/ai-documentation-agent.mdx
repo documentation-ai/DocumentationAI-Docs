@@ -1,0 +1,148 @@
+---
+title: AI Documentation Agent
+description: >-
+  Learn how to use the AI Documentation Agent inside the Web Editor to draft,
+  edit, and restructure documentation efficiently.
+---
+## What the AI Documentation Agent is
+
+The AI Documentation Agent is a workspace-aware writing assistant built directly into the Web Editor. It helps you draft new pages, improve existing content, apply Documentation.AI components correctly, and refactor structure while keeping your site configuration in mind.
+
+<Callout kind="info" collapsed="false">
+  The Agent understands your site's sidebar structure, page configuration, and Documentation.AI component syntax. As of now, it does not access private code repositories, ticketing systems, or external services.
+</Callout>
+
+## Where to find it in the Web Editor
+
+You can open the Agent by clicking on the "AI Agent" icon from the bottom right corner of the Editor. When open, it displays a conversational panel where you can request changes.&#x20;
+
+## Core capabilities
+
+The Agent focuses on practical, page-level actions that accelerate your writing flow.
+
+### Draft new pages
+
+Ask the Agent to create structured content aligned to your component patterns.
+
+<Steps>
+  <Step title="Open a new page" icon="file-plus" title-type="p">
+    Create an empty page in the Web Editor.
+  </Step>
+
+  <Step title="Give the Agent a clear task" icon="zap" title-type="p">
+    For example: *Draft a high-level overview of authentication options. Use Steps and Callout components.*
+  </Step>
+
+  <Step title="Insert or replace content" icon="arrow-right" title-type="p">
+    The Agent will propose a complete MDX draft you can place directly into the editor.
+  </Step>
+</Steps>
+
+### Rewrite and edit existing content
+
+The Agent can revise the current page while preserving structure, improving clarity, or applying components more consistently.
+
+<Tabs>
+  <Tab title="Rewrite example" icon="edit">
+    *Rewrite this section for clarity and shorten sentences without changing the technical meaning.*
+  </Tab>
+
+  <Tab title="Structure example" icon="list">
+    *Refactor this page so that it begins with context, then prerequisites, then a Steps section.*
+  </Tab>
+</Tabs>
+
+### Apply Documentation.AI components
+
+You can ask the Agent to add Cards, Columns, Steps, Mermaid diagrams, Tabs, Callouts, Expandables, and more.&#x20;
+
+<Callout kind="tip" collapsed="false">
+  Ask for component-aware edits like *Convert this unordered list into a Steps sequence* or *Wrap these three links in a Columns layout using Cards.*
+</Callout>
+
+### Generate API documentation and code samples
+
+The Agent can help you write request and response examples, create structured ParamField or ResponseField sections, or draft introductions for endpoints already imported via OpenAPI.
+
+<CodeGroup show-lines="true" tabs={[]}>
+  ```ts
+  // Example prompt for code samples
+  // "Generate a client-side fetch sample for this POST endpoint."
+  const res = await fetch("/v1/payments", {
+    method: "POST"
+  });
+  ```
+
+  ```python
+  # Same prompt example
+  import requests
+  res = requests.post("/v1/payments")
+  ```
+</CodeGroup>
+
+### Restructure and refactor pages
+
+If a page has grown too long or disorganized, ask the Agent to propose a more readable flow. It can:
+
+- Identify sections to split.
+
+- Suggest consistent heading hierarchy.
+
+- Highlight missing prerequisite or context sections.
+
+- Apply component-based layouts to replace long text blocks.
+
+<Expandable title="Prompt template for restructuring" default-open="false">
+  Use: *Review this entire page. Propose a clearer structure following overview → key concepts → steps → examples → next steps. Show me the full rewritten MDX.*
+</Expandable>
+
+## Example prompts you can use immediately
+
+Below are practical prompts tailored for Web Editor flows.
+
+<Columns cols="3">
+  <Card title="Turn notes into a draft" href="/write-and-publish/prompts" icon="file-text" horizontal="false">
+    *Here are my raw notes. Turn them into a clean conceptual page using Callout and Columns components.*
+  </Card>
+
+  <Card title="Fix component syntax" href="/write-and-publish/prompts" icon="code" horizontal="false">
+    *Check this page for component errors and rewrite with valid MDX.*
+  </Card>
+
+  <Card title="Summaries and edits" href="/write-and-publish/prompts" icon="scissors" horizontal="false">
+    *Summarize this section and keep only essential details.*
+  </Card>
+</Columns>
+
+## Limitations to keep in mind
+
+The Agent is in active beta. Treat its output as a strong starting point, not a final draft.
+
+<Callout kind="alert" collapsed="false">
+  Always review generated content before publishing. The Agent avoids component misuse, but manual oversight ensures accuracy.
+</Callout>
+
+### Credit usage
+
+Most tasks use a small number of credits. More complex multi-section rewrites or full-page drafts may cost more. For details, see the [AI Credits](/ai/ai-credits) page.
+
+## When to use the Agent vs editing manually
+
+Use the Agent when:
+
+- You want a first draft quickly.
+
+- You need structural help or component rewrites.
+
+- You want examples, API sections, or improved clarity.
+
+- You are refactoring a page and want suggestions.
+
+Edit manually when:
+
+- You are making small fixes or micro-adjustments.
+
+- You need pixel-perfect formatting or subtle wording changes.
+
+- The page contains project-specific details the Agent is not aware of.
+
