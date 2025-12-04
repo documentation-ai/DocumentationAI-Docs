@@ -1,8 +1,125 @@
 ---
-title: Set Up the AI Assistant
-description: "AI features and controls: Set Up the AI Assistant configuration and guidance."
+title: Configure the AI Assistant
+description: >-
+  Set up and manage the AI Assistant so users can get accurate, docs‑aware
+  answers with reliable citations.
 ---
+## Overview
 
-# Set Up the AI Assistant
+The AI Assistant helps readers, customers, and internal teams get fast, accurate answers based on your published documentation. When someone clicks **Ask AI**, the assistant searches your docs, reasons over the content it finds, and returns grounded answers with citations.
 
-[How-to Guide] Configure Set Up the AI Assistant to balance capability, privacy, and cost for your documentation.
+Unlike a generic chatbot, the assistant is:
+
+- **Docs‑aware** – it relies on your published documentation as its source of truth.
+
+- **Agentic** – it plans how to answer, not just reply turn‑by‑turn.
+
+- **Cited** – it shows where each answer came from in your docs.
+
+<Callout kind="info" collapsed="false">
+  The AI Assistant/Ask AI is separate from the AI Documentation Agent. The **Assistant** answers questions for end users and internal teams.
+  The **Documentation Agent** helps you write and edit content. See [AI Documentation Agent](/ai/ai-documentation-agent) for details.
+</Callout>
+
+## Who the assistant is for
+
+Use the assistant when you want people to self‑serve answers instead of opening a support ticket or asking someone internally.
+
+Typical users:
+
+- **End users / customers** browsing your docs
+
+- **Support teams** resolving or triaging issues
+
+- **Account management / success teams** guiding onboarding and expansion
+
+- **Internal teams** learning how your product works
+
+Examples:
+
+- A new user asks: “How do I authenticate against the API?”
+
+- A support engineer asks: “What are the rate limits for webhooks?”
+
+- An account manager asks: “What’s the recommended setup for SSO?”
+
+In each case, the assistant answers based on your docs and links back to the relevant pages.
+
+## Why it’s more than a normal chat
+
+Most chatbots:
+
+- Don’t know your docs structure
+
+- Freely improvise when they’re unsure
+
+- Make it hard to see where an answer came from
+
+The AI Assistant:
+
+- **Retrieves first, then answers** – it searches your docs and uses the retrieved content as grounding.
+
+- **Stays within your content** – it is designed to prefer your docs over general model knowledge.
+
+- **Signals uncertainty** – when it can’t find reliable content, it avoids making confident but unsupported claims.
+
+This makes it safer to use in support and customer‑facing workflows.
+
+## Citations: how they work and why they matter
+
+Every answer from the assistant can include **citations** back to your documentation.
+
+What users see:
+
+- A short answer and explanation in the chat
+
+- One or more citations linked to specific pages (often down to the section)
+
+- The ability to click through to read the full context
+
+Why this is important:
+
+- **Trust** – users can verify information against your canonical docs.
+
+- **Reusability** – support and account teams can safely reuse answers with links in tickets, chats, or emails.
+
+- **Maintainability** – updating your docs improves future answers automatically; you can trace bad answers back to specific content.
+
+If an answer cannot be strongly supported by what’s in your docs, the assistant will either:
+
+- Ask for clarification, or
+
+- Indicate that it doesn’t have enough information, instead of fabricating details.
+
+## Where users access the assistant
+
+Rhe assistant appears in your documentation as an **Ask AI** entry point.
+
+1. They click **Ask AI**.
+
+2. They type a question in natural language.
+
+3. The assistant searches your docs, reasons over the results, and responds with:
+
+   - A concise answer or explanation
+
+   - Optional step‑by‑step guidance
+
+   - Citations and links to relevant pages or sections
+
+<Callout kind="alert" collapsed="false">
+  As of now AI assistant is enabled for all the documentation. If you would like to disable, please contact us&#x20;
+</Callout>
+
+## Benefits for admins and doc owners
+
+The AI Assistant can:
+
+- **Improve onboarding** – new users reach first value faster by asking concrete “how do I…” questions.
+
+- **Reduce support tickets** – many basic “where is…” and “how do I…” questions are handled directly in the docs.
+
+- **Make customer‑facing teams faster** – support and AM/CS teams can use the same assistant to pull accurate, cited answers during conversations.
+
+- **Expose documentation gaps** – repeated questions without good citations highlight where your docs need better coverage or structure.
+
