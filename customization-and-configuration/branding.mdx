@@ -3,7 +3,6 @@ title: Set Up Site Branding
 description: Add your logos, colors, and visual identity to create a branded documentation site that matches your company's look and feel.
 ---
 
-
 Apply your brand identity to your documentation site using logos, colors, and visual elements. The Documentation.AI platform supports comprehensive branding customization to ensure your documentation aligns with your company's visual identity.
 
 ## Prerequisites
@@ -13,9 +12,55 @@ Apply your brand identity to your documentation site using logos, colors, and vi
 - Access to your `documentation.json` file
 - Understanding of your brand guidelines and requirements
 
-## Set Up Your Brand Identity
+## Set Up Branding from the Settings UI (Recommended)
 
-Follow these steps to apply your brand to your documentation site.
+Most branding options can be configured directly from the Documentation.AI Settings UI without editing JSON.
+
+### Step 1: Open Branding Settings
+
+1. In the left sidebar, go to **Settings**.
+2. Under **Documentation Settings**, select **General**.
+3. At the top of the page, you’ll see the **Documentation Settings** section, followed by **Brand & Theme**.
+
+Changes made here are stored in `documentation.json`. Publish your documentation to apply the changes to your live site.
+
+### Step 2: Configure Documentation Name and URL
+
+In the **Documentation Settings** section:
+
+- **Documentation Name**  
+  Sets the main name of your documentation space. This is used in the UI and appears in browser titles in combination with page titles.
+
+- **Documentation Description**  
+  A short summary of what this documentation covers. This may be used in search and meta information.
+
+- **Website URL**  
+  Your main website URL. This helps with theme imports and how search engines see your site.
+
+Click **Save** after updating each field.
+
+### Step 3: Upload Logos and Favicon
+
+Scroll down to the **Brand & Theme** section and locate **Documentation Logos**. Here you can upload:
+
+- **Dark Theme logo**  
+  Displayed when users view your documentation in dark mode.
+
+- **Light Theme logo**  
+  Displayed when users view your documentation in light mode.
+
+- **Favicon**  
+  Small square icon used in browser tabs and shortcuts.
+
+> Tip: Use SVG or high-resolution PNG/WEBP assets for best results. Square icons work best for favicons.
+
+All uploaded assets are stored under `logos` in `documentation.json`. After updating logos, **Publish** your documentation so changes appear on the live site.
+
+If you prefer to manage branding via configuration files (for example, in version control), you can use the advanced configuration described below.
+
+## Configure Branding via Configuration File (Advanced)
+
+Use this approach if you want to manage branding in code or keep everything in version control.
 
 ### Step 1: Configure site name
 
