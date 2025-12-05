@@ -1,15 +1,19 @@
 ---
 title: Set Up Site Branding
-description: Add your logos, colors, and visual identity to create a branded documentation site that matches your company's look and feel.
+description: >-
+  Add your logos, colors, and visual identity to create a branded documentation
+  site that matches your company's look and feel.
 ---
-
 Apply your brand identity to your documentation site using logos, colors, and visual elements. The Documentation.AI platform supports comprehensive branding customization to ensure your documentation aligns with your company's visual identity.
 
 ## Prerequisites
 
 - Your brand assets (logos in different formats and themes)
+
 - Brand color palette in hex format
+
 - Access to your `documentation.json` file
+
 - Understanding of your brand guidelines and requirements
 
 ## Set Up Branding from the Settings UI (Recommended)
@@ -19,7 +23,9 @@ Most branding options can be configured directly from the Documentation.AI Setti
 ### Step 1: Open Branding Settings
 
 1. In the left sidebar, go to **Settings**.
+
 2. Under **Documentation Settings**, select **General**.
+
 3. At the top of the page, you’ll see the **Documentation Settings** section, followed by **Brand & Theme**.
 
 Changes made here are stored in `documentation.json`. Publish your documentation to apply the changes to your live site.
@@ -28,13 +34,13 @@ Changes made here are stored in `documentation.json`. Publish your documentation
 
 In the **Documentation Settings** section:
 
-- **Documentation Name**  
+- **Documentation Name**\
   Sets the main name of your documentation space. This is used in the UI and appears in browser titles in combination with page titles.
 
-- **Documentation Description**  
+- **Documentation Description**\
   A short summary of what this documentation covers. This may be used in search and meta information.
 
-- **Website URL**  
+- **Website URL**\
   Your main website URL. This helps with theme imports and how search engines see your site.
 
 Click **Save** after updating each field.
@@ -43,18 +49,18 @@ Click **Save** after updating each field.
 
 Scroll down to the **Brand & Theme** section and locate **Documentation Logos**. Here you can upload:
 
-- **Dark Theme logo**  
+- **Dark Theme logo**\
   Displayed when users view your documentation in dark mode.
 
-- **Light Theme logo**  
+- **Light Theme logo**\
   Displayed when users view your documentation in light mode.
 
-- **Favicon**  
+- **Favicon**\
   Small square icon used in browser tabs and shortcuts.
 
-> Tip: Use SVG or high-resolution PNG/WEBP assets for best results. Square icons work best for favicons.
-
-All uploaded assets are stored under `logos` in `documentation.json`. After updating logos, **Publish** your documentation so changes appear on the live site.
+<Callout kind="info" collapsed="false">
+  All uploaded assets are stored under `logos` in `documentation.json`. After updating logos, **Publish** your documentation so changes appear on the live site.
+</Callout>
 
 If you prefer to manage branding via configuration files (for example, in version control), you can use the advanced configuration described below.
 
@@ -72,20 +78,24 @@ Set your site's primary identity in `documentation.json`:
 }
 ```
 
-<ParamField path="name" param-type="string" required="true" showLocation="false">
-  Site name displayed in browser title, navigation header, and social media previews. Appears as "Page Title - Site Name" format in browser tabs.
+<ParamField path="name" param-type="string" required="true" deprecated="false">
+  Site name displayed in the browser title, navigation header, and social media previews. Appears as "Page Title - Site Name" format in browser tabs.
 </ParamField>
 
-<Callout>
-Individual pages can customize their titles using [page front matter](page-configuration). The browser tab will show "Page Title - Site Name" format, combining both site-wide and page-level configuration.
+<Callout kind="note" collapsed="false">
+  Individual pages can customize their titles using [page front matter](page-configuration). The browser tab will show the "Page Title - Site Name" format, combining both site-wide and page-level configuration.
 </Callout>
 
 ### Step 2: Prepare your logo assets
 
 Before adding logos, ensure you have:
-- **Main logos**: For header display (120-200px width recommended)
-- **Small logos/favicons**: Square format for browser tabs (16x16, 32x32, 64x64px)
+
+- **Main logos**: For header display (120-200 px width recommended)
+
+- **Small logos/favicons**: Square format for browser tabs (16x16, 32x32, 64x64 px)
+
 - **Theme variants**: Light and dark versions of each logo
+
 - **Supported formats**: PNG, SVG, or WEBP files
 
 ### Step 3: Upload and configure logos
@@ -101,19 +111,19 @@ Add your logo URLs to `documentation.json`:
 }
 ```
 
-<ParamField path="logo-dark" param-type="string" required="false" showLocation="false">
-  Main logo displayed in dark theme. Supports PNG, SVG, WEBP formats.
+<ParamField path="logo-dark" param-type="string" required="false" deprecated="false">
+  Main logo displayed in dark theme. Supports PNG, SVG, and WEBP formats.
 </ParamField>
 
-<ParamField path="logo-light" param-type="string" required="false" showLocation="false">
-  Main logo displayed in light theme. Supports PNG, SVG, WEBP formats.
+<ParamField path="logo-light" param-type="string" required="false" deprecated="false">
+  Main logo displayed in light theme. Supports PNG, SVG, and WEBP formats.
 </ParamField>
 
-<ParamField path="logo-small-dark" param-type="string" required="false" showLocation="false">
+<ParamField path="logo-small-dark" param-type="string" required="false" deprecated="false">
   Small logo/favicon for dark theme. Used in browser tabs and mobile view.
 </ParamField>
 
-<ParamField path="logo-small-light" param-type="string" required="false" showLocation="false">
+<ParamField path="logo-small-light" param-type="string" required="false" deprecated="false">
   Small logo/favicon for light theme. Used in browser tabs and mobile view.
 </ParamField>
 
@@ -139,37 +149,57 @@ Set your brand colors for consistent visual identity:
 ```
 
 **Color configuration:**
+
 - **brand**: Primary brand color for buttons and links
+
 - **heading**: Color for headings and titles
+
 - **text**: Color for body text and content
 
 ### Step 5: Test your branding
 
 1. Save your `documentation.json` file
+
 2. Deploy or preview your site
+
 3. Verify logos display correctly in both themes
+
 4. Check brand colors appear consistently
+
 5. Test browser tab favicon and title
+
 6. Verify mobile responsiveness
 
 ## Optimize Your Brand Implementation
 
 ### Logo best practices
+
 - **Use SVG when possible**: Scalable and crisp at all sizes
+
 - **Provide theme variants**: Ensure visibility in both light and dark modes
+
 - **Optimize file sizes**: Compress images for fast loading
+
 - **Test readability**: Ensure logos are clear at small sizes
 
 ### Color guidelines
+
 - **Maintain brand consistency**: Use official brand colors
+
 - **Ensure accessibility**: Meet WCAG contrast requirements
+
 - **Test both themes**: Verify colors work in light and dark modes
+
 - **Consider user experience**: Avoid overly bright or dark colors that strain eyes
 
 ### Brand compliance tips
+
 - Follow your company's brand guidelines
+
 - Maintain consistent color usage across all elements
+
 - Use approved logo variants and formats
+
 - Ensure proper spacing and sizing ratios
 
 ## Complete Branding Setup
@@ -209,10 +239,14 @@ Set your brand colors for consistent visual identity:
 ## What's Next
 
 - [Configure colors and typography](colors-and-typography)
+
 - [Set up header navigation](header-and-navbar)
+
 - [Organize your site navigation](navigation-and-sidebar)
+
 - [See complete site configuration reference](site-configuration)
 
-<Callout>
-All branding elements are optional except for the site name. Documentation.AI provides professional defaults for any missing assets. You can start with basic branding and add more elements over time as your brand assets become available.
+<Callout kind="note" collapsed="false">
+  All branding elements are optional except for the site name. Documentation.AI provides professional defaults for any missing assets. You can start with basic branding and add more elements over time as your brand assets become available.
 </Callout>
+
