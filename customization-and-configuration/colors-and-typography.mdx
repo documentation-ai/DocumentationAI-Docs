@@ -1,29 +1,88 @@
 ---
 title: Customize Colors and Typography
-description: Fine-tune your documentation site's visual appearance by customizing brand colors, text colors, and typography for optimal readability and brand consistency.
+description: >-
+  Fine-tune your documentation site's visual appearance by customizing brand
+  colors, text colors, and typography for optimal readability and brand
+  consistency.
 ---
-
-
 Fine-tune your documentation site's visual appearance by customizing specific color elements and typography. This guide focuses on detailed color customization beyond basic theme setup to achieve perfect brand alignment.
 
 These site-wide color settings work together with [page-level front matter](page-configuration) to create a cohesive brand experience across all documentation pages.
 
 ## Prerequisites
 
-- Basic understanding of theme and color setup 
+- Basic understanding of theme and color setup
+
 - Your brand color palette or style guide
+
 - Access to your `documentation.json` file
+
 - Understanding of hex color codes and contrast ratios
 
-## Customize Brand Colors
+## Customize Colors from the Settings UI (recommended)
 
-Follow these steps to align your documentation colors with your brand identity.
+You can configure your brand, heading, and text colors directly from the Documentation.AI Settings UI without editing JSON.
+
+### Step 1: Open Theme Colors
+
+1. In the left sidebar, go to **Settings**.
+
+2. Under **Documentation Settings**, select **General**.
+
+3. Scroll down to the **Theme Colors** section.
+
+All changes made here are stored under `theme.colors` in `documentation.json`. Publish your documentation to apply the changes.
+
+### Step 2: Configure Light Theme Colors
+
+In the **Light Theme** column, you can configure:
+
+- **Brand**\
+  Sets your primary brand color for interactive elements such as call-to-action buttons, links, and selections.
+
+- **Heading**\
+  Defines the color used for headings and titles across your documentation.
+
+- **Text**\
+  Controls the main body text color for optimal readability on light backgrounds.
+
+Use valid hex color codes (for example, `#1a1a1a`) and ensure sufficient contrast between text and background.
+
+### Step 3: Configure Dark Theme Colors
+
+In the **Dark Theme** column, you can configure:
+
+- **Brand**\
+  Sets a lighter/brighter version of your brand color for interactive elements in dark mode.
+
+- **Heading**\
+  Controls heading and title colors for dark backgrounds. Choose a color with high contrast.
+
+- **Text**\
+  Defines the primary body text color in dark mode. Aim for comfortable contrast and readability.
+
+### Step 4: Apply Changes
+
+1. Review your selections for both **light theme** and **dark theme.**
+
+2. Save your changes if prompted.
+
+3. **Publish** your documentation so the updated colors appear on your live site.
+
+If you need more granular or automated control, you can also configure these colors directly `documentation.json` as described below.
+
+## Customize Brand Colors via Configuration File (Advanced)
+
+Follow these steps if you prefer to manage colors through version-controlled configuration.
 
 ### Step 1: Identify your color requirements
 
 Gather your brand colors in hex format:
-- Primary brand color (for buttons, links, call-to-actions)
+
+- Primary brand color (for buttons, links, calls to action)
+
 - Text hierarchy colors (headings vs body text)
+
 - Ensure colors work for both light and dark backgrounds
 
 ### Step 2: Configure light theme colors
@@ -44,15 +103,15 @@ In your `documentation.json`, customize the light theme colors:
 
 **Configure each color property:**
 
-<ParamField path="brand" param-type="string" required="false" showLocation="false">
+<ParamField path="brand" param-type="string" required="false" deprecated="false">
   Set your primary brand color for interactive elements. Use hex format (e.g., `#3143e3`).
 </ParamField>
 
-<ParamField path="heading" param-type="string" required="false" showLocation="false">
+<ParamField path="heading" param-type="string" required="false" deprecated="false">
   Choose a strong color for headings and titles. Default: `#1a1a1a`.
 </ParamField>
 
-<ParamField path="text" param-type="string" required="false" showLocation="false">
+<ParamField path="text" param-type="string" required="false" deprecated="false">
   Select a readable color for body text. Ensure good contrast. Default: `#374151`.
 </ParamField>
 
@@ -74,24 +133,28 @@ Add complementary colors for dark mode that maintain brand consistency:
 
 **Dark theme considerations:**
 
-<ParamField path="brand" param-type="string" required="false" showLocation="false">
+<ParamField path="brand" param-type="string" required="false" deprecated="false">
   Use a lighter/brighter version of your brand color. Use hex format (e.g., `#85a1ff`).
 </ParamField>
 
-<ParamField path="heading" param-type="string" required="false" showLocation="false">
+<ParamField path="heading" param-type="string" required="false" deprecated="false">
   Choose high contrast colors for readability in dark mode. Default: `#f2f2f2`.
 </ParamField>
 
-<ParamField path="text" param-type="string" required="false" showLocation="false">
+<ParamField path="text" param-type="string" required="false" deprecated="false">
   Ensure sufficient contrast against dark backgrounds. Default: `#c1c1c1`.
 </ParamField>
 
 ### Step 4: Test color combinations
 
 1. Save your configuration
+
 2. Deploy or preview your changes
+
 3. Test both light and dark modes
+
 4. Check text readability in various lighting conditions
+
 5. Verify brand colors maintain visual hierarchy
 
 ## Typography Best Practices
@@ -101,19 +164,25 @@ The Documentation.AI platform automatically handles typography optimization, but
 ### Contrast Requirements
 
 - Maintain WCAG AA compliance (4.5:1 contrast ratio minimum)
+
 - Test colors with accessibility tools
+
 - Ensure readability for users with visual impairments
 
 ### Brand Consistency
 
 - Use your brand's primary color for interactive elements
+
 - Maintain consistent color relationships between themes
+
 - Consider your brand's tone (professional, friendly, technical)
 
 ### Visual Hierarchy
 
 - Make headings distinctly different from body text
+
 - Use your brand color strategically to guide user attention
+
 - Ensure navigation elements stand out appropriately
 
 ## Advanced Color Customization
@@ -121,39 +190,56 @@ The Documentation.AI platform automatically handles typography optimization, but
 ### Step 5: Test across devices
 
 1. View on different screen sizes (mobile, tablet, desktop)
+
 2. Test in various lighting conditions
+
 3. Check color accuracy across different displays
+
 4. Verify accessibility with screen readers
 
 ### Step 6: Document your color choices
 
 Keep a record of your color decisions:
+
 - Brand color hex codes and their usage
-- Contrast ratio measurements  
+
+- Contrast ratio measurements
+
 - Any accessibility considerations
+
 - Brand guideline compliance notes
 
 ## Verify Your Color Setup
 
 1. **Visual check**: Compare with your brand guidelines
+
 2. **Contrast test**: Use tools like WebAIM Contrast Checker
+
 3. **User testing**: Get feedback on readability
+
 4. **Cross-browser testing**: Ensure consistency across browsers
+
 5. **Accessibility audit**: Test with screen readers and accessibility tools
 
 ## Troubleshooting Common Issues
 
 - **Low contrast**: Darken light theme text or lighten dark theme text
+
 - **Brand mismatch**: Adjust colors to better match your style guide
+
 - **Poor readability**: Increase contrast between text and background colors
 
 ## What's Next
 
 - [Set up your site branding and logos](branding)
+
 - [Configure navigation structure](navigation-and-sidebar)
+
 - [Customize header and navbar](header-and-navbar)
+
 - [See complete site configuration reference](site-configuration)
 
-<Callout>
-Color customization is entirely optional. Documentation.AI provides carefully designed defaults that meet accessibility standards. Only customize colors if you need specific brand alignment or have particular visual requirements.
+<Callout kind="note" collapsed="false">
+  Color customization is entirely optional. Documentation.AI provides carefully designed defaults that meet accessibility standards. Only customize colors if you need specific brand alignment or have particular visual requirements.
 </Callout>
+
