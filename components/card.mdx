@@ -283,12 +283,12 @@ Open external links in a new tab using the `target` prop:
 ```
 
 <Callout kind="tip" collapsed="false">
-  Use `target="_blank"` for external links and leave the default `_self`) for internal documentation links.
+  Use `target` = (`_blank`) for external links and leave the default (`_self`) for internal documentation links.
 </Callout>
 
 ## Icons
 
-Cards support [Lucide icons](https://lucide.dev) for visual identification. Use icon names without the "Icon" suffix:
+Cards support [Lucide icons](https://lucide.dev) for visual identification. Use icon names without the `Icon` suffix:
 
 ```jsx
 <Columns cols={3}>
@@ -405,23 +405,15 @@ Combining all features for a rich card experience:
 
 ## Common patterns
 
-- **Feature showcases** - Grid of cards with icons highlighting product capabilities
+- **Feature grids** – Card groups or `<Columns>` with icons and short descriptions.
 
-- **Documentation navigation** - Cards linking to major documentation sections
+- **Navigation hubs** – Cards that link to main sections (Getting Started, API, Guides).
 
-- **Getting started flows** - Sequential cards with numbered icons or steps
+- **Resource cards** – External links to GitHub, Discord, or support tools.
 
-- **Resource links** - External links to GitHub, Discord, community resources
-
-- **Product/service listings** - Cards with images showing offerings
-
-- **Tutorial series** - Horizontal cards for compact tutorial navigation
-
-- **API endpoint groups** - Organized cards for different API categories
-
-- **Mixed layouts** - Combine vertical cards with images and horizontal cards for variety
+- **Tutorial flows** – Sequence of cards guiding users through multi-step tutorials.
 
 <Callout kind="success" collapsed="false">
-  Cards automatically adapt to mobile devices, stacking vertically regardless of the Columns configuration.
+  Whether you use the editor UI or MDX, cards stay responsive and accessible by default. Choose the workflow that fits your team—UI for quick editing, MDX for full control in code.
 </Callout>
 
