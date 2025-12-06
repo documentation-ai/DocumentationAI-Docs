@@ -1,69 +1,133 @@
 ---
 title: Images
-description: Reference for adding images using the Image component and markdown syntax.
+description: Reference for adding images using the editor UI and the Image component.
 type: reference
 ---
-
 ## Overview
 
-Add images with automatic optimization, accessibility features, and responsive behavior. Images uploaded via the editor are served from an optimized CDN.
+Add images with automatic optimization, accessibility features, and responsive behavior.\
+You can work with images in two ways:
 
-````jsx
+- **Editor UI:** Upload, resize, align, and annotate images visually.
+
+- **MDX:** Use the `<Image>` component with explicit props.
+
+Images uploaded via the editor are stored and served from an optimized CDN.
+
+## Add images from the editor UI (recommended)
+
+### Insert an image
+
+1. Place your cursor on a new line.
+
+2. Type <kbd>/</kbd> to open the command menu.
+
+3. Select **Image**.
+
+4. In the picker that appears, either:
+
+   - Click **Upload image** to choose a file from your computer, or
+
+   - Select an **already uploaded image** from the list below.
+
+The selected image is inserted into the page and automatically optimized.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765036450515-svk9baaqn2f-pasted-image-1765036449266.png?q=85&fm=auto&auto=compress%2Cformat" width="359" height="293" alt="" caption="Upload or select previously uploaded images" style="width: 359px; height: auto; cursor: pointer;" />
+
+### Resize, align, and manage the image
+
+Hover over the image to reveal controls:
+
+- **Top-left badge:** Shows current **image dimensions** (width × height).
+
+- **Side drag handles:** Handles on the **left** and **right** edges let you resize the image.
+
+  - Drag horizontally to adjust **width**.
+
+  - **Height adjusts automatically** to keep the original aspect ratio.
+
+- **Top-right toolbar**:
+
+  - **Alignment icon:** Change image alignment (for example, left, center, or right).
+
+  - **Zoom icon:** View the image in full size.
+
+  - **Trash icon:** Delete the image from the page.
+
+### Edit image properties (URL, caption, alt text)
+
+1. Hover over the image and click the **three-dot menu** in the top-right corner.
+
+2. In **Image Properties** you can configure:
+
+   - **Image URL:** The full CDN URL for the uploaded image.
+
+   - **Caption:** Optional text displayed below the image.
+
+   - **Alt Text:** Required descriptive text for accessibility and SEO.
+
+<Callout kind="info" collapsed="false">
+  The Alt Text field is mandatory for SEO and accessibility. Describe what’s in the image, not just the file name.
+</Callout>
+
+<Callout kind="tip" collapsed="false">
+  You can copy the image URL from image properties (the three-dot menu in the top-right corner) and reuse it in other components, such as `<Card image="...">` or additional `<Image>` blocks.
+</Callout>
+
+## Use the Image component in MDX
+
+Use the `<Image>` component to add images directly in MDX:
+
+```jsx
 <Image 
   src="https://your-cdn.com/image.png" 
   alt="Description of the image" 
   width="800"
   height="600"
 />
-````
+```
 
-<Image
-  uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802"
-  src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp"
-  width="672"
-  height="343"
-  alt="Abstract geometric pattern with colorful shapes"
-/>
+<Image uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" width="672" height="343" alt="Abstract geometric pattern with colorful shapes" />
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
   The `alt` attribute is mandatory for SEO and accessibility. Provide descriptive text that explains the image content.
 </Callout>
 
 ## Attributes
 
-<ParamField path="src" param-type="string" required="true" showLocation="false">
+<ParamField path="src" param-type="string" required="true" deprecated="false">
   Image URL (absolute URLs only). Use CDN URLs for optimized delivery.
 </ParamField>
 
-<ParamField path="alt" param-type="string" required="true" showLocation="false">
+<ParamField path="alt" param-type="string" required="true" deprecated="false">
   Descriptive text for accessibility and SEO. Explains image content to screen readers.
 </ParamField>
 
-<ParamField path="width" param-type="string" required="false" showLocation="false">
+<ParamField path="width" param-type="string" required="false" deprecated="false">
   Image width in pixels. Used for layout optimization and preventing layout shift.
 </ParamField>
 
-<ParamField path="height" param-type="string" required="false" showLocation="false">
+<ParamField path="height" param-type="string" required="false" deprecated="false">
   Image height in pixels. Used for layout optimization and preventing layout shift.
 </ParamField>
 
-<ParamField path="style" param-type="string" required="false" showLocation="false">
+<ParamField path="style" param-type="string" required="false" deprecated="false">
   CSS styles for alignment, sizing, and positioning. Use for responsive behavior.
 </ParamField>
 
-<ParamField path="priority" param-type="boolean" required="false" showLocation="false">
+<ParamField path="priority" param-type="boolean" required="false" deprecated="false">
   Load immediately instead of lazy loading. Use for above-the-fold images (default: `false`).
 </ParamField>
 
-<ParamField path="fetchpriority" param-type="string" required="false" showLocation="false">
+<ParamField path="fetchpriority" param-type="string" required="false" deprecated="false">
   Browser loading priority: `high`, `low`, `auto`. Use `high` for critical images.
 </ParamField>
 
-## Alignment and sizing
+## Alignment and sizing in MDX
 
-Control image dimensions and positioning with `width`, `height`, and `style` attributes:
+Control image dimensions and positioning with `width`, `height`, and `style`:
 
-````jsx
+```jsx
 <Image 
   src="https://your-cdn.com/image.png" 
   alt="Center aligned image" 
@@ -71,22 +135,15 @@ Control image dimensions and positioning with `width`, `height`, and `style` att
   height="300"
   style="width: 400px; height: auto; margin: 0 auto;" 
 />
-````
+```
 
-<Image
-  uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802"
-  src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp"
-  width="400"
-  height="229"
-  alt="Center aligned abstract pattern"
-  style="width: 400px; height: auto; margin: 0 auto;"
-/>
+<Image uid="fcb073e1-1a69-4d5b-86e8-41b52dac9802" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" width="400" height="229" alt="Center aligned abstract pattern" style="width: 400px; height: auto; margin: 0 auto;" />
 
 ## Performance optimization
 
-Use `priority` and `fetchpriority` attributes for above-the-fold images that affect loading performance:
+Use `priority` and `fetchpriority` for above-the-fold images that impact perceived loading speed:
 
-````jsx
+```jsx
 <Image 
   src="https://your-cdn.com/hero-image.png" 
   alt="Hero banner showing product features" 
@@ -95,47 +152,36 @@ Use `priority` and `fetchpriority` attributes for above-the-fold images that aff
   priority={true}
   fetchpriority="high"
 />
-````
+```
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
   Use performance attributes only for above-the-fold images. Overusing `priority` can hurt overall page performance.
-</Callout>
-
-## Adding images
-
-### Editor upload
-
-Use the Documentation.AI editor for automatic CDN optimization:
-
-1. Type `/image` command in the editor
-2. Click the "+" icon and select image element  
-3. Copy and paste images directly into the editor
-4. Browse and select from uploaded images
-
-<Callout kind="success">
-  Editor-uploaded images are automatically optimized and served from our CDN for better performance.
 </Callout>
 
 ### External URLs
 
-Use absolute URLs for external images. Note that external images may not be optimized.
+You can also reference external images directly in MDX. These won’t be automatically optimized by the editor’s CDN.
 
-````jsx
+```jsx
 <Image 
   src="https://external-cdn.com/image.jpg" 
   alt="External image description"
   width="600"
   height="400"
 />
-````
+```
 
 ## Specifications
 
 - **URL format**: Only absolute URLs are supported
-- **Alt text**: Required for all images (SEO and accessibility)  
+
+- **Alt text**: Required for all images (SEO and accessibility)
+
 - **Formats**: JPEG, JPG, PNG, GIF, WebP, SVG, ICO
+
 - **CDN**: Editor-uploaded images are automatically optimized
 
-<Callout kind="warning">
-  External CDN images may not be optimized for performance. Use the editor upload for best results.
+<Callout kind="warning" collapsed="false">
+  External CDN images may not be optimized for performance. Whenever possible, upload images through the editor and reuse their CDN URLs.
 </Callout>
+
