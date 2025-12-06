@@ -2,12 +2,18 @@
 title: Card
 description: >-
   Reference for creating interactive cards with icons, images, and
-  call-to-action buttons using the Card component.
+  call-to-action buttons using both the editor UI and the Card component.
 type: reference
 ---
 ## Overview
 
-Create visually appealing cards for navigation, features, products, or content previews. Cards support icons, images, CTAs, and can be arranged in vertical or horizontal layouts.
+Cards let you create visually rich navigation and feature blocks with titles, descriptions, icons, images, and call-to-action (CTA) text.
+
+You can work with cards in two ways:
+
+- **Editor UI:** Insert and configure cards/card groups from the slash (<kbd>/</kbd>) menu.
+
+- **MDX:** Use the `<Card>` and `<Columns>` components directly in your content.
 
 Common use cases:
 
@@ -31,9 +37,85 @@ Common use cases:
   </Card>
 </Columns>
 
-## Basic syntax
+## Create cards with the editor UI
 
-Use the `<Card>` component to create clickable cards with titles, icons, and descriptions:
+### Add a single card
+
+1. Place your cursor on a new line in the editor.
+
+2. Type <kbd>/</kbd> to open the component picker.
+
+3. Select **Card**.
+
+4. A new card appears with a default title and description.
+
+#### Edit card content
+
+- **Title:** Click the card title text and type your own.
+
+- **Description:** Click the “Card description…” placeholder and type your own text.
+
+<Callout kind="tip" collapsed="false">
+  If you don’t want a description, click the placeholder and delete it.
+</Callout>
+
+#### Configure card settings
+
+1. Click the **three-dot** menu on the card.
+
+2. In **Card Settings**, you can set:
+
+   - **Title:** Card heading.
+
+   - **URL:** Link destination (internal or external).
+
+   - **Image Path:** Path/URL to the card image.
+
+   - **Icon:** Click **Select Icon** and choose a Lucide icon.
+
+   - **Call-to-Action Text:** Optional CTA label (for example, “Learn more”).
+
+   - **Horizontal Layout**: Toggle on to switch from vertical to horizontal layout.
+
+   - **Link Target**
+
+     - `_self` : Open in the same tab (default).
+
+     - `_blank` : Open in a new tab.
+
+3. Click **Save** to apply changes.
+
+## Card groups in the editor UI
+
+Use **Card Group** to lay out multiple cards in columns without writing MDX.
+
+### Add a Card Group
+
+1. Place your cursor on a new line.
+
+2. Type <kbd>/</kbd> and select **Card Group**.
+
+3. A group with two cards appears by default.
+
+#### Configure Card Group settings
+
+- Click the `...` (3-dot) menu on the group to open **Card Group Settings**.
+
+- Under **Number of Columns**, choose **2**, **3**, or **4** to control how many cards appear per row.
+
+#### Add or remove cards in a group
+
+- Click the **<kbd>+</kbd>** icon (next to the three-dot menu) to add another card to the group.
+
+- Use each card’s **trash** icon to delete a specific card.
+
+- Configure each card’s settings individually using its own three-dot menu.
+
+## Create cards with MDX
+
+You can also define cards directly in MDX using the `<Card>` component.
+
+### Basic syntax
 
 ```jsx
 <Card title="Getting Started" icon="book-open" href="/getting-started/quickstart">
@@ -70,12 +152,17 @@ Default layout with icon and content stacked vertically:
 Use `horizontal` prop for side-by-side icon and content layout:
 
 ```jsx
-<Card title="Team Collaboration" icon="users" href="/account-and-billing/team-management" horizontal>
+<Card
+  title="Team Collaboration"
+  icon="users"
+  href="/account-and-billing/team-management"
+  horizontal
+>
   Work together seamlessly with role-based access control.
 </Card>
 ```
 
-<Card title="Team Collaboration" href="/account-and-billing/team-management" icon="users">
+<Card title="Team Collaboration" href="/account-and-billing/team-management" icon="users" horizontal="false">
   Work together seamlessly with role-based access control.
 </Card>
 
@@ -139,13 +226,13 @@ Add explicit CTAs to encourage user interaction:
 </Card>
 ```
 
-<Card title="Analytics Dashboard" href="/analytics-and-insights/user-analytics" icon="bar-chart" cta="Explore">
+<Card title="Analytics Dashboard" href="/analytics-and-insights/user-analytics" icon="bar-chart" cta="Explore" horizontal="false">
   Track user behavior and monitor application metrics in real-time.
 </Card>
 
-## Using with Columns
+## Columns & Card groups in MDX
 
-Organize multiple cards in responsive grid layouts using the `<Columns>` component:
+Use `<Columns>` to lay out multiple cards in a grid—this mirrors the Card Group behavior in the editor UI.
 
 ```jsx
 <Columns cols={2}>
@@ -179,9 +266,9 @@ Organize multiple cards in responsive grid layouts using the `<Columns>` compone
   Columns supports `cols={2}`, `cols={3}`, `cols={4}`, or `cols={5}` for responsive grid layouts.
 </Callout>
 
-## External links
+## External links & targets
 
-Open links in new tabs using the `target` attribute:
+Open external links in a new tab using the `target` prop:
 
 ```jsx
 <Card 
@@ -196,7 +283,7 @@ Open links in new tabs using the `target` attribute:
 ```
 
 <Callout kind="tip" collapsed="false">
-  Use `target="_blank"` for external links to open them in new tabs.
+  Use `target="_blank"` for external links and leave the default `_self`) for internal documentation links.
 </Callout>
 
 ## Icons
