@@ -1,52 +1,87 @@
 ---
 title: Lists and Tables
-description: Reference for creating ordered lists, unordered lists, nested lists, and tables in MDX.
+description: >-
+  Reference for creating ordered lists, unordered lists, nested lists, and
+  tables using both the editor UI and MDX.
 type: reference
 ---
-
 ## Overview
 
-Organize information with ordered lists, unordered lists, and tables. All standard Markdown list and table syntax is supported.
+You can add lists and tables in two ways:
+
+- **Editor UI** – Use the slash (<kbd>/</kbd>) menu and on-table controls.
+
+- **MDX/Markdown** – Type list and table syntax directly.
+
+All standard Markdown list and table syntax is supported.
 
 ## Lists
 
-### Ordered lists
+### Create lists with the editor UI
+
+1. Place your cursor on a new line.
+
+2. Type <kbd>/</kbd> to open the block menu.
+
+3. Under **Lists & Formatting**, choose:
+
+   - **Bullet List**
+
+   - **Numbered List**
+
+Then:
+
+- Start typing your first item.
+
+- Press **<kbd>Enter</kbd>** to create the next item.
+
+- Press **<kbd>Tab</kbd>** to create a **nested** list under the current item.
+
+You can switch an existing block to a list (or back to a paragraph) using the block dropdown on the left.
+
+### Create lists with MDX syntax
+
+#### Ordered lists
 
 Use numbers followed by periods:
 
-````markdown
+```markdown
 1. First item
 2. Second item
 3. Third item
-````
+```
 
-1. First item
-2. Second item
-3. Third item
+- First item
 
-<Callout kind="info">
-  The actual numbers don't matter; Markdown automatically sequences them. You can use `1.` for all items.
+- Second item
+
+- Third item
+
+<Callout kind="info" collapsed="false">
+  The actual numbers don't matter; Markdown automatically sequences them. You can use it `1.` for all items.
 </Callout>
 
-### Unordered lists
+#### Unordered lists
 
 Use dashes (`-`), asterisks (`*`), or plus signs (`+`):
 
-````markdown
+```markdown
 - First item
 - Second item
 - Third item
-````
+```
 
 - First item
+
 - Second item
+
 - Third item
 
-### Nested lists
+#### Nested lists
 
 Indent items with spaces (typically 2 or 4 spaces):
 
-````markdown
+```markdown
 1. First item
    - Nested unordered item
    - Another nested item
@@ -54,31 +89,81 @@ Indent items with spaces (typically 2 or 4 spaces):
    1. Nested ordered item
    2. Another nested ordered item
 3. Third item
-````
+```
 
 1. First item
+
    - Nested unordered item
+
    - Another nested item
+
 2. Second item
+
    1. Nested ordered item
+
    2. Another nested ordered item
+
 3. Third item
 
-<Callout kind="warning">
-  Mixing different list markers (`-`, `*`, `+`) in the same list can cause inconsistent rendering.
+<Callout kind="alert" collapsed="false">
+  &#x20;Mixing different list markers ( `- `, `* `, `+ `) in the same list can cause inconsistent rendering.
 </Callout>
 
 ## Tables
 
+### Create and edit tables with the editor UI
+
+1. Place your cursor on a new line.
+
+2. Type <kbd>/</kbd> to open the block menu.
+
+3. Select **Table**.
+
+A basic table will be inserted:
+
+- **The first row** is the **header row**. Text in this row is styled as headings (bold).
+
+- From the **second row onward**, you can enter regular cell content.
+
+#### Row controls
+
+Hover near the left edge of a row to reveal the row toolbar:
+
+- **H** – Toggle header row on/off for that row.
+
+- **Up/Down arrows** – Move the current row up or down.
+
+- **Trash** (when present) – Remove the row.
+
+You can use this to:
+
+- Turn an existing content row into a header row.
+
+- Demote a header row back to a regular row.
+
+- Reorder rows without copying/pasting.
+
+#### Column controls
+
+Hover over the top of a column to reveal the column toolbar (three-dot icon):
+
+- Change the **alignment** of the column (left, center, or right).
+
+- Use **arrows** to move the column left or right.
+
+- Delete a column if needed.
+
+### Create tables with MDX syntax
+
 Use pipes (`|`) to separate columns and dashes (`-`) to create headers:
 
-````markdown
-| Feature | Description | Status |
-|---------|-------------|--------|
-| Authentication | User login system | Complete |
-| Dashboard | Main user interface | In progress |
-| Reports | Data analytics | Planned |
-````
+```markdown
+| Feature        | Description         | Status      |
+| -------------- | ------------------- | ----------- |
+| Authentication | User login system   | Complete    |
+| Dashboard      | Main user interface | In progress |
+| Reports        | Data analytics      | Planned     |
+```
 
 | Feature        | Description         | Status      |
 | -------------- | ------------------- | ----------- |
@@ -86,16 +171,16 @@ Use pipes (`|`) to separate columns and dashes (`-`) to create headers:
 | Dashboard      | Main user interface | In progress |
 | Reports        | Data analytics      | Planned     |
 
-### Table formatting
+#### Table formatting tips
 
-Raw Markdown doesn't need to align perfectly, but it improves readability:
+Raw Markdown doesn’t need perfect alignment, but it improves readability:
 
-````markdown
-| Name | Role | Status |
-|---|---|---|
-| Alice | Developer | Active |
-| Bob | Designer | Inactive |
-````
+```markdown
+| Name | Role      | Status  |
+| ---- | --------- | ------- |
+| Alice| Developer | Active  |
+| Bob  | Designer  | Inactive|
+```
 
 | Name  | Role      | Status   |
 | ----- | --------- | -------- |
@@ -104,7 +189,13 @@ Raw Markdown doesn't need to align perfectly, but it improves readability:
 
 ## Common patterns
 
-- **Sequential content** - Ordered lists for steps, procedures, rankings
-- **Related items** - Unordered lists for features, requirements, options  
-- **Structured data** - Tables for comparisons, specifications, status tracking
-- **Hierarchical information** - Nested lists with consistent 2 or 4-space indentation
+- **Sequential content:** Use ordered lists for steps, procedures, and rankings.
+
+- **Related items:** Use unordered lists for features, requirements, and options.
+
+- **Hierarchical information:** Use nested lists to show levels of detail.
+
+- **Structured data:** Use tables for comparisons, specifications, and status tracking.
+
+##
+
