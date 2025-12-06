@@ -21,7 +21,7 @@ sequenceDiagram
     participant Vercel
     participant Docs as Documentation Host
     Browser->>Vercel: GET yoursite.com/[SUBPATH]/page
-    Vercel->>Docs: GET [SUBDOMAIN].documentationai.io/[SUBPATH]/page
+    Vercel->>Docs: GET [SUBDOMAIN].documentatioai.com/[SUBPATH]/page
     Docs-->>Vercel: HTML Content
     Vercel-->>Browser: HTML Content (URL stays as yoursite.com/[SUBPATH]/page)
 ````
@@ -72,31 +72,31 @@ Create a `vercel.json` file in your project root with the following configuratio
   "rewrites": [
     {
       "source": "/_dai/api/:path*",
-      "destination": "http://[SUBDOMAIN].documentationai.io/_dai/api/:path*"
+      "destination": "http://[SUBDOMAIN].documentatioai.com/_dai/api/:path*"
     },
     {
       "source": "/dai-assets/:path+",
-      "destination": "http://[SUBDOMAIN].documentationai.io/dai-assets/:path+"
+      "destination": "http://[SUBDOMAIN].documentatioai.com/dai-assets/:path+"
     },
     {
       "source": "/[SUBPATH]",
-      "destination": "http://[SUBDOMAIN].documentationai.io/[SUBPATH]"
+      "destination": "http://[SUBDOMAIN].documentatioai.com/[SUBPATH]"
     },
     {
       "source": "/[SUBPATH]/:path*",
-      "destination": "http://[SUBDOMAIN].documentationai.io/[SUBPATH]/:path*"
+      "destination": "http://[SUBDOMAIN].documentatioai.com/[SUBPATH]/:path*"
     },
     {
       "source": "/[SUBPATH]/llms.txt",
-      "destination": "http://[SUBDOMAIN].documentationai.io/llms.txt"
+      "destination": "http://[SUBDOMAIN].documentatioai.com/llms.txt"
     },
     {
       "source": "/[SUBPATH]/sitemap.xml",
-      "destination": "http://[SUBDOMAIN].documentationai.io/sitemap.xml"
+      "destination": "http://[SUBDOMAIN].documentatioai.com/sitemap.xml"
     },
     {
       "source": "/[SUBPATH]/robots.txt",
-      "destination": "http://[SUBDOMAIN].documentationai.io/robots.txt"
+      "destination": "http://[SUBDOMAIN].documentatioai.com/robots.txt"
     }
   ]
 }
@@ -111,7 +111,7 @@ Let's break down each rewrite rule and its purpose:
 ```json
 {
   "source": "/_dai/api/:path*",
-  "destination": "http://[SUBDOMAIN].documentationai.io/_dai/api/:path*"
+  "destination": "http://[SUBDOMAIN].documentatioai.com/_dai/api/:path*"
 }
 ```
 
@@ -122,7 +122,7 @@ Proxies internal API requests required for documentation features like search, a
 ```json
 {
   "source": "/dai-assets/:path+",
-  "destination": "http://[SUBDOMAIN].documentationai.io/dai-assets/:path+"
+  "destination": "http://[SUBDOMAIN].documentatioai.com/dai-assets/:path+"
 }
 ```
 
@@ -133,7 +133,7 @@ Forwards requests for documentation assets (CSS, JavaScript, images) to the docu
 ```json
 {
   "source": "/[SUBPATH]",
-  "destination": "http://[SUBDOMAIN].documentationai.io/[SUBPATH]"
+  "destination": "http://[SUBDOMAIN].documentatioai.com/[SUBPATH]"
 }
 ```
 
@@ -144,7 +144,7 @@ Handles requests to the documentation root path (e.g., `yoursite.com/[SUBPATH]`)
 ```json
 {
   "source": "/[SUBPATH]/:path*",
-  "destination": "http://[SUBDOMAIN].documentationai.io/[SUBPATH]/:path*"
+  "destination": "http://[SUBDOMAIN].documentatioai.com/[SUBPATH]/:path*"
 }
 ```
 
@@ -155,15 +155,15 @@ Proxies all documentation page requests with the `:path*` wildcard matching any 
 ```json
 {
   "source": "/[SUBPATH]/llms.txt",
-  "destination": "http://[SUBDOMAIN].documentationai.io/llms.txt"
+  "destination": "http://[SUBDOMAIN].documentatioai.com/llms.txt"
 },
 {
   "source": "/[SUBPATH]/sitemap.xml",
-  "destination": "http://[SUBDOMAIN].documentationai.io/sitemap.xml"
+  "destination": "http://[SUBDOMAIN].documentatioai.com/sitemap.xml"
 },
 {
   "source": "/[SUBPATH]/robots.txt",
-  "destination": "http://[SUBDOMAIN].documentationai.io/robots.txt"
+  "destination": "http://[SUBDOMAIN].documentatioai.com/robots.txt"
 }
 ```
 
@@ -215,7 +215,7 @@ Add custom headers to your rewrite rules if needed:
   "rewrites": [
     {
       "source": "/[SUBPATH]/:path*",
-      "destination": "http://[SUBDOMAIN].documentationai.io/[SUBPATH]/:path*",
+      "destination": "http://[SUBDOMAIN].documentatioai.com/[SUBPATH]/:path*",
       "headers": {
         "X-Custom-Header": "value"
       }
@@ -233,11 +233,11 @@ Host different documentation instances on different subpaths:
   "rewrites": [
     {
       "source": "/[SUBPATH-1]/:path*",
-      "destination": "http://[SUBDOMAIN-1].documentationai.io/[SUBPATH-1]/:path*"
+      "destination": "http://[SUBDOMAIN-1].documentatioai.com/[SUBPATH-1]/:path*"
     },
     {
       "source": "/[SUBPATH-2]/:path*",
-      "destination": "http://[SUBDOMAIN-2].documentationai.io/[SUBPATH-2]/:path*"
+      "destination": "http://[SUBDOMAIN-2].documentatioai.com/[SUBPATH-2]/:path*"
     }
   ]
 }
