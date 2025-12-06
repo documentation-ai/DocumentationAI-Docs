@@ -1,0 +1,605 @@
+---
+title: AWS Route 53 & CloudFront Subpath Setup
+description: "Host documentation at a custom subpath using AWS Route 53 and CloudFront for enterprise-grade infrastructure."
+---
+
+## Overview
+
+Deploy your documentation at a custom subpath such as `yoursite.com/docs`, `yoursite.com/help`, or any path you choose using AWS Route 53 for DNS management and CloudFront for content delivery. This guide provides a complete enterprise-grade setup with advanced caching, security, and global distribution.
+
+<Callout kind="info">
+  Use any subpath: <kbd>/docs</kbd>, <kbd>/help</kbd>, <kbd>/guide</kbd>, etc. Replace <kbd>/docs</kbd> in examples with your path.
+</Callout>
+
+## Architecture Overview
+
+AWS CloudFront acts as a reverse proxy, routing traffic based on path patterns to either your documentation hosting or your main website.
+
+````mermaid
+graph TB
+    A[User Request] --> B[Route 53 DNS]
+    B --> C[CloudFront Distribution]
+    C --> D{Path Pattern?}
+    D -->|/docs/*| E[Documentation Origin]
+    D -->|/*| F[Main Site Origin]
+    E --> G[Return Content]
+    F --> G
+    G --> A
+````
+
+## High-Level Configuration Summary
+
+You'll configure CloudFront behaviors to route traffic based on path patterns:
+
+| Path Pattern | Cache Policy | Origin | Purpose |
+|--------------|--------------|--------|---------|
+| `/.well-known/*` | CachingDisabled | Documentation | Domain verification |
+| `/docs/*` (or your subpath) | CachingOptimized | Documentation | Documentation pages |
+| `/docs` (or your subpath) | CachingOptimized | Documentation | Documentation root |
+| `/dai-assets/_next/static/*` | CachingOptimized | Documentation | Static assets |
+| `Default (*)` | CachingOptimized | Main Site | Landing page |
+
+<Callout kind="alert">
+  All behaviors must use origin request policy <kbd>AllViewerExceptHostHeader</kbd>.
+</Callout>
+
+## Prerequisites
+
+<Steps>
+  <Step title="AWS Account">
+    Active AWS account with billing enabled.
+  </Step>
+  
+  <Step title="Domain in Route 53">
+    Your domain managed in Route 53 (or ability to update DNS).
+  </Step>
+  
+  <Step title="Staging URL">
+    A staging URL for your main site (e.g., Vercel preview URL, Webflow staging).
+  </Step>
+  
+  <Step title="Documentation Subdomain">
+    Your documentation accessible at `[SUBDOMAIN].documentationai.io`.
+  </Step>
+</Steps>
+
+## Step 1: Create CloudFront Distribution
+
+<Steps>
+  <Step title="Navigate to CloudFront">
+    Open the [AWS Console](https://console.aws.amazon.com/) and navigate to **CloudFront**.
+  </Step>
+  
+  <Step title="Create Distribution">
+    Click **Create distribution**.
+  </Step>
+  
+  <Step title="Configure Origin">
+    Set the **Origin domain** to `[SUBDOMAIN].documentationai.io` (replace with your actual subdomain).
+  </Step>
+  
+  <Step title="Enable WAF">
+    For **Web Application Firewall (WAF)**, select **Enable security protections**.
+  </Step>
+  
+  <Step title="Create">
+    Leave other settings as default and click **Create distribution**.
+  </Step>
+</Steps>
+
+
+## Step 2: Add Main Site Origin
+
+Your CloudFront distribution needs two origins: one for documentation and one for your main site.
+
+<Steps>
+  <Step title="Navigate to Origins">
+    In your distribution, go to the **Origins** tab.
+  </Step>
+  
+  <Step title="Find Staging URL">
+    Locate your main site's staging URL:
+    - **Vercel**: Use your `.vercel.app` preview domain
+    - **Webflow**: Use your `.webflow.io` staging domain
+    - **Netlify**: Use your `.netlify.app` domain
+  </Step>
+  
+  <Step title="Create Origin">
+    Click **Create origin** and enter your staging URL as the **Origin domain**.
+  </Step>
+  
+  <Step title="Save">
+    Keep default settings and click **Create origin**.
+  </Step>
+</Steps>
+
+After this step, you should have two origins in your distribution:
+1. `[SUBDOMAIN].documentationai.io` - Documentation
+2. `your-site.vercel.app` (or similar) - Main site
+
+## Step 3: Configure Behaviors
+
+Behaviors control how CloudFront routes and caches requests based on URL patterns.
+
+### Behavior 1: Domain Verification Paths
+
+Create a behavior for domain verification and SSL certificate provisioning.
+
+<Steps>
+  <Step title="Navigate to Behaviors">
+    Go to the **Behaviors** tab in your distribution.
+  </Step>
+  
+  <Step title="Create Behavior">
+    Click **Create behavior**.
+  </Step>
+  
+  <Step title="Configure Path">
+    Set **Path pattern** to `/.well-known/*`.
+  </Step>
+  
+  <Step title="Set Origin">
+    Set **Origin** to your documentation origin (`[SUBDOMAIN].documentationai.io`).
+  </Step>
+  
+  <Step title="Disable Caching">
+    Set **Cache policy** to **CachingDisabled**.
+  </Step>
+  
+  <Step title="Set Request Policy">
+    Set **Origin request policy** to **AllViewerExceptHostHeader**.
+  </Step>
+  
+  <Step title="Force HTTPS">
+    Set **Viewer protocol policy** to **Redirect HTTP to HTTPS**.
+  </Step>
+  
+  <Step title="Create">
+    Click **Create behavior**.
+  </Step>
+</Steps>
+
+
+### Behavior 2: Documentation Root Path
+
+Create a behavior for the documentation root (e.g., `/docs`).
+
+<Steps>
+  <Step title="Create Behavior">
+    Click **Create behavior** again.
+  </Step>
+  
+  <Step title="Set Path">
+    Set **Path pattern** to your chosen subpath (e.g., `/docs`, `/help`, `/guide`).
+  </Step>
+  
+  <Step title="Set Origin">
+    Set **Origin** to your documentation origin (`[SUBDOMAIN].documentationai.io`).
+  </Step>
+  
+  <Step title="Enable Caching">
+    Set **Cache policy** to **CachingOptimized**.
+  </Step>
+  
+  <Step title="Set Request Policy">
+    Set **Origin request policy** to **AllViewerExceptHostHeader**.
+  </Step>
+  
+  <Step title="Force HTTPS">
+    Set **Viewer protocol policy** to **Redirect HTTP to HTTPS**.
+  </Step>
+  
+  <Step title="Create">
+    Click **Create behavior**.
+  </Step>
+</Steps>
+
+### Behavior 3: Documentation Wildcard Path
+
+Create a behavior for all documentation pages (e.g., `/docs/*`).
+
+<Steps>
+  <Step title="Create Behavior">
+    Click **Create behavior**.
+  </Step>
+  
+  <Step title="Set Wildcard Path">
+    Set **Path pattern** to your subpath with wildcard (e.g., `/docs/*`, `/help/*`, `/guide/*`) to match all nested pages.
+  </Step>
+  
+  <Step title="Match Previous Settings">
+    Use the same settings as Behavior 2:
+    - **Origin**: Documentation origin
+    - **Cache policy**: CachingOptimized
+    - **Origin request policy**: AllViewerExceptHostHeader
+    - **Viewer protocol policy**: Redirect HTTP to HTTPS
+  </Step>
+  
+  <Step title="Create">
+    Click **Create behavior**.
+  </Step>
+</Steps>
+
+### Behavior 4: Static Assets
+
+Create a behavior for documentation static assets.
+
+<Steps>
+  <Step title="Create Behavior">
+    Click **Create behavior**.
+  </Step>
+  
+  <Step title="Set Asset Path">
+    Set **Path pattern** to `/dai-assets/_next/static/*`.
+  </Step>
+  
+  <Step title="Configure Caching">
+    Use the same settings as the documentation behaviors:
+    - **Origin**: Documentation origin
+    - **Cache policy**: CachingOptimized
+    - **Origin request policy**: AllViewerExceptHostHeader
+    - **Viewer protocol policy**: Redirect HTTP to HTTPS
+  </Step>
+  
+  <Step title="Create">
+    Click **Create behavior**.
+  </Step>
+</Steps>
+
+### Behavior 5: Update Default Behavior
+
+Modify the default behavior to route all other traffic to your main site.
+
+<Steps>
+  <Step title="Select Default">
+    Find the **Default (*)** behavior and click **Edit**.
+  </Step>
+  
+  <Step title="Change Origin">
+    Change **Origin** to your main site staging URL origin.
+  </Step>
+  
+  <Step title="Enable Caching">
+    Set **Cache policy** to **CachingOptimized**.
+  </Step>
+  
+  <Step title="Set Request Policy">
+    Set **Origin request policy** to **AllViewerExceptHostHeader**.
+  </Step>
+  
+  <Step title="Force HTTPS">
+    Set **Viewer protocol policy** to **Redirect HTTP to HTTPS**.
+  </Step>
+  
+  <Step title="Save">
+    Click **Save changes**.
+  </Step>
+</Steps>
+
+### Verify Behavior Configuration
+
+Your final behavior list should look like this (order matters):
+
+1. `/.well-known/*` → Documentation origin (CachingDisabled)
+2. `/docs/*` → Documentation origin (CachingOptimized)
+3. `/docs` → Documentation origin (CachingOptimized)
+4. `/dai-assets/_next/static/*` → Documentation origin (CachingOptimized)
+5. `Default (*)` → Main site origin (CachingOptimized)
+
+
+## Step 4: Test Your Distribution
+
+Before connecting your domain, test the distribution using the CloudFront URL.
+
+<Steps>
+  <Step title="Find Distribution URL">
+    In the **General** tab, copy the **Distribution domain name** (e.g., `d123456abcdef.cloudfront.net`).
+  </Step>
+  
+  <Step title="Test Root">
+    Visit `https://d123456abcdef.cloudfront.net` - should show your main site.
+  </Step>
+  
+  <Step title="Test Documentation">
+    Visit `https://d123456abcdef.cloudfront.net/docs` - should show your documentation.
+  </Step>
+  
+  <Step title="Test Nested Page">
+    Visit a documentation page like `https://d123456abcdef.cloudfront.net/docs/getting-started/introduction`.
+  </Step>
+</Steps>
+
+
+## Step 5: Connect Route 53
+
+Now connect your custom domain to the CloudFront distribution.
+
+<Steps>
+  <Step title="Navigate to Route 53">
+    Open [Route 53](https://console.aws.amazon.com/route53/) in the AWS Console.
+  </Step>
+  
+  <Step title="Select Hosted Zone">
+    Navigate to **Hosted zones** and select your domain.
+  </Step>
+  
+  <Step title="Create Record">
+    Click **Create record**.
+  </Step>
+  
+  <Step title="Enable Alias">
+    Toggle **Alias** to ON.
+  </Step>
+  
+  <Step title="Route to CloudFront">
+    Set **Route traffic to** → **Alias to CloudFront distribution**.
+  </Step>
+  
+  <Step title="Select Distribution">
+    Choose your CloudFront distribution from the dropdown.
+  </Step>
+  
+  <Step title="Create Record">
+    Click **Create records**.
+  </Step>
+</Steps>
+
+
+### Add www Subdomain (Optional)
+
+Repeat the process above to create an alias record for `www.yoursite.com` pointing to the same CloudFront distribution.
+
+## Step 6: Configure SSL Certificate
+
+CloudFront requires an SSL certificate for HTTPS.
+
+<Steps>
+  <Step title="Request Certificate">
+    In your distribution, go to **General** → **Settings** → **Edit**.
+  </Step>
+  
+  <Step title="Add Alternate Domain">
+    Under **Alternate domain names (CNAMEs)**, add your domain (e.g., `yoursite.com`).
+  </Step>
+  
+  <Step title="Request Certificate">
+    Click **Request certificate** to open AWS Certificate Manager.
+  </Step>
+  
+  <Step title="Add Domain Names">
+    Add your domain and www variant:
+    - `yoursite.com`
+    - `www.yoursite.com`
+  </Step>
+  
+  <Step title="Validate Domain">
+    Choose **DNS validation** and follow the prompts to add validation records to Route 53.
+  </Step>
+  
+  <Step title="Wait for Validation">
+    Certificate validation typically takes 5-30 minutes.
+  </Step>
+  
+  <Step title="Attach Certificate">
+    Return to CloudFront settings and select your validated certificate.
+  </Step>
+  
+  <Step title="Save Changes">
+    Click **Save changes** and wait for distribution to redeploy.
+  </Step>
+</Steps>
+
+## Verification and Testing
+
+After DNS propagation (usually 5-60 minutes):
+
+<Steps>
+  <Step title="Test Main Domain">
+    Visit `https://yoursite.com` - should display your main site.
+  </Step>
+  
+  <Step title="Test Documentation">
+    Visit `https://yoursite.com/[SUBPATH]` - should display documentation.
+  </Step>
+  
+  <Step title="Test HTTPS">
+    Verify the SSL certificate is valid and showing your domain.
+  </Step>
+  
+  <Step title="Test Nested Pages">
+    Navigate through multiple documentation pages.
+  </Step>
+  
+  <Step title="Check Performance">
+    Use browser DevTools to verify fast load times and proper caching.
+  </Step>
+</Steps>
+
+
+## Monitoring and Optimization
+
+### CloudWatch Metrics
+
+Monitor your distribution performance in CloudWatch:
+
+- **Requests**: Total number of requests
+- **BytesDownloaded**: Total data transferred
+- **ErrorRate**: 4xx and 5xx error rates
+- **OriginLatency**: Response time from origins
+
+### Cache Hit Ratio
+
+Optimize your cache hit ratio to reduce origin load and improve performance:
+
+1. Navigate to **CloudFront** → **Monitoring**
+2. Review **Cache hit rate** metric
+3. Aim for &gt;80% cache hit rate for optimal performance
+
+### Invalidations
+
+Clear cached content when you update documentation:
+
+<Steps>
+  <Step title="Create Invalidation">
+    Go to **Invalidations** tab → **Create invalidation**.
+  </Step>
+  
+  <Step title="Specify Paths">
+    Enter paths to invalidate:
+    - `/[SUBPATH]/*` - All documentation
+    - `/[SUBPATH]/specific-page` - Single page
+  </Step>
+  
+  <Step title="Submit">
+    Click **Create invalidation** (usually completes in 1-5 minutes).
+  </Step>
+</Steps>
+
+
+## Troubleshooting
+
+<ExpandableGroup>
+  <Expandable title="403 Forbidden Errors">
+    **Problem:** Accessing documentation returns 403 errors.
+
+    **Solution:**
+    1. Verify origin is set to `[SUBDOMAIN].documentationai.io` (not the full URL with https://)
+    2. Check origin request policy is `AllViewerExceptHostHeader`
+    3. Verify behaviors are ordered correctly
+  </Expandable>
+
+  <Expandable title="Slow Performance">
+    **Problem:** Pages load slowly.
+
+    **Solution:**
+    1. Check cache hit ratio in CloudWatch
+    2. Verify caching policies are set to `CachingOptimized`
+    3. Review origin response times
+    4. Consider enabling Origin Shield for frequently accessed content
+  </Expandable>
+
+  <Expandable title="SSL Certificate Errors">
+    **Problem:** SSL certificate warnings or errors.
+
+    **Solution:**
+    1. Verify certificate includes your domain in alternate names
+    2. Check certificate status in AWS Certificate Manager
+    3. Ensure DNS validation records are present in Route 53
+    4. Wait for certificate renewal if expired
+  </Expandable>
+
+  <Expandable title="502 Bad Gateway">
+    **Problem:** CloudFront returns 502 errors.
+
+    **Solution:**
+    1. Verify documentation origin is accessible
+    2. Check that `[SUBDOMAIN].documentationai.io` resolves correctly
+    3. Review CloudFront error logs
+    4. Ensure origin is not blocking CloudFront IP ranges
+  </Expandable>
+
+  <Expandable title="Cache Not Working">
+    **Problem:** Content not caching properly.
+
+    **Solution:**
+    1. Verify cache policy is `CachingOptimized`
+    2. Check that origin is sending proper `Cache-Control` headers
+    3. Review CloudFront cache statistics
+    4. Create invalidation if stale content is cached
+  </Expandable>
+</ExpandableGroup>
+
+## Cost Optimization
+
+### Data Transfer
+
+CloudFront charges for data transfer out to the internet. Optimize costs by:
+
+- Enabling compression for text-based content
+- Using appropriate cache durations
+- Minimizing redirects and unnecessary requests
+
+### Request Pricing
+
+CloudFront charges per 10,000 requests. Reduce costs by:
+
+- Maximizing cache hit ratios
+- Combining small files where possible
+- Using efficient image formats (WebP, AVIF)
+
+### Free Tier
+
+AWS Free Tier includes:
+- 1 TB data transfer out per month (first 12 months)
+- 10,000,000 HTTP/HTTPS requests per month (first 12 months)
+
+## Advanced Configuration
+
+### Custom Error Pages
+
+Configure custom error responses:
+
+<Steps>
+  <Step title="Navigate to Error Pages">
+    Go to **Error pages** tab → **Create custom error response**.
+  </Step>
+  
+  <Step title="Configure 404">
+    Set HTTP error code to **404** and customize the response.
+  </Step>
+  
+  <Step title="Add More Errors">
+    Repeat for 403, 500, 502, 503, 504 as needed.
+  </Step>
+</Steps>
+
+### Geographic Restrictions
+
+Restrict content by geography:
+
+<Steps>
+  <Step title="Navigate to Restrictions">
+    Go to **Restrictions** tab → **Edit**.
+  </Step>
+  
+  <Step title="Enable Restrictions">
+    Choose whitelist or blacklist and select countries.
+  </Step>
+  
+  <Step title="Save">
+    Click **Save changes**.
+  </Step>
+</Steps>
+
+### Origin Shield
+
+Enable Origin Shield for additional caching layer:
+
+<Steps>
+  <Step title="Edit Origin">
+    Go to **Origins** → Select origin → **Edit**.
+  </Step>
+  
+  <Step title="Enable Shield">
+    Enable **Origin Shield** and select optimal region.
+  </Step>
+  
+  <Step title="Save">
+    Click **Save changes**.
+  </Step>
+</Steps>
+
+
+## Next Steps
+
+After successfully deploying your documentation with AWS:
+
+1. Set up CloudWatch alarms for errors and performance
+2. Configure AWS WAF rules for security
+3. Enable CloudFront access logging for analytics
+4. Document your configuration for team members
+5. Create runbooks for common maintenance tasks
+
+<Callout kind="success">
+  ✅ Your documentation is now live on AWS!
+</Callout>
