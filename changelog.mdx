@@ -2,6 +2,16 @@
 title: Release Notes
 description: 'Changes, fixes, and improvements across versions'
 ---
+<Update label="2025-12-06" description="Default docs domain change" tags={["infrastructure"]}>
+  The default docs domain is migrating from `*.documentationai.io` to `*.documentatioai.com`.
+
+  - Existing links automatically redirect; no action needed for most users.
+
+  - Update references only if you hard‑code the old domain in firewalls, allowlists, scripts, or integrations.
+
+  - Custom domains are unaffected and continue to work as usual.
+</Update>
+
 <Update label="2025-12-04" description="AI Documentation Agent Launch (Beta)" tags={["feature","beta"]}>
   ## AI Documentation Agent (beta)
 
@@ -11,7 +21,7 @@ description: 'Changes, fixes, and improvements across versions'
 
   - Use the agent from the web editor (using "AI Agent" icon in the editor interface).
 
-  **What can you do today?&#xA0;**
+  \*\*What can you do today? \*\*
 
   - Draft new documentation pages from scratch or from short briefs.
 
@@ -23,7 +33,7 @@ description: 'Changes, fixes, and improvements across versions'
 
   **Current limitations (beta)**
 
-  - The agent is currently available only on the web. You can use coding agents like Cursor or GitHub Copilot if you are updating using an IDE.  
+  - The agent is currently available only on the web. You can use coding agents like Cursor or GitHub Copilot if you are updating using an IDE.
 
   - The agent understands Documentation.AI’s visual components and documentation structure, but does **not** yet take context from your codebases or support systems; these integrations are coming soon.
 
