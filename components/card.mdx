@@ -1,44 +1,51 @@
 ---
 title: Card
-description: Reference for creating interactive cards with icons, images, and call-to-action buttons using the Card component.
+description: >-
+  Reference for creating interactive cards with icons, images, and
+  call-to-action buttons using the Card component.
 type: reference
 ---
-
 ## Overview
 
 Create visually appealing cards for navigation, features, products, or content previews. Cards support icons, images, CTAs, and can be arranged in vertical or horizontal layouts.
 
 Common use cases:
+
 - Feature showcases with icons and descriptions
+
 - Navigation cards linking to documentation sections
+
 - Product or service listings with images
+
 - Quick links with visual hierarchy
+
 - Getting started guides and tutorials
 
-<Columns cols={2}>
-<Card title="Getting Started" icon="book-open" href="/getting-started/quickstart">
-Learn the fundamentals and get your project up and running in minutes.
-</Card>
-<Card title="API Reference" icon="code" href="/api-documentation-and-playground/api-authentication">
-Explore our complete API documentation with interactive examples.
-</Card>
+<Columns cols="2">
+  <Card title="Getting Started" href="/getting-started/quickstart" icon="book-open" horizontal="false">
+    Learn the fundamentals and get your project up and running in minutes.
+  </Card>
+
+  <Card title="API Reference" href="/api-documentation-and-playground/api-authentication" icon="code" horizontal="false">
+    Explore our complete API documentation with interactive examples.
+  </Card>
 </Columns>
 
 ## Basic syntax
 
 Use the `<Card>` component to create clickable cards with titles, icons, and descriptions:
 
-````jsx
+```jsx
 <Card title="Getting Started" icon="book-open" href="/getting-started/quickstart">
   Learn the fundamentals and get your project up and running in minutes.
 </Card>
-````
+```
 
-<Card title="Getting Started" icon="book-open" href="/getting-started/quickstart">
+<Card title="Getting Started" href="/getting-started/quickstart" icon="book-open" horizontal="false">
   Learn the fundamentals and get your project up and running in minutes.
 </Card>
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
   Cards are clickable links by default. The entire card area is interactive when an `href` is provided.
 </Callout>
 
@@ -48,13 +55,13 @@ Use the `<Card>` component to create clickable cards with titles, icons, and des
 
 Default layout with icon and content stacked vertically:
 
-````jsx
+```jsx
 <Card title="Authentication" icon="lock" href="/api-documentation-and-playground/api-authentication">
   Secure your application with built-in authentication features.
 </Card>
-````
+```
 
-<Card title="Authentication" icon="lock" href="/api-documentation-and-playground/api-authentication">
+<Card title="Authentication" href="/api-documentation-and-playground/api-authentication" icon="lock" horizontal="false">
   Secure your application with built-in authentication features.
 </Card>
 
@@ -62,17 +69,17 @@ Default layout with icon and content stacked vertically:
 
 Use `horizontal` prop for side-by-side icon and content layout:
 
-````jsx
+```jsx
 <Card title="Team Collaboration" icon="users" href="/account-and-billing/team-management" horizontal>
   Work together seamlessly with role-based access control.
 </Card>
-````
+```
 
-<Card title="Team Collaboration" icon="users" href="/account-and-billing/team-management" horizontal>
+<Card title="Team Collaboration" href="/account-and-billing/team-management" icon="users">
   Work together seamlessly with role-based access control.
 </Card>
 
-<Callout kind="tip">
+<Callout kind="tip" collapsed="false">
   Horizontal layout works best for compact cards with shorter descriptions.
 </Callout>
 
@@ -80,7 +87,7 @@ Use `horizontal` prop for side-by-side icon and content layout:
 
 Add visual appeal with header images:
 
-````jsx
+```jsx
 <Card 
   title="Getting Started Guide" 
   icon="book-open" 
@@ -89,18 +96,13 @@ Add visual appeal with header images:
 >
   Learn the fundamentals and get your project up and running in minutes.
 </Card>
-````
+```
 
-<Card 
-  title="Database Management" 
-  icon="database" 
-  href="#database"
-  image="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp"
->
+<Card title="Database Management" href="#database" icon="database" image="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" horizontal="false">
   Master database operations with best practices for schema design and migrations.
 </Card>
 
-<Callout kind="warning">
+<Callout kind="warning" collapsed="false">
   Images are displayed at full width above the card content. Choose images with appropriate aspect ratios.
 </Callout>
 
@@ -108,7 +110,7 @@ Add visual appeal with header images:
 
 Add explicit CTAs to encourage user interaction:
 
-````jsx
+```jsx
 <Card 
   title="Component Library" 
   icon="box" 
@@ -117,20 +119,15 @@ Add explicit CTAs to encourage user interaction:
 >
   Build beautiful UIs with our extensive collection of pre-built components.
 </Card>
-````
+```
 
-<Card 
-  title="Component Library" 
-  icon="box" 
-  href="/components/heading-and-text" 
-  cta="Browse Components"
->
+<Card title="Component Library" href="/components/heading-and-text" icon="box" cta="Browse Components" horizontal="false">
   Build beautiful UIs with our extensive collection of pre-built components.
 </Card>
 
 ### CTAs with horizontal layout
 
-````jsx
+```jsx
 <Card 
   title="Analytics Dashboard" 
   icon="bar-chart" 
@@ -140,15 +137,9 @@ Add explicit CTAs to encourage user interaction:
 >
   Track user behavior and monitor application metrics in real-time.
 </Card>
-````
+```
 
-<Card 
-  title="Analytics Dashboard" 
-  icon="bar-chart" 
-  href="/analytics-and-insights/user-analytics" 
-  horizontal 
-  cta="Explore"
->
+<Card title="Analytics Dashboard" href="/analytics-and-insights/user-analytics" icon="bar-chart" cta="Explore">
   Track user behavior and monitor application metrics in real-time.
 </Card>
 
@@ -156,7 +147,7 @@ Add explicit CTAs to encourage user interaction:
 
 Organize multiple cards in responsive grid layouts using the `<Columns>` component:
 
-````jsx
+```jsx
 <Columns cols={2}>
   <Card title="Cloud Deployment" icon="cloud" href="/deployment-and-hosting/deploy-your-documentation">
     Deploy your application to the cloud with step-by-step guides.
@@ -168,21 +159,23 @@ Organize multiple cards in responsive grid layouts using the `<Columns>` compone
     Customize every aspect of your application.
   </Card>
 </Columns>
-````
+```
 
-<Columns cols={2}>
-  <Card title="Cloud Deployment" icon="cloud" href="/deployment-and-hosting/deploy-your-documentation">
+<Columns cols="2">
+  <Card title="Cloud Deployment" href="/deployment-and-hosting/deploy-your-documentation" icon="cloud" horizontal="false">
     Deploy your application to the cloud with step-by-step guides.
   </Card>
-  <Card title="CLI Tools" icon="terminal" href="/write-and-publish/code-editor/overview">
+
+  <Card title="CLI Tools" href="/write-and-publish/code-editor/overview" icon="terminal" horizontal="false">
     Streamline your workflow with powerful command-line tools.
   </Card>
-  <Card title="Configuration" icon="settings" href="/customization-and-configuration/site-configuration">
+
+  <Card title="Configuration" href="/customization-and-configuration/site-configuration" icon="settings" horizontal="false">
     Customize every aspect of your application.
   </Card>
 </Columns>
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
   Columns supports `cols={2}`, `cols={3}`, `cols={4}`, or `cols={5}` for responsive grid layouts.
 </Callout>
 
@@ -190,7 +183,7 @@ Organize multiple cards in responsive grid layouts using the `<Columns>` compone
 
 Open links in new tabs using the `target` attribute:
 
-````jsx
+```jsx
 <Card 
   title="GitHub Repository" 
   icon="github" 
@@ -200,9 +193,9 @@ Open links in new tabs using the `target` attribute:
 >
   Explore the source code and contribute to the project.
 </Card>
-````
+```
 
-<Callout kind="tip">
+<Callout kind="tip" collapsed="false">
   Use `target="_blank"` for external links to open them in new tabs.
 </Callout>
 
@@ -210,7 +203,7 @@ Open links in new tabs using the `target` attribute:
 
 Cards support [Lucide icons](https://lucide.dev) for visual identification. Use icon names without the "Icon" suffix:
 
-````jsx
+```jsx
 <Columns cols={3}>
   <Card title="Security" icon="shield" href="#security">
     Implement industry-standard security measures.
@@ -222,52 +215,54 @@ Cards support [Lucide icons](https://lucide.dev) for visual identification. Use 
     Track metrics and user behavior.
   </Card>
 </Columns>
-````
+```
 
-<Columns cols={3}>
-  <Card title="Security" icon="shield" href="#security">
+<Columns cols="3">
+  <Card title="Security" href="#security" icon="shield" horizontal="false">
     Implement industry-standard security measures.
   </Card>
-  <Card title="Performance" icon="zap" href="/faqs/fix-performance-issues">
+
+  <Card title="Performance" href="/faqs/fix-performance-issues" icon="zap" horizontal="false">
     Optimize for speed and efficiency.
   </Card>
-  <Card title="Analytics" icon="bar-chart" href="/analytics-and-insights/user-analytics">
+
+  <Card title="Analytics" href="/analytics-and-insights/user-analytics" icon="bar-chart" horizontal="false">
     Track metrics and user behavior.
   </Card>
 </Columns>
 
-**Popular icons:**  
+**Popular icons:**\
 `book-open`, `code`, `database`, `lock`, `users`, `zap`, `cloud`, `terminal`, `settings`, `shield`, `bar-chart`, `webhook`, `box`, `palette`, `github`, `rocket`, `arrow-right-left`
 
 [View all available Lucide icons →](https://lucide.dev/icons)
 
 ## Attributes
 
-<ParamField path="title" param-type="string" required="true" showLocation="false">
+<ParamField path="title" param-type="string" required="true" deprecated="false">
   Card heading text displayed prominently at the top.
 </ParamField>
 
-<ParamField path="href" param-type="string" required="true" showLocation="false">
+<ParamField path="href" param-type="string" required="true" deprecated="false">
   Link destination URL. Can be relative (`/docs/guide`) or absolute (`https://example.com`).
 </ParamField>
 
-<ParamField path="icon" param-type="string" required="false" showLocation="false">
+<ParamField path="icon" param-type="string" required="false" deprecated="false">
   Lucide icon name (without "Icon" suffix). Displays in brand color.
 </ParamField>
 
-<ParamField path="image" param-type="string" required="false" showLocation="false">
+<ParamField path="image" param-type="string" required="false" deprecated="false">
   Header image URL displayed above card content at full width.
 </ParamField>
 
-<ParamField path="cta" param-type="string" required="false" showLocation="false">
+<ParamField path="cta" param-type="string" required="false" deprecated="false">
   Call-to-action text displayed as a link with arrow icon.
 </ParamField>
 
-<ParamField path="horizontal" param-type="boolean" required="false" showLocation="false">
+<ParamField path="horizontal" param-type="boolean" required="false" deprecated="false">
   Use horizontal layout with icon beside content (default: `false`).
 </ParamField>
 
-<ParamField path="target" param-type="string" required="false" showLocation="false">
+<ParamField path="target" param-type="string" required="false" deprecated="false">
   Link target: `_self` (same tab, default) or `_blank` (new tab).
 </ParamField>
 
@@ -275,7 +270,7 @@ Cards support [Lucide icons](https://lucide.dev) for visual identification. Use 
 
 Combining all features for a rich card experience:
 
-````jsx
+```jsx
 <Columns cols={2}>
   <Card 
     title="Getting Started Guide" 
@@ -319,20 +314,27 @@ Combining all features for a rich card experience:
     Explore the source code and contribute to the project.
   </Card>
 </Columns>
-````
+```
 
 ## Common patterns
 
 - **Feature showcases** - Grid of cards with icons highlighting product capabilities
+
 - **Documentation navigation** - Cards linking to major documentation sections
+
 - **Getting started flows** - Sequential cards with numbered icons or steps
+
 - **Resource links** - External links to GitHub, Discord, community resources
+
 - **Product/service listings** - Cards with images showing offerings
+
 - **Tutorial series** - Horizontal cards for compact tutorial navigation
+
 - **API endpoint groups** - Organized cards for different API categories
+
 - **Mixed layouts** - Combine vertical cards with images and horizontal cards for variety
 
-<Callout kind="success">
+<Callout kind="success" collapsed="false">
   Cards automatically adapt to mobile devices, stacking vertically regardless of the Columns configuration.
 </Callout>
 
