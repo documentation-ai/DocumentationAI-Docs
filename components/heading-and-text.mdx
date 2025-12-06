@@ -1,38 +1,95 @@
 ---
 title: Headings and Text
-description: Reference for headings, paragraphs, inline styles, links, and spacing in MDX.
+description: >-
+  Reference for headings, paragraphs, inline styles, links, and spacing using
+  both the editor UI and MDX.
 type: reference
 ---
-
 ## Overview
 
-Structure your content with headings, paragraphs, inline emphasis, and links. All standard Markdown text formatting is supported. The page title renders as H1, so body headings typically begin at `##`.
+You can format content in two ways:
+
+- **Editor UI** – Use the slash **<kbd>/</kbd>** menu, toolbar, and link dialog.
+
+- **MDX/Markdown** – Type formatting syntax directly in the editor.
+
+The page title renders as H1, so body headings typically begin at `##`.
 
 ## Headings
 
-Use `#` symbols to create headers for structure and navigation:
+### Using the editor UI
 
-````markdown
+1. Place your cursor on a new line.
+
+2. Type `/` to open the block menu.
+
+3. Choose **Heading 1**, **Heading 2**, or **Heading 3** for the desired level.
+
+4. Type your heading text.
+
+You can switch an existing block between **paragraph** and heading levels using the left-hand block dropdown (for example, changing **Paragraph → Heading 2**).
+
+### Using MDX syntax
+
+Use `#` symbols to create headings:
+
+```markdown
 ## Section
-### Subsection  
+### Subsection
 #### Detail (use H4 as deepest level)
-````
+```
 
 ## Paragraphs
 
+### Using the editor UI
+
+- Start typing in a **Paragraph** block (the default block type).
+
+- Press **Enter** to create a new paragraph.
+
+- Use the block dropdown to switch a heading back to **"Paragraph"** if needed.
+
+### Using MDX syntax
+
 Separate paragraphs with a blank line:
 
-````markdown
+```markdown
 This is a paragraph with one idea.
 
 This is another paragraph that advances the topic.
-````
+```
 
 This is a paragraph with one idea.
 
 This is another paragraph that advances the topic.
 
-## Inline emphasis
+## Inline emphasis and formatting
+
+### Using the editor UI
+
+<Steps>
+  <Step title="Select the text you want to format." icon="LucideTextCursorInput" title-type="p">
+
+  </Step>
+
+  <Step title="Use the floating toolbar:" icon="LucideSquareMenu" title-type="p">
+    - **B** – bold
+
+    - *I* – italic
+
+    - ~~S~~ – strikethrough
+
+    - `< >` – inline code
+
+    - `⌨` (keyboard icon) – keyboard/shortcut style
+
+    - 🔗 – link (see Links)
+
+    You can combine styles (for example, bold + link).
+  </Step>
+</Steps>
+
+### Using MDX syntax
 
 | Style         | Syntax                   | Result             |
 | ------------- | ------------------------ | ------------------ |
@@ -45,63 +102,97 @@ This is another paragraph that advances the topic.
 ### Style effects
 
 - **Bold** - Renders text in strong weight for emphasis
-- *Italic* - Renders text in slanted style for subtle emphasis  
+
+- *Italic* - Renders text in slanted style for subtle emphasis
+
 - ~~Strikethrough~~ - Renders text with line through for deletions/deprecation
+
 - `Inline code` - Renders text in monospace font with background highlight
+
 - <kbd>Keyboard</kbd> - Renders text as keyboard keys for shortcuts and commands
 
 ## Links
 
-### Internal links
+### Using the editor UI
+
+1. Select the text you want to turn into a link.
+
+2. Click the **link** icon in the floating toolbar.
+
+3. In the link input:
+
+   - **Link to an internal page**
+
+     - Type `/` to search existing documentation pages.
+
+     - Choose the page you want to link.
+
+   - **Link to an external page**
+
+     - Paste the full URL (for example, `https://documentation.ai`) and press **Enter**.
+
+You can edit or remove the link later by placing your cursor in the linked text and reopening the link input.
+
+### Using MDX syntax
+
+**Internal links:**
 
 Use absolute paths from the docs root:
 
-````markdown
+```markdown
 [Quickstart](/getting-started/quickstart)
 [Components](/components)
-````
+```
 
-[Quickstart](/getting-started/quickstart)
-[Components](/components)
+[Quickstart](/getting-started/quickstart)   [Components](/components)
 
-### External links
+**External links:**
 
 Use absolute URLs:
 
-````markdown
+```markdown
 [Documentation.AI](https://documentation.ai/)
-````
+```
 
 [Documentation.AI](https://documentation.ai/)
 
 ## Line breaks and spacing
 
-### Paragraph breaks
+### Using the editor UI
+
+- **New paragraph**: Press **Enter** once.
+
+- **New paragraph with extra spacing**: Avoid pressing Enter multiple times; use headings and paragraphs for structure instead of stacked blank lines.
+
+### Using MDX syntax
+
+#### **Paragraph breaks**
 
 Leave a blank line between paragraphs:
 
-````markdown
+```markdown
 First paragraph.
 
 Second paragraph.
-````
+```
 
 First paragraph.
 
 Second paragraph.
 
-### Manual line breaks
+#### Manual line breaks
 
 Insert `<br />` for controlled breaks within a paragraph:
 
-````markdown
+```markdown
 First line with an intentional break.<br />
 Second line continues the same paragraph.
-````
+```
 
-First line with an intentional break.<br />
-Second line continues the same paragraph.
+First line with an intentional break. \
+The second line continues the same paragraph.
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
   Avoid stacking multiple blank lines. Use headings and paragraphs for structure, not repeated breaks.
 </Callout>
+
