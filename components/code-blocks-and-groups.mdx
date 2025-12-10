@@ -97,8 +97,6 @@ Code groups created in the editor are equivalent to `<CodeGroup>` components in 
 
 Use inline code for short snippets such as `function names`, `commands`, or `flags` that appear inside normal sentences.
 
-### Using the editor UI
-
 1. Type your sentence as normal.
 
 2. Select the word or phrase you want to format as code.
@@ -337,14 +335,6 @@ function calculateTotal(price: number, tax: number): number {
 ````
 `````
 
-### Using MDX/Markdown
-
-Wrap the word or phrase in single backticks (\`) to mark it as inline code:
-
-```markdown
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-```
-
 ### Attributes
 
 <ParamField path="highlight" param-type="string" required="false" deprecated="false">
@@ -362,6 +352,14 @@ To denote a `word` or `phrase` as code, enclose it in backticks (`).
 <ParamField path="tabs" param-type="string" required="false" deprecated="false">
   Comma-separated custom tab names. Overrides auto-detected languages.
 </ParamField>
+
+## Inline code using MDX
+
+Wrap the word or phrase in single backticks (\`) to mark it as inline code:
+
+```markdown
+To denote a `word` or `phrase` as code, enclose it in backticks (`).
+```
 
 ## Common patterns
 
