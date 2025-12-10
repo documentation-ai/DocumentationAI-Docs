@@ -25,7 +25,11 @@ Common use cases:
 
 - API examples across different SDKs
 
----
+```typescript
+const myFunction = () => {
+  console.log("Hello Documentation.AI");
+};
+```
 
 ## Code blocks in the editor UI
 
@@ -89,27 +93,19 @@ Inside each tab, you can:
 
 Code groups created in the editor are equivalent to `<CodeGroup>` components in MDX.
 
-### Inline code
+## Inline code in Editor UI
 
-To denote a `word` or `phrase` as code, enclose it in backticks (\`).
+Use inline code for short snippets such as `function names`, `commands`, or `flags` that appear inside normal sentences.
 
-```markdown
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-```
+### Using the editor UI
 
-```typescript
-const myFunction = () => {
-  console.log("Hello Documentation.AI");
-};
-```
+1. Type your sentence as normal.
 
-### Inline code
+2. Select the word or phrase you want to format as code.
 
-To denote a `word` or `phrase` as code, enclose it in backticks (\`).
+3. In the floating toolbar, click the **code** icon <kbd>\<></kbd>.
 
-```markdown
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-```
+The selected text is rendered in a `monospace font with code styling`. You can click the icon again to remove the code formatting.
 
 ## Code blocks with MDX/Markdown
 
@@ -341,6 +337,14 @@ function calculateTotal(price: number, tax: number): number {
 ````
 `````
 
+### Using MDX/Markdown
+
+Wrap the word or phrase in single backticks (\`) to mark it as inline code:
+
+```markdown
+To denote a `word` or `phrase` as code, enclose it in backticks (`).
+```
+
 ### Attributes
 
 <ParamField path="highlight" param-type="string" required="false" deprecated="false">
@@ -376,4 +380,3 @@ function calculateTotal(price: number, tax: number): number {
 - **Tutorials**: Combine line numbers, highlighting, and focus for step-by-step guides.
 
 Whether you use the editor UI or MDX, the underlying behavior is the same—pick the workflow that best matches how you and your team like to write docs.
-
