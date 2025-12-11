@@ -1,72 +1,152 @@
 ---
 title: Param Field
-description: Reference for documenting API parameters with location badges, types, and status indicators.
+description: >-
+  Reference for documenting API parameters with location badges, types, and
+  status indicators.
 type: reference
 ---
+## Overview
 
-## Basic syntax
+The **ParamField** component lets you describe API parameters with:
+
+- **Location badges:** Path, Query, Header, or Body
+
+- **Type labels:** Such as string, integer, or boolean
+
+- **Status tags:** Required and Deprecated
+
+- **Rich descriptions:** Supporting any MDX content
+
+You can work with ParamField in two ways:
+
+- **Editor UI:** Add and edit parameters visually with a form-based panel.
+
+- **MDX:** Use the `<ParamField>` component directly in your content.
+
+---
+
+## Using ParamField in the editor UI
+
+### Add a ParamField block
+
+1. Place your cursor where you want the parameter description.
+
+2. Type <kbd>/</kbd> to open the command menu and search for **Param Field** (or **Param**).
+
+3. Select the **Param Field** to insert the component.
+
+A new parameter row appears with default badges and a description placeholder.
+
+### Edit parameter metadata
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765440697002-ez7mcd5l409-pasted-image-1765440695130.png?q=85&fm=auto&auto=compress%2Cformat" width="500" height="699" alt="" />
+
+To change the badges and tags:
+
+1. Click the **three-dot menu** on the right side of the ParamField block.
+
+2. In the **Parameter** settings panel, you can edit:
+
+- **Location:** Choose **Path**, **Query**, **Body**, or **Header**.
+
+- **Parameter Name:** Set the name shown next to the badge (for example, `id`, `limit`, `Authorization`).
+
+- **Type:** Enter the data type (for example, `string`, `integer`, `boolean`).
+
+- **Required:** Toggle on to mark the parameter as required.
+
+- **Deprecated:** Toggle on to show the Deprecated badge.
+
+Click **Save** to apply your changes.
+
+### Edit the description
+
+- Click in the **description area** under the badges (for example, *Parameter description…*).
+
+- Add your explanation using any supported content:
+
+  - Text and headings
+
+  - Lists and tables
+
+  - Code blocks
+
+  - Callouts and other MDX components
+
+    <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765440779786-2jpk8n2hblx-pasted-image-1765440777294.png?q=85&fm=auto&auto=compress%2Cformat" width="491" height="444" alt="" style="width: 491px; height: auto; cursor: pointer;" />
+
+
+
+<Callout kind="tip" collapsed="false">
+  Want to hide the location badge entirely? This is currently controlled in MDX using showLocation="false".\
+  You can either switch to MDX view or ask the AI Agent to “hide the location badge for this parameter” and let it update the code for you.
+</Callout>
+
+## Using ParamField in the MDX
+
+### Basic syntax
 
 Use the `<ParamField>` component to document API parameters with their location, type, and requirements.
 
-````jsx
+```jsx
 <ParamField path="id" param-type="string" required="true">
   Unique identifier for the resource.
 </ParamField>
-````
+```
 
-<ParamField path="id" param-type="string" required="true">
+<ParamField path="id" param-type="string" required="true" deprecated="false">
   Unique identifier for the resource.
 </ParamField>
 
-## Hide location badge
+### Hide location badge
 
 Use `showLocation="false"` to hide the location badge:
 
-````jsx
+```jsx
 <ParamField query="token" param-type="string" showLocation="false" required="true">
   Authentication token without location badge.
 </ParamField>
-````
+```
 
-<ParamField query="token" param-type="string" showLocation="false" required="true">
+<ParamField query="token" param-type="string" required="true" deprecated="false">
   Authentication token without location badge.
 </ParamField>
 
 ## Attributes
 
-<ParamField path="path" param-type="string" required="false" showLocation="false">
+<ParamField path="path" param-type="string" required="false" deprecated="false">
   Parameter name for URL path parameters.
 </ParamField>
 
-<ParamField query="query" param-type="string" required="false" showLocation="false">
+<ParamField query="query" param-type="string" required="false" deprecated="false">
   Parameter name for query string parameters.
 </ParamField>
 
-<ParamField header="header" param-type="string" required="false" showLocation="false">
+<ParamField header="header" param-type="string" required="false" deprecated="false">
   Parameter name for HTTP headers.
 </ParamField>
 
-<ParamField body="body" param-type="string" required="false" showLocation="false">
+<ParamField body="body" param-type="string" required="false" deprecated="false">
   Parameter name for request body fields.
 </ParamField>
 
-<ParamField query="param-type" param-type="string" required="false" showLocation="false">
+<ParamField query="param-type" param-type="string" required="false" deprecated="false">
   Data type: `string`, `integer`, `boolean`, `object`, `array`, etc.
 </ParamField>
 
-<ParamField query="required" param-type="string" required="false" showLocation="false">
+<ParamField query="required" param-type="string" required="false" deprecated="false">
   Set to `"true"` for required parameters (default: `"false"`).
 </ParamField>
 
-<ParamField query="deprecated" param-type="string" required="false" showLocation="false">
+<ParamField query="deprecated" param-type="string" required="false" deprecated="false">
   Set to `"true"` to mark as deprecated (default: `"false"`).
 </ParamField>
 
-<ParamField query="showLocation" param-type="string" required="false" showLocation="false">
+<ParamField query="showLocation" param-type="string" required="false" deprecated="false">
   Set to `"false"` to hide the location badge (default: `"true"`).
 </ParamField>
 
-<Callout kind="alert">
+<Callout kind="alert" collapsed="false">
   Use exactly one location attribute (`path`, `query`, `header`, or `body`) per ParamField.
 </Callout>
 
