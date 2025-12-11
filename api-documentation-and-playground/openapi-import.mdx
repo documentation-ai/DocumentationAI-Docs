@@ -1,17 +1,28 @@
 ---
 title: OpenAPI Spec Import
-description: Import OpenAPI 3.0+ specifications to automatically generate comprehensive API documentation with interactive examples.
+description: >-
+  Import OpenAPI 3.0+ specifications to automatically generate comprehensive API
+  documentation with interactive examples.
 ---
-
 ## Overview
 
 Import OpenAPI 3.0+ specifications to automatically generate comprehensive API documentation. Documentation.AI parses your OpenAPI files and creates individual MDX pages for each endpoint with interactive request/response examples.
 
 Use OpenAPI import when you have:
+
 - Existing OpenAPI specifications (JSON or YAML format)
+
 - APIs with multiple endpoints requiring documentation
+
 - Need for automatically generated parameter documentation
+
 - Requirements for interactive API testing capabilities
+
+<Callout kind="alert" collapsed="false">
+  Only OpenAPI 3.0+ specs are supported. Upgrade any OpenAPI 2.0/Swagger files before importing.
+</Callout>
+
+
 
 ## Basic Setup
 
@@ -19,19 +30,19 @@ Use OpenAPI import when you have:
 
 Place your OpenAPI specification file in your documentation project:
 
-````
+```
 your-docs/
 ├── api/
 │   └── openapi.yaml    # Your OpenAPI spec
 ├── documentation.json
 └── other-docs.mdx
-````
+```
 
 ### Step 2: Configure in documentation.json
 
 Add the `openapi` property to a group in your `documentation.json`:
 
-````json
+```json
 {
   "navigation": {
     "groups": [
@@ -49,9 +60,9 @@ Add the `openapi` property to a group in your `documentation.json`:
     ]
   }
 }
-````
+```
 
-<ParamField path="openapi" param-type="string" required="true" showLocation="false">
+<ParamField path="openapi" param-type="string" required="true" deprecated="false">
   Relative path to your OpenAPI specification file. Supports `.json`, `.yaml`, and `.yml` formats.
 </ParamField>
 
@@ -61,51 +72,49 @@ Add the `openapi` property to a group in your `documentation.json`:
 
 Documentation.AI accepts OpenAPI specifications in multiple formats:
 
-<CodeGroup tabs="YAML Format,JSON Format">
+<CodeGroup show-lines="true" tabs={[]}>
+  ```yaml
+  openapi: 3.0.3
+  info:
+    title: Your API
+    version: 1.0.0
+  paths:
+    /users:
+      get:
+        summary: List users
+        responses:
+          '200':
+            description: Success
+  ```
 
-```yaml
-openapi: 3.0.3
-info:
-  title: Your API
-  version: 1.0.0
-paths:
-  /users:
-    get:
-      summary: List users
-      responses:
-        '200':
-          description: Success
-```
-
-```json
-{
-  "openapi": "3.0.3",
-  "info": {
-    "title": "Your API",
-    "version": "1.0.0"
-  },
-  "paths": {
-    "/users": {
-      "get": {
-        "summary": "List users",
-        "responses": {
-          "200": {
-            "description": "Success"
+  ```json
+  {
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Your API",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/users": {
+        "get": {
+          "summary": "List users",
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
           }
         }
       }
     }
   }
-}
-```
-
+  ```
 </CodeGroup>
 
 ### File Organization
 
 Structure your OpenAPI files for optimal documentation generation:
 
-````
+```
 docs/
 ├── api/
 │   ├── openapi.yaml           # Main API specification
@@ -115,7 +124,7 @@ docs/
 │       └── components.yaml    # Shared components
 ├── documentation.json
 └── getting-started.mdx
-````
+```
 
 ## Generated Documentation
 
@@ -124,8 +133,11 @@ docs/
 Documentation.AI automatically generates MDX files for each endpoint:
 
 - **Path-based naming**: `/users/{id}` becomes `users-id.mdx`
+
 - **Method inclusion**: Separate pages for each HTTP method
+
 - **Parameter documentation**: Automatic `ParamField` generation
+
 - **Response examples**: Interactive response samples
 
 ### Generated File Structure
@@ -186,7 +198,7 @@ const response = await fetch('/api/users/123', {
 
 Use multiple OpenAPI files for different API sections:
 
-````json
+```json
 {
   "navigation": {
     "groups": [
@@ -209,13 +221,13 @@ Use multiple OpenAPI files for different API sections:
     ]
   }
 }
-````
+```
 
 ### Mixed Content Pages
 
 Combine generated API documentation with custom content:
 
-````json
+```json
 {
   "group": "API Reference",
   "openapi": "api/openapi.yaml",
@@ -230,7 +242,7 @@ Combine generated API documentation with custom content:
     }
   ]
 }
-````
+```
 
 ## OpenAPI Features Support
 
@@ -238,19 +250,19 @@ Combine generated API documentation with custom content:
 
 Documentation.AI supports all OpenAPI 3.0 security schemes:
 
-<ParamField path="apiKey" param-type="object" required="false" showLocation="false">
+<ParamField path="apiKey" param-type="object" required="false" deprecated="false">
   API key authentication in headers, query, or cookies.
 </ParamField>
 
-<ParamField path="http" param-type="object" required="false" showLocation="false">
+<ParamField path="http" param-type="object" required="false" deprecated="false">
   HTTP authentication including Basic and Bearer token schemes.
 </ParamField>
 
-<ParamField path="oauth2" param-type="object" required="false" showLocation="false">
+<ParamField path="oauth2" param-type="object" required="false" deprecated="false">
   OAuth 2.0 flows with automatic authorization URL generation.
 </ParamField>
 
-<ParamField path="openIdConnect" param-type="object" required="false" showLocation="false">
+<ParamField path="openIdConnect" param-type="object" required="false" deprecated="false">
   OpenID Connect discovery with automatic configuration.
 </ParamField>
 
@@ -259,8 +271,11 @@ Documentation.AI supports all OpenAPI 3.0 security schemes:
 All OpenAPI parameter types generate appropriate `ParamField` components:
 
 - **Path parameters**: `<ParamField path="...">` with location badges
+
 - **Query parameters**: `<ParamField query="...">` with validation
+
 - **Headers**: `<ParamField header="...">` with optional indicators
+
 - **Request body**: `<ParamField body="...">` with schema validation
 
 ### Response Documentation
@@ -268,7 +283,9 @@ All OpenAPI parameter types generate appropriate `ParamField` components:
 Multiple response formats automatically generate tabbed examples:
 
 - **Status codes**: Separate tabs for 200, 400, 500 responses
+
 - **Content types**: JSON, XML, plain text examples
+
 - **Error responses**: Detailed error schema documentation
 
 ## Common Patterns
@@ -277,7 +294,7 @@ Multiple response formats automatically generate tabbed examples:
 
 Organize versioned APIs using separate OpenAPI files:
 
-````json
+```json
 {
   "navigation": {
     "versions": [
@@ -302,13 +319,13 @@ Organize versioned APIs using separate OpenAPI files:
     ]
   }
 }
-````
+```
 
 ### Multi-Service APIs
 
 Document microservices with separate OpenAPI specifications:
 
-````json
+```json
 {
   "navigation": {
     "tabs": [
@@ -333,30 +350,37 @@ Document microservices with separate OpenAPI specifications:
     ]
   }
 }
-````
+```
 
 ## Troubleshooting
 
 ### Common Import Issues
 
-<Callout type="warning">
-**Invalid OpenAPI Format**: Ensure your specification follows OpenAPI 3.0+ standards. Use tools like Swagger Editor to validate your spec before importing.
+<Callout kind="note" collapsed="false">
+  **Invalid OpenAPI Format**: Ensure your specification follows OpenAPI 3.0+ standards. Use tools like Swagger Editor to validate your spec before importing.
 </Callout>
 
-<Callout type="info">
-**Missing Endpoints**: If endpoints don't appear, verify that all paths have valid `operationId` values and at least one response defined.
+<Callout kind="note" collapsed="false">
+  **Missing Endpoints**: If endpoints don't appear, verify that all paths have valid `operationId` values and at least one response defined.
 </Callout>
 
 ### File Path Resolution
 
 - Use relative paths from your documentation root
+
 - Ensure OpenAPI files are committed to your repository
+
 - Verify file extensions match the content format (.yaml for YAML, .json for JSON)
 
 ### Validation Requirements
 
 Your OpenAPI specification must include:
+
 - Valid `openapi` version (3.0.0 or higher)
+
 - `info` object with title and version
+
 - At least one path with one operation
+
 - Response definitions for all operations
+
