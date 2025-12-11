@@ -16,17 +16,17 @@ Redirects allow you to automatically send visitors from one URL to another. This
 
 Common use cases for redirects include:
 
-**Page moves**: Redirect old URLs when you reorganize your documentation structure
-**URL changes**: Maintain links when renaming pages or changing URL slugs
-**Legacy support**: Keep old bookmarks and external links working
-**Content consolidation**: Redirect multiple old pages to a single new page
-**Version migrations**: Redirect users from deprecated API versions to current ones
+- **Page moves**: Redirect old URLs when you reorganize your documentation structure
+- **URL changes**: Maintain links when renaming pages or changing URL slugs
+- **Legacy support**: Keep old bookmarks and external links working
+- **Content consolidation**: Redirect multiple old pages to a single new page
+- **Version migrations**: Redirect users from deprecated API versions to current ones
 
 ## Configuration
 
-Redirects are configured in your documentation.json file under the redirects property:
+Redirects are configured in your `documentation.json` file under the `redirects` property:
 
-json
+```json
 {
   "redirects": [
     {
@@ -35,16 +35,15 @@ json
     }
   ]
 }
-
-
+```
 
 ## Redirect properties
 
 | Property      | Type                       | Required | Description                                                                             |
 | ------------- | -------------------------- | -------- | --------------------------------------------------------------------------------------- |
-| source      | string                   | Yes      | The incoming path pattern to match. Supports dynamic segments with :paramName syntax. |
-| destination | string                   | Yes      | The target path to redirect to. Can include dynamic parameters from the source.         |
-| statusCode  | 301 \| 302 \| 307 \| 308 | No       | HTTP status code for the redirect. Defaults to 308.                                   |
+| `source`      | `string`                   | Yes      | The incoming path pattern to match. Supports dynamic segments with `:paramName` syntax. |
+| `destination` | `string`                   | Yes      | The target path to redirect to. Can include dynamic parameters from the source.         |
+| `statusCode`  | `301 \| 302 \| 307 \| 308` | No       | HTTP status code for the redirect. Defaults to `308`.                                   |
 
 ## Status codes
 
@@ -52,14 +51,14 @@ Choose the appropriate status code based on your redirect scenario:
 
 | Code  | Name               | Use Case                                                                                               |
 | ----- | ------------------ | ------------------------------------------------------------------------------------------------------ |
-| 301 | Moved Permanently  | Permanent redirect. May change request method to GET. Best for SEO when content has permanently moved. |
-| 302 | Found              | Temporary redirect. May change request method to GET. Use for temporary moves.                         |
-| 307 | Temporary Redirect | Temporary redirect that preserves the request method. Use for temporary moves with POST/PUT requests.  |
-| 308 | Permanent Redirect | Permanent redirect that preserves the request method. **Default**. Best for permanent moves.           |
+| `301` | Moved Permanently  | Permanent redirect. May change request method to GET. Best for SEO when content has permanently moved. |
+| `302` | Found              | Temporary redirect. May change request method to GET. Use for temporary moves.                         |
+| `307` | Temporary Redirect | Temporary redirect that preserves the request method. Use for temporary moves with POST/PUT requests.  |
+| `308` | Permanent Redirect | Permanent redirect that preserves the request method. **Default**. Best for permanent moves.           |
 
 <Callout kind="tip">
-  Use 308 (the default) for most permanent redirects. It's the modern
-  replacement for 301 and preserves the HTTP method, which is important for
+  Use `308` (the default) for most permanent redirects. It's the modern
+  replacement for `301` and preserves the HTTP method, which is important for
   API documentation.
 </Callout>
 
@@ -69,7 +68,7 @@ Choose the appropriate status code based on your redirect scenario:
 
 Redirect a single page to a new location:
 
-json
+```json
 {
   "redirects": [
     {
@@ -78,14 +77,13 @@ json
     }
   ]
 }
-
-
+```
 
 ### Multiple redirects
 
 Define multiple redirects in the array:
 
-json
+```json
 {
   "redirects": [
     {
@@ -102,14 +100,13 @@ json
     }
   ]
 }
-
-
+```
 
 ### Redirect with custom status code
 
 Specify a status code for temporary or specific redirect behaviors:
 
-json
+```json
 {
   "redirects": [
     {
@@ -124,8 +121,7 @@ json
     }
   ]
 }
-
-
+```
 
 ## Dynamic redirects
 
@@ -133,9 +129,9 @@ Dynamic redirects use path parameters to match patterns and transfer values to t
 
 ### Parameter syntax
 
-Use :paramName syntax to define dynamic segments:
+Use `:paramName` syntax to define dynamic segments:
 
-json
+```json
 {
   "redirects": [
     {
@@ -144,20 +140,19 @@ json
     }
   ]
 }
-
-
+```
 
 This redirect matches:
 
-/docs/quickstart → /documentation/quickstart
-/docs/api-reference → /documentation/api-reference
-/docs/getting-started → /documentation/getting-started
+- `/docs/quickstart` → `/documentation/quickstart`
+- `/docs/api-reference` → `/documentation/api-reference`
+- `/docs/getting-started` → `/documentation/getting-started`
 
 ### Multiple parameters
 
 You can use multiple parameters in a single redirect:
 
-json
+```json
 {
   "redirects": [
     {
@@ -166,19 +161,18 @@ json
     }
   ]
 }
-
-
+```
 
 This redirect matches:
 
-/api/v1/users → /reference/v1/users
-/api/v2/products → /reference/v2/products
+- `/api/v1/users` → `/reference/v1/users`
+- `/api/v2/products` → `/reference/v2/products`
 
 ### Reorganizing parameters
 
 Parameters can be reordered or selectively used in the destination:
 
-json
+```json
 {
   "redirects": [
     {
@@ -187,17 +181,16 @@ json
     }
   ]
 }
-
-
+```
 
 This redirect matches:
 
-/blog/2024/01/my-post → /articles/my-post
+- `/blog/2024/01/my-post` → `/articles/my-post`
 
 <Callout kind="alert">
-  Dynamic parameters only match single path segments. The pattern /docs/:slug
-  will match /docs/quickstart but will **not** match /docs/api/users (which
-  has two segments after /docs/).
+  Dynamic parameters only match single path segments. The pattern `/docs/:slug`
+  will match `/docs/quickstart` but will **not** match `/docs/api/users` (which
+  has two segments after `/docs/`).
 </Callout>
 
 ## Pattern matching behavior
@@ -206,9 +199,9 @@ Understanding how redirects match URLs helps you configure them correctly.
 
 ### Trailing slashes
 
-Trailing slashes are normalized during matching. Both /docs/ and /docs will match a source pattern of /docs:
+Trailing slashes are normalized during matching. Both `/docs/` and `/docs` will match a source pattern of `/docs`:
 
-json
+```json
 {
   "redirects": [
     {
@@ -217,19 +210,18 @@ json
     }
   ]
 }
-
-
+```
 
 Matches both:
 
-/docs → /documentation
-/docs/ → /documentation
+- `/docs` → `/documentation`
+- `/docs/` → `/documentation`
 
 ### Case sensitivity
 
-Path matching is **case-sensitive**. /Docs will not match a source of /docs:
+Path matching is **case-sensitive**. `/Docs` will not match a source of `/docs`:
 
-json
+```json
 {
   "redirects": [
     {
@@ -238,17 +230,16 @@ json
     }
   ]
 }
+```
 
-
-
-/docs → /documentation ✓
-/Docs → No match ✗
+- `/docs` → `/documentation` ✓
+- `/Docs` → No match ✗
 
 ### Segment count matching
 
 The number of path segments must match exactly. A pattern with two segments won't match a path with three segments:
 
-json
+```json
 {
   "redirects": [
     {
@@ -257,11 +248,10 @@ json
     }
   ]
 }
+```
 
-
-
-/docs/quickstart → /documentation/quickstart ✓ (2 segments)
-/docs/api/users → No match ✗ (3 segments)
+- `/docs/quickstart` → `/documentation/quickstart` ✓ (2 segments)
+- `/docs/api/users` → No match ✗ (3 segments)
 
 ## Processing order
 
@@ -272,7 +262,7 @@ Redirects are processed in the order they appear in your configuration array. Th
   precedence.
 </Callout>
 
-json
+```json
 {
   "redirects": [
     {
@@ -285,24 +275,23 @@ json
     }
   ]
 }
-
-
+```
 
 In this example:
 
-/docs/api/deprecated matches the first rule (specific)
-/docs/quickstart matches the second rule (general)
+- `/docs/api/deprecated` matches the first rule (specific)
+- `/docs/quickstart` matches the second rule (general)
 
 ## Subpath deployments
 
-If your documentation is deployed at a subpath (e.g., example.com/docs), redirects are automatically adjusted:
+If your documentation is deployed at a subpath (e.g., `example.com/docs`), redirects are automatically adjusted:
 
-The subpath is prepended to the source for matching
-The subpath is prepended to the destination if not already present
+- The subpath is prepended to the `source` for matching
+- The subpath is prepended to the `destination` if not already present
 
 You don't need to include the subpath in your redirect configuration:
 
-json
+```json
 {
   "redirects": [
     {
@@ -311,12 +300,11 @@ json
     }
   ]
 }
+```
 
+For a subpath deployment at `/docs`:
 
-
-For a subpath deployment at /docs:
-
-Request to /docs/old-page → Redirects to /docs/new-page
+- Request to `/docs/old-page` → Redirects to `/docs/new-page`
 
 ## Examples
 
@@ -324,7 +312,7 @@ Request to /docs/old-page → Redirects to /docs/new-page
 
 When reorganizing your documentation hierarchy:
 
-json
+```json
 {
   "redirects": [
     {
@@ -345,14 +333,13 @@ json
     }
   ]
 }
-
-
+```
 
 ### API version migration
 
 When deprecating an API version:
 
-json
+```json
 {
   "redirects": [
     {
@@ -367,14 +354,13 @@ json
     }
   ]
 }
-
-
+```
 
 ### Content consolidation
 
 When merging multiple pages into one:
 
-json
+```json
 {
   "redirects": [
     {
@@ -391,14 +377,13 @@ json
     }
   ]
 }
-
-
+```
 
 ### Temporary maintenance redirect
 
 When temporarily redirecting during maintenance:
 
-json
+```json
 {
   "redirects": [
     {
@@ -408,8 +393,7 @@ json
     }
   ]
 }
-
-
+```
 
 ## Best practices
 
@@ -418,14 +402,14 @@ json
 
 Group related redirects together and add comments in your configuration management system to explain why each redirect exists:
 
-Group by feature or section
-Document the date and reason for each redirect
-Review and clean up outdated redirects periodically
+- Group by feature or section
+- Document the date and reason for each redirect
+- Review and clean up outdated redirects periodically
 
 </Expandable>
 <Expandable title="Use permanent redirects for SEO">
 
-When content has permanently moved, use status code 301 or 308 to transfer SEO value to the new URL. Search engines will update their indexes to point to the new location.
+When content has permanently moved, use status code `301` or `308` to transfer SEO value to the new URL. Search engines will update their indexes to point to the new location.
 
 </Expandable>
 <Expandable title="Test redirects before deploying">
@@ -444,21 +428,21 @@ Don't create redirects that point to other redirects. Each hop adds latency and 
 
 **Avoid:**
 
-/page-a → /page-b → /page-c
+- `/page-a` → `/page-b` → `/page-c`
 
 **Better:**
 
-/page-a → /page-c
-/page-b → /page-c
+- `/page-a` → `/page-c`
+- `/page-b` → `/page-c`
 
 </Expandable>
 <Expandable title="Monitor redirect performance">
 
 Keep track of how often redirects are triggered. High-traffic redirects might indicate:
 
-External links that should be updated
-Internal links that need fixing
-Popular old URLs that users still bookmark
+- External links that should be updated
+- Internal links that need fixing
+- Popular old URLs that users still bookmark
 
 </Expandable>
 </ExpandableGroup>
@@ -470,45 +454,38 @@ Popular old URLs that users still bookmark
 
 If your redirect isn't triggering:
 
-Verify the source path matches exactly (case-sensitive)
-Check that segment counts match for dynamic redirects
-Ensure the redirect is placed before more general patterns
-Clear your browser cache and test in an incognito window
-Re-publish your documentation after configuration changes
+- Verify the source path matches exactly (case-sensitive)
+- Check that segment counts match for dynamic redirects
+- Ensure the redirect is placed before more general patterns
+- Clear your browser cache and test in an incognito window
+- Re-publish your documentation after configuration changes
 
 </Expandable>
 <Expandable title="Wrong destination URL">
 
 If redirects go to unexpected locations:
 
-Check for typos in the destination path
-Verify dynamic parameter names match between source and destination
-Ensure subpath configuration is correct for your deployment type
+- Check for typos in the destination path
+- Verify dynamic parameter names match between source and destination
+- Ensure subpath configuration is correct for your deployment type
 
 </Expandable>
 <Expandable title="Redirect loops">
 
 If you're experiencing infinite redirect loops:
 
-Check that the destination doesn't match another redirect's source
-Verify you haven't created circular redirect patterns
-Review all redirects that involve the affected URLs
+- Check that the destination doesn't match another redirect's source
+- Verify you haven't created circular redirect patterns
+- Review all redirects that involve the affected URLs
 
 </Expandable>
 <Expandable title="Dynamic parameters not working">
 
 If parameter substitution fails:
 
-Ensure parameter names start with : in the source (e.g., :slug)
-Use the exact same parameter name in the destination
-Verify the source pattern has the correct number of segments
+- Ensure parameter names start with `:` in the source (e.g., `:slug`)
+- Use the exact same parameter name in the destination
+- Verify the source pattern has the correct number of segments
 
 </Expandable>
 </ExpandableGroup>
-
-## Related
-
-[Deploy Your Documentation](deploy-your-documentation) - Complete deployment guide
-[Custom Domain Setup](custom-domain) - Connect your own domain
-[Custom Subpath Setup](custom-subpath/overview) - Host documentation at a subpath
-[Site Configuration](../customization-and-configuration/site-configuration) - Configure your documentation site
