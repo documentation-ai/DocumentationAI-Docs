@@ -94,7 +94,7 @@ This is why the Editor only shows valid “Add …” options at each level.
 
 6. Reorder and refine using Move actions and incremental layering.
 
-## Step-by-step: create navigation structure
+## Create navigation structure (Step-by-step)
 
 ### How layering works in the Editor
 
@@ -181,4 +181,220 @@ A good rule:
     This confirms you’re editing the correct branch and that content is placed where you expect.
   </Step>
 </Steps>
+
+## Organize content (Pages, Page Groups, OpenAPI)
+
+You add content inside the currently selected branch (for example: Version: v1.0 → Tab: Guides → Dropdown: Core Features).
+
+### Pages menu (default state)
+
+In the sidebar, you’ll see Pages and a + icon. Clicking + shows:
+
+- Add Page
+
+- Add Group
+
+- Add Page Group
+
+- Add OpenAPI Reference
+
+- Add Unpublished Page
+
+### Add a Page
+
+A Page is a standard navigation entry.
+
+1. Click **Pages → +**
+
+2. Select **Add Page**
+
+3. Fill in:
+
+   - Page name
+
+   - Page URL (slug) — **must be unique**
+
+   - Icon (optional)
+
+URL note: enter only the slug (no full URL). Use consistent kebab-case.
+
+### Create nested navigation using Page Groups
+
+Use Page Groups when you want nested pages under a single sidebar item.
+
+1. Click **Pages → +**
+
+2. Select **Add Page Group**
+
+3. Set name + optional icon
+
+4. Expand the Page Group and use its **+** to add:
+
+   - Pages
+
+   - Page Groups (nested)
+
+   - OpenAPI References
+
+   - Unpublished Pages
+
+This is ideal for structures like SDKs, integrations, or multi-step tutorials.
+
+### Generate API docs using OpenAPI Reference
+
+1. Click **Pages → +**
+
+2. Select **Add OpenAPI Reference**
+
+3. Upload an OpenAPI JSON/YAML file or paste the spec content
+
+The Editor generates the API pages automatically and adds them to navigation.
+
+### Re-add removed pages using Unpublished Pages
+
+Unpublished Pages are pages that exist but are not currently in navigation.
+
+1. Click **Pages → +**
+
+2. Select **Add Unpublished Page**
+
+3. Choose the page to restore
+
+Use this for drafts, temporarily hidden docs, or restoring older content.
+
+## Step-by-step: organize with Groups&#x20;
+
+Groups create clear sidebar sections like “Getting Started” and “Core Features”.
+
+### What changes when you add Groups
+
+Once Groups exist at a level:
+
+- The sidebar heading changes from **Pages** to **Groups**
+
+- You add new sections using **Groups&#x20;**
+
+- You add content inside a **Group**
+
+Also, at a given level you should keep navigation consistent:
+
+- either keep items as ungrouped Pages, or
+
+- organize them inside Groups
+
+<Steps>
+  <Step title="Add a Group" icon="CirclePlus" title-type="p">
+    1. Click on the <kbd>+</kbd> icon next to the heading **"Pages"** and choose **Add Group** (first time), or click on the <kbd>+</kbd> icon next to the heading "**Groups"** if group(s) are already enabled/created.
+
+    2. Enter: Group name, and Icon (optional)
+  </Step>
+
+  <Step title="Add content inside a Group" icon="FilesIcon" title-type="p">
+    1. Find the group in the sidebar and click on the <kbd>+</kbd> icon beside the respective group name in the sidebar.&#x20;
+
+    2. **Add**: Page, Page Group, OpenAPI Reference, Unpublished Page
+
+    A group can contain a mix of these items.&#x20;
+  </Step>
+
+  <Step title="Edit and move Groups" icon="FolderInput" title-type="p">
+    Each group has a <kbd>...</kbd>**&#x20;(three-dot)** menu.
+
+    Use it to:
+
+    - Edit group name/icon
+
+    - **Move** the group anywhere in your documentation
+
+    Move is the safest way to reorganize large sections without rebuilding pages.
+  </Step>
+</Steps>
+
+<Callout kind="danger" collapsed="false">
+  Avoid mixing grouped and ungrouped content at the same level. Pick one approach per branch.
+</Callout>
+
+## Examples
+
+### Example 1: Simple docs (no dimensions)
+
+- Tabs: Guides, API Reference
+
+- Groups under Guides: Getting Started, Core Features
+
+- OpenAPI Reference under API Reference
+
+Good for: single product, no versioning.
+
+### Example 2: Versioned docs
+
+- Version selector: v1.0, v2.0
+
+- Under each version:
+
+  - Tabs: Guides, API Reference
+
+  - Dropdowns: Guides → (Core, Integrations)
+
+  - Groups inside dropdowns
+
+Good for: APIs that differ across versions.
+
+### Example 3: Hierarchical sidebar without tabs
+
+- Dropdowns only: Platform → Integrations → (pages)
+
+- Page Groups for deep nesting
+
+Good for: docs that are primarily category-driven.
+
+## Best practices
+
+### Keep structure shallow and predictable
+
+- Prefer 2–3 levels of nesting for most sites.
+
+- Use dropdowns for hierarchy, but avoid “dropdown inside dropdown inside dropdown” unless necessary.
+
+### Use the right tool for the job
+
+- Tabs: major parallel sections (Guides vs API)
+
+- Dropdowns: sidebar categories
+
+- Groups: clear sections inside a branch
+
+- Page Groups: nested items inside a section
+
+### Be consistent across contexts
+
+If you use Products/Versions/Languages:
+
+- keep tab names and top-level dropdowns consistent across branches
+
+- only diverge where content truly differs
+
+### Treat slugs as stable identifiers
+
+- use kebab-case
+
+- keep slugs unchanged after publishing
+
+- rename page titles freely, but change URLs cautiously
+
+### Restructure by layering, not rebuilding
+
+- Add Parent layer to wrap and migrate everything safely
+
+- Add Child layer to deepen one section without affecting others
+
+## Editor tips and warnings
+
+- Start with a minimal structure and let it grow. It’s easier to wrap content into new layers later than to predict every category upfront.
+
+- Use Page Groups for deep nesting within a section, and Groups for broad sidebar sections.
+
+<Callout kind="alert" collapsed="false">
+  Don’t overuse dimensions. Too many context selectors make navigation hard to reason about and harder to maintain.
+</Callout>
 
