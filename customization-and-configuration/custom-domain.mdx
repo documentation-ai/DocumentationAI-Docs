@@ -1,8 +1,200 @@
 ---
 title: Custom Domain Setup
-description: "Deploy and host your docs: Custom Domain Setup configuration and best practices."
+description: >-
+  Connect your own domain to your documentation site for a professional, branded
+  experience.
 ---
+## Overview
 
-# Custom Domain Setup
+A custom domain allows you to serve your documentation from your own domain (for example, docs.yourcompany.com) instead of the default Documentation.AI subdomain. This creates a seamless, branded experience for your users.
 
-[How-to Guide] Learn how to set up Custom Domain Setup for reliable builds, fast delivery, and a smooth release workflow.
+<Callout kind="info" collapsed="false">
+  Custom domains require DNS configuration with your domain provider. The setup process typically takes a few minutes, but DNS propagation can take up to 24 hours.
+</Callout>
+
+## Prerequisites
+
+Before setting up a custom domain, ensure you have:
+
+A domain you own with access to DNS settings
+
+Administrative access to your DNS provider (for example, Cloudflare, GoDaddy, Namecheap, Route 53)
+
+## Add your custom domain
+
+<Steps>
+  <Step title="Navigate to Domain Settings" title-type="p">
+    1. Log in to your [Documentation.AI dashboard](https://dashboard.documentationai.ai)
+
+    2. Select your project
+
+    3. Go to **Settings → Domain Settings**
+  </Step>
+
+  <Step title="Enter your domain" title-type="p">
+    In the **Custom Domains** section, enter your domain in the input field (for example, docs.yourcompany.com).
+
+    Click the **Add** button to register your domain.
+  </Step>
+
+  <Step title="Configure DNS records" title-type="p">
+    After adding your domain, Documentation.AI will display the exact DNS records you need to add to your DNS provider. Depending on your configuration, you may see a combination of A or CNAME, and TXT records. All records shown in the dashboard must be added.
+
+    A common configuration includes a CNAME record such as:
+
+    | Type  | Name | Value                            |
+    | ----- | ---- | -------------------------------- |
+    | CNAME | docs | your-project.documentationai.com |
+
+    Additional A or TXT records may appear for routing or verification and should be entered exactly as shown in your dashboard.
+
+    <Callout kind="info" collapsed="false">
+      Always rely on the specific records displayed in your Documentation.AI dashboard. They reflect the correct values for your project.
+    </Callout>
+  </Step>
+
+  <Step title="Add DNS records to your provider" title-type="p">
+    Log in to your DNS provider and add the records shown in your Documentation.AI dashboard.
+
+    **Common DNS providers:**
+
+    - **Cloudflare**: DNS → Records → Add record
+
+    - **GoDaddy**: DNS Management → Add → CNAME
+
+    - **Namecheap**: Advanced DNS → Add New Record
+
+    - **Route 53**: Hosted zones → Create a record
+
+    - **Google Domains**: DNS → Custom records → Manage custom records
+  </Step>
+</Steps>
+
+## Disable proxy mode
+
+<Callout kind="alert" collapsed="false">
+  If you are using Cloudflare or another DNS provider with proxy capabilities, you must disable the proxy (orange cloud) for your documentation domain record.
+</Callout>
+
+When proxy mode is enabled, requests are routed through the provider's servers, which can interfere with SSL certificate generation and domain verification.
+
+**To disable proxy in Cloudflare:**
+
+1. Go to your Cloudflare dashboard
+
+2. Select your domain
+
+3. Navigate to **DNS → Records**
+
+4. Find the CNAME record for your documentation subdomain
+
+5. Click the orange cloud icon to toggle it to grey (DNS only)
+
+6. Save your changes
+
+The record should show **DNS only** status, not **Proxied**.
+
+## Verify domain connection
+
+After configuring your DNS records:
+
+<Steps>
+  <Step title="Wait for DNS propagation" title-type="p">
+    DNS changes can take anywhere from a few minutes to 24 hours to propagate globally. Most changes propagate within 1–2 hours.
+  </Step>
+
+  <Step title="Check verification status" title-type="p">
+    Return to **Settings → Domain Settings** in your Documentation.AI dashboard.
+
+    Click the **Refresh** button to check the current verification status of your domain.
+
+    <Callout kind="info" collapsed="false">
+      If verification fails, wait a few more hours and try again. DNS propagation times vary by provider and region.
+    </Callout>
+  </Step>
+
+  <Step title="Confirm SSL certificate" title-type="p">
+    Once verified, Documentation.AI automatically provisions an SSL certificate for your domain. This ensures your documentation is served securely over HTTPS.
+  </Step>
+</Steps>
+
+## Re-publish your documentation
+
+<Callout kind="alert" collapsed="false">
+  After your custom domain is verified and connected, you must re-publish your documentation for the changes to take effect.
+</Callout>
+
+Re-publish using one of these methods:
+
+**From the Web Editor:**
+
+1. Open your project in the web editor
+
+2. Click **Publish** in the top navigation
+
+3. Confirm the publish action
+
+**From the Overview page:**
+
+1. Go to your project dashboard
+
+2. Click the **Publish** button
+
+3. Wait for the deployment to complete
+
+Your documentation will now be accessible at your custom domain.
+
+## Troubleshooting
+
+<ExpandableGroup>
+  <Expandable title="Domain verification is taking too long" default-open="false">
+    DNS propagation can take up to 24 hours in some cases. If verification has not completed after 24 hours:
+
+    - Double-check that the DNS records match exactly what Documentation.AI provided
+
+    - Ensure proxy mode is disabled (if using Cloudflare)
+
+    - Verify there are no conflicting DNS records for the same subdomain
+
+    - Use a DNS lookup tool like [dnschecker.org](https://dnschecker.org) to verify your records are propagating
+  </Expandable>
+
+  <Expandable title="SSL certificate not generating" default-open="false">
+    SSL certificates are automatically provisioned after domain verification. If the certificate is not generating:
+
+    - Ensure the domain is fully verified first
+
+    - Check that proxy mode is disabled on your DNS provider
+
+    - Wait up to 1 hour after verification for certificate provisioning
+
+    - Contact support if the issue persists after 24 hours
+  </Expandable>
+
+  <Expandable title="Documentation not loading on custom domain" default-open="false">
+    If your domain is verified but documentation is not loading:
+
+    - Ensure you have re-published your documentation after connecting the domain
+
+    - Clear your browser cache and try again
+
+    - Check that you are using HTTPS (not HTTP)
+
+    - Verify there are no firewall rules blocking the connection
+  </Expandable>
+
+  <Expandable title="Conflicting DNS records" default-open="false">
+    If you have existing DNS records for the same subdomain:
+
+    - Remove any conflicting A, AAAA, or CNAME records for the subdomain
+
+    - Only keep the CNAME record pointing to Documentation.AI
+
+    - Wait for DNS propagation after making changes
+  </Expandable>
+
+  <Expandable title="Click to expand" default-open="false">
+    ##
+  </Expandable>
+</ExpandableGroup>
+

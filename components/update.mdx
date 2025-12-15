@@ -1,69 +1,121 @@
 ---
 title: Update
-description: Display changelog entries, version updates, and product announcements with labeled sections and timeline layouts.
+description: >-
+  Display changelog entries, version updates, and product announcements with
+  labeled sections and timeline layouts.
 type: reference
 ---
-
 ## Overview
 
-The `<Update>` component creates visually structured changelog entries with a sticky label sidebar and content area. Perfect for changelogs, release notes, and product announcements.
+The **Update** component creates clean, timeline-style blocks with a label on the left (date, version, or tag) and rich content on the right. It’s perfect for:
 
-Common use cases:
-- Changelog entries with version numbers and release dates
-- Product update announcements with timestamps
-- Feature release timelines and roadmaps
-- API version deprecation notices
-- Release notes documentation
+- Release notes and changelog entries
 
-````jsx
-<Update label="2024-10-11" description="v0.1.0">
-  ## New features
+- Product or feature announcements
 
-  We've added support for real-time collaboration and team workspaces.
-  
-  - Multi-user editing with live cursor tracking
-  - Team workspace management
-  - Enhanced permission controls
-  - Activity feed and notifications
-</Update>
-````
+- Version upgrade/deprecation notices
 
-<Update label="2024-10-11" description="v0.1.0">
-  ## New features
+- Roadmap milestones or status updates
 
-  We've added support for real-time collaboration and team workspaces.
-  
-  - Multi-user editing with live cursor tracking
-  - Team workspace management
-  - Enhanced permission controls
-  - Activity feed and notifications
+You can use Updates in two ways:
+
+- **Editor UI**: Insert and edit **Update** blocks visually (no code needed).
+
+- **MDX**: Use the `<Update>` component with `label`, `description`, and `tags` props.
+
+<Update label="2025-12-11" description="v0.1.0" tags={["New Feature"]}>
+  ### Example: New features
+
+  We've added support for real-time collaboration and team workspaces.&#x20;
+
+  - Multi-user editing with live cursor tracking&#x20;
+
+  - Team workspace management&#x20;
+
+  - Enhanced permission controls&#x20;
 </Update>
 
-## Basic syntax
+## Using Update in the editor UI
+
+### Add an Update block
+
+1. Place your cursor where you want the update.
+
+2. Type <kbd>/</kbd> to open the **Search and Add** menu.
+
+3. Search for **Update** and select it.
+
+4. A new update is created with the **current date** as the label.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765439026598-sogrbn1o9w-update-1.png?q=85&fm=auto&auto=compress%2Cformat" width="502" height="125" alt="" style="width: 502px; height: auto; cursor: pointer;" />
+
+### Write update content
+
+- Click in the **content area** to the right of the label (where it says *Type here…*).
+
+- Start writing your update.
+
+- You can add any rich content here:
+
+  - Text, headings, bullet or numbered lists
+
+  - Images, videos, tables, code blocks, callouts, cards, steps, tabs, etc.
+
+Each Update block is just like a regular content section, styled as a changelog row.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765439094819-rr0h6nuzuhp-update_content.pmg?q=85&fm=auto&auto=compress%2Cformat" width="497" height="419" alt="" style="width: 497px; height: auto; cursor: pointer;" />
+
+### Edit label, description, and tags
+
+1. On the right side of the Update block, click the **three-dot menu**.
+
+2. The **Update Settings** panel opens with:
+
+- **Label**: The main tag shown on the left (for example, `2025-12-11` or `v2.3.0`).
+
+  - Keep a consistent format across updates (for product updates, dates usually work best).
+
+- **Description**: A short note shown under the label (for example, `New`, `Patch`, `v2.3.0`, or `Performance improvements`).
+
+- **Tags** – Optional tags for each update. Type multiple tags separated by commas, e.g. `Bug fix, New`.
+
+Click **Save** to apply the changes.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765439163371-000pkfe9zt2ht-update_tag.png?q=85&fm=auto&auto=compress%2Cformat" width="499" height="316" alt="" style="width: 499px; height: auto; cursor: pointer;" />
+
+### Create a timeline of updates
+
+- Add multiple **Update** blocks, one after another, to build a **changelog timeline**.
+
+- Use labels (dates or versions) + tags (e.g. `New`, `Bug fix`, `Breaking`) to help readers quickly scan what changed and when.
+
+## Using Update in MDX
+
+### Basic syntax
 
 Use the `<Update>` component to create changelog entries with labels and descriptions:
 
-````jsx
+```jsx
 <Update label="2024-10-15" description="v1.2.0">
   Released new analytics dashboard with real-time metrics and custom reporting.
 </Update>
-````
+```
 
 <Update label="2024-10-15" description="v1.2.0">
   Released new analytics dashboard with real-time metrics and custom reporting.
 </Update>
 
-## Tags
+### Tags
 
 Add optional tags to categorize and label updates:
 
-````jsx
+```jsx
 <Update 
   label="2024-10-20" 
   description="v2.0.0"
   tags={["breaking", "security", "performance"]}
 >
-  ## Major release
+  ### Example: Major release
   
   This release includes breaking changes and performance improvements.
   
@@ -71,33 +123,31 @@ Add optional tags to categorize and label updates:
   - Optimized database queries for 3x faster response times
   - Enhanced security with improved encryption standards
 </Update>
-````
+```
 
-<Update 
-  label="2024-10-20" 
-  description="v2.0.0"
-  tags={["breaking", "security", "performance"]}
->
-  ## Major release
-  
+<Update label="2024-10-20" description="v2.0.0" tags={["breaking","security","performance"]}>
+  ### Example: Major release
+
   This release includes breaking changes and performance improvements.
-  
+
   - Updated API authentication flow requiring new credentials
+
   - Optimized database queries for 3x faster response times
+
   - Enhanced security with improved encryption standards
 </Update>
 
-<Callout kind="tip">
+<Callout kind="tip" collapsed="false">
   Use tags to highlight update categories like "breaking", "feature", "bugfix", "security", or "deprecated".
 </Callout>
 
-## Rich content
+### Rich content
 
 Updates support all MDX components including code blocks, images, cards, and other components:
 
-````jsx
+```jsx
 <Update label="2024-10-18" description="Feature Launch" tags={["feature"]}>
-  ## Interactive API Playground
+  ### Example: API Playground
   
   Test API endpoints directly from documentation with our new interactive playground.
   
@@ -114,32 +164,33 @@ Updates support all MDX components including code blocks, images, cards, and oth
     The playground supports all authentication methods and provides instant response previews.
   </Callout>
 </Update>
-````
+```
 
 <Update label="2024-10-18" description="Feature Launch" tags={["feature"]}>
-  ## Interactive API Playground
-  
+  ## Example: API Playground
+
   Test API endpoints directly from documentation with our new interactive playground.
-  
-  <Columns cols={2}>
-    <Card title="Try it now" icon="play-circle" href="/api-documentation-and-playground/interactive-playground-setup">
+
+  <Columns cols="2">
+    <Card title="Try it now" href="/api-documentation-and-playground/interactive-playground-setup" icon="play-circle" horizontal="false">
       Explore the playground with live examples
     </Card>
-    <Card title="API Reference" icon="book-open" href="/api-documentation-and-playground/api-authentication">
+
+    <Card title="API Reference" href="/api-documentation-and-playground/api-authentication" icon="book-open" horizontal="false">
       View complete endpoint documentation
     </Card>
   </Columns>
-  
-  <Callout kind="tip">
+
+  <Callout kind="tip" collapsed="false">
     The playground supports all authentication methods and provides instant response previews.
   </Callout>
 </Update>
 
-## Sequential updates
+### Sequential updates
 
 Stack multiple updates to create a changelog timeline:
 
-````jsx
+```jsx
 <Update label="2024-10-22" description="v2.1.1" tags={["bugfix"]}>
   - Fixed authentication token refresh issue
   - Improved error messages for API validation
@@ -157,55 +208,67 @@ Stack multiple updates to create a changelog timeline:
   - New team collaboration features
   - Performance improvements across all modules
 </Update>
-````
+```
 
 <Update label="2024-10-22" description="v2.1.1" tags={["bugfix"]}>
   - Fixed authentication token refresh issue
+
   - Improved error messages for API validation
+
   - Updated dependencies for security patches
 </Update>
 
 <Update label="2024-10-15" description="v2.1.0" tags={["feature"]}>
   - Added bulk export functionality
+
   - Implemented advanced search filters
+
   - Enhanced mobile responsive design
 </Update>
 
-<Update label="2024-10-01" description="v2.0.0" tags={["breaking", "feature"]}>
+<Update label="2024-10-01" description="v2.0.0" tags={["breaking","feature"]}>
   - Complete UI redesign with modern interface
+
   - New team collaboration features
+
   - Performance improvements across all modules
 </Update>
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
   The sidebar uses sticky positioning on desktop to remain visible while scrolling through long updates.
 </Callout>
 
 ## Attributes
 
-<ParamField path="label" param-type="string" required="true" showLocation="false">
+<ParamField path="label" param-type="string" required="true" deprecated="false">
   The primary label displayed in the sidebar. Typically used for dates (YYYY-MM-DD format) or version identifiers.
 </ParamField>
-<ParamField path="description" param-type="string" required="true" showLocation="false">
+
+<ParamField path="description" param-type="string" required="true" deprecated="false">
   Supporting description displayed below the label. Commonly used for version numbers, release types, or brief categorizations.
 </ParamField>
-<ParamField path="tags" param-type="array" required="false" showLocation="false">
+
+<ParamField path="tags" param-type="array" required="false" deprecated="false">
   Optional array of tag strings to categorize the update. Tags display as small badges below the label and description.
 </ParamField>
-<ParamField path="children" param-type="node" required="true" showLocation="false">
+
+<ParamField path="children" param-type="node" required="true" deprecated="false">
   The main content of the update. Supports all MDX content including headings, text, code blocks, images, cards, callouts, and other components.
 </ParamField>
 
 ## Common patterns
 
-- **Release changelogs** - Use dates as labels and version numbers as descriptions, with tags like "breaking", "feature", or "bugfix" to categorize changes.
-- **Product announcements** - Highlight new features with launch dates and descriptive labels, using tags to indicate feature categories.
-- **API versioning** - Document API changes with version numbers and migration information, tagging deprecated or breaking changes.
-- **Security updates** - Publish security advisories with CVE identifiers and disclosure dates, using "security" tags for visibility.
-- **Integration launches** - Announce new integrations with partner names and capabilities, including documentation links and setup guides.
-- **Deprecation notices** - Communicate breaking changes with clear timelines and migration paths, using "deprecated" or "breaking" tags.
+- **Release changelog**: Dates as labels, versions as descriptions, with tags like `feature`, `bugfix`, and `breaking`.
 
-<Callout kind="success">
-  Combine Update components with Cards, Callouts, and Steps to create comprehensive changelog and announcement pages.
+- **Product announcements**: Feature name or launch date as label, tags like `New` or `Improvement`.
+
+- **API changes**: Version labels plus tags like `deprecated`, `security`, or `migration`.
+
+- **Security notices**: Use tags such as `security` and `critical` for quick scanning.
+
+- **Roadmap highlights**: Milestones labeled by quarter or date, with tags such as `Planned`, `In progress`, `Released`.
+
+<Callout kind="success" collapsed="false">
+  Combine Update blocks with Cards, Callouts, Steps, and Tabs to build rich changelog and announcement pages that are easy to scan and delightful to read.
 </Callout>
 

@@ -1,32 +1,96 @@
 ---
 title: Expandables
-description: Reference for creating collapsible content sections using Expandable and ExpandableGroup components.
+description: >-
+  Reference for creating collapsible content sections using the editor UI and
+  the Expandable / ExpandableGroup components.
 type: reference
 ---
-
 ## Overview
 
-Create collapsible content sections that users can expand and collapse. Use ExpandableGroup to organize multiple expandables together.
+Expandables let you hide detailed content behind a clickable title.\
+Use **Expandable** for a single collapsible section and **ExpandableGroup** to show several expandables together (for example, FAQs).
+
+You can work with expandables in two ways:
+
+- **Editor UI** – Insert Expandable / Expandable Group blocks from the `/` menu (no code needed).
+
+- **MDX** – Use the `<Expandable>` and `<ExpandableGroup>` components.
 
 Common use cases:
+
 - FAQ sections with collapsible answers
+
 - Optional configuration details
-- Advanced settings or features
-- Grouped related information
+
+- Advanced settings or troubleshooting steps
+
+- Grouped related information under one heading
 
 <Expandable title="Getting Started Guide" default-open="true">
-This expandable starts open by default and contains helpful information for new users.
+  This expandable starts open by default and contains helpful information for new users.
 </Expandable>
 
-## Expandable
+## Using Expandables in the editor UI
 
-Use Expandable to create individual collapsible content sections.
+### Add a single expandable
 
-````jsx
+1. Place your cursor on the new line, where you want the section.
+
+2. Type <kbd>/</kbd> and search for **Expandable**.
+
+3. Select **Expandable** to insert an accordion-style block.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765376162313-bcdl1gd6o7m-pasted-image-1765376159885.png?q=85&fm=auto&auto=compress%2Cformat" width="1600" height="410" alt="" />
+
+Each expandable has:
+
+- A **title** row: Click the **title text** to rename it.
+
+- A **content area** (“Add your content here…”)
+
+<Callout kind="tip" collapsed="false">
+  Click inside the **content area** and add anything you like: text, headings, lists, images, code blocks, callouts, tables, and more.
+</Callout>
+
+### Set the default state (open or closed)
+
+For each individual expandable:
+
+- Use the **expand/collapse icon** on the right side of the header to choose the **default state**.
+
+- When you click it while the item is open, the tooltip shows **“Set Default State to Collapsed”** (and vice versa).
+
+- This only affects **how it appears when the page first loads**; readers can still open/close it afterward.
+
+### Add an expandable group
+
+1. Place your cursor on a new line.
+
+2. Type <kbd>/</kbd> and search for **Expandable Group**.
+
+3. Select it to insert a group with multiple items.
+
+Within an **Expandable Group** you can:
+
+- Click the **<kbd>+</kbd>****&#x20;button** centered at the bottom of the group to add another expandable item.
+
+- Click the **trash icon** on the right of an item to delete just that expandable.
+
+- Use the **drag handle** to reorder items in the group.
+
+- Edit titles and content exactly as you do for a single expandable.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765376341521-63hracmeu2h-pasted-image-1765376339675.png?q=85&fm=auto&auto=compress%2Cformat" width="1600" height="460" alt="" />
+
+## Using Expandable in the MDX
+
+Use `<Expandable>` to create individual collapsible content sections in MDX.
+
+```jsx
 <Expandable title="Click to expand" default-open="false">
   Add your content here...
 </Expandable>
-````
+```
 
 <Expandable title="Click to expand" default-open="false">
   Add your content here...
@@ -34,11 +98,11 @@ Use Expandable to create individual collapsible content sections.
 
 ### Default open
 
-````jsx
+```jsx
 <Expandable title="Getting Started Guide" default-open="true">
   This expandable starts open by default.
 </Expandable>
-````
+```
 
 <Expandable title="Getting Started Guide" default-open="true">
   This expandable starts open by default.
@@ -70,35 +134,36 @@ API_URL=https://api.example.com
 ````
 
 <Expandable title="API Configuration" default-open="false">
-## Environment Variables
+  ## Environment Variables
 
-Set these variables in your `.env` file:
+  Set these variables in your `.env` file:
 
-- `API_KEY` - Your API authentication key
-- `API_URL` - Base URL for API calls (default: `https://api.example.com`)
+  - `API_KEY` - Your API authentication key
 
-```bash
-# Example .env file
-API_KEY=your-secret-key
-API_URL=https://api.example.com
-```
+  - `API_URL` - Base URL for API calls (default: `https://api.example.com`)
 
-<Callout kind="warning">
-  Never commit API keys to version control.
-</Callout>
+  ```bash
+  # Example .env file
+  API_KEY=your-secret-key
+  API_URL=https://api.example.com
+  ```
+
+  <Callout kind="warning" collapsed="false">
+    Never commit API keys to version control.
+  </Callout>
 </Expandable>
 
 ### Attributes
 
-<ParamField path="title" param-type="string" required="false" showLocation="false">
+<ParamField path="title" param-type="string" required="false" deprecated="false">
   Header text displayed in the expandable button (default: "Click to expand").
 </ParamField>
 
-<ParamField path="default-open" param-type="string" required="false" showLocation="false">
+<ParamField path="default-open" param-type="string" required="false" deprecated="false">
   Initial state: `"true"` (open) or `"false"` (closed). Defaults to `"false"`.
 </ParamField>
 
-## ExpandableGroup
+## Using ExpandableGroup in the MDX
 
 Use ExpandableGroup to organize multiple expandables together. Provides consistent spacing and visual grouping.
 
@@ -135,33 +200,33 @@ npm run deploy
 ````
 
 <ExpandableGroup>
-<Expandable title="Installation" default-open="true">
-Install the package using your preferred package manager:
+  <Expandable title="Installation" default-open="true">
+    Install the package using your preferred package manager:
 
-```bash
-npm install documentation-ai
-```
-</Expandable>
+    ```bash
+    npm install documentation-ai
+    ```
+  </Expandable>
 
-<Expandable title="Configuration" default-open="false">
-Create a configuration file in your project root:
+  <Expandable title="Configuration" default-open="false">
+    Create a configuration file in your project root:
 
-```json
-{
-  "name": "My Documentation",
-  "theme": "light",
-  "sidebar": true
-}
-```
-</Expandable>
+    ```json
+    {
+      "name": "My Documentation",
+      "theme": "light",
+      "sidebar": true
+    }
+    ```
+  </Expandable>
 
-<Expandable title="Deployment" default-open="false">
-Deploy your documentation using our CLI:
+  <Expandable title="Deployment" default-open="false">
+    Deploy your documentation using our CLI:
 
-```bash
-npm run deploy
-```
-</Expandable>
+    ```bash
+    npm run deploy
+    ```
+  </Expandable>
 </ExpandableGroup>
 
 ### Attributes
@@ -170,7 +235,11 @@ npm run deploy
 
 ## Common patterns
 
-- **FAQ sections** - Descriptive titles with most important item open by default
-- **Configuration options** - Group related settings using ExpandableGroup
-- **Documentation sections** - Nested content typically stays within two levels
-- **Progressive disclosure** - Show essential information first, details in expandables
+- **FAQ sections**: Question in the title, answer in the content; keep the first or most important item open by default.
+
+- **Configuration options**: Group related settings using `ExpandableGroup` so readers can jump to the parts they need.
+
+- **Advanced details**: Keep pages clean by hiding long explanations or edge cases behind expandables.
+
+- **Progressive disclosure**: Show essential information first and let users expand only what they care about.
+

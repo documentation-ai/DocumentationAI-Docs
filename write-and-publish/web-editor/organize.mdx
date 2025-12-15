@@ -1,8 +1,184 @@
 ---
-title: Organize Content Structure
-description: "Write and manage content: Organize Content Structure in Documentation.AI."
+title: Organize Content and Navigation in the Web Editor
+description: >-
+  How to design navigation structure, add pages and groups, and keep your
+  documentation discoverable and maintainable using the web Editor.
+ogImage: /images/docs/organize-editor.png
+canonical: /write-and-publish/web-editor/organize
 ---
+## Organize content and navigation in the Editor
 
-# Organize Content Structure
+This guide shows how to build a clean, scalable documentation structure using the **Editor view**. You’ll learn how to design navigation (dimensions, tabs, dropdowns), add pages and API references, and organize content using groups and nested page containers.
 
-[How-to Guide] Learn Organize Content Structure to create clear, maintainable documentation content at scale.
+It is written for documentation editors working inside a project in the web Editor.
+
+### Who this is for
+
+- Documentation editors who create and maintain topic hierarchies, landing pages, and collections.
+
+- Contributors who need a repeatable approach to naming, grouping, and publishing content.
+
+### Prerequisites
+
+- Editor access to your documentation project.
+
+- Basic familiarity with creating and editing pages. See the Overview for Editor basics: [Overview](/write-and-publish/web-editor/overview).
+
+- If you plan to generate API docs, have an OpenAPI JSON or YAML file ready.
+
+## Concepts you need to know
+
+### Dimensions
+
+Dimensions are top-level “context selectors” that split your docs into parallel variants.
+
+Use dimensions when navigation changes based on:
+
+- Product (Product A, Product B)
+
+- Version (v1, v2)
+
+- Language (English, Español)
+
+In the published docs, dimensions usually appear as dropdown selectors near the top of the site.
+
+### Views
+
+Views define how navigation is presented inside a context.
+
+In this system, the supported view types are
+
+- **Tabs**: top-level navigation sections (Guides, API Reference)
+
+- **Dropdowns**: collapsible sidebar categories (Guides, API References, Integrations)
+
+### Content items
+
+These are the clickable navigation entries:
+
+- **Group**: a labeled sidebar section that contains pages (Getting Started, Core Features)
+
+- **Page**: a normal documentation page
+
+- **Page Group**: a nested container of pages (like a folder in the sidebar)
+
+- **OpenAPI Reference**: generated API pages from a spec file
+
+- **Unpublished Page**: an existing page that is not currently in navigation
+
+### The one-child rule (why the UI hides options)
+
+Each container can contain **exactly one child type**.
+
+For example:
+
+- a tab can contain **pages** *or* **groups** *or* **dropdowns**
+
+- a dropdown can contain **pages** *or* **groups** *or* **tabs** *or* **dropdowns**
+
+This is why the Editor only shows valid “Add …” options at each level.
+
+## Quick workflow (summary)
+
+1. Decide whether you need dimensions (Product/Version/Language).
+
+2. Choose a navigation style:
+
+   - Tabs for major sections, dropdowns for sidebar categories.
+
+3. Build structure using **parent/child layers** (the Editor moves content for you).
+
+4. Add content using Pages, Page Groups, OpenAPI References, and Unpublished Pages.
+
+5. Add **Groups** if the sidebar becomes long or needs clear sectioning.
+
+6. Reorder and refine using Move actions and incremental layering.
+
+## Step-by-step: create navigation structure
+
+### How layering works in the Editor
+
+You can add structure in two ways:
+
+- **Add Parent layer (top&#x20;**<kbd>+</kbd>**)**\
+  Adds a new layer *above* the current one and moves your existing content under it.
+
+- **Add Child layer (bottom&#x20;**<kbd>+</kbd>**&#x20;/ inline add)**\
+  Adds a layer *inside the selected item only*. Siblings are unchanged.
+
+A good rule:
+
+- Use **Parent** when you want to change the structure for “everything here.”
+
+- Use **Child** when you want to change the structure for “only this section.”
+
+<Steps>
+  <Step title="Decide if you need dimensions" title-type="p">
+    Use no dimensions for simple sites where everyone sees the same navigation.
+
+    - Add **Version** if your docs differ across releases (v1, v2).&#x20;
+
+    - Add **Product&#x20;**&#x69;f you maintain separate docs for multiple offerings.&#x20;
+
+    - Add Language if you publish localized navigation/content.
+
+    Keep it simple: 1–2 dimensions is usually enough for most sites.
+  </Step>
+
+  <Step title="Add a dimension layer (optional)" title-type="p">
+    1. In the Navigation panel, click the top <kbd>+</kbd> (Add Parent).
+
+    2. Choose Add Product, Add Version, or Add Language.
+
+    3. Create your first value (for example, v1.0).
+
+    What happens: your current navigation becomes the branch for that value.
+  </Step>
+
+  <Step title="Add Tabs for major sections" title-type="p">
+    Tabs work well when your docs have parallel top-level areas like:
+
+    - Guides
+
+    - API Reference
+
+    - Tutorials
+
+    - Changelog
+
+    1. Navigate to the branch you want to edit (for example Version: v1.0).
+
+    2. Add Tabs (as parent or child depending on your current structure).
+
+    3. Create tab names (for example Guides, API Reference).
+
+    <Callout kind="tip" collapsed="false">
+      Keep tab names consistent across versions/products to reduce user confusion.
+    </Callout>
+  </Step>
+
+  <Step title="Add Dropdowns for sidebar categories" title-type="p">
+    Dropdowns work well when your sidebar needs hierarchy.
+
+    1. Select the tab (or dimension branch) where you want categories.
+
+    2. Use Add Child to add a dropdown layer inside that tab, or use Add Parent if you want dropdowns to wrap everything.
+
+    3. Create dropdown items (for example `Getting Started`, `Core Features`, `Integrations`).
+
+    What happens: existing content is moved under the new dropdown item if you added it as a wrapper.
+  </Step>
+
+  <Step title="Validate the structure by switching selectors" title-type="p">
+    Switch between:
+
+    - versions/products/languages (if present)
+
+    - tabs
+
+    - dropdown items
+
+    This confirms you’re editing the correct branch and that content is placed where you expect.
+  </Step>
+</Steps>
+

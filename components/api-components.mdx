@@ -7,21 +7,25 @@ type: reference
 ---
 ## Overview
 
-Display code blocks in the right sidebar on desktop devices. The `Request` and `Response` components create a two-column layout that keeps examples visible while users scroll through your content.
+The **Request** and **Response** components create a two-column layout for API examples:
+
+- **Desktop:** Requests and responses appear in a sticky right sidebar while your main documentation stays on the left.
+
+- **Mobile:** Components render as regular code blocks inside the main content.
+
+These components are designed for developers and work like sidebar versions of **CodeGroup**.
 
 Common use cases:
 
-- API endpoint documentation with request and response examples
+- **Endpoint docs:** Request and response examples for each API route.
 
-- Configuration examples alongside explanatory text
+- **Multi-language SDKs:** Tabs for JavaScript, Python, cURL, and more.
 
-- Code samples that users reference while following instructions
+- **Status examples:** Response examples for different HTTP status codes.
 
-- Before and after examples in tutorials
+- **Tutorials:** Before/after or success/error examples next to explanations.
 
-On mobile devices, components display as regular code blocks within the main content.
-
-<Request uid="c6ca1719-456a-4c7f-aae8-06b2b5aaa11a" show-lines="true" tabs={""}>
+<Request uid="c6ca1719-456a-4c7f-aae8-06b2b5aaa11a" show-lines="true" tabs={[]}>
   ```javascript
   const response = await fetch('/api/docs', {
     method: 'POST',
@@ -66,8 +70,8 @@ On mobile devices, components display as regular code blocks within the main con
   ```
 </Request>
 
-<Response uid="a1a2053a-c2e9-494d-b580-d6604d9e7788" show-lines="true" tabs={"200,404"}>
-  ```json
+<Response uid="a1a2053a-c2e9-494d-b580-d6604d9e7788" show-lines="true" tabs={["JSON","JSON"]}>
+  ```json JSON
   {
     "id": "doc-123",
     "title": "Getting Started",
@@ -88,7 +92,7 @@ On mobile devices, components display as regular code blocks within the main con
   }
   ```
 
-  ```json
+  ```json JSON
   {
     "error": "Document not found",
     "code": "DOC_NOT_FOUND",
@@ -98,6 +102,28 @@ On mobile devices, components display as regular code blocks within the main con
 </Response>
 
 ## Request
+
+### Request in the editor UI
+
+1. Place your cursor where you want the sidebar example.
+
+2. Type <kbd>/</kbd> and search for **Request**.
+
+3. Select **Request** to insert a Request block.
+
+Inside the Request block:
+
+- Tabs row: One tab is created by default, with a **+** button to add more.
+
+- Rename tabs: Double-click a tab name (for example, `request`) and type a new label.
+
+- Code editor: Click in the code area, paste or write your example.
+
+- Language selector: Use the dropdown on the right to choose the language for that tab.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765447133805-xmduk8b2tpf-pasted-image-1765447130714.png?q=85&fm=auto&auto=compress%2Cformat" width="500" height="297" alt="" style="width: 500px; height: auto; cursor: pointer;" />
+
+### Request in MDX
 
 Use `Request` to display API request examples in the right sidebar. This component works like [CodeGroup](code-blocks-and-groups) but displays in the sidebar instead of inline.
 
@@ -137,6 +163,28 @@ response = requests.post('/api/docs',
 
 ## Response
 
+### Response in the editor UI
+
+1. Place your cursor under the related Request (or wherever you want the response).
+
+2. Type <kbd>/</kbd> and search for **Response**.
+
+3. Select **Response** to insert a Response block.
+
+Inside the Response block:
+
+- Tabs row: One tab is created by default, with a **+** button to add more.
+
+- Rename tabs: Double-click a tab name (commonly use status codes like `200`, `404`).
+
+- Code editor: Paste or write your JSON or other response example.
+
+- Language selector: Choose the language (usually JSON) from the dropdown on the right.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765447322447-gmaotxgck8t-pasted-image-1765447320243.png?q=85&fm=auto&auto=compress%2Cformat" width="508" height="250" alt="" style="width: 508px; height: auto; cursor: pointer;" />
+
+### Response in MDX
+
 Use `Response` to display API response examples in the right sidebar beneath any `Request` content on the same page.
 
 ````jsx
@@ -173,11 +221,15 @@ Use `Response` to display API response examples in the right sidebar beneath any
 
 ## Common patterns
 
-- **API documentation** - One Request and one Response component per endpoint page
+- **Per-endpoint examples:** Pair one Request and one Response block for each API operation.
 
-- **Multi-language support** - Request tabs for different programming languages (JavaScript, Python, cURL)
+- **Multi-language SDKs:** Use Request tabs for JavaScript, Python, Bash, and other SDKs.
 
-- **Status handling** - Response tabs for HTTP status codes (200, 400, 500)
+- **Status-specific responses:** Use Response tabs labeled `200`, `400`, `404`, `500` to show different outcomes.
 
-- **Two-column layout** - Components automatically display in right sidebar on desktop
+- **Guided walkthroughs:** Keep Request and Response in the sidebar while the left column explains parameters, flows, and edge cases.
+
+<Callout kind="success" collapsed="false">
+  Request and Response automatically participate in the sidebar layout on desktop, so you get a polished API reference without custom layout work.
+</Callout>
 
