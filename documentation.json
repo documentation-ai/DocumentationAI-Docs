@@ -1,1 +1,461 @@
-"{\n  \"name\": \"AetherFlow Documentation\",\n  \"initialRoute\": \"introduction\",\n  \"colors\": {\n    \"light\": {\n      \"brand\": \"#3B82F6\",\n      \"heading\": \"#1a1a1a\",\n      \"text\": \"#374151\"\n    },\n    \"dark\": {\n      \"brand\": \"#60A5FA\",\n      \"heading\": \"#f2f2f2\",\n      \"text\": \"#c1c1c1\"\n    }\n  },\n  \"navbar\": {\n    \"actions\": {\n      \"primary\": {\n        \"title\": \"Get Started\",\n        \"link\": \"https://aetherflow.com/signup\"\n      },\n      \"links\": [\n        {\n          \"title\": \"Login\",\n          \"link\": \"https://aetherflow.com/login\"\n        },\n        {\n          \"title\": \"Pricing\",\n          \"link\": \"https://aetherflow.com/pricing\"\n        }\n      ]\n    }\n  },\n  \"navigation\": {\n    \"dropdowns\": [\n      {\n        \"dropdown\": \"Guides\",\n        \"groups\": [\n          {\n            \"group\": \"Getting Started\",\n            \"icon\": \"rocket\",\n            \"pages\": [\n              {\n                \"title\": \"Introduction\",\n                \"path\": \"introduction\",\n                \"icon\": \"home\"\n              },\n              {\n                \"title\": \"Getting Started\",\n                \"path\": \"getting-started\",\n                \"icon\": \"play\"\n              },\n              {\n                \"title\": \"Use Cases & Examples\",\n                \"path\": \"use-cases\",\n                \"icon\": \"lightbulb\"\n              },\n              {\n                \"title\": \"Migration Guide\",\n                \"path\": \"migration-guide\",\n                \"icon\": \"refresh-cw\"\n              }\n            ]\n          },\n          {\n            \"group\": \"Core Features\",\n            \"icon\": \"zap\",\n            \"pages\": [\n              {\n                \"title\": \"Workflows\",\n                \"path\": \"workflows\",\n                \"icon\": \"git-branch\"\n              },\n              {\n                \"title\": \"Integrations\",\n                \"path\": \"integrations\",\n                \"icon\": \"plug\"\n              },\n              {\n                \"title\": \"Slack Integration\",\n                \"path\": \"slack-integration\",\n                \"icon\": \"share-2\"\n              },\n              {\n                \"title\": \"Discord Integration\",\n                \"path\": \"discord-integration\",\n                \"icon\": \"share-2\"\n              },\n              {\n                \"title\": \"Advanced Features\",\n                \"path\": \"advanced-features\",\n                \"icon\": \"settings\"\n              },\n              {\n                \"title\": \"Best Practices\",\n                \"path\": \"best-practices\",\n                \"icon\": \"check-circle\"\n              },\n              {\n                \"title\": \"Performance Optimization\",\n                \"path\": \"performance-optimization\",\n                \"icon\": \"zap\"\n              }\n            ]\n          },\n          {\n            \"group\": \"Monitoring & Analytics\",\n            \"icon\": \"database\",\n            \"pages\": [\n              {\n                \"title\": \"Analytics & Monitoring\",\n                \"path\": \"analytics-monitoring\",\n                \"icon\": \"database\"\n              },\n              {\n                \"title\": \"Troubleshooting Guide\",\n                \"path\": \"troubleshooting\",\n                \"icon\": \"alert-circle\"\n              }\n            ]\n          },\n          {\n            \"group\": \"Team & Enterprise\",\n            \"icon\": \"users\",\n            \"pages\": [\n              {\n                \"title\": \"Team Collaboration\",\n                \"path\": \"team-collaboration\",\n                \"icon\": \"users\"\n              },\n              {\n                \"title\": \"Enterprise Features\",\n                \"path\": \"enterprise-features\",\n                \"icon\": \"layers\"\n              }\n            ]\n          },\n          {\n            \"group\": \"REST API\",\n            \"icon\": \"server\",\n            \"pages\": [\n              {\n                \"title\": \"API Authentication & Security\",\n                \"path\": \"api-authentication\",\n                \"icon\": \"key\"\n              },\n              {\n                \"title\": \"SDK Documentation\",\n                \"path\": \"sdk-documentation\",\n                \"icon\": \"code\"\n              },\n              {\n                \"title\": \"Webhooks\",\n                \"path\": \"webhooks\",\n                \"icon\": \"webhook\"\n              }\n            ]\n          },\n          {\n            \"group\": \"Endpoints\",\n            \"openapi\": \"openapi.yaml\",\n            \"icon\": \"terminal\",\n            \"pages\": []\n          },\n          {\n            \"group\": \"Pricing & Plans\",\n            \"icon\": \"tag\",\n            \"pages\": [\n              {\n                \"title\": \"Pricing & Plans\",\n                \"path\": \"pricing-plans\",\n                \"icon\": \"tag\"\n              }\n            ]\n          },\n          {\n            \"group\": \"Security & Compliance\",\n            \"icon\": \"shield\",\n            \"pages\": [\n              {\n                \"title\": \"Data Privacy & Compliance\",\n                \"path\": \"data-privacy-compliance\",\n                \"icon\": \"lock\"\n              }\n            ]\n          },\n          {\n            \"group\": \"Help & Support\",\n            \"icon\": \"help-circle\",\n            \"pages\": [\n              {\n                \"title\": \"FAQ\",\n                \"path\": \"faq\",\n                \"icon\": \"help-circle\"\n              }\n            ]\n          },\n          {\n            \"group\": \"Changelog\",\n            \"icon\": \"clock\",\n            \"pages\": [\n              {\n                \"title\": \"Release History\",\n                \"path\": \"changelog\",\n                \"icon\": \"history\"\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"seo\": {\n    \"robots:index\": false,\n    \"robots:follow\": false\n  }\n}"
+{
+  "name": "Documentation.AI",
+  "initialRoute": "getting-started/introduction",
+  "colors": {
+    "light": {
+      "brand": "#1a1a1a",
+      "heading": "#1a1a1a",
+      "text": "#374151"
+    },
+    "dark": {
+      "brand": "#f2f2f2",
+      "heading": "#f2f2f2",
+      "text": "#c1c1c1"
+    }
+  },
+  "navbar": {
+    "actions": {
+      "primary": {
+        "title": "Get Started",
+        "link": "https://dashboard.documentation.ai/signup"
+      },
+      "links": [
+        {
+          "title": "Login",
+          "link": "https://dashboard.documentation.ai/login"
+        }
+      ]
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "info",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Introduction",
+                "path": "getting-started/introduction",
+                "icon": "star"
+              },
+              {
+                "title": "Core concepts",
+                "path": "getting-started/core-concepts",
+                "icon": "cog"
+              },
+              {
+                "title": "Quickstart",
+                "path": "getting-started/quickstart",
+                "icon": "zap"
+              }
+            ]
+          },
+          {
+            "group": "Write and Publish",
+            "icon": "pen-tool",
+            "expandable": true,
+            "pages": [
+              {
+                "group": "Web Editor",
+                "icon": "globe",
+                "expandable": true,
+                "pages": [
+                  {
+                    "title": "Overview",
+                    "path": "write-and-publish/web-editor/overview",
+                    "icon": "info"
+                  },
+                  {
+                    "title": "Images & Media",
+                    "path": "write-and-publish/web-editor/images-and-media",
+                    "icon": "image"
+                  },
+                  {
+                    "title": "Organize",
+                    "path": "write-and-publish/web-editor/organize",
+                    "icon": "folder-tree"
+                  },
+                  {
+                    "title": "Collaboration & Review",
+                    "path": "write-and-publish/web-editor/collaboration",
+                    "icon": "users"
+                  },
+                  {
+                    "title": "Publishing Workflow",
+                    "path": "write-and-publish/web-editor/publish",
+                    "icon": "upload"
+                  },
+                  {
+                    "title": "Keyboard Shortcuts",
+                    "path": "write-and-publish/web-editor/keyboard-shortcuts",
+                    "icon": "keyboard"
+                  },
+                  {
+                    "title": "Troubleshooting",
+                    "path": "write-and-publish/web-editor/troubleshooting",
+                    "icon": "alert-circle"
+                  }
+                ]
+              },
+              {
+                "group": "Code Editor",
+                "icon": "code",
+                "expandable": true,
+                "pages": [
+                  {
+                    "title": "Overview",
+                    "path": "write-and-publish/code-editor/overview",
+                    "icon": "info"
+                  },
+                  {
+                    "title": "Images & Media",
+                    "path": "write-and-publish/code-editor/images-and-media",
+                    "icon": "image"
+                  },
+                  {
+                    "title": "Git Workflow",
+                    "path": "write-and-publish/code-editor/git-workflow",
+                    "icon": "git-branch"
+                  },
+                  {
+                    "title": "Organize",
+                    "path": "write-and-publish/code-editor/organize",
+                    "icon": "folder-tree"
+                  },
+                  {
+                    "title": "Publishing Process",
+                    "path": "write-and-publish/code-editor/publish",
+                    "icon": "upload"
+                  },
+                  {
+                    "title": "Troubleshooting",
+                    "path": "write-and-publish/code-editor/troubleshooting",
+                    "icon": "alert-circle"
+                  }
+                ]
+              },
+              {
+                "group": "Components",
+                "pages": [
+                  {
+                    "title": "Headings and Text",
+                    "path": "components/heading-and-text",
+                    "icon": "type"
+                  },
+                  {
+                    "title": "Lists and Tables",
+                    "path": "components/lists-and-tables",
+                    "icon": "list"
+                  },
+                  {
+                    "title": "Card",
+                    "path": "components/card",
+                    "icon": "square"
+                  },
+                  {
+                    "title": "Columns",
+                    "path": "components/columns",
+                    "icon": "columns"
+                  },
+                  {
+                    "title": "Images",
+                    "path": "components/images",
+                    "icon": "image"
+                  },
+                  {
+                    "title": "Videos and Iframes",
+                    "path": "components/videos-and-iframes",
+                    "icon": "video"
+                  },
+                  {
+                    "title": "Code and Groups",
+                    "path": "components/code-blocks-and-groups",
+                    "icon": "code"
+                  },
+                  {
+                    "title": "Mermaid Diagrams",
+                    "path": "components/mermaid",
+                    "icon": "network"
+                  },
+                  {
+                    "title": "Callout",
+                    "path": "components/callout",
+                    "icon": "megaphone"
+                  },
+                  {
+                    "title": "Expandables",
+                    "path": "components/expandables",
+                    "icon": "chevron-down"
+                  },
+                  {
+                    "title": "Steps",
+                    "path": "components/steps",
+                    "icon": "list-ordered"
+                  },
+                  {
+                    "title": "Tabs",
+                    "path": "components/tabs",
+                    "icon": "lucide-panel-top"
+                  },
+                  {
+                    "title": "Update",
+                    "path": "components/update",
+                    "icon": "clock"
+                  },
+                  {
+                    "title": "Param Field",
+                    "path": "components/paramfield",
+                    "icon": "settings"
+                  },
+                  {
+                    "title": "Response Field",
+                    "path": "components/responsefield",
+                    "icon": "file-text"
+                  },
+                  {
+                    "title": "API Components",
+                    "path": "components/api-components",
+                    "icon": "code"
+                  }
+                ],
+                "icon": "component"
+              },
+              {
+                "title": "Helpful Prompts",
+                "path": "write-and-publish/prompts",
+                "icon": "check-circle"
+              }
+            ]
+          },
+          {
+            "group": "Customization & Configuration",
+            "icon": "palette",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "Colors & Typography",
+                "path": "customization-and-configuration/colors-and-typography",
+                "icon": "type"
+              },
+              {
+                "title": "Navigation & Sidebar",
+                "path": "customization-and-configuration/navigation-and-sidebar",
+                "icon": "menu"
+              },
+              {
+                "title": "Header & Navbar",
+                "path": "customization-and-configuration/header-and-navbar",
+                "icon": "layout"
+              },
+              {
+                "title": "Branding",
+                "path": "customization-and-configuration/branding",
+                "icon": "award"
+              },
+              {
+                "group": "SEO & GEO",
+                "pages": [
+                  {
+                    "title": "Structured Data",
+                    "path": "seo-and-geo/structured-data",
+                    "icon": "layers"
+                  },
+                  {
+                    "title": "Robots.txt & llm.txt",
+                    "path": "seo-and-geo/robots-txt-and-llm-txt",
+                    "icon": "file"
+                  },
+                  {
+                    "title": "Sitemap",
+                    "path": "seo-and-geo/sitemap",
+                    "icon": "map"
+                  },
+                  {
+                    "title": "Canonical URLs",
+                    "path": "seo-and-geo/canonical-urls",
+                    "icon": "link-2"
+                  },
+                  {
+                    "title": "Meta Tags Setup",
+                    "path": "seo-and-geo/meta-tags-setup",
+                    "icon": "tag"
+                  }
+                ],
+                "icon": "search-check-icon"
+              },
+              {
+                "title": "Custom Domain Setup",
+                "path": "customization-and-configuration/custom-domain",
+                "icon": "globe"
+              },
+              {
+                "group": "Custom Subpath Setup",
+                "icon": "link",
+                "expandable": true,
+                "pages": [
+                  {
+                    "title": "Overview",
+                    "path": "customization-and-configuration/custom-subpath/overview",
+                    "icon": "info"
+                  },
+                  {
+                    "title": "Vercel",
+                    "path": "customization-and-configuration/custom-subpath/vercel",
+                    "icon": "triangle"
+                  },
+                  {
+                    "title": "Cloudflare Workers",
+                    "path": "customization-and-configuration/custom-subpath/cloudflare",
+                    "icon": "cloud"
+                  },
+                  {
+                    "title": "AWS Route 53 & CloudFront",
+                    "path": "customization-and-configuration/custom-subpath/aws",
+                    "icon": "cloud-cog"
+                  }
+                ]
+              },
+              {
+                "title": "Redirects",
+                "path": "customization-and-configuration/redirects-and-rewrites",
+                "icon": "repeat"
+              },
+              {
+                "title": "Site Configuration",
+                "path": "customization-and-configuration/site-configuration",
+                "icon": "file-cog"
+              },
+              {
+                "title": "Page Configuration",
+                "path": "customization-and-configuration/page-configuration",
+                "icon": "file-text"
+              }
+            ]
+          },
+          {
+            "group": "API Documentation",
+            "icon": "server",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "OpenAPI / JSON Schema Import",
+                "path": "api-documentation-and-playground/openapi-import",
+                "icon": "file-code"
+              },
+              {
+                "title": "Organize API Reference",
+                "path": "api-documentation-and-playground/organize-api-reference",
+                "icon": "folder-open"
+              },
+              {
+                "title": "Interactive Playground Setup",
+                "path": "api-documentation-and-playground/interactive-playground-setup",
+                "icon": "play-circle"
+              },
+              {
+                "title": "Code Generation",
+                "path": "api-documentation-and-playground/code-generation",
+                "icon": "terminal"
+              }
+            ]
+          },
+          {
+            "group": "AI Features",
+            "icon": "bot",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "AI Documentation Agent",
+                "path": "ai/ai-documentation-agent",
+                "icon": "stars-icon"
+              },
+              {
+                "title": "AI Assistant",
+                "path": "ai/ai-assistant",
+                "icon": "settings"
+              },
+              {
+                "title": "MCP Server",
+                "path": "ai/mcp-server",
+                "icon": "server-cog"
+              },
+              {
+                "title": "On-Page AI Menu",
+                "path": "ai/ai-menu",
+                "icon": "menu"
+              },
+              {
+                "title": "AI Credits",
+                "path": "ai/ai-credits",
+                "icon": "stars"
+              }
+            ]
+          },
+          {
+            "group": "Analytics",
+            "icon": "trending-up",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "Overview & Insights",
+                "path": "analytics/overview",
+                "icon": "bar-chart4-icon"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "icon": "scroll",
+        "groups": [
+          {
+            "group": "Changelog",
+            "icon": "bell",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Changelog",
+                "path": "changelog",
+                "icon": "scroll"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Help",
+        "icon": "help-circle",
+        "pages": [
+          {
+            "title": "Contact Us",
+            "path": "help/contact-us",
+            "icon": "mail"
+          },
+          {
+            "title": "Community",
+            "path": "help/community",
+            "icon": "users"
+          },
+          {
+            "title": "Roadmap",
+            "href": "https://documentationai.featurebase.app/roadmap",
+            "icon": "globe"
+          }
+        ]
+      }
+    ]
+  },
+  "seo": {
+    "robots:index": false,
+    "robots:follow": false
+  },
+  "favicon": "https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1763647259799-dvpow3xiipa-doc-favicon-dark.png",
+  "logo-dark": "https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1757582106531-38cj8v9p8mx-documentationai_logo_dark.svg",
+  "logo-light": "https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1757582207005-aoywy54454u-documentationai_logo.svg"
+}
