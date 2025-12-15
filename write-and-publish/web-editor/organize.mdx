@@ -1,157 +1,184 @@
 ---
-title: Organize content and navigation in Editor view
-description: "Step-by-step guide to organizing site navigation, groups, and pages in the Editor view of Documentation.AI."
+title: Organize Content and Navigation in the Web Editor
+description: >-
+  How to design navigation structure, add pages and groups, and keep your
+  documentation discoverable and maintainable using the web Editor.
+ogImage: /images/docs/organize-editor.png
+canonical: /write-and-publish/web-editor/organize
 ---
+## Organize content and navigation in the Editor
 
-## Introduction
+This guide shows how to build a clean, scalable documentation structure using the **Editor view**. You’ll learn how to design navigation (dimensions, tabs, dropdowns), add pages and API references, and organize content using groups and nested page containers.
 
-This guide shows how to design and maintain your site's navigation structure from the Editor view. It explains the Editor's navigation model, walks through creating groups and pages, and provides detailed, actionable steps you can follow right away.
+It is written for documentation editors working inside a project in the web Editor.
 
-The Editor UI uses a layered model — dimensions, views, and content — and each container accepts a single child type. Keep that model in mind when you create groups and pages so your navigation remains consistent and predictable.
+### Who this is for
 
-## Navigation model
+- Documentation editors who create and maintain topic hierarchies, landing pages, and collections.
 
-The site navigation is organized as a three-level hierarchy:
+- Contributors who need a repeatable approach to naming, grouping, and publishing content.
 
-- Tabs — top-level areas such as "Documentation", "Changelog", and "Help".
-- Groups — collections inside a tab used to organize related pages or subgroups.
-- Pages — individual documentation pages inside groups.
+### Prerequisites
 
-Common behaviors
+- Editor access to your documentation project.
 
-- Groups can be expandable or collapsed to control visibility.
-- A group can contain pages and, in some cases, nested groups (subgroups).
-- One child type rule: each container accepts one type of child (for example, a group that holds pages should not mix page-like objects with unrelated child types).
+- Basic familiarity with creating and editing pages. See the Overview for Editor basics: [Overview](/write-and-publish/web-editor/overview).
 
-See the Editor overview for visual orientation: [Web editor overview](/write-and-publish/web-editor/overview).
+- If you plan to generate API docs, have an OpenAPI JSON or YAML file ready.
 
-<Callout kind="info">
+## Concepts you need to know
 
-When you add or reorder items in the Editor, the change affects the live navigation once you publish those edits. Work in small, reviewable batches.
+### Dimensions
 
-</Callout>
+Dimensions are top-level “context selectors” that split your docs into parallel variants.
 
-## Creating a navigation structure (high level)
+Use dimensions when navigation changes based on:
 
-Before you start, confirm you have Editor permissions and an agreed sitemap or outline for your content.
+- Product (Product A, Product B)
 
-1. Decide top-level tabs and which content belongs in each tab.
-2. Create groups to surface major sections (for example, "Getting Started", "API Reference").
-3. Add pages to groups and optionally create subgroups for long sections.
-4. Reorder and mark groups as expandable to control sidebar behavior.
-5. Preview and publish changes.
+- Version (v1, v2)
 
-If you need help configuring sidebar appearance beyond structure, see: [Navigation & sidebar](/customization-and-configuration/navigation-and-sidebar).
+- Language (English, Español)
 
-## Creating content (pages)
+In the published docs, dimensions usually appear as dropdown selectors near the top of the site.
 
-When you create a page in the Editor:
+### Views
 
-- Title the page clearly and write concise, scannable headings.
-- Use one primary purpose per page (single responsibility).
-- Use components (cards, images, code groups) to structure content visually.
-- Keep filenames and paths descriptive and stable to avoid broken links.
+Views define how navigation is presented inside a context.
 
-Quick checklist before saving a new page:
+In this system, the supported view types are
 
-- Page title set and matches the URL slug.
-- Page placed in the intended group.
-- Content uses the Editor components consistently.
-- Any images or media include descriptive alt text.
+- **Tabs**: top-level navigation sections (Guides, API Reference)
 
-## Creating groups and subgroups
+- **Dropdowns**: collapsible sidebar categories (Guides, API References, Integrations)
 
-Use groups to organize navigation and to control sidebar density.
+### Content items
 
-- Create groups for major subject areas (for example, "Write and Publish").
-- Make long lists collapsible by setting the group to expandable.
-- Use subgroups for technical distinctions (for example, split "Web Editor" and "Code Editor" into separate subgroups).
-- Assign icons to groups for quicker scanning in the sidebar.
+These are the clickable navigation entries:
 
-Keep group depth shallow where possible — two to three levels (tab → group → page or subgroup → page) helps readers navigate quickly.
+- **Group**: a labeled sidebar section that contains pages (Getting Started, Core Features)
 
-## Detailed step instructions
+- **Page**: a normal documentation page
 
-### Add a new top-level page
+- **Page Group**: a nested container of pages (like a folder in the sidebar)
 
-1. Open Editor view and navigate to the tab and group where you want the page.
-2. Click the "New page" or "Add" button in the group toolbar.
-3. Enter a descriptive page title; confirm or edit the generated slug.
-4. Add content using the Editor components (headings, lists, code blocks, images).
-5. Save the draft and preview the page in the site preview pane.
-6. When ready, publish the page so it becomes visible in the live navigation.
+- **OpenAPI Reference**: generated API pages from a spec file
 
-### Move a page into a different group
+- **Unpublished Page**: an existing page that is not currently in navigation
 
-1. In Editor view, open the sidebar where your pages and groups are listed.
-2. Drag the page item into the target group, or use the page's context menu and select "Move".
-3. Confirm the new path and update any internal links if the slug changed.
-4. Save and publish the change.
+### The one-child rule (why the UI hides options)
 
-### Create a subgroup
+Each container can contain **exactly one child type**.
 
-1. Open the group that will contain the subgroup.
-2. Click "Add subgroup" or "New group" in the group controls.
-3. Give the subgroup a name and choose whether it should be expandable.
-4. Add or move pages into the subgroup.
-5. Save and publish.
+For example:
 
-### Reorder navigation items
+- a tab can contain **pages** *or* **groups** *or* **dropdowns**
 
-1. Drag and drop tabs, groups, and pages in the Editor sidebar to reorder them.
-2. For large reorganization, record the intended outline in a separate document to reduce mistakes.
-3. Save and publish incremental changes rather than reordering an entire site in one step.
+- a dropdown can contain **pages** *or* **groups** *or* **tabs** *or* **dropdowns**
 
-### Set a group to expandable (collapse/expand)
+This is why the Editor only shows valid “Add …” options at each level.
 
-1. Select the group in the Editor.
-2. Toggle the "Expandable" or "Collapsible" option in the group settings.
-3. Save; the sidebar will show a disclosure chevron for that group when published.
+## Quick workflow (summary)
 
-<Callout kind="tip">
+1. Decide whether you need dimensions (Product/Version/Language).
 
-If you expect frequent changes in a section, keep that group collapsed by default and surface only the most important pages as direct children to reduce clutter.
+2. Choose a navigation style:
 
-</Callout>
+   - Tabs for major sections, dropdowns for sidebar categories.
 
-## Best practices
+3. Build structure using **parent/child layers** (the Editor moves content for you).
 
-- Names and labels: Use short, descriptive page and group titles. Keep naming consistent across the site.
-- Shallow navigation: Prefer a shallow hierarchy (2–3 levels) so readers can reach content in 2–4 clicks.
-- One purpose per page: Avoid mixing multiple topics on a single page; create focused pages that are easier to link and maintain.
-- Reuse patterns: Use shared components and templates for similar pages to maintain consistency.
-- Icons and affordances: Use icons selectively to help scanning but avoid relying on them for critical information.
-- Preserve slugs: Avoid renaming published slugs. If you must change a slug, add redirects and update internal links.
-- Review and publish small batches: Make small, reviewable changes and publish frequently so changes are easy to test and revert if needed.
-- Accessibility: Add alt text to images and use semantic headings for screen readers.
+4. Add content using Pages, Page Groups, OpenAPI References, and Unpublished Pages.
 
-## Troubleshooting and resources
+5. Add **Groups** if the sidebar becomes long or needs clear sectioning.
 
-- If you can't find the group or page you expect, check whether it is collapsed or nested as a subgroup.
-- For publishing workflow details, see: [Publishing Workflow](/write-and-publish/web-editor/publish).
-- For guidance on organizing API content, see: [Organize API Reference](/api-documentation-and-playground/organize-api-reference).
+6. Reorder and refine using Move actions and incremental layering.
 
-<ExpandableGroup>
+## Step-by-step: create navigation structure
 
-<Expandable title="Why one child type per container matters" default-open="false">
+### How layering works in the Editor
 
-When a container accepts only one child type, the Editor enforces predictable structure and avoids mixed content that would break the navigation model. For example, a group intended to hold pages should not be mixed with a different object type that the rendering engine treats differently.
+You can add structure in two ways:
 
-</Expandable>
+- **Add Parent layer (top&#x20;**<kbd>+</kbd>**)**\
+  Adds a new layer *above* the current one and moves your existing content under it.
 
-<Expandable title="Common mistakes to avoid" default-open="false">
+- **Add Child layer (bottom&#x20;**<kbd>+</kbd>**&#x20;/ inline add)**\
+  Adds a layer *inside the selected item only*. Siblings are unchanged.
 
-- Placing many unrelated pages into a single group.
-- Using long page titles that create unwieldy slugs.
-- Reordering large portions of navigation without testing links.
+A good rule:
 
-</Expandable>
+- Use **Parent** when you want to change the structure for “everything here.”
 
-</ExpandableGroup>
+- Use **Child** when you want to change the structure for “only this section.”
 
-## Related topics
+<Steps>
+  <Step title="Decide if you need dimensions" title-type="p">
+    Use no dimensions for simple sites where everyone sees the same navigation.
 
-- [Web editor overview](/write-and-publish/web-editor/overview)
-- [Images & media in the editor](/write-and-publish/web-editor/images-and-media)
-- [Navigation & sidebar configuration](/customization-and-configuration/navigation-and-sidebar)
-- [Publishing Workflow](/write-and-publish/web-editor/publish)
+    - Add **Version** if your docs differ across releases (v1, v2).&#x20;
+
+    - Add **Product&#x20;**&#x69;f you maintain separate docs for multiple offerings.&#x20;
+
+    - Add Language if you publish localized navigation/content.
+
+    Keep it simple: 1–2 dimensions is usually enough for most sites.
+  </Step>
+
+  <Step title="Add a dimension layer (optional)" title-type="p">
+    1. In the Navigation panel, click the top <kbd>+</kbd> (Add Parent).
+
+    2. Choose Add Product, Add Version, or Add Language.
+
+    3. Create your first value (for example, v1.0).
+
+    What happens: your current navigation becomes the branch for that value.
+  </Step>
+
+  <Step title="Add Tabs for major sections" title-type="p">
+    Tabs work well when your docs have parallel top-level areas like:
+
+    - Guides
+
+    - API Reference
+
+    - Tutorials
+
+    - Changelog
+
+    1. Navigate to the branch you want to edit (for example Version: v1.0).
+
+    2. Add Tabs (as parent or child depending on your current structure).
+
+    3. Create tab names (for example Guides, API Reference).
+
+    <Callout kind="tip" collapsed="false">
+      Keep tab names consistent across versions/products to reduce user confusion.
+    </Callout>
+  </Step>
+
+  <Step title="Add Dropdowns for sidebar categories" title-type="p">
+    Dropdowns work well when your sidebar needs hierarchy.
+
+    1. Select the tab (or dimension branch) where you want categories.
+
+    2. Use Add Child to add a dropdown layer inside that tab, or use Add Parent if you want dropdowns to wrap everything.
+
+    3. Create dropdown items (for example `Getting Started`, `Core Features`, `Integrations`).
+
+    What happens: existing content is moved under the new dropdown item if you added it as a wrapper.
+  </Step>
+
+  <Step title="Validate the structure by switching selectors" title-type="p">
+    Switch between:
+
+    - versions/products/languages (if present)
+
+    - tabs
+
+    - dropdown items
+
+    This confirms you’re editing the correct branch and that content is placed where you expect.
+  </Step>
+</Steps>
+
