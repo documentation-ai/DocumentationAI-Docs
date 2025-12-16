@@ -198,7 +198,7 @@ You add content inside the currently selected branch (for example: Version: v1.0
 
 ### Pages menu (default state)
 
-In the sidebar, you’ll see Pages and a + icon. Clicking + shows:
+In the sidebar, you’ll see the heading “**Pages**” and a <kbd>+</kbd> icon, and clicking on it shows:
 
 - Add Page
 
@@ -210,35 +210,27 @@ In the sidebar, you’ll see Pages and a + icon. Clicking + shows:
 
 - Add Unpublished Page
 
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765863948949-tcdakbhp88j-pasted-image-1765863947683.png?q=85&fm=auto&auto=compress%2Cformat" width="502" height="264" alt="" style="width: 502px; height: auto; cursor: pointer;" />
+
 ### Add a Page
 
-A Page is a standard navigation entry.
+A Page is a standard navigation entry. On clicking "New page", you just need to fill:
 
-1. Click **Pages → +**
+- Page name
 
-2. Select **Add Page**
+- Page URL (slug) — **must be unique**
 
-3. Fill in:
-
-   - Page name
-
-   - Page URL (slug) — **must be unique**
-
-   - Icon (optional)
+- Icon (optional)
 
 URL note: enter only the slug (no full URL). Use consistent kebab-case.
 
 ### Create nested navigation using Page Groups
 
-Use Page Groups when you want nested pages under a single sidebar item.
+Use Page Groups when you want nested pages under a single sidebar item. On clicking "New page group," you just need to set **name** and choose an **icon** (optional).
 
-1. Click **Pages → +**
+Once the page group is added to the navigation. Click on <kbd>+</kbd> icon displayed next to the respective page group name to add:
 
-2. Select **Add Page Group**
-
-3. Set name + optional icon
-
-4. Expand the Page Group and use its **+** to add:
+1. Expand the Page Group and use its **+** to add:
 
    - Pages
 
@@ -252,23 +244,19 @@ This is ideal for structures like SDKs, integrations, or multi-step tutorials.
 
 ### Generate API docs using OpenAPI Reference
 
-1. Click **Pages → +**
-
-2. Select **Add OpenAPI Reference**
-
-3. Upload an OpenAPI JSON/YAML file or paste the spec content
+Upon selecting "**Add OpenAPI Reference**", upload an OpenAPI JSON/YAML file or paste the spec content. Or you can even select files already added to docuemntation.
 
 The Editor generates the API pages automatically and adds them to navigation.
 
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765864518386-ig1paft9jx-pasted-image-1765864516449.png?q=85&fm=auto&auto=compress%2Cformat" width="497" height="332" alt="" style="width: 497px; height: auto; cursor: pointer;" />
+
 ### Re-add removed pages using Unpublished Pages
 
-Unpublished Pages are pages that exist but are not currently in navigation.
+Unpublished Pages are pages that exist but are not currently in navigation, basically the pages that we removed from navigation , and you can add themback whereever you want.&#x20;
 
-1. Click **Pages → +**
+1. Select **Add Unpublished Page**
 
-2. Select **Add Unpublished Page**
-
-3. Choose the page to restore
+2. Choose the page to restore
 
 Use this for drafts, temporarily hidden docs, or restoring older content.
 
@@ -292,11 +280,13 @@ Also, at a given level you should keep navigation consistent:
 
 - organize them inside Groups
 
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765863948949-tcdakbhp88j-pasted-image-1765863947683.png?q=85&fm=auto&auto=compress%2Cformat" width="514" height="270" alt="" caption="Select &#x22;Add Group&#x22; to create group structure" style="width: 514px; height: auto; cursor: pointer;" />
+
 <Steps>
   <Step title="Add a Group" icon="CirclePlus" title-type="p">
     1. Click on the <kbd>+</kbd> icon next to the heading **"Pages"** and choose **Add Group** (first time), or click on the <kbd>+</kbd> icon next to the heading "**Groups"** if group(s) are already enabled/created.
 
-    2. Enter: Group name, and Icon (optional)
+    2. Enter: **Group name**, and **Icon** (optional)
   </Step>
 
   <Step title="Add content inside a Group" icon="FilesIcon" title-type="p">
