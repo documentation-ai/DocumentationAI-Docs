@@ -66,41 +66,9 @@
                 "icon": "globe"
               },
               {
-                "group": "Code Editor",
-                "icon": "code",
-                "expandable": true,
-                "pages": [
-                  {
-                    "title": "Overview",
-                    "path": "write-and-publish/code-editor/overview",
-                    "icon": "info"
-                  },
-                  {
-                    "title": "Images & Media",
-                    "path": "write-and-publish/code-editor/images-and-media",
-                    "icon": "image"
-                  },
-                  {
-                    "title": "Git Workflow",
-                    "path": "write-and-publish/code-editor/git-workflow",
-                    "icon": "git-branch"
-                  },
-                  {
-                    "title": "Organize",
-                    "path": "write-and-publish/code-editor/organize",
-                    "icon": "folder-tree"
-                  },
-                  {
-                    "title": "Publishing Process",
-                    "path": "write-and-publish/code-editor/publish",
-                    "icon": "upload"
-                  },
-                  {
-                    "title": "Troubleshooting",
-                    "path": "write-and-publish/code-editor/troubleshooting",
-                    "icon": "alert-circle"
-                  }
-                ]
+                "title": "Code Editor",
+                "path": "write-and-publish/code-editor/overview",
+                "icon": "code"
               },
               {
                 "group": "Components",

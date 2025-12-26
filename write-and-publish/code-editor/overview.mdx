@@ -1,176 +1,360 @@
 ---
-title: Code Editor Overview
-description: Write and manage documentation using code editors like VS Code and Cursor with Documentation.AI
+title: Code Editor
+description: Use Git-based workflows and MDX in your preferred code editor to write, organize, and publish documentation with Documentation.AI.
 ---
 
-The code editor approach allows developers to write documentation using their preferred development environment. Work with MDX files locally and sync changes to Documentation.AI through Git integration.
+## Overview
 
-**Key capabilities:**
-- **Local development workflow** - Edit MDX files using familiar code editors
-- **Git-based collaboration** - Use branching, pull requests, and code reviews
-- **Advanced search and replace** - Make bulk content changes across multiple files
-- **Extension ecosystem** - Leverage markdown, spell-check, and productivity extensions
-- **Offline editing** - Work on documentation without internet connectivity
+The code editor workflow lets you write and manage documentation in your preferred development environment (for example, VS Code, Cursor, or Windsurf). You work with `.mdx` files locally, commit changes to Git, and Documentation.AI builds and deploys from your connected repository.
 
-## Code Editor vs Web Editor
+Use this page as the single reference for:
 
-Choose code editors when you need:
+- When to use the code editor workflow
+- How to write docs in MDX with Documentation.AI components
+- Recommended Git workflows for collaboration and previews
+- How to organize files and navigation with `documentation.json`
 
-- **Developer workflows** - Git branching, code reviews, and merge workflows
-- **Bulk editing** - Find and replace across multiple files simultaneously  
-- **Advanced file management** - Organize large documentation projects with complex structures
-- **Integration with development** - Edit docs alongside code in the same repository
-- **Offline capabilities** - Work without internet and sync changes later
+<Callout kind="info">
 
-Use the [web editor](/write-and-publish/web-editor/overview) for:
-- Real-time collaboration and visual editing
-- Quick content updates without Git workflows
-- Drag-and-drop media management
-- Immediate publishing without commits
+If you prefer visual editing, real-time collaboration, and publishing without Git, see the [Web Editor](/write-and-publish/web-editor/overview).
 
-## Getting Started
+</Callout>
 
-### 1. Connect Your Repository
+## When to use the code editor workflow
 
-Link your Git repository to Documentation.AI:
+Choose the code editor workflow when you want:
 
-1. In your Documentation.AI dashboard, go to Settings
-2. Connect your GitHub, GitLab, or other Git provider
-3. Select the repository containing your documentation
-4. Choose the branch to deploy (usually `main`)
+- **Developer workflows**  
+  Use Git branching, pull requests, code reviews, and CI-style checks.
 
-### 2. Clone and Setup
+- **Bulk editing and refactors**  
+  Run project-wide search and replace, automate changes with scripts, and refactor content across many files.
 
-Clone your documentation repository:
+- **Integration with code**  
+  Keep docs in the same repo as your product code, or in a dedicated docs repo with the same tooling (linting, formatting, CI).
+
+- **Extension ecosystem**  
+  Use editor extensions for markdown linting, spell-check, formatting, and AI assistance.
+
+- **Offline work**  
+  Edit docs without internet access and push changes when you are back online.
+
+Use the [Web Editor](/write-and-publish/web-editor/overview) when you need:
+
+- Quick, one-off content edits without touching Git
+- Non-technical contributors editing docs
+- Visual content editing and drag-and-drop media management
+
+## Set up your project
+
+### 1. Connect your repository
+
+1. In the Documentation.AI dashboard, open **Settings**.
+2. Connect your Git provider (GitHub, GitLab, or another supported provider).
+3. Select the repository that contains (or will contain) your documentation.
+4. Choose the branch to deploy (typically `main` or `master`).
+
+After the connection, pushes to the configured branch trigger an automatic build and deployment.
+
+### 2. Clone and open in your editor
+
+Clone your docs repository locally:
 
 ```bash
 git clone https://github.com/your-org/docs.git
 cd docs
 ```
 
-### 3. Open in Your Editor
+Open the folder in your editor:
 
-**VS Code**: `code .` or File → Open Folder  
-**Cursor**: `cursor .` or drag the folder to the application
+- **VS Code**: `code .` or use **File → Open Folder**
+- **Cursor**: `cursor .` or drag the folder into the app
 
-## Project Structure
+## Project structure and navigation
 
-Documentation.AI projects use this structure:
+Documentation.AI reads your `.mdx` files and `documentation.json` to generate your site.
 
-```
+A typical structure:
+
+```bash
 docs/
-├── documentation.json    # Site configuration
+├── documentation.json       # Site configuration and navigation
 ├── getting-started/
 │   ├── introduction.mdx
 │   └── quickstart.mdx
 ├── api/
 │   ├── authentication.mdx
-│   └── openapi.yaml
-└── components/
-    └── custom-component.mdx
+│   └── openapi.yaml         # Optional OpenAPI for API docs
+└── guides/
+    └── integrations.mdx
 ```
 
-- **`documentation.json`** - Controls navigation, branding, and site configuration
-- **`.mdx` files** - Your documentation pages with front matter and content
-- **`openapi.yaml`** - API specifications for automatic endpoint generation
+### File and folder naming guidelines
 
-## Writing Content
+To keep your docs maintainable:
 
-### MDX Format
+- Use **lowercase-with-hyphens** for filenames and directories  
+  - `api-authentication.mdx` instead of `APIAuthentication.mdx`
+- Keep a **shallow structure** where possible  
+  - Prefer `guides/integrations.mdx` over deeply nested trees
+- Match **directory structure to navigation groups**  
+  - For example, a `getting-started/` folder for “Getting Started” pages
+- Use **one main concept per page**  
+  - Avoid very long “miscellaneous” pages
 
-Write pages using MDX (Markdown + JSX):
+### `documentation.json` basics
+
+The `documentation.json` file controls:
+
+- Sidebar navigation (groups, pages, and their order)
+- Icons and labels in navigation
+- Some site-wide configuration and metadata
+
+A minimal example of adding a new page:
+
+```json
+{
+  "tabs": [
+    {
+      "tab": "Documentation",
+      "groups": [
+        {
+          "group": "Getting Started",
+          "pages": [
+            { "title": "Introduction", "path": "getting-started/introduction" },
+            { "title": "Quickstart", "path": "getting-started/quickstart" }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Best practices:
+
+- Keep `path` values aligned with your file tree (for example, `getting-started/introduction` → `getting-started/introduction.mdx`).
+- Prefer **absolute paths from the docs root** for internal links (for example, `[Quickstart](/getting-started/quickstart)`).
+- Update `documentation.json` when you add, rename, or remove pages so navigation stays in sync.
+
+For more advanced organization patterns, see the broader [Organize](/organize/overview) docs.
+
+## Writing docs in MDX
+
+### MDX fundamentals
+
+Each page is an `.mdx` file with frontmatter and content:
 
 ````mdx
 ---
 title: API Authentication
-description: Learn how to authenticate with our API using JWT tokens
+description: Learn how to authenticate with our API
 ---
 
-# API Authentication
+## API authentication
 
-Authenticate using JWT tokens in the Authorization header.
+Authenticate using a bearer token in the `Authorization` header.
 
-<Callout type="info">
-Tokens expire after 24 hours and must be refreshed.
-</Callout>
-
-```javascript
-const response = await fetch('/api/data', {
-  headers: {
-    'Authorization': `Bearer ${token}`
-  }
-});
+```bash
+curl https://api.example.com/data \
+  -H "Authorization: Bearer $TOKEN"
 ```
 ````
 
-### Documentation.AI Components
+Guidelines:
 
-Use specialized components for better documentation:
+- Always include at least `title` and `description` in frontmatter.
+- Use markdown for headings, text, lists, and tables.
+- Use MDX components (JSX-style tags) for richer patterns like callouts, steps, and parameter tables.
 
-```jsx
-<Callout type="warning">
-  Important: Always validate user input
+### Using Documentation.AI components
+
+Documentation.AI ships a set of MDX components tailored for docs. Common examples:
+
+````mdx
+<Callout kind="info">
+
+Tokens expire after 24 hours; refresh them using the `/auth/refresh` endpoint.
+
 </Callout>
 
-<ParamField path="userId" param-type="string" required>
-  Unique identifier for the user
+<ParamField path="userId" param-type="string" required="true">
+
+Unique identifier for the user
+
 </ParamField>
+````
 
+For grouped or multi-step content:
+
+````mdx
+<Steps>
+  <Step title="Create an API token" icon="key">
+
+  Go to your account settings, then create a new token with read access.
+
+  </Step>
+
+  <Step title="Add token to your environment" icon="terminal">
+
+  Store the token in an environment variable such as `API_TOKEN`.
+
+  </Step>
+</Steps>
+````
+
+For code in multiple languages:
+
+````mdx
 <CodeGroup tabs="JavaScript,Python">
-  <CodeGroupItem title="JavaScript">
-    const user = await getUser(userId);
-  </CodeGroupItem>
-  <CodeGroupItem title="Python">
-    user = get_user(user_id)
-  </CodeGroupItem>
+```javascript
+const user = await getUser(userId)
+```
+```python
+user = get_user(user_id)
+```
 </CodeGroup>
-```
+````
 
-See the [component reference](/components) for all available components.
+Component references:
 
-## Development Workflow
+- [Headings and Text](/components/heading-and-text)
+- [Code and Groups](/components/code-blocks-and-groups)
+- [Callout](/components/callout)
 
-### 1. Create Feature Branch
+### Internal links
 
-```bash
-git checkout -b add-webhook-docs
-```
+Use absolute paths from the docs root:
 
-### 2. Edit Documentation
+- ✅ `[Quickstart](/getting-started/quickstart)`
+- ✅ `[Web Editor](/write-and-publish/web-editor/overview)`
+- ❌ `../getting-started/quickstart` (relative paths are harder to maintain)
 
-- Create or edit `.mdx` files in your editor
-- Update `documentation.json` for navigation changes
-- Add images to appropriate directories
+This keeps links stable even if you move files or change navigation groups.
 
-### 3. Preview Changes
+## Git workflow and collaboration
 
-**VS Code**: Use markdown preview (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>)  
-**Cursor**: Built-in preview panel with AI assistance
+Documentation.AI uses your Git repository as the single source of truth. A typical cycle:
 
-### 4. Commit and Push
+1. Edit content locally in your editor.
+2. Commit changes to a branch.
+3. Push to your Git provider.
+4. Open a pull request (PR).
+5. Documentation.AI builds previews for the PR and deploys when merged.
 
-```bash
-git add .
-git commit -m "Add webhook setup documentation"
-git push origin add-webhook-docs
-```
+### Recommended branch workflow
 
-### 5. Create Pull Request
+<Steps>
+  <Step title="Create a feature branch" icon="git-branch">
 
-Use your Git platform's interface to create a pull request. Documentation.AI will automatically generate preview builds for review.
+  Start from your main branch:
 
-<Callout type="tip">
-**AI Coding Agents**: If you're using AI coding assistants like Cursor or Windsurf, check out our [helpful prompts](/write-and-publish/prompts) to generate Documentation.AI-compatible content with proper component syntax and formatting.
+  ```bash
+  git checkout main
+  git pull
+  git checkout -b add-webhook-docs
+  ```
+
+  Use descriptive branch names such as `fix-typos-billing-page` or `add-api-errors-doc`.
+
+  </Step>
+
+  <Step title="Edit and preview locally" icon="edit">
+
+  - Create or edit `.mdx` files.
+  - Update `documentation.json` if navigation changes.
+  - Use your editor&apos;s markdown preview (for example, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> in VS Code) for a quick content view.
+
+  </Step>
+
+  <Step title="Commit with clear messages" icon="check">
+
+  ```bash
+  git add .
+  git commit -m "Add webhook setup documentation"
+  ```
+
+  Keep commits focused on related changes to make reviews easier.
+
+  </Step>
+
+  <Step title="Push and open a PR" icon="upload">
+
+  ```bash
+  git push origin add-webhook-docs
+  ```
+
+  Then open a pull request in your Git provider. Documentation.AI automatically builds a preview for the PR so reviewers can see the rendered docs.
+
+  </Step>
+
+  <Step title="Review and merge" icon="check-circle">
+
+  - Use the preview build to verify formatting, navigation, and links.
+  - Address review comments and push updates to the same branch.
+  - When ready, merge the PR into the deployment branch (for example, `main`).
+
+  Documentation.AI then runs a production build and publishes changes.
+
+  </Step>
+</Steps>
+
+### Git workflow best-practice checklist
+
+<Expandable.Root>
+  <Expandable title="Before you open a pull request" defaultOpen>
+    - [ ] Ensure frontmatter `title` and `description` are set and accurate  
+    - [ ] Check that new or renamed pages are added to `documentation.json`  
+    - [ ] Run spell-check or linting in your editor, if configured  
+    - [ ] Verify internal links use absolute paths (for example, `/getting-started/quickstart`)  
+    - [ ] Preview markdown in your editor for obvious formatting issues  
+  </Expandable>
+
+  <Expandable title="During review">
+    - [ ] Use Git diffs to review content changes by section  
+    - [ ] Open the Documentation.AI preview build to see the rendered pages  
+    - [ ] Confirm that navigation, breadcrumbs, and titles look correct  
+    - [ ] Click through new or updated links to catch 404s early  
+  </Expandable>
+
+  <Expandable title="After merge">
+    - [ ] Wait for the Documentation.AI build to complete  
+    - [ ] Spot-check key pages in production (especially new ones)  
+    - [ ] Update any external references (for example, product UI links) if slugs changed  
+  </Expandable>
+</Expandable.Root>
+
+<Callout kind="tip">
+
+Use feature branches and PRs even for documentation-only changes. Documentation.AI generates preview builds for pull requests, which helps reviewers catch structural or navigation issues before they reach production.
+
 </Callout>
 
-## Next Steps
+## Troubleshooting and common issues
 
-Explore code editor workflows:
+If something looks wrong after a change:
 
-- [Organization](organize): Structure files and configure navigation
-- [Git Workflow](git-workflow): Branching, reviews, and collaboration
-- [Images & Media](images-and-media): Manage assets in code editors
-- [Publishing](publish): Deploy changes to Documentation.AI
-- [Troubleshooting](troubleshooting): Resolve common issues
+- **Navigation is missing or out of order**  
+  - Check the corresponding `path` entries in `documentation.json`.  
+  - Make sure filenames and directory names match the `path` values.
 
-For visual editing and real-time collaboration, try the [web editor](/write-and-publish/web-editor/overview).
+- **Page builds but content is broken**  
+  - Look for invalid MDX (for example, unclosed components or unescaped `{` in prose).  
+  - Ensure all components use valid props (for example, `kind="info"` on `<Callout>`).
+
+- **Deployment did not update**  
+  - Confirm that your changes were merged into the configured deployment branch.  
+  - Verify that the latest commit triggered a build in your Documentation.AI project.
+
+For deeper debugging, see the general [Troubleshoot build failures](/help/troubleshoot-build-failures) guide.
+
+## Summary
+
+Use the code editor workflow when you want Git-based, developer-friendly documentation:
+
+- Write in `.mdx` using Documentation.AI components.
+- Organize files to match navigation, and keep `documentation.json` in sync.
+- Use branches, commits, and PRs to collaborate, with preview builds for each change.
+- Let Documentation.AI handle builds and deployments from your main branch.
+
+For teams that prefer WYSIWYG editing or non-Git workflows, pair this with the [Web Editor](/write-and-publish/web-editor/overview) so both technical and non-technical contributors can work where they are most productive.
