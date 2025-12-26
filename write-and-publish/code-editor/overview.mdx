@@ -301,28 +301,34 @@ Documentation.AI uses your Git repository as the single source of truth. A typic
 
 ### Git workflow best-practice checklist
 
-<Expandable.Root>
-  <Expandable title="Before you open a pull request" defaultOpen>
+<ExpandableGroup>
+  <Expandable title="Before you open a pull request" default-open="true">
+
     - [ ] Ensure frontmatter `title` and `description` are set and accurate  
     - [ ] Check that new or renamed pages are added to `documentation.json`  
     - [ ] Run spell-check or linting in your editor, if configured  
     - [ ] Verify internal links use absolute paths (for example, `/getting-started/quickstart`)  
     - [ ] Preview markdown in your editor for obvious formatting issues  
+
   </Expandable>
 
-  <Expandable title="During review">
+  <Expandable title="During review" default-open="false">
+
     - [ ] Use Git diffs to review content changes by section  
     - [ ] Open the Documentation.AI preview build to see the rendered pages  
     - [ ] Confirm that navigation, breadcrumbs, and titles look correct  
     - [ ] Click through new or updated links to catch 404s early  
+
   </Expandable>
 
-  <Expandable title="After merge">
+  <Expandable title="After merge" default-open="false">
+
     - [ ] Wait for the Documentation.AI build to complete  
     - [ ] Spot-check key pages in production (especially new ones)  
     - [ ] Update any external references (for example, product UI links) if slugs changed  
+
   </Expandable>
-</Expandable.Root>
+</ExpandableGroup>
 
 <Callout kind="tip">
 
