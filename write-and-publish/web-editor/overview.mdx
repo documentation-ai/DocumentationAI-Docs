@@ -1,148 +1,221 @@
 ---
-title: Web Editor Overview
-description: Learn how to write and manage documentation using the web editor in Documentation.AI
+title: Web Editor
+description: Create, edit, and publish documentation directly in your browser with the Documentation.AI web editor
 ---
 
+The web editor is a visual interface for creating, editing, and managing documentation directly in your browser. You do not need Git access or local tooling, so you can start writing from your dashboard immediately.
 
-The web editor is a visual interface for creating, editing, and managing documentation directly in your browser. No local setup required - start writing immediately from your dashboard.
+## What the web editor is and when to use it
 
-**Key capabilities:**
-- **Visual editing**: Make changes using a WYSIWYG editor that shows how your content will look when published
-- **Real-time collaboration**: Multiple team members can work simultaneously on the same content
-- **Auto-save and sync**: Changes are automatically saved and synced across your team
-- **Component integration**: Add callouts, code blocks, and other components using slash commands
-- **Dual editing modes**: Switch between visual and markdown modes based on your preference
+The web editor gives you:
 
-## Web Editor Workflow
+- A WYSIWYG experience for fast editing
+- Real-time collaboration with your team
+- Automatic saving and version-safe publishing
+- Easy access to Documentation.AI components through slash commands
 
-Here's how you'll typically work in the web editor:
+Use the web editor when:
 
-### 1. Access Your Project
+- You want to write or update docs without touching Git or your local environment.
+- Multiple teammates (product, engineering, support) contribute to documentation.
+- You prefer a visual authoring experience with live preview.
+- You are iterating on content structure and layout directly in the browser.
 
-Navigate to your Documentation.AI dashboard and select your project. Click `Web Editor` to enter the editing interface.
+If you need a Git-based workflow, local previews, or tight integration with your existing development tooling, use the [code editor overview](/write-and-publish/code-editor/overview) instead.
 
-### 2. Navigate to Your Content
+## Getting started with the web editor
 
-Use the file explorer sidebar to:
-- Open an existing page for editing
-- Create a new page by clicking the `+` button
-- Browse through your documentation structure
-- Search for specific pages using the search function
+### 1. Open your project
 
-### 3. Choose Your Editing Mode
+1. Sign in to Documentation.AI.
+2. From the dashboard, select the project you want to edit.
+3. Open the project workspace.
 
-Switch between editing modes using the toggle in the editor toolbar:
-- **Visual mode**: For WYSIWYG editing with immediate preview
-- **Markdown mode**: For direct MDX code editing
+### 2. Launch the web editor
 
-### 4. Create and Edit Content
+From the project workspace:
 
-**In Visual Mode:**
-- Type content directly and see real-time formatting
-- Press `/` to open the component menu
-- Select from available blocks: headings, lists, callouts, code blocks, images
-- Drag and drop to reorganize content blocks
-- Use the formatting toolbar for text styling
+1. Go to the documentation area or page list.
+2. Select a page to edit, or create a new page.
+3. Choose the web editor if you are prompted to pick an editing mode.
 
-**In Markdown Mode:**
-- Write directly in MDX syntax
-- Access Documentation.AI components using JSX syntax
-- Add custom HTML when needed
-- View syntax highlighting for better readability
+The editor opens with your content and shows the current mode (visual or markdown) in the toolbar.
 
-### 5. Preview Your Changes
+### 3. Navigate your content
 
-Visual mode shows you exactly how your content will appear on your published site. Use this to:
-- Verify formatting and layout
-- Check component rendering
-- Ensure images and media display correctly
-- Test responsive behavior
+Use the sidebar to:
 
-### 6. Save and Publish
+- Browse the documentation tree.
+- Open existing pages for editing.
+- Create new pages or groups.
+- Search for specific pages by title or content.
 
-Your changes are automatically saved as you type. When ready to publish:
-- Review your content in preview mode
-- Click `Publish` to deploy changes to your live documentation
-- View your published page to confirm everything looks correct
+Changes you make in the editor apply to the currently selected page.
 
-## Editor Modes
+## Writing content
 
-Use the toggle in the editor toolbar to switch between editing modes:
+You can write in two modes:
 
-### Visual Mode
+- **Visual mode**: Block-based WYSIWYG editing.
+- **Markdown mode**: Direct MDX editing with full control over components.
 
-Visual mode provides a WYSIWYG editing experience where changes you make in the editor are exactly what will appear on your published documentation site.
+Use the mode toggle in the editor toolbar to switch at any time.
 
-**Working in Visual Mode:**
-- Type content directly and see immediate formatting
-- Press `/` to open the component menu
-- Select from available blocks: headings, lists, callouts, code blocks, images
-- Drag and drop to reorganize content blocks
-- Use the formatting toolbar for text styling
-- See live preview of how components will render
+### Visual mode
 
-**Best for**: Content creators, writers, and anyone who prefers seeing immediate visual results.
+Visual mode shows your content as it will appear on your published site. You work with blocks instead of raw syntax.
+
+**In visual mode you can:**
+
+- Type content directly and see formatting as you go.
+- Use the toolbar to apply headings, bold, italics, links, and inline code.
+- Press `/` to insert blocks and components.
+- Drag and drop blocks to reorder content.
+- See components rendered as they will look when published.
 
 <Image uid="2a25d802-288a-4248-ba14-39049b0c3a71" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758969189972-ffhirpzqmjn-web-editor-visual-mode.png" width="2880" height="1800" alt="Screenshot of Documentation.AI web editor in visual mode showing the block-based interface with content blocks and formatting toolbar" />
 
-### Markdown Mode
+### Markdown mode
 
-Markdown mode provides direct access to the underlying MDX code of your documentation. This mode is ideal when you need precise control over component properties.
+Markdown mode exposes the underlying MDX source for your page so you can work directly with syntax and component props.
 
-**Working in Markdown Mode:**
-- Write using standard markdown syntax
-- Access Documentation.AI components with JSX syntax:
-  ```jsx
-  <Callout type="info">
-    This is an info callout
-  </Callout>
-  ```
-- Add custom HTML when needed for advanced formatting
-- Edit component properties directly
-- View syntax highlighting for better code readability
-- Copy and paste markdown content from other sources
+**In markdown mode you can:**
 
-**Best for**: Developers, technical writers, and users who need precise control over component properties.
+- Write with standard markdown for headings, lists, and links.
+- Use Documentation.AI components with JSX syntax:
+
+```tsx
+<Callout kind="info">
+  Use callouts to highlight important information for your readers.
+</Callout>
+```
+
+- Edit component properties and nesting precisely.
+- Add custom HTML when needed for advanced layouts.
+- Copy and paste content from other markdown sources.
 
 <Image uid="97561b52-718d-4675-a865-28c7f023d4a6" src="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758969349905-n4jqnh9cai-web-editor-mode-markdown.png" width="2880" height="1800" alt="Screenshot of Documentation.AI web editor in markdown mode showing the raw MDX code with syntax highlighting" />
 
-## Slash Commands and Components
+### Headings, links, and structure
 
-Type `/` anywhere in your document to open the component menu:
+Use headings and links to keep your documentation easy to scan:
 
-**Basic Content:**
-- Text blocks (paragraphs, headings)
-- Lists (bulleted, numbered, to-do)
-- Dividers and spacers
+- Use a single top-level page title in frontmatter, then start content with `##` headings.
+- Create a clear outline with `##` and `###` sections.
+- Use descriptive link text (for example, `[Quickstart](/getting-started/quickstart)` instead of “click here”).
+- Break long pages into logical sections instead of one large block of text.
 
-**Rich Content:**
-- Code blocks with language selection
-- Images and file uploads
-- Tables and data displays
-- Quotes and citations
+In visual mode, you can set heading levels using the toolbar. In markdown mode, use `##`, `###`, and so on.
 
-**Documentation.AI Components:**
-- Callouts for important information
-- Cards for navigation and feature showcases
-- Mermaid diagrams for interactive charts and flowcharts
-- Expandable sections for detailed content
-- Parameter and response field documentation
-- API request and response examples
+## Adding rich content
 
-**Media and Embeds:**
-- Image uploads with automatic optimization
-- Video embeds from popular platforms
-- External content iframes
+The web editor makes it easy to add code samples, callouts, images, and other documentation components.
 
-## Next Steps
+### Using slash commands
 
-Explore specific web editor features:
+Type `/` in an empty line or at the start of a block to open the component menu.
 
-- [Organization and Navigation](organize): Structure your content with proper hierarchy
-- [Images and Media](images-and-media): Add and manage visual content
-- [Collaboration](collaboration): Work with team members effectively  
-- [Publishing](publish): Deploy your documentation changes
-- [Keyboard Shortcuts](keyboard-shortcuts): Speed up your editing workflow
-- [Troubleshooting](troubleshooting): Resolve common issues
+From the menu you can quickly insert:
 
-For advanced customization and local development workflows, see the [code editor overview](/write-and-publish/code-editor/overview).
+- Basic content: text, headings, lists, dividers
+- Rich content: code blocks, images, tables, quotes
+- Documentation.AI components: callouts, cards, steps, tabs, expandables, and more
+
+You can always adjust block type, position, and properties after inserting.
+
+### Code blocks and technical content
+
+Use code blocks for examples and snippets:
+
+- Insert a code block via `/code`.
+- Choose a language for syntax highlighting (for example, `bash`, `ts`, `python`).
+- Keep examples focused and copy-pasteable.
+
+For more advanced scenarios, you can use the code and API components described in the components section of the docs:
+
+- [Code blocks and groups](/components/code-blocks-and-groups)
+- [API components](/components/api-components)
+
+### Callouts and guidance
+
+Use callouts to highlight important information, warnings, or tips.
+
+In markdown mode:
+
+```tsx
+<Callout kind="tip">
+  Use callouts to emphasize best practices or caveats that readers should not miss.
+</Callout>
+```
+
+In visual mode:
+
+- Type `/callout` and pick the style (info, tip, success, alert, danger).
+- Edit the text directly in the rendered block.
+
+### Images and media
+
+You can add screenshots, diagrams, and media directly from the web editor:
+
+- Insert an image via `/image` and upload a file or paste a URL.
+- Provide clear alt text so content remains accessible.
+- Resize or reposition images using the visual controls when available.
+
+For videos or interactive content, use `/video` or `/iframe` (depending on your configuration) to embed external media.
+
+To learn more about the underlying components, see:
+
+- [Images](/components/images)
+- [Videos and iframes](/components/videos-and-iframes)
+
+## Organizing and reviewing content
+
+As this page becomes the main entry point for the web editor, you will often use it alongside the project organization features.
+
+### Moving and organizing pages
+
+Use the sidebar to adjust your documentation structure:
+
+- Create new groups or sections for related pages.
+- Move pages into different groups to keep navigation intuitive.
+- Rename pages and update slugs where needed.
+
+For a deeper look at how groups and pages work across your project, see the high-level [organize overview](/organize/overview).
+
+### Collaboration and review
+
+The web editor is built for teams:
+
+- Multiple collaborators can open and edit content.
+- Changes are auto-saved as you type.
+- You can review edits in the editor before publishing.
+
+Use your team’s review process (for example, checklists, issue trackers, or comments in your existing tools) around the web editor to keep changes controlled and traceable.
+
+## Publishing workflow
+
+The web editor separates editing from publishing so you can work safely before sending changes live.
+
+A typical loop:
+
+1. **Edit**  
+   Open a page in the web editor, make changes in visual or markdown mode, and ensure the structure looks correct.
+
+2. **Review in the editor**  
+   - Scan headings and navigation.
+   - Confirm code blocks, callouts, and components render correctly.
+   - Check images and embeds.
+
+3. **Publish**  
+   When you are satisfied with the page:
+
+   - Use the publish action in your project to deploy changes.
+   - Wait for the publish process to complete.
+
+4. **Verify on the live site**  
+   Open the updated page on your documentation site:
+
+   - Confirm layout and content match what you saw in the editor.
+   - Test any links or interactive elements.
+
+You can repeat this cycle as often as needed. For teams that require code review, or if you prefer a Git-based pipeline, use the [code editor overview](/write-and-publish/code-editor/overview) to understand the alternative publishing flow.

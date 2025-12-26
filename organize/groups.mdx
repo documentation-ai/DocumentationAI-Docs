@@ -1,0 +1,242 @@
+---
+title: Groups
+description: Understand how Groups organize pages in the sidebar, when to use them, and how they differ from dropdowns and page-level grouping.
+---
+
+## Overview
+
+Groups are sidebar sections that organize related pages into clear, collapsible chunks like "Getting Started" or "API Documentation".
+
+At the configuration level, a group is defined with properties such as `group`, `icon`, `expandable`, `openapi`, and `pages`. At the reader level, that same group appears as a labeled section in the left sidebar that can contain pages and nested sections.
+
+Use groups when you want to:
+
+- Collect related pages under a shared heading
+- Control whether sections start collapsed or expanded
+- Attach API or OpenAPI definitions to a section of the sidebar
+- Keep large documentation sets scannable and predictable
+
+For low-level configuration details, see [Site Configuration](/customize/site-configuration). For UI-based workflows, see [Organize content and navigation in the Web Editor](/write-and-publish/web-editor/organize).
+
+## What a group is (and is not)
+
+### Groups in the navigation layer
+
+In the navigation and site configuration, groups:
+
+- Are top-level or nested sidebar sections
+- Have a `group` name shown as the label
+- Can have a Lucide `icon` next to the label
+- Can be `expandable` so readers can collapse or expand them
+- Contain a `pages` array that holds:
+  - Page entries (individual docs)
+  - Nested group entries (subsections)
+  - API/OpenAPI-backed sections, via `openapi`
+
+The `pages` array is where you structure the hierarchy of your sidebar.
+
+### How groups differ from dropdowns
+
+"Dropdown" behavior in the header or navbar is separate from groups:
+
+- **Groups**: control the left sidebar content tree.
+- **Dropdowns**: live in the top navigation bar and typically link into existing sidebar locations or external URLs.
+
+You can link a top-nav dropdown item into a group section, but the dropdown itself does not define groups or their structure.
+
+### How groups differ from page-level grouping
+
+Some pages may use headings, tabs, or other components to group content inside a single page. That is **page-level grouping**, not navigation-level grouping.
+
+- **Groups** organize *where* pages live in the sidebar.
+- **Page-level grouping** organizes content *inside* a page.
+
+A long conceptual guide might live as a single page inside one group, even if it uses headings, tabs, or other components to structure its internal content.
+
+## When to introduce groups vs keep flat pages
+
+You do not need groups for every section. In many cases, a flat list of pages is simpler and easier to manage.
+
+### Use flat pages when
+
+- A section has only a handful of pages (for example, 2–5)
+- The topic is narrow and easy to scan without categories
+- You are still shaping the information architecture and do not yet know stable categories
+
+Flat sections are easier to maintain early on and avoid over-structuring.
+
+### Introduce groups when
+
+Consider introducing groups inside a tab or section when:
+
+- There are more than 5–7 pages at a given level
+- You have distinct themes like "Getting Started", "Guides", "Reference"
+- You mix different content types, such as:
+  - Conceptual guides
+  - How-to topics
+  - API reference sections
+- You want collapsible behavior to keep the sidebar compact
+- You are importing or organizing a larger API reference and need separate sections per service or tag
+
+From the Web Editor perspective, once you add a group at a level:
+
+- The label in that area changes from "Pages" to "Groups"
+- You create new sections by adding groups
+- You add content inside a group instead of as sibling pages
+
+<Callout kind="danger">
+
+Avoid mixing grouped and ungrouped content at the same level. Decide whether a level should consist entirely of pages **or** entirely of groups, and keep that choice consistent.
+
+</Callout>
+
+## What groups can contain
+
+Groups define their children using a `pages` array. That array can hold:
+
+- Individual page items
+- Nested groups
+- API/OpenAPI-backed sections
+
+These can be mixed in a single `pages` array.
+
+### Pages inside a group
+
+A standard group may look like:
+
+```json
+{
+  "group": "Getting Started",
+  "icon": "info",
+  "expandable": true,
+  "pages": [
+    { "title": "Introduction", "path": "getting-started/introduction" },
+    { "title": "Core concepts", "path": "getting-started/core-concepts" },
+    { "title": "Quickstart", "path": "getting-started/quickstart" }
+  ]
+}
+```
+
+This renders a "Getting Started" section with three pages under it.
+
+### Nested groups
+
+You can nest groups within other groups to add another level of structure:
+
+```json
+{
+  "group": "Customize",
+  "icon": "palette",
+  "expandable": true,
+  "pages": [
+    {
+      "group": "SEO & GEO",
+      "icon": "search-check-icon",
+      "pages": [
+        {
+          "title": "Structured Data",
+          "path": "seo-and-geo/structured-data"
+        },
+        {
+          "title": "Sitemap",
+          "path": "seo-and-geo/sitemap"
+        }
+      ]
+    },
+    {
+      "title": "Site Configuration",
+      "path": "customize/site-configuration"
+    }
+  ]
+}
+```
+
+Here, "SEO & GEO" is a nested group inside "Customize", alongside other pages.
+
+### API/OpenAPI-backed groups
+
+Groups can also bind directly to an OpenAPI specification using the `openapi` property in site configuration. In that case, the group acts as a **container for generated API docs**:
+
+- The `group` label appears in the sidebar.
+- The `openapi` path tells the system where to load the spec from.
+- The generated API reference structure renders inside that group.
+
+For practical organization patterns, see [Organize API Reference](/api-documentation-and-playground/organize-api-reference) and [OpenAPI / JSON Schema Import](/api-documentation-and-playground/openapi-import).
+
+### How this fits with the "one-child" rule
+
+In navigation, the key constraint is **consistency at each level**:
+
+- At any given level:
+  - Either keep items as **ungrouped pages**, or
+  - Organize them inside **groups**.
+- Within a group, the `pages` array may mix:
+  - Page items
+  - Nested groups
+  - API/OpenAPI-backed entries
+
+Internally, this keeps a clear parent-child relationship:
+
+- Tabs contain groups or pages.
+- Groups contain pages and/or more groups.
+- API/OpenAPI-backed groups generate their own deeper structure, but still hang off a single group node in the tree.
+
+## Practical patterns and gotchas
+
+### Common grouping patterns
+
+Use these patterns as starting points for your sidebar:
+
+- **Intro + concepts + guides**
+
+  - Group: "Getting Started"
+    - Pages: "Introduction", "Quickstart"
+  - Group: "Concepts"
+    - Pages: "Core concepts", "Architecture overview"
+  - Group: "How-to guides"
+    - Pages: "Authenticate", "Handle errors", "Migrate from v1"
+
+- **Product areas**
+
+  - Group: "Workspace"
+  - Group: "Data sources"
+  - Group: "AI features"
+  - Group: "Administration"
+
+- **API-heavy docs**
+
+  - Group: "REST API"
+    - Uses `openapi` to generate routes
+  - Group: "GraphQL API"
+    - Pages: "Overview", "Schema", "Examples"
+  - Group: "SDKs"
+    - Pages per language
+
+### Gotchas to avoid
+
+- **Mixing pages and groups at the same top level**  
+  Once you introduce a group at a level, convert other siblings at that level into groups too, instead of leaving some as raw pages.
+
+- **Over-nesting**  
+  Deeply nested groups make navigation harder. Prefer 2–3 levels of depth in the sidebar.
+
+- **Unclear group names**  
+  Use concise, action-neutral names that reflect content, such as "Customize", "Analytics", or "AI Features", rather than vague labels like "Misc" or "Other".
+
+- **Misusing groups for single pages**  
+  If a group will only ever contain one page, it may be simpler to keep that page at the parent level instead of wrapping it in a group.
+
+<Callout kind="tip">
+
+When reorganizing an existing site, start by grouping the noisiest sections first (for example, API, integrations, or many small guides). Once those areas are structured, revisit smaller sections and only introduce groups where they improve scanability.
+
+</Callout>
+
+### Where to configure and manage groups
+
+You can manage groups in two primary ways:
+
+- **Web Editor**: Use the Organize view to create, rename, and reorder groups visually. See [Organize content and navigation in the Web Editor](/write-and-publish/web-editor/organize).
+- **Site configuration file**: Edit the `tabs` and `groups` structure directly in your configuration to define `group`, `icon`, `expandable`, `openapi`, and `pages`. See [Site Configuration](/customize/site-configuration).
+
+Use whichever workflow fits your team: the Web Editor for everyday maintenance, and configuration files for bulk changes or version-controlled navigation.

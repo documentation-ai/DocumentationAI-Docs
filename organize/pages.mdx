@@ -1,0 +1,188 @@
+---
+title: Pages
+description: Understand how pages work as the building blocks of your docs, how they relate to groups, views, and dimensions, and how to use slugs and paths as stable identifiers.
+---
+
+## Overview
+
+Pages are the fundamental building blocks of your documentation. Each page is:
+
+- Backed by a single MDX file in your repo or workspace
+- Referenced from navigation via a configuration entry
+- Addressable by a stable path or slug that becomes part of the URL
+
+In the Organize area, you use pages together with groups, views, and dimensions to build a structured docs site:
+
+- **Pages**: Individual content items that users read.
+- **Groups / Page Groups**: Containers that nest related pages under a single sidebar item.
+- **Views**: Different ways of presenting or filtering the same underlying pages (for example, a product view vs. an API view).
+- **Dimensions**: Axes like version, language, or audience that slice your pages without duplicating content.
+
+This page focuses on pages themselves: how they are defined, how they appear in navigation, and how to keep their slugs and paths stable over time.
+
+<Callout kind="info">
+
+All content pages must be authored in MDX. When you reference them in configuration, always use the path **without** the `.mdx` extension.
+
+</Callout>
+
+## How pages are referenced
+
+Whether you configure navigation in the Web Editor or via code, each page entry uses a small set of core properties.
+
+### Core page properties
+
+From the [site configuration](/customize/site-configuration), pages support:
+
+- `title` (required): The display name shown in navigation and used in the browser title.
+- `path` (optional for internal pages): The relative path to your MDX file, **without** the `.mdx` extension. This is required unless you use `href`.
+- `href` (optional for external links): A full URL for links that point outside your docs. Use this instead of `path` for external resources.
+- `icon` (optional): A Lucide icon name that appears next to the page in navigation.
+- `method` (optional): HTTP method label for API endpoint pages (for example, `GET`, `POST`), used in API navigation.
+- `tags` (optional): Free-form labels that help categorize or filter pages in views.
+
+In the Web Editor, the same concepts appear as:
+
+- **Page name** → maps to `title`
+- **Page URL (slug)** → maps to `path`
+- **Icon** → maps to `icon`
+
+You do not need to think about JSON or YAML when using the Web Editor; it writes the configuration for you.
+
+### Paths, slugs, and URLs
+
+For internal content:
+
+- The **slug** you choose in the Web Editor becomes the `path` used in configuration.
+- That path is combined with your site base URL (and any custom subpath) to form the public URL.
+- The `path` must be **unique** across your docs so navigation and routing remain unambiguous.
+
+For external content:
+
+- You omit `path` and provide an `href`.
+- The page appears in navigation like any other entry but opens the external URL, typically in a new tab.
+
+## Types of pages you can add
+
+In the Web Editor, the **Pages** menu exposes several options that all result in navigation entries, but they behave differently.
+
+### Normal pages
+
+A **Page** is a standard documentation entry backed by an MDX file.
+
+- Created via **Add Page** or the <kbd>+</kbd> button next to the Pages heading.
+- You provide:
+  - Page name (title)
+  - Page URL (slug), which must be unique
+  - Optional icon
+- Appears directly in the sidebar at the level where you created it.
+- Can later be moved into groups or reorganized without changing its underlying MDX file.
+
+Use normal pages for most narrative docs, guides, references, and conceptual content.
+
+### Page group containers
+
+A **Page Group** (sometimes called a group or section) is a container for nested navigation:
+
+- Created via **Add Group** or **Add Page Group**.
+- Does **not** require its own MDX file unless you explicitly want a landing page.
+- Shows up in the sidebar as a collapsible or expandable item, under which you add or move pages.
+
+Typical patterns:
+
+- Grouping all “Getting Started” content under a single sidebar item.
+- Organizing per-product or per-feature sections.
+- Separating conceptual guides from API reference pages.
+
+Groups help you model your information architecture without duplicating content.
+
+### OpenAPI-generated pages
+
+When you use **Add OpenAPI Reference**:
+
+- You upload or select an OpenAPI spec.
+- The system generates a set of API pages (endpoints, schemas, auth, and more) from that spec.
+- These generated pages are automatically added to navigation, typically under an API-specific group.
+
+Key points:
+
+- Generated pages still behave like normal pages in navigation.
+- The underlying source is your OpenAPI document instead of a hand-written MDX file.
+- You can [organize API reference](/api-documentation-and-playground/organize-api-reference) separately from your main narrative docs while sharing the same global navigation model.
+
+### Unpublished pages
+
+**Unpublished Pages** are content items that exist but are not currently visible in navigation:
+
+- Created when you:
+  - Remove a page from navigation but keep the MDX file.
+  - Import content that you do not yet want to expose.
+- Accessible via **Add Unpublished Page** in the Pages menu, which lets you:
+  - Browse existing but unpublished pages.
+  - Re-add them to navigation in a new location.
+
+This is useful when you are restructuring navigation or staging new content without deleting source files.
+
+## How pages relate to groups, views, and dimensions
+
+Pages are content; groups, views, and dimensions are ways of organizing or slicing that content.
+
+- **Groups** define the sidebar tree structure. A page can:
+  - Live at the root.
+  - Be nested under one or more levels of groups.
+- **Views** allow the same set of pages to appear in different contexts without duplication. For example:
+  - A “Developer” view that shows only technical pages.
+  - A “Customer” view that emphasizes onboarding and how-to content.
+- **Dimensions** apply cross-cutting filters such as:
+  - Version (for example, v1 vs v2)
+  - Locale or language
+  - Audience or plan level
+
+From a maintenance perspective:
+
+- The MDX file and its `path` identify the page.
+- Groups, views, and dimensions control **where** and **when** that page shows up for readers.
+
+## Best practices for naming, slugs, and restructuring
+
+A clear, stable page model makes your docs easier to maintain and safer to evolve.
+
+### Naming and titles
+
+- Use **descriptive titles** that reflect user tasks or topics (for example, “Organize API reference” instead of “API Stuff”).
+- Keep titles **concise**; avoid repeating group names if the surrounding context already makes them obvious.
+- Align page titles with navigation labels so readers see consistent wording.
+
+### Slugs and paths as stable identifiers
+
+Treat `path` as the page’s stable identifier:
+
+- Choose slugs that are:
+  - Lowercase, using `-` as a separator (`organize/pages`, `api-documentation-and-playground/openapi-import`).
+  - Meaningful but not over-specific to current UI labels.
+- Avoid using:
+  - Dates or version numbers in slugs unless versioning is a primary dimension.
+  - Team-internal abbreviations that will not make sense later.
+
+When you must change a slug:
+
+1. Update the `path` in configuration or via the Web Editor.
+2. Add redirects in [Redirects & Rewrites](/customize/redirects-and-rewrites) so existing links continue to work.
+3. Communicate the change if external integrations or apps rely on the old URL.
+
+<Callout kind="tip">
+
+Plan slugs as if they will live for a long time. It is easier to adjust titles and group structure than to rename paths once other systems and users depend on them.
+
+</Callout>
+
+### Safe restructuring
+
+When reorganizing navigation:
+
+- Prefer moving pages between groups over renaming `path`.
+- Use **Page Groups** to add hierarchy instead of duplicating pages.
+- Use **Unpublished Pages** to temporarily remove items while you redesign structure.
+- For API content, consider adjusting OpenAPI grouping or [API reference organization](/api-documentation-and-playground/organize-api-reference) rather than editing many individual pages.
+
+By treating pages as stable content units, and using groups, views, and dimensions as flexible layers on top, you can evolve your docs structure confidently without breaking URLs or confusing readers.
