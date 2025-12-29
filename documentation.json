@@ -469,6 +469,6 @@
   "logo-dark": "https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1757582106531-38cj8v9p8mx-documentationai_logo_dark.svg",
   "logo-light": "https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1757582207005-aoywy54454u-documentationai_logo.svg",
   "ai": {
-    "ai-assistant:enabled": false
+    "ai-assistant:enabled": true
   }
 }
