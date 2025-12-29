@@ -61,83 +61,14 @@
             "expandable": true,
             "pages": [
               {
-                "group": "Web Editor",
-                "icon": "globe",
-                "expandable": true,
-                "pages": [
-                  {
-                    "title": "Overview",
-                    "path": "write-and-publish/web-editor/overview",
-                    "icon": "info"
-                  },
-                  {
-                    "title": "Images & Media",
-                    "path": "write-and-publish/web-editor/images-and-media",
-                    "icon": "image"
-                  },
-                  {
-                    "title": "Organize",
-                    "path": "write-and-publish/web-editor/organize",
-                    "icon": "folder-tree"
-                  },
-                  {
-                    "title": "Collaboration & Review",
-                    "path": "write-and-publish/web-editor/collaboration",
-                    "icon": "users"
-                  },
-                  {
-                    "title": "Publishing Workflow",
-                    "path": "write-and-publish/web-editor/publish",
-                    "icon": "upload"
-                  },
-                  {
-                    "title": "Keyboard Shortcuts",
-                    "path": "write-and-publish/web-editor/keyboard-shortcuts",
-                    "icon": "keyboard"
-                  },
-                  {
-                    "title": "Troubleshooting",
-                    "path": "write-and-publish/web-editor/troubleshooting",
-                    "icon": "alert-circle"
-                  }
-                ]
+                "title": "Web Editor",
+                "path": "write-and-publish/web-editor/overview",
+                "icon": "globe"
               },
               {
-                "group": "Code Editor",
-                "icon": "code",
-                "expandable": true,
-                "pages": [
-                  {
-                    "title": "Overview",
-                    "path": "write-and-publish/code-editor/overview",
-                    "icon": "info"
-                  },
-                  {
-                    "title": "Images & Media",
-                    "path": "write-and-publish/code-editor/images-and-media",
-                    "icon": "image"
-                  },
-                  {
-                    "title": "Git Workflow",
-                    "path": "write-and-publish/code-editor/git-workflow",
-                    "icon": "git-branch"
-                  },
-                  {
-                    "title": "Organize",
-                    "path": "write-and-publish/code-editor/organize",
-                    "icon": "folder-tree"
-                  },
-                  {
-                    "title": "Publishing Process",
-                    "path": "write-and-publish/code-editor/publish",
-                    "icon": "upload"
-                  },
-                  {
-                    "title": "Troubleshooting",
-                    "path": "write-and-publish/code-editor/troubleshooting",
-                    "icon": "alert-circle"
-                  }
-                ]
+                "title": "Code Editor",
+                "path": "write-and-publish/code-editor/overview",
+                "icon": "code"
               },
               {
                 "group": "Components",
@@ -239,6 +170,36 @@
                 "title": "Helpful Prompts",
                 "path": "write-and-publish/prompts",
                 "icon": "check-circle"
+              }
+            ]
+          },
+          {
+            "group": "Organize",
+            "pages": [
+              {
+                "title": "Overview",
+                "path": "organize/overview",
+                "icon": "lucide-info"
+              },
+              {
+                "title": "Dimensions",
+                "path": "organize/dimensions",
+                "icon": "layers"
+              },
+              {
+                "title": "Views",
+                "path": "organize/views",
+                "icon": "layout-dashboard"
+              },
+              {
+                "title": "Groups",
+                "path": "organize/groups",
+                "icon": "folder-tree"
+              },
+              {
+                "title": "Pages",
+                "path": "organize/pages",
+                "icon": "file-text"
               }
             ]
           },
@@ -467,8 +428,5 @@
   },
   "favicon": "https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1763647259799-dvpow3xiipa-doc-favicon-dark.png",
   "logo-dark": "https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1757582106531-38cj8v9p8mx-documentationai_logo_dark.svg",
-  "logo-light": "https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1757582207005-aoywy54454u-documentationai_logo.svg",
-  "ai": {
-    "ai-assistant:enabled": true
-  }
+  "logo-light": "https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1757582207005-aoywy54454u-documentationai_logo.svg"
 }
