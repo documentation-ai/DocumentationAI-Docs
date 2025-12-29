@@ -4,7 +4,6 @@ description: >-
   Create, edit, and publish documentation directly in your browser with the
   Documentation.AI web editor
 ---
-
 The web editor is a visual interface for creating, editing, and managing documentation directly in your browser. You do not need Git access or local tooling, so you can start writing from your dashboard immediately.
 
 ## What the web editor is and when to use it
@@ -31,90 +30,63 @@ Use the web editor when:
 
 If you need a Git-based workflow, local previews, or tight integration with your existing development tooling, use the [code editor](/write-and-publish/code-editor/overview) instead.
 
-## Understanding the documentation navigation
-
-### Navigation hierarchy in the web editor
-
-When you open a project in the web editor, your content follows a consistent hierarchy:
-
-- **Dimension → View → Groups → Pages**
-
-This hierarchy controls both what you see in the sidebar and which pages you are editing.
-
-### Dimensions: top-level documentation spaces
-
-**Dimensions** define the top-level organization of your docs for different audiences or use cases (for example, end users vs. API consumers).
-
-- Each Dimension is a separate documentation space with its own structure.
-- Switching Dimensions changes the entire documentation tree you are working in.
-
-Learn more in the [Dimensions reference](/organize/dimensions).
-
-### Views: filtered perspectives within a Dimension
-
-Within a Dimension, **Views** are the selectable perspectives that determine which groups and pages appear in the sidebar.
-
-- Each View can show a different subset or arrangement of the same underlying content.
-- Switching Views changes which groups and pages are visible and editable, without leaving the current Dimension.
-
-See the [Views reference](/organize/views) for configuration details.
-
-### Sidebar layout: tabs, groups, and pages
-
-Once you have chosen a Dimension and View, the left sidebar in the web editor typically shows:
-
-- **Top-level tabs** such as Documentation, Changelog, and Help.
-- **Groups or sections** (for example, Getting Started, Write and Publish, Organize) that act as folders for related content.
-- **Pages** inside each group (for example, Web Editor, Code Editor, Pages) that you can open and edit.
-
-This layout lets you move between different parts of your docs while staying in the same editor session.
-
-### What you can do from the sidebar
-
-From the web editor sidebar you can:
-
-- Click a group to reveal all pages inside it.
-- Select a page to load it in the editor.
-- Use search to jump directly to a page by title or content.
-
-Your writing always applies to the page that is currently selected in the sidebar. To go deeper into how pages themselves work (titles, slugs, paths, and metadata), see [Pages in the Organize section](/organize/pages).
-
 ## Getting started with the web editor
 
 ### 1. Open the editor from the dashboard
 
 1. Sign in to Documentation.AI.
+
 2. From the dashboard, go to **Editor** at [https://dashboard.documentation.ai/editor](https://dashboard.documentation.ai/editor).
+
 3. The web editor opens for your selected project.
 
 If you work in multiple projects, use the project switcher in the dashboard before opening the editor so you are editing the correct documentation set.
 
 ### 2. Browse the documentation structure
 
-In the web editor, use the left-side menu to navigate your docs. The structure follows the same hierarchy described earlier:
+In the web editor, your content follows a consistent hierarchy:
 
-- **Dimensions**: top-level documentation spaces for different audiences or products.
-- **Views**: filtered perspectives within a Dimension that control which content is visible.
-- **Content**: your actual documentation, organized as **Groups** and **Pages**.
+- **Dimensions → Views → Groups → Pages**
 
-You can:
+This hierarchy controls what you see in the left sidebar and which page you are editing.
 
-- Switch Dimensions to change which documentation space you are working in.
-- Change Views to see different subsets or arrangements of the same content.
-- Expand Groups to see the Pages inside them, then select a Page to load it in the editor.
+- [**Dimensions**](/organize/dimensions): Top-level documentation spaces for different audiences or products, such as separate docs for end users and API consumers. Switching the Dimension changes the entire documentation tree you are working in.
 
-Your edits always apply to the Page that is currently selected in this left-side menu.
+- [**Views**](/organize/views): Filtered perspectives within a Dimension that determine which groups and pages appear. Switching the View changes which content is visible and editable without leaving the current Dimension.&#x20;
+
+Within the selected Dimension and View, the left sidebar typically shows:
+
+- **Top-level tabs** such as Documentation, Changelog, and Help.
+
+- **Groups or sections** (for example, Getting Started, Write and Publish, Organize) that act as folders for related content.
+
+- **Pages** inside each group (for example, Web Editor, Code Editor, Pages) that you can open and edit.
+
+From the sidebar you can:
+
+- Expand a group to reveal all pages inside it.
+
+- Select a page to load it in the editor.
+
+- Use search to jump directly to a page by title or content.
+
+Your edits always apply to the page that is currently selected in the sidebar. To go deeper into how pages work, including titles, slugs, and metadata, see [Pages](/organize/pages).
 
 ### 3. Create a new page
 
 To add new content to your documentation:
 
 1. Open the **Editor** at [https://dashboard.documentation.ai/editor](https://dashboard.documentation.ai/editor).
+
 2. In the left-side menu, select the appropriate **Dimension** and **View**.
-3. Navigate to the **Group** where you want the new page to live, or create a new Group first if needed.
+
+3. Navigate to the [**Group**](/organize/groups)**s** where you want the new page to live, or create a new Group first if needed.
+
 4. Use the available option to **create new page** within that Group.
+
 5. Enter a page title and start writing in visual or markdown mode.
-6. Adjust the page&apos;s position within the Group using the left-side structure if you need to reorder it later.
+
+6. Adjust the page's position within the Group using the left-side structure if you need to reorder it later.
 
 For more detail on how Groups and Pages behave across your project (including slugs, paths, and metadata), see the [organize overview](/organize/overview) and the [Pages guide in Organize](/organize/pages).
 
