@@ -28,439 +28,434 @@
     }
   },
   "navigation": {
-    "products": [
+    "tabs": [
       {
-        "product": "yashwanth is good",
-        "tabs": [
+        "tab": "Documentation",
+        "icon": "book",
+        "groups": [
           {
-            "tab": "Documentation",
-            "icon": "book",
-            "groups": [
+            "group": "Getting Started",
+            "icon": "info",
+            "expandable": false,
+            "pages": [
               {
-                "group": "Getting Started",
-                "icon": "info",
-                "expandable": false,
+                "title": "Introduction",
+                "path": "getting-started/introduction",
+                "icon": "star"
+              },
+              {
+                "title": "Core concepts",
+                "path": "getting-started/core-concepts",
+                "icon": "cog"
+              },
+              {
+                "title": "Quickstart",
+                "path": "getting-started/quickstart",
+                "icon": "zap"
+              }
+            ]
+          },
+          {
+            "group": "Write and Publish",
+            "icon": "pen-tool",
+            "expandable": true,
+            "pages": [
+              {
+                "group": "Web Editor",
+                "icon": "globe",
+                "expandable": true,
                 "pages": [
                   {
-                    "title": "Introduction",
-                    "path": "getting-started/introduction",
-                    "icon": "star"
+                    "title": "Overview",
+                    "path": "write-and-publish/web-editor/overview",
+                    "icon": "info"
                   },
                   {
-                    "title": "Core concepts",
-                    "path": "getting-started/core-concepts",
-                    "icon": "cog"
+                    "title": "Images & Media",
+                    "path": "write-and-publish/web-editor/images-and-media",
+                    "icon": "image"
                   },
                   {
-                    "title": "Quickstart",
-                    "path": "getting-started/quickstart",
-                    "icon": "zap"
+                    "title": "Organize",
+                    "path": "write-and-publish/web-editor/organize",
+                    "icon": "folder-tree"
+                  },
+                  {
+                    "title": "Collaboration & Review",
+                    "path": "write-and-publish/web-editor/collaboration",
+                    "icon": "users"
+                  },
+                  {
+                    "title": "Publishing Workflow",
+                    "path": "write-and-publish/web-editor/publish",
+                    "icon": "upload"
+                  },
+                  {
+                    "title": "Keyboard Shortcuts",
+                    "path": "write-and-publish/web-editor/keyboard-shortcuts",
+                    "icon": "keyboard"
+                  },
+                  {
+                    "title": "Troubleshooting",
+                    "path": "write-and-publish/web-editor/troubleshooting",
+                    "icon": "alert-circle"
                   }
                 ]
               },
               {
-                "group": "Write and Publish",
-                "icon": "pen-tool",
+                "group": "Code Editor",
+                "icon": "code",
                 "expandable": true,
                 "pages": [
                   {
-                    "group": "Web Editor",
-                    "icon": "globe",
-                    "expandable": true,
-                    "pages": [
-                      {
-                        "title": "Overview",
-                        "path": "write-and-publish/web-editor/overview",
-                        "icon": "info"
-                      },
-                      {
-                        "title": "Images & Media",
-                        "path": "write-and-publish/web-editor/images-and-media",
-                        "icon": "image"
-                      },
-                      {
-                        "title": "Organize",
-                        "path": "write-and-publish/web-editor/organize",
-                        "icon": "folder-tree"
-                      },
-                      {
-                        "title": "Collaboration & Review",
-                        "path": "write-and-publish/web-editor/collaboration",
-                        "icon": "users"
-                      },
-                      {
-                        "title": "Publishing Workflow",
-                        "path": "write-and-publish/web-editor/publish",
-                        "icon": "upload"
-                      },
-                      {
-                        "title": "Keyboard Shortcuts",
-                        "path": "write-and-publish/web-editor/keyboard-shortcuts",
-                        "icon": "keyboard"
-                      },
-                      {
-                        "title": "Troubleshooting",
-                        "path": "write-and-publish/web-editor/troubleshooting",
-                        "icon": "alert-circle"
-                      }
-                    ]
+                    "title": "Overview",
+                    "path": "write-and-publish/code-editor/overview",
+                    "icon": "info"
                   },
                   {
-                    "group": "Code Editor",
-                    "icon": "code",
-                    "expandable": true,
-                    "pages": [
-                      {
-                        "title": "Overview",
-                        "path": "write-and-publish/code-editor/overview",
-                        "icon": "info"
-                      },
-                      {
-                        "title": "Images & Media",
-                        "path": "write-and-publish/code-editor/images-and-media",
-                        "icon": "image"
-                      },
-                      {
-                        "title": "Git Workflow",
-                        "path": "write-and-publish/code-editor/git-workflow",
-                        "icon": "git-branch"
-                      },
-                      {
-                        "title": "Organize",
-                        "path": "write-and-publish/code-editor/organize",
-                        "icon": "folder-tree"
-                      },
-                      {
-                        "title": "Publishing Process",
-                        "path": "write-and-publish/code-editor/publish",
-                        "icon": "upload"
-                      },
-                      {
-                        "title": "Troubleshooting",
-                        "path": "write-and-publish/code-editor/troubleshooting",
-                        "icon": "alert-circle"
-                      }
-                    ]
+                    "title": "Images & Media",
+                    "path": "write-and-publish/code-editor/images-and-media",
+                    "icon": "image"
                   },
                   {
-                    "group": "Components",
-                    "pages": [
-                      {
-                        "title": "Headings and Text",
-                        "path": "components/heading-and-text",
-                        "icon": "type"
-                      },
-                      {
-                        "title": "Lists and Tables",
-                        "path": "components/lists-and-tables",
-                        "icon": "list"
-                      },
-                      {
-                        "title": "Card",
-                        "path": "components/card",
-                        "icon": "square"
-                      },
-                      {
-                        "title": "Columns",
-                        "path": "components/columns",
-                        "icon": "columns"
-                      },
-                      {
-                        "title": "Images",
-                        "path": "components/images",
-                        "icon": "image"
-                      },
-                      {
-                        "title": "Videos and Iframes",
-                        "path": "components/videos-and-iframes",
-                        "icon": "video"
-                      },
-                      {
-                        "title": "Code and Groups",
-                        "path": "components/code-blocks-and-groups",
-                        "icon": "code"
-                      },
-                      {
-                        "title": "Mermaid Diagrams",
-                        "path": "components/mermaid",
-                        "icon": "network"
-                      },
-                      {
-                        "title": "Callout",
-                        "path": "components/callout",
-                        "icon": "megaphone"
-                      },
-                      {
-                        "title": "Expandables",
-                        "path": "components/expandables",
-                        "icon": "chevron-down"
-                      },
-                      {
-                        "title": "Steps",
-                        "path": "components/steps",
-                        "icon": "list-ordered"
-                      },
-                      {
-                        "title": "Tabs",
-                        "path": "components/tabs",
-                        "icon": "lucide-panel-top"
-                      },
-                      {
-                        "title": "Update",
-                        "path": "components/update",
-                        "icon": "clock"
-                      },
-                      {
-                        "title": "Param Field",
-                        "path": "components/paramfield",
-                        "icon": "settings"
-                      },
-                      {
-                        "title": "Response Field",
-                        "path": "components/responsefield",
-                        "icon": "file-text"
-                      },
-                      {
-                        "title": "API Components",
-                        "path": "components/api-components",
-                        "icon": "code"
-                      }
-                    ],
-                    "icon": "component"
+                    "title": "Git Workflow",
+                    "path": "write-and-publish/code-editor/git-workflow",
+                    "icon": "git-branch"
                   },
                   {
-                    "title": "Using Cursor",
-                    "path": "write-and-publish/cursor",
-                    "icon": "lucide-text-cursor"
+                    "title": "Organize",
+                    "path": "write-and-publish/code-editor/organize",
+                    "icon": "folder-tree"
                   },
                   {
-                    "title": "Using Claude Code",
-                    "path": "write-and-publish/claude-code",
-                    "icon": "a-large-small-icon"
+                    "title": "Publishing Process",
+                    "path": "write-and-publish/code-editor/publish",
+                    "icon": "upload"
                   },
                   {
-                    "title": "Helpful Prompts",
-                    "path": "write-and-publish/prompts",
-                    "icon": "check-circle"
+                    "title": "Troubleshooting",
+                    "path": "write-and-publish/code-editor/troubleshooting",
+                    "icon": "alert-circle"
                   }
                 ]
               },
               {
-                "group": "Customize",
-                "icon": "palette",
-                "expandable": true,
+                "group": "Components",
                 "pages": [
                   {
-                    "title": "Colors & Typography",
-                    "path": "customize/colors-and-typography",
+                    "title": "Headings and Text",
+                    "path": "components/heading-and-text",
                     "icon": "type"
                   },
                   {
-                    "title": "Navigation & Sidebar",
-                    "path": "customize/navigation-and-sidebar",
-                    "icon": "menu"
+                    "title": "Lists and Tables",
+                    "path": "components/lists-and-tables",
+                    "icon": "list"
                   },
                   {
-                    "title": "Header & Navbar",
-                    "path": "customize/header-and-navbar",
-                    "icon": "layout"
+                    "title": "Card",
+                    "path": "components/card",
+                    "icon": "square"
                   },
                   {
-                    "title": "Branding",
-                    "path": "customize/branding",
-                    "icon": "award"
+                    "title": "Columns",
+                    "path": "components/columns",
+                    "icon": "columns"
                   },
                   {
-                    "group": "SEO & GEO",
-                    "pages": [
-                      {
-                        "title": "Structured Data",
-                        "path": "seo-and-geo/structured-data",
-                        "icon": "layers"
-                      },
-                      {
-                        "title": "Robots.txt & llm.txt",
-                        "path": "seo-and-geo/robots-txt-and-llm-txt",
-                        "icon": "file"
-                      },
-                      {
-                        "title": "Sitemap",
-                        "path": "seo-and-geo/sitemap",
-                        "icon": "map"
-                      },
-                      {
-                        "title": "Canonical URLs",
-                        "path": "seo-and-geo/canonical-urls",
-                        "icon": "link-2"
-                      },
-                      {
-                        "title": "Meta Tags Setup",
-                        "path": "seo-and-geo/meta-tags-setup",
-                        "icon": "tag"
-                      }
-                    ],
-                    "icon": "search-check-icon"
+                    "title": "Images",
+                    "path": "components/images",
+                    "icon": "image"
                   },
                   {
-                    "title": "Custom Domain Setup",
-                    "path": "customize/custom-domain",
-                    "icon": "globe"
+                    "title": "Videos and Iframes",
+                    "path": "components/videos-and-iframes",
+                    "icon": "video"
                   },
                   {
-                    "group": "Custom Subpath Setup",
-                    "icon": "link",
-                    "expandable": true,
-                    "pages": [
-                      {
-                        "title": "Overview",
-                        "path": "customize/custom-subpath/overview",
-                        "icon": "info"
-                      },
-                      {
-                        "title": "Vercel",
-                        "path": "customize/custom-subpath/vercel",
-                        "icon": "triangle"
-                      },
-                      {
-                        "title": "Cloudflare Workers",
-                        "path": "customize/custom-subpath/cloudflare",
-                        "icon": "cloud"
-                      },
-                      {
-                        "title": "AWS Route 53 & CloudFront",
-                        "path": "customize/custom-subpath/aws",
-                        "icon": "cloud-cog"
-                      }
-                    ]
+                    "title": "Code and Groups",
+                    "path": "components/code-blocks-and-groups",
+                    "icon": "code"
                   },
                   {
-                    "title": "Redirects",
-                    "path": "customize/redirects-and-rewrites",
-                    "icon": "repeat"
+                    "title": "Mermaid Diagrams",
+                    "path": "components/mermaid",
+                    "icon": "network"
                   },
                   {
-                    "title": "Site Configuration",
-                    "path": "customize/site-configuration",
-                    "icon": "file-cog"
+                    "title": "Callout",
+                    "path": "components/callout",
+                    "icon": "megaphone"
                   },
                   {
-                    "title": "Page Configuration",
-                    "path": "customize/page-configuration",
-                    "icon": "file-text"
-                  }
-                ]
-              },
-              {
-                "group": "API Documentation",
-                "icon": "server",
-                "expandable": true,
-                "pages": [
-                  {
-                    "title": "OpenAPI / JSON Schema Import",
-                    "path": "api-documentation-and-playground/openapi-import",
-                    "icon": "file-code"
+                    "title": "Expandables",
+                    "path": "components/expandables",
+                    "icon": "chevron-down"
                   },
                   {
-                    "title": "Organize API Reference",
-                    "path": "api-documentation-and-playground/organize-api-reference",
-                    "icon": "folder-open"
+                    "title": "Steps",
+                    "path": "components/steps",
+                    "icon": "list-ordered"
                   },
                   {
-                    "title": "Interactive Playground Setup",
-                    "path": "api-documentation-and-playground/interactive-playground-setup",
-                    "icon": "play-circle"
+                    "title": "Tabs",
+                    "path": "components/tabs",
+                    "icon": "lucide-panel-top"
                   },
                   {
-                    "title": "Code Generation",
-                    "path": "api-documentation-and-playground/code-generation",
-                    "icon": "terminal"
-                  }
-                ]
-              },
-              {
-                "group": "AI Features",
-                "icon": "bot",
-                "expandable": true,
-                "pages": [
-                  {
-                    "title": "AI Documentation Agent",
-                    "path": "ai/ai-documentation-agent",
-                    "icon": "stars-icon"
+                    "title": "Update",
+                    "path": "components/update",
+                    "icon": "clock"
                   },
                   {
-                    "title": "AI Assistant",
-                    "path": "ai/ai-assistant",
+                    "title": "Param Field",
+                    "path": "components/paramfield",
                     "icon": "settings"
                   },
                   {
-                    "title": "MCP Server",
-                    "path": "ai/mcp-server",
-                    "icon": "server-cog"
+                    "title": "Response Field",
+                    "path": "components/responsefield",
+                    "icon": "file-text"
                   },
                   {
-                    "title": "On-Page AI Menu",
-                    "path": "ai/ai-menu",
-                    "icon": "menu"
-                  },
-                  {
-                    "title": "AI Credits",
-                    "path": "ai/ai-credits",
-                    "icon": "stars"
+                    "title": "API Components",
+                    "path": "components/api-components",
+                    "icon": "code"
                   }
-                ]
+                ],
+                "icon": "component"
               },
               {
-                "group": "Analytics",
-                "icon": "trending-up",
+                "title": "Using Cursor",
+                "path": "write-and-publish/cursor",
+                "icon": "lucide-text-cursor"
+              },
+              {
+                "title": "Using Claude Code",
+                "path": "write-and-publish/claude-code",
+                "icon": "a-large-small-icon"
+              },
+              {
+                "title": "Helpful Prompts",
+                "path": "write-and-publish/prompts",
+                "icon": "check-circle"
+              }
+            ]
+          },
+          {
+            "group": "Customize",
+            "icon": "palette",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "Colors & Typography",
+                "path": "customize/colors-and-typography",
+                "icon": "type"
+              },
+              {
+                "title": "Navigation & Sidebar",
+                "path": "customize/navigation-and-sidebar",
+                "icon": "menu"
+              },
+              {
+                "title": "Header & Navbar",
+                "path": "customize/header-and-navbar",
+                "icon": "layout"
+              },
+              {
+                "title": "Branding",
+                "path": "customize/branding",
+                "icon": "award"
+              },
+              {
+                "group": "SEO & GEO",
+                "pages": [
+                  {
+                    "title": "Structured Data",
+                    "path": "seo-and-geo/structured-data",
+                    "icon": "layers"
+                  },
+                  {
+                    "title": "Robots.txt & llm.txt",
+                    "path": "seo-and-geo/robots-txt-and-llm-txt",
+                    "icon": "file"
+                  },
+                  {
+                    "title": "Sitemap",
+                    "path": "seo-and-geo/sitemap",
+                    "icon": "map"
+                  },
+                  {
+                    "title": "Canonical URLs",
+                    "path": "seo-and-geo/canonical-urls",
+                    "icon": "link-2"
+                  },
+                  {
+                    "title": "Meta Tags Setup",
+                    "path": "seo-and-geo/meta-tags-setup",
+                    "icon": "tag"
+                  }
+                ],
+                "icon": "search-check-icon"
+              },
+              {
+                "title": "Custom Domain Setup",
+                "path": "customize/custom-domain",
+                "icon": "globe"
+              },
+              {
+                "group": "Custom Subpath Setup",
+                "icon": "link",
                 "expandable": true,
                 "pages": [
                   {
-                    "title": "Overview & Insights",
-                    "path": "analytics/overview",
-                    "icon": "bar-chart4-icon"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Changelog",
-            "icon": "scroll",
-            "groups": [
-              {
-                "group": "Changelog",
-                "icon": "bell",
-                "expandable": false,
-                "pages": [
+                    "title": "Overview",
+                    "path": "customize/custom-subpath/overview",
+                    "icon": "info"
+                  },
                   {
-                    "title": "Changelog",
-                    "path": "changelog",
-                    "icon": "scroll"
+                    "title": "Vercel",
+                    "path": "customize/custom-subpath/vercel",
+                    "icon": "triangle"
+                  },
+                  {
+                    "title": "Cloudflare Workers",
+                    "path": "customize/custom-subpath/cloudflare",
+                    "icon": "cloud"
+                  },
+                  {
+                    "title": "AWS Route 53 & CloudFront",
+                    "path": "customize/custom-subpath/aws",
+                    "icon": "cloud-cog"
                   }
                 ]
+              },
+              {
+                "title": "Redirects",
+                "path": "customize/redirects-and-rewrites",
+                "icon": "repeat"
+              },
+              {
+                "title": "Site Configuration",
+                "path": "customize/site-configuration",
+                "icon": "file-cog"
+              },
+              {
+                "title": "Page Configuration",
+                "path": "customize/page-configuration",
+                "icon": "file-text"
               }
             ]
           },
           {
-            "tab": "Help",
-            "icon": "help-circle",
+            "group": "API Documentation",
+            "icon": "server",
+            "expandable": true,
             "pages": [
               {
-                "title": "Contact Us",
-                "path": "help/contact-us",
-                "icon": "mail"
+                "title": "OpenAPI / JSON Schema Import",
+                "path": "api-documentation-and-playground/openapi-import",
+                "icon": "file-code"
               },
               {
-                "title": "Community",
-                "path": "help/community",
-                "icon": "users"
+                "title": "Organize API Reference",
+                "path": "api-documentation-and-playground/organize-api-reference",
+                "icon": "folder-open"
               },
               {
-                "title": "Roadmap",
-                "href": "https://documentationai.featurebase.app/roadmap",
-                "icon": "globe"
+                "title": "Interactive Playground Setup",
+                "path": "api-documentation-and-playground/interactive-playground-setup",
+                "icon": "play-circle"
+              },
+              {
+                "title": "Code Generation",
+                "path": "api-documentation-and-playground/code-generation",
+                "icon": "terminal"
               }
             ]
+          },
+          {
+            "group": "AI Features",
+            "icon": "bot",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "AI Documentation Agent",
+                "path": "ai/ai-documentation-agent",
+                "icon": "stars-icon"
+              },
+              {
+                "title": "AI Assistant",
+                "path": "ai/ai-assistant",
+                "icon": "settings"
+              },
+              {
+                "title": "MCP Server",
+                "path": "ai/mcp-server",
+                "icon": "server-cog"
+              },
+              {
+                "title": "On-Page AI Menu",
+                "path": "ai/ai-menu",
+                "icon": "menu"
+              },
+              {
+                "title": "AI Credits",
+                "path": "ai/ai-credits",
+                "icon": "stars"
+              }
+            ]
+          },
+          {
+            "group": "Analytics",
+            "icon": "trending-up",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "Overview & Insights",
+                "path": "analytics/overview",
+                "icon": "bar-chart4-icon"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "icon": "scroll",
+        "groups": [
+          {
+            "group": "Changelog",
+            "icon": "bell",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Changelog",
+                "path": "changelog",
+                "icon": "scroll"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Help",
+        "icon": "help-circle",
+        "pages": [
+          {
+            "title": "Contact Us",
+            "path": "help/contact-us",
+            "icon": "mail"
+          },
+          {
+            "title": "Community",
+            "path": "help/community",
+            "icon": "users"
+          },
+          {
+            "title": "Roadmap",
+            "href": "https://documentationai.featurebase.app/roadmap",
+            "icon": "globe"
           }
         ]
       }
