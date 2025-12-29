@@ -33,22 +33,48 @@ If you need a Git-based workflow, local previews, or tight integration with your
 
 ## Understanding the documentation navigation
 
-When you open a project in the web editor, your documentation is organized in the sidebar so you can move between pages while you write.
+### Navigation hierarchy in the web editor
 
-In the sidebar you will typically see:
+When you open a project in the web editor, your content follows a consistent hierarchy:
+
+- **Dimension → View → Groups → Pages**
+
+This hierarchy controls both what you see in the sidebar and which pages you are editing.
+
+### Dimensions: top-level documentation spaces
+
+**Dimensions** define the top-level organization of your docs for different audiences or use cases (for example, end users vs. API consumers).
+
+- Each Dimension is a separate documentation space with its own structure.
+- Switching Dimensions changes the entire documentation tree you are working in.
+
+Learn more in the [Dimensions reference](/organize/dimensions).
+
+### Views: filtered perspectives within a Dimension
+
+Within a Dimension, **Views** are the selectable perspectives that determine which groups and pages appear in the sidebar.
+
+- Each View can show a different subset or arrangement of the same underlying content.
+- Switching Views changes which groups and pages are visible and editable, without leaving the current Dimension.
+
+See the [Views reference](/organize/views) for configuration details.
+
+### Sidebar layout: tabs, groups, and pages
+
+Once you have chosen a Dimension and View, the left sidebar in the web editor typically shows:
 
 - **Top-level tabs** such as Documentation, Changelog, and Help.
-
 - **Groups or sections** (for example, Getting Started, Write and Publish, Organize) that act as folders for related content.
-
 - **Pages** inside each group (for example, Web Editor, Code Editor, Pages) that you can open and edit.
+
+This layout lets you move between different parts of your docs while staying in the same editor session.
+
+### What you can do from the sidebar
 
 From the web editor sidebar you can:
 
 - Click a group to reveal all pages inside it.
-
 - Select a page to load it in the editor.
-
 - Use search to jump directly to a page by title or content.
 
 Your writing always applies to the page that is currently selected in the sidebar. To go deeper into how pages themselves work (titles, slugs, paths, and metadata), see [Pages in the Organize section](/organize/pages).
