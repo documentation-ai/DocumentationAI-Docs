@@ -62,12 +62,12 @@
             "pages": [
               {
                 "title": "Web Editor",
-                "path": "write-and-publish/web-editor/overview",
+                "path": "write-and-publish/web-editor",
                 "icon": "globe"
               },
               {
                 "title": "Code Editor",
-                "path": "write-and-publish/code-editor/overview",
+                "path": "write-and-publish/code-editor",
                 "icon": "code"
               },
               {
