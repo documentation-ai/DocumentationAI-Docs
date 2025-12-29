@@ -1,62 +1,93 @@
 ---
 title: Pages
-description: Understand how pages work as the building blocks of your docs, how to add them in the Web Editor, and how to keep their slugs and paths stable over time.
+description: >-
+  Understand how pages work as the building blocks of your docs, how to add them
+  in the Web Editor, and how to keep their slugs and paths stable over time.
 ---
-
 ## Overview
 
 Pages are the fundamental building blocks of your documentation. Each page is:
 
 - Backed by a single MDX file in your repo or workspace
+
 - Referenced from navigation via a configuration entry
+
 - Addressable by a stable path or slug that becomes part of the URL
 
 In the Organize area, you combine pages with groups, views, and dimensions to build a structured docs site. This guide focuses on working with pages in the Web Editor first, then covers how they are referenced in configuration and how to keep their identifiers stable.
 
 ## Adding a new page in the Web Editor
 
-To add a new page from the Web Editor Organize view:
+You add pages from the Web Editor sidebar. What you can do depends on the **Dimension** and **View** you have selected, and whether your docs under that selection use **Groups**.
 
-<Steps>
+### Select the right Dimension and View
 
-<Step title="Open the Pages panel">
+- Open the **Editor** from your dashboard.
 
-- In the left sidebar, switch to **Organize**.
-- Locate the **Pages** heading at the top of your navigation tree.
+- In the editor sidebar, use the dropdowns at the top to select the appropriate:
 
-</Step>
+  - **Dimension**
 
-<Step title="Use the + menu">
+  - **View**
 
-- Click the <kbd>+</kbd> button next to the **Pages** heading, or next to a specific group or page group where you want to add content.
-- From the menu, choose **Add Page** to create a normal documentation page.
+- The sidebar list below the dropdowns updates to show the content available under that Dimension + View.
 
-</Step>
+<Callout kind="info" collapsed="false">
+  The sidebar supports two structures. What you see depends on whether **Groups** exist under the selected **Dimension + View.**
+</Callout>
 
-<Step title="Fill in page details">
+### Add a page from the sidebar, if Groups exist
 
-- **Page name**: This is the label that appears in navigation and maps to the page `title`.
-- **Page URL (slug)**: This maps to the page `path` in configuration.
-  - Enter only the slug or relative path segment (for example, `organize/pages`), **not** a full URL.
-  - Use consistent kebab-case and make sure the slug is unique across your docs.
-- **Icon** (optional): Choose a sidebar icon for this page.
+- You’ll see a **Groups** section in the sidebar.
 
-</Step>
+- Below it, you’ll see a list of **Groups** (for example, “Getting Started”), and each group contains its Pages.
 
-<Step title="Create and organize the page">
+- To add a new page, click the <kbd>+</kbd> icon on the right side of the **Group name** where you want the new page to live.
 
-- Save or confirm to create the page.
-- The page appears in the sidebar where you added it.
-- You can later move it into a different group or page group without changing its underlying MDX file.
+*Example: If “Getting Started” is a group, click the&#x20;*<kbd>+</kbd>*&#x20;next to “Getting Started” to add a new page inside that group.*
 
-</Step>
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767003463651-osmff70eta-pasted-image-1767003460627.png?q=85&fm=auto&auto=compress%2Cformat" width="387" height="331" alt="Adding a new page from sidebar, if groups exist" caption="Adding a new page from sidebar, if groups exist" style="width: 387px; height: auto; cursor: pointer;" />
 
-</Steps>
+<Callout kind="info" collapsed="false">
+  When Groups are present, you can add a page **only inside a group** (not at the root).
+</Callout>
 
-<Callout kind="info">
+### Add a page from the sidebar, if no Groups exist
 
-When you create a page in the Web Editor, it updates navigation configuration for you, so you do not need to edit JSON or YAML directly.
+- You’ll see a **Pages** section in the sidebar (instead of Groups).
 
+- All pages are listed directly below, without being categorized into groups.
+
+- To add a new page, click the <kbd>+</kbd> icon next to the **Pages** heading.
+
+In this structure, pages are created at the root under the selected **Dimension + View**.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767003706556-0v400uq1zivk-pasted-image-1767003704355.png?q=85&fm=auto&auto=compress%2Cformat" width="497" height="261" alt="Adding a new page from sidebar, if no groups exist" caption="Adding a new page from sidebar, if no groups exist" style="width: 497px; height: auto; cursor: pointer;" />
+
+### Fill in page details
+
+- **Page name**: The label shown in navigation (maps to the page title).
+
+- **Page URL (slug)**: The path segment used in the URL.
+
+  - Enter only a slug or relative path (example: `organize/pages`), not a full URL.
+
+  - Use lowercase kebab-case and keep it unique across your docs.
+
+- **Icon** (optional): The icon shown next to the page in the sidebar.
+
+### Confirm the page location
+
+- Save/confirm to create the page.
+
+- The page appears in the sidebar:
+
+  - Inside the selected **Group** (if the sidebar shows **Groups**), or
+
+  - In the **Pages** list at the top level (if the sidebar shows **Pages**).
+
+<Callout kind="info" collapsed="false">
+  When you create a page in the Web Editor, it updates navigation configuration for you, so you do not need to edit JSON or YAML directly.
 </Callout>
 
 ## Page types you can add from the Pages menu
@@ -66,9 +97,13 @@ The **Pages** heading has a <kbd>+</kbd> menu with several content item types. E
 ### Quick comparison
 
 - **Page**: A normal documentation page backed by MDX.
+
 - **Group**: A labeled sidebar section that contains pages, but does not need its own content.
+
 - **Page Group**: A nested container (like a folder) that can hold pages and other page groups.
+
 - **OpenAPI Reference**: A set of generated API pages created from an OpenAPI spec.
+
 - **Unpublished Page**: An existing page that currently does not appear in navigation.
 
 ### Page
@@ -76,8 +111,11 @@ The **Pages** heading has a <kbd>+</kbd> menu with several content item types. E
 A **Page** is a standard documentation entry backed by an MDX file.
 
 - Created via **Add Page**.
+
 - You provide a **Page name**, **Page URL (slug)**, and optional **Icon**.
+
 - Appears directly in the sidebar at the level where you created it.
+
 - Can be moved between groups or page groups without changing the MDX file.
 
 Use normal pages for most narrative docs, guides, references, and conceptual content.
@@ -87,7 +125,9 @@ Use normal pages for most narrative docs, guides, references, and conceptual con
 A **Group** is a labeled sidebar section that contains pages.
 
 - Created via **Add Group** from the Pages menu.
+
 - Acts as a visual and structural container in the sidebar.
+
 - Does not require its own MDX file unless you intentionally create a landing page for it.
 
 Use groups when you want to introduce a top-level or mid-level section in the sidebar, such as “Getting Started” or “Organize”.
@@ -97,7 +137,9 @@ Use groups when you want to introduce a top-level or mid-level section in the si
 A **Page Group** is a nested container of pages, similar to a folder.
 
 - Created via **Add Page Group** or via the <kbd>+</kbd> button next to an existing group or page group.
+
 - Lets you nest pages and page groups inside one another to create deeper hierarchies.
+
 - Does not require its own MDX file unless you want a landing page.
 
 Use page groups when you need a more granular structure inside a larger group, such as organizing several related guides under a product or feature.
@@ -107,7 +149,9 @@ Use page groups when you need a more granular structure inside a larger group, s
 An **OpenAPI Reference** creates generated API documentation from an OpenAPI spec.
 
 - Created via **Add OpenAPI Reference**.
+
 - You upload, paste, or select an OpenAPI JSON or YAML file.
+
 - The editor generates API pages (for example, endpoints and schemas) and adds them to navigation, typically under a dedicated API group or page group.
 
 Use OpenAPI references when you want your API endpoints and schemas to be maintained from a single OpenAPI document, while still fitting into the same navigation as the rest of your docs. For more details, see [OpenAPI / JSON Schema Import](/api-documentation-and-playground/openapi-import) and [Organize API Reference](/api-documentation-and-playground/organize-api-reference).
@@ -117,13 +161,17 @@ Use OpenAPI references when you want your API endpoints and schemas to be mainta
 An **Unpublished Page** is a page that exists but is not currently visible in navigation.
 
 - Appears when you remove a page from navigation but keep its MDX file.
+
 - Accessible via **Add Unpublished Page** in the Pages menu.
+
 - You can browse unpublished pages and re-add them to navigation in a new location.
 
 Use unpublished pages to:
 
 - Temporarily hide content during a restructure.
+
 - Stage or review content before exposing it in navigation.
+
 - Restore previously removed pages without recreating them.
 
 ## How pages are referenced
@@ -135,24 +183,29 @@ Whether you configure navigation in the Web Editor or via code, each page entry 
 From the [site configuration](/customize/site-configuration), pages support:
 
 - `title` (required): The display name shown in navigation and used in the browser title.
+
 - `path` (optional for internal pages): The relative path to your MDX file, without the `.mdx` extension. This is required unless you use `href`.
+
 - `href` (optional for external links): A full URL for links that point outside your docs. Use this instead of `path` for external resources.
+
 - `icon` (optional): A Lucide icon name that appears next to the page in navigation.
+
 - `method` (optional): HTTP method label for API endpoint pages (for example, `GET`, `POST`), used in API navigation.
+
 - `tags` (optional): Free-form labels that help categorize or filter pages in views.
 
 In the Web Editor, the same concepts appear as:
 
 - **Page name** maps to `title`.
+
 - **Page URL (slug)** maps to `path`.
+
 - **Icon** maps to `icon`.
 
 You do not need to think about JSON or YAML when using the Web Editor; it writes the configuration for you.
 
-<Callout kind="info">
-
-All content pages must be authored in MDX. When you reference them in configuration, always use the `path` without the `.mdx` extension.
-
+<Callout kind="info" collapsed="false">
+  All content pages must be authored in MDX. When you reference them in configuration, always use the `path` without the `.mdx` extension.
 </Callout>
 
 ## Paths, slugs, and URLs
@@ -160,12 +213,15 @@ All content pages must be authored in MDX. When you reference them in configurat
 For internal content:
 
 - The slug you choose in the Web Editor becomes the `path` used in configuration.
+
 - That path is combined with your site base URL (and any custom subpath) to form the public URL.
+
 - The `path` must be unique across your docs so navigation and routing remain unambiguous.
 
 For external content:
 
 - You omit `path` and provide an `href`.
+
 - The page appears in navigation like any other entry but opens the external URL, typically in a new tab.
 
 ## How pages relate to groups, views, and dimensions
@@ -173,19 +229,29 @@ For external content:
 Pages are content; groups, views, and dimensions are ways of organizing or slicing that content.
 
 - **Groups** define the sidebar tree structure. A page can:
+
   - Live at the root.
+
   - Be nested under one or more levels of groups or page groups.
+
 - **Views** allow the same set of pages to appear in different contexts without duplication. For example:
+
   - A “Developer” view that shows only technical pages.
+
   - A “Customer” view that emphasizes onboarding and how-to content.
+
 - **Dimensions** apply cross-cutting filters such as:
+
   - Version (for example, v1 vs v2).
+
   - Locale or language.
+
   - Audience or plan level.
 
 From a maintenance perspective:
 
 - The MDX file and its `path` identify the page.
+
 - Groups, views, and dimensions control where and when that page shows up for readers.
 
 ## Best practices for naming, slugs, and restructuring
@@ -195,7 +261,9 @@ A clear, stable page model makes your docs easier to maintain and safer to evolv
 ### Naming and titles
 
 - Use descriptive titles that reflect user tasks or topics (for example, “Organize API reference” instead of “API Stuff”).
+
 - Keep titles concise; avoid repeating group names if the surrounding context already makes them obvious.
+
 - Align page titles with navigation labels so readers see consistent wording.
 
 ### Slugs and paths as stable identifiers
@@ -203,22 +271,27 @@ A clear, stable page model makes your docs easier to maintain and safer to evolv
 Treat `path` as the page’s stable identifier:
 
 - Choose slugs that are:
+
   - Lowercase, using `-` as a separator (for example, `organize/pages`, `api-documentation-and-playground/openapi-import`).
+
   - Meaningful but not over-specific to current UI labels.
+
 - Avoid using:
+
   - Dates or version numbers in slugs unless versioning is a primary dimension.
+
   - Team-internal abbreviations that will not make sense later.
 
 When you must change a slug:
 
 1. Update the `path` in configuration or via the Web Editor.
+
 2. Add redirects in [Redirects & Rewrites](/customize/redirects-and-rewrites) so existing links continue to work.
+
 3. Communicate the change if external integrations or apps rely on the old URL.
 
-<Callout kind="tip">
-
-Plan slugs as if they will live for a long time. It is easier to adjust titles and group structure than to rename paths once other systems and users depend on them.
-
+<Callout kind="tip" collapsed="false">
+  Plan slugs as if they will live for a long time. It is easier to adjust titles and group structure than to rename paths once other systems and users depend on them.
 </Callout>
 
 ### Safe restructuring
@@ -226,8 +299,11 @@ Plan slugs as if they will live for a long time. It is easier to adjust titles a
 When reorganizing navigation:
 
 - Prefer moving pages between groups over renaming `path`.
+
 - Use page groups to add hierarchy instead of duplicating pages.
+
 - Use unpublished pages to temporarily remove items while you redesign structure.
+
 - For API content, consider adjusting OpenAPI grouping or [API reference organization](/api-documentation-and-playground/organize-api-reference) rather than editing many individual pages.
 
 By treating pages as stable content units, and using groups, views, and dimensions as flexible layers on top, you can evolve your docs structure confidently without breaking URLs or confusing readers.
