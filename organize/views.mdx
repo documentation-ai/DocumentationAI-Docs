@@ -80,42 +80,6 @@ What Dropdowns do:
 
 In practice, your main sidebar will often be composed of dropdowns with groups and pages inside.
 
-## Core rules for Views
-
-These rules explain how Views work and why the Web Editor shows (or hides) certain actions.
-
-### 1) Views never contain Dimensions
-
-Dimensions (when used) are always the **outermost** layer of the navigation tree.
-
-- You **can** add a View as a parent for another **View** or for **Content**.
-
-- You **cannot** add a View as a parent for **Dimensions**.
-
-If you need Product/Version/Language selectors, add a **Dimension layer** first. Then add Views inside each dimension branch.
-
-### 2) The one-child rule
-
-Every container can contain **exactly one child type**.
-
-- A **Tab** can contain only one of: **Pages**, **Groups**, or **Dropdowns**.
-
-- A **Dropdown** can contain only one of: **Pages**, **Groups**, **Tabs**, or **Dropdowns**.
-
-You cannot mix child types at the same level (for example, a dropdown cannot contain both Pages and Dropdowns as siblings).
-
-This is why the Web Editor hides “Add …” options at certain levels—it only shows actions that keep the tree valid.
-
-### 3) Common supported nesting patterns
-
-- Tabs → Dropdowns → Dropdowns
-
-- Dropdowns → Dropdowns
-
-- Dropdowns → Tabs → Dropdowns
-
-Keep structures shallow (typically no more than two dropdown levels) unless you have a strong reason.
-
 ## Two starting states: with Dimensions vs without Dimensions
 
 Your project can be organized in either of these ways:
@@ -238,11 +202,33 @@ After you select a branch (for example: Version: v1.0 → Tab: Guides → Dropdo
 
 Views determine where you are in the navigation tree. Groups/Pages determine what content exists inside that branch.
 
-## View nesting patterns and the one-child rule
+## Core rules for Views
 
-Views follow predictable nesting patterns so navigation stays consistent and the editor UI can prevent invalid structures.
+These rules explain how Views work and why the Web Editor shows (or hides) certain actions.
 
-### Supported view nesting patterns
+### 1) Views never contain Dimensions
+
+Dimensions (when used) are always the **outermost** layer of the navigation tree.
+
+- You **can** add a View as a parent for another **View** or for **Content**.
+
+- You **cannot** add a View as a parent for **Dimensions**.
+
+If you need Product/Version/Language selectors, add a **Dimension layer** first. Then add Views inside each dimension branch.
+
+### 2) The one-child rule
+
+Every container can contain **exactly one child type**.
+
+- A **Tab** can contain only one of: **Pages**, **Groups**, or **Dropdowns**.
+
+- A **Dropdown** can contain only one of: **Pages**, **Groups**, **Tabs**, or **Dropdowns**.
+
+You cannot mix child types at the same level (for example, a dropdown cannot contain both Pages and Dropdowns as siblings).
+
+This is why the Web Editor hides “Add …” options at certain levels—it only shows actions that keep the tree valid.
+
+### 3) Common supported nesting patterns
 
 The standard UI templates support these patterns between tabs and dropdowns:
 
@@ -257,44 +243,6 @@ In each pattern:
 - **Tabs** and **dropdowns** act as the layout containers.
 
 - **Groups** and **pages** are the leaf-level content or light-weight containers under those views.
-
-### The one-child rule
-
-Every container in the navigation tree can contain **exactly one child type**.
-
-This rule applies both in the Web Editor and in `documentation.json` site configuration:
-
-- A **tab** can contain **only one** of:
-
-  - pages, *or*
-
-  - groups, *or*
-
-  - dropdowns
-
-- A **dropdown** can contain **only one** of:
-
-  - pages, *or*
-
-  - groups, *or*
-
-  - tabs, *or*
-
-  - dropdowns
-
-You cannot mix child types under the same container (for example, a dropdown cannot directly hold both pages *and* other dropdowns).
-
-<Callout kind="tip" collapsed="false">
-  If the Editor does not show an option like `Add tab` or `Add dropdown` at a certain level, it is because the **one-child rule** would be violated by mixing child types.
-</Callout>
-
-This constraint ensures:
-
-- Navigation is predictable and easier to scan.
-
-- Configuration in the Web Editor and site configuration remains symmetrical.
-
-- Large trees stay maintainable, because each level behaves consistently.
 
 ## How views relate to dimensions, groups, and pages
 
@@ -330,258 +278,6 @@ A common pattern for a dimension might look like:
 
 When designing across multiple dimensions, try to keep **view patterns consistent** so users do not have to relearn navigation for each context.
 
-## Manage views in the Web Editor
-
-This section focuses on how to apply the concepts above inside the Web Editor navigation panel.
-
-### Prerequisites
-
-Before you change views:
-
-- You have a **project** open in the Web Editor.
-
-- You understand the basics of:
-
-  - **Dimensions** as context selectors (see [Dimensions](/organize/dimensions)).
-
-  - **Views** as tabs and dropdowns inside a dimension.
-
-  - The **one-child rule** for containers.
-
-### Understand the navigation panel
-
-In the Web Editor, the left side shows:
-
-- **Dimension selectors** at the top.\
-  These filters set the active context, such as a specific product or version. Changing them does not change your content; it changes *which slice* of content and views you are editing.
-
-- The **navigation tree** below.\
-  This shows tabs, dropdowns, groups, pages, and other content types *for the current dimension context*.
-
-- **Add controls** on each row and header:
-
-  - A **top or side \*\*\*\*\*\*\*\*****`+`** usually corresponds to **Add Parent layer**.
-
-  - A **bottom or inline \*\*\*\*\*\*\*\*****`+`** usually corresponds to **Add Child layer**.
-
-Exactly labels and icons can vary, but the distinction is:
-
-- **Parent layer**: wraps existing items in a new container.
-
-- **Child layer**: adds new items inside the selected container.
-
-### Add tabs and dropdowns with layering
-
-You can add views either at the top level (for example, to introduce tabs) or inside existing containers (for example, to add dropdowns under a tab).
-
-<Callout kind="info" collapsed="false">
-  Use **Add Parent layer** when you want to change structure for everything at a level. Use **Add Child layer** when you want to add structure only within one section.
-</Callout>
-
-#### Add tabs above existing content
-
-Use this when you already have a single long sidebar and now want to split it into sections like `Guides` and `API Reference`.
-
-1. **Select your dimension context**\
-   At the top of the navigation panel, choose the dimension values you want to configure (for example, `Product = Core`, `Version = v1`).
-
-2. **Identify the current root container**\
-   Look at the top level of the navigation tree. It might currently be a series of dropdowns or groups.
-
-3. **Use Add Parent layer at the root**\
-   Click the **Add Parent** control (top-level `+`) to wrap the existing items in a new container.
-
-4. **Choose Tabs as the new parent type**\
-   When prompted, select **Tabs** for the new layer. The existing root items will move inside the first tab.
-
-5. **Rename and duplicate tabs**
-
-   - Rename the first tab to something meaningful (for example, `Guides`).
-
-   - Add more tabs as needed at the same level (for example, `API Reference`, `Tutorials`, `Changelog`).
-
-6. **Move or rearrange content between tabs**\
-   Within each tab, drag and drop dropdowns or groups so that each tab has the right subset of content.
-
-Because of the one-child rule, once a tab is configured to contain dropdowns, all children must be dropdowns (not a mix of groups and pages). Adjust structure as needed by adding groups or dropdowns and moving pages under them.
-
-#### Add dropdowns within a tab or container
-
-Use this when you want sidebar categories inside a tab or dropdown.
-
-1. **Select the target container**\
-   Click the tab or dropdown where you want to add categories.
-
-2. **Use Add Child layer**\
-   Inside that container, use the bottom or inline `+` control to **Add Child**.
-
-3. **Choose Dropdowns as the child type**\
-   When you add the first child under this container, choose **Dropdowns** if you plan to have multiple categories.
-
-4. **Create and name dropdowns**\
-   Add dropdowns for each major category, for example:
-
-   - `Getting Started`
-
-   - `Guides`
-
-   - `SDKs`
-
-   - `Admin`
-
-5. **Place content inside dropdowns**\
-   Within each dropdown, use **Add Child** again to choose the actual content type:
-
-   - **Groups** or **Pages** for regular documentation.
-
-   - **Page groups** for structured sections.
-
-   - **OpenAPI reference** entries for imported API specs.
-
-   - **Unpublished page** when drafting content that is not yet visible.
-
-Once you choose a child type (for example, groups), that dropdown can only contain that same type until you refactor the structure.
-
-### Use layers to refactor safely
-
-When your structure evolves, you will often need to insert new levels without rebuilding everything.
-
-Common refactors:
-
-- **Insert a dropdown layer between a tab and its pages**
-
-  - If a tab currently has many pages directly under it, use **Add Parent** on the set of pages to wrap them in a new dropdown (`Getting Started`).
-
-  - Then use **Add Child** inside that dropdown to add additional groups or pages.
-
-- **Split a large dropdown into sub-categories**
-
-  - Use **Add Parent** on a subset of items inside the dropdown to create a nested dropdown.
-
-  - Move related pages or groups into the new nested dropdown.
-
-When you use the Parent vs Child distinction consistently:
-
-- You avoid breaking slugs or moving content unnecessarily.
-
-- You can keep navigation shallow while still grouping related content clearly.
-
-### Validate your structure by switching selectors
-
-After you add or change views, validate how navigation behaves:
-
-1. **Switch between tabs**\
-   Confirm that:
-
-   - Each tab label is clear.
-
-   - The sidebar content changes appropriately when you switch tabs.
-
-   - Dropdown categories under each tab are consistent and not duplicated unnecessarily.
-
-2. **Switch dimension selectors**\
-   For dimensions like `Version` or `Product`, change the selector values and check:
-
-   - Whether the **tab labels** remain consistent across values where it makes sense.
-
-   - Whether each dimension value has the required views (for example, both `v1` and `v2` have `Guides` and `API Reference` tabs).
-
-3. **Follow a user journey**\
-   Navigate as a reader would:
-
-   - Start from a dimension context.
-
-   - Click a tab.
-
-   - Expand dropdowns to find key pages (for example, a quickstart or API reference endpoint).
-     If any step feels surprising or hard to find, adjust labels or groupings rather than adding more nesting.
-
-## Step-by-step: create a standard views structure
-
-Use this procedure to set up a common pattern: `Tabs → Dropdown → Pages/Groups` in a single project and dimension.
-
-<Steps>
-  <Step title="Set the dimension context" icon="layers" title-type="p">
-    - Open your project in the Web Editor.
-
-    - At the top of the navigation panel, choose the dimension values you want to configure (for example, your main product and default version).
-
-    - Confirm you are editing the correct context before changing views.
-  </Step>
-
-  <Step title="Add top-level tabs" icon="lucide-panel-top" title-type="p">
-    - Look at the top of the navigation tree.
-
-    - If you already see tabs and they match your plan (for example, `Guides`, `API Reference`), you can skip this step.
-
-    - If you do not see tabs:
-
-      - Use the **Add Parent** control at the root level.
-
-      - Choose **Tabs** as the new parent type.
-
-      - Rename the first tab and add additional tabs (for example, `Guides`, `API Reference`, `Tutorials`, `Changelog`).
-  </Step>
-
-  <Step title="Create dropdowns inside each tab" icon="folder" title-type="p">
-    - Select a tab (for example, `Guides`) in the navigation tree.
-
-    - Use the **Add Child** control inside the tab.
-
-    - When choosing the child type for the first time under this tab, select **Dropdowns**.
-
-    - Create dropdowns such as:
-
-      - `Getting Started`
-
-      - `How-to guides`
-
-      - `Concepts`
-  </Step>
-
-  <Step title="Place content under dropdowns" icon="file-text" title-type="p">
-    - For each dropdown (for example, `Getting Started`), select it in the navigation tree.
-
-    - Use **Add Child** to choose the content type:
-
-      - **Groups** if you want another lightweight structure level.
-
-      - **Pages** when you are ready to place individual docs.
-
-      - **OpenAPI reference** if this area is API-centric.
-
-    - Add or move existing pages/groups into the appropriate dropdowns.
-  </Step>
-
-  <Step title="Respect the one-child rule while you adjust" icon="alert-triangle" title-type="p">
-    - At each container (tab or dropdown), choose and stick to a single child type:
-
-      - If a tab currently contains dropdowns, all children should be dropdowns.
-
-      - If a dropdown contains pages, do not mix groups at the same level.
-
-    - If an `Add ...` option is missing in the UI, assume the one-child rule is blocking that combination and consider:
-
-      - Wrapping items with **Add Parent** to introduce a new container type.
-
-      - Moving items into another container that uses the desired child type.
-  </Step>
-
-  <Step title="Validate by switching tabs and dimensions" icon="check-circle" title-type="p">
-    - Switch between your new tabs and check that each:
-
-      - Has clear dropdown labels.
-
-      - Shows only the content that belongs in that section.
-
-    - Change dimension selectors (for example, different versions) and repeat:
-
-      - Confirm consistent view patterns across related values.
-
-      - Fix any missing or mismatched tabs or dropdowns.
-  </Step>
-</Steps>
-
 ## Design guidelines and common patterns
 
 ### When to use tabs vs dropdowns
@@ -612,23 +308,7 @@ If you are unsure, default to:
 
 Use these heuristic patterns:
 
-- **Pattern 3: \*\*\*\*\*\*\*\*****`Tabs → Dropdown → Dropdown`**\
-  Good default for most medium-to-large documentation sets:
-
-  - Tabs separate high-level sections.
-
-  - The first level of dropdowns groups major categories.
-
-  - A second dropdown level is available for large categories (for example, many APIs).
-
-- **Pattern 2: \*\*\*\*\*\*\*\*****`Dropdown → Dropdown`**\
-  Use when:
-
-  - Your project is small or focused enough that tabs are not necessary.
-
-  - You want a single continuous sidebar with hierarchical categories.
-
-- **Pattern 1: \*\*\*\*\*\*\*\*****`Dropdown → Tabs → Dropdown`**\
+- **Pattern 1:&#x20;****`Dropdown → Tabs → Dropdown`**\
   Use when:
 
   - Users first choose a **high-level area** in the sidebar (like `Product A` vs `Product B`).
@@ -636,6 +316,22 @@ Use these heuristic patterns:
   - Inside that area, they need multiple parallel sections exposed as tabs.
 
   - Each tab then has its own dropdown-based sidebar.
+
+- **Pattern 2:&#x20;**`Dropdown → Dropdown`\
+  Use when:
+
+  - Your project is small or focused enough that tabs are not necessary.
+
+  - You want a single continuous sidebar with hierarchical categories.
+
+- **Pattern 3:&#x20;**`Tabs → Dropdown → Dropdown`\
+  Good default for most medium-to-large documentation sets:
+
+  - Tabs separate high-level sections.
+
+  - The first level of dropdowns groups major categories.
+
+  - A second dropdown level is available for large categories (for example, many APIs).
 
 ### Consistency and maintenance tips
 
