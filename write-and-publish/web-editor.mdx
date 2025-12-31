@@ -34,7 +34,7 @@ If you need a Git-based workflow, local previews, or tight integration with your
 
 ### 1. Open the editor from the dashboard
 
-1. Sign in to Documentation.AI, and go to [Editor](https://dashboard.documentation.ai/editor) From the dashboard.
+1. Sign in to Documentation.AI, and go to [Editor](https://dashboard.documentation.ai/editor) from the dashboard.
 
 2. The web editor opens for your selected project.
 
@@ -42,17 +42,21 @@ If you work in multiple projects, use the project switcher in the dashboard befo
 
 ### 2. Browse the documentation structure
 
-In the web editor, your content follows a consistent hierarchy:
+In the web editor, your content follows the same organization model as the rest of your project. At a high level:
 
-- **Dimensions → Views → Groups → Pages**
+- **Dimensions** are optional, and when present they are always the outermost container.
 
-This hierarchy controls what you see in the left sidebar and which page you are editing.
+- **Views** are layout or navigation containers (Tabs or Dropdowns) that sit inside a dimension, or at the root when you do not use dimensions.
 
-- [**Dimensions**](/organize/dimensions): Top-level documentation spaces for different audiences or products, such as separate docs for end users and API consumers. Switching the Dimension changes the entire documentation tree you are working in.
+- **Groups and pages** hold the actual content.
 
-- [**Views**](/organize/views): Filtered perspectives within a Dimension that determine which groups and pages appear. Switching the View changes which content is visible and editable without leaving the current Dimension.&#x20;
+This model controls what you see in the left sidebar and which page you are editing.
 
-Within the selected Dimension and View, the left sidebar typically shows:
+- [**Dimensions**](/organize/dimensions): Optional top-level documentation spaces for different audiences or products, such as separate docs for end users and API consumers. Switching the dimension changes the entire documentation tree you are working in.
+
+- [**Views**](/organize/views): Layout containers (Tabs or Dropdowns) that arrange content within the current dimension, or at the root when there are no dimensions. Switching the view changes which groups and pages appear in the sidebar.
+
+Within the selected dimension (if any) and view, the left sidebar typically shows:
 
 - **Top-level tabs** such as Documentation, Changelog, and Help.
 
@@ -74,17 +78,47 @@ Your edits always apply to the page that is currently selected in the sidebar. T
 
 To add new content to your documentation:
 
-1. In the Editor, on the left-side menu, select the appropriate **Dimension** and **View**.
+1. In the editor, on the left-side menu, select the appropriate **dimension** (if present) and **view**.
 
-2. Navigate to the [**Group**](/organize/groups)**s** where you want the new page to live, or create a new Group first if needed.
+2. Navigate to the [**group**](/organize/groups) where you want the new page to live, or create a new group first if needed.
 
-3. Use the available option to [create new page](https://documentation.ai/docs/organize/pages#adding-a-new-page-in-the-web-editor) within that Group.
+3. Use the option in the sidebar to create a new page within that group (see [adding a new page in the web editor](/organize/pages#adding-a-new-page-in-the-web-editor) for details).
 
 4. Enter a page title and start writing in visual or markdown mode.
 
-5. Adjust the page's position within the Group using the left-side structure if you need to reorder it later.
+5. Adjust the page's position within the group using the left-side structure if you need to reorder it later.
 
-For more detail on how Groups and Pages behave across your project (including slugs, paths, and metadata), see the [organize overview](/organize/overview) and the [Pages guide in Organize](/organize/pages).
+For more detail on how dimensions, views, groups, and pages behave across your project (including slugs, paths, and metadata), see the [organize overview](/organize/overview) and the focused guides on [dimensions](/organize/dimensions), [views](/organize/views), [groups](/organize/groups), and [pages](/organize/pages).
+
+## Organizing structure in the web editor
+
+Use the web editor to make safe, incremental changes to your documentation structure while keeping it consistent with your overall organization model.
+
+<Steps>
+  <Step title="Choose the right dimension and view" icon="layers" title-type="p">
+    If your project uses [dimensions](/organize/dimensions), start by selecting the correct dimension in the sidebar. Then choose the appropriate [view](/organize/views) within that dimension (or at the root if there are no dimensions) so you are working on the right part of the tree.
+  </Step>
+
+  <Step title="Add views with Tabs or Dropdowns (optional)" icon="tabs" title-type="p">
+    Use [views](/organize/views) to introduce Tabs or Dropdowns when you need multiple layouts or navigation tracks within a dimension or at the root.
+
+    The views model follows a one-child rule: each Tabs or Dropdowns container should have a single type of child (pages, groups, or another nested view). For supported patterns and examples, see the [views guide](/organize/views).
+  </Step>
+
+  <Step title="Decide between groups and flat pages" icon="folder-tree" title-type="p">
+    Use [groups](/organize/groups) when you have several related pages that should be nested together. Avoid mixing grouped and ungrouped pages at the same level: once you introduce groups under a parent, new pages should live inside one of those groups rather than alongside them.
+
+    If you only have a few pages, you can keep them flat without groups.
+  </Step>
+
+  <Step title="Create pages with stable slugs" icon="file-text" title-type="p">
+    Add [pages](/organize/pages) where you want new content to live. Each page is backed by MDX and identified by a stable `path` (slug). Prefer keeping paths stable over time and move pages within the structure instead of renaming paths when you reorganize. When you must change a path, use redirects as described in the pages guide.
+  </Step>
+
+  <Step title="Plan patterns at a higher level" icon="layout-dashboard" title-type="p">
+    Use this page for quick structural edits and content changes. For larger reorganizations across dimensions, views, and groups, refer to the [organize overview](/organize/overview) to choose patterns that scale before you start editing in the web editor.
+  </Step>
+</Steps>
 
 ## Writing content
 
@@ -152,13 +186,19 @@ Use headings and links to keep your documentation easy to scan:
 
 In visual mode, you can set heading levels using the toolbar. In markdown mode, use `##`, `###`, and so on.
 
+For component-specific patterns, see:
+
+- [Headings and text](/components/heading-and-text)
+
+- [Lists and tables](/components/lists-and-tables)
+
 ## Adding rich content
 
 The web editor makes it easy to add code samples, callouts, images, and other documentation components.
 
 ### Using slash commands
 
-Type the slash key (/) in an empty line or at the start of a block to open the component menu.
+Type the slash key `/` in an empty line or at the start of a block to open the component menu.
 
 From the menu you can quickly insert:
 
@@ -204,6 +244,8 @@ In visual mode:
 
 - Edit the text directly in the rendered block.
 
+To learn more about callout types and options, see [Callout](/components/callout).
+
 ### Images and media
 
 You can add screenshots, diagrams, and media directly from the web editor:
@@ -234,9 +276,9 @@ Use the sidebar to adjust your documentation structure:
 
 - Move pages into different groups to keep navigation intuitive.
 
-- Rename pages and update slugs where needed.
+- Rename pages and update slugs where needed, while keeping paths as stable as possible.
 
-For a deeper look at how groups and pages work across your project, see the high-level [organize overview](/organize/overview) and the focused guide on [organizing pages](/organize/pages).
+For a deeper look at how dimensions, views, groups, and pages work across your project, see the high-level [organize overview](/organize/overview) and the focused guides on [dimensions](/organize/dimensions), [views](/organize/views), [groups](/organize/groups), and [pages](/organize/pages).
 
 ### Collaboration and review
 
