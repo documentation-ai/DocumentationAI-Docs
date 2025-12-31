@@ -26,6 +26,7 @@ Common use cases:
 - **Tutorials:** Before/after or success/error examples next to explanations.
 
 <Request uid="c6ca1719-456a-4c7f-aae8-06b2b5aaa11a" show-lines="true" tabs={[]}>
+
   ```javascript
   const response = await fetch('/api/docs', {
     method: 'POST',
@@ -68,9 +69,11 @@ Common use cases:
     -H "Content-Type: application/json" \
     -d '{"title": "Getting Started"}'
   ```
+
 </Request>
 
 <Response uid="a1a2053a-c2e9-494d-b580-d6604d9e7788" show-lines="true" tabs={["JSON","JSON"]}>
+
   ```json JSON
   {
     "id": "doc-123",
@@ -99,9 +102,10 @@ Common use cases:
     "message": "The requested document does not exist"
   }
   ```
+
 </Response>
 
-## Request
+## Using with Web Editor
 
 ### Request in the editor UI
 
@@ -123,9 +127,39 @@ Inside the Request block:
 
 <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765447133805-xmduk8b2tpf-pasted-image-1765447130714.png?q=85&fm=auto&auto=compress%2Cformat" width="500" height="297" alt="" style="width: 500px; height: auto; cursor: pointer;" />
 
+### Response in the editor UI
+
+1. Place your cursor under the related Request (or wherever you want the response).
+
+2. Type <kbd>/</kbd> and search for **Response**.
+
+3. Select **Response** to insert a Response block.
+
+Inside the Response block:
+
+- Tabs row: One tab is created by default, with a **+** button to add more.
+
+- Rename tabs: Double-click a tab name (commonly use status codes like `200`, `404`).
+
+- Code editor: Paste or write your JSON or other response example.
+
+- Language selector: Choose the language (usually JSON) from the dropdown on the right.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765447322447-gmaotxgck8t-pasted-image-1765447320243.png?q=85&fm=auto&auto=compress%2Cformat" width="508" height="250" alt="" style="width: 508px; height: auto; cursor: pointer;" />
+
+<Callout kind="info">
+
+Prefer writing in code?
+
+You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+
+</Callout>
+
+## Using with Code Editor
+
 ### Request in MDX
 
-Use `Request` to display API request examples in the right sidebar. This component works like [CodeGroup](code-blocks-and-groups) but displays in the sidebar instead of inline.
+Use `Request` to display API request examples in the right sidebar. This component works like [`CodeGroup`](/components/code-blocks-and-groups) but displays in the sidebar instead of inline.
 
 ````jsx
 <Request tabs="JavaScript,Python">
@@ -146,42 +180,6 @@ response = requests.post('/api/docs',
 ```
 </Request>
 ````
-
-### Attributes
-
-<ParamField uid="329c19b1-2df8-4b4b-8b1d-a7d4653542be" path="tabs" param-type="string" required="false" deprecated="false">
-  Comma-separated tab names. Overrides auto-detected languages.
-</ParamField>
-
-<ParamField uid="575ba8e6-f64b-4e83-b3aa-52db47eaf171" path="show-lines" param-type="string" required="false" deprecated="false">
-  Shows line numbers when set to `"true"`. Request shows lines by default.
-</ParamField>
-
-<ParamField uid="970358b1-b814-4be7-b606-018115239bb1" path="default-tab" param-type="string" required="false" deprecated="false">
-  Default active tab index (1-based).
-</ParamField>
-
-## Response
-
-### Response in the editor UI
-
-1. Place your cursor under the related Request (or wherever you want the response).
-
-2. Type <kbd>/</kbd> and search for **Response**.
-
-3. Select **Response** to insert a Response block.
-
-Inside the Response block:
-
-- Tabs row: One tab is created by default, with a **+** button to add more.
-
-- Rename tabs: Double-click a tab name (commonly use status codes like `200`, `404`).
-
-- Code editor: Paste or write your JSON or other response example.
-
-- Language selector: Choose the language (usually JSON) from the dropdown on the right.
-
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765447322447-gmaotxgck8t-pasted-image-1765447320243.png?q=85&fm=auto&auto=compress%2Cformat" width="508" height="250" alt="" style="width: 508px; height: auto; cursor: pointer;" />
 
 ### Response in MDX
 
@@ -205,7 +203,23 @@ Use `Response` to display API response examples in the right sidebar beneath any
 </Response>
 ````
 
-### Attributes
+## Advanced options
+
+### Request attributes
+
+<ParamField uid="329c19b1-2df8-4b4b-8b1d-a7d4653542be" path="tabs" param-type="string" required="false" deprecated="false">
+  Comma-separated tab names. Overrides auto-detected languages.
+</ParamField>
+
+<ParamField uid="575ba8e6-f64b-4e83-b3aa-52db47eaf171" path="show-lines" param-type="string" required="false" deprecated="false">
+  Shows line numbers when set to `"true"`. Request shows lines by default.
+</ParamField>
+
+<ParamField uid="970358b1-b814-4be7-b606-018115239bb1" path="default-tab" param-type="string" required="false" deprecated="false">
+  Default active tab index (1-based).
+</ParamField>
+
+### Response attributes
 
 <ParamField uid="bfac6f1e-b49a-4364-8e8e-5e3e6ec25e00" path="tabs" param-type="string" required="false" deprecated="false">
   Comma-separated tab names. Commonly HTTP status codes or formats.
@@ -219,7 +233,7 @@ Use `Response` to display API response examples in the right sidebar beneath any
   Default active tab index (1-based).
 </ParamField>
 
-## Common patterns
+### Common patterns
 
 - **Per-endpoint examples:** Pair one Request and one Response block for each API operation.
 
@@ -230,6 +244,7 @@ Use `Response` to display API response examples in the right sidebar beneath any
 - **Guided walkthroughs:** Keep Request and Response in the sidebar while the left column explains parameters, flows, and edge cases.
 
 <Callout kind="success" collapsed="false">
-  Request and Response automatically participate in the sidebar layout on desktop, so you get a polished API reference without custom layout work.
-</Callout>
 
+  Request and Response automatically participate in the sidebar layout on desktop, so you get a polished API reference without custom layout work.
+
+</Callout>

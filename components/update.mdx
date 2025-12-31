@@ -5,6 +5,7 @@ description: >-
   labeled sections and timeline layouts.
 type: reference
 ---
+
 ## Overview
 
 The **Update** component creates clean, timeline-style blocks with a label on the left (date, version, or tag) and rich content on the right. It’s perfect for:
@@ -35,7 +36,7 @@ You can use Updates in two ways:
   - Enhanced permission controls&#x20;
 </Update>
 
-## Using Update in the editor UI
+## Using with Web Editor
 
 ### Add an Update block
 
@@ -65,6 +66,12 @@ Each Update block is just like a regular content section, styled as a changelog 
 
 <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765439094819-rr0h6nuzuhp-update_content.pmg?q=85&fm=auto&auto=compress%2Cformat" width="497" height="419" alt="" style="width: 497px; height: auto; cursor: pointer;" />
 
+<Callout kind="info">
+  Prefer writing in code?
+
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+</Callout>
+
 ### Edit label, description, and tags
 
 1. On the right side of the Update block, click the **three-dot menu**.
@@ -89,7 +96,7 @@ Click **Save** to apply the changes.
 
 - Use labels (dates or versions) + tags (e.g. `New`, `Bug fix`, `Breaking`) to help readers quickly scan what changed and when.
 
-## Using Update in MDX
+## Using with Code Editor
 
 ### Basic syntax
 
@@ -238,7 +245,9 @@ Stack multiple updates to create a changelog timeline:
   The sidebar uses sticky positioning on desktop to remain visible while scrolling through long updates.
 </Callout>
 
-## Attributes
+## Advanced options
+
+### Attributes
 
 <ParamField path="label" param-type="string" required="true" deprecated="false">
   The primary label displayed in the sidebar. Typically used for dates (YYYY-MM-DD format) or version identifiers.
@@ -256,7 +265,7 @@ Stack multiple updates to create a changelog timeline:
   The main content of the update. Supports all MDX content including headings, text, code blocks, images, cards, callouts, and other components.
 </ParamField>
 
-## Common patterns
+### Common patterns
 
 - **Release changelog**: Dates as labels, versions as descriptions, with tags like `feature`, `bugfix`, and `breaking`.
 
@@ -271,4 +280,3 @@ Stack multiple updates to create a changelog timeline:
 <Callout kind="success" collapsed="false">
   Combine Update blocks with Cards, Callouts, Steps, and Tabs to build rich changelog and announcement pages that are easy to scan and delightful to read.
 </Callout>
-

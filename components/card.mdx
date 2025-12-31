@@ -5,340 +5,301 @@ description: >-
   call-to-action buttons using both the editor UI and the Card component.
 type: reference
 ---
+
 ## Overview
 
 Cards let you create visually rich navigation and feature blocks with titles, descriptions, icons, images, and call-to-action (CTA) text.
 
-You can work with cards in two ways:
+Use cards when you want to:
 
-- **Editor UI:** Insert and configure cards/card groups from the slash (<kbd>/</kbd>) menu.
+- Build **navigation hubs** that link to key areas like Getting Started, API Reference, or Support.
+- Create **feature grids** that highlight product capabilities with icons and short descriptions.
+- Surface **resources** such as GitHub, community, or external tools in a scannable layout.
+- Guide readers through **structured flows**, linking to tutorials or multi-step guides.
 
-- **MDX:** Use the `<Card>` and `<Columns>` components directly in your content.
+In the Documentation.AI component system:
 
-Common use cases:
+- `<Card>` defines a single interactive block.
+- `<Columns>` arranges multiple cards into responsive grids.
+- Cards often sit alongside:
+  - [Headings and Text](/components/heading-and-text) for section structure.
+  - [Images](/components/images) when you want visual emphasis.
+  - [Columns](/components/columns) when you need multi-column layouts.
 
-- Feature showcases with icons and descriptions
-
-- Navigation cards linking to documentation sections
-
-- Product or service listings with images
-
-- Quick links with visual hierarchy
-
-- Getting started guides and tutorials
-
-<Columns cols="2">
-  <Card title="Getting Started" href="/getting-started/quickstart" icon="book-open" horizontal="false">
+<Columns cols={2}>
+  <Card title="Getting Started" href="/getting-started/quickstart" icon="book-open">
     Learn the fundamentals and get your project up and running in minutes.
   </Card>
 
-  <Card title="API Reference" href="/api-documentation-and-playground/api-authentication" icon="code" horizontal="false">
-    Explore our complete API documentation with interactive examples.
+  <Card title="API Reference" href="/api-documentation-and-playground/api-authentication" icon="code">
+    Explore the core authentication flows and API usage.
   </Card>
 </Columns>
 
-## Create cards with the editor UI
+## Using with Web Editor
 
-### Add a single card
+You can add and configure cards visually in the Web Editor without writing MDX.
 
-1. Place your cursor on a new line in the editor.
-
-2. Type <kbd>/</kbd> to open the component picker.
-
-3. Select **Card**.
-
-4. A new card appears with a default title and description.
-
-#### Edit card content
-
-- **Title:** Click the **three-dot** menu on the card, and in the card title text type your own.
-
-- **Description:** Click the “Card description…” placeholder and type your own text.
-
-<Callout kind="tip" collapsed="false">
-  If you don’t want a description, click the placeholder and delete it.
-</Callout>
-
-#### Configure card settings
-
-1. Click the **three-dot** menu on the card.
-
-2. In **Card Settings**, you can set:
-
-   - **Title:** Card heading.
-
-   - **URL:** Link destination (internal or external).
-
-   - **Image Path:** Path/URL to the card image.
-
-   - **Icon:** Click **Select Icon** and choose a Lucide icon.
-
-   - **Call-to-Action Text:** Optional CTA label (for example, “Learn more”).
-
-   - **Horizontal Layout**: Toggle on to switch from vertical to horizontal layout.
-
-   - **Link Target**
-
-     - `_self` : Open in the same tab (default).
-
-     - `_blank` : Open in a new tab.
-
-3. Click **Save** to apply changes.
-
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765030391396-u88yxy8jal-pasted-image-1765030390682.png?q=85&fm=auto&auto=compress%2Cformat" width="282" height="403" alt="" style="width: 282px; height: auto; cursor: pointer;" />
-
-## Card groups in the editor UI
-
-Use **Card Group** to lay out multiple cards in columns without writing MDX.
-
-### Add a Card Group
+### Insert a single card
 
 1. Place your cursor on a new line.
+2. Type <kbd>/</kbd> to open the component picker.
+3. Select **Card**.
+4. A new card appears with a default title and description.
 
-2. Type <kbd>/</kbd> and select **Card Group**.
+#### Edit title and description
 
-3. A group with two cards appears by default.
+- **Title:** Click the three-dot menu on the card, then update the **Title** field.
+- **Description:** Click the description text inside the card and type your own content. You can remove it entirely if you prefer a very compact card.
 
-#### Configure Card Group settings
+<Callout kind="tip">
 
-- Click the `...` (3-dot) menu on the group to open **Card Group Settings**.
+If you don’t want a description, click the placeholder and delete it.
 
-- Under **Number of Columns**, choose **2**, **3**, or **4** to control how many cards appear per row.
-
-#### Add or remove cards in a group
-
-- Click the **<kbd>+</kbd>** icon (next to the three-dot menu) to add another card to the group.
-
-- Use each card’s **trash** icon to delete a specific card.
-
-- Configure each card’s settings individually using its own three-dot menu.
-
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765030485990-6wmojffkkfh-pasted-image-1765030484611.png?q=85&fm=auto&auto=compress%2Cformat" width="372" height="242" alt="" style="width: 372px; height: auto; cursor: pointer;" />
-
-## Create cards with MDX
-
-You can also define cards directly in MDX using the `<Card>` component.
-
-### Basic syntax
-
-```jsx
-<Card title="Getting Started" icon="book-open" href="/getting-started/quickstart">
-  Learn the fundamentals and get your project up and running in minutes.
-</Card>
-```
-
-<Card title="Getting Started" href="/getting-started/quickstart" icon="book-open" horizontal="false">
-  Learn the fundamentals and get your project up and running in minutes.
-</Card>
-
-<Callout kind="info" collapsed="false">
-  Cards are clickable links by default. The entire card area is interactive when an `href` is provided.
 </Callout>
 
-## Card layouts
+### Configure card settings
 
-### Vertical cards
+1. Click the three-dot menu on the card.
+2. In **Card Settings**, you can configure:
 
-Default layout with icon and content stacked vertically:
+   - **Title:** Main heading shown at the top of the card.
+   - **URL:** Link destination (internal path like `/getting-started/quickstart` or an external URL).
+   - **Image Path:** Optional header image displayed above the card content.
+   - **Icon:** Lucide icon name, chosen via **Select Icon**.
+   - **Call-to-Action Text:** Optional CTA label such as “Learn more”.
+   - **Horizontal Layout:** Toggle to switch between vertical (default) and side-by-side layout.
+   - **Link Target:**
+     - `_self` – Open in the same tab (default).
+     - `_blank` – Open in a new tab.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765030391396-u88yxy8jal-pasted-image-1765030390682.png?q=85&fm=auto&auto=compress%2Cformat" width="282" height="403" alt="Card settings panel in the Web Editor" style="width: 282px; height: auto; cursor: pointer;" />
+
+<Callout kind="info">
+
+Prefer writing in code?
+
+You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+
+</Callout>
+
+### Card groups in the Web Editor
+
+Use **Card Group** to lay out multiple cards in columns without touching MDX.
+
+1. Place your cursor on a new line.
+2. Type <kbd>/</kbd> and select **Card Group**.
+3. A group with two cards appears by default.
+
+You can then:
+
+- **Configure columns:** Open **Card Group Settings** from the group’s three-dot menu and choose **2**, **3**, or **4** columns.
+- **Add cards:** Click the <kbd>+</kbd> icon next to the group’s menu.
+- **Remove cards:** Use the trash icon on any card.
+- **Edit each card:** Use each card’s three-dot menu to set its own title, URL, icon, image, CTA, and layout.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765030485990-6wmojffkkfh-pasted-image-1765030484611.png?q=85&fm=auto&auto=compress%2Cformat" width="372" height="242" alt="Card Group with two cards in the Web Editor" style="width: 372px; height: auto; cursor: pointer;" />
+
+## Using with Code Editor
+
+Use the `<Card>` component directly when editing MDX in the Code Editor. This gives you full control over structure and reuse.
+
+### Single card
+
+A minimal card with a title, icon, and link:
 
 ```jsx
-<Card title="Authentication" icon="lock" href="/api-documentation-and-playground/api-authentication">
-  Secure your application with built-in authentication features.
+<Card title="Quickstart" icon="zap" href="/getting-started/quickstart">
+  Get up and running with Documentation.AI in a few minutes.
 </Card>
 ```
 
-<Card title="Authentication" href="/api-documentation-and-playground/api-authentication" icon="lock" horizontal="false">
-  Secure your application with built-in authentication features.
+Rendered example:
+
+<Card title="Quickstart" icon="zap" href="/getting-started/quickstart">
+  Get up and running with Documentation.AI in a few minutes.
 </Card>
 
-### Horizontal cards
+### Small card grid with Columns
 
-Use `horizontal` prop for side-by-side icon and content layout:
+Combine `<Card>` with `<Columns>` for a responsive feature or navigation grid. See [Columns](/components/columns) for more layout details.
+
+```jsx
+<Columns cols={3}>
+  <Card title="Get started" icon="book-open" href="/getting-started/introduction">
+    Learn the basics of your documentation project.
+  </Card>
+  <Card title="Write in the Web Editor" icon="monitor" href="/write-and-publish/web-editor">
+    Edit content visually with rich components.
+  </Card>
+  <Card title="Write in code" icon="code" href="/write-and-publish/code-editor">
+    Keep docs alongside your codebase using MDX.
+  </Card>
+</Columns>
+```
+
+<Columns cols={3}>
+  <Card title="Get started" icon="book-open" href="/getting-started/introduction">
+    Learn the basics of your documentation project.
+  </Card>
+
+  <Card title="Write in the Web Editor" icon="monitor" href="/write-and-publish/web-editor">
+    Edit content visually with rich components.
+  </Card>
+
+  <Card title="Write in code" icon="code" href="/write-and-publish/code-editor">
+    Keep docs alongside your codebase using MDX.
+  </Card>
+</Columns>
+
+### Horizontal layout
+
+Use horizontal cards when you want a compact row-like treatment, for example in a resources section:
 
 ```jsx
 <Card
-  title="Team Collaboration"
-  icon="users"
-  href="/account-and-billing/team-management"
-  horizontal
->
-  Work together seamlessly with role-based access control.
-</Card>
-```
-
-<Card title="Team Collaboration" href="/account-and-billing/team-management" icon="users" horizontal="false">
-  Work together seamlessly with role-based access control.
-</Card>
-
-<Callout kind="tip" collapsed="false">
-  Horizontal layout works best for compact cards with shorter descriptions.
-</Callout>
-
-## Card with images
-
-Add visual appeal with header images:
-
-```jsx
-<Card 
-  title="Getting Started Guide" 
-  icon="book-open" 
-  href="/getting-started/quickstart"
-  image="https://example.com/image.jpg"
->
-  Learn the fundamentals and get your project up and running in minutes.
-</Card>
-```
-
-<Card title="Database Management" href="#database" icon="database" image="https://fdjsuzcsbmpqsraaooua.supabase.co/storage/v1/object/public/documentation-images/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1758638266765-vc81ki2xs9-abstract-image.webp" horizontal="false">
-  Master database operations with best practices for schema design and migrations.
-</Card>
-
-<Callout kind="warning" collapsed="false">
-  Images are displayed at full width above the card content. Choose images with appropriate aspect ratios.
-</Callout>
-
-## Call-to-action buttons
-
-Add explicit CTAs to encourage user interaction:
-
-```jsx
-<Card 
-  title="Component Library" 
-  icon="box" 
-  href="/components/heading-and-text" 
-  cta="Browse Components"
->
-  Build beautiful UIs with our extensive collection of pre-built components.
-</Card>
-```
-
-<Card title="Component Library" href="/components/heading-and-text" icon="box" cta="Browse Components" horizontal="false">
-  Build beautiful UIs with our extensive collection of pre-built components.
-</Card>
-
-### CTAs with horizontal layout
-
-```jsx
-<Card 
-  title="Analytics Dashboard" 
-  icon="bar-chart" 
-  href="/analytics-and-insights/user-analytics" 
-  horizontal 
-  cta="Explore"
->
-  Track user behavior and monitor application metrics in real-time.
-</Card>
-```
-
-<Card title="Analytics Dashboard" href="/analytics-and-insights/user-analytics" icon="bar-chart" cta="Explore" horizontal="false">
-  Track user behavior and monitor application metrics in real-time.
-</Card>
-
-## Columns & Card groups in MDX
-
-Use `<Columns>` to lay out multiple cards in a grid—this mirrors the Card Group behavior in the editor UI.
-
-```jsx
-<Columns cols={2}>
-  <Card title="Cloud Deployment" icon="cloud" href="/deployment-and-hosting/deploy-your-documentation">
-    Deploy your application to the cloud with step-by-step guides.
-  </Card>
-  <Card title="CLI Tools" icon="terminal" href="/write-and-publish/code-editor/overview">
-    Streamline your workflow with powerful command-line tools.
-  </Card>
-  <Card title="Configuration" icon="settings" href="/customize/site-configuration">
-    Customize every aspect of your application.
-  </Card>
-</Columns>
-```
-
-<Columns cols="2">
-  <Card title="Cloud Deployment" href="/deployment-and-hosting/deploy-your-documentation" icon="cloud" horizontal="false">
-    Deploy your application to the cloud with step-by-step guides.
-  </Card>
-
-  <Card title="CLI Tools" href="/write-and-publish/code-editor/overview" icon="terminal" horizontal="false">
-    Streamline your workflow with powerful command-line tools.
-  </Card>
-
-  <Card title="Configuration" href="/customize/site-configuration" icon="settings" horizontal="false">
-    Customize every aspect of your application.
-  </Card>
-</Columns>
-
-<Callout kind="info" collapsed="false">
-  Columns supports `cols={2}`, `cols={3}`, `cols={4}`, or `cols={5}` for responsive grid layouts.
-</Callout>
-
-## External links & targets
-
-Open external links in a new tab using the `target` prop:
-
-```jsx
-<Card 
-  title="GitHub Repository" 
-  icon="github" 
-  href="https://github.com/example/repo" 
-  target="_blank"
+  title="GitHub Repository"
+  icon="github"
+  href="https://github.com/example/repo"
   cta="View on GitHub"
+  horizontal={true}
 >
   Explore the source code and contribute to the project.
 </Card>
 ```
 
-<Callout kind="tip" collapsed="false">
-  Use `target` = (`_blank`) for external links and leave the default (`_self`) for internal documentation links.
-</Callout>
+<Card
+  title="GitHub Repository"
+  icon="github"
+  href="https://github.com/example/repo"
+  cta="View on GitHub"
+  horizontal={true}
+>
+  Explore the source code and contribute to the project.
+</Card>
 
-## Icons
+### Cards with images
 
-Cards support [Lucide icons](https://lucide.dev) for visual identification. Use icon names without the `Icon` suffix:
+Add an image to make a card stand out. For more image options, see [Images](/components/images).
 
 ```jsx
+<Card
+  title="Deployment guide"
+  icon="cloud"
+  href="/deployment-and-hosting/deploy-your-documentation"
+  image="https://example.com/deploy-guide-header.png"
+>
+  Follow step-by-step instructions to ship your docs.
+</Card>
+
+## Advanced options
+
+Use these details when you need precise control over card appearance and behavior, or when you are standardizing card usage across your docs.
+
+### Icons
+
+Cards use [Lucide](https://lucide.dev/icons) icon names in the `icon` prop. Use the icon name only (no `Icon` suffix), for example:
+
+```jsx
+<Card title="Security" icon="shield" href="#security">
+  Implement industry-standard security measures.
+</Card>
+```
+
+Commonly used icon names include:
+
+- `book-open`, `code`, `database`, `lock`, `users`
+- `zap`, `cloud`, `terminal`, `settings`
+- `shield`, `bar-chart`, `github`, `rocket`
+
 <Columns cols={3}>
   <Card title="Security" icon="shield" href="#security">
     Implement industry-standard security measures.
   </Card>
-  <Card title="Performance" icon="zap" href="/faqs/fix-performance-issues">
+
+  <Card title="Performance" icon="zap" href="/help/fix-performance-issues">
     Optimize for speed and efficiency.
   </Card>
+
   <Card title="Analytics" icon="bar-chart" href="/analytics-and-insights/user-analytics">
     Track metrics and user behavior.
   </Card>
 </Columns>
+
+### Images
+
+Use the `image` prop to render a header image above the card content:
+
+- Images display at full card width.
+- Prefer a consistent aspect ratio across a grid to avoid height jumps.
+- Host images in your project’s asset storage or a stable CDN.
+
+```jsx
+<Card
+  title="Database Management"
+  icon="database"
+  href="#database"
+  image="https://example.com/database-header.png"
+>
+  Master schema design, migrations, and performance tuning.
+</Card>
 ```
 
-<Columns cols="3">
-  <Card title="Security" href="#security" icon="shield" horizontal="false">
-    Implement industry-standard security measures.
-  </Card>
+### Targets and external links
 
-  <Card title="Performance" href="/faqs/fix-performance-issues" icon="zap" horizontal="false">
-    Optimize for speed and efficiency.
-  </Card>
+Use `target="_blank"` for external destinations that should open in a new tab:
 
-  <Card title="Analytics" href="/analytics-and-insights/user-analytics" icon="bar-chart" horizontal="false">
-    Track metrics and user behavior.
-  </Card>
-</Columns>
+```jsx
+<Card
+  title="Community Discord"
+  icon="users"
+  href="https://discord.gg/example"
+  target="_blank"
+  cta="Join now"
+>
+  Connect with other users, ask questions, and share feedback.
+</Card>
+```
 
-**Popular icons:**\
-`book-open`, `code`, `database`, `lock`, `users`, `zap`, `cloud`, `terminal`, `settings`, `shield`, `bar-chart`, `webhook`, `box`, `palette`, `github`, `rocket`, `arrow-right-left`
+If you omit `target`, cards default to `_self` (same tab), which is recommended for internal docs navigation.
 
-[View all available Lucide icons →](https://lucide.dev/icons)
+### Layout: horizontal vs vertical
 
-## Attributes
+Control card orientation with the `horizontal` prop:
+
+- `horizontal={false}` (default): Icon and content stacked vertically.
+- `horizontal={true}`: Icon and text arranged side by side.
+
+Horizontal cards work best when:
+
+- The description is short (one or two lines).
+- You want a “list of resources” look rather than a grid.
+
+```jsx
+<Card
+  title="Support center"
+  icon="help-circle"
+  href="/help/contact-us"
+  horizontal={true}
+>
+  Reach out to our team for assistance.
+</Card>
+```
+
+### Attribute reference
+
+These attributes are available on the `<Card>` component.
 
 <ParamField path="title" param-type="string" required="true" deprecated="false">
   Card heading text displayed prominently at the top.
 </ParamField>
 
 <ParamField path="href" param-type="string" required="true" deprecated="false">
-  Link destination URL. Can be relative (`/docs/guide`) or absolute (`https://example.com`).
+  Link destination URL. Can be relative (`/getting-started/quickstart`) or absolute (`https://example.com`).
 </ParamField>
 
 <ParamField path="icon" param-type="string" required="false" deprecated="false">
-  Lucide icon name (without "Icon" suffix). Displays in brand color.
+  Lucide icon name (without `Icon` suffix). Displays in the card header.
 </ParamField>
 
 <ParamField path="image" param-type="string" required="false" deprecated="false">
@@ -346,77 +307,19 @@ Cards support [Lucide icons](https://lucide.dev) for visual identification. Use 
 </ParamField>
 
 <ParamField path="cta" param-type="string" required="false" deprecated="false">
-  Call-to-action text displayed as a link with arrow icon.
+  Call-to-action text displayed as a link-style button, typically at the bottom of the card.
 </ParamField>
 
 <ParamField path="horizontal" param-type="boolean" required="false" deprecated="false">
-  Use horizontal layout with icon beside content (default: `false`).
+  Use horizontal layout with icon beside content (`horizontal={true}`) instead of stacked layout.
 </ParamField>
 
 <ParamField path="target" param-type="string" required="false" deprecated="false">
   Link target: `_self` (same tab, default) or `_blank` (new tab).
 </ParamField>
 
-## Complete example
+<Callout kind="success">
 
-Combining all features for a rich card experience:
+Pair cards with [Columns](/components/columns), [Headings and Text](/components/heading-and-text), and [Images](/components/images) to build clear, scannable sections that are easy to maintain in both the Web Editor and Code Editor.
 
-```jsx
-<Columns cols={2}>
-  <Card 
-    title="Getting Started Guide" 
-    icon="book-open" 
-    href="/getting-started/quickstart"
-    cta="Read More"
-    image="https://example.com/getting-started.jpg"
-  >
-    Learn the fundamentals and get your project up and running in minutes with our comprehensive quickstart guide.
-  </Card>
-  
-  <Card 
-    title="API Reference" 
-    icon="code" 
-    href="/api-documentation-and-playground/api-authentication"
-    cta="View Docs"
-    image="https://example.com/api-reference.jpg"
-  >
-    Explore our complete API documentation with interactive examples and detailed endpoint descriptions.
-  </Card>
-  
-  <Card 
-    title="Community Discord" 
-    icon="message-circle" 
-    href="https://discord.gg/example"
-    target="_blank"
-    cta="Join Now"
-    horizontal
-  >
-    Connect with developers, get help, and share your projects.
-  </Card>
-  
-  <Card 
-    title="GitHub Repository" 
-    icon="github" 
-    href="https://github.com/example/repo"
-    target="_blank"
-    cta="View Source"
-    horizontal
-  >
-    Explore the source code and contribute to the project.
-  </Card>
-</Columns>
-```
-
-## Common patterns
-
-- **Feature grids** – Card groups or `<Columns>` with icons and short descriptions.
-
-- **Navigation hubs** – Cards that link to main sections (Getting Started, API, Guides).
-
-- **Resource cards** – External links to GitHub, Discord, or support tools.
-
-- **Tutorial flows** – Sequence of cards guiding users through multi-step tutorials.
-
-<Callout kind="success" collapsed="false">
-  Whether you use the editor UI or MDX, cards stay responsive and accessible by default. Choose the workflow that fits your team—UI for quick editing, MDX for full control in code.
 </Callout>

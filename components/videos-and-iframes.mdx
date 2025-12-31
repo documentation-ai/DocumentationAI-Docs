@@ -5,226 +5,162 @@ description: >-
   Iframe components.
 type: reference
 ---
+
 ## Overview
 
-Embed videos from platforms like YouTube, Vimeo, and Loom, or use self-hosted video files and interactive iframes.
+Use videos and iframes to embed rich, interactive content directly in your docs, such as:
 
-You can work with rich media in two ways:
+- Product walkthroughs and demos (YouTube, Vimeo, Loom)
+- Self-hosted video files (MP4, WebM, OGG)
+- External tools and dashboards (forms, analytics, sandboxes)
 
-- **Editor UI:** Paste a video URL or embed code and resize/align visually.
+In Documentation.AI you can:
 
-- **MDX**: Use the `<Video>` and `<Iframe>` components directly.
+- Use the **Web Editor** to paste links or embed codes and adjust layout visually.
+- Use the **Code Editor** to write `<Video>` and `<Iframe>` components in MDX for full control.
 
-## Add videos and embeds from the editor UI (recommended)
+For static images, see [Images](/components/images). For showing embed code examples (such as iframe snippets) as code instead of rendering them, use [Code and Groups](/components/code-blocks-and-groups).
+
+## Using with Web Editor
 
 ### Insert a video or iframe
 
-1. Place your cursor on a new line in the editor.
-
+1. Place your cursor on a new line in the Web Editor.
 2. Type <kbd>/</kbd> and select **Video**.
-
 3. In the **Video URL or Embed Code** dialog, paste either:
-
    - A **video URL** (YouTube, Vimeo, Loom, MP4 URL, etc.), or
+   - An `iframe` **embed code** copied from another tool.
+4. Click **Insert Video**. The video or iframe appears in your document.
 
-   - An `<iframe>` **embed code** from your video platform or other tool.
+You can use the same block for both direct video URLs and iframe-based embeds from other platforms.
 
-4. Click **Insert Video**. The video/iframe appears in your document.
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765088385957-j1gzo3pidkn-pasted-image-1765088383546.png?q=85&fm=auto&auto=compress%2Cformat" width="503" height="300" alt="Video embed block with alignment and resize controls in the Web Editor" style="width: 503px; height: auto; cursor: pointer;" />
+
+<Callout kind="info">
+
+Prefer writing in code?
+
+You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+
+</Callout>
 
 ### Align and resize
 
-Hover over the embedded video to reveal controls:
+Hover over the embedded video or iframe to reveal controls:
 
 - **Top-right toolbar**
-
   - **Alignment icon:** Change alignment (for example, left, center, or right), similar to images.
-
-  - **Other actions:** May include zoom or delete, depending on configuration.
-
+  - **Other actions:** May include zoom or delete, depending on your configuration.
 - **Side drag handles**
+  - Drag the **left** or **right** handle to adjust the **width**.
+  - The **height adjusts automatically** to keep the original aspect ratio for videos.
 
-  - Handles on the **left** and **right** edges let you adjust the **width** of the video.
+Use these controls to keep layouts consistent with nearby content and images.
 
-  - The **height adjusts automatically** to maintain the original aspect ratio.
+## Using with Code Editor
 
-Use this UI for both direct video URLs and `<iframe>` embed codes.
+In the Code Editor, you work directly in MDX using the `<Video>` and `<Iframe>` components.
 
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765088385957-j1gzo3pidkn-pasted-image-1765088383546.png?q=85&fm=auto&auto=compress%2Cformat" width="503" height="300" alt="" style="width: 503px; height: auto; cursor: pointer;" />
+### `<Video>` component (iframe mode)
 
-## Use the Video component in MDX
+Use iframe mode for platforms that provide an embed URL, such as YouTube, Vimeo, Loom, or Wistia.
 
-Embed videos from platforms like YouTube, Vimeo, and Loom, or use self-hosted video files. The Video component handles both iframe embedding and HTML5 video playback.
-
-Common use cases:
-
-- Platform videos (YouTube, Vimeo, Loom)
-
-- Self-hosted video files (MP4, WebM)
-
-- Interactive content and external applications
-
-<Video uid="be745055-7f24-4430-851a-4271b0cc7e94" src="https://www.youtube.com/embed/Reu01KxMSF0" render-type="iframe" width="672" height="378" controls="true" allow-full-screen="true" style="width: 672px; height: auto; cursor: pointer;" />
-
-### Video (iframe mode)
-
-Use this mode for YouTube, Vimeo, Loom, and other video platforms that provide an embed URL.
-
-```jsx
-<Video 
-  src="https://www.youtube.com/embed/Reu01KxMSF0?si=Rf3PTfKp1hMn9qhX" 
-  title="YouTube video player"
-  width="560" 
-  height="315"
+```tsx
+<Video
+  src="https://www.youtube.com/embed/Reu01KxMSF0"
+  title="Feature overview video"
+  width="672"
+  height="378"
+  allow-full-screen="true"
+  style="width: 100%; max-width: 672px; height: auto;"
 />
 ```
 
-### Attributes
+Key props:
 
-<ParamField path="src" param-type="string" required="true" deprecated="false">
-  Video embed URL from platform.
-</ParamField>
+- `src` (string, required): Video embed URL from the platform.
+- `width` / `height` (string): Player dimensions in pixels.
+- `title` (string): Accessible title for screen readers.
+- `allow-full-screen` (boolean-like): Allow fullscreen playback (defaults to `true`).
+- `priority` (boolean-like): Load immediately instead of lazy loading.
+- `style` (string): Inline styles for alignment and sizing.
 
-<ParamField path="width" param-type="string" required="false" deprecated="false">
-  Video player width in pixels.
-</ParamField>
+### `<Video>` component (HTML5 mode)
 
-<ParamField path="height" param-type="string" required="false" deprecated="false">
-  Video player height in pixels.
-</ParamField>
+Use HTML5 mode for self-hosted video files, with native browser controls.
 
-<ParamField path="title" param-type="string" required="false" deprecated="false">
-  Accessible title for screen readers.
-</ParamField>
-
-<ParamField path="allow-full-screen" param-type="boolean" required="false" deprecated="false">
-  Allow content to go fullscreen (default: `true`).
-</ParamField>
-
-<ParamField path="priority" param-type="boolean" required="false" deprecated="false">
-  Load immediately instead of lazy loading (default: `false`).
-</ParamField>
-
-<ParamField path="style" param-type="string" required="false" deprecated="false">
-  CSS styles for alignment and positioning.
-</ParamField>
-
-### Video (HTML5 mode)
-
-Use for self-hosted video files (MP4, WebM, OGG) with native browser controls.
-
-```jsx
-<Video 
-  src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-  width="560" 
-  height="315"
+```tsx
+<Video
+  src="https://example.com/video/feature-walkthrough.mp4"
+  width="672"
+  height="378"
   controls="true"
-  poster="https://example.com/thumbnail.jpg"
+  poster="https://example.com/video/feature-walkthrough-poster.jpg"
+  preload="metadata"
+  fetchPriority="high"
+  style="width: 100%; max-width: 672px; height: auto;"
 />
 ```
 
-### Attributes
+Additional props for HTML5 playback:
 
-<ParamField path="src" param-type="string" required="true" deprecated="false">
-  Direct URL to video file (MP4, WebM, OGG).
-</ParamField>
+- `controls` (boolean-like): Show video controls (defaults to `true`).
+- `autoplay` (boolean-like): Start playing when the page loads.
+- `muted` (boolean-like): Start muted (often required for autoplay).
+- `loop` (boolean-like): Loop playback.
+- `poster` (string): Poster image shown before playback.
+- `preload` (string): `none`, `metadata`, or `auto`.
+- `fetchPriority` (string): `high`, `low`, or `auto`.
 
-<ParamField path="width" param-type="string" required="false" deprecated="false">
-  Video player width in pixels.
-</ParamField>
+### `<Iframe>` component
 
-<ParamField path="height" param-type="string" required="false" deprecated="false">
-  Video player height in pixels.
-</ParamField>
+Use `<Iframe>` for non-video embeds such as forms, dashboards, and interactive tools.
 
-<ParamField path="controls" param-type="boolean" required="false" deprecated="false">
-  Show video controls (default: `true`).
-</ParamField>
-
-<ParamField path="autoplay" param-type="boolean" required="false" deprecated="false">
-  Auto-play video when page loads (default: `false`).
-</ParamField>
-
-<ParamField path="muted" param-type="boolean" required="false" deprecated="false">
-  Start video muted (default: `false`).
-</ParamField>
-
-<ParamField path="loop" param-type="boolean" required="false" deprecated="false">
-  Loop video continuously (default: `false`).
-</ParamField>
-
-<ParamField path="poster" param-type="string" required="false" deprecated="false">
-  Image URL to display before video starts playing.
-</ParamField>
-
-<ParamField path="preload" param-type="string" required="false" deprecated="false">
-  How much video to preload: `none`, `metadata`, `auto`.
-</ParamField>
-
-<ParamField path="fetchPriority" param-type="string" required="false" deprecated="false">
-  Browser loading priority: `high`, `low`, `auto`.
-</ParamField>
-
-<ParamField path="style" param-type="string" required="false" deprecated="false">
-  CSS styles for alignment and positioning.
-</ParamField>
-
-### Iframe component in MDX
-
-Use `<Iframe>` for embedding external content such as forms, dashboards, or interactive tools.
-
-```jsx
-<Iframe 
-  src="https://docs.google.com/forms/d/e/1FAIpQLSexample/viewform" 
-  title="Feedback form"
-  width="100%" 
+```tsx
+<Iframe
+  src="https://docs.google.com/forms/d/e/1FAIpQLSexample/viewform"
+  title="Customer feedback form"
+  width="100%"
   height="600"
+  sandbox="allow-scripts allow-same-origin allow-presentation"
+  allow-full-screen="true"
+  style="border: 1px solid #e5e7eb; border-radius: 8px;"
 />
 ```
 
-### Attributes
+Key props:
 
-<ParamField path="src" param-type="string" required="true" deprecated="false">
-  URL of external content to embed.
-</ParamField>
+- `src` (string, required): URL of the external content.
+- `width` / `height` (string): Dimensions in pixels or percentages.
+- `title` (string): Accessible title for screen readers.
+- `allow-full-screen` (boolean-like): Allow fullscreen where supported.
+- `sandbox` (string): Space-separated sandbox restrictions.
+- `priority` (boolean-like): Load immediately instead of lazy loading.
+- `style` (string): Inline styles for borders and layout.
 
-<ParamField path="width" param-type="string" required="false" deprecated="false">
-  Iframe width (pixels or percentage).
-</ParamField>
+Use [Code and Groups](/components/code-blocks-and-groups) when you want to show iframe snippets as examples rather than render them.
 
-<ParamField path="height" param-type="string" required="false" deprecated="false">
-  Iframe height (pixels or percentage).
-</ParamField>
+## Advanced options
 
-<ParamField path="title" param-type="string" required="false" deprecated="false">
-  Accessible title for screen readers.
-</ParamField>
+### Platform support
 
-<ParamField path="allow-full-screen" param-type="boolean" required="false" deprecated="false">
-  Allow content to go fullscreen (default: `true`).
-</ParamField>
+Commonly used video sources:
 
-<ParamField path="sandbox" param-type="string" required="false" deprecated="false">
-  Security restrictions (default: `"allow-scripts allow-same-origin allow-presentation"`).
-</ParamField>
+- **Video platforms:** YouTube, Vimeo, Loom, Wistia
+- **Video formats (HTML5):** MP4, WebM, OGG
 
-<ParamField path="priority" param-type="boolean" required="false" deprecated="false">
-  Load immediately instead of lazy loading (default: `false`).
-</ParamField>
+Most platforms provide both a shareable URL and an iframe embed code; use whichever best matches your workflow (Web Editor block or MDX component).
 
-<ParamField path="style" param-type="string" required="false" deprecated="false">
-  CSS styles for alignment and positioning.
-</ParamField>
+### Accessibility and layout best practices
 
-## Platform support & best practices
+- Always set a meaningful `title` on `<Video>` (iframe mode) and `<Iframe>` for better screen reader support.
+- Specify `width` and `height` to improve layout stability and avoid content shifting as media loads.
+- Use responsive styles (for example, `style="width: 100%; max-width: 672px; height: auto;"`) so embeds look good on smaller screens.
+- For important, above-the-fold media, consider `priority="true"` or `fetchPriority="high"`; otherwise, rely on lazy loading to keep pages fast.
 
-**Video platforms:** YouTube, Vimeo, Loom, Wistia\
-**Video formats:** MP4, WebM, OGG
+### Security considerations for iframes
 
-- Use clear, descriptive titles for accessibility.
-
-- Specify `width` and `height` to improve layout stability.
-
-- Use `priority`/`fetchPriority` only for above-the-fold media.
-
-- Prefer the editor UI for quick embeds; switch to MDX components when you need full control.
-
+- Use the `sandbox` attribute on `<Iframe>` to limit what embedded content can do.
+- Start with a restrictive value and add only what you need, for example:
+  - `sandbox="allow-scripts allow-same-origin allow-presentation"`
+- Only embed content from origins you trust, especially when allowing scripts or same-origin access.

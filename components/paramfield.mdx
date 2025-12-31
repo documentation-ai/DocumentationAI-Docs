@@ -25,17 +25,23 @@ You can work with ParamField in two ways:
 
 ---
 
-## Using ParamField in the editor UI
+## Using with Web Editor
 
 ### Add a ParamField block
 
 1. Place your cursor where you want the parameter description.
-
 2. Type <kbd>/</kbd> to open the command menu and search for **Param Field** (or **Param**).
-
-3. Select the **Param Field** to insert the component.
+3. Select **Param Field** to insert the component.
 
 A new parameter row appears with default badges and a description placeholder.
+
+<Callout kind="info">
+
+Prefer writing in code?
+
+You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+
+</Callout>
 
 ### Edit parameter metadata
 
@@ -44,17 +50,12 @@ A new parameter row appears with default badges and a description placeholder.
 To change the badges and tags:
 
 1. Click the **three-dot menu** on the right side of the ParamField block.
-
 2. In the **Parameter** settings panel, you can edit:
 
 - **Location:** Choose **Path**, **Query**, **Body**, or **Header**.
-
 - **Parameter Name:** Set the name shown next to the badge (for example, `id`, `limit`, `Authorization`).
-
 - **Type:** Enter the data type (for example, `string`, `integer`, `boolean`).
-
 - **Required:** Toggle on to mark the parameter as required.
-
 - **Deprecated:** Toggle on to show the Deprecated badge.
 
 Click **Save** to apply your changes.
@@ -62,15 +63,11 @@ Click **Save** to apply your changes.
 ### Edit the description
 
 - Click in the **description area** under the badges (for example, *Parameter description…*).
-
 - Add your explanation using any supported content:
 
   - Text and headings
-
   - Lists and tables
-
   - Code blocks
-
   - Callouts and other MDX components
 
 <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765440779786-2jpk8n2hblx-pasted-image-1765440777294.png?q=85&fm=auto&auto=compress%2Cformat" width="491" height="444" alt="" style="width: 491px; height: auto; cursor: pointer;" />
@@ -83,7 +80,7 @@ Click **Save** to apply your changes.
   You can either [control location in MDX](https://documentation.ai/docs/components/paramfield#hide-location-badge) view or ask the AI Agent to “hide the location badge for this parameter” and let it update the code for you.
 </Callout>
 
-## Using ParamField in the MDX
+## Using with Code Editor
 
 ### Basic syntax
 
@@ -113,7 +110,9 @@ Use `showLocation="false"` to hide the location badge:
   Authentication token without location badge.
 </ParamField>
 
-## Attributes
+## Advanced options
+
+### Attributes
 
 <ParamField path="path" param-type="string" required="false" deprecated="false">
   Parameter name for URL path parameters.
@@ -150,4 +149,3 @@ Use `showLocation="false"` to hide the location badge:
 <Callout kind="alert" collapsed="false">
   Use exactly one location attribute (`path`, `query`, `header`, or `body`) per ParamField.
 </Callout>
-

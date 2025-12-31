@@ -28,7 +28,9 @@ Common use cases:
 
 - Version-specific docs showing differences between releases
 
-## Using Tabs in the editor UI
+## Using with Web Editor
+
+The Web Editor lets you insert and manage Tabs visually while still generating valid MDX under the hood.
 
 ### Insert a Tabs block
 
@@ -54,13 +56,19 @@ Common use cases:
   </Tab>
 </Tabs>
 
+<Callout kind="info" collapsed="false">
+  Prefer writing in code?
+
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+</Callout>
+
 ### Edit tab content
 
 - **Title**: Double-click the **tab label** you want to edit.
 
 - **Content**: Start typing in the content area below the tabs. You can add any rich content: text, lists, images, code blocks, images, callouts, cards, etc.
 
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765437725310-b1ow8nej3qr-tabs.png?q=85&fm=auto&auto=compress%2Cformat" width="1600" height="318" alt="" />
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765437725310-b1ow8nej3qr-tabs.png?q=85&fm=auto&auto=compress%2Cformat" width="1600" height="318" alt="Example of a Tabs block in the Web Editor" />
 
 ### Manage tabs
 
@@ -78,7 +86,9 @@ Tabs created in the editor UI map directly to `<Tabs>` and `<Tab>` components in
   Prefer to do it yourself? You can [add it through the MDX](https://documentation.ai/docs/components/tabs#tab-icons).
 </Callout>
 
-## Using Tabs in MDX
+## Using with Code Editor
+
+You can define Tabs directly in your MDX files using the `<Tabs>` and `<Tab>` components.
 
 ````jsx
 <Tabs>
@@ -310,7 +320,9 @@ Tabs support any MDX content, including nested components, callouts, images, and
   </Tab>
 </Tabs>
 
-## Platform-specific instructions
+## Advanced options
+
+### Platform-specific instructions
 
 Create platform-specific guides that adapt to your users' operating systems:
 
@@ -432,13 +444,13 @@ Create platform-specific guides that adapt to your users' operating systems:
   </Tab>
 </Tabs>
 
-## Attributes
+### Attributes
 
-### Tabs component
+#### Tabs component
 
 The `<Tabs>` component acts as a container and has no configurable attributes. It automatically manages tab state and animations.
 
-### Tab component
+#### Tab component
 
 <ParamField path="title" param-type="string" required="true" deprecated="false">
   The tab label displayed in the navigation bar. This text identifies each tab and should be concise and descriptive.
@@ -452,7 +464,7 @@ The `<Tabs>` component acts as a container and has no configurable attributes. I
   The content displayed when the tab is active. Supports all MDX content including text, code blocks, callouts, images, lists, tables, and other components.
 </ParamField>
 
-## Common patterns
+### Common patterns
 
 - **Multi-language code samples**: JavaScript, Python, Go, cURL, etc.
 
@@ -467,4 +479,3 @@ The `<Tabs>` component acts as a container and has no configurable attributes. I
 <Callout kind="success" collapsed="false">
   Tabs include an animated underline indicator that moves with the active tab, giving users clear visual feedback about which content they’re viewing.
 </Callout>
-

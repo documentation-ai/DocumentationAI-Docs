@@ -5,41 +5,97 @@ description: >-
   tables using both the editor UI and MDX.
 type: reference
 ---
+
 ## Overview
 
-You can add lists and tables in two ways:
+Lists and tables help you structure content so readers can quickly scan procedures, options, and structured data.
 
-- **Editor UI** – Use the slash (<kbd>/</kbd>) menu and on-table controls.
+- **Lists** are best for sequences and grouped items:
+  - Use ordered lists for step-by-step procedures or rankings.
+  - Use unordered lists for features, options, or requirements.
+  - Use nested lists to show hierarchy or sub-tasks.
+- **Tables** are best when you need to compare fields, options, or statuses in a grid.
 
-- **MDX/Markdown** – Type list and table syntax directly.
+In Documentation.AI pages, lists and tables work alongside other components:
 
-All standard Markdown list and table syntax is supported.
+- For detailed, numbered procedures, consider using [`<Steps>`](/components/steps) instead of a long ordered list.
+- For inline notes or warnings around lists and tables, use [`<Callout>`](/components/callout).
+- For code-heavy content, combine lists/tables with code examples from [`Code and Groups`](/components/code-blocks-and-groups).
 
-## Lists
+You can add lists and tables either through the **Web Editor** or by writing **Markdown/MDX** in the **Code Editor**.
 
-### Create lists with the editor UI
+## Using with Web Editor
+
+Use the Web Editor when you prefer a visual, WYSIWYG-style workflow.
+
+### Insert and manage lists
 
 1. Place your cursor on a new line.
-
 2. Type <kbd>/</kbd> to open the block menu.
-
 3. Under **Lists & Formatting**, choose:
-
-   - **Bullet List**
-
-   - **Numbered List**
+   - **Bullet List** (unordered)
+   - **Numbered List** (ordered)
+4. Start typing your first item.
 
 Then:
 
-- Start typing your first item.
+- Press <kbd>Enter</kbd> to create the next item.
+- Press <kbd>Tab</kbd> to create a **nested** list under the current item.
+- Use <kbd>Shift</kbd> + <kbd>Tab</kbd> to outdent and move back up a level.
 
-- Press **<kbd>Enter</kbd>** to create the next item.
+You can also switch an existing paragraph to a list (or back to a paragraph) using the block dropdown on the left of the line.
 
-- Press **<kbd>Tab</kbd>** to create a **nested** list under the current item.
+<Callout kind="info">
 
-You can switch an existing block to a list (or back to a paragraph) using the block dropdown on the left.
+Prefer writing in code?
 
-### Create lists with MDX syntax
+You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+
+</Callout>
+
+### Insert and manage tables
+
+1. Place your cursor on a new line.
+2. Type <kbd>/</kbd> to open the block menu.
+3. Select **Table**.
+
+A basic table is inserted:
+
+- The **first row** is the **header row**. Text in this row is styled as headings (bold).
+- From the **second row onward**, you can enter regular cell content.
+
+#### Row controls
+
+Hover near the left edge of a row to reveal the row toolbar:
+
+- **H** – Toggle header styling on or off for that row.
+- **Up/Down arrows** – Move the current row up or down.
+- **Trash** (when present) – Delete the row.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765030002586-qgj869j4x8e-pasted-image-1765030001626.png?q=85&fm=auto&auto=compress%2Cformat" width="1600" height="394" alt="Row controls for a table in the Web Editor" />
+
+Use these controls to:
+
+- Turn a content row into a header row or demote it back.
+- Reorder rows without copy-paste.
+
+#### Column controls
+
+Hover over the top of a column to reveal the column toolbar (three-dot icon):
+
+- Change **alignment** for the column (left, center, or right).
+- Move the column left or right using the arrows.
+- Delete the column if you no longer need it.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765030142734-ea23f17ce86-pasted-image-1765030141117.png?q=85&fm=auto&auto=compress%2Cformat" width="1600" height="499" alt="Column controls for a table in the Web Editor" />
+
+If you need more complex, API-style tables, you can also use dedicated components like [`<ParamField>`](/components/paramfield) and [`<ResponseField>`](/components/responsefield).
+
+## Using with Code Editor
+
+Use the Code Editor when you want full control over Markdown/MDX syntax or when working from a Git workflow. Lists and tables use standard Markdown syntax and render the same way as content created via the Web Editor.
+
+### Lists
 
 #### Ordered lists
 
@@ -51,19 +107,21 @@ Use numbers followed by periods:
 3. Third item
 ```
 
-- First item
+Renders as:
 
-- Second item
+1. First item
+2. Second item
+3. Third item
 
-- Third item
+<Callout kind="info">
 
-<Callout kind="info" collapsed="false">
-  The actual numbers don't matter; Markdown automatically sequences them. You can use it `1.` for all items.
+Markdown automatically sequences ordered lists. You can use `1.` for every item, and it will still render in order.
+
 </Callout>
 
 #### Unordered lists
 
-Use dashes (`-`), asterisks (`*`), or plus signs (`+`):
+Use dashes, asterisks, or plus signs:
 
 ```markdown
 - First item
@@ -71,15 +129,17 @@ Use dashes (`-`), asterisks (`*`), or plus signs (`+`):
 - Third item
 ```
 
+Renders as:
+
 - First item
-
 - Second item
-
 - Third item
+
+For consistency across your docs, prefer using `-` for unordered lists.
 
 #### Nested lists
 
-Indent items with spaces (typically 2 or 4 spaces):
+Indent nested items with spaces (commonly 2 or 4 spaces). Tabs also work, but spaces are more predictable in version control.
 
 ```markdown
 1. First item
@@ -91,75 +151,29 @@ Indent items with spaces (typically 2 or 4 spaces):
 3. Third item
 ```
 
+Renders as:
+
 1. First item
-
    - Nested unordered item
-
    - Another nested item
-
 2. Second item
-
    1. Nested ordered item
-
    2. Another nested ordered item
-
 3. Third item
 
-<Callout kind="alert" collapsed="false">
-  &#x20;Mixing different list markers ( `-` , `*` , `+` ) in the same list can cause inconsistent rendering.
+<Callout kind="alert">
+
+Mixing different unordered markers (`-`, `*`, `+`) within the same list can cause inconsistent rendering across Markdown parsers. Stick to a single marker per list.
+
 </Callout>
 
-## Tables
+For long, multi-step procedures, consider using the [`Steps` component](/components/steps), which gives you more control over step titles and icons.
 
-### Create and edit tables with the editor UI
+### Tables
 
-1. Place your cursor on a new line.
+#### Basic table syntax
 
-2. Type <kbd>/</kbd> to open the block menu.
-
-3. Select **Table**.
-
-A basic table will be inserted:
-
-- **The first row** is the **header row**. Text in this row is styled as headings (bold).
-
-- From the **second row onward**, you can enter regular cell content.
-
-#### Row controls
-
-Hover near the left edge of a row to reveal the row toolbar:
-
-- **H** – Toggle header row on/off for that row.
-
-- **Up/Down arrows** – Move the current row up or down.
-
-- **Trash** (when present) – Remove the row.
-
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765030002586-qgj869j4x8e-pasted-image-1765030001626.png?q=85&fm=auto&auto=compress%2Cformat" width="1600" height="394" alt="" />
-
-You can use this to:
-
-- Turn an existing content row into a header row.
-
-- Demote a header row back to a regular row.
-
-- Reorder rows without copying/pasting.
-
-#### Column controls
-
-Hover over the top of a column to reveal the column toolbar (three-dot icon):
-
-- Change the **alignment** of the column (left, center, or right).
-
-- Use **arrows** to move the column left or right.
-
-- Delete a column if needed.
-
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765030142734-ea23f17ce86-pasted-image-1765030141117.png?q=85&fm=auto&auto=compress%2Cformat" width="1600" height="499" alt="" />
-
-### Create tables with MDX syntax
-
-Use pipes (`|`) to separate columns and dashes (`-`) to create headers:
+Use pipes (`|`) to separate columns and dashes (`-`) to define the header row:
 
 ```markdown
 | Feature        | Description         | Status      |
@@ -169,37 +183,43 @@ Use pipes (`|`) to separate columns and dashes (`-`) to create headers:
 | Reports        | Data analytics      | Planned     |
 ```
 
+Renders as:
+
 | Feature        | Description         | Status      |
 | -------------- | ------------------- | ----------- |
 | Authentication | User login system   | Complete    |
 | Dashboard      | Main user interface | In progress |
 | Reports        | Data analytics      | Planned     |
 
-#### Table formatting tips
+#### Alignment and readability
 
-Raw Markdown doesn’t need perfect alignment, but it improves readability:
+You can add colons to the header separator row to control alignment:
 
 ```markdown
-| Name | Role      | Status  |
-| ---- | --------- | ------- |
-| Alice| Developer | Active  |
-| Bob  | Designer  | Inactive|
-```
-
 | Name  | Role      | Status   |
-| ----- | --------- | -------- |
+| :---- | :-------- | -------: |
 | Alice | Developer | Active   |
 | Bob   | Designer  | Inactive |
+```
 
-## Common patterns
+- `:----` makes a column left-aligned.
+- `:----:` makes a column center-aligned.
+- `----:` makes a column right-aligned.
 
-- **Sequential content:** Use ordered lists for steps, procedures, and rankings.
+It is not required to perfectly align the pipes in your raw Markdown, but it can make tables easier to edit in code.
 
-- **Related items:** Use unordered lists for features, requirements, and options.
+## Advanced options
 
-- **Hierarchical information:** Use nested lists to show levels of detail.
+### Indentation and nested content
 
-- **Structured data:** Use tables for comparisons, specifications, and status tracking.
+When nesting lists:
 
-##
+- Use consistent indentation (for example, 2 or 4 spaces) for each nesting level.
+- Avoid mixing tabs and spaces within the same list.
+- Keep nested lists short; if you need deep hierarchies, consider using [`Expandables`](/components/expandables) or separate sections instead.
 
+### Table formatting best practices
+
+- Keep column labels short and scannable; use separate paragraphs or [`Callout`](/components/callout) for long explanations.
+- Prefer multiple smaller tables over one very wide table that may require horizontal scrolling.
+- For API schemas or complex field documentation, use the dedicated [`API Components`](/components/api-components) instead of hand-written Markdown tables.

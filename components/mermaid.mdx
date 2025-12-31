@@ -1,33 +1,76 @@
 ---
 title: Mermaid Diagrams
-description: Reference for creating interactive diagrams using Mermaid syntax with zoom and fullscreen capabilities.
+description: >-
+  Reference for creating interactive diagrams using Mermaid syntax with zoom and
+  fullscreen capabilities.
 type: reference
 ---
-
 ## Overview
 
-Add interactive diagrams in your documentation using Mermaid syntax. The component automatically adapts to light and dark themes, provides zoom controls, and supports fullscreen viewing for better diagram exploration.
+Use Mermaid diagrams to add flowcharts, sequence diagrams, and other structured visuals directly in your docs. In Documentation.AI, Mermaid diagrams are rendered from fenced code blocks and automatically gain:
 
-Common use cases:
-- Flowcharts for processes and workflows
-- Sequence diagrams for API interactions
-- System architecture diagrams
-- State diagrams for application flows
-- Entity relationship diagrams for database schemas
-- Gantt charts for project timelines
+- **Interactive zoom controls** (in and out, plus reset)
+
+- **Fullscreen viewing** for complex diagrams
+
+- **Automatic light/dark theme support** that matches your site
+
+Mermaid is a good fit when you want:
+
+- Repeatable, version-controlled diagrams defined in text
+
+- Architecture or API flows that evolve with your product
+
+- Visual explanations that stay readable across themes and layouts
+
+Diagrams are created using the same code block system as other snippets. For a detailed overview of code blocks, see [Code and Groups](/components/code-blocks-and-groups).
 
 ```mermaid
 graph LR
-    A[Start] --> B{Decision}
-    B -->|Yes| C[Process 1]
-    B -->|No| D[Process 2]
-    C --> E[End]
-    D --> E
+    A[User] --> B{Authenticated?}
+    B -->|Yes| C[Process request]
+    B -->|No| D[Redirect to login]
+    C --> E[Return response]
+    D --> F[Show login page]
 ```
 
-## Basic syntax
+<Callout kind="info" collapsed="false">
+  Diagrams automatically switch between light and dark themes based on your site's theme settings.
+</Callout>
 
-Use Mermaid code blocks with triple backticks and the `mermaid` language identifier:
+## Using with Web Editor
+
+In the Web Editor, Mermaid diagrams are just code blocks with the language set to `mermaid`.
+
+1. Open or create a page in the [Web Editor](/write-and-publish/web-editor).
+
+2. Use the slash menu (<kbd>/</kbd>) to insert a **Code** block.
+
+3. In the code block language dropdown, choose `mermaid`.
+
+4. Paste or write your Mermaid definition inside the block.
+
+For example, in the Web Editor you would configure a code block with language `mermaid` and content similar to:
+
+```mermaid
+graph TD
+    A[Start] --> B[Process]
+    B --> C[End]
+```
+
+<Callout kind="info" collapsed="false">
+  Prefer writing in code?
+
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+</Callout>
+
+For more on inserting and configuring code blocks in the Web Editor, see [Code and Groups](/components/code-blocks-and-groups).
+
+## Using with Code Editor
+
+In the Code Editor (Markdown/MDX), Mermaid diagrams are defined as fenced code blocks with the `mermaid` language identifier.
+
+### Basic Syntax
 
 ````markdown
 ```mermaid
@@ -37,25 +80,26 @@ graph TD
 ```
 ````
 
+Rendered example:
+
 ```mermaid
 graph TD
     A[Start] --> B[Process]
     B --> C[End]
 ```
 
-<Callout kind="info">
-  Diagrams automatically switch between light and dark themes based on your site's theme settings.
-</Callout>
-
-## Interactive features
+You can mix Mermaid blocks with any other Markdown or MDX content, including [Code and Groups](/components/code-blocks-and-groups) when you want to show Mermaid alongside other languages.
 
 ### Zoom controls
 
 Hover over any diagram to reveal zoom controls in the top-right corner:
 
 - **Zoom In** - Magnify the diagram up to 300%
+
 - **Zoom Out** - Reduce the diagram down to 50%
+
 - **Reset** - Click the percentage to reset to 100%
+
 - **Fullscreen** - View the diagram in fullscreen mode
 
 ```mermaid
@@ -67,7 +111,7 @@ graph LR
     Full --> View
 ```
 
-<Callout kind="tip">
+<Callout kind="tip" collapsed="false">
   Use fullscreen mode for complex diagrams with many nodes and connections.
 </Callout>
 
@@ -297,12 +341,12 @@ gitGraph
 
 Control flowchart layout orientation:
 
-| Direction | Code | Description |
-|-----------|------|-------------|
+| Direction     | Code       | Description             |
+| ------------- | ---------- | ----------------------- |
 | Top to Bottom | `graph TD` | Vertical flow (default) |
-| Left to Right | `graph LR` | Horizontal flow |
-| Bottom to Top | `graph BT` | Reverse vertical |
-| Right to Left | `graph RL` | Reverse horizontal |
+| Left to Right | `graph LR` | Horizontal flow         |
+| Bottom to Top | `graph BT` | Reverse vertical        |
+| Right to Left | `graph RL` | Reverse horizontal      |
 
 ````markdown
 ```mermaid
@@ -377,71 +421,44 @@ graph LR
 Diagrams automatically match your documentation theme:
 
 - **Light mode** - Uses default Mermaid theme with light backgrounds
+
 - **Dark mode** - Uses dark Mermaid theme with appropriate colors
+
 - **Automatic switching** - Updates when theme changes
 
-<Callout kind="success">
+<Callout kind="success" collapsed="false">
   No additional configuration needed. Theme switching is automatic and instant.
 </Callout>
 
 ## Syntax
 
-<ParamField path="language" param-type="string" required="true" showLocation="false">
+<ParamField path="language" param-type="string" required="true" deprecated="false">
   Use `mermaid` as the language identifier in fenced code blocks.
 </ParamField>
 
-<ParamField path="chart" param-type="string" required="true" showLocation="false">
+<ParamField path="chart" param-type="string" required="true" deprecated="false">
   Mermaid diagram definition using valid Mermaid syntax.
 </ParamField>
 
-<ParamField path="id" param-type="string" required="false" showLocation="false">
+<ParamField path="id" param-type="string" required="false" deprecated="false">
   Custom identifier for the diagram. Auto-generated if not provided.
 </ParamField>
 
-## Common patterns
+### Best practices
 
-- **API documentation** - Sequence diagrams showing request/response flows
-- **Architecture diagrams** - Flowcharts illustrating system components
-- **State machines** - State diagrams for complex application logic
-- **Database design** - ER diagrams showing table relationships
-- **Project planning** - Gantt charts with milestones and deadlines
-- **Git workflows** - Branch strategies and merge patterns
-- **Process documentation** - Flowcharts with decision points
-- **Tutorial flows** - Step-by-step visual guides
+Keep diagrams readable and accessible:
 
-## Best practices
+- Focus each diagram on a single concept or flow
 
-**Diagram complexity:**
-- Keep diagrams focused on a single concept
-- Break complex systems into multiple diagrams
-- Use subgraphs for logical grouping
-- Limit nodes to 10-15 for readability
+- Prefer 10–15 nodes or fewer per diagram
 
-**Labeling:**
-- Use clear, concise node labels
-- Add descriptive text to connections
-- Include legends for complex diagrams
-- Maintain consistent terminology
+- Use clear, concise labels for nodes and edges
 
-**Layout:**
-- Choose appropriate direction (TD, LR, etc.)
-- Use proper node shapes for context
-- Space nodes evenly for clarity
-- Test in both light and dark themes
+- Check readability in both light and dark themes
 
-**Accessibility:**
-- Provide text descriptions for complex diagrams
-- Use sufficient color contrast
-- Include alternative text explanations
-- Test zoom functionality for details
+- Add nearby text that explains the diagram for screen readers
 
-## Mermaid resources
-
-- **Official Documentation** - [mermaid.js.org](https://mermaid.js.org)
-- **Live Editor** - [mermaid.live](https://mermaid.live) for testing syntax
-- **Syntax Reference** - Complete guide to all diagram types
-- **Examples Gallery** - Collection of diagram templates
-
-<Callout kind="tip">
-  Use the Mermaid Live Editor to prototype and validate your diagrams before adding them to documentation.
+<Callout kind="tip" collapsed="false">
+  Use the Mermaid Live Editor at [mermaid.live](https://mermaid.live) to prototype and validate your diagrams before adding them to your documentation.
 </Callout>
+

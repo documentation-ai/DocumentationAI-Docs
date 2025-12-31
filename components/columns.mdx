@@ -3,35 +3,103 @@ title: Columns
 description: Reference for creating responsive grid layouts using the Columns component.
 type: reference
 ---
-
 ## Overview
 
-Create responsive multi-column layouts that automatically adapt to different screen sizes. Use Columns to organize cards, content blocks, or any components in a grid structure.
+Use the `Columns` component to create responsive multi-column layouts in your docs. It is most often used to:
 
-Common use cases:
-- Card grids for features or navigation
-- Multi-column content layouts
-- Image galleries
-- Comparison tables or side-by-side content
-- Resource links or quick actions
+- Arrange [Card](/components/card) grids for feature or navigation sections
 
-<Columns cols={3}>
-  <Card title="Responsive" icon="monitor" href="#">
+- Place images side by side using [Images](/components/images)
+
+- Split content into two or more columns for comparisons or dense link lists
+
+- Combine Cards, Images, Callouts, and other components in a single grid
+
+`Columns` is a layout wrapper only. It does not change the content itself; it controls how child components are placed across the page and how they respond to different screen sizes.
+
+<Columns cols="3">
+  <Card title="Responsive" href="#" icon="monitor" horizontal="false">
     Automatically adapts to mobile, tablet, and desktop screens.
   </Card>
-  <Card title="Flexible" icon="grid" href="#">
+
+  <Card title="Flexible" href="#" icon="grid" horizontal="false">
     Support for 2, 3, or 4 column layouts.
   </Card>
-  <Card title="Consistent" icon="align-justify" href="#">
+
+  <Card title="Consistent" href="#" icon="align-justify" horizontal="false">
     Maintains consistent spacing between items.
   </Card>
 </Columns>
 
-## Basic syntax
+## Using with Web Editor
+
+In the Web Editor, there are two main ways to create multi-column layouts:
+
+1. **Card Group** (visual, card-only grids)
+
+2. **MDX view with Columns** (fully flexible mixed content)
+
+### Card Group (visual editor)
+
+Use **Card Group** when you want a simple grid of navigation or feature cards:
+
+1. Open a page in the Web Editor.
+
+2. Insert a **Card Group** block.
+
+3. **Configure columns:** Open **Card Group Settings** from the group’s three-dot menu and choose **2**, **3**, or **4** columns.
+
+This is the quickest way to build feature or navigation grids using [Card](/components/card) without writing code.
+
+### MDX view with Columns (mixed content)
+
+When you need more control or want to mix Cards, Images, Callouts, and text in a single grid, switch the Web Editor into **MDX view** and use the `Columns` component directly.
+
+<Callout kind="info" collapsed="false">
+  Prefer writing in code?
+
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+</Callout>
+
+A simple example using Cards:
+
+<Columns cols="3">
+  <Card title="Get started" href="/getting-started/introduction" icon="book-open" horizontal="false">
+    Learn the core concepts and how Documentation.AI is structured.
+  </Card>
+
+  <Card title="Write docs" href="/write-and-publish/code-editor" icon="code" horizontal="false">
+    Author and maintain documentation using MDX in your codebase.
+  </Card>
+
+  <Card title="Add media" href="/components/images" icon="image" horizontal="false">
+    Use images and screenshots to clarify long or complex flows.
+  </Card>
+</Columns>
+
+```mdx
+<Columns cols={3}>
+  <Card title="Get started" icon="book-open" href="/getting-started/introduction">
+    Learn the core concepts and how Documentation.AI is structured.
+  </Card>
+  <Card title="Write docs" icon="code" href="/write-and-publish/code-editor">
+    Author and maintain documentation using MDX in your codebase.
+  </Card>
+  <Card title="Add media" icon="image" href="/components/images">
+    Use images and screenshots to clarify long or complex flows.
+  </Card>
+</Columns>
+```
+
+## Using with Code Editor
+
+In the Code Editor (or any MDX file in your repository), you can import and use `Columns` directly.
+
+### Basic syntax
 
 Wrap any components in `<Columns>` to create a grid layout:
 
-````jsx
+```jsx
 <Columns cols={2}>
   <Card title="First Item" icon="circle" href="#">
     Content for the first column.
@@ -40,24 +108,25 @@ Wrap any components in `<Columns>` to create a grid layout:
     Content for the second column.
   </Card>
 </Columns>
-````
+```
 
-<Columns cols={2}>
-  <Card title="First Item" icon="circle" href="#">
+<Columns cols="2">
+  <Card title="First Item" href="#" icon="circle" horizontal="false">
     Content for the first column.
   </Card>
-  <Card title="Second Item" icon="square" href="#">
+
+  <Card title="Second Item" href="#" icon="square" horizontal="false">
     Content for the second column.
   </Card>
 </Columns>
 
-## Column configurations
+### Column configurations
 
-### Two columns
+**Two columns:**
 
 Perfect for side-by-side comparisons or paired content:
 
-````jsx
+```jsx
 <Columns cols={2}>
   <Card title="Before" icon="circle-x" href="#">
     Original implementation with manual configuration.
@@ -66,22 +135,23 @@ Perfect for side-by-side comparisons or paired content:
     Simplified approach using our automated tools.
   </Card>
 </Columns>
-````
+```
 
-<Columns cols={2}>
-  <Card title="Before" icon="circle-x" href="#">
+<Columns cols="2">
+  <Card title="Before" href="#" icon="circle-x" horizontal="false">
     Original implementation with manual configuration.
   </Card>
-  <Card title="After" icon="check-circle" href="#">
+
+  <Card title="After" href="#" icon="check-circle" horizontal="false">
     Simplified approach using our automated tools.
   </Card>
 </Columns>
 
-### Three columns
+**Three columns:**
 
 Ideal for feature showcases or grouped information:
 
-````jsx
+```jsx
 <Columns cols={3}>
   <Card title="Fast" icon="zap" href="#">
     Optimized for performance and speed.
@@ -93,25 +163,27 @@ Ideal for feature showcases or grouped information:
     Grows with your application needs.
   </Card>
 </Columns>
-````
+```
 
-<Columns cols={3}>
-  <Card title="Fast" icon="zap" href="#">
+<Columns cols="3">
+  <Card title="Fast" href="#" icon="zap" horizontal="false">
     Optimized for performance and speed.
   </Card>
-  <Card title="Secure" icon="shield" href="#">
+
+  <Card title="Secure" href="#" icon="shield" horizontal="false">
     Built with security best practices.
   </Card>
-  <Card title="Scalable" icon="trending-up" href="#">
+
+  <Card title="Scalable" href="#" icon="trending-up" horizontal="false">
     Grows with your application needs.
   </Card>
 </Columns>
 
-### Four columns
+**Four columns:**
 
 Great for extensive feature lists or navigation grids:
 
-````jsx
+```jsx
 <Columns cols={4}>
   <Card title="Docs" icon="book-open" href="#">
     Read the documentation.
@@ -126,46 +198,35 @@ Great for extensive feature lists or navigation grids:
     Join the community.
   </Card>
 </Columns>
-````
+```
 
-<Columns cols={4}>
-  <Card title="Docs" icon="book-open" href="#">
+<Columns cols="4">
+  <Card title="Docs" href="#" icon="book-open" horizontal="false">
     Read the documentation.
   </Card>
-  <Card title="API" icon="code" href="#">
+
+  <Card title="API" href="#" icon="code" horizontal="false">
     Explore the API reference.
   </Card>
-  <Card title="Support" icon="help-circle" href="#">
+
+  <Card title="Support" href="#" icon="help-circle" horizontal="false">
     Get help from our team.
   </Card>
-  <Card title="Community" icon="users" href="#">
+
+  <Card title="Community" href="#" icon="users" horizontal="false">
     Join the community.
   </Card>
 </Columns>
 
-<Callout kind="tip">
+<Callout kind="tip" collapsed="false">
   Use horizontal cards with 4 columns for better content fit on desktop screens.
 </Callout>
 
-## Responsive behavior
+### Mixed-content example
 
-Columns automatically adapt to different screen sizes:
+`Columns` is not limited to Cards. You can mix text, Images, Callouts, and other components in the same grid.
 
-| Screen Size | cols={2} | cols={3} | cols={4} |
-|-------------|----------|----------|----------|
-| Mobile      | 1 column | 1 column | 1 column |
-| Tablet      | 2 columns | 2 columns | 2 columns |
-| Desktop     | 2 columns | 3 columns | 4 columns |
-
-<Callout kind="info">
-  All column layouts stack to single column on mobile devices for optimal readability.
-</Callout>
-
-## Mixed content
-
-Columns works with any content, not just Card components:
-
-````jsx
+```mdx
 <Columns cols={2}>
   <div>
     ### First Section
@@ -177,21 +238,22 @@ Columns works with any content, not just Card components:
     More content in the second column with **formatting**.
   </div>
 </Columns>
-````
+```
 
-### With images
+**With Images:**
 
-````jsx
+```jsx
 <Columns cols={3}>
   <Image src="./image1.jpg" alt="First" width="300" height="200" />
   <Image src="./image2.jpg" alt="Second" width="300" height="200" />
   <Image src="./image3.jpg" alt="Third" width="300" height="200" />
 </Columns>
-````
 
-### With callouts
+```
 
-````jsx
+**With Callouts:**
+
+```jsx
 <Columns cols={2}>
   <Callout kind="info">
     This is an informational callout in the first column.
@@ -200,79 +262,41 @@ Columns works with any content, not just Card components:
     This is a tip callout in the second column.
   </Callout>
 </Columns>
-````
+```
 
-<Columns cols={2}>
-  <Callout kind="info">
-    This is an informational callout in the first column.
-  </Callout>
-  <Callout kind="tip">
-    This is a tip callout in the second column.
-  </Callout>
-</Columns>
+You can also place `Columns` inside other sections of a page, as long as it is used at the block level and wraps valid MDX content or components.
 
-## Uneven items
+## Advanced options
 
-Columns handles uneven numbers of items gracefully:
+### Responsive behavior
 
-````jsx
-<Columns cols={3}>
-  <Card title="Item 1" icon="circle" href="#">First item</Card>
-  <Card title="Item 2" icon="circle" href="#">Second item</Card>
-  <Card title="Item 3" icon="circle" href="#">Third item</Card>
-  <Card title="Item 4" icon="circle" href="#">Fourth item</Card>
-  <Card title="Item 5" icon="circle" href="#">Fifth item</Card>
-</Columns>
-````
+`Columns` automatically adapts to screen size:
 
-<Columns cols={3}>
-  <Card title="Item 1" icon="circle" href="#">First item</Card>
-  <Card title="Item 2" icon="circle" href="#">Second item</Card>
-  <Card title="Item 3" icon="circle" href="#">Third item</Card>
-  <Card title="Item 4" icon="circle" href="#">Fourth item</Card>
-  <Card title="Item 5" icon="circle" href="#">Fifth item</Card>
-</Columns>
+- On **mobile**, content stacks into a single column for readability.
 
-<Callout kind="success">
-  Extra items wrap to the next row while maintaining the grid structure.
-</Callout>
+- On **tablet**, layouts typically show 2 columns (for `cols={2}`, `cols={3}`, or `cols={4}`).
 
-## Attributes
+- On **desktop**, the full number of columns specified by `cols` is used (up to the configured limit).
 
-<ParamField path="cols" param-type="number" required="false" showLocation="false">
-  Number of columns: `1`, `2`, `3`, or `4`. Defaults to `1` if not specified.
-</ParamField>
+| Screen Size | cols=\{2} | cols=\{3} | cols=\{4} |
+| ----------- | --------- | --------- | --------- |
+| Mobile      | 1 column  | 1 column  | 1 column  |
+| Tablet      | 2 columns | 2 columns | 2 columns |
+| Desktop     | 2 columns | 3 columns | 4 columns |
 
-## Common patterns
+This means you can safely use `cols={3}` or `cols={4}` without breaking mobile layouts; items will stack in a logical reading order (left to right, top to bottom).
 
-- **Feature grids** - 2-3 columns for showcasing product features with cards
-- **Navigation sections** - 2-4 columns for documentation navigation
-- **Resource links** - 3-4 columns for external resources or tools
-- **Comparison layouts** - 2 columns for before/after or option comparisons
-- **Image galleries** - 3-4 columns for visual content organization
-- **Quick actions** - 2-3 columns for common tasks or shortcuts
-- **Team members** - 3-4 columns for team or author profiles
-- **Integration showcase** - 4 columns for logos or integration cards
+### Layout and content best practices
 
-<Callout kind="warning">
-  Avoid using more than 3 columns for content-heavy items. Use horizontal cards or reduce column count for better readability.
-</Callout>
+- Prefer **2 columns** for text-heavy content or detailed comparisons.
 
-## Best practices
+- Use **3 columns** for most feature or navigation grids.
 
-**Column selection:**
-- **2 columns** - Detailed content, comparisons, or lengthy descriptions
-- **3 columns** - Standard feature showcases, most versatile option
-- **4 columns** - Compact navigation, icon grids, or simple cards
+- Use **4–5 columns** only for short labels or icon-based content.
 
-**Content guidelines:**
-- Keep card descriptions similar in length for visual balance
-- Use consistent icons and styling across all items
-- Limit text for 4 column layouts
-- Test on mobile to ensure readability
+- Keep titles and descriptions similar in length across columns so the grid feels balanced.
 
-**Accessibility:**
-- Columns maintain reading order (left to right, top to bottom)
-- All content remains accessible when stacked on mobile
-- Use semantic HTML within column content for screen readers
+- Avoid placing large blocks of unstructured text in more than 2 columns; instead, use headings, lists, or Cards to break it up.
+
+- Test key pages at mobile and tablet sizes to confirm that stacked content remains clear and in a sensible reading order.
 

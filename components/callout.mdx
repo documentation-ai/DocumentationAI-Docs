@@ -5,66 +5,62 @@ description: >-
   component.
 type: reference
 ---
+
 ## Overview
 
-Callouts are boxed sections used to highlight tips, warnings, success messages, and other important notes.
+Callouts are boxed sections used to highlight tips, warnings, success messages, and other important notes inside your Documentation.AI pages.
 
-You can add callouts in two ways:
+Use callouts when you need to:
 
-- **Editor UI**: Insert ready-made callout blocks (no code needed).
+- Draw attention to key information without breaking reading flow.
+- Warn about breaking changes, security risks, or destructive actions.
+- Provide tips and best practices alongside procedural steps.
+- Confirm successful outcomes (for example, deployment complete, sync finished).
 
-- **MDX**: Use the `<Callout>` component with a `kind` prop.
+Callouts work alongside your regular [Headings and Text](/components/heading-and-text) and are often used with [Expandables](/components/expandables) when you want to hide long notes or advanced caveats behind a collapsible section.
 
-Available callout types:
+Available callout kinds:
 
-- **Info**: Neutral information (gray)
+- `info`: Neutral information.
+- `tip`: Helpful suggestions and best practices.
+- `success`: Positive confirmations and results.
+- `alert`: Warnings and cautions.
+- `danger`: Critical errors and destructive actions.
 
-- **Tip**: Helpful suggestions (blue)
+## Using with Web Editor
 
-- **Alert**: Warnings and cautions (yellow)
-
-- **Danger**: Critical errors and destructive actions (red)
-
-- **Success**: Positive confirmations and results (green)
-
-## Using the Callouts in the editor UI
-
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765374490024-ecgkg97yur-pasted-image-1765374488901.png?q=85&fm=auto&auto=compress%2Cformat" width="400" height="292" alt="" style="width: 400px; height: auto; cursor: pointer;" />
+In the Web Editor, you can insert callouts without writing any code.
 
 1. Place your cursor where you want the callout.
-
 2. Type <kbd>/</kbd> to open the block menu.
+3. Search for **Callout** and choose the style you want (Info, Tip, Alert, Danger, or Success).
+4. Start typing inside the callout block to add or edit content like a normal paragraph.
 
-3. Search for **Callouts&#x20;**&#x61;nd choose the callout style you want:
+<Callout kind="info">
 
-   - **Info**, **Tip**, **Alert**, **Danger**, or **Success**.
+Prefer writing in code?
 
-4. Start typing inside the callout block to add your content.
+You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
 
-<Callout kind="info" collapsed="false">
-  This works similarly to callouts in tools like Notion, but with five distinct styles.\
-  You can always click back into the callout to edit or delete the text like a normal paragraph.
 </Callout>
 
-## Using the Callout component in MDX
+If you need to keep long disclaimers or edge cases out of the main flow, consider wrapping the callout content inside an [Expandable](/components/expandables) instead.
+
+## Using with Code Editor
+
+In MDX, use the `Callout` component with a `kind` attribute to control the visual style. The `kind` value must be one of `info`, `tip`, `success`, `alert`, or `danger`.
 
 ### Basic syntax
 
-Use the `<Callout>` component to highlight important information, tips, warnings, and alerts.
-
 ```jsx
 <Callout kind="info">
   This is an informational callout.
 </Callout>
 ```
 
-<Callout kind="info" collapsed="false">
-  This is an informational callout.
-</Callout>
+### Info
 
-## Callout types
-
-### Info callouts
+Use for neutral notes or clarifications.
 
 ```jsx
 <Callout kind="info">
@@ -72,11 +68,13 @@ Use the `<Callout>` component to highlight important information, tips, warnings
 </Callout>
 ```
 
-<Callout kind="info" collapsed="false">
+<Callout kind="info">
   Configure your API key in the settings before making requests.
 </Callout>
 
-### Tip callouts
+### Tip
+
+Use for recommendations, shortcuts, or best practices.
 
 ```jsx
 <Callout kind="tip">
@@ -84,23 +82,13 @@ Use the `<Callout>` component to highlight important information, tips, warnings
 </Callout>
 ```
 
-<Callout kind="tip" collapsed="false">
+<Callout kind="tip">
   Use environment variables to store sensitive configuration like API keys.
 </Callout>
 
-### Success callouts
+### Alert
 
-```jsx
-<Callout kind="success">
-  Your documentation has been successfully deployed and is live.
-</Callout>
-```
-
-<Callout kind="success" collapsed="false">
-  Your documentation has been successfully deployed and is live.
-</Callout>
-
-### Alert callouts
+Use for warnings that require extra attention but are not strictly fatal.
 
 ```jsx
 <Callout kind="alert">
@@ -108,11 +96,13 @@ Use the `<Callout>` component to highlight important information, tips, warnings
 </Callout>
 ```
 
-<Callout kind="alert" collapsed="false">
+<Callout kind="alert">
   This action cannot be undone. Make sure you have a backup before proceeding.
 </Callout>
 
-### Danger callouts
+### Danger
+
+Use for destructive or high-risk actions.
 
 ```jsx
 <Callout kind="danger">
@@ -120,13 +110,43 @@ Use the `<Callout>` component to highlight important information, tips, warnings
 </Callout>
 ```
 
-<Callout kind="danger" collapsed="false">
+<Callout kind="danger">
   Deleting this workspace will permanently remove all documentation and cannot be recovered.
 </Callout>
 
-## Attributes
+### Success
+
+Use for confirmations and positive outcomes.
+
+```jsx
+<Callout kind="success">
+  Your documentation has been successfully deployed and is live.
+</Callout>
+```
+
+<Callout kind="success">
+  Your documentation has been successfully deployed and is live.
+</Callout>
+
+### Attributes
 
 <ParamField path="kind" param-type="string" required="false" deprecated="false">
-  Visual style and icon: `info` (default), `tip`, `success`, `alert`, `danger`.
+  Visual style and icon for the callout. One of: `info` (default), `tip`, `success`, `alert`, `danger`.
 </ParamField>
 
+## Advanced options
+
+Callouts support a collapsed state to help keep pages scannable when you have long explanations or optional details.
+
+- `collapsed="false"`: The callout content is fully visible.
+- `collapsed="true"`: The callout content is hidden until the reader expands it.
+
+Example:
+
+```jsx
+<Callout kind="info" collapsed="true">
+  This is an optional deep-dive explanation that starts collapsed.
+</Callout>
+```
+
+When you need more structured or multi-paragraph content that should start hidden, combine callouts with [Expandables](/components/expandables) or use headings and body copy from [Headings and Text](/components/heading-and-text) inside the callout for clearer hierarchy.

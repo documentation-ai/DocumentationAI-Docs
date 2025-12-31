@@ -5,6 +5,7 @@ description: >-
   and connecting lines.
 type: reference
 ---
+
 ## Overview
 
 The **Steps** component creates visually connected step-by-step instructions with automatic numbering, optional icons, and rich content inside each step.
@@ -12,20 +13,16 @@ The **Steps** component creates visually connected step-by-step instructions wit
 You can add steps in two ways:
 
 - **Editor UI**: Insert **Steps** from the <kbd>/</kbd> commands menu and edit them visually (no code required).
-
 - **MDX**: Use the `<Steps>` and `<Step>` components directly in your content.
 
 Common use cases:
 
 - Installation and setup guides
-
 - Multi-step tutorials and onboarding flows
-
 - Process documentation showing workflow stages
-
 - Configuration guides and migration procedures
 
-## Using Steps in the editor UI
+## Using with Web Editor
 
 ### Add a steps block
 
@@ -43,10 +40,15 @@ Common use cases:
   </Step>
 </Steps>
 
+<Callout kind="info">
+  Prefer writing in code?
+
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+</Callout>
+
 **To add more steps:**
 
 - Click the <kbd>+</kbd> **button** below the last step.
-
 - New steps are added with **automatic numbering** by default (1, 2, 3, …).
 
 <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765431885885-spbmtrs7yss-steps.png?q=85&fm=auto&auto=compress%2Cformat" width="1600" height="541" alt="" />
@@ -56,11 +58,8 @@ Common use cases:
 For each step:
 
 1. Click the **three-dot menu** on the right side of the step.
-
 2. In **Step Settings**:
-
    - **Title**: Change the step title text.
-
    - **Icon (optional)**: Search for a Lucide icon (for example, `check`, `arrow-right`, `database`) and select it.
 
      - When you choose an icon, it **replaces the number** for that step.
@@ -68,9 +67,7 @@ For each step:
    - **Heading Level**: Choose how the title should render:
 
      - **p** – Paragraph style (default).
-
      - **h2** – Heading level 2.
-
      - **h3** – Heading level 3.\
        This controls the underlying HTML heading level for better SEO and accessibility.
 
@@ -81,20 +78,15 @@ Click **Save** to apply your changes.
 ### Edit the step description
 
 - Click in the **description area** (“Description for this step…”) to edit it directly.
-
 - You can add any rich content inside the description:
-
   - Text, headings, lists
-
   - Images and videos
-
   - Code blocks and Code Groups
-
   - Callouts, tables, expandables, and more
 
 Each step behaves like a mini content section, so you can structure complex instructions clearly.
 
-## Using Steps in MDX
+## Using with Code Editor
 
 ````jsx
 <Steps>
@@ -443,13 +435,15 @@ Steps support any MDX content, including code blocks, callouts, lists, and other
   </Step>
 </Steps>
 
-## Attributes
+## Advanced options
 
-### Steps component
+### Attributes
+
+#### Steps component
 
 The `<Steps>` component acts as a container and has no configurable attributes. It automatically manages step numbering and layout.
 
-### Step component
+#### Step component
 
 <ParamField path="title" param-type="string" required="true" deprecated="false">
   The heading text is displayed for this step. Serves as the main identifier for each instruction.
@@ -467,19 +461,14 @@ The `<Steps>` component acts as a container and has no configurable attributes. 
   The content of the step. Supports all MDX content including text, code blocks, callouts, lists, images, and other components.
 </ParamField>
 
-## Common patterns
+### Common patterns
 
 - **Installation guides**: Use numbered steps for clear sequential setup.
-
 - **Configuration workflows**: Combine icons, headings, and code blocks to guide users through complex configuration.
-
 - **Migration procedures**: Use heading levels and icons to represent phases (Plan → Migrate → Verify → Clean up).
-
 - **Troubleshooting flows**: Create “Check X, then Y, then Z” diagnostic sequences with clear visual indicators.
-
 - **Onboarding sequences**: Introduce features step by step with rich descriptions, screenshots, and links.
 
 <Callout kind="success" collapsed="false">
   **Steps** automatically draw connecting lines between each step, giving your guides a polished, professional feel with no extra styling required.
 </Callout>
-

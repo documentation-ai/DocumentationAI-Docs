@@ -7,67 +7,41 @@ type: reference
 ---
 ## Overview
 
-Use code blocks to show syntax-highlighted code with a built-in **copy** button. Use **Code Groups** when you want **tabs** (for example, “JavaScript,” “Python,” and “cURL”) so readers can switch between multiple examples in one place.
+Use code blocks to show syntax-highlighted code with a built-in **copy** button. Use **code groups** when you want **tabs** (for example, "JavaScript," "Python," and "cURL") so readers can switch between multiple examples in one place.
 
-You can work with code in two ways:
+Code blocks and groups are ideal for:
 
-- **Editor UI**: Insert Code and Code Group blocks from the <kbd>/</kbd> menu.
+- Single code snippets with syntax highlighting and copy support
 
-- **MDX/Markdown**: Use fenced code blocks and the `<CodeGroup>` component.
+- Multi-language SDK examples in tabs (similar to [Tabs](/components/tabs))
 
-Common use cases:
+- Before/after, request/response, or setup/usage comparisons
 
-- Single code snippets with syntax highlighting
+- Step-by-step walkthroughs when combined with [Steps](/components/steps)
 
-- Multiple language examples in tabs
+At a high level:
 
-- Before and after code comparisons
+- **Code blocks**: One snippet, one language.
 
-- API examples across different SDKs
+- **Code groups**: Multiple snippets, each with its own language and tab.
 
-```typescript
-const myFunction = () => {
-  console.log("Hello Documentation.AI");
-};
-```
+You can create both from the **Web Editor** or by writing MDX/Markdown in the **Code Editor**. The underlying syntax is the same, so you can safely switch between editors.
 
-## Code blocks in the editor UI
+## Using with Web Editor
 
-### Add a code block
+In the Web Editor, use the slash menu to insert and manage code blocks and groups.
+
+### Insert a code block
 
 1. Place your cursor on a new line.
 
 2. Type <kbd>/</kbd> and select **Code**.
 
-3. A code block appears with the placeholder *“Add your code here….”*
+3. A code block appears with the placeholder *"Add your code here…"*. Paste or type your code into the block.
 
-4. Paste or type your code into the block.
+Use the language dropdown on the top-right of the block to pick the correct language. This controls **syntax highlighting** and the copy behavior.
 
-### Choose the language
-
-- Use the **language dropdown** on the top-right of the block to select a language.
-
-- You can search by name (for example, “TypeScript,” “Python,” or “Bash”).
-
-- The selected language controls **syntax highlighting**.
-
-### Common actions
-
-- **Copy:** Use the copy button (shown on hover) to copy the entire block.
-
-- **Duplicate**: Use the duplicate icon (if available in your toolbar) to clone the block.
-
-- **Delete**: Use the trash icon to remove the block.
-
-- **Reorder**: Use the drag handle on the left to move the code block up or down.
-
-All features described below (line highlighting, focus, line numbers, etc.) are also supported by code blocks created from the editor UI—they’re backed by the same fenced-code syntax under the hood.
-
-## Code groups in the editor UI
-
-Use **Code Group** when you want multiple tabs (for example, different languages) in a single block.
-
-### Add a code group
+### Insert a code group
 
 1. Place your cursor on a new line.
 
@@ -75,43 +49,35 @@ Use **Code Group** when you want multiple tabs (for example, different languages
 
 3. A group is created with a default tab (for example, **Tab 1**) and a code editor area.
 
-### Work with tabs
+Inside a code group you can:
 
-- **Add a tab**: Click the **+** icon next to the existing tab label.
+- **Add a tab**: Click the **+** next to the last tab.
 
-- **Rename a tab**: **Double-click** the tab label (for example, “Tab 1”) and type a new name.
+- **Rename a tab**: Double-click the tab label (for example, "Tab 1") and type a new name (for example, "TypeScript" or "Python").
 
-- **Switch tabs**: Click a tab to switch between code examples.
+- **Remove a tab**: Use the tab's close icon (if available) or delete the last remaining tab to remove the group.
 
-- **Duplicate or delete the group**: Use the duplicate and trash icons on the right of the group toolbar.
+- **Pick a language per tab**: Use the language dropdown on each tab's code block.
 
-Inside each tab, you can:
+The group toolbar also lets you **duplicate** or **delete** the entire group.
 
-- Paste or type your code.
+<Callout kind="info" collapsed="false">
+  Prefer writing in code?
 
-- Select the language from the **language dropdown** (per tab).
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+</Callout>
 
-Code groups created in the editor are equivalent to `<CodeGroup>` components in MDX.
+## Using with Code Editor
 
-## Inline code in Editor UI
+When working in a code editor, you write code blocks and code groups with standard fenced code syntax and the `<CodeGroup>` component.
 
-Use inline code for short snippets such as `function names`, `commands`, or `flags` that appear inside normal sentences.
+### Single code block
 
-1. Type your sentence as normal.
-
-2. Select the word or phrase you want to format as code.
-
-3. In the floating toolbar, click the **code** icon <kbd>\<></kbd>.
-
-The selected text is rendered in a `monospace font with code styling`. You can click the icon again to remove the code formatting.
-
-## Code blocks with MDX/Markdown
-
-Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) with three backticks and a language identifier for syntax highlighting.
+Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) with three backticks and a language identifier:
 
 ```typescript
 const apiCall = async () => {
-  const response = await fetch('/api/docs');
+  const response = await fetch("/api/docs");
   return response.json();
 };
 ```
@@ -119,31 +85,60 @@ const apiCall = async () => {
 ````markdown
 ```typescript
 const apiCall = async () => {
-  const response = await fetch('/api/docs');
+  const response = await fetch("/api/docs");
   return response.json();
 };
 ```
 ````
 
-### Supported languages
+### CodeGroup with multiple languages
 
-**Popular languages:**\
-`typescript`, `javascript`, `python`, `java`, `go`, `rust`, `php`, `ruby`, `csharp`
+Wrap multiple fenced code blocks in a `<CodeGroup>` component to render them as tabs:
 
-**Web technologies:**\
-`html`, `css`, `json`, `xml`, `graphql`
+````jsx
+<CodeGroup tabs="TypeScript,Python,Bash">
+```typescript
+const response = await fetch("/api/docs", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ title: "Getting Started" })
+});
+```
 
-**Shell & config:**\
-`bash`, `shell`, `yaml`, `dockerfile`, `sql`
+```python
+import requests
 
-**Other languages:**\
-`cpp`, `swift`, `kotlin`, `dart`, `markdown`, `plaintext`
+response = requests.post(
+  "https://api.example.com/docs",
+  json={"title": "Getting Started"}
+)
+```
+
+```bash
+curl -X POST https://api.example.com/docs \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Getting Started"}'
+```
+</CodeGroup>
+````
+
+Notes:
+
+- Each fenced block inside `<CodeGroup>` must have a language tag (for example, `typescript`, `python`, `bash`).
+
+- `tabs="TypeScript,Python,Bash"` controls the visible tab labels. If you omit `tabs`, the language names are used instead.
+
+- You can combine `<CodeGroup>` with [Tabs](/components/tabs) or [Steps](/components/steps) when you need more complex layouts.
+
+## Advanced options
+
+Use these attributes and patterns to fine-tune how code blocks and groups render.
 
 ### Line highlighting
 
-Highlight specific lines using the `highlight` prop with line numbers or ranges:
+Use the `highlight` prop on a fenced code block to emphasize specific lines:
 
-```javascript "Line Highlighting Example highlight="1-2,5""
+```javascript highlight="1-2,5"
 const greeting = "Hello, World!";
 function sayHello() {
   console.log(greeting);
@@ -151,7 +146,7 @@ function sayHello() {
 sayHello();
 ```
 
-````jsx
+````markdown
 ```javascript highlight="1-2,5"
 const greeting = "Hello, World!";
 function sayHello() {
@@ -163,9 +158,9 @@ sayHello();
 
 ### Line focus
 
-Use the `focus` prop to blur non-focused lines, drawing attention to specific code sections:
+Use the `focus` prop to dim non-focused lines and draw attention to a subset of the code:
 
-```javascript "Line Focus Example focus="2,4-5""
+```javascript focus="2,4-5"
 const greeting = "Hello, World!";
 function sayHello() {
   console.log(greeting);
@@ -173,7 +168,7 @@ function sayHello() {
 sayHello();
 ```
 
-````jsx
+````markdown
 ```javascript focus="2,4-5"
 const greeting = "Hello, World!";
 function sayHello() {
@@ -183,9 +178,9 @@ sayHello();
 ```
 ````
 
-### With line numbers
+### Line numbers
 
-Combine highlighting with line numbers for better reference:
+Combine highlighting or focus with line numbers using `show-lines={true}`:
 
 ```typescript "highlight="1,3" show-lines={true}"
 interface User {
@@ -194,7 +189,7 @@ interface User {
 }
 ```
 
-````jsx
+````markdown
 ```typescript highlight="1,3" show-lines={true}
 interface User {
   name: string;
@@ -203,13 +198,11 @@ interface User {
 ```
 ````
 
-These props work for both standalone code blocks and code blocks inside CodeGroup.
+### CodeGroup options
 
-## CodeGroup in MDX
+`<CodeGroup>` supports the same block-level props (for example, `highlight`, `focus`, `show-lines`) inside each tabbed code block.
 
-Use `<CodeGroup>` to organize multiple code blocks in tabbed interfaces. This matches the behavior of Code Group in the editor UI.
-
-````jsx
+````typescript
 <CodeGroup tabs="TypeScript,Python,Bash">
 ```typescript
 const response = await fetch('/api/docs', {
@@ -227,47 +220,92 @@ response = requests.post('/api/docs',
 ```
 
 ```bash
-curl -X POST https://api.example.com/docs \
-  -H "Content-Type: application/json" \
+curl -X POST <https://api.example.com/docs> \\
+  -H "Content-Type: application/json" \\
   -d '{"title": "Getting Started"}'
 ```
 </CodeGroup>
 ````
 
-<CodeGroup show-lines="true" tabs={[]}>
-  ```typescript
+<CodeGroup show-lines="true" tabs={["TypeScript","Python","Bash"]}>
+  ```tsx TypeScript
   const response = await fetch('/api/docs', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ title: 'Getting Started' })
   });
+
   ```
 
-  ```python
+  ```python Python
   import requests
   response = requests.post('/api/docs',
     json={'title': 'Getting Started'}
   )
+
   ```
 
-  ```bash
-  curl -X POST https://api.example.com/docs \
-    -H "Content-Type: application/json" \
+  ```bash Bash
+  curl -X POST <https://api.example.com/docs> \\
+    -H "Content-Type: application/json" \\
     -d '{"title": "Getting Started"}'
+
   ```
 </CodeGroup>
+
+You can also control tabs explicitly:
+
+- `tabs`: Comma-separated list of tab labels, for example `tabs="TypeScript,Python,Bash"`.
+
+- `show-lines`: Set on the component (for example, `show-lines={true}`) to show line numbers for all blocks in the group.
+
+````jsx
+<CodeGroup show-lines={true} tabs="Highlighted,Focused">
+```javascript highlight="2-3"
+const greeting = "Hello, World!";
+function sayHello() {
+  console.log(greeting);
+}
+```
+
+```javascript focus="1,3"
+const greeting = "Hello, World!";
+function sayHello() {
+  console.log(greeting);
+}
+```
+</CodeGroup>
+````
+
+If you omit `tabs`, language identifiers are used as labels:
+
+````jsx
+<CodeGroup>
+```typescript
+const example = "This tab shows: typescript";
+```
+
+```python
+example = "This tab shows: python";
+```
+</CodeGroup>
+````
+
+
 
 ### Auto-detected tabs
 
 Without the `tabs` attribute, CodeGroup automatically uses language identifiers as tab names:
 
-<CodeGroup show-lines="true" tabs={[]}>
-  ```typescript
+<CodeGroup show-lines="true" tabs={["TypeScript","Python"]}>
+  ```tsx TypeScript
   const example = "This tab shows: typescript";
+
   ```
 
-  ```python
+  ```python Python
   example = "This tab shows: python"
+
   ```
 </CodeGroup>
 
@@ -287,15 +325,15 @@ example = "This tab shows: python"
 
 Line highlighting and focus effects work within CodeGroup tabs:
 
-<CodeGroup show-lines="true" tabs={["highlight=\"2-3\"","focus=\"1,3\""]}>
-  ```javascript highlight="2-3"
+<CodeGroup show-lines="true" tabs={["Javascript","Javascript"]}>
+  ```jsx Javascript
   const greeting = "Hello, World!";
   function sayHello() {
     console.log(greeting);
   }
   ```
 
-  ```javascript focus="1,3"
+  ```jsx Javascript
   const greeting = "Hello, World!";
   function sayHello() {
     console.log(greeting);
@@ -305,14 +343,14 @@ Line highlighting and focus effects work within CodeGroup tabs:
 
 ````markdown
 <CodeGroup tabs="Highlighted,Focused">
-```javascript highlight="2-3"
+```javascript
 const greeting = "Hello, World!";
 function sayHello() {
   console.log(greeting);
 }
 ```
 
-```javascript focus="1,3"
+```javascript
 const greeting = "Hello, World!";
 function sayHello() {
   console.log(greeting);
@@ -321,9 +359,11 @@ function sayHello() {
 </CodeGroup>
 ````
 
-### Nested code examples
 
-Use **four backticks** to show code block examples within documentation:
+
+### Nested code examples (four backticks)
+
+When you need to show **code that itself contains code fences**, wrap the outer block in **four backticks**:
 
 `````markdown
 ````typescript
@@ -335,46 +375,23 @@ function calculateTotal(price: number, tax: number): number {
 ````
 `````
 
-### Attributes
+### Attribute reference
+
+Use these attributes on fenced code blocks or `<CodeGroup>`:
 
 <ParamField path="highlight" param-type="string" required="false" deprecated="false">
-  Line numbers or ranges to highlight. Examples: `"1"`, `"1-3"`, `"1,3,5-7"`
+  Line numbers or ranges to highlight. Examples: `"1"`, `"1-3"`, `"1,3,5-7"`.
 </ParamField>
 
 <ParamField path="focus" param-type="string" required="false" deprecated="false">
-  Line numbers or ranges to focus on (blurs other lines). Examples: `"2"`, `"2-4"`, `"1,4-6"`
+  Line numbers or ranges to focus on (blurs other lines). Examples: `"2"`, `"2-4"`, `"1,4-6"`.
 </ParamField>
 
 <ParamField path="show-lines" param-type="boolean | string" required="false" deprecated="false">
-  Set to `{true}` to show line numbers for all code blocks in the group.
+  Set to `{true}` to show line numbers for a block or an entire group.
 </ParamField>
 
 <ParamField path="tabs" param-type="string" required="false" deprecated="false">
-  Comma-separated custom tab names. Overrides auto-detected languages.
+  Comma-separated custom tab names (for example, `"TypeScript,Python,Bash"`). Overrides auto-detected language labels.
 </ParamField>
 
-## Inline code using MDX
-
-Wrap the word or phrase in single backticks (\`) to mark it as inline code:
-
-```markdown
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-```
-
-## Common patterns
-
-- **Syntax highlighting**: Language identifiers or the UI language dropdown.
-
-- **Multi-language examples**: CodeGroup tabs for SDK comparisons (JavaScript, Python, Go).
-
-- **Related code samples**: Group request/response, before/after, or setup/usage examples.
-
-- **Documentation examples**: Nested code blocks using four backticks for meta-documentation.
-
-- **Line highlighting**: Draw attention to important lines with `highlight="1-3,5"`.
-
-- **Line focus**: Emphasize specific sections with `focus="2,4-6"` while dimming the rest.
-
-- **Tutorials**: Combine line numbers, highlighting, and focus for step-by-step guides.
-
-Whether you use the editor UI or MDX, the underlying behavior is the same—pick the workflow that best matches how you and your team like to write docs.

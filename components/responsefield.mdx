@@ -5,56 +5,55 @@ description: >-
   status indicators.
 type: reference
 ---
+
 ## Overview
 
 The **ResponseField** component documents the fields returned by your API responses. It shows:
 
 - **Field name:** The key in the JSON or response object.
-
 - **Type:** The data type such as string, integer, or object.
-
 - **Status:** Required and Deprecated badges.
-
 - **Rich descriptions:** Human-readable explanations of what the field represents.
 
 You can use ResponseField in two ways:
 
 - **Editor UI:** Add and edit response fields visually with a form-based panel.
-
 - **MDX:** Use the `<ResponseField>` component directly in your content.
 
 <Callout kind="info" collapsed="false">
   ResponseField is similar to [ParamField](/components/paramfield) but specifically designed for documenting API response bodies and returned data structures.
 </Callout>
 
-## Using ResponseField in the editor UI
+## Using with Web Editor
 
 ### Add a ResponseField block
 
 1. Place your cursor where you want to describe a response field.
-
 2. Type <kbd>/</kbd> to open the command menu and search for **Response Field**.
-
 3. Select **Response Field** to insert the component.
 
 A new response field row appears with a default name and type plus a description placeholder.
 
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765445541593-w5xtog0fzo-pasted-image-1765445538805.png?q=85&fm=auto&auto=compress%2Cformat" width="489" height="290" alt="" style="width: 489px; height: auto; cursor: pointer;" />
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765445541593-w5xtog0fzo-pasted-image-1765445538805.png?q=85&fm=auto&auto=compress%2Cformat" width="489" height="290" alt="ResponseField block in the Web Editor" style="width: 489px; height: auto; cursor: pointer;" />
+
+<Callout kind="info">
+
+Prefer writing in code?
+
+You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+
+</Callout>
 
 ### Edit field metadata
 
 To change the label and status:
 
 1. Click the **three-dot menu** on the right side of the ResponseField block.
-
 2. In the **Response Field** settings panel, you can edit:
 
 - **Field Name:** The name of the field in the response payload (for example, `id`, `status`, `user`).
-
 - **Type:** The data type of the field (for example, `string`, `integer`, `boolean`, `object`, `array`).
-
 - **Required:** Toggle on to mark the field as required in the response.
-
 - **Deprecated:** Toggle on to show that the field is deprecated.
 
 Click **Save** to apply your changes.
@@ -62,18 +61,14 @@ Click **Save** to apply your changes.
 ### Edit the description
 
 - Click in the **description area** under the badges (for example, *Response field description…*).
-
 - Add your explanation using any supported content:
 
   - Text and headings
-
   - Lists and tables
-
   - Code blocks showing example responses
-
   - Callouts and other MDX components
 
-## Using ResponseField in the MDX
+## Using with Code Editor
 
 ### Basic syntax
 
@@ -89,9 +84,9 @@ Use the `<ResponseField>` component to document API response fields with their t
   Unique identifier for the resource.
 </ResponseField>
 
-### Examples:
+### Examples
 
-### Optional field
+#### Optional field
 
 ```jsx
 <ResponseField name="description" field-type="string">
@@ -103,7 +98,7 @@ Use the `<ResponseField>` component to document API response fields with their t
   Optional description text for the resource.
 </ResponseField>
 
-### Deprecated field
+#### Deprecated field
 
 ```jsx
 <ResponseField name="legacy_id" field-type="integer" deprecated="true">
@@ -115,7 +110,7 @@ Use the `<ResponseField>` component to document API response fields with their t
   Deprecated legacy identifier. Use `id` instead.
 </ResponseField>
 
-### Complex type
+#### Complex type
 
 ```jsx
 <ResponseField name="user" field-type="object" required="true">
@@ -127,7 +122,9 @@ Use the `<ResponseField>` component to document API response fields with their t
   User object containing profile information and preferences.
 </ResponseField>
 
-## Attributes
+## Advanced options
+
+### Attributes
 
 <ParamField path="name" param-type="string" required="false" deprecated="false">
   Field name displayed in the response documentation (default: "response").
@@ -144,4 +141,3 @@ Use the `<ResponseField>` component to document API response fields with their t
 <ParamField path="deprecated" param-type="string" required="false" deprecated="false">
   Set to `"true"` to mark as deprecated (default: `"false"`).
 </ParamField>
-
