@@ -5,7 +5,6 @@ description: >-
   component.
 type: reference
 ---
-
 ## Overview
 
 Callouts are boxed sections used to highlight tips, warnings, success messages, and other important notes inside your Documentation.AI pages.
@@ -13,8 +12,11 @@ Callouts are boxed sections used to highlight tips, warnings, success messages, 
 Use callouts when you need to:
 
 - Draw attention to key information without breaking reading flow.
+
 - Warn about breaking changes, security risks, or destructive actions.
+
 - Provide tips and best practices alongside procedural steps.
+
 - Confirm successful outcomes (for example, deployment complete, sync finished).
 
 Callouts work alongside your regular [Headings and Text](/components/heading-and-text) and are often used with [Expandables](/components/expandables) when you want to hide long notes or advanced caveats behind a collapsible section.
@@ -22,9 +24,13 @@ Callouts work alongside your regular [Headings and Text](/components/heading-and
 Available callout kinds:
 
 - `info`: Neutral information.
+
 - `tip`: Helpful suggestions and best practices.
+
 - `success`: Positive confirmations and results.
+
 - `alert`: Warnings and cautions.
+
 - `danger`: Critical errors and destructive actions.
 
 ## Using with Web Editor
@@ -32,19 +38,42 @@ Available callout kinds:
 In the Web Editor, you can insert callouts without writing any code.
 
 1. Place your cursor where you want the callout.
+
 2. Type <kbd>/</kbd> to open the block menu.
+
 3. Search for **Callout** and choose the style you want (Info, Tip, Alert, Danger, or Success).
+
 4. Start typing inside the callout block to add or edit content like a normal paragraph.
 
-<Callout kind="info">
+**All callout styles:**
 
-Prefer writing in code?
+<Callout kind="info" collapsed="false">
+  This is an info callout for neutral notes or clarifications in your docs.
+</Callout>
 
-You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+<Callout kind="tip" collapsed="false">
+  This is a tip callout for shortcuts, recommendations, and best practices.
+</Callout>
 
+<Callout kind="success" collapsed="false">
+  This is a success callout to confirm that an action or process completed correctly.
+</Callout>
+
+<Callout kind="alert" collapsed="false">
+  This is an alert callout to flag something that needs extra attention.
+</Callout>
+
+<Callout kind="danger" collapsed="false">
+  This is a danger callout for high-risk or destructive actions that users should double-check.
 </Callout>
 
 If you need to keep long disclaimers or edge cases out of the main flow, consider wrapping the callout content inside an [Expandable](/components/expandables) instead.
+
+<Callout kind="info" collapsed="false">
+  Prefer writing in code?
+
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+</Callout>
 
 ## Using with Code Editor
 
@@ -68,7 +97,7 @@ Use for neutral notes or clarifications.
 </Callout>
 ```
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
   Configure your API key in the settings before making requests.
 </Callout>
 
@@ -82,7 +111,7 @@ Use for recommendations, shortcuts, or best practices.
 </Callout>
 ```
 
-<Callout kind="tip">
+<Callout kind="tip" collapsed="false">
   Use environment variables to store sensitive configuration like API keys.
 </Callout>
 
@@ -96,7 +125,7 @@ Use for warnings that require extra attention but are not strictly fatal.
 </Callout>
 ```
 
-<Callout kind="alert">
+<Callout kind="alert" collapsed="false">
   This action cannot be undone. Make sure you have a backup before proceeding.
 </Callout>
 
@@ -110,7 +139,7 @@ Use for destructive or high-risk actions.
 </Callout>
 ```
 
-<Callout kind="danger">
+<Callout kind="danger" collapsed="false">
   Deleting this workspace will permanently remove all documentation and cannot be recovered.
 </Callout>
 
@@ -124,7 +153,7 @@ Use for confirmations and positive outcomes.
 </Callout>
 ```
 
-<Callout kind="success">
+<Callout kind="success" collapsed="false">
   Your documentation has been successfully deployed and is live.
 </Callout>
 
@@ -139,6 +168,7 @@ Use for confirmations and positive outcomes.
 Callouts support a collapsed state to help keep pages scannable when you have long explanations or optional details.
 
 - `collapsed="false"`: The callout content is fully visible.
+
 - `collapsed="true"`: The callout content is hidden until the reader expands it.
 
 Example:
