@@ -5,7 +5,6 @@ description: >-
   call-to-action buttons using both the editor UI and the Card component.
 type: reference
 ---
-
 ## Overview
 
 Cards let you create visually rich navigation and feature blocks with titles, descriptions, icons, images, and call-to-action (CTA) text.
@@ -13,25 +12,33 @@ Cards let you create visually rich navigation and feature blocks with titles, de
 Use cards when you want to:
 
 - Build **navigation hubs** that link to key areas like Getting Started, API Reference, or Support.
+
 - Create **feature grids** that highlight product capabilities with icons and short descriptions.
+
 - Surface **resources** such as GitHub, community, or external tools in a scannable layout.
+
 - Guide readers through **structured flows**, linking to tutorials or multi-step guides.
 
 In the Documentation.AI component system:
 
 - `<Card>` defines a single interactive block.
+
 - `<Columns>` arranges multiple cards into responsive grids.
+
 - Cards often sit alongside:
+
   - [Headings and Text](/components/heading-and-text) for section structure.
+
   - [Images](/components/images) when you want visual emphasis.
+
   - [Columns](/components/columns) when you need multi-column layouts.
 
-<Columns cols={2}>
-  <Card title="Getting Started" href="/getting-started/quickstart" icon="book-open">
+<Columns cols="2">
+  <Card title="Getting Started" href="/getting-started/quickstart" icon="book-open" horizontal="false">
     Learn the fundamentals and get your project up and running in minutes.
   </Card>
 
-  <Card title="API Reference" href="/api-documentation-and-playground/api-authentication" icon="code">
+  <Card title="API Reference" href="/api-documentation-and-playground/api-authentication" icon="code" horizontal="false">
     Explore the core authentication flows and API usage.
   </Card>
 </Columns>
@@ -43,44 +50,53 @@ You can add and configure cards visually in the Web Editor without writing MDX.
 ### Insert a single card
 
 1. Place your cursor on a new line.
+
 2. Type <kbd>/</kbd> to open the component picker.
+
 3. Select **Card**.
+
 4. A new card appears with a default title and description.
 
 #### Edit title and description
 
 - **Title:** Click the three-dot menu on the card, then update the **Title** field.
+
 - **Description:** Click the description text inside the card and type your own content. You can remove it entirely if you prefer a very compact card.
 
-<Callout kind="tip">
-
-If you don’t want a description, click the placeholder and delete it.
-
+<Callout kind="tip" collapsed="false">
+  If you don’t want a description, click the placeholder and delete it.
 </Callout>
 
 ### Configure card settings
 
 1. Click the three-dot menu on the card.
+
 2. In **Card Settings**, you can configure:
 
    - **Title:** Main heading shown at the top of the card.
+
    - **URL:** Link destination (internal path like `/getting-started/quickstart` or an external URL).
+
    - **Image Path:** Optional header image displayed above the card content.
+
    - **Icon:** Lucide icon name, chosen via **Select Icon**.
+
    - **Call-to-Action Text:** Optional CTA label such as “Learn more”.
+
    - **Horizontal Layout:** Toggle to switch between vertical (default) and side-by-side layout.
+
    - **Link Target:**
+
      - `_self` – Open in the same tab (default).
+
      - `_blank` – Open in a new tab.
 
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765030391396-u88yxy8jal-pasted-image-1765030390682.png?q=85&fm=auto&auto=compress%2Cformat" width="282" height="403" alt="Card settings panel in the Web Editor" style="width: 282px; height: auto; cursor: pointer;" />
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767251631396-ttzl0cgdt6f-pasted-image-1767251628058.png?q=85&fm=auto&auto=compress%2Cformat" width="369" height="532" alt="Card settings in Web Editor" caption="Card settings in Web Editor" style="width: 369px; height: auto; cursor: pointer; margin: 0 auto;" />
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
+  Prefer writing in code?
 
-Prefer writing in code?
-
-You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
-
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
 </Callout>
 
 ### Card groups in the Web Editor
@@ -88,17 +104,22 @@ You can switch to **MDX view inside the Web Editor** to write or edit this compo
 Use **Card Group** to lay out multiple cards in columns without touching MDX.
 
 1. Place your cursor on a new line.
+
 2. Type <kbd>/</kbd> and select **Card Group**.
+
 3. A group with two cards appears by default.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767251823154-9emg77qkeow-pasted-image-1767251820959.png?q=85&fm=auto&auto=compress%2Cformat" width="600" height="222" alt="Card columns configuration in Web Editor" caption="Card columns configuration in Web Editor" style="width: 600px; height: auto; cursor: pointer; margin: 0 auto;" />
 
 You can then:
 
 - **Configure columns:** Open **Card Group Settings** from the group’s three-dot menu and choose **2**, **3**, or **4** columns.
-- **Add cards:** Click the <kbd>+</kbd> icon next to the group’s menu.
-- **Remove cards:** Use the trash icon on any card.
-- **Edit each card:** Use each card’s three-dot menu to set its own title, URL, icon, image, CTA, and layout.
 
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765030485990-6wmojffkkfh-pasted-image-1765030484611.png?q=85&fm=auto&auto=compress%2Cformat" width="372" height="242" alt="Card Group with two cards in the Web Editor" style="width: 372px; height: auto; cursor: pointer;" />
+- **Add cards:** Click the <kbd>+</kbd> icon next to the group’s menu.
+
+- **Remove cards:** Use the trash icon on any card.
+
+- **Edit each card:** Use each card’s three-dot menu to set its own title, URL, icon, image, CTA, and layout.
 
 ## Using with Code Editor
 
@@ -116,7 +137,7 @@ A minimal card with a title, icon, and link:
 
 Rendered example:
 
-<Card title="Quickstart" icon="zap" href="/getting-started/quickstart">
+<Card title="Quickstart" href="/getting-started/quickstart" icon="zap" horizontal="false">
   Get up and running with Documentation.AI in a few minutes.
 </Card>
 
@@ -138,16 +159,16 @@ Combine `<Card>` with `<Columns>` for a responsive feature or navigation grid. S
 </Columns>
 ```
 
-<Columns cols={3}>
-  <Card title="Get started" icon="book-open" href="/getting-started/introduction">
+<Columns cols="3">
+  <Card title="Get started" href="/getting-started/introduction" icon="book-open" horizontal="false">
     Learn the basics of your documentation project.
   </Card>
 
-  <Card title="Write in the Web Editor" icon="monitor" href="/write-and-publish/web-editor">
+  <Card title="Write in the Web Editor" href="/write-and-publish/web-editor" icon="monitor" horizontal="false">
     Edit content visually with rich components.
   </Card>
 
-  <Card title="Write in code" icon="code" href="/write-and-publish/code-editor">
+  <Card title="Write in code" href="/write-and-publish/code-editor" icon="code" horizontal="false">
     Keep docs alongside your codebase using MDX.
   </Card>
 </Columns>
@@ -168,13 +189,7 @@ Use horizontal cards when you want a compact row-like treatment, for example in 
 </Card>
 ```
 
-<Card
-  title="GitHub Repository"
-  icon="github"
-  href="https://github.com/example/repo"
-  cta="View on GitHub"
-  horizontal={true}
->
+<Card title="GitHub Repository" href="https://github.com/example/repo" icon="github" cta="View on GitHub" horizontal="true">
   Explore the source code and contribute to the project.
 </Card>
 
@@ -182,7 +197,7 @@ Use horizontal cards when you want a compact row-like treatment, for example in 
 
 Add an image to make a card stand out. For more image options, see [Images](/components/images).
 
-```jsx
+````jsx
 <Card
   title="Deployment guide"
   icon="cloud"
@@ -204,24 +219,26 @@ Cards use [Lucide](https://lucide.dev/icons) icon names in the `icon` prop. Use 
 <Card title="Security" icon="shield" href="#security">
   Implement industry-standard security measures.
 </Card>
-```
+````
 
 Commonly used icon names include:
 
 - `book-open`, `code`, `database`, `lock`, `users`
+
 - `zap`, `cloud`, `terminal`, `settings`
+
 - `shield`, `bar-chart`, `github`, `rocket`
 
-<Columns cols={3}>
-  <Card title="Security" icon="shield" href="#security">
+<Columns cols="3">
+  <Card title="Security" href="#security" icon="shield" horizontal="false">
     Implement industry-standard security measures.
   </Card>
 
-  <Card title="Performance" icon="zap" href="/help/fix-performance-issues">
+  <Card title="Performance" href="/help/fix-performance-issues" icon="zap" horizontal="false">
     Optimize for speed and efficiency.
   </Card>
 
-  <Card title="Analytics" icon="bar-chart" href="/analytics-and-insights/user-analytics">
+  <Card title="Analytics" href="/analytics-and-insights/user-analytics" icon="bar-chart" horizontal="false">
     Track metrics and user behavior.
   </Card>
 </Columns>
@@ -231,7 +248,9 @@ Commonly used icon names include:
 Use the `image` prop to render a header image above the card content:
 
 - Images display at full card width.
+
 - Prefer a consistent aspect ratio across a grid to avoid height jumps.
+
 - Host images in your project’s asset storage or a stable CDN.
 
 ```jsx
@@ -268,11 +287,13 @@ If you omit `target`, cards default to `_self` (same tab), which is recommended 
 Control card orientation with the `horizontal` prop:
 
 - `horizontal={false}` (default): Icon and content stacked vertically.
+
 - `horizontal={true}`: Icon and text arranged side by side.
 
 Horizontal cards work best when:
 
 - The description is short (one or two lines).
+
 - You want a “list of resources” look rather than a grid.
 
 ```jsx
@@ -318,8 +339,7 @@ These attributes are available on the `<Card>` component.
   Link target: `_self` (same tab, default) or `_blank` (new tab).
 </ParamField>
 
-<Callout kind="success">
-
-Pair cards with [Columns](/components/columns), [Headings and Text](/components/heading-and-text), and [Images](/components/images) to build clear, scannable sections that are easy to maintain in both the Web Editor and Code Editor.
-
+<Callout kind="success" collapsed="false">
+  Pair cards with [Columns](/components/columns), [Headings and Text](/components/heading-and-text), and [Images](/components/images) to build clear, scannable sections that are easy to maintain in both the Web Editor and Code Editor.
 </Callout>
+
