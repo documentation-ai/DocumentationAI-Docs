@@ -5,14 +5,16 @@ description: >-
   both the editor UI and MDX.
 type: reference
 ---
-
 ## Overview
 
 Headings, paragraphs, inline formatting, and links are the core building blocks for every page in your Documentation.AI project. You use them to:
 
 - Structure content into clear sections with headings.
+
 - Write readable paragraphs with appropriate spacing.
+
 - Emphasize important terms using bold, italic, or inline code.
+
 - Add links to related docs, external sites, and API references.
 
 The page title renders as H1, so body headings typically begin at `##`. You can work with this content either in the **Web Editor** (visual editing with a slash menu and toolbar) or the **Code Editor** (direct MDX/Markdown). Both editors use the same underlying MDX syntax.
@@ -26,19 +28,27 @@ The Web Editor lets you manage headings, body text, emphasis, links, and spacing
 ### Headings
 
 1. Place your cursor on a new line.
+
 2. Open the **slash menu** with <kbd>/</kbd>.
+
 3. Choose **Heading 2**, **Heading 3**, or **Heading 4**.
+
 4. Type your heading text.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767250680758-k62ljkxaic-pasted-image-1767250675506.png?q=85&fm=auto&auto=compress%2Cformat" width="505" height="240" alt="Use '/' menu in Web Editor to choose Headings" caption="Use '/' menu in Web Editor to choose Headings" style="width: 505px; height: auto; cursor: pointer;" />
 
 You can also:
 
 - Use the left-hand block dropdown to switch between **Paragraph** and heading levels.
+
 - Promote or demote a heading by changing the level in the block dropdown (for example, **Heading 3 → Heading 2**).
 
 ### Paragraphs and basic text
 
 - Start typing in a **Paragraph** block (the default block type).
+
 - Press **Enter** once to create a new paragraph.
+
 - Use the block dropdown to change a heading back to **Paragraph**.
 
 Use short paragraphs focused on a single idea. For bullets or numbered steps, switch to list blocks (see [Lists and Tables](/components/lists-and-tables)).
@@ -48,27 +58,41 @@ Use short paragraphs focused on a single idea. For bullets or numbered steps, sw
 To format part of a sentence:
 
 1. Select the text you want to format inside a paragraph or heading.
+
 2. Use the floating toolbar:
 
-   - **B** – bold  
-   - *I* – italic  
-   - ~~S~~ – strikethrough  
-   - `` `</>` `` – inline code  
-   - <kbd>⌨</kbd> – keyboard or shortcut style  
+   - **B** – bold
 
-   You can combine styles (for example, bold + link or italic + inline code) when it improves clarity.
+   - *I* – italic
+
+   - ~~S~~ – strikethrough
+
+   - `` `</>` `` – inline code
+
+   - <kbd>⌨</kbd> – keyboard or shortcut style
+
+You can combine styles (for example, bold + link or italic + inline code) when it improves clarity.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767250834603-6mffqb30smh-pasted-image-1767250832056.png?q=85&fm=auto&auto=compress%2Cformat" width="1200" height="291" alt="Inline formatting options on selecting text" caption="Inline formatting options on selecting text" />
 
 ### Links
 
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767251119220-9b903y0lue-pasted-image-1767251113884.png?q=85&fm=auto&auto=compress%2Cformat" width="1200" height="262" alt="Inline text link in Web Editor" caption="Inline text link in Web Editor" />
+
 1. Select the text you want to turn into a link.
+
 2. Click the **link** icon in the floating toolbar or press the link shortcut (if available in your browser).
+
 3. In the link dialog:
 
-   - **Internal link**  
-     - Type <kbd>/</kbd> to search existing documentation pages.  
+   - **Internal link**
+
+     - Type <kbd>/</kbd> to search existing documentation pages.
+
      - Pick a result to create a link to that page (for example, `/getting-started/quickstart`).
 
-   - **External link**  
+   - **External link**
+
      - Paste the full URL (for example, `https://documentation.ai`) and press **Enter**.
 
 To edit or remove a link, place your cursor inside the linked text and reopen the link dialog.
@@ -76,15 +100,15 @@ To edit or remove a link, place your cursor inside the linked text and reopen th
 ### Line breaks and spacing
 
 - **New paragraph**: Press **Enter** once.
+
 - **Continue the same paragraph**: Use soft-wrap by letting the editor wrap long lines automatically.
+
 - **Avoid stacked blank lines**: Use headings, paragraphs, and components like [Callout](/components/callout) or [Steps](/components/steps) instead of adding multiple empty lines for spacing.
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
+  Prefer writing in code?
 
-Prefer writing in code?
-
-You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
-
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
 </Callout>
 
 ## Using with Code Editor
@@ -134,12 +158,16 @@ Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.
 Rendered result:
 
 - **Bold** text
+
 - *Italic* text
+
 - ~~Strikethrough~~
+
 - `inline code`
+
 - <kbd>Ctrl</kbd> + <kbd>C</kbd>
 
-You can combine styles, such as `**\`GET /v1/projects\`**` to make an entire inline code phrase bold.
+You can combine styles, such as `**\`GET /v1/projects\`\*\*\` to make an entire inline code phrase bold.
 
 ### Links
 
@@ -196,10 +224,13 @@ Use these patterns when you need finer control or are designing page-wide typogr
 ### Heading depth and hierarchy
 
 - Use the frontmatter `title` for the page H1.
+
 - Start body sections at `##` and organize content as a clear outline:
 
   - `##` for main sections (for example, "Using with Web Editor").
+
   - `###` for subsections (for example, "Inline emphasis and formatting").
+
   - `####` for fine-grained details when absolutely necessary.
 
 Keeping a consistent hierarchy improves readability, search, and AI summaries.
@@ -216,12 +247,13 @@ Run these commands in order:<br />
 
 Rendered:
 
-Run these commands in order:<br />
-1. Install dependencies<br />
+Run these commands in order:
+
+1. Install dependencies
+
 2. Start the dev server
 
-<Callout kind="info">
-
-Use `<br />` sparingly. Prefer separate paragraphs, lists, [Steps](/components/steps), or [Tabs](/components/tabs) for most layout and flow needs.
-
+<Callout kind="info" collapsed="false">
+  Use `<br />` sparingly. Prefer separate paragraphs, lists, [Steps](/components/steps), or [Tabs](/components/tabs) for most layout and flow needs.
 </Callout>
+
