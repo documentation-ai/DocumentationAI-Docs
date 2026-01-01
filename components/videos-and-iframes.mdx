@@ -5,18 +5,20 @@ description: >-
   Iframe components.
 type: reference
 ---
-
 ## Overview
 
 Use videos and iframes to embed rich, interactive content directly in your docs, such as:
 
 - Product walkthroughs and demos (YouTube, Vimeo, Loom)
+
 - Self-hosted video files (MP4, WebM, OGG)
+
 - External tools and dashboards (forms, analytics, sandboxes)
 
 In Documentation.AI you can:
 
 - Use the **Web Editor** to paste links or embed codes and adjust layout visually.
+
 - Use the **Code Editor** to write `<Video>` and `<Iframe>` components in MDX for full control.
 
 For static images, see [Images](/components/images). For showing embed code examples (such as iframe snippets) as code instead of rendering them, use [Code and Groups](/components/code-blocks-and-groups).
@@ -26,22 +28,25 @@ For static images, see [Images](/components/images). For showing embed code exam
 ### Insert a video or iframe
 
 1. Place your cursor on a new line in the Web Editor.
+
 2. Type <kbd>/</kbd> and select **Video**.
+
 3. In the **Video URL or Embed Code** dialog, paste either:
+
    - A **video URL** (YouTube, Vimeo, Loom, MP4 URL, etc.), or
+
    - An `iframe` **embed code** copied from another tool.
+
 4. Click **Insert Video**. The video or iframe appears in your document.
 
 You can use the same block for both direct video URLs and iframe-based embeds from other platforms.
 
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765088385957-j1gzo3pidkn-pasted-image-1765088383546.png?q=85&fm=auto&auto=compress%2Cformat" width="503" height="300" alt="Video embed block with alignment and resize controls in the Web Editor" style="width: 503px; height: auto; cursor: pointer;" />
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767252307874-79xuo4odvfr-pasted-image-1767252306043.png?q=85&fm=auto&auto=compress%2Cformat" width="507" height="305" alt="Video embed block with alignment and resize controls in the Web Editor" caption="Video embed block with alignment and resize controls in the Web Editor" style="width: 507px; height: auto; cursor: pointer; margin: 0 auto;" />
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
+  Prefer writing in code?
 
-Prefer writing in code?
-
-You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
-
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
 </Callout>
 
 ### Align and resize
@@ -49,10 +54,15 @@ You can switch to **MDX view inside the Web Editor** to write or edit this compo
 Hover over the embedded video or iframe to reveal controls:
 
 - **Top-right toolbar**
+
   - **Alignment icon:** Change alignment (for example, left, center, or right), similar to images.
+
   - **Other actions:** May include zoom or delete, depending on your configuration.
+
 - **Side drag handles**
+
   - Drag the **left** or **right** handle to adjust the **width**.
+
   - The **height adjusts automatically** to keep the original aspect ratio for videos.
 
 Use these controls to keep layouts consistent with nearby content and images.
@@ -79,10 +89,15 @@ Use iframe mode for platforms that provide an embed URL, such as YouTube, Vimeo,
 Key props:
 
 - `src` (string, required): Video embed URL from the platform.
+
 - `width` / `height` (string): Player dimensions in pixels.
+
 - `title` (string): Accessible title for screen readers.
+
 - `allow-full-screen` (boolean-like): Allow fullscreen playback (defaults to `true`).
+
 - `priority` (boolean-like): Load immediately instead of lazy loading.
+
 - `style` (string): Inline styles for alignment and sizing.
 
 ### `<Video>` component (HTML5 mode)
@@ -105,11 +120,17 @@ Use HTML5 mode for self-hosted video files, with native browser controls.
 Additional props for HTML5 playback:
 
 - `controls` (boolean-like): Show video controls (defaults to `true`).
+
 - `autoplay` (boolean-like): Start playing when the page loads.
+
 - `muted` (boolean-like): Start muted (often required for autoplay).
+
 - `loop` (boolean-like): Loop playback.
+
 - `poster` (string): Poster image shown before playback.
+
 - `preload` (string): `none`, `metadata`, or `auto`.
+
 - `fetchPriority` (string): `high`, `low`, or `auto`.
 
 ### `<Iframe>` component
@@ -131,11 +152,17 @@ Use `<Iframe>` for non-video embeds such as forms, dashboards, and interactive t
 Key props:
 
 - `src` (string, required): URL of the external content.
+
 - `width` / `height` (string): Dimensions in pixels or percentages.
+
 - `title` (string): Accessible title for screen readers.
+
 - `allow-full-screen` (boolean-like): Allow fullscreen where supported.
+
 - `sandbox` (string): Space-separated sandbox restrictions.
+
 - `priority` (boolean-like): Load immediately instead of lazy loading.
+
 - `style` (string): Inline styles for borders and layout.
 
 Use [Code and Groups](/components/code-blocks-and-groups) when you want to show iframe snippets as examples rather than render them.
@@ -147,6 +174,7 @@ Use [Code and Groups](/components/code-blocks-and-groups) when you want to show 
 Commonly used video sources:
 
 - **Video platforms:** YouTube, Vimeo, Loom, Wistia
+
 - **Video formats (HTML5):** MP4, WebM, OGG
 
 Most platforms provide both a shareable URL and an iframe embed code; use whichever best matches your workflow (Web Editor block or MDX component).
@@ -154,13 +182,20 @@ Most platforms provide both a shareable URL and an iframe embed code; use whiche
 ### Accessibility and layout best practices
 
 - Always set a meaningful `title` on `<Video>` (iframe mode) and `<Iframe>` for better screen reader support.
+
 - Specify `width` and `height` to improve layout stability and avoid content shifting as media loads.
+
 - Use responsive styles (for example, `style="width: 100%; max-width: 672px; height: auto;"`) so embeds look good on smaller screens.
+
 - For important, above-the-fold media, consider `priority="true"` or `fetchPriority="high"`; otherwise, rely on lazy loading to keep pages fast.
 
 ### Security considerations for iframes
 
 - Use the `sandbox` attribute on `<Iframe>` to limit what embedded content can do.
+
 - Start with a restrictive value and add only what you need, for example:
+
   - `sandbox="allow-scripts allow-same-origin allow-presentation"`
+
 - Only embed content from origins you trust, especially when allowing scripts or same-origin access.
+
