@@ -229,6 +229,11 @@
                 "icon": "award"
               },
               {
+                "title": "Templates",
+                "path": "customize/templates",
+                "icon": "layout-template"
+              },
+              {
                 "group": "SEO & GEO",
                 "pages": [
                   {
