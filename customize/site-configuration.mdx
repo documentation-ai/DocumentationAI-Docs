@@ -40,6 +40,38 @@ Basic site settings that control your documentation's identity and behavior
   without the `.mdx` extension.
 </ParamField>
 
+## Template Configuration
+
+Templates control the overall layout and visual style of your documentation site. They help you start from a structure that is already close to your product's needs, so you only have to fine-tune colors, navigation, and content.
+
+Use the `template` field in `documentation.json` to pick between the built-in layouts:
+
+- `"classic"` - Default layout focused on a familiar docs experience
+- `"atlas"` - Alternative layout optimized for richer navigation and content density
+
+You can declare the template field as `template: "classic" | "atlas"`.
+
+If you do not set `template`, the system defaults to `"classic"`.
+
+```json
+{
+  "name": "Documentation.AI",
+  "template": "atlas",
+  "initialRoute": "getting-started/introduction"
+}
+```
+
+<ParamField
+  path="template"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Site template that selects the base layout and style for your documentation.
+  Accepted values: `"classic"` or `"atlas"`. Defaults to `"classic"` when not
+  specified.
+</ParamField>
+
 ## Branding Configuration
 
 ### Logo Configuration
