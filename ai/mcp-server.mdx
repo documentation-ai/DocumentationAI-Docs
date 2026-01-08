@@ -6,8 +6,6 @@ description: >-
 ---
 ## Overview
 
-<Image uid="9ef599bb-281e-4f46-a200-492b0b64b8d3" src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1764859320855-pzuc976fquo-mcp-server.png" width="2770" height="1316" alt="MCP server overview diagram" />
-
 The **MCP Server** exposes your documentation hosted in Documentation.AI to external AI tools. It provides a single tool, `searchDocumentation`, which performs grounded search across your content using the same relevance ranking as your in-product AI Assistant.
 
 This allows AI tools such as ChatGPT, Claude, Cursor, and other MCP‑compatible IDE or CLI clients to query and reference **your documentation**. Most MCP clients will automatically call `searchDocumentation` when the model needs additional context.
@@ -36,4 +34,11 @@ Your MCP Server URL typically follows one of these formats when you add the cust
 
 - `https://yourdomain.com/docs/_mcp`
 
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1764859320855-pzuc976fquo-mcp-server.png" width="2770" height="1316" alt="MCP server overview diagram" />
+
 The screenshot above shows the MCP Server URL for our own documentation at `https://documentation.ai/docs` which is `https://documentation.ai/docs/_mcp`
+
+<Callout kind="alert" collapsed="false">
+  Only the public documentation is available to access via MCP server. If you would like to configure even private documentation to be available via MCP server, please contact us via chat.&#x20;
+</Callout>
+
