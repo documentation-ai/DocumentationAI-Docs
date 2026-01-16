@@ -142,7 +142,7 @@ Use these attributes and patterns to fine-tune how code blocks and groups render
 
 Use the `highlight` prop on a fenced code block to emphasize specific lines:
 
-```javascript highlight="1-2,5"
+```javascript
 const greeting = "Hello, World!";
 function sayHello() {
   console.log(greeting);
@@ -164,7 +164,7 @@ sayHello();
 
 Use the `focus` prop to dim non-focused lines and draw attention to a subset of the code:
 
-```javascript focus="2,4-5"
+```javascript
 const greeting = "Hello, World!";
 function sayHello() {
   console.log(greeting);
@@ -186,7 +186,7 @@ sayHello();
 
 Combine highlighting or focus with line numbers using `show-lines={true}`:
 
-```typescript "highlight="1,3 show-lines={true}""
+```typescript "
 interface User {
   name: string;
   age: number;
@@ -206,9 +206,9 @@ interface User {
 
 Use the `wrap` parameter to control whether long lines stay on a single row with horizontal scrolling or automatically wrap onto the next visual line inside the code block.
 
-You can enable wrapping in several equivalent ways on a fenced block: `wrap`, `wrap="true"`, wrap=true. All of these cause long lines to wrap to the container width using `white-space: pre-wrap` and `word-break: break-word`, with vertical overflow allowed (`overflow-y: auto` only).
+You can enable wrapping in several equivalent ways on a fenced block: `wrap`, `wrap="true"`, `wrap=true`. All of these cause long lines to wrap to the container width using `white-space: pre-wrap` and `word-break: break-word`, with vertical overflow allowed (`overflow-y: auto` only).
 
-```typescript wrap
+```typescript wrap="true"
 const longLine = "This is a very long line of code that would normally require horizontal scrolling, but with wrap enabled it will wrap to the width of the container instead of overflowing.";
 ```
 
@@ -218,7 +218,7 @@ const longLine = "This is a very long line of code that would normally require h
 
 You can also combine `wrap` with other parameters like `highlight` and `show-lines`:
 
-```typescript "wrap="true" highlight="1" show-lines={true}"
+```typescript wrap="true" "  "
 const longLine = "This line is highlighted, shows a line number, and wraps instead of scrolling horizontally across the viewport.";
 ```
 
