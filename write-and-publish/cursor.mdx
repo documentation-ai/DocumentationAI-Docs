@@ -190,11 +190,14 @@ Embed videos and external content using the Video and Iframe components:
 #### Video component syntax
 
 ```jsx
-<Video src="https://www.youtube.com/watch?v=VIDEO_ID" />
+<Video src="https://www.youtube.com/watch?v=VIDEO_ID"  width="100%"
+  height="600" />
 
-<Video src="https://vimeo.com/VIDEO_ID" />
+<Video src="https://vimeo.com/VIDEO_ID" w width="100%"
+  height="600" />
 
-<Video src="https://www.loom.com/share/VIDEO_ID" />
+<Video src="https://www.loom.com/share/VIDEO_ID"  width="100%"
+  height="600" />
 ```
 
 #### Iframe component syntax
@@ -209,13 +212,7 @@ Embed videos and external content using the Video and Iframe components:
 
 #### Best practices
 
-- Use videos to demonstrate complex workflows or UI interactions
-
-- Keep videos concise (under 3 minutes when possible)
-
-- Provide text alternatives or transcripts for accessibility
-
-- Test iframe content loads properly and is mobile responsive
+- Provide text alternatives for accessibility
 
 - Use appropriate dimensions for embedded content
 
@@ -225,31 +222,31 @@ Documentation.AI uses a single Callout component with different `kind` values:
 
 #### Info - Neutral contextual information
 
-<Callout kind="info" collapsed="false">
+<Callout kind="info">
   Supplementary information that supports the main content without interrupting flow
 </Callout>
 
 #### Tip - Best practices and recommendations
 
-<Callout kind="tip" collapsed="false">
+<Callout kind="tip">
   Expert advice, shortcuts, or best practices that enhance user success
 </Callout>
 
 #### Alert - Important cautions
 
-<Callout kind="alert" collapsed="false">
+<Callout kind="alert">
   Critical information about potential issues, breaking changes, or actions requiring attention
 </Callout>
 
 #### Danger - High-risk actions
 
-<Callout kind="danger" collapsed="false">
+<Callout kind="danger">
   Warnings about destructive actions, data loss, or irreversible operations
 </Callout>
 
 #### Success - Confirmations and positive outcomes
 
-<Callout kind="success" collapsed="false">
+<Callout kind="success">
   Positive confirmations, successful completions, or achievement indicators
 </Callout>
 
@@ -273,7 +270,7 @@ const apiConfig = {
 
 Example of a code group:
 
-<CodeGroup show-lines="true" tabs={[]}>
+<CodeGroup show-lines="true" tabs="JavaScript,Python,Bash">
   ```javascript
   const response = await fetch('/api/endpoint', {
     headers: { Authorization: `Bearer ${apiKey}` }
@@ -298,7 +295,7 @@ Example of a code group:
 
 Example of request/response documentation:
 
-<Request show-lines="true" tabs={[]}>
+<Request show-lines="true" tabs="JavaScript,Python">
   ```javascript
   const response = await fetch('https://api.documentation.ai/docs', {
     method: 'POST',
@@ -323,7 +320,7 @@ Example of request/response documentation:
   ```
 </Request>
 
-<Response show-lines="true" tabs={[]}>
+<Response show-lines="true" tabs="200,500">
   ```json
   {
     "id": "doc_123",
@@ -349,7 +346,7 @@ Example of request/response documentation:
 Example of step-by-step instructions:
 
 <Steps>
-  <Step title="Install dependencies" icon="download" title-type="p">
+  <Step title="Install dependencies" icon="download" titleType="p">
     Run the installation command to add required packages.
 
     ```bash
@@ -361,7 +358,7 @@ Example of step-by-step instructions:
     </Callout>
   </Step>
 
-  <Step title="Configure environment" icon="settings" title-type="p">
+  <Step title="Configure environment" icon="settings" titleType="p">
     Create a `documentation.json` file with your site configuration.
 
     ```json
@@ -376,7 +373,7 @@ Example of step-by-step instructions:
     </Callout>
   </Step>
 
-  <Step title="Start development server" icon="play" title-type="p">
+  <Step title="Start development server" icon="play" titleType="p">
     Launch the local development server.
 
     ```bash
@@ -520,7 +517,7 @@ Example of response field documentation:
 
 Wrap images using the Image component:
 
-<Image src="/images/dashboard-overview.png" width="1200" height="800" alt="Documentation.AI dashboard showing analytics and recent activity" />
+<Image src="/images/dashboard-overview.png" width="670" height="400" alt="Documentation.AI dashboard showing analytics and recent activity" />
 
 ### Update component for changelogs
 
