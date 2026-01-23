@@ -1,9 +1,8 @@
 ---
 title: Access Control
-description: "Control who can view your documentation with flexible access control options."
+description: Control who can view your documentation with flexible access control options.
 type: reference
 ---
-
 ## Overview
 
 Control who can view your documentation by configuring access control settings. You can make your documentation public, require authentication for all pages, or configure partial access control where some pages are public and others are protected.
@@ -15,52 +14,51 @@ Access control is configured in the dashboard under **Settings → Access Contro
 Documentation.AI supports three access modes:
 
 - **Public**: Anyone can access your documentation. No authentication required.
+
 - **Private**: All pages require authentication to access.
+
 - **Partial**: Make some pages public and restrict access to others.
 
 ## Authentication methods
 
 Documentation.AI offers three authentication methods to protect your documentation:
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
   **Password** authentication requires a Standard plan or higher. **JWT** and **OAuth 2.0** authentication require an Enterprise plan or higher.
 </Callout>
 
 <Tabs>
   <Tab title="Password" icon="key">
-    <Callout kind="warning">
+    <Callout kind="warning" collapsed="false">
       Password authentication is available on Standard plans or higher.
     </Callout>
 
     Password authentication provides simple access control using a shared password. It does not support user-level personalization or individual user tracking.
 
-    ### Prerequisites
-
-    - A Standard plan or higher
-    - Ability to securely share a single password with authorized users
-
     ### Set up
 
     <Steps>
-      <Step title="Choose an access mode" icon="shield-check">
+      <Step title="Choose an access mode" icon="shield-check" title-type="p">
         In your dashboard, go to **Settings → Access Control** and select one of:
 
         - **Private** to protect the entire site
+
         - **Partial** to make some pages public and protect the rest
       </Step>
 
-      <Step title="Set a password" icon="key">
+      <Step title="Set a password" icon="key" title-type="p">
         In **Authentication Method**, choose **Password**, then set a strong password.
 
         - If you already have a password configured, leaving the password field blank keeps the current password.
+
         - Use **Clear password** only if you intend to remove password protection.
       </Step>
 
-      <Step title="Re-publish to apply changes" icon="upload">
+      <Step title="Re-publish to apply changes" icon="upload" title-type="p">
         After saving your access control settings, re-publish your documentation so the deployed site uses the updated configuration.
       </Step>
 
-      <Step title="Distribute access" icon="users">
+      <Step title="Distribute access" icon="users" title-type="p">
         Securely share the docs URL and password with authorized users.
       </Step>
     </Steps>
@@ -71,7 +69,7 @@ Documentation.AI offers three authentication methods to protect your documentati
   </Tab>
 
   <Tab title="JWT" icon="key-round">
-    <Callout kind="warning">
+    <Callout kind="warning" collapsed="false">
       JWT authentication is available on Enterprise plans or higher.
     </Callout>
 
@@ -80,33 +78,37 @@ Documentation.AI offers three authentication methods to protect your documentati
     ### Prerequisites
 
     - An Enterprise plan or higher
+
     - An authentication system that can generate and sign JWTs
+
     - A backend service that can create redirect URLs back to your docs
 
     ### Set up
 
     <Steps>
-      <Step title="Configure JWT settings in the dashboard" icon="settings">
+      <Step title="Configure JWT settings in the dashboard" icon="settings" title-type="p">
         In your dashboard, go to **Settings → Access Control** and select **Private** or **Partial** mode.
 
         In **Authentication Method**, choose **JWT**, then configure your login URL (your existing login flow).
       </Step>
 
-      <Step title="Generate a signing key" icon="key">
+      <Step title="Generate a signing key" icon="key" title-type="p">
         Generate a key in the dashboard and store it securely where your backend can access it.
 
         Rotate keys using your established security process (for example, during incident response or scheduled rotation).
       </Step>
 
-      <Step title="Integrate the docs callback into your login flow" icon="arrow-right">
+      <Step title="Integrate the docs callback into your login flow" icon="arrow-right" title-type="p">
         After a user successfully authenticates in your system:
 
         - Create a JWT for that user (per the format required by Documentation.AI).
+
         - Sign the JWT using the algorithm required by Documentation.AI.
+
         - Redirect the user back to your docs site using the callback URL shown in the dashboard, including the signed JWT (the dashboard will show the exact callback format).
       </Step>
 
-      <Step title="Preserve the user's intended destination (recommended)" icon="map">
+      <Step title="Preserve the user's intended destination (recommended)" icon="map" title-type="p">
         When an unauthenticated user tries to visit a protected page, preserve their target path through your login flow using a `redirect` query parameter, then redirect back to the docs callback URL with the same `redirect`.
       </Step>
     </Steps>
@@ -117,7 +119,7 @@ Documentation.AI offers three authentication methods to protect your documentati
   </Tab>
 
   <Tab title="OAuth 2.0" icon="shield">
-    <Callout kind="warning">
+    <Callout kind="warning" collapsed="false">
       OAuth 2.0 authentication is available on Enterprise plans or higher.
     </Callout>
 
@@ -126,30 +128,37 @@ Documentation.AI offers three authentication methods to protect your documentati
     ### Prerequisites
 
     - An Enterprise plan or higher
+
     - An OAuth 2.0 or OIDC provider that supports the Authorization Code flow
 
     ### Set up
 
     <Steps>
-      <Step title="Configure OAuth in the dashboard" icon="settings">
+      <Step title="Configure OAuth in the dashboard" icon="settings" title-type="p">
         In your dashboard, go to **Settings → Access Control** and select **Private** or **Partial** mode.
 
         In **Authentication Method**, choose **OAuth 2.0**, then configure:
 
         - **Authorization URL**
+
         - **Token URL**
+
         - **Client ID**
+
         - **Client Secret**
+
         - **Scopes** (optional, if your provider requires them)
+
         - **User info URL** (optional, if your flow needs a separate user info fetch)
+
         - **Logout URL** (optional)
       </Step>
 
-      <Step title="Register the redirect URL with your provider" icon="link">
+      <Step title="Register the redirect URL with your provider" icon="link" title-type="p">
         Copy the redirect/callback URL shown in the dashboard and add it to your OAuth provider's allowed redirect URLs.
       </Step>
 
-      <Step title="Re-publish to apply changes" icon="upload">
+      <Step title="Re-publish to apply changes" icon="upload" title-type="p">
         After saving your access control settings, re-publish your documentation so the deployed site uses the updated configuration.
       </Step>
     </Steps>
@@ -167,16 +176,20 @@ In **Partial** mode, Documentation.AI determines whether a page is **Public** or
 ### Inheritance rules
 
 - **Default**: If no `public` flag is set anywhere, pages are treated as **Protected** in partial mode.
+
 - **Closest wins**: The closest (nearest) explicit `public` flag in the navigation tree determines the effective visibility for that node and its subtree.
+
 - **Explicit override**: A child node can override its parent by setting its own `public` flag.
 
 ### Visibility values
 
 - **Inherit**: Do not set `public` on the node (the effective value comes from the nearest parent that has `public`).
+
 - **Public**: `public: true`
+
 - **Protected**: `public: false`
 
-## Configure public pages
+## Configure public pages in partial access control mode
 
 You can make specific pages or groups public in two ways:
 
@@ -185,28 +198,30 @@ You can make specific pages or groups public in two ways:
     Use the Web Editor to visually configure which pages are public or protected.
 
     <Steps>
-      <Step title="Open the Web Editor" icon="browser">
-        Navigate to your project dashboard and click on **Web Editor** to open the visual editor.
+      <Step title="Open the Web Editor" icon="browser" title-type="p">
+        Navigate to your project dashboard and click o&#x6E;**&#x20;Editor** to open the visual editor.
       </Step>
 
-      <Step title="Navigate to the page or group" icon="folder">
+      <Step title="Navigate to the page or group" icon="folder" title-type="p">
         In the navigation panel, find the page or group you want to make public or protected.
       </Step>
 
-      <Step title="Configure visibility" icon="eye">
-        Select the page or group, then in the settings panel, set the visibility:
-        
-        - Choose **Public** to make it accessible without authentication
-        - Choose **Protected** to require authentication
-        - Choose **Inherit** to use the parent's setting
+      <Step title="Configure visibility" icon="eye" title-type="p">
+        In the navigation, each page and group shows an icon (🌐,🔒) that indicates its visibility state. Click on the icon and change status to&#x20;
+
+        - &#x20;**Public** to make it accessible without authentication
+
+        - &#x20;**Protected** to require authentication
+
+        - **Inherit** to use the parent's setting
       </Step>
 
-      <Step title="Publish changes" icon="upload">
+      <Step title="Publish changes" icon="upload" title-type="p">
         After configuring visibility for your pages, publish your documentation to apply the changes.
       </Step>
     </Steps>
 
-    <Callout kind="info">
+    <Callout kind="info" collapsed="false">
       Changes made in the Web Editor are automatically synced to your `documentation.json` file.
     </Callout>
   </Tab>
@@ -245,25 +260,26 @@ You can make specific pages or groups public in two ways:
     ### Semantics
 
     - **`public: true`**: Marks the node as public and makes its descendants public unless overridden.
+
     - **`public: false`**: Marks the node as protected and makes its descendants protected unless overridden.
-    - **No `public` field**: The node inherits from its nearest parent that has `public`. If no parent has it, the default is protected in partial mode.
+
+    - No ****`public`**** field\*\*: The node inherits from its nearest parent that has `public`. If no parent has it, the default is protected in partial mode.
 
     ### Steps to configure
 
     <Steps>
-      <Step title="Open documentation.json" icon="file-code">
+      <Step title="Open documentation.json" icon="file-code" title-type="p">
         Open the `documentation.json` file in your code editor.
       </Step>
 
-      <Step title="Add the public property" icon="plus">
+      <Step title="Add the public property" icon="plus" title-type="p">
         Add the `public` property to the navigation nodes you want to configure.
       </Step>
 
-      <Step title="Commit and push" icon="git-branch">
+      <Step title="Commit and push" icon="git-branch" title-type="p">
         Commit your changes and push to your repository. The changes will be applied on your next deployment.
       </Step>
     </Steps>
   </Tab>
 </Tabs>
-
 
