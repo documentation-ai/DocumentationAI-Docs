@@ -794,14 +794,51 @@ Connect the Documentation.AI MCP server to Cursor to give it access to search yo
     </Callout>
   </Step>
   
-  <Step title="Configure Cursor MCP settings" icon="settings">
-    Add the Documentation.AI MCP server to your Cursor configuration.
+  <Step title="Add MCP server to Cursor" icon="settings">
+    Create or edit the MCP configuration file in your Cursor settings directory:
     
-    See the complete [MCP Server documentation](/ai/mcp-server) for detailed setup instructions and configuration options.
+    **File location:** `~/.cursor/mcp.json`
+    
+    Add the Documentation.AI MCP server configuration:
+    
+    ```json
+    {
+      "mcpServers": {
+        "documentation-ai": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-fetch",
+            "https://docs.yourdomain.com/_mcp"
+          ]
+        }
+      }
+    }
+    ```
+    
+    Replace `https://docs.yourdomain.com/_mcp` with your actual MCP server URL from Step 1.
+    
+    <Callout kind="tip">
+    If you already have other MCP servers configured, add the `documentation-ai` entry to your existing `mcpServers` object.
+    </Callout>
+  </Step>
+  
+  <Step title="Restart Cursor" icon="rotate-cw">
+    Restart Cursor to load the new MCP server configuration.
+    
+    After restarting, the MCP server will be available to Cursor's AI features in Composer.
+    
+    <Callout kind="alert">
+    MCP tools are only available to the Agent in Composer, not in the inline chat.
+    </Callout>
   </Step>
   
   <Step title="Test the connection" icon="check">
-    Ask Cursor a question about your documentation to verify the MCP server is connected and working.
+    Open Composer in Cursor and ask a question about your documentation to verify the MCP server is connected and working.
+    
+    Example prompts to test:
+    - "Search my documentation for authentication setup"
+    - "What does my documentation say about API configuration?"
     
     <Callout kind="success">
     Once connected, Cursor can reference your published documentation when helping you write new content.
