@@ -73,7 +73,7 @@ Click **Save** to apply your changes.
 <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765440779786-2jpk8n2hblx-pasted-image-1765440777294.png?q=85&fm=auto&auto=compress%2Cformat" width="491" height="444" alt="" style="width: 491px; height: auto; cursor: pointer;" />
 
 <Callout kind="tip" collapsed="false">
-  Want to hide the location badge entirely? This is currently controlled in MDX using showLocation="false".
+  Want to hide the location badge entirely? This is currently controlled in MDX using show-location="false".
 
 
 
@@ -98,10 +98,10 @@ Use the `<ParamField>` component to document API parameters with their location,
 
 ### Hide location badge
 
-Use `showLocation="false"` to hide the location badge:
+Use `show-location="false"` to hide the location badge:
 
 ```jsx
-<ParamField query="token" param-type="string" showLocation="false" required="true">
+<ParamField query="token" param-type="string" show-location="false" required="true">
   Authentication token without location badge.
 </ParamField>
 ```
@@ -142,7 +142,7 @@ Use `showLocation="false"` to hide the location badge:
   Set to `"true"` to mark as deprecated (default: `"false"`).
 </ParamField>
 
-<ParamField query="showLocation" param-type="string" required="false" deprecated="false">
+<ParamField query="show-location" param-type="string" required="false" deprecated="false">
   Set to `"false"` to hide the location badge (default: `"true"`).
 </ParamField>
 
