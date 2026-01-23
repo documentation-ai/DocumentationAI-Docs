@@ -302,8 +302,8 @@
                 "icon": "repeat"
               },
               {
-                "title": "Authentication",
-                "path": "customize/authentication",
+                "title": "Access Control",
+                "path": "customize/access-control",
                 "icon": "lock"
               },
               {

@@ -277,7 +277,7 @@ flowchart TB
 
 ### Visibility Control with public
 
-When using [partial authentication](/customize/authentication), you can control which parts of your documentation are publicly accessible or protected using the `public` property. This property can be set on **any navigation node** across all three layers.
+When using [partial access control](/customize/access-control), you can control which parts of your documentation are publicly accessible or protected using the `public` property. This property can be set on **any navigation node** across all three layers.
 
 <ParamField
   path="public"
@@ -285,7 +285,7 @@ When using [partial authentication](/customize/authentication), you can control 
   required="false"
   showLocation="false"
 >
-  Controls visibility when authentication mode is `partial`. Can be applied to dimensions, views, and content nodes.
+  Controls visibility when access control mode is `partial`. Can be applied to dimensions, views, and content nodes.
   
   - `true` makes this node and its descendants public
   - `false` makes this node and its descendants protected
@@ -295,8 +295,8 @@ When using [partial authentication](/customize/authentication), you can control 
 </ParamField>
 
 <Callout kind="info">
-  The `public` property only affects page access when authentication is enabled and mode is set to `partial`.
-  In public mode (no authentication) or full authentication mode, this property is ignored.
+  The `public` property only affects page access when access control is enabled and mode is set to `partial`.
+  In public mode (no access control) or private mode (full protection), this property is ignored.
 </Callout>
 
 ---
@@ -372,7 +372,7 @@ Each dimension item must have a unique identifier and can contain nested dimensi
   required="false"
   showLocation="false"
 >
-  Controls visibility for this dimension and its descendants in partial authentication mode. See [Visibility Control](#visibility-control-with-public).
+  Controls visibility for this dimension and its descendants in partial access control mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
 <CodeGroup tabs="Products Dimension,Versions Dimension,Languages Dimension">
@@ -780,7 +780,7 @@ Tabs create horizontal navigation sections that are visible at the top of your d
   required="false"
   showLocation="false"
 >
-  Controls visibility for this tab and its descendants in partial authentication mode. See [Visibility Control](#visibility-control-with-public).
+  Controls visibility for this tab and its descendants in partial access control mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
 **Tab Children** (choose ONE):
@@ -866,7 +866,7 @@ Dropdowns create collapsible sections in the sidebar for hierarchical navigation
   required="false"
   showLocation="false"
 >
-  Controls visibility for this dropdown and its descendants in partial authentication mode. See [Visibility Control](#visibility-control-with-public).
+  Controls visibility for this dropdown and its descendants in partial access control mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
 **Dropdown Children** (choose ONE):
@@ -1026,7 +1026,7 @@ Groups organize related pages into collapsible sections within your sidebar navi
   required="false"
   showLocation="false"
 >
-  Controls visibility for this group and its descendants in partial authentication mode. See [Visibility Control](#visibility-control-with-public).
+  Controls visibility for this group and its descendants in partial access control mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
 <ParamField
@@ -1106,7 +1106,7 @@ Pages are the individual documentation files that contain your content.
   required="false"
   showLocation="false"
 >
-  Controls visibility for this page in partial authentication mode. See [Visibility Control](#visibility-control-with-public).
+  Controls visibility for this page in partial access control mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
 <ParamField

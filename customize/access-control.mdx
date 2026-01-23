@@ -1,50 +1,52 @@
 ---
-title: Authentication
-description: "Protect your documentation with authentication, including full and partial access modes."
+title: Access Control
+description: "Control who can view your documentation with flexible access control options."
 type: reference
 ---
 
 ## Overview
 
-Control access to your documentation by requiring visitors to authenticate before they can view protected content.
+Control who can view your documentation by configuring access control settings. You can make your documentation public, require authentication for all pages, or configure partial access control where some pages are public and others are protected.
 
-Authentication is configured in the dashboard and takes effect after you publish (or re-publish) your documentation.
+Access control is configured in the dashboard under **Settings → Access Control** and takes effect after you publish (or re-publish) your documentation.
 
-## Authentication modes
+## Access modes
 
 Documentation.AI supports three access modes:
 
-- **Public**: All visitors can access the entire site without authentication.
-- **Full Authentication**: All pages require authentication.
-- **Partial Authentication**: Some pages are public, and the rest require authentication.
+- **Public**: Anyone can access your documentation. No authentication required.
+- **Private**: All pages require authentication to access.
+- **Partial**: Make some pages public and restrict access to others.
+
+## Authentication methods
+
+Documentation.AI offers three authentication methods to protect your documentation:
 
 <Callout kind="info">
-  Password authentication is available on paid plans.
-  JWT and OAuth 2.0 authentication are available on Enterprise plans.
+  **Password** authentication requires a Standard plan or higher. **JWT** and **OAuth 2.0** authentication require an Enterprise plan or higher.
 </Callout>
-
-## Configure authentication
-
-Use the dashboard to choose an authentication method and mode.
 
 <Tabs>
   <Tab title="Password" icon="key">
-    <Callout kind="info">
-      Password authentication provides access control only and does not support user-level personalization.
+    <Callout kind="warning">
+      Password authentication is available on Standard plans or higher.
     </Callout>
+
+    Password authentication provides simple access control using a shared password. It does not support user-level personalization or individual user tracking.
 
     ### Prerequisites
 
-    - You can securely share a single password with the people who should have access.
+    - A Standard plan or higher
+    - Ability to securely share a single password with authorized users
 
     ### Set up
 
     <Steps>
-      <Step title="Choose an authentication mode" icon="shield-check">
-        In your dashboard, go to **Settings → Authentication** and select one of:
+      <Step title="Choose an access mode" icon="shield-check">
+        In your dashboard, go to **Settings → Access Control** and select one of:
 
-        - **Full Authentication** to protect the entire site
-        - **Partial Authentication** to make some pages public and protect the rest
+        - **Private** to protect the entire site
+        - **Partial** to make some pages public and protect the rest
       </Step>
 
       <Step title="Set a password" icon="key">
@@ -55,7 +57,7 @@ Use the dashboard to choose an authentication method and mode.
       </Step>
 
       <Step title="Re-publish to apply changes" icon="upload">
-        After saving authentication settings, re-publish your documentation so the deployed site uses the updated configuration.
+        After saving your access control settings, re-publish your documentation so the deployed site uses the updated configuration.
       </Step>
 
       <Step title="Distribute access" icon="users">
@@ -68,21 +70,24 @@ Use the dashboard to choose an authentication method and mode.
     You host documentation at `docs.example.com` and want basic access control without managing individual user accounts. Use **Password** authentication and share the password with authorized teammates.
   </Tab>
 
-  <Tab title="JWT (Enterprise)" icon="key-round">
-    <Callout kind="info">
-      JWT authentication is available on Enterprise plans.
+  <Tab title="JWT" icon="key-round">
+    <Callout kind="warning">
+      JWT authentication is available on Enterprise plans or higher.
     </Callout>
+
+    Authenticate users with JSON Web Tokens (JWT). This method allows you to integrate your documentation with your existing authentication system and supports user-level personalization.
 
     ### Prerequisites
 
-    - You have an authentication system that can generate and sign JWTs.
-    - You have a backend service that can create redirect URLs back to your docs.
+    - An Enterprise plan or higher
+    - An authentication system that can generate and sign JWTs
+    - A backend service that can create redirect URLs back to your docs
 
     ### Set up
 
     <Steps>
       <Step title="Configure JWT settings in the dashboard" icon="settings">
-        In your dashboard, go to **Settings → Authentication** and enable authentication.
+        In your dashboard, go to **Settings → Access Control** and select **Private** or **Partial** mode.
 
         In **Authentication Method**, choose **JWT**, then configure your login URL (your existing login flow).
       </Step>
@@ -101,7 +106,7 @@ Use the dashboard to choose an authentication method and mode.
         - Redirect the user back to your docs site using the callback URL shown in the dashboard, including the signed JWT (the dashboard will show the exact callback format).
       </Step>
 
-      <Step title="Preserve the user’s intended destination (recommended)" icon="map">
+      <Step title="Preserve the user's intended destination (recommended)" icon="map">
         When an unauthenticated user tries to visit a protected page, preserve their target path through your login flow using a `redirect` query parameter, then redirect back to the docs callback URL with the same `redirect`.
       </Step>
     </Steps>
@@ -111,20 +116,23 @@ Use the dashboard to choose an authentication method and mode.
     You host docs at `docs.example.com` and your company login is `https://login.example.com`. Configure **JWT** authentication so users sign in with your existing identity system, then return to the docs site.
   </Tab>
 
-  <Tab title="OAuth 2.0 (Enterprise)" icon="shield">
-    <Callout kind="info">
-      OAuth 2.0 authentication is available on Enterprise plans.
+  <Tab title="OAuth 2.0" icon="shield">
+    <Callout kind="warning">
+      OAuth 2.0 authentication is available on Enterprise plans or higher.
     </Callout>
+
+    Authenticate users with OAuth 2.0 or OpenID Connect (OIDC). This method integrates with popular identity providers and supports user-level personalization.
 
     ### Prerequisites
 
-    - An OAuth 2.0 or OIDC provider that supports the Authorization Code flow.
+    - An Enterprise plan or higher
+    - An OAuth 2.0 or OIDC provider that supports the Authorization Code flow
 
     ### Set up
 
     <Steps>
       <Step title="Configure OAuth in the dashboard" icon="settings">
-        In your dashboard, go to **Settings → Authentication** and enable authentication.
+        In your dashboard, go to **Settings → Access Control** and select **Private** or **Partial** mode.
 
         In **Authentication Method**, choose **OAuth 2.0**, then configure:
 
@@ -138,11 +146,11 @@ Use the dashboard to choose an authentication method and mode.
       </Step>
 
       <Step title="Register the redirect URL with your provider" icon="link">
-        Copy the redirect/callback URL shown in the dashboard and add it to your OAuth provider’s allowed redirect URLs.
+        Copy the redirect/callback URL shown in the dashboard and add it to your OAuth provider's allowed redirect URLs.
       </Step>
 
       <Step title="Re-publish to apply changes" icon="upload">
-        After saving authentication settings, re-publish your documentation so the deployed site uses the updated configuration.
+        After saving your access control settings, re-publish your documentation so the deployed site uses the updated configuration.
       </Step>
     </Steps>
 
@@ -152,9 +160,9 @@ Use the dashboard to choose an authentication method and mode.
   </Tab>
 </Tabs>
 
-## Partial authentication page visibility
+## Partial access control
 
-In **Partial Authentication** mode, Documentation.AI determines whether a page is **Public** or **Protected** using the `public` flag on navigation nodes in `documentation.json`.
+In **Partial** mode, Documentation.AI determines whether a page is **Public** or **Protected** using the `public` flag on navigation nodes in `documentation.json`.
 
 ### Inheritance rules
 
@@ -201,4 +209,5 @@ The `public` property is an **optional boolean** that can be set on any navigati
 - **`public: true`**: Marks the node as public and makes its descendants public unless overridden.
 - **`public: false`**: Marks the node as protected and makes its descendants protected unless overridden.
 - **No `public` field**: The node inherits from its nearest parent that has `public`. If no parent has it, the default is protected in partial mode.
+
 
