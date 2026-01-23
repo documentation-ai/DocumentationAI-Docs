@@ -1,6 +1,6 @@
 ---
 title: Site Configuration
-description: "Site configuration: documentation.json options and examples."
+description: "Site configuration documentation.json options and examples."
 type: reference
 ---
 
@@ -275,6 +275,30 @@ flowchart TB
   multiple types simultaneously.
 </Callout>
 
+### Visibility Control with public
+
+When using [partial authentication](/customize/authentication), you can control which parts of your documentation are publicly accessible or protected using the `public` property. This property can be set on **any navigation node** across all three layers.
+
+<ParamField
+  path="public"
+  param-type="boolean"
+  required="false"
+  showLocation="false"
+>
+  Controls visibility when authentication mode is `partial`. Can be applied to dimensions, views, and content nodes.
+  
+  - `true` makes this node and its descendants public
+  - `false` makes this node and its descendants protected
+  - Omit to inherit from the nearest parent that defines it
+  
+  The closest explicit value wins for any subtree.
+</ParamField>
+
+<Callout kind="info">
+  The `public` property only affects page access when authentication is enabled and mode is set to `partial`.
+  In public mode (no authentication) or full authentication mode, this property is ignored.
+</Callout>
+
 ---
 
 ## Dimensions Layer
@@ -321,6 +345,35 @@ Dimensions describe the organizational axes of your documentation. They define c
 ### Dimension Configuration
 
 Each dimension item must have a unique identifier and can contain nested dimensions or views.
+
+**Dimension Item Properties:**
+
+<ParamField
+  path="product | version | language"
+  param-type="string"
+  required="true"
+  showLocation="false"
+>
+  Display name for the dimension item shown in the selector UI.
+</ParamField>
+
+<ParamField
+  path="icon"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Visual icon from the Lucide React icon library.
+</ParamField>
+
+<ParamField
+  path="public"
+  param-type="boolean"
+  required="false"
+  showLocation="false"
+>
+  Controls visibility for this dimension and its descendants in partial authentication mode. See [Visibility Control](#visibility-control-with-public).
+</ParamField>
 
 <CodeGroup tabs="Products Dimension,Versions Dimension,Languages Dimension">
 
@@ -721,6 +774,15 @@ Tabs create horizontal navigation sections that are visible at the top of your d
   nested content.
 </ParamField>
 
+<ParamField
+  path="public"
+  param-type="boolean"
+  required="false"
+  showLocation="false"
+>
+  Controls visibility for this tab and its descendants in partial authentication mode. See [Visibility Control](#visibility-control-with-public).
+</ParamField>
+
 **Tab Children** (choose ONE):
 
 - `dropdowns` - Array of dropdown items
@@ -796,6 +858,15 @@ Dropdowns create collapsible sections in the sidebar for hierarchical navigation
 >
   External URL for dropdowns that link outside your documentation. Use instead
   of nested content.
+</ParamField>
+
+<ParamField
+  path="public"
+  param-type="boolean"
+  required="false"
+  showLocation="false"
+>
+  Controls visibility for this dropdown and its descendants in partial authentication mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
 **Dropdown Children** (choose ONE):
@@ -950,6 +1021,15 @@ Groups organize related pages into collapsible sections within your sidebar navi
 </ParamField>
 
 <ParamField
+  path="public"
+  param-type="boolean"
+  required="false"
+  showLocation="false"
+>
+  Controls visibility for this group and its descendants in partial authentication mode. See [Visibility Control](#visibility-control-with-public).
+</ParamField>
+
+<ParamField
   path="openapi"
   param-type="string"
   required="false"
@@ -1018,6 +1098,15 @@ Pages are the individual documentation files that contain your content.
   showLocation="false"
 >
   Display name shown in navigation and browser title.
+</ParamField>
+
+<ParamField
+  path="public"
+  param-type="boolean"
+  required="false"
+  showLocation="false"
+>
+  Controls visibility for this page in partial authentication mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
 <ParamField
