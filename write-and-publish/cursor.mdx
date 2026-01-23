@@ -838,31 +838,22 @@ For complete documentation.json reference, see the [Site Configuration](https://
 - Include authentication requirements
 
 - Show rate limits and pagination details
+
 ````
 
 ## Enhance with MCP server
 
-Connect the Documentation.AI MCP server to Cursor to give it access to search your Documentation.AI documentation while helping you write. When you connect the MCP server, Cursor can search your published documentation for context without leaving your IDE.
+Connect your own Documentation.AI MCP server to Cursor so it helps you write documentation in correct Documentation.AI MDX format (frontmatter plus components).
+
+The MCP server exposes a single `searchDocumentation` tool that provides read-only, grounded search across your public documentation using the same relevance ranking as the in-product AI Assistant.
 
 <Steps>
-  <Step title="Find your MCP server URL" icon="link">
-    Open your Documentation.AI dashboard and navigate to the **MCP Server** section in the sidebar.
-    
-    Your MCP server URL follows this format:
-    - `https://docs.yourdomain.com/_mcp` (if using custom domain)
-    - `https://yourdomain.com/docs/_mcp` (if docs are on a subpath)
-    
-    <Callout kind="info">
-    The MCP server becomes available automatically when you publish your first documentation version.
-    </Callout>
-  </Step>
-  
-  <Step title="Add MCP server to Cursor" icon="settings">
+  <Step title="Add your MCP server to Cursor" icon="settings" title-type="p">
     Create or edit the MCP configuration file in your Cursor settings directory:
 
     **File location:** `~/.cursor/mcp.json`
 
-    Add the Documentation.AI MCP server configuration:
+    Add (or update) the Documentation.AI MCP server configuration.
 
     ```json
     {
@@ -879,40 +870,22 @@ Connect the Documentation.AI MCP server to Cursor to give it access to search yo
     }
     ```
 
-    This connects to Documentation.AI's official MCP server. If you're using a custom domain, replace the URL with your own MCP server endpoint (typically `https://docs.yourdomain.com/_mcp` or `https://yourdomain.com/docs/_mcp`).
+    This configuration tells Cursor to connect to your Documentation.AI MCP server over Server-Sent Events (SSE) and use the `searchDocumentation` tool to retrieve grounded context from Documentation.AI's published docs.
 
-    <Callout kind="tip">
-    If you already have other MCP servers configured, add the `documentation-ai` entry to your existing `mcpServers` object.
-    </Callout>
-
-    <Callout kind="info">
-    The MCP server uses Server-Sent Events (SSE) for real-time communication with Cursor's AI features.
+    <Callout kind="tip" collapsed="false">
+      If you already have other MCP servers configured, add the `documentation-ai` entry to your existing `mcpServers` object instead of replacing it. Just ensure the URL points to your own `/_mcp` endpoint.
     </Callout>
   </Step>
-  
-  <Step title="Restart Cursor" icon="rotate-cw">
-    Restart Cursor to load the new MCP server configuration.
-    
-    After restarting, the MCP server will be available to Cursor's AI features in Composer.
-    
-    <Callout kind="alert">
-    MCP tools are only available to the Agent in Composer, not in the inline chat.
-    </Callout>
-  </Step>
-  
-  <Step title="Test the connection" icon="check">
-    Open Composer in Cursor and ask a question about your documentation to verify the MCP server is connected and working.
-    
-    Example prompts to test:
-    - "Search my documentation for authentication setup"
-    - "What does my documentation say about API configuration?"
-    
-    <Callout kind="success">
-    Once connected, Cursor can reference your published documentation when helping you write new content.
+
+  <Step title="Restart Cursor" icon="rotate-cw" title-type="p">
+    Restart Cursor to load the updated MCP configuration.
+
+    After restarting, the `documentation-ai` MCP server will be available to Cursor's Agent in Composer.
+
+    <Callout kind="alert" collapsed="false">
+      MCP tools (including `searchDocumentation`) are only available to the Agent in Composer, not in inline chat. Use Composer when you want grounded documentation generation.
     </Callout>
   </Step>
 </Steps>
 
-Learn more about the Documentation.AI MCP server and its capabilities in the [MCP Server documentation](/ai/mcp-server).
-
-
+Learn more about the Documentation.AI MCP server, its `searchDocumentation` tool, and configuration details in the [MCP Server documentation](/ai/mcp-server).
