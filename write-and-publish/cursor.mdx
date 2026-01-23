@@ -796,11 +796,11 @@ Connect the Documentation.AI MCP server to Cursor to give it access to search yo
   
   <Step title="Add MCP server to Cursor" icon="settings">
     Create or edit the MCP configuration file in your Cursor settings directory:
-    
+
     **File location:** `~/.cursor/mcp.json`
-    
+
     Add the Documentation.AI MCP server configuration:
-    
+
     ```json
     {
       "mcpServers": {
@@ -808,18 +808,22 @@ Connect the Documentation.AI MCP server to Cursor to give it access to search yo
           "command": "npx",
           "args": [
             "-y",
-            "@modelcontextprotocol/server-fetch",
-            "https://docs.yourdomain.com/_mcp"
+            "@modelcontextprotocol/server-sse",
+            "https://documentation.ai/docs/_mcp"
           ]
         }
       }
     }
     ```
-    
-    Replace `https://docs.yourdomain.com/_mcp` with your actual MCP server URL from Step 1.
-    
+
+    This connects to Documentation.AI's official MCP server. If you're using a custom domain, replace the URL with your own MCP server endpoint (typically `https://docs.yourdomain.com/_mcp` or `https://yourdomain.com/docs/_mcp`).
+
     <Callout kind="tip">
     If you already have other MCP servers configured, add the `documentation-ai` entry to your existing `mcpServers` object.
+    </Callout>
+
+    <Callout kind="info">
+    The MCP server uses Server-Sent Events (SSE) for real-time communication with Cursor's AI features.
     </Callout>
   </Step>
   
