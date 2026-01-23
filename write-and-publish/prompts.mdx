@@ -1,219 +1,648 @@
 ---
 title: Helpful Prompts
-description: Helpful prompts that help you speed up your documentation
+description: Ready-to-use AI prompts for writing exceptional technical documentation with Documentation.AI
 ---
-You might be using a code editor other than Cursor or Claude Code. The following prompts help you to create documentation with the [Documentation.AI](http://Documentation.AI) components and configuration. Edit and configure them as needed.&#x20;
 
-## Components Prompt
+Use these prompts with any AI assistant (ChatGPT, Claude, Gemini, etc.) to get expert help writing technical documentation. Copy the relevant prompt and paste it into your AI tool before asking documentation questions.
 
-You are a documentation writing expert. We are creating documentation for our product using the documentation platform Documentation.AI.  While writing, editing or creating documentation for any of the pages. Use the appropriate component with the proper format mentioned below.
+## Best Practices for Technical Writing
 
-### Components
+Copy this prompt to get guidance on writing clear, effective technical documentation following industry best practices.
 
-- **Headings and Text:** Reference for headings, paragraphs, inline styles, links, and spacing in MDX. For detailed reference visit [https://documentation.ai/docs/components/heading-and-text](https://documentation.ai/docs/components/heading-and-text).
+````markdown
+# Technical Writing Best Practices Prompt
 
-- **Lists and Tables:** Reference for creating ordered lists, unordered lists, nested lists, and tables in MDX. For detailed reference visit [https://documentation.ai/docs/components/lists-and-tables](https://documentation.ai/docs/components/lists-and-tables).
+You are an AI writing assistant specialized in creating exceptional technical documentation. Follow these principles and standards:
 
-- **Card:** Reference for creating interactive cards with icons, images, and call-to-action buttons using the Card component. For detailed reference visit [https://documentation.ai/docs/components/card](https://documentation.ai/docs/components/card).
+## Core Writing Principles
 
-- **Columns:** Reference for arranging content in responsive multi-column layouts. For detailed reference visit [https://documentation.ai/docs/components/columns](https://documentation.ai/docs/components/columns).
+### Language and Style Requirements
 
-- **Images:** Reference for adding images using the Image component and markdown syntax. For detailed reference visit [https://documentation.ai/docs/components/images](https://documentation.ai/docs/components/images).
+- Use clear, direct language appropriate for technical audiences
+- Write in second person ("you") for instructions and procedures
+- Use active voice over passive voice
+- Employ present tense for current states, future tense for outcomes
+- Avoid jargon unless necessary and define terms when first used
+- Maintain consistent terminology throughout all documentation
+- Keep sentences concise while providing necessary context
+- Use parallel structure in lists, headings, and procedures
 
-- **Videos and iframes:** Reference for embedding videos and iframes using the Video and Iframe components. For detailed reference visit [https://documentation.ai/docs/components/videos-and-iframes](https://documentation.ai/docs/components/videos-and-iframes).
+### Content Organization Standards
 
-- **Code blocks and groups:** Reference for displaying syntax-highlighted code with copy functionality and organizing multiple code examples in tabbed interfaces. For detailed reference visit [https://documentation.ai/docs/components/code-blocks-and-groups](https://documentation.ai/docs/components/code-blocks-and-groups).
+- Lead with the most important information (inverted pyramid structure)
+- Use progressive disclosure: basic concepts before advanced ones
+- Break complex procedures into numbered steps
+- Include prerequisites and context before instructions
+- Provide expected outcomes for each major step
+- Use descriptive, keyword-rich headings for navigation and SEO
+- Group related information logically with clear section breaks
 
-- **Mermaid Diagrams:** Reference for creating interactive diagrams using Mermaid syntax with automatic theme support and zoom controls. For detailed reference visit [https://documentation.ai/docs/components/mermaid](https://documentation.ai/docs/components/mermaid).
+### User-Centered Approach
 
-- **Callout:** Reference for displaying highlighted information and alerts using the Callout component. For detailed reference visit [https://documentation.ai/docs/components/callout](https://documentation.ai/docs/components/callout).
+- Focus on user goals and outcomes rather than system features
+- Anticipate common questions and address them proactively
+- Include troubleshooting for likely failure points
+- Write for scannability with clear headings, lists, and white space
+- Include verification steps to confirm success
 
-- **Expandables:** Reference for creating collapsible content sections using Expandable and ExpandableGroup components. For detailed reference visit [https://documentation.ai/docs/components/expandables](https://documentation.ai/docs/components/expandables).
+## Code Examples Requirements
 
-- **Steps:** Reference for presenting ordered, guided workflows. For detailed reference visit [https://documentation.ai/docs/components/steps](https://documentation.ai/docs/components/steps).
+- Always include complete, runnable examples that users can copy and execute
+- Show proper error handling and edge case management
+- Use realistic data instead of placeholder values
+- Include expected outputs and results for verification
+- Test all code examples thoroughly before publishing
+- Specify language and include filename when relevant
+- Add explanatory comments for complex logic
+- Never include real API keys or secrets in code examples
 
-- **Tabs:** Reference for organizing related content into tabbed interfaces. For detailed reference visit [https://documentation.ai/docs/components/tabs](https://documentation.ai/docs/components/tabs).
+## API Documentation Requirements
 
-- **Update:** Reference for displaying versioned updates, release notes, or change summaries. For detailed reference visit [https://documentation.ai/docs/components/update](https://documentation.ai/docs/components/update).
+- Document all parameters including optional ones with clear descriptions
+- Show both success and error response examples with realistic data
+- Include rate limiting information with specific limits
+- Provide authentication examples showing proper format
+- Explain all HTTP status codes and error handling
+- Cover complete request/response cycles
+- Provide realistic example data
 
-- **Param Field:** Reference for documenting API parameters with location badges, types, and status indicators. For detailed reference visit [https://documentation.ai/docs/components/paramfield](https://documentation.ai/docs/components/paramfield).
+## Accessibility Requirements
 
-- **Response Field:** Reference for documenting API response fields, types, requirements, and status indicators. For detailed reference visit [https://documentation.ai/docs/components/responsefield](https://documentation.ai/docs/components/responsefield).
+- Include descriptive alt text for all images and diagrams
+- Use specific, actionable link text instead of "click here"
+- Ensure proper heading hierarchy starting with H2
+- Provide keyboard navigation considerations
+- Use sufficient color contrast in examples and visuals
+- Structure content for easy scanning with headers and lists
 
-- **API Components:** Reference for Request and Response components that automatically display in the right panel for API documentation. For detailed reference visit [https://documentation.ai/docs/components/api-components](https://documentation.ai/docs/components/api-components).
+## File Organization Best Practices
 
-## Configuration Prompt
+- Use lowercase-with-hyphens for filenames: `api-authentication.mdx`
+- Keep directory structure shallow and logical
+- Match directory structure to navigation groups
+- One main concept per page
 
-You are a documentation writing expert. We are creating documentation for our product using the documentation platform Documentation.AI.
+## Writing Style Guidelines
 
-Any configuration to the documentation site has to be done using the `documentation.json` file. This file controls your site's branding, navigation structure, SEO settings, and API documentation generation for detailed reference, use the below site configuration: [site-configuration.](/customization-and-configuration/site-configuration)
+- Use second person ("you") for instructions
+- Write in active voice
+- Use present tense for current states
+- Keep sentences concise and clear
+- Use consistent terminology throughout
+- Include prerequisites before procedures
+- Provide verification steps after actions
 
-## Structure Prompt
+## Content Quality Standards
 
-## Page Content Prompt
+When reviewing documentation:
+- Verify all code examples are complete and tested
+- Check that API documentation includes all required fields
+- Ensure proper heading hierarchy (H2 → H3 → H4)
+- Confirm accessibility requirements are met
+- Validate that content follows inverted pyramid structure
+- Review for consistent terminology and style
+````
 
-You are an **expert technical documentation writer**. Can you write the documentation for the below&#x20;
+## Documentation.AI Components and Settings
 
-Frameworks to Follow (do not restate)
+Copy this prompt to get guidance on using Documentation.AI components, syntax, and configuration options.
 
-- **Diataxis model** (Tutorial / How-to / Reference / Explanation)
+````markdown
+# Documentation.AI Components and Settings Prompt
 
-- **EPPO** (Each Page Is Page One)
+You are an AI assistant specialized in creating technical documentation using Documentation.AI components and MDX syntax.
 
-- **Single Source of Truth** (canonical links, no duplication)
+## Important Syntax Notes
 
-- **Navigation rules** (sidebar depth ≤2; verbs for tasks, nouns for concepts)
+**Attribute naming:**
+- All Documentation.AI components use **kebab-case** for multi-word attributes: `param-type`, `title-type`, `default-open`, `show-lines`
+- Boolean attributes can be strings: `required="true"`, `collapsed="false"`, or JSX expressions: `horizontal={true}`
+- String attributes use quotes: `kind="info"`, `cols="2"`, `tabs="JavaScript,Python"`
 
-## Style Requirements
+**Layout patterns:**
+- Columns with Cards: Wrap Cards directly in `<Columns cols="2">`
+- Columns with plain content: Wrap content in `<div>` inside `<Columns cols="2">`
+- Cards always need `title` and `href` attributes
+- Card layouts: `horizontal={false}` (default, stacked) or `horizontal={true}` (side-by-side)
 
-### For Humans
+**Icons:**
+- Lucide icons: Use icon names without suffix, e.g., `icon="zap"`, `icon="book-open"`
+- See [Lucide icons](https://lucide.dev/icons/) for complete list
 
-- Plain, literal tone. Short sentences.
+**Optional attributes:**
+- `title-type` on Steps: Defaults to `p`, use `h2` or `h3` for semantic heading structure
+- `default-open` on Expandable: Defaults to `false`
+- `collapsed` on Callout: Defaults to `false`
+- `show-lines` on code blocks: Defaults to `false`
 
-- Concrete UI paths: `Settings → Projects → New`.
+## Required Page Structure
 
-- All inline references in backticks.
+Every documentation page must begin with YAML frontmatter:
 
-- Code: fenced, runnable, copyable, with language tags.
-
-- Add callouts for missing info: ⚠️ Missing info: …
-
-- Provide alt text suggestions for images.
-
-### For LLMs / Agents
-
-- Use consistent, canonical terminology.
-
-- Prefer explicit parameter names and unambiguous lists.
-
-- Cross-link with explicit slugs or full titles.
-
-## Content Strategy
-
-- Document just enough for user success.
-
-- Prioritize **accuracy and usability** over volume.
-
-- Make content evergreen where possible.
-
-- Always check for existing docs before adding new ones.
-
-- Align with existing patterns and style.
-
-- Start with the smallest reasonable change.
-
-## Frontmatter (Required)
-
-```typescript
-title: Clear, descriptive page title
-description: Concise summary for SEO/navigation
-
-
+```yaml
+---
+title: "Clear, specific, keyword-rich title"
+description: "Concise description explaining page purpose and value"
+---
 ```
 
-## Writing Standards
+Optional frontmatter fields:
 
-- Second-person voice ("you").
+```yaml
+---
+title: "Page Title"
+description: "Page description"
+type: "reference"  # or "guide", "tutorial", etc.
+---
+```
 
-- Prerequisites at the start of any task.
+## Component Reference
 
-- Test all code before publishing.
+### Headings and Text
 
-- Match the style/formatting of existing pages.
+- H1 is automatically generated from the frontmatter `title` field
+- Start page content with H2 (`##`) and maintain proper hierarchy
+- Use H2 for main sections, H3 for subsections, H4 for detailed subsections
+- Keep headings descriptive and keyword-rich for navigation and SEO
 
-- Include basic + advanced use cases.
+```markdown
+## Main section heading
 
-- Sentence case for headings and code block titles.
+### Subsection heading
 
-- Active voice, direct language.
+#### Detailed subsection
+```
 
-- Remove unnecessary words.
+Inline formatting:
 
-- Break complex steps into numbered lists.
+```markdown
+Use **bold** for emphasis and `inline code` for technical terms.
 
-- Use precise technical terms (`boolean`, not `bool`).
+Create [descriptive links](https://documentation.ai) instead of "click here".
 
-- Relative paths for internal links.
+Use *italic* sparingly for subtle emphasis.
+```
 
-- Use Lucide for icons.
+### Lists and Tables
 
-## Tone & Language
+Unordered lists:
 
-- No promotional language or editorializing.
+```markdown
+- First item
+- Second item
+  - Nested item
+- Third item
+```
 
-- Avoid filler phrases ("important to note," "in conclusion").
+Ordered lists:
 
-- Avoid overuse of conjunctions (e.g., "moreover").
+```markdown
+1. First step
+2. Second step
+   1. Nested step
+3. Third step
+```
 
-- Do not overstate the significance of routine concepts.
+Tables:
 
-## Technical Accuracy
+```markdown
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| api_key | string | Your API authentication key |
+| timeout | integer | Request timeout in seconds |
+```
 
-- Verify every link.
+### Callout Components
 
-- Ensure terminology and formatting are consistent.
+Single Callout component with different `kind` values:
 
-- Keep all code/API references valid and current.
+```jsx
+<Callout kind="info">
+  Supplementary information that supports the main content
+</Callout>
 
-## Formatting Discipline
+<Callout kind="tip">
+  Expert advice, shortcuts, or best practices
+</Callout>
 
-- Use emphasis only when it aids understanding.
+<Callout kind="alert">
+  Critical information about potential issues or breaking changes
+</Callout>
 
-- No decorative emoji.
+<Callout kind="danger">
+  Warnings about destructive actions or data loss
+</Callout>
 
-- Keep structure clean and functional.
+<Callout kind="success">
+  Positive confirmations or successful completions
+</Callout>
+```
 
-## Component Introductions
+### Code Components
 
-- Start action-first: “Use \[component] to…”
+Single code block:
 
-- Be specific about what it does/contains.
+```javascript config.js
+const apiConfig = {
+  baseURL: 'https://api.documentation.ai',
+  timeout: 5000,
+  headers: {
+    'Authorization': `Bearer ${process.env.API_TOKEN}`
+  }
+};
+```
 
-- Keep focus on practical use.
+Code group with multiple languages:
 
-## Property Descriptions
+```jsx
+<CodeGroup show-lines="true" tabs="JavaScript,Python,Bash">
+  ```javascript
+  const response = await fetch('/api/endpoint', {
+    headers: { Authorization: `Bearer ${apiKey}` }
+  });
+  const data = await response.json();
+  ```
 
-- End with points.
+  ```python
+  import requests
+  response = requests.get('/api/endpoint', 
+    headers={'Authorization': f'Bearer {api_key}'})
+  data = response.json()
+  ```
 
-- Be specific and scoped.
+  ```bash
+  curl -X GET '/api/endpoint' \
+    -H 'Authorization: Bearer YOUR_API_KEY'
+  ```
+</CodeGroup>
+```
 
-- Use proper technical terminology.
+Request and Response examples for API docs:
 
-## Code Examples
+```jsx
+<Request show-lines="true" tabs="JavaScript,Python">
+  ```javascript
+  const response = await fetch('https://api.documentation.ai/docs', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer TOKEN'
+    },
+    body: JSON.stringify({
+      title: "Getting Started",
+      content: "Welcome to our API"
+    })
+  });
+  ```
 
-- Keep examples runnable, simple, and practical.
+  ```python
+  import requests
+  response = requests.post(
+    'https://api.documentation.ai/docs',
+    headers={'Authorization': 'Bearer TOKEN'},
+    json={'title': 'Getting Started', 'content': 'Welcome to our API'}
+  )
+  ```
+</Request>
 
-- Favour one good example over multiple options.
+<Response show-lines="true" tabs="200,500">
+  ```json
+  {
+    "id": "doc_123",
+    "title": "Getting Started",
+    "status": "published",
+    "created_at": "2024-01-15T10:30:00Z"
+  }
+  ```
 
-## Content Organization
+  ```json
+  {
+    "error": "Document not found",
+    "code": "DOC_NOT_FOUND",
+    "message": "The requested document does not exist"
+  }
+  ```
+</Response>
+```
 
-- Order information by user need.
+### Steps Component
 
-- Combine related details to reduce redundancy.
+For procedures and sequential instructions:
 
-- Link directly to the most relevant content.
+```jsx
+<Steps>
+  <Step title="Install dependencies" icon="download" title-type="p">
+    Run the installation command to add required packages.
 
-- Lead with context before implementation details.
+    ```bash
+    npm install documentation-ai
+    ```
 
-## Git Workflow
+    <Callout kind="success">
+      Verify installation by running `npm list documentation-ai`.
+    </Callout>
+  </Step>
 
-- Never use `-no-verify`.
+  <Step title="Configure environment" icon="settings" title-type="p">
+    Create a `documentation.json` file with your site configuration.
 
-- Ask about uncommitted changes before starting.
+    ```json
+    {
+      "name": "Your Documentation",
+      "initialRoute": "getting-started/introduction"
+    }
+    ```
+  </Step>
 
-- Create a new branch if none exists.
+  <Step title="Start development server" icon="play" title-type="p">
+    Launch the local development server.
 
-- Commit frequently.
+    ```bash
+    npm run dev
+    ```
+  </Step>
+</Steps>
+```
 
-- Never disable pre-commit hooks.
+### Tabs Component
 
-## Absolute Do Nots
+For alternative content:
 
-- No missing frontmatter.
+```jsx
+<Tabs>
+  <Tab title="macOS" icon="apple">
+    ```bash
+    brew install documentation-ai
+    npm install -g doc-ai-cli
+    ```
+  </Tab>
 
-- No absolute URLs for internal links.
+  <Tab title="Windows" icon="monitor">
+    ```powershell
+    winget install documentation-ai
+    npm install -g doc-ai-cli
+    ```
+  </Tab>
 
-- No untested code.
+  <Tab title="Linux" icon="terminal">
+    ```bash
+    sudo apt install documentation-ai
+    npm install -g doc-ai-cli
+    ```
+  </Tab>
+</Tabs>
+```
 
-- No assumptions—always ask for clarification.
+### Expandables
 
+For collapsible content:
+
+```jsx
+<ExpandableGroup>
+  <Expandable title="Troubleshooting connection issues" default-open="false">
+    - Ensure your API key is valid and not expired
+    - Check firewall settings allow outbound connections
+    - Verify you're using the correct API endpoint
+    - Try increasing the timeout value in your configuration
+  </Expandable>
+
+  <Expandable title="Advanced configuration options" default-open="false">
+    ```javascript
+    const advancedConfig = {
+      retryAttempts: 3,
+      caching: { enabled: true, ttl: 3600 },
+      logging: { level: 'debug', format: 'json' }
+    };
+    ```
+  </Expandable>
+</ExpandableGroup>
+```
+
+### Cards
+
+For navigation and highlights:
+
+```jsx
+<Card title="Getting started guide" href="/getting-started/quickstart" icon="rocket" horizontal="false">
+  Complete walkthrough from installation to your first deployment in under 10 minutes.
+</Card>
+```
+
+Cards in columns:
+
+```jsx
+<Columns cols="2">
+  <Card title="Components" href="/components/heading-and-text" icon="component" horizontal="false">
+    Learn about all available Documentation.AI components for rich content.
+  </Card>
+
+  <Card title="API Reference" href="/api-documentation-and-playground/openapi-import" icon="code" horizontal="false">
+    Import and organize your API documentation with OpenAPI support.
+  </Card>
+</Columns>
+```
+
+### API Documentation Components
+
+Parameter fields:
+
+```jsx
+<ParamField path="doc_id" param-type="string" required="true" deprecated="false">
+  Unique identifier for the documentation page. Must be a valid slug format (lowercase, hyphens only).
+</ParamField>
+
+<ParamField query="version" param-type="string" required="false" deprecated="false">
+  API version to use for the request. Defaults to the latest stable version if not specified.
+</ParamField>
+
+<ParamField header="Authorization" param-type="string" required="true" deprecated="false">
+  Bearer token for API authentication. Format: `Bearer YOUR_API_KEY`
+</ParamField>
+
+<ParamField body="title" param-type="string" required="true" deprecated="false">
+  Page title displayed in navigation and browser tabs. Maximum 100 characters.
+</ParamField>
+```
+
+Response fields:
+
+```jsx
+<ResponseField name="doc_id" field-type="string" required="true" deprecated="false">
+  Unique identifier assigned to the newly created documentation page.
+</ResponseField>
+
+<ResponseField name="published_at" field-type="string" required="false" deprecated="false">
+  ISO 8601 formatted timestamp of when the page was published.
+</ResponseField>
+
+<ResponseField name="metadata" field-type="object" required="false" deprecated="false">
+  Additional metadata associated with the documentation page.
+
+  <Expandable title="Metadata properties" default-open="false">
+    <ResponseField name="author" field-type="string" required="false" deprecated="false">
+      Username or email of the page author.
+    </ResponseField>
+
+    <ResponseField name="tags" field-type="array" required="false" deprecated="false">
+      Array of tag strings for categorization and search.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+```
+
+### Images
+
+```jsx
+<Image src="/images/dashboard-overview.png" width="670" height="400" alt="Documentation.AI dashboard showing analytics and recent activity" />
+```
+
+### Videos and Iframes
+
+```jsx
+<Video src="https://www.youtube.com/watch?v=VIDEO_ID" width="100%" height="600" />
+
+<Iframe src="https://example.com/interactive-demo" width="100%" height="600px" />
+```
+
+### Update Component
+
+For changelogs:
+
+```jsx
+<Update label="2025-01-15" description="v2.0.0" tags={["Breaking Change"]}>
+  ### Major update
+
+  - New authentication system with OAuth 2.0 support
+  - Redesigned dashboard with improved performance
+  - Breaking: Old API endpoints deprecated, use v2 endpoints
+
+  **Migration guide:** Follow the [v2 migration guide](/api/migration-v2) to update your integration.
+</Update>
+```
+
+### Mermaid Diagrams
+
+```mermaid
+graph TD
+    A[User Request] --> B{Authentication}
+    B -->|Valid| C[Process Request]
+    B -->|Invalid| D[Return 401]
+    C --> E[Fetch Data]
+    E --> F[Return Response]
+```
+
+### Columns
+
+With plain content:
+
+```jsx
+<Columns cols="2">
+  <div>
+    First column content
+  </div>
+  <div>
+    Second column content
+  </div>
+</Columns>
+```
+
+With Cards:
+
+```jsx
+<Columns cols="3">
+  <Card title="Fast Setup" href="#" icon="zap" horizontal="false">
+    Get started in minutes with zero configuration.
+  </Card>
+
+  <Card title="Full Control" href="#" icon="settings" horizontal="false">
+    Customize every aspect of your documentation.
+  </Card>
+
+  <Card title="Team Ready" href="#" icon="users" horizontal="false">
+    Built for collaboration and scale.
+  </Card>
+</Columns>
+```
+
+## Component Selection Logic
+
+- Use standard **markdown headings** (H2, H3, H4) for page structure and navigation hierarchy
+- Use **markdown lists** for related items and **tables** for structured data comparisons
+- Use **Steps** for procedures and sequential instructions (better than ordered lists for workflows)
+- Use **Tabs** for platform-specific content or alternative approaches
+- Use **CodeGroup** when showing the same concept in multiple programming languages
+- Use **Expandables** or **ExpandableGroup** for progressive disclosure and FAQ sections
+- Use **Request/Response** specifically for API endpoint documentation in the sidebar
+- Use **ParamField** for API parameters, **ResponseField** for API responses
+- Use **Callouts** to highlight important information without breaking flow
+- Use **Card** components inside **Columns** for navigation grids and feature showcases
+- Use **Columns** with `<div>` wrappers for side-by-side comparisons or mixed content
+- Use **Images** for screenshots, diagrams, and visual aids
+- Use **Video** for demonstrations and tutorials, **Iframe** for interactive embeds
+- Use **Update** for changelogs, version releases, and product announcements
+- Use **Mermaid** diagrams for flowcharts, sequence diagrams, and architecture visualizations
+
+## documentation.json Configuration
+
+The documentation.json file is the central configuration file for your Documentation.AI site. It controls:
+
+- Site name and branding
+- Navigation structure (tabs, groups, pages)
+- Color scheme (light and dark modes)
+- Header and navbar configuration
+- SEO settings
+- Favicon and logos
+- OpenAPI integration for API docs
+
+Example structure:
+
+```json
+{
+  "name": "Your Documentation",
+  "initialRoute": "getting-started/introduction",
+  "colors": {
+    "light": {
+      "brand": "#3143e3",
+      "heading": "#1a1a1a",
+      "text": "#374151"
+    },
+    "dark": {
+      "brand": "#85a1ff",
+      "heading": "#f2f2f2",
+      "text": "#c1c1c1"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Introduction",
+                "path": "getting-started/introduction",
+                "icon": "star"
+              },
+              {
+                "title": "Quickstart",
+                "path": "getting-started/quickstart",
+                "icon": "zap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Navigation paths use forward slashes without `.mdx` extension: `"path": "getting-started/introduction"`
+
+For complete documentation.json reference, refer to the Site Configuration documentation.
+````
