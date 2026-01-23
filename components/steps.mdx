@@ -274,17 +274,17 @@ Add visual context to each step using Lucide icons:
 
 ### Heading levels
 
-Control the semantic heading level of step titles using the `titleType` attribute:
+Control the semantic heading level of step titles using the `title-type` attribute:
 
 ```jsx
 <Steps>
-  <Step title="Database setup" titleType="h2" icon="database">
+  <Step title="Database setup" title-type="h2" icon="database">
     Configure your database connection and run initial migrations.
   </Step>
-  <Step title="API configuration" titleType="h2" icon="server">
+  <Step title="API configuration" title-type="h2" icon="server">
     Set up API endpoints and authentication middleware.
   </Step>
-  <Step title="Frontend integration" titleType="h2" icon="monitor">
+  <Step title="Frontend integration" title-type="h2" icon="monitor">
     Connect your frontend application to the API.
   </Step>
 </Steps>
@@ -310,16 +310,16 @@ Use appropriate heading levels to maintain proper document structure and improve
 
 ```jsx
 <Steps>
-  <Step title="Planning phase" titleType="h3" icon="clipboard-list">
+  <Step title="Planning phase" title-type="h3" icon="clipboard-list">
     Define project requirements and create technical specifications.
   </Step>
-  <Step title="Development phase" titleType="h3" icon="code">
+  <Step title="Development phase" title-type="h3" icon="code">
     Build features according to specifications and coding standards.
   </Step>
-  <Step title="Testing phase" titleType="h3" icon="bug">
+  <Step title="Testing phase" title-type="h3" icon="bug">
     Conduct thorough testing including unit, integration, and end-to-end tests.
   </Step>
-  <Step title="Deployment phase" titleType="h3" icon="cloud-upload">
+  <Step title="Deployment phase" title-type="h3" icon="cloud-upload">
     Deploy to staging environment and prepare for production release.
   </Step>
 </Steps>
@@ -453,7 +453,7 @@ The `<Steps>` component acts as a container and has no configurable attributes. 
   Lucide icon name to display instead of automatic numbering. Omit this attribute to show sequential numbers. Reference [Lucide icons](https://lucide.dev/icons/) for available options.
 </ParamField>
 
-<ParamField path="titleType" param-type="string" required="false" deprecated="false">
+<ParamField path="title-type" param-type="string" required="false" deprecated="false">
   The HTML heading level for the step title. Accepts: `p`, `h2`, or `h3`. Default: `p`. Use heading levels to maintain proper document structure and improve accessibility.
 </ParamField>
 
