@@ -302,6 +302,11 @@
                 "icon": "repeat"
               },
               {
+                "title": "Authentication",
+                "path": "customize/authentication",
+                "icon": "lock"
+              },
+              {
                 "title": "Site Configuration",
                 "path": "customize/site-configuration",
                 "icon": "file-cog"
