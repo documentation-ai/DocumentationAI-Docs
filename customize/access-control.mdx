@@ -162,7 +162,7 @@ Documentation.AI offers three authentication methods to protect your documentati
 
 ## Partial access control
 
-In **Partial** mode, Documentation.AI determines whether a page is **Public** or **Protected** using the `public` flag on navigation nodes in `documentation.json`.
+In **Partial** mode, Documentation.AI determines whether a page is **Public** or **Protected** using the `public` flag on navigation nodes. You can configure this using either the Web Editor or the Code Editor.
 
 ### Inheritance rules
 
@@ -176,38 +176,94 @@ In **Partial** mode, Documentation.AI determines whether a page is **Public** or
 - **Public**: `public: true`
 - **Protected**: `public: false`
 
-## public in documentation.json
+## Configure public pages
 
-The `public` property is an **optional boolean** that can be set on any navigation node (containers like groups/dropdowns/tabs/etc., and individual pages).
+You can make specific pages or groups public in two ways:
 
-```json
-{
-  "navigation": {
-    "groups": [
-      {
-        "group": "Guides",
-        "public": true,
-        "pages": [
+<Tabs>
+  <Tab title="Web Editor" icon="browser">
+    Use the Web Editor to visually configure which pages are public or protected.
+
+    <Steps>
+      <Step title="Open the Web Editor" icon="browser">
+        Navigate to your project dashboard and click on **Web Editor** to open the visual editor.
+      </Step>
+
+      <Step title="Navigate to the page or group" icon="folder">
+        In the navigation panel, find the page or group you want to make public or protected.
+      </Step>
+
+      <Step title="Configure visibility" icon="eye">
+        Select the page or group, then in the settings panel, set the visibility:
+        
+        - Choose **Public** to make it accessible without authentication
+        - Choose **Protected** to require authentication
+        - Choose **Inherit** to use the parent's setting
+      </Step>
+
+      <Step title="Publish changes" icon="upload">
+        After configuring visibility for your pages, publish your documentation to apply the changes.
+      </Step>
+    </Steps>
+
+    <Callout kind="info">
+      Changes made in the Web Editor are automatically synced to your `documentation.json` file.
+    </Callout>
+  </Tab>
+
+  <Tab title="Code Editor" icon="code">
+    Configure the `public` property directly in your `documentation.json` file.
+
+    ### Setting the public property
+
+    The `public` property is an **optional boolean** that can be set on any navigation node (containers like groups/dropdowns/tabs/etc., and individual pages).
+
+    ```json
+    {
+      "navigation": {
+        "groups": [
           {
-            "title": "Overview",
-            "path": "guides/overview"
-          },
-          {
-            "title": "Internal Runbook",
-            "path": "guides/internal-runbook",
-            "public": false
+            "group": "Guides",
+            "public": true,
+            "pages": [
+              {
+                "title": "Overview",
+                "path": "guides/overview"
+              },
+              {
+                "title": "Internal Runbook",
+                "path": "guides/internal-runbook",
+                "public": false
+              }
+            ]
           }
         ]
       }
-    ]
-  }
-}
-```
+    }
+    ```
 
-### Semantics
+    ### Semantics
 
-- **`public: true`**: Marks the node as public and makes its descendants public unless overridden.
-- **`public: false`**: Marks the node as protected and makes its descendants protected unless overridden.
-- **No `public` field**: The node inherits from its nearest parent that has `public`. If no parent has it, the default is protected in partial mode.
+    - **`public: true`**: Marks the node as public and makes its descendants public unless overridden.
+    - **`public: false`**: Marks the node as protected and makes its descendants protected unless overridden.
+    - **No `public` field**: The node inherits from its nearest parent that has `public`. If no parent has it, the default is protected in partial mode.
+
+    ### Steps to configure
+
+    <Steps>
+      <Step title="Open documentation.json" icon="file-code">
+        Open the `documentation.json` file in your code editor.
+      </Step>
+
+      <Step title="Add the public property" icon="plus">
+        Add the `public` property to the navigation nodes you want to configure.
+      </Step>
+
+      <Step title="Commit and push" icon="git-branch">
+        Commit your changes and push to your repository. The changes will be applied on your next deployment.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
 
 
