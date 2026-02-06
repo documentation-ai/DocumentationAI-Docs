@@ -62,9 +62,35 @@ Add the `openapi` property to a group in your `documentation.json`:
 }
 ```
 
+**Group-level OpenAPI Properties:**
+
 <ParamField path="openapi" param-type="string" required="true" deprecated="false">
   Relative path to your OpenAPI specification file. Supports `.json`, `.yaml`, and `.yml` formats.
 </ParamField>
+
+<ParamField path="hidden-apis" param-type="array" required="false" deprecated="false">
+  Array of endpoint identifiers to exclude from automatic generation. Each entry must use the exact format `"METHOD /path"` (e.g., `"DELETE /users/{id}"`). The method must be uppercase.
+</ParamField>
+
+### Hiding Specific Endpoints
+
+Use `hidden-apis` to exclude specific endpoints from automatic generation:
+
+```json
+{
+  "group": "Users API",
+  "openapi": "api/openapi.yaml",
+  "hidden-apis": [
+    "DELETE /users/{id}",
+    "GET /internal/health"
+  ],
+  "pages": []
+}
+```
+
+<Callout kind="info" collapsed="false">
+  The `hidden-apis` format must match exactly: uppercase HTTP method, single space, then the path as defined in your OpenAPI spec. For example, `"GET /users/{id}"` is valid, but `"get /users/{id}"` or `"GET/users/{id}"` will not work.
+</Callout>
 
 ## OpenAPI Configuration
 
@@ -241,6 +267,96 @@ Combine generated API documentation with custom content:
       "path": "api/authentication"
     }
   ]
+}
+```
+
+## Page-level OpenAPI Connection
+
+For more control over individual endpoint documentation, connect a specific OpenAPI endpoint to a custom MDX page. This injects OpenAPI-generated content (playground, request examples, responses) into your page while preserving your custom content.
+
+### Basic Page Connection
+
+Add the `openapi` property to a page with the format `"filepath METHOD /endpoint"`:
+
+```json
+{
+  "group": "Custom API Docs",
+  "pages": [
+    {
+      "title": "Get User Details",
+      "path": "api/users/get-user",
+      "openapi": "api/openapi.yaml GET /users/{id}"
+    }
+  ]
+}
+```
+
+**Page-level OpenAPI Properties:**
+
+<ParamField path="openapi" param-type="string" required="false" deprecated="false">
+  Connects a specific OpenAPI endpoint to this page. Format: `"filepath METHOD /endpoint"` (e.g., `"api/openapi.yaml GET /users/{id}"`). The method must be uppercase.
+</ParamField>
+
+<ParamField path="openapi-mode" param-type="string" required="false" deprecated="false">
+  Controls how much content is injected into your page. Values: `"auto"` (default) injects full documentation including parameters and descriptions. `"custom"` injects only the playground component, request examples, and response examples.
+</ParamField>
+
+### Auto Mode vs Custom Mode
+
+**Auto mode** (default) injects comprehensive documentation:
+
+- Parameter documentation
+- Endpoint description
+- Request code examples
+- Response examples
+- Interactive playground
+
+**Custom mode** injects minimal content, preserving your custom structure:
+
+- Interactive playground
+- Request code examples
+- Response examples
+
+```json
+{
+  "title": "Create User",
+  "path": "api/users/create-user",
+  "openapi": "api/openapi.yaml POST /users",
+  "openapi-mode": "custom"
+}
+```
+
+<Callout kind="tip" collapsed="false">
+  Use `"openapi-mode": "custom"` when you want to write your own parameter descriptions, add custom sections, or structure the page differently than the auto-generated format.
+</Callout>
+
+### Combining Group and Page Connections
+
+Hide an endpoint from automatic generation and create a custom page for it:
+
+```json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "Auto Generated API",
+        "openapi": "api/openapi.yaml",
+        "hidden-apis": ["GET /health"],
+        "pages": []
+      },
+      {
+        "group": "Custom Documentation",
+        "pages": [
+          {
+            "title": "Health Check Guide",
+            "path": "api/health-check",
+            "openapi": "api/openapi.yaml GET /health",
+            "openapi-mode": "custom"
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
 

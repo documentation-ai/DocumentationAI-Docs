@@ -1040,6 +1040,16 @@ Groups organize related pages into collapsible sections within your sidebar navi
 </ParamField>
 
 <ParamField
+  path="hidden-apis"
+  param-type="array"
+  required="false"
+  showLocation="false"
+>
+  Array of endpoint identifiers to exclude from automatic generation when using `openapi`. 
+  Each entry must use the exact format `"METHOD /path"` with uppercase method (e.g., `"DELETE /users/{id}"`).
+</ParamField>
+
+<ParamField
   path="pages"
   param-type="array"
   required="true"
@@ -1155,6 +1165,27 @@ Pages are the individual documentation files that contain your content.
   showLocation="false"
 >
   Categorization tags for organizing related content.
+</ParamField>
+
+<ParamField
+  path="openapi"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Connects a specific OpenAPI endpoint to this page for content injection. 
+  Format: `"filepath METHOD /endpoint"` (e.g., `"api/openapi.yaml GET /users/{id}"`). 
+  The method must be uppercase.
+</ParamField>
+
+<ParamField
+  path="openapi-mode"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Controls content injection when using page-level `openapi`. Values: `"auto"` (default) 
+  injects full documentation. `"custom"` injects only playground, request examples, and responses.
 </ParamField>
 
 ### Mixed Content in Pages Arrays
