@@ -978,12 +978,12 @@ Groups organize related pages into collapsible sections within your sidebar navi
     {
       "group": "API Reference",
       "icon": "code",
-      "openapi": "api/openapi.yaml",
+      "openapi": "api-reference/openapi.yaml",
       "expandable": true,
       "pages": [
         {
           "title": "Authentication",
-          "path": "api/authentication"
+          "path": "api-reference/authentication"
         }
       ]
     }
@@ -1174,7 +1174,7 @@ Pages are the individual documentation files that contain your content.
   showLocation="false"
 >
   Connects a specific OpenAPI endpoint to this page for content injection. 
-  Format: `"filepath METHOD /endpoint"` (e.g., `"api/openapi.yaml GET /users/{id}"`). 
+  Format: `"filepath METHOD /endpoint"` (e.g., `"api-reference/openapi.yaml GET /users/{id}"`). 
   The method must be uppercase.
 </ParamField>
 
@@ -1232,9 +1232,11 @@ This example demonstrates:
 
 ## OpenAPI Integration
 
-Generate comprehensive API documentation automatically from OpenAPI specifications.
+Generate comprehensive API documentation automatically from OpenAPI specifications. Documentation.AI supports two connection types: group-level for automatic endpoint generation, and page-level for injecting OpenAPI content into custom pages.
 
-<CodeGroup tabs="Basic API Documentation,Nested API Specifications">
+### Group-level OpenAPI Connection
+
+Add the `openapi` property to a group to automatically generate documentation pages for all endpoints in your OpenAPI specification.
 
 ```json
 {
@@ -1242,15 +1244,11 @@ Generate comprehensive API documentation automatically from OpenAPI specificatio
     "groups": [
       {
         "group": "API Reference",
-        "openapi": "api/openapi.yaml",
+        "openapi": "api-reference/openapi.yaml",
         "pages": [
           {
             "title": "Authentication",
-            "path": "api/authentication"
-          },
-          {
-            "title": "Users API",
-            "path": "api/users"
+            "path": "api-reference/authentication"
           }
         ]
       }
@@ -1259,36 +1257,7 @@ Generate comprehensive API documentation automatically from OpenAPI specificatio
 }
 ```
 
-```json
-{
-  "navigation": {
-    "groups": [
-      {
-        "group": "API Documentation",
-        "openapi": "api/v1/openapi.json",
-        "pages": [
-          {
-            "title": "Overview",
-            "path": "api/overview"
-          },
-          {
-            "group": "Products API",
-            "openapi": "api/v2/products.yml",
-            "pages": [
-              {
-                "title": "Get Products",
-                "path": "api/products/list"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-</CodeGroup>
+**Group-level OpenAPI Properties:**
 
 <ParamField
   path="openapi"
@@ -1300,14 +1269,213 @@ Generate comprehensive API documentation automatically from OpenAPI specificatio
   Supports both JSON (`.json`) and YAML (`.yaml`, `.yml`) formats.
 </ParamField>
 
+<ParamField
+  path="hidden-apis"
+  param-type="array"
+  required="false"
+  showLocation="false"
+>
+  Array of endpoint identifiers to exclude from automatic generation. Each entry must use the exact format `"METHOD /path"` with uppercase HTTP method (e.g., `"DELETE /users/{id}"`).
+</ParamField>
+
+### Hiding Endpoints
+
+Use `hidden-apis` to exclude specific endpoints from automatic generation while keeping them in your OpenAPI spec:
+
+```json
+{
+  "group": "Users API",
+  "openapi": "api-reference/openapi.yaml",
+  "hidden-apis": [
+    "DELETE /users/{id}",
+    "GET /internal/health",
+    "POST /admin/reset"
+  ],
+  "pages": []
+}
+```
+
+<Callout kind="info" collapsed="false">
+  The `hidden-apis` format must match exactly: uppercase HTTP method, single space, then the path as defined in your OpenAPI spec. For example, `"GET /users/{id}"` is valid, but `"get /users/{id}"` or `"GET/users/{id}"` will not work.
+</Callout>
+
+### Nested OpenAPI Specifications
+
+Use multiple OpenAPI files for different API sections within nested groups:
+
+```json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "API Documentation",
+        "openapi": "api-reference/v1/openapi.json",
+        "pages": [
+          {
+            "title": "Overview",
+            "path": "api-reference/overview"
+          },
+          {
+            "group": "Products API",
+            "openapi": "api-reference/v2/products.yml",
+            "pages": [
+              {
+                "title": "Get Products",
+                "path": "api-reference/products/list"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Page-level OpenAPI Connection
+
+For more control over individual endpoint documentation, connect a specific OpenAPI endpoint to a custom MDX page. This injects OpenAPI-generated content into your page while preserving your custom content.
+
+Add the `openapi` property to a page with the format `"filepath METHOD /endpoint"`:
+
+```json
+{
+  "group": "Custom API Docs",
+  "pages": [
+    {
+      "title": "Get User Details",
+      "path": "api-reference/users/get-user",
+      "openapi": "api-reference/openapi.yaml GET /users/{id}"
+    }
+  ]
+}
+```
+
+**Page-level OpenAPI Properties:**
+
+<ParamField
+  path="openapi"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Connects a specific OpenAPI endpoint to this page for content injection. Format: `"filepath METHOD /endpoint"` (e.g., `"api-reference/openapi.yaml GET /users/{id}"`). The method must be uppercase.
+</ParamField>
+
+<ParamField
+  path="openapi-mode"
+  param-type="string"
+  required="false"
+  showLocation="false"
+>
+  Controls how much content is injected into your page. Values: `"auto"` (default) or `"custom"`.
+</ParamField>
+
+### OpenAPI Injection Modes
+
+**Auto mode** (default) injects comprehensive documentation:
+
+- Parameter documentation with types and descriptions
+- Endpoint description from OpenAPI spec
+- Request code examples in multiple languages
+- Response examples for all status codes
+- Interactive API playground
+
+**Custom mode** injects minimal content, preserving your custom page structure:
+
+- Interactive API playground
+- Request code examples
+- Response examples
+
+```json
+{
+  "title": "Create User",
+  "path": "api-reference/users/create-user",
+  "openapi": "api-reference/openapi.yaml POST /users",
+  "openapi-mode": "custom"
+}
+```
+
+<Callout kind="tip" collapsed="false">
+  Use `"openapi-mode": "custom"` when you want to write your own parameter descriptions, add custom sections, or structure the page differently than the auto-generated format.
+</Callout>
+
+### Combining Group and Page Connections
+
+Hide an endpoint from automatic generation and create a custom page for it:
+
+```json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "Auto Generated API",
+        "openapi": "api-reference/openapi.yaml",
+        "hidden-apis": ["GET /health"],
+        "pages": []
+      },
+      {
+        "group": "Custom Documentation",
+        "pages": [
+          {
+            "title": "Health Check Guide",
+            "path": "api-reference/health-check",
+            "openapi": "api-reference/openapi.yaml GET /health",
+            "openapi-mode": "custom"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
 ### OpenAPI Features
 
 - **Automatic endpoint generation** - Creates individual `.mdx` files for each API endpoint
+- **Selectively hide endpoints** - Use `hidden-apis` to exclude specific endpoints from generation
+- **Connect individual endpoints** - Link a specific endpoint to a custom page with `openapi` on pages
 - **Interactive examples** - Request/response components with syntax highlighting
 - **Parameter documentation** - Automatic ParamField generation from schema
-- **Authentication docs** - Security scheme documentation
+- **Authentication docs** - Security scheme documentation from OpenAPI security definitions
 - **Status code handling** - Multiple response examples per endpoint
+- **Tag-based grouping** - Endpoints are organized by their OpenAPI tags
 - **Inheritance** - Child elements inherit parent OpenAPI specs unless overridden
+
+### OpenAPI File Requirements
+
+<Callout kind="info" collapsed="false">
+  All OpenAPI specification files must be placed in the `api-reference` folder within your documentation project. When you add OpenAPI specs via the dashboard (Editor > OpenAPI Specs tab or Navigation section), this folder structure is created automatically.
+</Callout>
+
+```
+your-docs/
+├── api-reference/
+│   ├── openapi.yaml        # Main API spec
+│   ├── users-api.json      # Additional specs
+│   └── v2/
+│       └── openapi.yaml    # Versioned specs
+├── documentation.json
+└── getting-started.mdx
+```
+
+### Managing OpenAPI Specs via Dashboard
+
+You can view and manage your OpenAPI specifications from the Documentation.AI dashboard.
+
+<Steps>
+  <Step title="Open the Editor" icon="edit" title-type="p">
+    Navigate to your project in the Documentation.AI dashboard and open the **Editor** section.
+  </Step>
+
+  <Step title="Access OpenAPI Specs tab" icon="file-code" title-type="p">
+    Click on the **OpenAPI Specs** tab to view all available OpenAPI files detected in your `api-reference` folder.
+  </Step>
+
+  <Step title="Review and configure" icon="settings" title-type="p">
+    From this view, you can see which specs are connected to groups in your navigation and manage your API documentation configuration.
+  </Step>
+</Steps>
 
 ## SEO Configuration
 
@@ -1392,11 +1560,11 @@ Basic documentation site with tabs and groups, no version or product variants.
         "groups": [
           {
             "group": "Endpoints",
-            "openapi": "api/openapi.json",
+            "openapi": "api-reference/openapi.json",
             "pages": [
               {
                 "title": "Authentication",
-                "path": "api/auth"
+                "path": "api-reference/auth"
               }
             ]
           }
@@ -1441,7 +1609,7 @@ Documentation with multiple versions but single product.
             "groups": [
               {
                 "group": "Core API",
-                "openapi": "api/v2/openapi.yaml",
+                "openapi": "api-reference/v2/openapi.yaml",
                 "pages": []
               }
             ]
@@ -1731,17 +1899,17 @@ Full example with all features including dimensions, views, OpenAPI integration,
                       }
                     ]
                   },
-                  {
+                    {
                     "tab": "API Reference",
                     "icon": "code",
                     "groups": [
                       {
                         "group": "REST API",
-                        "openapi": "api/openapi.yaml",
+                        "openapi": "api-reference/openapi.yaml",
                         "pages": [
                           {
                             "title": "Authentication",
-                            "path": "api/authentication"
+                            "path": "api-reference/authentication"
                           }
                         ]
                       }

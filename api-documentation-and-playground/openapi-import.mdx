@@ -28,11 +28,15 @@ Use OpenAPI import when you have:
 
 ### Step 1: Add OpenAPI File
 
-Place your OpenAPI specification file in your documentation project:
+Place your OpenAPI specification file in the `api-reference` folder within your documentation project:
+
+<Callout kind="info" collapsed="false">
+  All OpenAPI specification files must be placed in the `api-reference` folder. When you add OpenAPI specs via the dashboard (Editor > OpenAPI Specs tab or Navigation section), this folder structure is created automatically.
+</Callout>
 
 ```
 your-docs/
-├── api/
+├── api-reference/
 │   └── openapi.yaml    # Your OpenAPI spec
 ├── documentation.json
 └── other-docs.mdx
@@ -49,11 +53,11 @@ Add the `openapi` property to a group in your `documentation.json`:
       {
         "group": "API Reference",
         "icon": "code",
-        "openapi": "api/openapi.yaml",
+        "openapi": "api-reference/openapi.yaml",
         "pages": [
           {
             "title": "Authentication",
-            "path": "api/authentication"
+            "path": "api-reference/authentication"
           }
         ]
       }
@@ -65,7 +69,7 @@ Add the `openapi` property to a group in your `documentation.json`:
 **Group-level OpenAPI Properties:**
 
 <ParamField path="openapi" param-type="string" required="true" deprecated="false">
-  Relative path to your OpenAPI specification file. Supports `.json`, `.yaml`, and `.yml` formats.
+  Relative path to your OpenAPI specification file in the `api-reference` folder. Supports `.json`, `.yaml`, and `.yml` formats.
 </ParamField>
 
 <ParamField path="hidden-apis" param-type="array" required="false" deprecated="false">
@@ -79,7 +83,7 @@ Use `hidden-apis` to exclude specific endpoints from automatic generation:
 ```json
 {
   "group": "Users API",
-  "openapi": "api/openapi.yaml",
+  "openapi": "api-reference/openapi.yaml",
   "hidden-apis": [
     "DELETE /users/{id}",
     "GET /internal/health"
@@ -138,11 +142,11 @@ Documentation.AI accepts OpenAPI specifications in multiple formats:
 
 ### File Organization
 
-Structure your OpenAPI files for optimal documentation generation:
+Structure your OpenAPI files within the `api-reference` folder:
 
 ```
 docs/
-├── api/
+├── api-reference/
 │   ├── openapi.yaml           # Main API specification
 │   ├── v1/
 │   │   └── legacy-api.json    # Version-specific specs
@@ -230,15 +234,15 @@ Use multiple OpenAPI files for different API sections:
     "groups": [
       {
         "group": "Core API",
-        "openapi": "api/core.yaml",
+        "openapi": "api-reference/core.yaml",
         "pages": [
           {
             "group": "User Management",
-            "openapi": "api/users.yaml",
+            "openapi": "api-reference/users.yaml",
             "pages": [
               {
                 "title": "User Overview",
-                "path": "api/users/overview"
+                "path": "api-reference/users/overview"
               }
             ]
           }
@@ -256,15 +260,15 @@ Combine generated API documentation with custom content:
 ```json
 {
   "group": "API Reference",
-  "openapi": "api/openapi.yaml",
+  "openapi": "api-reference/openapi.yaml",
   "pages": [
     {
       "title": "Getting Started",
-      "path": "api/getting-started"
+      "path": "api-reference/getting-started"
     },
     {
       "title": "Authentication Guide", 
-      "path": "api/authentication"
+      "path": "api-reference/authentication"
     }
   ]
 }
@@ -284,8 +288,8 @@ Add the `openapi` property to a page with the format `"filepath METHOD /endpoint
   "pages": [
     {
       "title": "Get User Details",
-      "path": "api/users/get-user",
-      "openapi": "api/openapi.yaml GET /users/{id}"
+      "path": "api-reference/users/get-user",
+      "openapi": "api-reference/openapi.yaml GET /users/{id}"
     }
   ]
 }
@@ -294,7 +298,7 @@ Add the `openapi` property to a page with the format `"filepath METHOD /endpoint
 **Page-level OpenAPI Properties:**
 
 <ParamField path="openapi" param-type="string" required="false" deprecated="false">
-  Connects a specific OpenAPI endpoint to this page. Format: `"filepath METHOD /endpoint"` (e.g., `"api/openapi.yaml GET /users/{id}"`). The method must be uppercase.
+  Connects a specific OpenAPI endpoint to this page. Format: `"filepath METHOD /endpoint"` (e.g., `"api-reference/openapi.yaml GET /users/{id}"`). The method must be uppercase.
 </ParamField>
 
 <ParamField path="openapi-mode" param-type="string" required="false" deprecated="false">
@@ -320,8 +324,8 @@ Add the `openapi` property to a page with the format `"filepath METHOD /endpoint
 ```json
 {
   "title": "Create User",
-  "path": "api/users/create-user",
-  "openapi": "api/openapi.yaml POST /users",
+  "path": "api-reference/users/create-user",
+  "openapi": "api-reference/openapi.yaml POST /users",
   "openapi-mode": "custom"
 }
 ```
@@ -340,7 +344,7 @@ Hide an endpoint from automatic generation and create a custom page for it:
     "groups": [
       {
         "group": "Auto Generated API",
-        "openapi": "api/openapi.yaml",
+        "openapi": "api-reference/openapi.yaml",
         "hidden-apis": ["GET /health"],
         "pages": []
       },
@@ -349,8 +353,8 @@ Hide an endpoint from automatic generation and create a custom page for it:
         "pages": [
           {
             "title": "Health Check Guide",
-            "path": "api/health-check",
-            "openapi": "api/openapi.yaml GET /health",
+            "path": "api-reference/health-check",
+            "openapi": "api-reference/openapi.yaml GET /health",
             "openapi-mode": "custom"
           }
         ]
@@ -419,7 +423,7 @@ Organize versioned APIs using separate OpenAPI files:
         "groups": [
           {
             "group": "API Reference",
-            "openapi": "api/v2/openapi.yaml"
+            "openapi": "api-reference/v2/openapi.yaml"
           }
         ]
       },
@@ -428,7 +432,7 @@ Organize versioned APIs using separate OpenAPI files:
         "groups": [
           {
             "group": "Legacy API",
-            "openapi": "api/v1/openapi.json"
+            "openapi": "api-reference/v1/openapi.json"
           }
         ]
       }
@@ -450,7 +454,7 @@ Document microservices with separate OpenAPI specifications:
         "groups": [
           {
             "group": "Users API",
-            "openapi": "api/users-service.yaml"
+            "openapi": "api-reference/users-service.yaml"
           }
         ]
       },
@@ -459,7 +463,7 @@ Document microservices with separate OpenAPI specifications:
         "groups": [
           {
             "group": "Payments API", 
-            "openapi": "api/payments-service.yaml"
+            "openapi": "api-reference/payments-service.yaml"
           }
         ]
       }
