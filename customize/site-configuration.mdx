@@ -1038,7 +1038,29 @@ This example demonstrates:
 
 ## OpenAPI Integration
 
-Generate comprehensive API documentation automatically from OpenAPI specifications. Documentation.AI supports two connection types: group-level for automatic endpoint generation, and page-level for injecting OpenAPI content into custom pages.
+Generate comprehensive API documentation automatically from OpenAPI specifications. Documentation.AI supports two connection types: group-level for automatic endpoint generation, and page-level for injecting OpenAPI content into custom pages. Below the list of feature that are supported.&#x20;
+
+- **Automatic endpoint generation** - Creates individual `.mdx` files for each API endpoint
+
+- **Selectively hide endpoints** - Use `hidden-apis` to exclude specific endpoints from generation
+
+- **Connect individual endpoints** - Link a specific endpoint to a custom page with `openapi` on pages
+
+- **Interactive examples** - Request/response components with syntax highlighting
+
+- **Parameter documentation** - Automatic ParamField generation from schema
+
+- **Authentication docs** - Security scheme documentation from OpenAPI security definitions
+
+- **Status code handling** - Multiple response examples per endpoint
+
+- **Tag-based grouping** - Endpoints are organized by their OpenAPI tags
+
+- **Inheritance** - Child elements inherit parent OpenAPI specs unless overridden
+
+###
+
+
 
 ### Group-level OpenAPI Connection
 
@@ -1221,26 +1243,6 @@ Hide an endpoint from automatic generation and create a custom page for it:
   }
 }
 ```
-
-### OpenAPI Features
-
-- **Automatic endpoint generation** - Creates individual `.mdx` files for each API endpoint
-
-- **Selectively hide endpoints** - Use `hidden-apis` to exclude specific endpoints from generation
-
-- **Connect individual endpoints** - Link a specific endpoint to a custom page with `openapi` on pages
-
-- **Interactive examples** - Request/response components with syntax highlighting
-
-- **Parameter documentation** - Automatic ParamField generation from schema
-
-- **Authentication docs** - Security scheme documentation from OpenAPI security definitions
-
-- **Status code handling** - Multiple response examples per endpoint
-
-- **Tag-based grouping** - Endpoints are organized by their OpenAPI tags
-
-- **Inheritance** - Child elements inherit parent OpenAPI specs unless overridden
 
 ### OpenAPI File Requirements
 
