@@ -1,9 +1,8 @@
 ---
 title: Site Configuration
-description: "Site configuration documentation.json options and examples."
+description: Site configuration documentation.json options and examples.
 type: reference
 ---
-
 ## Overview
 
 Configure your documentation site using the `documentation.json` file. This file controls your site's branding, navigation structure, SEO settings, and API documentation generation.
@@ -19,22 +18,12 @@ Basic site settings that control your documentation's identity and behavior
 }
 ```
 
-<ParamField
-  path="name"
-  param-type="string"
-  required="true"
-  showLocation="false"
->
+<ParamField path="name" param-type="string" required="true" deprecated="false">
   Site name displayed in the browser title, navigation header, and social media
   previews.
 </ParamField>
 
-<ParamField
-  path="initialRoute"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="initialRoute" param-type="string" required="false" deprecated="false">
   Default page path when users visit the root URL. Points to an MDX file in your
   documentation project (all pages must be in MDX format). Specify the path
   without the `.mdx` extension.
@@ -47,6 +36,7 @@ Templates control the overall layout and visual style of your documentation site
 Use the `template` field in `documentation.json` to pick between the built-in layouts:
 
 - `"classic"` - Default layout focused on a familiar docs experience
+
 - `"atlas"` - Alternative layout optimized for richer navigation and content density
 
 You can declare the template field as `template: "classic" | "atlas"`.
@@ -61,12 +51,7 @@ If you do not set `template`, the system defaults to `"classic"`.
 }
 ```
 
-<ParamField
-  path="template"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="template" param-type="string" required="false" deprecated="false">
   Site template that selects the base layout and style for your documentation.
   Accepted values: `"classic"` or `"atlas"`. Defaults to `"classic"` when not
   specified.
@@ -87,39 +72,19 @@ Configure logo variants for different themes and sizes. All logo fields are opti
 }
 ```
 
-<ParamField
-  path="logo-dark"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="logo-dark" param-type="string" required="false" deprecated="false">
   Main logo displayed in dark theme. Supports PNG, SVG, WEBP formats.
 </ParamField>
 
-<ParamField
-  path="logo-light"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="logo-light" param-type="string" required="false" deprecated="false">
   Main logo displayed in light theme.
 </ParamField>
 
-<ParamField
-  path="logo-small-dark"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="logo-small-dark" param-type="string" required="false" deprecated="false">
   Small logo/favicon for dark theme. Used in browser tabs and mobile view.
 </ParamField>
 
-<ParamField
-  path="logo-small-light"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="logo-small-light" param-type="string" required="false" deprecated="false">
   Small logo/favicon for light theme.
 </ParamField>
 
@@ -146,43 +111,41 @@ Customize your site's color scheme with automatic contrast optimization.
 
 ### Light Theme Colors
 
-<ParamField path="light" param-type="object" required="false" showLocation="false">
+<ParamField path="light" param-type="object" required="false" deprecated="false">
   Color scheme for light mode appearance.
-  
-  <Expandable title="Light Mode Color Options" defaultOpen="false">
-    <ParamField path="brand" param-type="string" required="false" showLocation="false">
+
+  <Expandable title="Light Mode Color Options" default-open="false">
+    <ParamField path="brand" param-type="string" required="false" deprecated="false">
       Primary brand color for buttons, links, and accents. Use hex format (e.g., `#3143e3`).
     </ParamField>
 
-    <ParamField path="heading" param-type="string" required="false" showLocation="false">
+    <ParamField path="heading" param-type="string" required="false" deprecated="false">
       Heading and title text color. Default: `#1a1a1a`.
     </ParamField>
 
-    <ParamField path="text" param-type="string" required="false" showLocation="false">
+    <ParamField path="text" param-type="string" required="false" deprecated="false">
       Body text color for readability. Default: `#374151`.
     </ParamField>
-
   </Expandable>
 </ParamField>
 
 ### Dark Theme Colors
 
-<ParamField path="dark" param-type="object" required="false" showLocation="false">
+<ParamField path="dark" param-type="object" required="false" deprecated="false">
   Color scheme for dark mode appearance.
-  
-  <Expandable title="Dark Mode Color Options" defaultOpen="false">
-    <ParamField path="brand" param-type="string" required="false" showLocation="false">
+
+  <Expandable title="Dark Mode Color Options" default-open="false">
+    <ParamField path="brand" param-type="string" required="false" deprecated="false">
       Primary brand color optimized for dark backgrounds. Use hex format (e.g., `#85a1ff`).
     </ParamField>
 
-    <ParamField path="heading" param-type="string" required="false" showLocation="false">
+    <ParamField path="heading" param-type="string" required="false" deprecated="false">
       Heading and title text color for dark mode. Default: `#f2f2f2`.
     </ParamField>
 
-    <ParamField path="text" param-type="string" required="false" showLocation="false">
+    <ParamField path="text" param-type="string" required="false" deprecated="false">
       Body text color for dark mode readability. Default: `#c1c1c1`.
     </ParamField>
-
   </Expandable>
 </ParamField>
 
@@ -217,18 +180,17 @@ Configure the top navigation bar with action buttons and links.
 
 Configure the main call-to-action button that appears prominently in your navbar.
 
-<ParamField path="primary" param-type="object" required="false" showLocation="false">
+<ParamField path="primary" param-type="object" required="false" deprecated="false">
   Main action button for user engagement (e.g., "Get Started", "Sign Up", "Try Now").
-  
-  <Expandable title="Button Configuration" defaultOpen="false">
-    <ParamField path="title" param-type="string" required="true" showLocation="false">
+
+  <Expandable title="Button Configuration" default-open="false">
+    <ParamField path="title" param-type="string" required="true" deprecated="false">
       Text displayed on the button.
     </ParamField>
 
-    <ParamField path="link" param-type="string" required="true" showLocation="false">
+    <ParamField path="link" param-type="string" required="true" deprecated="false">
       Destination URL when clicked.
     </ParamField>
-
   </Expandable>
 </ParamField>
 
@@ -236,18 +198,17 @@ Configure the main call-to-action button that appears prominently in your navbar
 
 Add supplementary text links for additional navigation options.
 
-<ParamField path="links" param-type="array" required="false" showLocation="false">
+<ParamField path="links" param-type="array" required="false" deprecated="false">
   Array of secondary navigation links displayed as text in the navbar.
-  
-  <Expandable title="Link Configuration" defaultOpen="false">
-    <ParamField path="title" param-type="string" required="true" showLocation="false">
+
+  <Expandable title="Link Configuration" default-open="false">
+    <ParamField path="title" param-type="string" required="true" deprecated="false">
       Display text for the link.
     </ParamField>
 
-    <ParamField path="link" param-type="string" required="true" showLocation="false">
+    <ParamField path="link" param-type="string" required="true" deprecated="false">
       Target URL. Supports `mailto:` and `tel:` protocols for contact links.
     </ParamField>
-
   </Expandable>
 </ParamField>
 
@@ -265,11 +226,13 @@ flowchart TB
 
 **Dimensions → Views → Content**
 
-1. **Dimensions** define _where_ in your documentation the reader currently is (e.g., which product, version, or language)
-2. **Views** define _how_ content is organized and navigated within that context (e.g., tabs or dropdowns)
-3. **Content** defines _what_ the reader sees (e.g., groups and pages of documentation)
+1. **Dimensions** define *where* in your documentation the reader currently is (e.g., which product, version, or language)
 
-<Callout type="info">
+2. **Views** define *how* content is organized and navigated within that context (e.g., tabs or dropdowns)
+
+3. **Content** defines *what* the reader sees (e.g., groups and pages of documentation)
+
+<Callout kind="note" collapsed="false">
   **Navigation Rule**: Each container must choose exactly ONE child type. For
   example, a tab can contain `groups` OR `pages` OR `dropdowns`, but not
   multiple types simultaneously.
@@ -279,22 +242,19 @@ flowchart TB
 
 When using [partial access control](/customize/access-control), you can control which parts of your documentation are publicly accessible or protected using the `public` property. This property can be set on **any navigation node** across all three layers.
 
-<ParamField
-  path="public"
-  param-type="boolean"
-  required="false"
-  showLocation="false"
->
+<ParamField path="public" param-type="boolean" required="false" deprecated="false">
   Controls visibility when access control mode is `partial`. Can be applied to dimensions, views, and content nodes.
-  
+
   - `true` makes this node and its descendants public
+
   - `false` makes this node and its descendants protected
+
   - Omit to inherit from the nearest parent that defines it
-  
+
   The closest explicit value wins for any subtree.
 </ParamField>
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
   The `public` property only affects page access when access control is enabled and mode is set to `partial`.
   In public mode (no access control) or private mode (full protection), this property is ignored.
 </Callout>
@@ -307,39 +267,28 @@ Dimensions describe the organizational axes of your documentation. They define c
 
 ### Supported Dimension Types
 
-<ParamField
-  path="products"
-  param-type="array"
-  required="false"
-  showLocation="false"
->
+<ParamField path="products" param-type="array" required="false" deprecated="false">
   Organize documentation by different products or services your company offers.
 </ParamField>
 
-<ParamField
-  path="versions"
-  param-type="array"
-  required="false"
-  showLocation="false"
->
+<ParamField path="versions" param-type="array" required="false" deprecated="false">
   Organize documentation by product versions or API versions.
 </ParamField>
 
-<ParamField
-  path="languages"
-  param-type="array"
-  required="false"
-  showLocation="false"
->
+<ParamField path="languages" param-type="array" required="false" deprecated="false">
   Organize documentation by language for internationalization.
 </ParamField>
 
 ### Dimension Behavior
 
 - **Optional**: Use dimensions only when needed for your documentation structure
+
 - **Flexible Order**: Dimensions can be nested in any order (e.g., `products → versions → languages` or `versions → languages`)
+
 - **Single Root**: Navigation must start with one dimension type at the root level
+
 - **User Selection**: When users select a dimension value, the system filters content to show only what belongs to that context
+
 - **UI Display**: Currently rendered as dropdown selectors at the top of your documentation
 
 ### Dimension Configuration
@@ -348,318 +297,299 @@ Each dimension item must have a unique identifier and can contain nested dimensi
 
 **Dimension Item Properties:**
 
-<ParamField
-  path="product | version | language"
-  param-type="string"
-  required="true"
-  showLocation="false"
->
+<ParamField path="product | version | language" param-type="string" required="true" deprecated="false">
   Display name for the dimension item shown in the selector UI.
 </ParamField>
 
-<ParamField
-  path="icon"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="icon" param-type="string" required="false" deprecated="false">
   Visual icon from the Lucide React icon library.
 </ParamField>
 
-<ParamField
-  path="public"
-  param-type="boolean"
-  required="false"
-  showLocation="false"
->
+<ParamField path="public" param-type="boolean" required="false" deprecated="false">
   Controls visibility for this dimension and its descendants in partial access control mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
-<CodeGroup tabs="Products Dimension,Versions Dimension,Languages Dimension">
-
-```json
-{
-  "navigation": {
-    "products": [
-      {
-        "product": "API Platform",
-        "icon": "code",
-        "tabs": [
-          {
-            "tab": "Documentation",
-            "groups": [...]
-          }
-        ]
-      },
-      {
-        "product": "Dashboard",
-        "icon": "layout-dashboard",
-        "pages": [...]
-      }
-    ]
+<CodeGroup show-lines="true" tabs={[]}>
+  ```json
+  {
+    "navigation": {
+      "products": [
+        {
+          "product": "API Platform",
+          "icon": "code",
+          "tabs": [
+            {
+              "tab": "Documentation",
+              "groups": [...]
+            }
+          ]
+        },
+        {
+          "product": "Dashboard",
+          "icon": "layout-dashboard",
+          "pages": [...]
+        }
+      ]
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "navigation": {
-    "versions": [
-      {
-        "version": "v2.0",
-        "icon": "badge",
-        "tabs": [
-          {
-            "tab": "API Reference",
-            "groups": [...]
-          }
-        ]
-      },
-      {
-        "version": "v1.0",
-        "icon": "badge",
-        "groups": [...]
-      }
-    ]
+  ```json
+  {
+    "navigation": {
+      "versions": [
+        {
+          "version": "v2.0",
+          "icon": "badge",
+          "tabs": [
+            {
+              "tab": "API Reference",
+              "groups": [...]
+            }
+          ]
+        },
+        {
+          "version": "v1.0",
+          "icon": "badge",
+          "groups": [...]
+        }
+      ]
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "navigation": {
-    "languages": [
-      {
-        "language": "English",
-        "icon": "languages",
-        "tabs": [
-          {
-            "tab": "Documentation",
-            "groups": [...]
-          }
-        ]
-      },
-      {
-        "language": "Español",
-        "icon": "languages",
-        "tabs": [...]
-      }
-    ]
+  ```json
+  {
+    "navigation": {
+      "languages": [
+        {
+          "language": "English",
+          "icon": "languages",
+          "tabs": [
+            {
+              "tab": "Documentation",
+              "groups": [...]
+            }
+          ]
+        },
+        {
+          "language": "Español",
+          "icon": "languages",
+          "tabs": [...]
+        }
+      ]
+    }
   }
-}
-```
-
+  ```
 </CodeGroup>
 
 ### Multi-Dimension Configuration
 
 You can nest multiple dimensions to create sophisticated organizational structures. Dimensions can be combined in any order based on your documentation needs.
 
-<CodeGroup tabs="Products + Versions,Versions + Products,Products + Versions + Languages,Versions + Languages">
-
-```json
-{
-  "navigation": {
-    "products": [
-      {
-        "product": "API Platform",
-        "icon": "code",
-        "versions": [
-          {
-            "version": "v2.0",
-            "icon": "badge",
-            "tabs": [
-              {
-                "tab": "Documentation",
-                "groups": [
-                  {
-                    "group": "Getting Started",
-                    "pages": [
-                      {
-                        "title": "Introduction",
-                        "path": "api-v2/introduction"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "version": "v1.0",
-            "icon": "badge",
-            "tabs": [...]
-          }
-        ]
-      },
-      {
-        "product": "Dashboard",
-        "icon": "layout-dashboard",
-        "versions": [
-          {
-            "version": "v2.0",
-            "icon": "badge",
-            "tabs": [...]
-          }
-        ]
-      }
-    ]
+<CodeGroup show-lines="true" tabs={[]}>
+  ```json
+  {
+    "navigation": {
+      "products": [
+        {
+          "product": "API Platform",
+          "icon": "code",
+          "versions": [
+            {
+              "version": "v2.0",
+              "icon": "badge",
+              "tabs": [
+                {
+                  "tab": "Documentation",
+                  "groups": [
+                    {
+                      "group": "Getting Started",
+                      "pages": [
+                        {
+                          "title": "Introduction",
+                          "path": "api-v2/introduction"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "v1.0",
+              "icon": "badge",
+              "tabs": [...]
+            }
+          ]
+        },
+        {
+          "product": "Dashboard",
+          "icon": "layout-dashboard",
+          "versions": [
+            {
+              "version": "v2.0",
+              "icon": "badge",
+              "tabs": [...]
+            }
+          ]
+        }
+      ]
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "navigation": {
-    "versions": [
-      {
-        "version": "v2.0",
-        "icon": "badge",
-        "products": [
-          {
-            "product": "API Platform",
-            "icon": "code",
-            "tabs": [
-              {
-                "tab": "Documentation",
-                "groups": [
-                  {
-                    "group": "Getting Started",
-                    "pages": [
-                      {
-                        "title": "Introduction",
-                        "path": "v2/api/introduction"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "product": "Dashboard",
-            "icon": "layout-dashboard",
-            "tabs": [...]
-          }
-        ]
-      },
-      {
-        "version": "v1.0",
-        "icon": "badge",
-        "products": [...]
-      }
-    ]
+  ```json
+  {
+    "navigation": {
+      "versions": [
+        {
+          "version": "v2.0",
+          "icon": "badge",
+          "products": [
+            {
+              "product": "API Platform",
+              "icon": "code",
+              "tabs": [
+                {
+                  "tab": "Documentation",
+                  "groups": [
+                    {
+                      "group": "Getting Started",
+                      "pages": [
+                        {
+                          "title": "Introduction",
+                          "path": "v2/api/introduction"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "product": "Dashboard",
+              "icon": "layout-dashboard",
+              "tabs": [...]
+            }
+          ]
+        },
+        {
+          "version": "v1.0",
+          "icon": "badge",
+          "products": [...]
+        }
+      ]
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "navigation": {
-    "products": [
-      {
-        "product": "API Platform",
-        "icon": "code",
-        "versions": [
-          {
-            "version": "v2.0",
-            "icon": "badge",
-            "languages": [
-              {
-                "language": "English",
-                "icon": "languages",
-                "tabs": [
-                  {
-                    "tab": "Documentation",
-                    "groups": [
-                      {
-                        "group": "Getting Started",
-                        "pages": [
-                          {
-                            "title": "Introduction",
-                            "path": "api-v2/en/introduction"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "language": "Español",
-                "icon": "languages",
-                "tabs": [
-                  {
-                    "tab": "Documentación",
-                    "groups": [...]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+  ```json
+  {
+    "navigation": {
+      "products": [
+        {
+          "product": "API Platform",
+          "icon": "code",
+          "versions": [
+            {
+              "version": "v2.0",
+              "icon": "badge",
+              "languages": [
+                {
+                  "language": "English",
+                  "icon": "languages",
+                  "tabs": [
+                    {
+                      "tab": "Documentation",
+                      "groups": [
+                        {
+                          "group": "Getting Started",
+                          "pages": [
+                            {
+                              "title": "Introduction",
+                              "path": "api-v2/en/introduction"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "language": "Español",
+                  "icon": "languages",
+                  "tabs": [
+                    {
+                      "tab": "Documentación",
+                      "groups": [...]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "navigation": {
-    "versions": [
-      {
-        "version": "v2.0",
-        "icon": "badge",
-        "languages": [
-          {
-            "language": "English",
-            "icon": "languages",
-            "tabs": [
-              {
-                "tab": "Documentation",
-                "groups": [
-                  {
-                    "group": "Getting Started",
-                    "pages": [
-                      {
-                        "title": "Introduction",
-                        "path": "v2/en/introduction"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "language": "Español",
-            "icon": "languages",
-            "tabs": [
-              {
-                "tab": "Documentación",
-                "groups": [...]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "version": "v1.0",
-        "icon": "badge",
-        "languages": [...]
-      }
-    ]
+  ```json
+  {
+    "navigation": {
+      "versions": [
+        {
+          "version": "v2.0",
+          "icon": "badge",
+          "languages": [
+            {
+              "language": "English",
+              "icon": "languages",
+              "tabs": [
+                {
+                  "tab": "Documentation",
+                  "groups": [
+                    {
+                      "group": "Getting Started",
+                      "pages": [
+                        {
+                          "title": "Introduction",
+                          "path": "v2/en/introduction"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "language": "Español",
+              "icon": "languages",
+              "tabs": [
+                {
+                  "tab": "Documentación",
+                  "groups": [...]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "version": "v1.0",
+          "icon": "badge",
+          "languages": [...]
+        }
+      ]
+    }
   }
-}
-```
-
+  ```
 </CodeGroup>
 
-<Callout type="tip">
+<Callout kind="note" collapsed="false">
   **Dimension Order Matters**: The order of nested dimensions affects user
   experience. Consider what users will select first. For example, `products →
-  versions` works well when users first choose a product, then its version. Use
+    versions` works well when users first choose a product, then its version. Use
   `versions → products` if version selection is more important for your use
   case.
 </Callout>
@@ -672,22 +602,12 @@ Views control how content is organized and navigated within a chosen dimension c
 
 ### Supported View Types
 
-<ParamField
-  path="tabs"
-  param-type="array"
-  required="false"
-  showLocation="false"
->
+<ParamField path="tabs" param-type="array" required="false" deprecated="false">
   Horizontal navigation bar for switching between parallel sections like
   "Guides" and "API Reference".
 </ParamField>
 
-<ParamField
-  path="dropdowns"
-  param-type="array"
-  required="false"
-  showLocation="false"
->
+<ParamField path="dropdowns" param-type="array" required="false" deprecated="false">
   Collapsible dropdown menus for selecting between sub-categories in the
   sidebar.
 </ParamField>
@@ -702,7 +622,7 @@ Our standard UI templates support these view combinations:
 | **Pattern 2** | `Dropdown → Dropdown`        | Hierarchical categorization without tabs     |
 | **Pattern 3** | `Tabs → Dropdown → Dropdown` | Tab-based sections with nested categories    |
 
-<Callout type="info">
+<Callout kind="note" collapsed="false">
   **Enterprise Customization**: Custom UI templates can support additional view
   combinations beyond these standard patterns. Contact support for enterprise
   options.
@@ -751,42 +671,29 @@ Tabs create horizontal navigation sections that are visible at the top of your d
 
 **Tab Properties:**
 
-<ParamField path="tab" param-type="string" required="true" showLocation="false">
+<ParamField path="tab" param-type="string" required="true" deprecated="false">
   Display name for the tab shown in the navigation bar.
 </ParamField>
 
-<ParamField
-  path="icon"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="icon" param-type="string" required="false" deprecated="false">
   Visual icon from the Lucide React icon library.
 </ParamField>
 
-<ParamField
-  path="href"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="href" param-type="string" required="false" deprecated="false">
   External URL for tabs that link outside your documentation. Use instead of
   nested content.
 </ParamField>
 
-<ParamField
-  path="public"
-  param-type="boolean"
-  required="false"
-  showLocation="false"
->
+<ParamField path="public" param-type="boolean" required="false" deprecated="false">
   Controls visibility for this tab and its descendants in partial access control mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
 **Tab Children** (choose ONE):
 
 - `dropdowns` - Array of dropdown items
+
 - `groups` - Array of content groups
+
 - `pages` - Array of individual pages
 
 ### Dropdown Configuration
@@ -823,57 +730,35 @@ Dropdowns create collapsible sections in the sidebar for hierarchical navigation
 
 **Dropdown Properties:**
 
-<ParamField
-  path="dropdown"
-  param-type="string"
-  required="true"
-  showLocation="false"
->
+<ParamField path="dropdown" param-type="string" required="true" deprecated="false">
   Display name for the dropdown shown in the sidebar.
 </ParamField>
 
-<ParamField
-  path="icon"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="icon" param-type="string" required="false" deprecated="false">
   Visual icon from the Lucide React icon library.
 </ParamField>
 
-<ParamField
-  path="description"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="description" param-type="string" required="false" deprecated="false">
   Optional descriptive text shown below the dropdown title.
 </ParamField>
 
-<ParamField
-  path="href"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="href" param-type="string" required="false" deprecated="false">
   External URL for dropdowns that link outside your documentation. Use instead
   of nested content.
 </ParamField>
 
-<ParamField
-  path="public"
-  param-type="boolean"
-  required="false"
-  showLocation="false"
->
+<ParamField path="public" param-type="boolean" required="false" deprecated="false">
   Controls visibility for this dropdown and its descendants in partial access control mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
 **Dropdown Children** (choose ONE):
 
 - `tabs` - Array of tab items
+
 - `dropdowns` - Array of nested dropdown items
+
 - `groups` - Array of content groups
+
 - `pages` - Array of individual pages
 
 ---
@@ -886,71 +771,69 @@ The content layer contains your actual documentation files organized into groups
 
 For straightforward documentation without version or product variants, start directly with views or content.
 
-<CodeGroup tabs="Tabs Only,Groups Only,Pages Only">
-
-```json
-{
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Documentation",
-        "icon": "book",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              {
-                "title": "Introduction",
-                "path": "introduction"
-              }
-            ]
-          }
-        ]
-      }
-    ]
+<CodeGroup show-lines="true" tabs={[]}>
+  ```json
+  {
+    "navigation": {
+      "tabs": [
+        {
+          "tab": "Documentation",
+          "icon": "book",
+          "groups": [
+            {
+              "group": "Getting Started",
+              "pages": [
+                {
+                  "title": "Introduction",
+                  "path": "introduction"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "navigation": {
-    "groups": [
-      {
-        "group": "Getting Started",
-        "icon": "rocket",
-        "expandable": false,
-        "pages": [
-          {
-            "title": "Introduction",
-            "path": "introduction"
-          }
-        ]
-      }
-    ]
+  ```json
+  {
+    "navigation": {
+      "groups": [
+        {
+          "group": "Getting Started",
+          "icon": "rocket",
+          "expandable": false,
+          "pages": [
+            {
+              "title": "Introduction",
+              "path": "introduction"
+            }
+          ]
+        }
+      ]
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "navigation": {
-    "pages": [
-      {
-        "title": "Introduction",
-        "path": "introduction",
-        "icon": "star"
-      },
-      {
-        "title": "API Reference",
-        "path": "api/overview",
-        "icon": "code"
-      }
-    ]
+  ```json
+  {
+    "navigation": {
+      "pages": [
+        {
+          "title": "Introduction",
+          "path": "introduction",
+          "icon": "star"
+        },
+        {
+          "title": "API Reference",
+          "path": "api/overview",
+          "icon": "code"
+        }
+      ]
+    }
   }
-}
-```
-
+  ```
 </CodeGroup>
 
 ### Groups Configuration
@@ -993,68 +876,33 @@ Groups organize related pages into collapsible sections within your sidebar navi
 
 **Group Properties:**
 
-<ParamField
-  path="group"
-  param-type="string"
-  required="true"
-  showLocation="false"
->
+<ParamField path="group" param-type="string" required="true" deprecated="false">
   Display name shown in the sidebar navigation.
 </ParamField>
 
-<ParamField
-  path="icon"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="icon" param-type="string" required="false" deprecated="false">
   Visual icon from the Lucide React icon library.
 </ParamField>
 
-<ParamField
-  path="expandable"
-  param-type="boolean"
-  required="false"
-  showLocation="false"
->
+<ParamField path="expandable" param-type="boolean" required="false" deprecated="false">
   Whether users can collapse/expand this group. Default: `true`.
 </ParamField>
 
-<ParamField
-  path="public"
-  param-type="boolean"
-  required="false"
-  showLocation="false"
->
+<ParamField path="public" param-type="boolean" required="false" deprecated="false">
   Controls visibility for this group and its descendants in partial access control mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
-<ParamField
-  path="openapi"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="openapi" param-type="string" required="false" deprecated="false">
   Path to OpenAPI specification file for automatic API documentation generation.
   Supports both JSON (`.json`) and YAML (`.yaml`, `.yml`) formats.
 </ParamField>
 
-<ParamField
-  path="hidden-apis"
-  param-type="array"
-  required="false"
-  showLocation="false"
->
-  Array of endpoint identifiers to exclude from automatic generation when using `openapi`. 
+<ParamField path="hidden-apis" param-type="array" required="false" deprecated="false">
+  Array of endpoint identifiers to exclude from automatic generation when using `openapi`.
   Each entry must use the exact format `"METHOD /path"` with uppercase method (e.g., `"DELETE /users/{id}"`).
 </ParamField>
 
-<ParamField
-  path="pages"
-  param-type="array"
-  required="true"
-  showLocation="false"
->
+<ParamField path="pages" param-type="array" required="true" deprecated="false">
   Array of pages and nested groups. Pages arrays can contain both individual
   page items AND nested group items mixed together.
 </ParamField>
@@ -1062,6 +910,7 @@ Groups organize related pages into collapsible sections within your sidebar navi
 **Group Children** (choose ONE):
 
 - Array of individual page items
+
 - Array mixing page items with nested group items
 
 ### Pages Configuration
@@ -1092,7 +941,7 @@ Pages are the individual documentation files that contain your content.
 }
 ```
 
-<Callout type="info">
+<Callout kind="note" collapsed="false">
   **MDX File Format Required**: All documentation pages must be in MDX format.
   When referencing files in your configuration, always omit the `.mdx` extension
   from the path (e.g., use `"getting-started/introduction"` instead of
@@ -1101,90 +950,45 @@ Pages are the individual documentation files that contain your content.
 
 **Page Properties:**
 
-<ParamField
-  path="title"
-  param-type="string"
-  required="true"
-  showLocation="false"
->
+<ParamField path="title" param-type="string" required="true" deprecated="false">
   Display name shown in navigation and browser title.
 </ParamField>
 
-<ParamField
-  path="public"
-  param-type="boolean"
-  required="false"
-  showLocation="false"
->
+<ParamField path="public" param-type="boolean" required="false" deprecated="false">
   Controls visibility for this page in partial access control mode. See [Visibility Control](#visibility-control-with-public).
 </ParamField>
 
-<ParamField
-  path="path"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="path" param-type="string" required="false" deprecated="false">
   Relative path to your MDX file without the `.mdx` extension (e.g.,
   `"getting-started/introduction"`). Required unless using `href`.
 </ParamField>
 
-<ParamField
-  path="href"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="href" param-type="string" required="false" deprecated="false">
   External URL for links that open in new tabs. Use instead of `path` for
   external resources.
 </ParamField>
 
-<ParamField
-  path="icon"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="icon" param-type="string" required="false" deprecated="false">
   Page icon from the Lucide React icon library.
 </ParamField>
 
-<ParamField
-  path="method"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="method" param-type="string" required="false" deprecated="false">
   HTTP method for API endpoint pages (e.g., `"GET"`, `"POST"`, `"DELETE"`). Used
   for visual indicators in API documentation.
 </ParamField>
 
-<ParamField
-  path="tags"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="tags" param-type="string" required="false" deprecated="false">
   Categorization tags for organizing related content.
 </ParamField>
 
-<ParamField
-  path="openapi"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
-  Connects a specific OpenAPI endpoint to this page for content injection. 
-  Format: `"filepath METHOD /endpoint"` (e.g., `"api-reference/openapi.yaml GET /users/{id}"`). 
+<ParamField path="openapi" param-type="string" required="false" deprecated="false">
+  Connects a specific OpenAPI endpoint to this page for content injection.
+  Format: `"filepath METHOD /endpoint"` (e.g., `"api-reference/openapi.yaml GET /users/{id}"`).
   The method must be uppercase.
 </ParamField>
 
-<ParamField
-  path="openapi-mode"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
-  Controls content injection when using page-level `openapi`. Values: `"auto"` (default) 
+<ParamField path="openapi-mode" param-type="string" required="false" deprecated="false">
+  Controls content injection when using page-level `openapi`. Values: `"auto"` (default)
   injects full documentation. `"custom"` injects only playground, request examples, and responses.
 </ParamField>
 
@@ -1227,7 +1031,9 @@ Pages arrays support flexible organization by mixing individual pages with neste
 This example demonstrates:
 
 - **Individual pages** (`Overview`, `External Design System`) appear alongside
+
 - **Nested group items** (`Layout Components`) with their own page collections
+
 - All coexisting within the same `pages` array
 
 ## OpenAPI Integration
@@ -1259,26 +1065,16 @@ Add the `openapi` property to a group to automatically generate documentation pa
 
 **Group-level OpenAPI Properties:**
 
-<ParamField
-  path="openapi"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="openapi" param-type="string" required="false" deprecated="false">
   Path to OpenAPI 3.0+ specification file within your documentation project.
   Supports both JSON (`.json`) and YAML (`.yaml`, `.yml`) formats.
 </ParamField>
 
-<ParamField
-  path="hidden-apis"
-  param-type="array"
-  required="false"
-  showLocation="false"
->
+<ParamField path="hidden-apis" param-type="array" required="false" deprecated="false">
   Array of endpoint identifiers to exclude from automatic generation. Each entry must use the exact format `"METHOD /path"` with uppercase HTTP method (e.g., `"DELETE /users/{id}"`).
 </ParamField>
 
-### Hiding Endpoints
+**Hiding Endpoints**
 
 Use `hidden-apis` to exclude specific endpoints from automatic generation while keeping them in your OpenAPI spec:
 
@@ -1353,21 +1149,11 @@ Add the `openapi` property to a page with the format `"filepath METHOD /endpoint
 
 **Page-level OpenAPI Properties:**
 
-<ParamField
-  path="openapi"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="openapi" param-type="string" required="false" deprecated="false">
   Connects a specific OpenAPI endpoint to this page for content injection. Format: `"filepath METHOD /endpoint"` (e.g., `"api-reference/openapi.yaml GET /users/{id}"`). The method must be uppercase.
 </ParamField>
 
-<ParamField
-  path="openapi-mode"
-  param-type="string"
-  required="false"
-  showLocation="false"
->
+<ParamField path="openapi-mode" param-type="string" required="false" deprecated="false">
   Controls how much content is injected into your page. Values: `"auto"` (default) or `"custom"`.
 </ParamField>
 
@@ -1376,15 +1162,21 @@ Add the `openapi` property to a page with the format `"filepath METHOD /endpoint
 **Auto mode** (default) injects comprehensive documentation:
 
 - Parameter documentation with types and descriptions
+
 - Endpoint description from OpenAPI spec
+
 - Request code examples in multiple languages
+
 - Response examples for all status codes
+
 - Interactive API playground
 
 **Custom mode** injects minimal content, preserving your custom page structure:
 
 - Interactive API playground
+
 - Request code examples
+
 - Response examples
 
 ```json
@@ -1433,13 +1225,21 @@ Hide an endpoint from automatic generation and create a custom page for it:
 ### OpenAPI Features
 
 - **Automatic endpoint generation** - Creates individual `.mdx` files for each API endpoint
+
 - **Selectively hide endpoints** - Use `hidden-apis` to exclude specific endpoints from generation
+
 - **Connect individual endpoints** - Link a specific endpoint to a custom page with `openapi` on pages
+
 - **Interactive examples** - Request/response components with syntax highlighting
+
 - **Parameter documentation** - Automatic ParamField generation from schema
+
 - **Authentication docs** - Security scheme documentation from OpenAPI security definitions
+
 - **Status code handling** - Multiple response examples per endpoint
+
 - **Tag-based grouping** - Endpoints are organized by their OpenAPI tags
+
 - **Inheritance** - Child elements inherit parent OpenAPI specs unless overridden
 
 ### OpenAPI File Requirements
@@ -1492,23 +1292,13 @@ Configure search engine optimization and meta tag behavior.
 
 ### Search Engine Indexing
 
-<ParamField
-  path="robots:index"
-  param-type="boolean"
-  required="false"
-  showLocation="false"
->
+<ParamField path="robots:index" param-type="boolean" required="false" deprecated="false">
   Allow search engines to index your documentation pages. Default: `true`.
 </ParamField>
 
 ### Search Engine Link Following
 
-<ParamField
-  path="robots:follow"
-  param-type="boolean"
-  required="false"
-  showLocation="false"
->
+<ParamField path="robots:follow" param-type="boolean" required="false" deprecated="false">
   Allow search engines to follow links within your documentation. Default:
   `true`.
 </ParamField>
@@ -1718,87 +1508,85 @@ Complex documentation with products, versions, and language support.
 
 Demonstrating the three standard UI template patterns.
 
-<CodeGroup tabs="Pattern 1: Dropdown→Tabs→Dropdown,Pattern 2: Dropdown→Dropdown,Pattern 3: Tabs→Dropdown→Dropdown">
-
-```json
-{
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Documentation",
-        "dropdowns": [
-          {
-            "dropdown": "User Guide",
-            "dropdowns": [
-              {
-                "dropdown": "Getting Started",
-                "pages": [
-                  {
-                    "title": "Introduction",
-                    "path": "intro"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+<CodeGroup show-lines="true" tabs={[]}>
+  ```json
+  {
+    "navigation": {
+      "tabs": [
+        {
+          "tab": "Documentation",
+          "dropdowns": [
+            {
+              "dropdown": "User Guide",
+              "dropdowns": [
+                {
+                  "dropdown": "Getting Started",
+                  "pages": [
+                    {
+                      "title": "Introduction",
+                      "path": "intro"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "navigation": {
-    "dropdowns": [
-      {
-        "dropdown": "Platform",
-        "dropdowns": [
-          {
-            "dropdown": "Core Features",
-            "pages": [
-              {
-                "title": "Authentication",
-                "path": "auth"
-              }
-            ]
-          }
-        ]
-      }
-    ]
+  ```json
+  {
+    "navigation": {
+      "dropdowns": [
+        {
+          "dropdown": "Platform",
+          "dropdowns": [
+            {
+              "dropdown": "Core Features",
+              "pages": [
+                {
+                  "title": "Authentication",
+                  "path": "auth"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Documentation",
-        "dropdowns": [
-          {
-            "dropdown": "Features",
-            "dropdowns": [
-              {
-                "dropdown": "Advanced",
-                "pages": [
-                  {
-                    "title": "Webhooks",
-                    "path": "webhooks"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+  ```json
+  {
+    "navigation": {
+      "tabs": [
+        {
+          "tab": "Documentation",
+          "dropdowns": [
+            {
+              "dropdown": "Features",
+              "dropdowns": [
+                {
+                  "dropdown": "Advanced",
+                  "pages": [
+                    {
+                      "title": "Webhooks",
+                      "path": "webhooks"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
-}
-```
-
+  ```
 </CodeGroup>
 
 ### Example 5: Complete Real-World Configuration
@@ -1929,3 +1717,4 @@ Full example with all features including dimensions, views, OpenAPI integration,
   }
 }
 ```
+
