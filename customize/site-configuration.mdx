@@ -933,6 +933,15 @@ Pages are the individual documentation files that contain your content.
       "tags": "API"
     },
     {
+      "title": "Changelog",
+      "path": "changelog",
+      "icon": "clock",
+      "badge": "New",
+      "show-sidebar": false,
+      "show-toc": false,
+      "content-width": "wide"
+    },
+    {
       "title": "External Resource",
       "href": "https://github.com/company/repo",
       "icon": "external-link"
@@ -946,6 +955,10 @@ Pages are the individual documentation files that contain your content.
   When referencing files in your configuration, always omit the `.mdx` extension
   from the path (e.g., use `"getting-started/introduction"` instead of
   `"getting-started/introduction.mdx"`).
+</Callout>
+
+<Callout kind="tip" collapsed="false">
+  Page display options like `show-sidebar`, `show-toc`, `show-parent-label`, and `content-width` all have sensible defaults. Only include them when you need to override the default behavior — for example, setting `"show-sidebar": false` on a changelog or landing page.
 </Callout>
 
 **Page Properties:**
@@ -979,6 +992,26 @@ Pages are the individual documentation files that contain your content.
 
 <ParamField path="tags" param-type="string" required="false" deprecated="false">
   Categorization tags for organizing related content.
+</ParamField>
+
+<ParamField path="badge" param-type="string" required="false" deprecated="false">
+  Short label displayed as a colored pill next to the page title in the sidebar. Useful for highlighting page status such as `"New"`, `"Beta"`, or `"Deprecated"`. Uses your brand color for styling.
+</ParamField>
+
+<ParamField path="show-sidebar" param-type="boolean" required="false" deprecated="false">
+  Controls the left sidebar visibility on this page. Set to `false` to hide the sidebar and expand content to full width. Default: `true`.
+</ParamField>
+
+<ParamField path="show-toc" param-type="boolean" required="false" deprecated="false">
+  Controls the right-side Table of Contents panel visibility on this page. Set to `false` to hide the TOC. Default: `true`.
+</ParamField>
+
+<ParamField path="show-parent-label" param-type="boolean" required="false" deprecated="false">
+  Controls the group/parent name label that appears above the page title. Set to `false` to hide it. Default: `true`.
+</ParamField>
+
+<ParamField path="content-width" param-type="string" required="false" deprecated="false">
+  Controls the maximum width of the content area on this page. Accepted values: `"narrow"` for focused reading, `"normal"` for standard layout, `"wide"` for full-width content. Default: `"normal"`.
 </ParamField>
 
 <ParamField path="openapi" param-type="string" required="false" deprecated="false">
