@@ -1,8 +1,144 @@
 ---
 title: GitHub Integration
-description: "Integrations and workflows: GitHub Integration with Documentation.AI."
+description: >-
+  Connect the Documentation.AI GitHub App and add context repositories so the AI
+  agent can use your code and commits while working on docs.
 ---
+## Overview
 
-# GitHub Integration
+Use the GitHub integration to connect the Documentation.AI GitHub App and link specific repositories as context for a documentation project. This lets the AI agent read code files and recent commits while planning and editing your docs.
 
-[How-to Guide] Connect GitHub Integration to automate workflows and integrate Documentation.AI with your tooling.
+<Callout kind="info" collapsed="false">
+  Context repositories are GitHub repositories linked to your documentation. The AI agent can reference code files and recent commits from these repositories to generate more accurate plans, execute tasks, and keep documentation aligned with your code.
+</Callout>
+
+For syncing and publishing your docs from a Git repository (for example, building from `main`), see the [Code Editor](/write-and-publish/code-editor) page. The context repository feature described here is separate and focuses on read-only context for the AI agent.
+
+## Before you start
+
+Make sure you have the right access so you can install the app once and then connect repositories to your projects without interruptions.
+
+<Callout kind="info" collapsed="false">
+  You need:
+
+  - An organization or workspace admin role in Documentation.AI
+
+  - Permission in GitHub to install apps and grant repository access
+
+  - At least one documentation project created in your Documentation.AI workspace
+</Callout>
+
+## 1. Install and manage the GitHub App
+
+Install the Documentation.AI GitHub App once at the organization level, then reuse that connection across all of your documentation projects.
+
+<Steps>
+  <Step title="Open the GitHub App settings" icon="settings" title-type="p">
+    In the Documentation.AI dashboard, go to **Settings → Organization Settings → GitHub App**. This page shows the current connection status and provides the link to install or manage the app on GitHub.
+  </Step>
+
+  <Step title="Install the Documentation.AI GitHub App" icon="github" title-type="p">
+    On the **GitHub App** page, click **Install GitHub App** or **Manage installation**. You will be redirected to GitHub to complete the app installation.
+
+    - Choose the GitHub organization or user account.
+
+    - Select the repositories the app can access *(recommended: only the repos you plan to use as context or for docs).*
+
+    - Confirm the installation.
+
+    After a successful install, the **GitHub App** section in Organization Settings shows the connected GitHub account as active.
+  </Step>
+
+  <Step title="Verify the connection" icon="check-circle" title-type="p">
+    Return to **Settings → Organization Settings → GitHub App** in Documentation.AI. You should see your GitHub organization or user listed as connected with an active status.
+
+    If the connection shows as missing or inactive, click the installation link on this page again to repair it from GitHub.
+  </Step>
+</Steps>
+
+<Callout kind="info" collapsed="false">
+  Installing the GitHub App connects your GitHub account to Documentation.AI at the organization level. You still need to select context repositories per documentation project to give the AI agent specific codebases to reference.
+</Callout>
+
+## 2. Add context repositories for a documentation site
+
+After the GitHub App is installed and active, connect one or more context repositories to each documentation project that should use code-aware AI.
+
+<Steps>
+  <Step title="Open the GitHub integration for your project" icon="folder" title-type="p">
+    In the Documentation.AI dashboard, open the documentation project you want to configure. Go to **Settings → Integrations**, find the **GitHub** integration, and click **Configure**.
+
+    The GitHub integration page for this project opens.
+  </Step>
+
+  <Step title="Add your first context repository" icon="plus" title-type="p">
+    Once the context repository manager is visible, click **Add repository**, then:
+
+    - Select one of the repositories that the Documentation.AI GitHub App can access.
+
+    - Confirm to add it as a context repository for this documentation project.
+
+    On success, the repository appears in the list of connected context repositories for this project.
+  </Step>
+
+  <Step title="Manage connected context repositories" icon="edit" title-type="p">
+    Use the GitHub integration page to review and manage the repositories linked to this documentation project.
+
+    You can:
+
+    - See which repositories are currently connected as context
+
+    - Remove a repository if it is no longer relevant
+
+    - Add another repository (up to the allowed limit) using **Add repository**
+
+    Changes here take effect immediately for the AI agent when it plans or edits documentation in this project.
+  </Step>
+</Steps>
+
+## Context repository limits
+
+Each documentation project can have up to **2 context repositories** connected at a time. This limit currently applies to all plans. When you need more than 2 repositories, [Contact sales](mailto:hello@documentationai.com) to discuss higher limits.
+
+<Callout kind="info" collapsed="false">
+  The 2-repository limit applies per documentation project. You can use different repositories for different projects, as long as each individual project does not exceed two context repositories.
+</Callout>
+
+## Troubleshooting
+
+Use these quick checks if the GitHub integration or context repositories are not behaving as expected.
+
+<ExpandableGroup>
+  <Expandable title="Repository is not listed when adding a context repository" default-open="false">
+    If an expected repository does not appear in the **Add repository** dropdown:
+
+    - Confirm the Documentation.AI GitHub App is installed on the correct GitHub organization or user.
+
+    - Check the app's repository access in GitHub and ensure the missing repository is selected.
+
+    - After updating access in GitHub, return to **Settings → Integrations → GitHub → Configure** for your project and refresh the page.
+  </Expandable>
+
+  <Expandable title="No GitHub connection found on the integration page" default-open="false">
+    If the GitHub integration page shows `No GitHub connection found`:
+
+    - Go to **Settings → Organization Settings → GitHub App**.
+
+    - Install the Documentation.AI GitHub App, or repair the installation if it looks inactive.
+
+    - Return to **Settings → Integrations → GitHub → Configure** and reload; the message should be replaced by the context repository manager.
+  </Expandable>
+
+  <Expandable title="Reached the maximum of 2 context repositories" default-open="false">
+    If you see a message about reaching the maximum of 2 context repositories:
+
+    - Decide which repository is less critical as context for this documentation project.
+
+    - Remove that repository from the context repository list.
+
+    - Add a different repository in its place.
+
+    If you consistently need more than two repositories for context, consider splitting your docs into multiple projects that mirror your codebase structure or contact sales at [hello@documentationai.com](mailto:hello@documentationai.com) to request higher limits.
+  </Expandable>
+</ExpandableGroup>
+
