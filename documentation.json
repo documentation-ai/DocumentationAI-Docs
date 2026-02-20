@@ -346,18 +346,6 @@
             ]
           },
           {
-            "group": "Integrations and Workflows",
-            "icon": "workflow",
-            "expandable": true,
-            "pages": [
-              {
-                "title": "GitHub Integration",
-                "path": "integrations-and-workflows/github-integration",
-                "icon": "github"
-              }
-            ]
-          },
-          {
             "group": "AI Features",
             "icon": "bot",
             "expandable": true,
@@ -386,6 +374,18 @@
                 "title": "AI Credits",
                 "path": "ai/ai-credits",
                 "icon": "stars"
+              }
+            ]
+          },
+          {
+            "group": "Integrations and Workflows",
+            "icon": "workflow",
+            "expandable": true,
+            "pages": [
+              {
+                "title": "GitHub Integration",
+                "path": "integrations-and-workflows/github-integration",
+                "icon": "github"
               }
             ]
           },
