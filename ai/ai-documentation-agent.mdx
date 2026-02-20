@@ -1,15 +1,13 @@
 ---
 title: AI Documentation Agent
-description: >-
-  Learn how to use the AI Documentation Agent inside the Web Editor to draft,
-  edit, and restructure documentation efficiently.
+description: Learn how to use the AI Documentation Agent in the Web Editor to draft, edit, and keep docs aligned with your code using GitHub context.
 ---
 ## What the AI Documentation Agent is
 
-The AI Documentation Agent is a workspace-aware writing assistant built directly into the Web Editor. It helps you draft new pages, improve existing content, apply Documentation.AI components correctly, and refactor structure while keeping your site configuration in mind.
+The AI Documentation Agent is a workspace-aware writing assistant built directly into the Web Editor. It helps you draft new pages, improve existing content, apply Documentation.AI components correctly, and refactor structure while keeping your site configuration in mind
 
-<Callout kind="info" collapsed="false">
-  The Agent understands your site's sidebar structure, page configuration, and Documentation.AI component syntax. As of now, it does not access private code repositories, ticketing systems, or external services.
+<Callout kind="info">
+  By default, the Agent uses your documentation project's context: site structure, page configuration, and Documentation.AI component syntax. When you install the GitHub Integration and connect context repositories to a project, the Agent can also read code files and recent commits from those specific repositories to inform its suggestions.
 </Callout>
 
 ## Where to find it in the Web Editor
@@ -46,7 +44,7 @@ The Agent can revise the current page while preserving structure, improving clar
 
 You can ask the Agent to add Cards, Columns, Steps, Mermaid diagrams, Tabs, Callouts, Expandables, and more.
 
-<Callout kind="tip" collapsed="false">
+<Callout kind="tip">
   Ask for component-aware edits like *Convert this unordered list into a Steps sequence* or *Wrap these three links in a Columns layout using Cards.*
 </Callout>
 
@@ -61,17 +59,41 @@ The Agent can help you write request and response examples, create structured Pa
 - *Add ParamField and ResponseField examples for this endpoint.*
 
 <CodeGroup show-lines="true" tabs={[]}>
-  ```ts
-  const res = await fetch("/v1/payments", {
-    method: "POST"
-  });
-  ```
 
-  ```python
-  import requests
-  res = requests.post("/v1/payments")
-  ```
+```ts
+const res = await fetch("/v1/payments", {
+  method: "POST"
+});
+```
+
+```python
+import requests
+res = requests.post("/v1/payments")
+```
+
 </CodeGroup>
+
+### Keep docs aligned with code changes
+
+When you use the [GitHub Integration](/integrations-and-workflows/github-integration) and connect context repositories to a project, the Agent can use code files and recent commits from those repositories as context while editing your docs.
+
+Point the Agent at the relevant change by sharing a commit URL, PR link, or commit hash in your prompt, or by pasting a short diff or summary. Then ask it to update or propose changes to the affected documentation pages.
+
+Example prompts:
+
+- *Here is the PR link that renames the `customer_id` field to `user_id`. Find all affected API docs in this project and propose updated wording.*
+
+- *This commit adds a new `DELETE /v1/teams/{team_id}` endpoint in our context repo. Draft a new reference page that matches the style of our existing team endpoints.*
+
+- *Use this diff to update parameter descriptions for `POST /v1/sessions` and call out the new `expires_after` field in a Callout.*
+
+- *Review this PR that changes how rate limits work and suggest updates to the rate limits and error codes documentation.*
+
+- *This commit deprecates the `mode` query parameter. Propose how to mark it as deprecated in our API reference and add a short migration note.*
+
+<Callout kind="info">
+  The Agent reads from the specific context repositories linked to your documentation project. It does not browse all of your GitHub data, and it treats those repositories as read-only context while it plans and edits documentation.
+</Callout>
 
 ### Restructure and refactor pages
 
@@ -86,11 +108,13 @@ If a page has grown too long or disorganized, ask the Agent to propose a more re
 - Apply component-based layouts to replace long text blocks.
 
 <Expandable title="Prompt templates for restructuring" default-open="false">
+
   * *Review this entire page and propose a clearer structure.*
 
   * *Rewrite this page following overview → key concepts → steps → examples → next steps.*
 
   * *Suggest how to break this page into smaller, focused pages.*
+
 </Expandable>
 
 ## Example prompts you can use immediately
@@ -107,8 +131,8 @@ Below are practical prompts tailored for Web Editor flows.
 
 The Agent is in active beta. Treat its output as a strong starting point, not a final draft.
 
-<Callout kind="alert" collapsed="false">
-  Always review generated content before publishing. The Agent avoids component misuse, but manual oversight ensures accuracy.
+<Callout kind="alert">
+  Always review generated content before publishing. The Agent avoids component misuse, but manual oversight ensures accuracy. For code-aware edits, the Agent only reads from context repositories connected to the current documentation project and cannot modify those repositories. If a commit or PR is not in a connected repository, you may need to paste the relevant diff, description, or key details into your prompt.
 </Callout>
 
 ### Credit usage
@@ -127,6 +151,8 @@ Use the Agent when:
 
 - You are refactoring a page and want suggestions.
 
+- You want to align docs with recent code changes from connected context repositories.
+
 Edit manually when:
 
 - You are making small fixes or micro-adjustments.
@@ -134,4 +160,3 @@ Edit manually when:
 - You need pixel-perfect formatting or subtle wording changes.
 
 - The page contains project-specific details the Agent is not aware of.
-
