@@ -81,15 +81,11 @@ Point the Agent at the relevant change by sharing a commit URL, PR link, or comm
 
 Example prompts:
 
-- *Here is the PR link that renames the `customer_id` field to `user_id`. Find all affected API docs in this project and propose updated wording.*
+- *Refer the new commit adds a new `DELETE /v1/teams/{team_id}` endpoint in our context repo. Draft a new reference page that matches the style of our existing team endpoints.*
 
-- *This commit adds a new `DELETE /v1/teams/{team_id}` endpoint in our context repo. Draft a new reference page that matches the style of our existing team endpoints.*
-
-- *Use this diff to update parameter descriptions for `POST /v1/sessions` and call out the new `expires_after` field in a Callout.*
+- *Use the latest commit to update parameter descriptions for `POST /v1/sessions` and call out the new `expires_after` field in a Callout.*
 
 - *Review this PR that changes how rate limits work and suggest updates to the rate limits and error codes documentation.*
-
-- *This commit deprecates the `mode` query parameter. Propose how to mark it as deprecated in our API reference and add a short migration note.*
 
 <Callout kind="info">
   The Agent reads from the specific context repositories linked to your documentation project. It does not browse all of your GitHub data, and it treats those repositories as read-only context while it plans and edits documentation.
