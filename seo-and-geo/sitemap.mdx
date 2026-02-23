@@ -1,8 +1,192 @@
 ---
 title: Sitemap
-description: "SEO and geographic targeting: Sitemap setup for your site."
+description: >-
+  Configure and verify sitemap.xml, and control how search engines index and
+  follow links to your published Documentation.AI content.
 ---
+## Overview
 
-# Sitemap
+The sitemap lists all crawlable pages in your published documentation so search engines can discover, understand, and index your content correctly.
 
-[How-to Guide] Set up Sitemap to help search engines discover, understand, and correctly localize your docs.
+Documentation.AI serves a sitemap for every published site at the root URL `/sitemap.xml`. The sitemap is generated automatically from your published docs structure and page metadata; you do not edit the XML directly.
+
+<Callout kind="info" collapsed="false">
+  The sitemap always reflects your public **published** content state. When you publish new pages, rename or move existing ones, or unpublish content, the sitemap updates to match.
+</Callout>
+
+## Access and verify sitemap.xml
+
+Access your sitemap at your docs base URL with `/sitemap.xml` appended, then verify that it lists your published pages.
+
+<Steps>
+  <Step title="Open your live docs site" icon="monitor" title-type="p">
+    - Publish at least one page from the Web Editor or Code Editor workflow.
+
+    - Open your live documentation site in a new browser tab.
+
+    - Confirm you see your docs homepage and navigation.
+  </Step>
+
+  <Step title="Visit the sitemap URL" icon="search" title-type="p">
+    - In the browser address bar, append `/sitemap.xml` to your docs base URL.
+
+    - For example, if your docs are at `https://docs.acme.com`, open `https://docs.acme.com/sitemap.xml`.
+
+    - Your browser should display an XML document listing your documentation URLs.
+
+    The exact appearance of the XML depends on your browser, but you should see a list of `url` entries with `loc` values pointing to your published pages.
+  </Step>
+
+  <Step title="Confirm it reflects recent changes" icon="list-ordered" title-type="p">
+    - Create or update a public page and publish your changes.
+
+    - Refresh `/sitemap.xml` in your browser.
+
+    - Look for the new or updated page URL in the sitemap output.
+
+    If you rename, move, or unpublish a page and republish, the sitemap drops the old URL and includes the new one when your next deployment goes live.
+  </Step>
+</Steps>
+
+<Callout kind="info" collapsed="false">
+  The sitemap lists URLs for **published public pages** from your latest deployment. Drafts and unpublished pages do not appear.
+</Callout>
+
+## Enable or disable indexing
+
+Control how search engines treat URLs discovered via `/sitemap.xml` using either the Dashboard UI or global SEO keys in your root `documentation.json`. The sitemap itself is always served for published sites; the robots directives tell crawlers whether to index pages and follow links.
+
+### Using the dashboard
+
+Use the SEO settings in the Dashboard when you prefer not to edit `documentation.json` directly.
+
+<Steps>
+  <Step title="Open SEO settings in the dashboard" icon="settings" title-type="p">
+    - In the Dashboard, go to **Settings**.
+
+    - Under **General**, go **SEO Settings**.
+
+    - Enable and disable sitemap.xml generation
+  </Step>
+
+  <Step title="Publish changes to apply sitemap settings" icon="rocket" title-type="p">
+    - Publish or redeploy your documentation so the updated site settings go live.
+
+    - After deployment, visit `/sitemap.xml` and confirm that search engines can reach the sitemap and apply your updated robots directives.
+  </Step>
+</Steps>
+
+### Using documentation.json
+
+Set global robots behavior with the `seo` object:
+
+```json
+{
+  "seo": {
+    "robots:index": true,
+    "robots:follow": true
+  }
+}
+```
+
+- `"robots:index": true` allows search engines to index pages on your site.
+
+- `"robots:follow": true` allows search engines to follow links on your pages.
+
+Apply these settings once at the root level so the same behavior applies consistently across your docs.
+
+<Callout kind="info" collapsed="false">
+  Sitemap availability and indexing are separate. Documentation.AI serves `/sitemap.xml` for your published site, and the `seo.robots:index` and `seo.robots:follow` values tell crawlers whether to index and follow the URLs they discover there.
+</Callout>
+
+### Enable indexing and link following
+
+Use this configuration when you want your documentation to be discoverable in search engines and for crawlers to follow internal links between pages:
+
+```json
+{
+  "seo": {
+    "robots:index": true,
+    "robots:follow": true
+  }
+}
+```
+
+When you publish your site with this configuration:
+
+- `/sitemap.xml` lists your published public URLs.
+
+- Search engines that respect robots directives may index those URLs.
+
+- Crawlers may follow links between your docs pages.
+
+### Disable indexing (and optionally following)
+
+Use this configuration when you want to keep docs accessible by URL but discourage search engines from including them in search results:
+
+```json
+{
+  "seo": {
+    "robots:index": false,
+    "robots:follow": true
+  }
+}
+```
+
+In this setup:
+
+- `/sitemap.xml` still lists your published public URLs.
+
+- The `robots:index` directive tells search engines not to index those pages.
+
+- `robots:follow` remains `true`, so crawlers may still follow links for discovery or quality checks.
+
+If you also want to discourage crawlers from following links between pages, set both directives to `false`:
+
+```json
+{
+  "seo": {
+    "robots:index": false,
+    "robots:follow": false
+  }
+}
+```
+
+This combination keeps your docs available to users who know the URLs while signaling that search engines should neither index the pages nor follow links within them.
+
+## Troubleshooting and advanced configuration
+
+This section covers common sitemap issues and how to handle custom deployment setups, especially when you serve docs on a subpath.
+
+### Sitemap returns 404
+
+If `/sitemap.xml` returns a 404 or a blank page:
+
+- Confirm your latest docs deployment completed successfully.
+
+- Check that you are using the correct base URL and path (for example, `https://docs.acme.dev/sitemap.xml`).
+
+- Verify that your site is not fully blocked from indexing in `documentation.json` in a way that conflicts with your expectations (for example, `robots:index` set to `false` globally while you expect pages to appear in search).
+
+If your docs are protected by authentication, some search engines may not be able to access `/sitemap.xml`.
+
+### Custom subpath deployments
+
+If you deploy Documentation.AI behind a custom subpath (for example, `https://www.acme.com/docs`), forward requests for `/docs/sitemap.xml` to the underlying `/sitemap.xml` served by Documentation.AI.
+
+On Vercel, configure a rewrite rule so that your subpath sitemap points to the hosted Documentation.AI sitemap:
+
+```json
+{
+  "source": "/[SUBPATH]/sitemap.xml",
+  "destination": "http://[SUBDOMAIN].documentatioai.com/sitemap.xml"
+}
+```
+
+Replace `[SUBPATH]` with your actual subpath and `[SUBDOMAIN]` with your Documentation.AI subdomain.
+
+<Callout kind="alert" collapsed="false">
+  If you host docs on a subpath and do **not** forward `/[SUBPATH]/sitemap.xml` to the Documentation.AI sitemap, search engines may miss your documentation URLs or treat them as a separate site.
+</Callout>
+
+For more details on configuring rewrites and subpath routing, see the custom subpath guides for your platform, starting with the Vercel guide at `/customize/custom-subpath/vercel`.
