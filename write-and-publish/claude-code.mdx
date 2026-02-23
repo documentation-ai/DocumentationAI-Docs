@@ -2,8 +2,7 @@
 title: Using Claude Code
 description: Configure Claude Code to be your documentation writing assistant
 ---
-
-Transform Claude Code into a documentation expert that understands your components, style guide, and best practices.
+Transform Claude Code into a documentation expert that understands Documentation.AI components, style guide, and best practices.
 
 ## Use Claude Code with Documentation.AI
 
@@ -15,13 +14,13 @@ Claude Code reads `CLAUDE.md` files to provide persistent context about your doc
 
 We recommend creating a project-level `CLAUDE.md` for your docs so all contributors have access to the same context. Claude Code reads configuration files from multiple locations in priority order:
 
-| Location | Scope | Shared via Git |
-|----------|-------|----------------|
-| `~/.claude/CLAUDE.md` | All projects (user-level) | No |
-| `./CLAUDE.md` | Project root | Yes |
-| `./.claude/CLAUDE.md` | Project (alternative location) | Yes |
-| `./CLAUDE.local.md` | Personal project preferences | No |
-| `./.claude/rules/*.md` | Scoped rules by file pattern | Yes |
+| Location               | Scope                          | Shared via Git |
+| ---------------------- | ------------------------------ | -------------- |
+| `~/.claude/CLAUDE.md`  | All projects (user-level)      | No             |
+| `./CLAUDE.md`          | Project root                   | Yes            |
+| `./.claude/CLAUDE.md`  | Project (alternative location) | Yes            |
+| `./CLAUDE.local.md`    | Personal project preferences   | No             |
+| `./.claude/rules/*.md` | Scoped rules by file pattern   | Yes            |
 
 More specific files take precedence over broader ones. See the [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) for complete setup instructions.
 
