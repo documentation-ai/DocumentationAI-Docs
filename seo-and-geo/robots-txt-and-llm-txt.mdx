@@ -56,10 +56,8 @@ Control how search engines treat your docs by enabling or disabling indexing and
 
 Use the dashboard when you want to change robots behavior without editing configuration files.
 
-
-
 <Steps>
-  <Step title="Open sashboard and go to settings" icon="settings" title-type="p">
+  <Step title="Open dashboard and go to settings" icon="settings" title-type="p">
     - Go to **Settings -> SEO Settings -> Robots&#x20;**
   </Step>
 
@@ -110,10 +108,8 @@ Turn `llms.txt` support on or off for your documentation so that AI crawlers can
 Use the dashboard to toggle `llms.txt` without editing files.
 
 <Steps>
-  <Step title="Open SEO settings" icon="settings" title-type="p">
-    - In Documentation.AI, open your project and go to the SEO configuration section.
-
-    - Look for the **LLMs.txt** or AI crawler configuration toggle.
+  <Step title="Open dashboard and go to settings" icon="settings" title-type="p">
+    - Go to **Settings -> SEO Settings -> LLms.txt&#x20;**
   </Step>
 
   <Step title="Toggle llms.txt generation" icon="toggle-right" title-type="p">
@@ -149,29 +145,5 @@ In this example:
 
 - Setting `seo.llms-txt:enabled` to `false` disables the `llms.txt` file.
 
-After you update `documentation.json`, follow the same publish and verification pattern:
 
-<Steps>
-  <Step title="Update configuration in your repo" icon="check-circle" title-type="p">
-    - Save the updated `seo.llms-txt:enabled` value in `documentation.json`.
-
-    - Commit and push the change to your main documentation branch.
-  </Step>
-
-  <Step title="Publish the docs site" icon="rocket" title-type="p">
-    - Trigger a new publish from the Documentation.AI dashboard or wait for your CI-based publish to run.
-
-    - Confirm that the publish finishes successfully.
-  </Step>
-
-  <Step title="Check llms.txt on the live site" icon="file-text" title-type="p">
-    - Open `/llms.txt` on your docs domain in a browser.
-
-    - Confirm that the file behavior matches the value of `seo.llms-txt:enabled` in your configuration.
-  </Step>
-</Steps>
-
-<Callout kind="info" collapsed="false">
-  `llms.txt` uses your published documentation structure and configuration to guide AI crawlers. When you reorganize content, change access control, or adjust SEO, republish your docs so `llms.txt` stays in sync.
-</Callout>
 
