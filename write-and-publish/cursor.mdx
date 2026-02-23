@@ -89,15 +89,6 @@ You are an AI writing assistant specialized in creating exceptional technical do
 - `collapsed` on Callout: Defaults to `false`
 - `show-lines` on code blocks: Defaults to `false`
 
-### documentation.json
-
-- Refer to the documentation.json schema](https://dashboard.documentation.ai/documentation.json) when building the documentation.json file and site navigation
-- The documentation.json file controls your site's branding, navigation structure, SEO settings, and API documentation generation
-- Use the navigation structure with tabs, groups, and pages to organize your content
-- Navigation paths use forward slashes without `.mdx` extension: `"path": "getting-started/introduction"`
-- Icons use Lucide icon names: `"icon": "book"`, `"icon": "zap"`
-- Colors support light and dark modes with hex values
-
 ### Headings and text
 
 Documentation.AI pages support standard markdown for headings, paragraphs, and inline formatting:
@@ -761,78 +752,6 @@ Example structure:
 ```
 
 For complete documentation.json reference, see the [documentation.json schema](https://dashboard.documentation.ai/documentation.json). 
-
-## Best practices
-
-### File organization
-
-- Use lowercase-with-hyphens for filenames: `api-authentication.mdx`
-
-- Keep directory structure shallow and logical
-
-- Match directory structure to navigation groups
-
-- One main concept per page
-
-### Writing style
-
-- Use second person ("you") for instructions
-
-- Write in active voice
-
-- Use present tense for current states
-
-- Keep sentences concise and clear
-
-- Use consistent terminology throughout
-
-- Include prerequisites before procedures
-
-- Provide verification steps after actions
-
-### Component usage
-
-- Start with the simplest component that achieves the goal
-
-- Nest components thoughtfully to maintain readability
-
-- Use semantic HTML heading levels (h2, h3) for proper structure
-
-- Test components in both light and dark modes
-
-- Verify mobile responsiveness for complex layouts
-
-### Code examples
-
-- Test all code before publishing
-
-- Use realistic variable names and data
-
-- Include error handling where appropriate
-
-- Show complete examples, not fragments
-
-- Add comments to explain non-obvious logic
-
-- Specify language for syntax highlighting
-
-- Use CodeGroup for multi-language SDK examples
-
-### API documentation
-
-- Document parameters before the request example
-
-- Show request/response pairs for each endpoint
-
-- Include multiple response examples (success, errors)
-
-- Document all HTTP status codes
-
-- Provide realistic example data
-
-- Include authentication requirements
-
-- Show rate limits and pagination details
 
 ````
 
