@@ -237,11 +237,6 @@
                 "group": "SEO & GEO",
                 "pages": [
                   {
-                    "title": "Structured Data",
-                    "path": "seo-and-geo/structured-data",
-                    "icon": "layers"
-                  },
-                  {
                     "title": "Robots.txt & llm.txt",
                     "path": "seo-and-geo/robots-txt-and-llm-txt",
                     "icon": "file"
@@ -250,16 +245,6 @@
                     "title": "Sitemap",
                     "path": "seo-and-geo/sitemap",
                     "icon": "map"
-                  },
-                  {
-                    "title": "Canonical URLs",
-                    "path": "seo-and-geo/canonical-urls",
-                    "icon": "link-2"
-                  },
-                  {
-                    "title": "Meta Tags Setup",
-                    "path": "seo-and-geo/meta-tags-setup",
-                    "icon": "tag"
                   }
                 ],
                 "icon": "search-check-icon"
