@@ -416,9 +416,7 @@
                 "title": "Changelog",
                 "path": "changelog",
                 "icon": "scroll",
-                "show-sidebar": false,
-                "show-parent-label": false,
-                "content-width": "wide"
+                "show-parent-label": false
               }
             ]
           }
