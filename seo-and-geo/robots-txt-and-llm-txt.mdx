@@ -1,8 +1,177 @@
 ---
-title: Robots.txt & llm.txt (link to AI)
-description: "SEO and geographic targeting: Robots.txt & llm.txt (link to AI) setup for your site."
+title: Robots.txt and llms.txt
+description: >-
+  Configure robots.txt and llms.txt for your Documentation.AI site, control
+  indexing and following, and verify the published files.
 ---
+## Overview
 
-# Robots.txt & llm.txt (link to AI)
+Use `robots.txt` and `llms.txt` to control how crawlers and AI models discover and use your published documentation.
 
-[How-to Guide] Set up Robots.txt & llm.txt (link to AI) to help search engines discover, understand, and correctly localize your docs.
+Documentation.AI exposes a `robots.txt` file at `/robots.txt` on your live docs site and includes robots directives for indexing and following links. You configure these directives globally from your dashboard settings or from `documentation.json`
+
+`llms.txt` lives at `/llms.txt` on your live docs site and helps AI models understand how to crawl and use your documentation. You toggle generation of this file from your SEO settings or `documentation.json`.
+
+<Callout kind="info" collapsed="false">
+  `robots.txt` and `llms.txt` always reflect the **last published version** of your documentation. After any SEO configuration change, publish your docs to update the files on your live site.
+</Callout>
+
+## Access and verify robots.txt and llms.txt
+
+Use your live docs site to confirm that `robots.txt` and `llms.txt` are being served with the expected behavior.
+
+<Steps>
+  <Step title="Open your live docs site" icon="monitor" title-type="p">
+    - Open the URL where your documentation is hosted (for example, your default Documentation.AI domain or custom domain).
+
+    - Confirm that the site loads the latest published version of your docs.
+  </Step>
+
+  <Step title="Check robots.txt" icon="file" title-type="p">
+    - Append `/robots.txt` to your docs base URL, such as `https://acme.com/robots.txt`.
+
+    - Load the page in your browser and check that a plain-text file returns with HTTP 200 status.
+
+    - Confirm that search engine testing tools (for example, Google Search Console) can also access `robots.txt` at the same path.
+  </Step>
+
+  <Step title="Check llms.txt" icon="file-text" title-type="p">
+    - Append `/llms.txt` to your docs base URL, such as `https://acme.com/llms.txt`.
+
+    - Load the page in your browser and check that a plain-text file returns with HTTP 200 when `llms.txt` is enabled.
+
+    - If you disable `llms.txt`, verify that the file is no longer served or that AI tooling you use reflects the change after a republish.
+  </Step>
+</Steps>
+
+<Callout kind="info" collapsed="false">
+  If you use a custom domain or custom subpath, keep the same paths relative to the docs root. For example, if your docs live at `https://acme.com/help`, access `robots.txt` at `https://acme.com/help/robots.txt` and `llms.txt` at `https://acme.com/help/llms.txt`.
+</Callout>
+
+## Enable or disable robots indexing and following
+
+Control how search engines treat your docs by enabling or disabling indexing and link following. Documentation.AI stores these settings under `seo.robots:index` and `seo.robots:follow` in `documentation.json` and applies them after you publish.
+
+### Using the dashboard
+
+Use the dashboard when you want to change robots behavior without editing configuration files.
+
+
+
+<Steps>
+  <Step title="Open sashboard and go to settings" icon="settings" title-type="p">
+    - Go to **Settings -> SEO Settings -> Robots&#x20;**
+  </Step>
+
+  <Step title="Adjust robots directives" icon="toggle-right" title-type="p">
+    - Turn indexing **on or off** to control whether search engines index your docs pages (maps to `seo.robots:index`).
+
+    - Turn following **on or off** to control whether search engines follow links on your docs pages (maps to `seo.robots:follow`).
+  </Step>
+
+  <Step title="Publish changes" icon="rocket" title-type="p">
+    - Save your changes in the dashboard.
+
+    - Publish your documentation so that the updated robots configuration is included in the build.
+
+    - After the publish completes, reload `/robots.txt` on your live site to confirm it reflects the new settings.
+  </Step>
+</Steps>
+
+<Callout kind="info" collapsed="false">
+  Dashboard changes to robots directives only take effect after a new publish. If `/robots.txt` does not look updated, check that the latest publish finished successfully and that you are viewing the correct environment or domain.
+</Callout>
+
+### Using documentation.json
+
+Define robots behavior directly in `documentation.json` when you manage your docs in code or through version control.
+
+```json
+{
+  "seo": {
+    "robots:index": true,
+    "robots:follow": true
+  }
+}
+```
+
+In this example:
+
+- `seo.robots:index` controls whether search engines index your documentation pages.
+
+- `seo.robots:follow` controls whether search engines follow links on your documentation pages.
+
+## Enable or disable llms.txt generation
+
+Turn `llms.txt` support on or off for your documentation so that AI crawlers can discover and interpret your docs consistently.
+
+### Using the dashboard
+
+Use the dashboard to toggle `llms.txt` without editing files.
+
+<Steps>
+  <Step title="Open SEO settings" icon="settings" title-type="p">
+    - In Documentation.AI, open your project and go to the SEO configuration section.
+
+    - Look for the **LLMs.txt** or AI crawler configuration toggle.
+  </Step>
+
+  <Step title="Toggle llms.txt generation" icon="toggle-right" title-type="p">
+    - Enable `llms.txt` to generate and serve the `llms.txt` file at `/llms.txt`.
+
+    - Disable `llms.txt` if you do not want Documentation.AI to expose this file to AI crawlers.
+  </Step>
+
+  <Step title="Publish and verify" icon="check-circle" title-type="p">
+    - Save your SEO settings.
+
+    - Publish your documentation so the `llms.txt` change is applied to your live site.
+
+    - Open `/llms.txt` on your docs domain to confirm that the file is served (when enabled) or no longer available (when disabled).
+  </Step>
+</Steps>
+
+### Using documentation.json
+
+Control `llms.txt` generation alongside your other SEO configuration by setting `seo.llms-txt:enabled` in `documentation.json`.
+
+```json
+{
+  "seo": {
+    "llms-txt:enabled": true
+  }
+}
+```
+
+In this example:
+
+- Setting `seo.llms-txt:enabled` to `true` tells Documentation.AI to generate and serve `/llms.txt` for your published docs.
+
+- Setting `seo.llms-txt:enabled` to `false` disables the `llms.txt` file.
+
+After you update `documentation.json`, follow the same publish and verification pattern:
+
+<Steps>
+  <Step title="Update configuration in your repo" icon="check-circle" title-type="p">
+    - Save the updated `seo.llms-txt:enabled` value in `documentation.json`.
+
+    - Commit and push the change to your main documentation branch.
+  </Step>
+
+  <Step title="Publish the docs site" icon="rocket" title-type="p">
+    - Trigger a new publish from the Documentation.AI dashboard or wait for your CI-based publish to run.
+
+    - Confirm that the publish finishes successfully.
+  </Step>
+
+  <Step title="Check llms.txt on the live site" icon="file-text" title-type="p">
+    - Open `/llms.txt` on your docs domain in a browser.
+
+    - Confirm that the file behavior matches the value of `seo.llms-txt:enabled` in your configuration.
+  </Step>
+</Steps>
+
+<Callout kind="info" collapsed="false">
+  `llms.txt` uses your published documentation structure and configuration to guide AI crawlers. When you reorganize content, change access control, or adjust SEO, republish your docs so `llms.txt` stays in sync.
+</Callout>
+
