@@ -41,7 +41,9 @@
               {
                 "title": "Introduction",
                 "path": "getting-started/introduction",
-                "icon": "star"
+                "icon": "star",
+                "show-toc": false,
+                "show-parent-label": false
               },
               {
                 "title": "Core concepts",
