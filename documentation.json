@@ -43,7 +43,8 @@
                 "path": "getting-started/introduction",
                 "icon": "star",
                 "show-toc": false,
-                "show-parent-label": false
+                "show-parent-label": false,
+                "content-width": "wide"
               },
               {
                 "title": "Core concepts",
