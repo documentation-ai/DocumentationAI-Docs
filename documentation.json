@@ -437,5 +437,15 @@
   },
   "favicon": "https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1763647259799-dvpow3xiipa-doc-favicon-dark.png",
   "logo-dark": "https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767703540306-1ow538yjggl-logo_dark_mode.svg?q=85&fm=auto&auto=compress%2Cformat",
-  "logo-light": "https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767703565522-24h54tbc4tf-logo_light_mode.svg?q=85&fm=auto&auto=compress%2Cformat"
+  "logo-light": "https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1767703565522-24h54tbc4tf-logo_light_mode.svg?q=85&fm=auto&auto=compress%2Cformat",
+  "ai": {
+    "page-actions": [
+      "copy",
+      "view",
+      "claude",
+      "chatgpt",
+      "perplexity",
+      "mcp"
+    ]
+  }
 }
