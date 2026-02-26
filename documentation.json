@@ -42,7 +42,9 @@
                 "title": "Introduction",
                 "path": "getting-started/introduction",
                 "icon": "star",
-                "show-parent-label": false
+                "show-parent-label": false,
+                "show-page-navigation": false,
+                "ask-feedback": false
               },
               {
                 "title": "Core concepts",
