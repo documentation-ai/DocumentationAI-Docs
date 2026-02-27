@@ -1,43 +1,134 @@
 ---
-title: On‑Page AI Menu
+title: Page Actions
 description: >-
-  Give readers quick, AI‑friendly actions for exporting or opening any page in
-  external AI tools using optimized Markdown.
+  Configure quick AI-friendly actions in the sidebar so readers can copy or open
+  any page in external AI tools using optimized Markdown.
 ---
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9ac58/1772193535712-h5byaxdfg4-Screenshot-2026-02-27-at-5-28-43-PM.png?q=85&fm=auto&auto=compress%2Cformat" width="1924" height="872" alt="" />
+
 ## Overview
 
-The on‑page AI menu provides fast actions that let readers use your documentation directly with external AI tools. Each published page includes three shortcuts that expose the full content in Markdown, a clean and model‑friendly format.
+Page Actions provide quick shortcuts in the table of contents sidebar that let readers send your documentation directly to external AI tools. Each action uses a clean Markdown representation of the current page, optimized for large language models.
 
 <Callout kind="info" collapsed="false">
-  Markdown is one of the most reliable formats for large language models because it preserves structure, headings, lists, and code blocks in a predictable way.
+  Configure Page Actions either from the Dashboard or by editing your configuration file:
+
+  - Use the **Dashboard Page Actions settings** to choose which quick actions appear.
+
+  - Update the **`ai.page-actions`** key in your `documentation.json` file if you prefer to manage settings in code.
+
+  Changes to Page Actions are stored under `ai.page-actions` in `documentation.json`. After updating these settings in the Dashboard or in code, publish your documentation in the editor so the changes apply to your live site.
 </Callout>
 
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1764861146069-7t0ol6zw0w8-on-page-ai-menu.png" width="2756" height="1298" alt="On‑page AI menu options" />
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1764861146069-7t0ol6zw0w8-on-page-ai-menu.png" width="2756" height="1298" alt="Page Actions options in the sidebar" />
 
-The menu appears in the same location on every published page, ensuring consistent access to AI‑ready exports.
+Page Actions appear in the same location on every published page, giving readers consistent access to AI‑ready exports and integrations.
+
+## Configure Page Actions
+
+Control which actions appear either from the Dashboard or by editing the `ai.page-actions` key in your `documentation.json` file. Configuration is stored as an array of action identifiers.
+
+### Configure from the Dashboard
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1772193535712-h5byaxdfg4-Screenshot-2026-02-27-at-5-28-43-PM.png?q=85&fm=auto&auto=compress%2Cformat" width="1924" height="872" alt="" />
+
+Use the Page Actions settings in the Dashboard -> Settings -> General -> Page Actions to manage configuration.
+
+- You can enable or disable the options you want
+
+- If you want to completely remove Page Actions itself, you can disable all.&#x20;
+
+Please ensure that you publish the documentation after you make this changes.&#x20;
+
+
+
+### Configure from documentation.json
+
+If you prefer to manage configuration in code, update the `ai.page-actions` key directly in `documentation.json`.
+
+#### Enable specific actions
+
+Set `ai.page-actions` to include any combination of supported actions:
+
+```json
+{
+  "ai": {
+    "page-actions": [
+      "copy",
+      "view",
+      "claude",
+      "chatgpt",
+      "perplexity",
+      "grok",
+      "mcp"
+    ]
+  }
+}
+```
+
+Use this to show only the actions that match your readers' tools and workflows.
+
+#### Disable all actions
+
+To hide Page Actions entirely, set `ai.page-actions` to an empty array, or omit the key:
+
+```json
+{
+  "ai": {
+    "page-actions": []
+  }
+}
+```
+
+If you remove the key completely, the site behaves as if no Page Actions are configured.
 
 ## Available options
 
-The menu provides three AI‑focused actions:
+Page Actions currently support the following options:
 
-- Copy page as markdown
+- **Copy page** (`copy`)
 
-- Open in Claude
+- **View as Markdown** (`view`)
 
-- Open in ChatGPT
+- **Open in Claude** (`claude`)
 
-### Copy as Markdown
+- **Open in ChatGPT** (`chatgpt`)
 
-This option exports the current page as Markdown and places it on the clipboard. Readers can paste it into any AI prompt, editor, or workflow with no additional formatting.
+- **Open in Perplexity** (`perplexity`)
 
-### Open in Claude
+- **Open in Grok** (`grok`)
 
-This opens Claude in a new browser tab and passes the page's Markdown file URL. Claude retrieves that file and uses the content as context for the chat session.
+- **Copy MCP server URL** (`mcp`)
 
-### Open in ChatGPT
+### Copy page (`copy`)
 
-This launches ChatGPT with a shareable Markdown link that loads the full page content. ChatGPT can then summarize, analyze, or transform the page with accurate context.
+Copy page exports the current page as Markdown and places it on the clipboard. Readers can paste the content into any AI prompt, editor, or workflow without additional formatting.
 
-<Callout kind="alert">
-  The "Open in Claude" and "Open in ChatGPT" options only work when SEO is enabled for your documentation site.
+### View as Markdown (`view`)
+
+View as Markdown opens a new browser tab that shows the raw Markdown representation of the current page. Readers can review, save, or copy this Markdown directly from the browser.
+
+### Open in Claude (`claude`)
+
+Open in Claude launches Claude in a new browser tab and passes the page's Markdown file URL. Claude retrieves that file and uses the content as context for the chat session.
+
+### Open in ChatGPT (`chatgpt`)
+
+Open in ChatGPT creates a shareable Markdown link that loads the full page content into ChatGPT. ChatGPT can then summarize, analyze, or transform the page with accurate context.
+
+### Open in Perplexity (`perplexity`)
+
+Open in Perplexity opens Perplexity with a link to the page's Markdown content. Perplexity can use that Markdown as trusted source material when generating answers.
+
+### Open in Grok (`grok`)
+
+Open in Grok sends the page's Markdown link to Grok in a new tab. Grok uses this content as reference material for the conversation.
+
+### Copy MCP server URL (`mcp`)
+
+Copy MCP server URL copies the MCP server endpoint for your documentation project to the clipboard. Use this in compatible MCP clients to give them structured, AI‑ready access to your docs.
+
+<Callout kind="alert" collapsed="false">
+  The Open in Claude, Open in ChatGPT, Open in Perplexity, and Open in Grok actions rely on public, crawlable URLs. Enable SEO for your documentation site so these external AI tools can access the Markdown content.
 </Callout>
+

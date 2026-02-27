@@ -354,7 +354,7 @@
                 "icon": "server-cog"
               },
               {
-                "title": "On-Page AI Menu",
+                "title": "Page Actions",
                 "path": "ai/ai-menu",
                 "icon": "menu"
               },
@@ -447,6 +447,7 @@
       "claude",
       "chatgpt",
       "perplexity",
+      "grok",
       "mcp"
     ]
   }
