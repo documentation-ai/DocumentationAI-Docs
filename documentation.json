@@ -355,7 +355,7 @@
               },
               {
                 "title": "Page Actions",
-                "path": "ai/ai-menu",
+                "path": "page-actions",
                 "icon": "menu"
               },
               {
