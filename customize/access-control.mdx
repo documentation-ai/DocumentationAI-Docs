@@ -58,6 +58,12 @@ Documentation.AI offers three authentication methods to protect your documentati
         - Use **Clear password** only if you intend to remove password protection.
       </Step>
 
+      <Step title="Add optional helper text" icon="info" title-type="p">
+        Optionally add **Helper text** shown below the password prompt on your protected site. Use it to explain who should have access or where to request it.
+
+        Helper text supports simple markdown links in the form `[label](https://example.com)`, which render as clickable links under the password field.
+      </Step>
+
       <Step title="Re-publish to apply changes" icon="upload" title-type="p">
         After saving your access control settings, re-publish your documentation so the deployed site uses the updated configuration.
       </Step>
@@ -70,6 +76,8 @@ Documentation.AI offers three authentication methods to protect your documentati
     ### Example
 
     You host documentation at `docs.example.com` and want basic access control without managing individual user accounts. Use **Password** authentication and share the password with authorized teammates.
+
+    <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1772194392506-ixc83vk1c8c-password-proctected.png?q=85&fm=auto&auto=compress%2Cformat" width="1338" height="1184" alt="" />
   </Tab>
 
   <Tab title="JWT" icon="key-round">
@@ -285,5 +293,8 @@ You can make specific pages or groups public in two ways:
       </Step>
     </Steps>
   </Tab>
-</Tabs>
 
+  <Tab title="Tab 1">
+
+  </Tab>
+</Tabs>
