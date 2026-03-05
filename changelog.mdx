@@ -1,15 +1,23 @@
 ---
 title: Release Notes
-description: 'Changes, fixes, and improvements across versions'
+description: Changes, fixes, and improvements across versions
 ---
-<Update label="2026-03-05" description="Page Actions and API Documentation" tags={["feature","improvement"]}>
+<Update label="2026-03-05" description="Page Actions and API Playground enhancements" tags={["feature","improvement"]}>
   ## Page Actions
 
   Page Actions add context-aware tools in the table of contents sidebar so you can move content between tools without leaving the reader view. Learn how to configure actions like copy page markdown, view source, open in external LLMs, and copy MCP URLs in [Page Actions](/page-actions).
 
-  ## API Documentation
+  ## API Playground
 
-  You’re no longer limited to generating API docs only from your OpenAPI spec. You now have more control over each API page—for example, you can embed a playground for a specific endpoint from your OpenAPI spec, and then customize the rest of the page content manually. See <a href="https://documentation.ai/docs/api-documentation-and-playground/openapi-import" target="_blank" rel="noopener noreferrer">API Documentation</a>
+  The API Playground now uses OpenAPI `example` values to prefill parameter inputs so readers can run operations with realistic defaults. Configure examples in your schema and connect them to the playground in [OpenAPI / JSON Schema Import](/api-documentation-and-playground/openapi-import) and [Interactive Playground Setup](/api-documentation-and-playground/interactive-playground-setup).
+
+  ## Page Feedback
+
+  Page Feedback now supports custom feedback fields (not only like or dislike) and optional redirects to your GitHub project feedback flow for open source docs. Feedback analytics are richer and roll up into your dashboards; see [User Feedback](/analytics-and-insights/user-feedback) and [Analytics overview](/analytics/overview).
+
+  ## Ask AI Analytics
+
+  Ask AI Analytics lets admins review and export the questions users ask in Ask AI so you can see where docs are unclear or missing. This is the first step toward automatically updating documentation from real user intent; explore details in [Search and AI assistant analytics](/analytics-and-insights/search-and-ai-assistant-analytics) and [AI Assistant](/ai/ai-assistant).
 
   ## Other improvements
 
@@ -17,7 +25,11 @@ description: 'Changes, fixes, and improvements across versions'
 
   - Enable click-to-zoom on images so readers can inspect diagrams and screenshots in more detail.
 
-  - The API Playground now uses OpenAPI `example` values to prefill parameter inputs so readers can run operations with realistic defaults.
+  - Show a Cloudflare proxy warning and proxy status column for custom domains to make misconfigured DNS easier to spot; learn more in [Custom Domain Setup](/customize/custom-domain).
+
+  - Replace custom proxy code samples with links to provider-specific guides for [Vercel](/customize/custom-subpath/vercel), [Cloudflare Workers](/customize/custom-subpath/cloudflare), and [AWS Route 53 & CloudFront](/customize/custom-subpath/aws).
+
+  - Improve navigation resolution when multiple tabs share the same name so anchors reliably scroll to the correct section; details in [Navigation & Sidebar](/customize/navigation-and-sidebar).
 </Update>
 
 <Update label="2026-01-15" description="Access control (Private/Partial docs )" tags={["feature","security"]}>
@@ -119,4 +131,3 @@ description: 'Changes, fixes, and improvements across versions'
 
   - Help product teams deliver LLM‑native support and troubleshooting experiences directly inside their apps
 </Update>
-
