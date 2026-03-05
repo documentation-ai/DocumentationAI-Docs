@@ -1,6 +1,6 @@
 ---
 title: Release Notes
-description: Changes, fixes, and improvements across versions
+description: 'Changes, fixes, and improvements across versions'
 ---
 <Update label="2026-03-05" description="Page Actions and API Playground enhancements" tags={["feature","improvement"]}>
   ## Page Actions
@@ -9,7 +9,7 @@ description: Changes, fixes, and improvements across versions
 
   ## API Playground
 
-  The API Playground now uses OpenAPI `example` values to prefill parameter inputs so readers can run operations with realistic defaults. Configure examples in your schema and connect them to the playground in [OpenAPI / JSON Schema Import](/api-documentation-and-playground/openapi-import) and [Interactive Playground Setup](/api-documentation-and-playground/interactive-playground-setup).
+  You’re no longer limited to generating API docs only from your OpenAPI spec. You now have more control over each API page, for example, you can embed a playground for a specific endpoint from your OpenAPI spec, and then customize the rest of the page content manually; see <a href="https://documentation.ai/docs/api-documentation-and-playground/openapi-import" target="_blank" rel="noopener noreferrer">API Documentation</a>
 
   ## Page Feedback
 
@@ -25,11 +25,7 @@ description: Changes, fixes, and improvements across versions
 
   - Enable click-to-zoom on images so readers can inspect diagrams and screenshots in more detail.
 
-  - Show a Cloudflare proxy warning and proxy status column for custom domains to make misconfigured DNS easier to spot; learn more in [Custom Domain Setup](/customize/custom-domain).
-
-  - Replace custom proxy code samples with links to provider-specific guides for [Vercel](/customize/custom-subpath/vercel), [Cloudflare Workers](/customize/custom-subpath/cloudflare), and [AWS Route 53 & CloudFront](/customize/custom-subpath/aws).
-
-  - Improve navigation resolution when multiple tabs share the same name so anchors reliably scroll to the correct section; details in [Navigation & Sidebar](/customize/navigation-and-sidebar).
+  - The API Playground now uses OpenAPI `example` values to prefill parameter inputs so readers can run operations with realistic defaults.
 </Update>
 
 <Update label="2026-01-15" description="Access control (Private/Partial docs )" tags={["feature","security"]}>
@@ -131,3 +127,4 @@ description: Changes, fixes, and improvements across versions
 
   - Help product teams deliver LLM‑native support and troubleshooting experiences directly inside their apps
 </Update>
+
