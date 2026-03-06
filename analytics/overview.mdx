@@ -18,17 +18,19 @@ Analytics gives you a high-level view of how people use your documentation so yo
 
 ## What you can track
 
-You can open Analytics from the sidebar. It currently includes two main data groups:
+You can open Analytics from the sidebar. It currently includes three main data groups:
 
-- **User behavior metrics** — how people discover, navigate, and engage with your docs.
+- **Traffic** — user behavior metrics that show how people discover, navigate, and engage with your docs over time.
 
-- **Feedback** — how people feel about specific pages and changes.
+- **Feedback** — page-level reactions that highlight where content works well and where readers struggle.
 
-Use these metrics to understand how readers move through your docs, where they get stuck, and how effectively your content answers their questions.
+- **Ask AI Analytics** — insights into how readers use the AI assistant, what they ask, and where they ask it from.
 
-## User behaviormetrics
+Use these metrics to understand how readers move through your docs, where they get stuck, and how effectively your content and AI experiences answer their questions.
 
-User behavior analytics provides an at-a-glance view of how readers interact with your documentation over time, including:
+## Traffic
+
+Traffic analytics provides an at-a-glance view of how readers interact with your documentation over time, including:
 
 - Pageviews and unique sessions
 
@@ -40,9 +42,9 @@ User behavior analytics provides an at-a-glance view of how readers interact wit
 
 <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1764911586623-k244hrltahs-analytics.png?q=85&fm=auto&auto=compress%2Cformat" width="2298" height="1576" alt="Screenshot of user behavior analytics overview" />
 
-## Documentation feedback
+## &#x20;Feedback
 
-Documentation feedback analytics shows how users feel about your content and individual pages. You can monitor:
+Feedback analytics shows how users feel about your content and individual pages. You can monitor:
 
 - Page-level satisfaction trends
 
@@ -50,9 +52,31 @@ Documentation feedback analytics shows how users feel about your content and ind
 
 - Pages where users most often express confusion or frustration
 
+After a thumbs up or thumbs down reaction, you can optionally prompt readers for additional context using a short follow-up survey. This captures free-text reasons or comments so you understand why they reacted the way they did. Please visit the settings page to configure the same.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1772792578395-bxsev5idl8n-feedback-settings.png?q=85&fm=auto&auto=compress%2Cformat" width="1838" height="830" alt="" />
+
+When you configure feedback routing to GitHub in your project configuration, you can also let users open an issue directly in a specified public repository. This turns in-product feedback into actionable items in your existing issue tracker.
+
 <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1764911558081-0d4ohw1f07qk-feedback-screenshot.png?q=85&fm=auto&auto=compress%2Cformat" width="2292" height="1184" alt="Screenshot of documentation feedback analytics overview" />
 
 <Callout kind="tip" collapsed="false">
   User feedback is a powerful signal for prioritizing updates, refining unclear topics, and validating whether recent changes are helping readers.
 </Callout>
+
+## Ask AI Analytics
+
+Ask AI Analytics helps you understand how readers use the AI assistant alongside your docs. You can see:
+
+- The total volume of questions asked over time
+
+- How many unique sessions interact with the assistant
+
+- A list of recent questions, including the page where each question was asked and the timestamp
+
+- Trends in question volume that highlight spikes in interest or confusion
+
+The recent questions view supports pagination so you can load more history, and you can export the underlying data to CSV for deeper analysis or sharing with your team.
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1772792780787-79pzwxf8w2-AI-assistant-analytics.png?q=85&fm=auto&auto=compress%2Cformat" width="2294" height="1302" alt="" />
 
