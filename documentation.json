@@ -383,7 +383,7 @@
             "expandable": true,
             "pages": [
               {
-                "title": "Overview & Insights",
+                "title": "Overview",
                 "path": "analytics/overview",
                 "icon": "bar-chart4-icon"
               }
