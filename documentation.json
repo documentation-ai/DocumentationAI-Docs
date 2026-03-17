@@ -438,6 +438,7 @@
     "robots:follow": true
   },
   "scripts": [
+    { "src": "scripts/usercentrics.js" },
     { "src": "scripts/gtm.js" },
     { "src": "scripts/intercom.js" }
   ],
