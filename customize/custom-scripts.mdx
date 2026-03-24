@@ -10,7 +10,7 @@ Inject custom `<script>` tags into your published documentation site. Use custom
 
 - A documentation project with publishing access
 
-- The script source URL or inline JavaScript you want to add
+- The script file path (local `.js`/`.mjs` file) or external URL you want to add
 
 ## Configure custom scripts from the Editor
 
@@ -18,20 +18,20 @@ You can manage custom scripts directly from the Editor without editing JSON.
 
 <Steps>
   <Step title="Open Site Config" icon="settings" title-type="p">
-    In the Editor, click the **gear icon** in the toolbar to open **Site Config**.
+    In the Editor, click **Site Config** in the top toolbar.
   </Step>
 
   <Step title="Navigate to Custom Scripts" icon="code" title-type="p">
-    Scroll to the **Custom Scripts** section.
+    Select **Custom Scripts** from the left sidebar.
   </Step>
 
   <Step title="Add a script" icon="plus" title-type="p">
-    Click **Add Script** and fill in the details:
+    Click **Add Script** and provide the script source:
 
-    - **Name** — a label to identify the script (for example, "Cookie Consent Banner")
-    - **Source URL** or **Inline content** — the external script URL or raw JavaScript
-    - **Strategy** — when the script should load (see [Script strategies](#script-strategies) below)
+    - A **local file path** relative to your project (for example, `scripts/analytics.js`)
+    - An **external URL** (for example, `https://cdn.example.com/consent.js`)
 
+    Local scripts must be `.js` or `.mjs` files stored in your documentation project.
   </Step>
 
   <Step title="Publish" icon="upload" title-type="p">
@@ -46,48 +46,26 @@ If you manage configuration in version control, add scripts directly to `documen
 ```json
 {
   "scripts": [
-    {
-      "id": "cookie-consent",
-      "name": "Cookie Consent",
-      "src": "https://cdn.example.com/consent.js",
-      "strategy": "afterInteractive"
-    },
-    {
-      "id": "custom-tracker",
-      "name": "Custom Tracker",
-      "content": "console.log('Page loaded:', window.location.pathname);",
-      "strategy": "afterInteractive"
-    }
+    { "src": "scripts/consent-banner.js" },
+    { "src": "https://cdn.example.com/analytics.js" },
+    { "src": "scripts/custom-tracking.mjs" }
   ]
 }
 ```
 
-### Script properties
+Each entry in the `scripts` array has a single property:
 
 | Property | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
-| `id` | string | Yes | Unique identifier for the script |
-| `name` | string | Yes | Display label shown in the Editor |
-| `src` | string | No | URL of an external script file |
-| `content` | string | No | Inline JavaScript to inject directly |
-| `strategy` | string | No | Load timing strategy (default: `afterInteractive`) |
+| `src` | string | Yes | Local file path or external URL for the script |
+
+### Local vs external scripts
+
+- **Local scripts** use a relative path within your documentation project (for example, `scripts/analytics.js`). The file must exist in your project and use a `.js` or `.mjs` extension. Maximum file size is 5 MB.
+- **External scripts** use a full URL starting with `https://` or `http://` (for example, `https://cdn.example.com/widget.js`).
 
 <Callout kind="info" collapsed="false">
-  Provide either `src` (external file) or `content` (inline code), not both. If both are present, `src` is used and `content` is ignored.
-</Callout>
-
-## Script strategies
-
-The `strategy` property controls when your script executes relative to page load:
-
-| Strategy | Behavior | Use case |
-| -------- | -------- | -------- |
-| `beforeInteractive` | Loads before the page becomes interactive | Consent banners, critical tracking |
-| `afterInteractive` | Loads after the page is interactive (default) | Analytics, chat widgets, most third-party tools |
-| `lazyOnload` | Loads during idle time after the page is fully loaded | Non-critical scripts, background tasks |
-
-<Callout kind="tip" collapsed="false">
-  Use `afterInteractive` for most scripts. Only use `beforeInteractive` when the script must run before any user interaction, such as cookie consent managers.
+  Local script paths must be relative — no leading `/`, `./`, or `../`. Path traversal patterns are rejected for security.
 </Callout>
 
 ## Security considerations
@@ -96,11 +74,9 @@ Custom scripts execute in your readers' browsers with full page access.
 
 - Only add scripts from sources you trust.
 
-- Avoid inline scripts that include user-generated content or dynamic values that could enable injection.
-
 - Review third-party scripts periodically for changes or security advisories.
 
-- Use `src` with a specific versioned URL when possible to avoid unexpected updates.
+- Use a specific versioned URL when possible to avoid unexpected updates from external sources.
 
 <Callout kind="danger" collapsed="false">
   Malicious or misconfigured scripts can break your documentation site or compromise reader privacy. Test scripts in a staging environment before publishing to production.
@@ -110,7 +86,7 @@ Custom scripts execute in your readers' browsers with full page access.
 
 **Script not loading**: Verify the `src` URL is publicly accessible and returns valid JavaScript. Check the browser developer console for network or syntax errors.
 
-**Script conflicts**: If multiple scripts interfere with each other, adjust their `strategy` values to control load order. Scripts with `beforeInteractive` always load first.
+**Script conflicts**: If multiple scripts interfere with each other, try reordering them in the scripts array. Scripts load in the order they appear in the configuration.
 
 **Content Security Policy (CSP) errors**: If your documentation is served behind a CSP, ensure your script domains are listed in the `script-src` directive.
 
