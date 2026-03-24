@@ -5,6 +5,7 @@ description: >-
   the right panel for API documentation.
 type: reference
 ---
+
 ## Overview
 
 The **Request** and **Response** components create a two-column layout for API examples:
@@ -25,83 +26,82 @@ Common use cases:
 
 - **Tutorials:** Before/after or success/error examples next to explanations.
 
-<Request uid="c6ca1719-456a-4c7f-aae8-06b2b5aaa11a" show-lines="true" tabs={[]}>
+<Request uid="c6ca1719-456a-4c7f-aae8-06b2b5aaa11a" show-lines="true" tabs={["JavaScript","cURL"]}>
 
-  ```javascript
-  const response = await fetch('/api/docs', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer TOKEN',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ title: 'Getting Started' })
-  });
-  const response = await fetch('/api/docs', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer TOKEN',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ title: 'Getting Started' })
-  });
-  const response = await fetch('/api/docs', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer TOKEN',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ title: 'Getting Started' })
-  });
-  const response = await fetch('/api/docs', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer TOKEN',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ title: 'Getting Started' })
-  });
+```javascript
+const response = await fetch("/api/docs", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer TOKEN",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ title: "Getting Started" }),
+});
+const response = await fetch("/api/docs", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer TOKEN",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ title: "Getting Started" }),
+});
+const response = await fetch("/api/docs", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer TOKEN",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ title: "Getting Started" }),
+});
+const response = await fetch("/api/docs", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer TOKEN",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ title: "Getting Started" }),
+});
+```
 
-  ```
-
-  ```bash
-  curl -X POST https://api.example.com/docs \
-    -H "Authorization: Bearer TOKEN" \
-    -H "Content-Type: application/json" \
-    -d '{"title": "Getting Started"}'
-  ```
+```bash
+curl -X POST https://api.example.com/docs \
+  -H "Authorization: Bearer TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Getting Started"}'
+```
 
 </Request>
 
-<Response uid="a1a2053a-c2e9-494d-b580-d6604d9e7788" show-lines="true" tabs={["JSON","JSON"]}>
+<Response uid="a1a2053a-c2e9-494d-b580-d6604d9e7788" show-lines="true" tabs={["200","404"]}>
 
-  ```json JSON
-  {
-    "id": "doc-123",
-    "title": "Getting Started",
-    "status": "published",
-    "created_at": "2024-01-15T10:30:00Z"
-  }
-  {
-    "id": "doc-123",
-    "title": "Getting Started",
-    "status": "published",
-    "created_at": "2024-01-15T10:30:00Z"
-  }
-  {
-    "id": "doc-123",
-    "title": "Getting Started",
-    "status": "published",
-    "created_at": "2024-01-15T10:30:00Z"
-  }
-  ```
+```json
+{
+  "id": "doc-123",
+  "title": "Getting Started",
+  "status": "published",
+  "created_at": "2024-01-15T10:30:00Z"
+}
+{
+  "id": "doc-123",
+  "title": "Getting Started",
+  "status": "published",
+  "created_at": "2024-01-15T10:30:00Z"
+}
+{
+  "id": "doc-123",
+  "title": "Getting Started",
+  "status": "published",
+  "created_at": "2024-01-15T10:30:00Z"
+}
+```
 
-  ```json JSON
-  {
-    "error": "Document not found",
-    "code": "DOC_NOT_FOUND",
-    "message": "The requested document does not exist"
-  }
-  ```
+```json
+{
+  "error": "Document not found",
+  "code": "DOC_NOT_FOUND",
+  "message": "The requested document does not exist"
+}
+```
 
 </Response>
 
@@ -125,7 +125,13 @@ Inside the Request block:
 
 - Language selector: Use the dropdown on the right to choose the language for that tab.
 
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765447133805-xmduk8b2tpf-pasted-image-1765447130714.png?q=85&fm=auto&auto=compress%2Cformat" width="500" height="297" alt="" style="width: 500px; height: auto; cursor: pointer;" />
+<Image
+  src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765447133805-xmduk8b2tpf-pasted-image-1765447130714.png?q=85&fm=auto&auto=compress%2Cformat"
+  width="500"
+  height="297"
+  alt=""
+  style="width: 500px; height: auto; cursor: pointer;"
+/>
 
 ### Response in the editor UI
 
@@ -145,7 +151,13 @@ Inside the Response block:
 
 - Language selector: Choose the language (usually JSON) from the dropdown on the right.
 
-<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765447322447-gmaotxgck8t-pasted-image-1765447320243.png?q=85&fm=auto&auto=compress%2Cformat" width="508" height="250" alt="" style="width: 508px; height: auto; cursor: pointer;" />
+<Image
+  src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1765447322447-gmaotxgck8t-pasted-image-1765447320243.png?q=85&fm=auto&auto=compress%2Cformat"
+  width="508"
+  height="250"
+  alt=""
+  style="width: 508px; height: auto; cursor: pointer;"
+/>
 
 <Callout kind="info">
 
@@ -207,29 +219,65 @@ Use `Response` to display API response examples in the right sidebar beneath any
 
 ### Request attributes
 
-<ParamField uid="329c19b1-2df8-4b4b-8b1d-a7d4653542be" path="tabs" param-type="string" required="false" deprecated="false">
+<ParamField
+  uid="329c19b1-2df8-4b4b-8b1d-a7d4653542be"
+  path="tabs"
+  param-type="string"
+  required="false"
+  deprecated="false"
+>
   Comma-separated tab names. Overrides auto-detected languages.
 </ParamField>
 
-<ParamField uid="575ba8e6-f64b-4e83-b3aa-52db47eaf171" path="show-lines" param-type="string" required="false" deprecated="false">
+<ParamField
+  uid="575ba8e6-f64b-4e83-b3aa-52db47eaf171"
+  path="show-lines"
+  param-type="string"
+  required="false"
+  deprecated="false"
+>
   Shows line numbers when set to `"true"`. Request shows lines by default.
 </ParamField>
 
-<ParamField uid="970358b1-b814-4be7-b606-018115239bb1" path="default-tab" param-type="string" required="false" deprecated="false">
+<ParamField
+  uid="970358b1-b814-4be7-b606-018115239bb1"
+  path="default-tab"
+  param-type="string"
+  required="false"
+  deprecated="false"
+>
   Default active tab index (1-based).
 </ParamField>
 
 ### Response attributes
 
-<ParamField uid="bfac6f1e-b49a-4364-8e8e-5e3e6ec25e00" path="tabs" param-type="string" required="false" deprecated="false">
+<ParamField
+  uid="bfac6f1e-b49a-4364-8e8e-5e3e6ec25e00"
+  path="tabs"
+  param-type="string"
+  required="false"
+  deprecated="false"
+>
   Comma-separated tab names. Commonly HTTP status codes or formats.
 </ParamField>
 
-<ParamField uid="5c39a939-d9c2-4947-9dce-ca3b3e232530" path="show-lines" param-type="string" required="false" deprecated="false">
+<ParamField
+  uid="5c39a939-d9c2-4947-9dce-ca3b3e232530"
+  path="show-lines"
+  param-type="string"
+  required="false"
+  deprecated="false"
+>
   Shows line numbers when set to `"true"`. Response hides lines by default.
 </ParamField>
 
-<ParamField uid="d90140ed-94dd-48e0-af5c-ea0a0854bab9" path="default-tab" param-type="string" required="false" deprecated="false">
+<ParamField
+  uid="d90140ed-94dd-48e0-af5c-ea0a0854bab9"
+  path="default-tab"
+  param-type="string"
+  required="false"
+  deprecated="false"
+>
   Default active tab index (1-based).
 </ParamField>
 
@@ -245,6 +293,6 @@ Use `Response` to display API response examples in the right sidebar beneath any
 
 <Callout kind="success" collapsed="false">
 
-  Request and Response automatically participate in the sidebar layout on desktop, so you get a polished API reference without custom layout work.
+Request and Response automatically participate in the sidebar layout on desktop, so you get a polished API reference without custom layout work.
 
 </Callout>
