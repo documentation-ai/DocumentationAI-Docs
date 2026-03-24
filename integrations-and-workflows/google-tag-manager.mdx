@@ -1,0 +1,69 @@
+---
+title: Google Tag Manager
+description: >-
+  Inject your Google Tag Manager container script across all documentation pages
+  with zero-code setup.
+---
+Google Tag Manager (GTM) lets you manage marketing tags, analytics snippets, and tracking pixels from a single container. Enable the GTM integration to inject your container script across all published documentation pages.
+
+## Prerequisites
+
+- A [Google Tag Manager](https://tagmanager.google.com/) account with a container created
+
+- Your GTM container ID (starts with `GTM-`)
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Google Tag Manager" icon="toggle-right" title-type="p">
+    Select **Google Tag Manager** and enter your GTM container ID.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `gtm` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "gtm": {
+      "tagId": "GTM-XXXXXX"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `tagId` | string | Yes | Your GTM container ID (for example, `GTM-XXXXXX`) |
+
+## Where to find your container ID
+
+1. Sign in to [Google Tag Manager](https://tagmanager.google.com/).
+
+2. Go to **Admin** → **Container Settings**.
+
+3. Copy the container ID displayed at the top (format: `GTM-XXXXXX`).
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Google Analytics](/integrations-and-workflows/google-analytics) — track page views and events with GA4
+
+- [Custom scripts](/customize/custom-scripts) — add scripts for tools not covered by built-in integrations

@@ -1,0 +1,68 @@
+---
+title: Crisp
+description: >-
+  Add the Crisp live chat widget to your documentation site.
+---
+Crisp adds a live chat widget to your documentation so readers can message your team in real time. Enable the integration to display the Crisp chat box on all published pages.
+
+## Prerequisites
+
+- A [Crisp](https://app.crisp.chat/) account with a website configured
+
+- Your Crisp website ID
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Crisp" icon="toggle-right" title-type="p">
+    Select **Crisp** and enter your website ID.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `crisp` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "crisp": {
+      "websiteId": "your_website_id"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `websiteId` | string | Yes | Your Crisp website ID |
+
+## Where to find your website ID
+
+1. Sign in to [Crisp](https://app.crisp.chat/).
+
+2. Go to **Settings** → **Website Settings** → **Setup Instructions**.
+
+3. Copy the **Website ID** value.
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Intercom](/integrations-and-workflows/intercom) — another live chat option for your documentation
+
+- [Custom scripts](/customize/custom-scripts) — add scripts for tools not covered by built-in integrations

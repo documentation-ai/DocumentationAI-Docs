@@ -1,0 +1,69 @@
+---
+title: Fathom
+description: >-
+  Track site analytics on your documentation site with Fathom, a privacy-first
+  analytics tool.
+---
+Fathom provides simple, privacy-first website analytics without tracking personal data. Enable the integration to track page views on your documentation site.
+
+## Prerequisites
+
+- A [Fathom](https://usefathom.com/) account with a site created
+
+- Your Fathom site ID
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Fathom" icon="toggle-right" title-type="p">
+    Select **Fathom** and enter your site ID.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `fathom` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "fathom": {
+      "siteId": "ABCDEFGH"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `siteId` | string | Yes | Your Fathom site ID |
+
+## Where to find your site ID
+
+1. Sign in to [Fathom](https://usefathom.com/).
+
+2. Go to **Sites** → select your site → **Settings**.
+
+3. Copy the site ID (format: `ABCDEFGH`).
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Plausible](/integrations-and-workflows/plausible) — another privacy-friendly analytics option
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

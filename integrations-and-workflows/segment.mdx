@@ -1,0 +1,68 @@
+---
+title: Segment
+description: >-
+  Route analytics data from your documentation site through Segment.
+---
+Segment collects analytics events and routes them to your downstream tools. Enable the integration to send documentation events through your Segment source.
+
+## Prerequisites
+
+- A [Segment](https://app.segment.com/) account with a JavaScript source created
+
+- Your Segment source write key
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Segment" icon="toggle-right" title-type="p">
+    Select **Segment** and enter your source write key.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `segment` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "segment": {
+      "writeKey": "your_write_key"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `writeKey` | string | Yes | Your Segment source write key |
+
+## Where to find your write key
+
+1. Sign in to [Segment](https://app.segment.com/).
+
+2. Go to **Sources** → select your source → **Settings** → **API Keys**.
+
+3. Copy the **Write Key** value.
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Hightouch](/integrations-and-workflows/hightouch) — reverse ETL with Hightouch Events
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

@@ -1,0 +1,69 @@
+---
+title: Microsoft Clarity
+description: >-
+  Record heatmaps and session replays on your documentation site with Microsoft
+  Clarity.
+---
+Microsoft Clarity provides free heatmaps, session recordings, and behavioral insights. Enable the integration to understand how readers navigate your documentation.
+
+## Prerequisites
+
+- A [Microsoft Clarity](https://clarity.microsoft.com/) account with a project created
+
+- Your Clarity project ID
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Clarity" icon="toggle-right" title-type="p">
+    Select **Clarity** and enter your project ID.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `clarity` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "clarity": {
+      "projectId": "your_project_id"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `projectId` | string | Yes | Your Clarity project ID |
+
+## Where to find your project ID
+
+1. Sign in to [Microsoft Clarity](https://clarity.microsoft.com/).
+
+2. Go to **Settings** → **Overview**.
+
+3. Copy the **Project ID** value.
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Hotjar](/integrations-and-workflows/hotjar) — heatmaps and session recordings with Hotjar
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

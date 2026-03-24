@@ -1,0 +1,68 @@
+---
+title: Amplitude
+description: >-
+  Send analytics events from your documentation site to Amplitude.
+---
+Amplitude helps you understand user behavior through event-based analytics. Enable the integration to send documentation page views and events to your Amplitude project.
+
+## Prerequisites
+
+- An [Amplitude](https://app.amplitude.com/) account with a project created
+
+- Your Amplitude API key
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Amplitude" icon="toggle-right" title-type="p">
+    Select **Amplitude** and enter your API key.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `amplitude` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "amplitude": {
+      "apiKey": "your_amplitude_key"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `apiKey` | string | Yes | Your Amplitude API key |
+
+## Where to find your API key
+
+1. Sign in to [Amplitude](https://app.amplitude.com/).
+
+2. Go to **Settings** → **Projects** → select your project.
+
+3. Copy the API key from the project settings.
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Segment](/integrations-and-workflows/segment) — route analytics data through Segment
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

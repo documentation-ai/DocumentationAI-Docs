@@ -1,0 +1,69 @@
+---
+title: Plausible
+description: >-
+  Track page views on your documentation site with Plausible, a
+  privacy-friendly analytics platform.
+---
+Plausible provides lightweight, privacy-friendly analytics without cookies or personal data collection. Enable the integration to track page views on your documentation site.
+
+## Prerequisites
+
+- A [Plausible](https://plausible.io/) account with your site domain registered
+
+- Your site domain as registered in Plausible
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Plausible" icon="toggle-right" title-type="p">
+    Select **Plausible** and enter your site domain.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `plausible` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "plausible": {
+      "domain": "docs.example.com"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `domain` | string | Yes | Your site domain as registered in Plausible |
+
+## Where to find your domain
+
+1. Sign in to [Plausible](https://plausible.io/).
+
+2. Go to **Sites** and locate your site.
+
+3. Use the exact domain string shown in your Plausible dashboard (for example, `docs.example.com`).
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Fathom](/integrations-and-workflows/fathom) — another privacy-first analytics option
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

@@ -1,0 +1,74 @@
+---
+title: PostHog
+description: >-
+  Track product analytics events on your documentation site with PostHog.
+---
+PostHog captures product analytics events so you can understand how readers interact with your documentation. Enable the integration to send page views and events to your PostHog project.
+
+## Prerequisites
+
+- A [PostHog](https://app.posthog.com/) account with a project created
+
+- Your PostHog project API key (starts with `phc_`)
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable PostHog" icon="toggle-right" title-type="p">
+    Select **PostHog** and enter your project API key. Optionally update the API host if you use a self-hosted or EU instance.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `posthog` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "posthog": {
+      "apiKey": "phc_your_project_key",
+      "apiHost": "https://us.i.posthog.com"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `apiKey` | string | Yes | Your PostHog project API key (starts with `phc_`) |
+| `apiHost` | string | No | Your PostHog instance URL (defaults to `https://us.i.posthog.com`) |
+
+## Where to find your API key
+
+1. Sign in to [PostHog](https://app.posthog.com/).
+
+2. Go to **Project Settings** → **Project API Key**.
+
+3. Copy the API key (format: `phc_...`).
+
+<Callout kind="info" collapsed="false">
+  If you use PostHog Cloud EU, set `apiHost` to `https://eu.i.posthog.com`. For self-hosted instances, use your own PostHog domain.
+</Callout>
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Mixpanel](/integrations-and-workflows/mixpanel) — event tracking with Mixpanel
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

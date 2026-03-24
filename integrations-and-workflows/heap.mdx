@@ -1,0 +1,68 @@
+---
+title: Heap
+description: >-
+  Track user interactions on your documentation site with Heap.
+---
+Heap automatically captures user interactions so you can analyze reader behavior without manual event tracking. Enable the integration to connect your documentation site to Heap.
+
+## Prerequisites
+
+- A [Heap](https://heapanalytics.com/) account with a project created
+
+- Your Heap app ID
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Heap" icon="toggle-right" title-type="p">
+    Select **Heap** and enter your app ID.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `heap` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "heap": {
+      "appId": "your_app_id"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `appId` | string | Yes | Your Heap app ID |
+
+## Where to find your app ID
+
+1. Sign in to [Heap](https://heapanalytics.com/).
+
+2. Go to **Account** → **Manage** → **Projects**.
+
+3. Copy the app ID for your project.
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Amplitude](/integrations-and-workflows/amplitude) — event-based analytics with Amplitude
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

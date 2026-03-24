@@ -1,0 +1,68 @@
+---
+title: LogRocket
+description: >-
+  Session replay and error tracking for your documentation site with LogRocket.
+---
+LogRocket captures session replays, errors, and performance data so you can debug issues readers encounter on your documentation site. Enable the integration to connect your LogRocket project.
+
+## Prerequisites
+
+- A [LogRocket](https://app.logrocket.com/) account with a project created
+
+- Your LogRocket app ID (format: `org-slug/app-slug`)
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable LogRocket" icon="toggle-right" title-type="p">
+    Select **LogRocket** and enter your app ID.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `logrocket` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "logrocket": {
+      "appId": "your-org/your-app"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `appId` | string | Yes | Your LogRocket app ID (format: `org-slug/app-slug`) |
+
+## Where to find your app ID
+
+1. Sign in to [LogRocket](https://app.logrocket.com/).
+
+2. Go to **Settings** → **General Settings**.
+
+3. Copy the app ID (format: `your-org/your-app`).
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Hotjar](/integrations-and-workflows/hotjar) — heatmaps and session recordings with Hotjar
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

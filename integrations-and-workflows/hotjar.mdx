@@ -1,0 +1,71 @@
+---
+title: Hotjar
+description: >-
+  Understand user behavior on your documentation site with Hotjar heatmaps and
+  session recordings.
+---
+Hotjar captures heatmaps, session recordings, and user feedback so you can see how readers interact with your documentation pages. Enable the integration to connect your Hotjar account.
+
+## Prerequisites
+
+- A [Hotjar](https://insights.hotjar.com/) account with a site configured
+
+- Your Hotjar site ID
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Hotjar" icon="toggle-right" title-type="p">
+    Select **Hotjar** and enter your site ID. Optionally update the snippet version if you use a version other than `6`.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `hotjar` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "hotjar": {
+      "hjid": "1234567",
+      "hjsv": "6"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `hjid` | string | Yes | Your Hotjar site ID |
+| `hjsv` | string | No | Hotjar snippet version (defaults to `6`) |
+
+## Where to find your site ID
+
+1. Sign in to [Hotjar](https://insights.hotjar.com/).
+
+2. Go to **Sites** → **Tracking Code**.
+
+3. Copy the site ID from the tracking code snippet (the numeric value in the script).
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Clarity](/integrations-and-workflows/clarity) — heatmaps and session replays with Microsoft Clarity
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

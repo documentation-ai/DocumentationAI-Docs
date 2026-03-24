@@ -1,0 +1,69 @@
+---
+title: Pirsch
+description: >-
+  Monitor web traffic on your documentation site with Pirsch, a privacy-friendly
+  analytics platform.
+---
+Pirsch provides privacy-friendly web analytics that comply with GDPR without requiring cookie consent banners. Enable the integration to monitor traffic on your documentation site.
+
+## Prerequisites
+
+- A [Pirsch](https://pirsch.io/) account with a site configured
+
+- Your Pirsch identification code
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Pirsch" icon="toggle-right" title-type="p">
+    Select **Pirsch** and enter your identification code.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `pirsch` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "pirsch": {
+      "identificationCode": "your_identification_code"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `identificationCode` | string | Yes | Your Pirsch identification code |
+
+## Where to find your identification code
+
+1. Sign in to [Pirsch](https://pirsch.io/).
+
+2. Go to **Settings** → **Integration**.
+
+3. Copy the **Identification Code** value.
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Plausible](/integrations-and-workflows/plausible) — another privacy-friendly analytics option
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

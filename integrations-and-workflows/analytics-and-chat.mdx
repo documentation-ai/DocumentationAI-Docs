@@ -57,253 +57,87 @@ If you manage configuration in version control, add integrations directly to `do
 
 Each integration is a key under the `integrations` object. Only include the providers you want to enable.
 
-## Supported analytics integrations
+## Supported integrations
 
-### Google Tag Manager
+### Analytics
 
-Inject the Google Tag Manager container script across all pages.
+Track page views, user behavior, and product events with these analytics providers.
 
-| Property | Description |
-| -------- | ----------- |
-| `gtm.tagId` | Your GTM container ID (for example, `GTM-XXXXXX`) |
+<Columns cols="2">
+  <Card title="Google Tag Manager" href="/integrations-and-workflows/google-tag-manager" icon="tag" horizontal={false}>
+    Inject your GTM container script across all documentation pages.
+  </Card>
 
-```json
-{ "gtm": { "tagId": "GTM-XXXXXX" } }
-```
+  <Card title="Google Analytics" href="/integrations-and-workflows/google-analytics" icon="bar-chart" horizontal={false}>
+    Track page views and events with Google Analytics 4.
+  </Card>
 
-**Where to find it**: [Google Tag Manager](https://tagmanager.google.com/) → Admin → Container Settings.
+  <Card title="PostHog" href="/integrations-and-workflows/posthog" icon="trending-up" horizontal={false}>
+    Track product analytics events with PostHog.
+  </Card>
 
-### Google Analytics
+  <Card title="Amplitude" href="/integrations-and-workflows/amplitude" icon="activity" horizontal={false}>
+    Send analytics events to Amplitude.
+  </Card>
 
-Track page views and events with Google Analytics 4.
+  <Card title="Mixpanel" href="/integrations-and-workflows/mixpanel" icon="pie-chart" horizontal={false}>
+    Track events with Mixpanel.
+  </Card>
 
-| Property | Description |
-| -------- | ----------- |
-| `ga.measurementId` | Your GA4 measurement ID (for example, `G-XXXXXXXXXX`) |
+  <Card title="Segment" href="/integrations-and-workflows/segment" icon="share-2" horizontal={false}>
+    Route analytics data through Segment.
+  </Card>
 
-```json
-{ "ga": { "measurementId": "G-XXXXXXXXXX" } }
-```
+  <Card title="Heap" href="/integrations-and-workflows/heap" icon="layers" horizontal={false}>
+    Track user interactions with Heap.
+  </Card>
 
-**Where to find it**: [Google Analytics](https://analytics.google.com/) → Admin → Data Streams → your web stream.
+  <Card title="Plausible" href="/integrations-and-workflows/plausible" icon="shield" horizontal={false}>
+    Privacy-friendly page view tracking with Plausible.
+  </Card>
 
-### PostHog
+  <Card title="Fathom" href="/integrations-and-workflows/fathom" icon="eye" horizontal={false}>
+    Privacy-first analytics with Fathom.
+  </Card>
 
-Track product analytics events with PostHog.
+  <Card title="Pirsch" href="/integrations-and-workflows/pirsch" icon="shield" horizontal={false}>
+    Privacy-friendly web traffic monitoring with Pirsch.
+  </Card>
 
-| Property | Description |
-| -------- | ----------- |
-| `posthog.apiKey` | Your PostHog project API key (starts with `phc_`) |
-| `posthog.apiHost` | Your PostHog instance URL (defaults to `https://us.i.posthog.com`) |
+  <Card title="Hotjar" href="/integrations-and-workflows/hotjar" icon="mouse-pointer" horizontal={false}>
+    Heatmaps and session recordings with Hotjar.
+  </Card>
 
-```json
-{ "posthog": { "apiKey": "phc_your_key", "apiHost": "https://us.i.posthog.com" } }
-```
+  <Card title="Clarity" href="/integrations-and-workflows/clarity" icon="monitor" horizontal={false}>
+    Heatmaps and session replays with Microsoft Clarity.
+  </Card>
 
-**Where to find it**: [PostHog](https://app.posthog.com/) → Project Settings → Project API Key.
+  <Card title="Clearbit" href="/integrations-and-workflows/clearbit" icon="user-check" horizontal={false}>
+    Enrich visitor data with Clearbit.
+  </Card>
 
-### Amplitude
+  <Card title="LogRocket" href="/integrations-and-workflows/logrocket" icon="video" horizontal={false}>
+    Session replay and error tracking with LogRocket.
+  </Card>
 
-Send analytics events to Amplitude.
+  <Card title="Hightouch" href="/integrations-and-workflows/hightouch" icon="upload" horizontal={false}>
+    Send events to Hightouch for reverse ETL.
+  </Card>
+</Columns>
 
-| Property | Description |
-| -------- | ----------- |
-| `amplitude.apiKey` | Your Amplitude API key |
+### Support and chat
 
-```json
-{ "amplitude": { "apiKey": "your_amplitude_key" } }
-```
+Add live chat and support widgets to your documentation.
 
-**Where to find it**: [Amplitude](https://app.amplitude.com/) → Settings → Projects → your project.
+<Columns cols="2">
+  <Card title="Intercom" href="/integrations-and-workflows/intercom" icon="message-circle" horizontal={false}>
+    Add the Intercom Messenger widget for live chat and support.
+  </Card>
 
-### Mixpanel
-
-Track events with Mixpanel.
-
-| Property | Description |
-| -------- | ----------- |
-| `mixpanel.projectToken` | Your Mixpanel project token |
-
-```json
-{ "mixpanel": { "projectToken": "your_project_token" } }
-```
-
-**Where to find it**: [Mixpanel](https://mixpanel.com/) → Settings → Project Settings → Project Token.
-
-### Segment
-
-Route analytics data through Segment.
-
-| Property | Description |
-| -------- | ----------- |
-| `segment.writeKey` | Your Segment source write key |
-
-```json
-{ "segment": { "writeKey": "your_write_key" } }
-```
-
-**Where to find it**: [Segment](https://app.segment.com/) → Sources → your source → Settings → API Keys.
-
-### Heap
-
-Track user interactions with Heap.
-
-| Property | Description |
-| -------- | ----------- |
-| `heap.appId` | Your Heap app ID |
-
-```json
-{ "heap": { "appId": "your_app_id" } }
-```
-
-**Where to find it**: [Heap](https://heapanalytics.com/) → Account → Manage → Projects.
-
-### Plausible
-
-Track page views with Plausible, a privacy-friendly analytics platform.
-
-| Property | Description |
-| -------- | ----------- |
-| `plausible.domain` | Your site domain registered in Plausible |
-
-```json
-{ "plausible": { "domain": "docs.example.com" } }
-```
-
-**Where to find it**: [Plausible](https://plausible.io/) → Sites → your site's domain.
-
-### Fathom
-
-Track site analytics with Fathom, a privacy-first analytics tool.
-
-| Property | Description |
-| -------- | ----------- |
-| `fathom.siteId` | Your Fathom site ID |
-
-```json
-{ "fathom": { "siteId": "ABCDEFGH" } }
-```
-
-**Where to find it**: [Fathom](https://usefathom.com/) → Sites → your site → Settings.
-
-### Pirsch
-
-Monitor web traffic with Pirsch, a privacy-friendly analytics platform.
-
-| Property | Description |
-| -------- | ----------- |
-| `pirsch.identificationCode` | Your Pirsch identification code |
-
-```json
-{ "pirsch": { "identificationCode": "your_identification_code" } }
-```
-
-**Where to find it**: [Pirsch](https://pirsch.io/) → Settings → Integration → Identification Code.
-
-### Hotjar
-
-Understand user behavior with heatmaps and recordings.
-
-| Property | Description |
-| -------- | ----------- |
-| `hotjar.hjid` | Your Hotjar site ID |
-| `hotjar.hjsv` | Hotjar snippet version (defaults to `6`) |
-
-```json
-{ "hotjar": { "hjid": "1234567", "hjsv": "6" } }
-```
-
-**Where to find it**: [Hotjar](https://insights.hotjar.com/) → Sites → Tracking Code.
-
-### Clarity
-
-Record heatmaps and session replays with Microsoft Clarity.
-
-| Property | Description |
-| -------- | ----------- |
-| `clarity.projectId` | Your Clarity project ID |
-
-```json
-{ "clarity": { "projectId": "your_project_id" } }
-```
-
-**Where to find it**: [Clarity](https://clarity.microsoft.com/) → Settings → Overview → Project ID.
-
-### Clearbit
-
-Enrich visitor data with Clearbit.
-
-| Property | Description |
-| -------- | ----------- |
-| `clearbit.apiKey` | Your Clearbit API key |
-
-```json
-{ "clearbit": { "apiKey": "your_clearbit_key" } }
-```
-
-**Where to find it**: [Clearbit](https://clearbit.com/) → API → API Keys.
-
-### LogRocket
-
-Session replay and error tracking with LogRocket.
-
-| Property | Description |
-| -------- | ----------- |
-| `logrocket.appId` | Your LogRocket app ID (format: `org-slug/app-slug`) |
-
-```json
-{ "logrocket": { "appId": "your-org/your-app" } }
-```
-
-**Where to find it**: [LogRocket](https://app.logrocket.com/) → Settings → General Settings.
-
-### Hightouch
-
-Send events to Hightouch for reverse ETL.
-
-| Property | Description |
-| -------- | ----------- |
-| `hightouch.writeKey` | Your Hightouch Events write key |
-
-```json
-{ "hightouch": { "writeKey": "your_write_key" } }
-```
-
-**Where to find it**: [Hightouch](https://app.hightouch.com/) → Sources → Events → Write Key.
-
-## Supported chat integrations
-
-### Intercom
-
-Add the Intercom Messenger widget to your documentation for live chat and support.
-
-| Property | Description |
-| -------- | ----------- |
-| `intercom.appId` | Your Intercom app ID |
-
-```json
-{ "intercom": { "appId": "your_app_id" } }
-```
-
-**Where to find it**: [Intercom](https://app.intercom.com/) → Settings → Installation → Web → App ID.
-
-<Callout kind="info" collapsed="false">
-  This is your Intercom **App ID** (found under installation settings), not an API key. The App ID is a short alphanumeric string like `abc123de`.
-</Callout>
-
-### Crisp
-
-Add the Crisp live chat widget to your documentation.
-
-| Property | Description |
-| -------- | ----------- |
-| `crisp.websiteId` | Your Crisp website ID |
-
-```json
-{ "crisp": { "websiteId": "your_website_id" } }
-```
-
-**Where to find it**: [Crisp](https://app.crisp.chat/) → Settings → Website Settings → Setup Instructions → Website ID.
+  <Card title="Crisp" href="/integrations-and-workflows/crisp" icon="message-square" horizontal={false}>
+    Add the Crisp live chat widget to your documentation.
+  </Card>
+</Columns>
 
 ## Complete example
 

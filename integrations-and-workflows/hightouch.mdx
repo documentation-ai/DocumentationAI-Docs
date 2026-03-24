@@ -1,0 +1,68 @@
+---
+title: Hightouch
+description: >-
+  Send events from your documentation site to Hightouch for reverse ETL.
+---
+Hightouch Events captures analytics events and syncs them to your data warehouse and downstream tools. Enable the integration to send documentation events through Hightouch.
+
+## Prerequisites
+
+- A [Hightouch](https://app.hightouch.com/) account with an Events source configured
+
+- Your Hightouch Events write key
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Hightouch" icon="toggle-right" title-type="p">
+    Select **Hightouch** and enter your Events write key.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `hightouch` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "hightouch": {
+      "writeKey": "your_write_key"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `writeKey` | string | Yes | Your Hightouch Events write key |
+
+## Where to find your write key
+
+1. Sign in to [Hightouch](https://app.hightouch.com/).
+
+2. Go to **Sources** → **Events** → select your source.
+
+3. Copy the **Write Key** value.
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Segment](/integrations-and-workflows/segment) — route analytics data through Segment
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

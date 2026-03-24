@@ -4,13 +4,13 @@ description: >-
   Add custom JavaScript snippets to your documentation site for analytics,
   widgets, or any custom functionality not covered by built-in integrations.
 ---
-Inject custom `<script>` tags into your published documentation site. Use custom scripts for analytics providers not covered by [built-in integrations](/integrations-and-workflows/analytics-and-chat), consent banners, A/B testing tools, or any third-party widget that requires a script tag.
+Inject custom JavaScript into your published documentation site. Use custom scripts for analytics providers not covered by [built-in integrations](/integrations-and-workflows/analytics-and-chat), consent banners, A/B testing tools, or any custom functionality.
 
 ## Prerequisites
 
 - A documentation project with publishing access
 
-- The script file path (local `.js`/`.mjs` file) or external URL you want to add
+- A `.js` or `.mjs` script file added to your documentation project
 
 ## Configure custom scripts from the Editor
 
@@ -26,12 +26,7 @@ You can manage custom scripts directly from the Editor without editing JSON.
   </Step>
 
   <Step title="Add a script" icon="plus" title-type="p">
-    Click **Add Script** and provide the script source:
-
-    - A **local file path** relative to your project (for example, `scripts/analytics.js`)
-    - An **external URL** (for example, `https://cdn.example.com/consent.js`)
-
-    Local scripts must be `.js` or `.mjs` files stored in your documentation project.
+    Click **Add Script** and select the script file from your project. Only `.js` and `.mjs` files are available for selection.
   </Step>
 
   <Step title="Publish" icon="upload" title-type="p">
@@ -47,7 +42,6 @@ If you manage configuration in version control, add scripts directly to `documen
 {
   "scripts": [
     { "src": "scripts/consent-banner.js" },
-    { "src": "https://cdn.example.com/analytics.js" },
     { "src": "scripts/custom-tracking.mjs" }
   ]
 }
@@ -57,26 +51,26 @@ Each entry in the `scripts` array has a single property:
 
 | Property | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
-| `src` | string | Yes | Local file path or external URL for the script |
+| `src` | string | Yes | Relative file path to a `.js` or `.mjs` file in your project |
 
-### Local vs external scripts
+### Script file requirements
 
-- **Local scripts** use a relative path within your documentation project (for example, `scripts/analytics.js`). The file must exist in your project and use a `.js` or `.mjs` extension. Maximum file size is 5 MB.
-- **External scripts** use a full URL starting with `https://` or `http://` (for example, `https://cdn.example.com/widget.js`).
+- Files must use a `.js` or `.mjs` extension.
+- Paths are relative to your project root (for example, `scripts/analytics.js`).
+- Maximum file size is 5 MB.
+- The file must exist in your documentation project before you can reference it.
 
 <Callout kind="info" collapsed="false">
-  Local script paths must be relative — no leading `/`, `./`, or `../`. Path traversal patterns are rejected for security.
+  Script paths must be relative — no leading `/`, `./`, or `../`. Path traversal patterns are rejected for security.
 </Callout>
 
 ## Security considerations
 
 Custom scripts execute in your readers' browsers with full page access.
 
-- Only add scripts from sources you trust.
+- Only add scripts you trust and have reviewed.
 
-- Review third-party scripts periodically for changes or security advisories.
-
-- Use a specific versioned URL when possible to avoid unexpected updates from external sources.
+- Audit script contents periodically, especially if they interact with user data or external services.
 
 <Callout kind="danger" collapsed="false">
   Malicious or misconfigured scripts can break your documentation site or compromise reader privacy. Test scripts in a staging environment before publishing to production.
@@ -84,11 +78,9 @@ Custom scripts execute in your readers' browsers with full page access.
 
 ## Troubleshooting
 
-**Script not loading**: Verify the `src` URL is publicly accessible and returns valid JavaScript. Check the browser developer console for network or syntax errors.
+**Script not loading**: Verify the file exists in your project and uses a `.js` or `.mjs` extension. Check the browser developer console for syntax errors.
 
 **Script conflicts**: If multiple scripts interfere with each other, try reordering them in the scripts array. Scripts load in the order they appear in the configuration.
-
-**Content Security Policy (CSP) errors**: If your documentation is served behind a CSP, ensure your script domains are listed in the `script-src` directive.
 
 **Changes not visible**: Custom script changes require publishing. Check that you have published after making edits.
 

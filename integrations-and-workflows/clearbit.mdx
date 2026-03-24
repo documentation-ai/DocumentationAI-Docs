@@ -1,0 +1,68 @@
+---
+title: Clearbit
+description: >-
+  Enrich visitor data on your documentation site with Clearbit.
+---
+Clearbit identifies and enriches anonymous visitor data so you can understand which companies are reading your documentation. Enable the integration to connect your Clearbit account.
+
+## Prerequisites
+
+- A [Clearbit](https://clearbit.com/) account with API access
+
+- Your Clearbit API key
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Clearbit" icon="toggle-right" title-type="p">
+    Select **Clearbit** and enter your API key.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `clearbit` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "clearbit": {
+      "apiKey": "your_clearbit_key"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `apiKey` | string | Yes | Your Clearbit API key |
+
+## Where to find your API key
+
+1. Sign in to [Clearbit](https://clearbit.com/).
+
+2. Go to **API** → **API Keys**.
+
+3. Copy your API key.
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Segment](/integrations-and-workflows/segment) — route analytics data through Segment
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation

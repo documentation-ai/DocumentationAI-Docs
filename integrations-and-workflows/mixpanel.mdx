@@ -1,0 +1,68 @@
+---
+title: Mixpanel
+description: >-
+  Track events on your documentation site with Mixpanel.
+---
+Mixpanel provides event-based analytics for tracking how readers use your documentation. Enable the integration to send page views and events to your Mixpanel project.
+
+## Prerequisites
+
+- A [Mixpanel](https://mixpanel.com/) account with a project created
+
+- Your Mixpanel project token
+
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar.
+  </Step>
+
+  <Step title="Enable Mixpanel" icon="toggle-right" title-type="p">
+    Select **Mixpanel** and enter your project token.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add the `mixpanel` key under `integrations` in your `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "mixpanel": {
+      "projectToken": "your_project_token"
+    }
+  }
+}
+```
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `projectToken` | string | Yes | Your Mixpanel project token |
+
+## Where to find your project token
+
+1. Sign in to [Mixpanel](https://mixpanel.com/).
+
+2. Go to **Settings** → **Project Settings**.
+
+3. Copy the **Project Token** value.
+
+## What's next
+
+- [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) — overview of all supported integrations
+
+- [Amplitude](/integrations-and-workflows/amplitude) — event-based analytics with Amplitude
+
+- [Analytics overview](/analytics/overview) — view traffic and engagement data for your documentation
