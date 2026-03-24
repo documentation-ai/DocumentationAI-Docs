@@ -2,7 +2,7 @@
 title: Sitemap
 description: >-
   Configure and control sitemap.xml generation for your Documentation.AI site,
-  including dashboard settings, JSON config keys, and common issues.
+  including Site Config options, JSON config keys, and common issues.
 ---
 ## Overview
 
@@ -52,17 +52,15 @@ Access your sitemap at your docs base URL with `/sitemap.xml` appended, then ver
 
 ## Enable or disable sitemap generation
 
-Control whether Documentation.AI generates and serves `/sitemap.xml` using either the Dashboard UI or the global SEO keys in your root `documentation.json`.
+Control whether Documentation.AI generates and serves `/sitemap.xml` using either Site Config in the Editor or the global SEO keys in your root `documentation.json`.
 
-### Using the dashboard
+### Using the Editor
 
-Use the SEO settings in the Dashboard when you prefer not to edit `documentation.json` directly.
+Use Site Config in the Editor when you prefer not to edit `documentation.json` directly.
 
 <Steps>
-  <Step title="Open sitemap settings in the dashboard" icon="settings" title-type="p">
-    - In the Dashboard, go to **Settings**.
-
-    - Under **General**, go **SEO Settings**, **Sitemap**
+  <Step title="Open sitemap settings" icon="settings" title-type="p">
+    In the Editor, click the **gear icon** in the toolbar to open **Site Config**, then scroll to the **SEO** section.
   </Step>
 
   <Step title="Toggle sitemap generation" icon="toggle-right" title-type="p">
@@ -80,7 +78,7 @@ Use the SEO settings in the Dashboard when you prefer not to edit `documentation
 
 ### Using documentation.json
 
-Set global sitemap behavior directly in your root `documentation.json` file using the `seo` object. This mirrors the setting written by the Dashboard.
+Set global sitemap behavior directly in your root `documentation.json` file using the `seo` object. This mirrors the setting configured in Site Config.
 
 To **enable** sitemap generation:
 

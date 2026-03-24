@@ -290,6 +290,11 @@
                 "icon": "repeat"
               },
               {
+                "title": "Custom Scripts",
+                "path": "customize/custom-scripts",
+                "icon": "file-code"
+              },
+              {
                 "title": "Access Control",
                 "path": "customize/access-control",
                 "icon": "lock"
@@ -374,6 +379,11 @@
                 "title": "GitHub Integration",
                 "path": "integrations-and-workflows/github-integration",
                 "icon": "github"
+              },
+              {
+                "title": "Analytics & Chat",
+                "path": "integrations-and-workflows/analytics-and-chat",
+                "icon": "bar-chart"
               }
             ]
           },

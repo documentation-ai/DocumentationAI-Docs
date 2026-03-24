@@ -1,0 +1,123 @@
+---
+title: Custom Scripts
+description: >-
+  Add custom JavaScript snippets to your documentation site for analytics,
+  widgets, or any custom functionality not covered by built-in integrations.
+---
+Inject custom `<script>` tags into your published documentation site. Use custom scripts for analytics providers not covered by [built-in integrations](/integrations-and-workflows/analytics-and-chat), consent banners, A/B testing tools, or any third-party widget that requires a script tag.
+
+## Prerequisites
+
+- A documentation project with publishing access
+
+- The script source URL or inline JavaScript you want to add
+
+## Configure custom scripts from the Editor
+
+You can manage custom scripts directly from the Editor without editing JSON.
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click the **gear icon** in the toolbar to open **Site Config**.
+  </Step>
+
+  <Step title="Navigate to Custom Scripts" icon="code" title-type="p">
+    Scroll to the **Custom Scripts** section.
+  </Step>
+
+  <Step title="Add a script" icon="plus" title-type="p">
+    Click **Add Script** and fill in the details:
+
+    - **Name** — a label to identify the script (for example, "Cookie Consent Banner")
+    - **Source URL** or **Inline content** — the external script URL or raw JavaScript
+    - **Strategy** — when the script should load (see [Script strategies](#script-strategies) below)
+
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the script to your live site. Custom script changes appear in the **Changes** panel alongside content edits.
+  </Step>
+</Steps>
+
+## Configure custom scripts via documentation.json
+
+If you manage configuration in version control, add scripts directly to `documentation.json`:
+
+```json
+{
+  "scripts": [
+    {
+      "id": "cookie-consent",
+      "name": "Cookie Consent",
+      "src": "https://cdn.example.com/consent.js",
+      "strategy": "afterInteractive"
+    },
+    {
+      "id": "custom-tracker",
+      "name": "Custom Tracker",
+      "content": "console.log('Page loaded:', window.location.pathname);",
+      "strategy": "afterInteractive"
+    }
+  ]
+}
+```
+
+### Script properties
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `id` | string | Yes | Unique identifier for the script |
+| `name` | string | Yes | Display label shown in the Editor |
+| `src` | string | No | URL of an external script file |
+| `content` | string | No | Inline JavaScript to inject directly |
+| `strategy` | string | No | Load timing strategy (default: `afterInteractive`) |
+
+<Callout kind="info" collapsed="false">
+  Provide either `src` (external file) or `content` (inline code), not both. If both are present, `src` is used and `content` is ignored.
+</Callout>
+
+## Script strategies
+
+The `strategy` property controls when your script executes relative to page load:
+
+| Strategy | Behavior | Use case |
+| -------- | -------- | -------- |
+| `beforeInteractive` | Loads before the page becomes interactive | Consent banners, critical tracking |
+| `afterInteractive` | Loads after the page is interactive (default) | Analytics, chat widgets, most third-party tools |
+| `lazyOnload` | Loads during idle time after the page is fully loaded | Non-critical scripts, background tasks |
+
+<Callout kind="tip" collapsed="false">
+  Use `afterInteractive` for most scripts. Only use `beforeInteractive` when the script must run before any user interaction, such as cookie consent managers.
+</Callout>
+
+## Security considerations
+
+Custom scripts execute in your readers' browsers with full page access.
+
+- Only add scripts from sources you trust.
+
+- Avoid inline scripts that include user-generated content or dynamic values that could enable injection.
+
+- Review third-party scripts periodically for changes or security advisories.
+
+- Use `src` with a specific versioned URL when possible to avoid unexpected updates.
+
+<Callout kind="danger" collapsed="false">
+  Malicious or misconfigured scripts can break your documentation site or compromise reader privacy. Test scripts in a staging environment before publishing to production.
+</Callout>
+
+## Troubleshooting
+
+**Script not loading**: Verify the `src` URL is publicly accessible and returns valid JavaScript. Check the browser developer console for network or syntax errors.
+
+**Script conflicts**: If multiple scripts interfere with each other, adjust their `strategy` values to control load order. Scripts with `beforeInteractive` always load first.
+
+**Content Security Policy (CSP) errors**: If your documentation is served behind a CSP, ensure your script domains are listed in the `script-src` directive.
+
+**Changes not visible**: Custom script changes require publishing. Check that you have published after making edits.
+
+## What's next
+
+- [Analytics and chat integrations](/integrations-and-workflows/analytics-and-chat) — zero-code setup for popular analytics and chat tools
+
+- [Site configuration reference](/customize/site-configuration) — full `documentation.json` reference

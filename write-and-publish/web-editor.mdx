@@ -333,3 +333,50 @@ A typical loop:
    - Test any links or interactive elements.
 
 You can repeat this cycle as often as needed. For teams that require code review, or if you prefer a Git-based pipeline, use the [code editor overview](/write-and-publish/code-editor) to understand the alternative publishing flow.
+
+## Site Config
+
+The Editor includes a built-in **Site Config** panel for managing documentation settings alongside your content. Click the **gear icon** in the Editor toolbar to open it.
+
+From Site Config you can manage:
+
+- **Brand & Theme** — template, logos, and theme colors
+- **Navigation** — header navbar actions and links
+- **SEO** — robots indexing, llms.txt generation, and sitemap
+- **Integrations** — analytics and chat providers ([learn more](/integrations-and-workflows/analytics-and-chat))
+- **Custom Scripts** — third-party JavaScript injection ([learn more](/customize/custom-scripts))
+- **Feedback** — page-level reactions and follow-up surveys
+- **Redirects** — URL forwarding rules
+- **AI Agent** — AI assistant settings and Page Actions
+
+Changes you make in Site Config appear in the **Changes** panel just like content edits, and they are deployed when you click **Publish**. For the full configuration reference, see [site configuration](/customize/site-configuration).
+
+## Unpublish your documentation
+
+If you need to take your documentation site offline, you can unpublish it from the dashboard Settings page (this action is in the dashboard, not in the Editor's Site Config panel).
+
+<Steps>
+  <Step title="Open documentation settings" icon="settings" title-type="p">
+    Navigate to **Settings** → **Documentation Settings** → **General** and scroll to the **Danger Zone** section.
+  </Step>
+
+  <Step title="Unpublish" icon="cloud-off" title-type="p">
+    Click **Unpublish Documentation** and confirm in the dialog.
+  </Step>
+</Steps>
+
+When you unpublish:
+
+- Your live documentation site becomes inaccessible to readers.
+
+- Custom domain connections are removed.
+
+- Search engine indexes will eventually drop your pages.
+
+- Your content and configuration in the Editor are **preserved** — nothing is deleted.
+
+To bring your site back online, open the Editor and click **Publish** again. Your documentation will redeploy with all content and settings intact.
+
+<Callout kind="info" collapsed="false">
+  Unpublishing removes public access but does not delete content or configuration. You can republish at any time.
+</Callout>

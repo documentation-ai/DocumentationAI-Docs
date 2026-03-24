@@ -1,0 +1,346 @@
+---
+title: Analytics and Chat Integrations
+description: >-
+  Connect analytics platforms and chat widgets to your documentation site with
+  zero-code configuration.
+---
+Documentation.AI includes built-in integrations for popular analytics and customer support tools. Provide your project ID or tracking key and publish — no custom scripts required.
+
+## Prerequisites
+
+- An active account with the analytics or chat provider you want to connect
+
+- The project ID, tracking key, or app ID from that provider's dashboard
+
+- Publishing access to your documentation project
+
+## Configure integrations from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click the **gear icon** in the toolbar to open **Site Config**.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Scroll to the **Integrations** section. A list of supported providers appears.
+  </Step>
+
+  <Step title="Enable an integration" icon="toggle-right" title-type="p">
+    Select the provider you want to connect and enter the required credential. Each provider displays a label indicating the expected value (for example, "GTM Container ID" or "PostHog API Key").
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site. Integration changes appear in the **Changes** panel alongside content edits.
+  </Step>
+</Steps>
+
+## Configure integrations via documentation.json
+
+If you manage configuration in version control, add integrations directly to `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "gtm": {
+      "tagId": "GTM-XXXXXX"
+    },
+    "posthog": {
+      "apiKey": "phc_your_project_key",
+      "apiHost": "https://us.i.posthog.com"
+    },
+    "intercom": {
+      "appId": "your_app_id"
+    }
+  }
+}
+```
+
+Each integration is a key under the `integrations` object. Only include the providers you want to enable.
+
+## Supported analytics integrations
+
+### Google Tag Manager
+
+Inject the Google Tag Manager container script across all pages.
+
+| Property | Description |
+| -------- | ----------- |
+| `gtm.tagId` | Your GTM container ID (for example, `GTM-XXXXXX`) |
+
+```json
+{ "gtm": { "tagId": "GTM-XXXXXX" } }
+```
+
+**Where to find it**: [Google Tag Manager](https://tagmanager.google.com/) → Admin → Container Settings.
+
+### Google Analytics
+
+Track page views and events with Google Analytics 4.
+
+| Property | Description |
+| -------- | ----------- |
+| `ga.measurementId` | Your GA4 measurement ID (for example, `G-XXXXXXXXXX`) |
+
+```json
+{ "ga": { "measurementId": "G-XXXXXXXXXX" } }
+```
+
+**Where to find it**: [Google Analytics](https://analytics.google.com/) → Admin → Data Streams → your web stream.
+
+### PostHog
+
+Track product analytics events with PostHog.
+
+| Property | Description |
+| -------- | ----------- |
+| `posthog.apiKey` | Your PostHog project API key (starts with `phc_`) |
+| `posthog.apiHost` | Your PostHog instance URL (defaults to `https://us.i.posthog.com`) |
+
+```json
+{ "posthog": { "apiKey": "phc_your_key", "apiHost": "https://us.i.posthog.com" } }
+```
+
+**Where to find it**: [PostHog](https://app.posthog.com/) → Project Settings → Project API Key.
+
+### Amplitude
+
+Send analytics events to Amplitude.
+
+| Property | Description |
+| -------- | ----------- |
+| `amplitude.apiKey` | Your Amplitude API key |
+
+```json
+{ "amplitude": { "apiKey": "your_amplitude_key" } }
+```
+
+**Where to find it**: [Amplitude](https://app.amplitude.com/) → Settings → Projects → your project.
+
+### Mixpanel
+
+Track events with Mixpanel.
+
+| Property | Description |
+| -------- | ----------- |
+| `mixpanel.projectToken` | Your Mixpanel project token |
+
+```json
+{ "mixpanel": { "projectToken": "your_project_token" } }
+```
+
+**Where to find it**: [Mixpanel](https://mixpanel.com/) → Settings → Project Settings → Project Token.
+
+### Segment
+
+Route analytics data through Segment.
+
+| Property | Description |
+| -------- | ----------- |
+| `segment.writeKey` | Your Segment source write key |
+
+```json
+{ "segment": { "writeKey": "your_write_key" } }
+```
+
+**Where to find it**: [Segment](https://app.segment.com/) → Sources → your source → Settings → API Keys.
+
+### Heap
+
+Track user interactions with Heap.
+
+| Property | Description |
+| -------- | ----------- |
+| `heap.appId` | Your Heap app ID |
+
+```json
+{ "heap": { "appId": "your_app_id" } }
+```
+
+**Where to find it**: [Heap](https://heapanalytics.com/) → Account → Manage → Projects.
+
+### Plausible
+
+Track page views with Plausible, a privacy-friendly analytics platform.
+
+| Property | Description |
+| -------- | ----------- |
+| `plausible.domain` | Your site domain registered in Plausible |
+
+```json
+{ "plausible": { "domain": "docs.example.com" } }
+```
+
+**Where to find it**: [Plausible](https://plausible.io/) → Sites → your site's domain.
+
+### Fathom
+
+Track site analytics with Fathom, a privacy-first analytics tool.
+
+| Property | Description |
+| -------- | ----------- |
+| `fathom.siteId` | Your Fathom site ID |
+
+```json
+{ "fathom": { "siteId": "ABCDEFGH" } }
+```
+
+**Where to find it**: [Fathom](https://usefathom.com/) → Sites → your site → Settings.
+
+### Pirsch
+
+Monitor web traffic with Pirsch, a privacy-friendly analytics platform.
+
+| Property | Description |
+| -------- | ----------- |
+| `pirsch.identificationCode` | Your Pirsch identification code |
+
+```json
+{ "pirsch": { "identificationCode": "your_identification_code" } }
+```
+
+**Where to find it**: [Pirsch](https://pirsch.io/) → Settings → Integration → Identification Code.
+
+### Hotjar
+
+Understand user behavior with heatmaps and recordings.
+
+| Property | Description |
+| -------- | ----------- |
+| `hotjar.hjid` | Your Hotjar site ID |
+| `hotjar.hjsv` | Hotjar snippet version (defaults to `6`) |
+
+```json
+{ "hotjar": { "hjid": "1234567", "hjsv": "6" } }
+```
+
+**Where to find it**: [Hotjar](https://insights.hotjar.com/) → Sites → Tracking Code.
+
+### Clarity
+
+Record heatmaps and session replays with Microsoft Clarity.
+
+| Property | Description |
+| -------- | ----------- |
+| `clarity.projectId` | Your Clarity project ID |
+
+```json
+{ "clarity": { "projectId": "your_project_id" } }
+```
+
+**Where to find it**: [Clarity](https://clarity.microsoft.com/) → Settings → Overview → Project ID.
+
+### Clearbit
+
+Enrich visitor data with Clearbit.
+
+| Property | Description |
+| -------- | ----------- |
+| `clearbit.apiKey` | Your Clearbit API key |
+
+```json
+{ "clearbit": { "apiKey": "your_clearbit_key" } }
+```
+
+**Where to find it**: [Clearbit](https://clearbit.com/) → API → API Keys.
+
+### LogRocket
+
+Session replay and error tracking with LogRocket.
+
+| Property | Description |
+| -------- | ----------- |
+| `logrocket.appId` | Your LogRocket app ID (format: `org-slug/app-slug`) |
+
+```json
+{ "logrocket": { "appId": "your-org/your-app" } }
+```
+
+**Where to find it**: [LogRocket](https://app.logrocket.com/) → Settings → General Settings.
+
+### Hightouch
+
+Send events to Hightouch for reverse ETL.
+
+| Property | Description |
+| -------- | ----------- |
+| `hightouch.writeKey` | Your Hightouch Events write key |
+
+```json
+{ "hightouch": { "writeKey": "your_write_key" } }
+```
+
+**Where to find it**: [Hightouch](https://app.hightouch.com/) → Sources → Events → Write Key.
+
+## Supported chat integrations
+
+### Intercom
+
+Add the Intercom Messenger widget to your documentation for live chat and support.
+
+| Property | Description |
+| -------- | ----------- |
+| `intercom.appId` | Your Intercom app ID |
+
+```json
+{ "intercom": { "appId": "your_app_id" } }
+```
+
+**Where to find it**: [Intercom](https://app.intercom.com/) → Settings → Installation → Web → App ID.
+
+<Callout kind="info" collapsed="false">
+  This is your Intercom **App ID** (found under installation settings), not an API key. The App ID is a short alphanumeric string like `abc123de`.
+</Callout>
+
+### Crisp
+
+Add the Crisp live chat widget to your documentation.
+
+| Property | Description |
+| -------- | ----------- |
+| `crisp.websiteId` | Your Crisp website ID |
+
+```json
+{ "crisp": { "websiteId": "your_website_id" } }
+```
+
+**Where to find it**: [Crisp](https://app.crisp.chat/) → Settings → Website Settings → Setup Instructions → Website ID.
+
+## Complete example
+
+Here is a `documentation.json` snippet with multiple integrations enabled:
+
+```json
+{
+  "integrations": {
+    "gtm": { "tagId": "GTM-XXXXXX" },
+    "posthog": {
+      "apiKey": "phc_your_project_key",
+      "apiHost": "https://us.i.posthog.com"
+    },
+    "plausible": { "domain": "docs.example.com" },
+    "intercom": { "appId": "abc123de" }
+  }
+}
+```
+
+<Callout kind="tip" collapsed="false">
+  You can enable multiple integrations at the same time. For example, use Google Tag Manager for marketing tags and PostHog for product analytics alongside Intercom for support chat.
+</Callout>
+
+## Troubleshooting
+
+**Integration not appearing on the live site**: Verify you have published after adding the integration. Check the browser developer console for script loading errors.
+
+**Ad blockers**: Many analytics and chat scripts are blocked by browser ad-blocking extensions. This is expected behavior and does not indicate a configuration issue.
+
+**Wrong tracking ID**: Double-check the exact property name and value format. For example, Google Tag Manager expects a `tagId` starting with `GTM-`, while Google Analytics expects a `measurementId` starting with `G-`.
+
+**Content Security Policy (CSP) errors**: If your documentation is served behind a CSP, ensure the integration provider's script domains are allowed.
+
+## What's next
+
+- [Custom scripts](/customize/custom-scripts) — add scripts for tools not covered by built-in integrations
+
+- [Analytics overview](/analytics/overview) — view traffic, feedback, and AI analytics for your documentation
+
+- [GitHub Integration](/integrations-and-workflows/github-integration) — connect repositories for AI-powered documentation context
