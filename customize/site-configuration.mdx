@@ -8,7 +8,7 @@ type: reference
 Configure your documentation site using the `documentation.json` file. This file controls your site's branding, navigation structure, SEO settings, and API documentation generation.&#x20;
 
 <Callout kind="alert" collapsed="false">
-  This page is primarily intended for Code/IDE-based editing. Most of these settings can also be configured from the dashboard UI, please visit the relevant section for those options.
+  This page is primarily intended for Code/IDE-based editing. Most of these settings can also be configured visually from **Site Config** in the Editor top toolbar.
 </Callout>
 
 ## Site Configuration
@@ -1314,6 +1314,50 @@ You can view and manage your OpenAPI specifications from the Documentation.AI da
   </Step>
 </Steps>
 
+## Integrations
+
+Connect analytics platforms and chat widgets to your documentation site. Each integration is a key under the `integrations` object. Only include the providers you want to enable.
+
+```json
+{
+  "integrations": {
+    "gtm": { "tagId": "GTM-XXXXXX" },
+    "posthog": {
+      "apiKey": "phc_your_project_key",
+      "apiHost": "https://us.i.posthog.com"
+    },
+    "intercom": { "appId": "your_app_id" }
+  }
+}
+```
+
+<ParamField path="integrations" param-type="object" required="false" deprecated="false">
+  Analytics and chat integrations. Each key corresponds to a provider. See [Analytics and Chat Integrations](/integrations-and-workflows/analytics-and-chat) for all supported providers and their configuration options.
+</ParamField>
+
+## Custom Scripts
+
+Inject custom JavaScript files into your published documentation site. Use custom scripts for analytics providers not covered by built-in integrations, consent banners, or any custom functionality.
+
+```json
+{
+  "scripts": [
+    { "src": "scripts/consent-banner.js" },
+    { "src": "scripts/custom-tracking.mjs" }
+  ]
+}
+```
+
+<ParamField path="scripts" param-type="array" required="false" deprecated="false">
+  Array of script entries to inject into your published site. Each entry references a local `.js` or `.mjs` file in your project. See [Custom Scripts](/customize/custom-scripts) for details.
+
+  <Expandable title="Script entry properties" default-open="false">
+    <ParamField path="src" param-type="string" required="true" deprecated="false">
+      Relative file path to a `.js` or `.mjs` file in your project. Paths must be relative — no leading `/`, `./`, or `../`. Maximum file size is 5 MB.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
 ## SEO Configuration
 
 Configure search engine optimization and meta tag behavior.
@@ -1322,7 +1366,9 @@ Configure search engine optimization and meta tag behavior.
 {
   "seo": {
     "robots:index": true,
-    "robots:follow": true
+    "robots:follow": true,
+    "sitemap:enabled": true,
+    "llms-txt:enabled": true
   }
 }
 ```
@@ -1338,6 +1384,18 @@ Configure search engine optimization and meta tag behavior.
 <ParamField path="robots:follow" param-type="boolean" required="false" deprecated="false">
   Allow search engines to follow links within your documentation. Default:
   `true`.
+</ParamField>
+
+### Sitemap Generation
+
+<ParamField path="sitemap:enabled" param-type="boolean" required="false" deprecated="false">
+  Generate and serve a `/sitemap.xml` for your published documentation. Default: `true`. See [Sitemap](/seo-and-geo/sitemap) for details.
+</ParamField>
+
+### LLMs.txt Generation
+
+<ParamField path="llms-txt:enabled" param-type="boolean" required="false" deprecated="false">
+  Generate and serve `/llms.txt` and `/llms-full.txt` files for LLM consumption. Default: `true`. See [Robots.txt & llms.txt](/seo-and-geo/robots-txt-and-llm-txt) for details.
 </ParamField>
 
 ## Navigation Examples
