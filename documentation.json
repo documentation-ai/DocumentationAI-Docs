@@ -454,6 +454,9 @@
   "integrations": {
     "gtm": {
       "tagId": "GTM-NDB4L6DV"
+    },
+    "intercom": {
+      "appId": "j5eru17p"
     }
   }
 }
