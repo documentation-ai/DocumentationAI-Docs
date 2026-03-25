@@ -376,6 +376,11 @@
             "expandable": true,
             "pages": [
               {
+                "title": "Overview",
+                "path": "integrations-and-workflows/overview",
+                "icon": "info"
+              },
+              {
                 "title": "GitHub Integration",
                 "path": "integrations-and-workflows/github-integration",
                 "icon": "github"
@@ -384,11 +389,6 @@
                 "group": "Analytics",
                 "icon": "trending-up",
                 "pages": [
-                  {
-                    "title": "Overview",
-                    "path": "integrations-and-workflows/analytics-overview",
-                    "icon": "bar-chart"
-                  },
                   {
                     "title": "Google Tag Manager",
                     "path": "integrations-and-workflows/google-tag-manager",
@@ -470,11 +470,6 @@
                 "group": "Support",
                 "icon": "message-circle",
                 "pages": [
-                  {
-                    "title": "Overview",
-                    "path": "integrations-and-workflows/support-overview",
-                    "icon": "message-circle"
-                  },
                   {
                     "title": "Intercom",
                     "path": "integrations-and-workflows/intercom",

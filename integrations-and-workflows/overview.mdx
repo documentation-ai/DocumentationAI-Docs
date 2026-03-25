@@ -1,16 +1,10 @@
 ---
-title: Analytics Integrations
+title: Integrations and Workflows
 description: >-
-  Connect analytics platforms to your documentation site to track page views, user behavior, and product events with zero-code configuration.
+  Connect analytics platforms, support widgets, and developer tools to your documentation site with zero-code configuration.
 ---
 
-Track page views, user behavior, and product events by connecting your preferred analytics provider. Provide your project ID or tracking key and publish — no custom scripts required.
-
-## Prerequisites
-
-- An active account with the analytics provider you want to connect
-- The project ID, tracking key, or measurement ID from that provider's dashboard
-- Publishing access to your documentation project
+Documentation.AI includes built-in integrations for popular analytics, support, and developer tools. Provide your project ID or tracking key and publish — no custom scripts required.
 
 ## Configure from the Editor
 
@@ -23,8 +17,8 @@ Track page views, user behavior, and product events by connecting your preferred
     Select **Integrations** from the left sidebar. A list of supported providers appears.
   </Step>
 
-  <Step title="Enable a provider" icon="toggle-right" title-type="p">
-    Select the analytics provider you want to connect and enter the required credential. Each provider displays a label indicating the expected value (for example, "GTM Container ID" or "PostHog API Key").
+  <Step title="Enable an integration" icon="toggle-right" title-type="p">
+    Select the provider you want to connect and enter the required credential. Each provider displays a label indicating the expected value (for example, "GTM Container ID" or "Intercom App ID").
   </Step>
 
   <Step title="Publish" icon="upload" title-type="p">
@@ -45,12 +39,25 @@ Add integrations directly to `documentation.json` if you manage configuration in
     "posthog": {
       "apiKey": "phc_your_project_key",
       "apiHost": "https://us.i.posthog.com"
+    },
+    "intercom": {
+      "appId": "your_app_id"
     }
   }
 }
 ```
 
-## Supported providers
+## Developer Tools
+
+<Columns cols={2}>
+  <Card title="GitHub Integration" href="/integrations-and-workflows/github-integration" icon="github">
+    Connect the GitHub App so the AI agent can use your code and commits while working on docs.
+  </Card>
+</Columns>
+
+## Analytics
+
+Track page views, user behavior, and product events with these providers.
 
 <Columns cols={2}>
   <Card title="Google Tag Manager" href="/integrations-and-workflows/google-tag-manager" icon="tag">
@@ -114,10 +121,24 @@ Add integrations directly to `documentation.json` if you manage configuration in
   </Card>
 </Columns>
 
+## Support and Chat
+
+Add live chat and support widgets to your documentation.
+
+<Columns cols={2}>
+  <Card title="Intercom" href="/integrations-and-workflows/intercom" icon="message-circle">
+    Add the Intercom Messenger widget for live chat and support.
+  </Card>
+
+  <Card title="Crisp" href="/integrations-and-workflows/crisp" icon="message-square">
+    Add the Crisp live chat widget to your documentation.
+  </Card>
+</Columns>
+
 ## Troubleshooting
 
 **Integration not appearing on the live site**: Verify you have published after adding the integration. Check the browser developer console for script loading errors.
 
-**Ad blockers**: Many analytics scripts are blocked by browser ad-blocking extensions. This is expected behavior and does not indicate a configuration issue.
+**Ad blockers**: Many analytics and chat scripts are blocked by browser ad-blocking extensions. This is expected behavior and does not indicate a configuration issue.
 
 **Wrong tracking ID**: Double-check the exact property name and value format. For example, Google Tag Manager expects a `tagId` starting with `GTM-`, while Google Analytics expects a `measurementId` starting with `G-`.
