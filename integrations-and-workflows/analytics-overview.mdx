@@ -1,0 +1,123 @@
+---
+title: Analytics Integrations
+description: >-
+  Connect analytics platforms to your documentation site to track page views, user behavior, and product events with zero-code configuration.
+---
+
+Track page views, user behavior, and product events by connecting your preferred analytics provider. Provide your project ID or tracking key and publish — no custom scripts required.
+
+## Prerequisites
+
+- An active account with the analytics provider you want to connect
+- The project ID, tracking key, or measurement ID from that provider's dashboard
+- Publishing access to your documentation project
+
+## Configure from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Integrations" icon="plug" title-type="p">
+    Select **Integrations** from the left sidebar. A list of supported providers appears.
+  </Step>
+
+  <Step title="Enable a provider" icon="toggle-right" title-type="p">
+    Select the analytics provider you want to connect and enter the required credential. Each provider displays a label indicating the expected value (for example, "GTM Container ID" or "PostHog API Key").
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the integration to your live site.
+  </Step>
+</Steps>
+
+## Configure via documentation.json
+
+Add integrations directly to `documentation.json` if you manage configuration in version control:
+
+```json
+{
+  "integrations": {
+    "gtm": {
+      "tagId": "GTM-XXXXXX"
+    },
+    "posthog": {
+      "apiKey": "phc_your_project_key",
+      "apiHost": "https://us.i.posthog.com"
+    }
+  }
+}
+```
+
+## Supported providers
+
+<Columns cols={2}>
+  <Card title="Google Tag Manager" href="/integrations-and-workflows/google-tag-manager" icon="tag">
+    Inject your GTM container script across all documentation pages.
+  </Card>
+
+  <Card title="Google Analytics" href="/integrations-and-workflows/google-analytics" icon="bar-chart">
+    Track page views and events with Google Analytics 4.
+  </Card>
+
+  <Card title="PostHog" href="/integrations-and-workflows/posthog" icon="trending-up">
+    Track product analytics events with PostHog.
+  </Card>
+
+  <Card title="Amplitude" href="/integrations-and-workflows/amplitude" icon="activity">
+    Send analytics events to Amplitude.
+  </Card>
+
+  <Card title="Mixpanel" href="/integrations-and-workflows/mixpanel" icon="pie-chart">
+    Track events with Mixpanel.
+  </Card>
+
+  <Card title="Segment" href="/integrations-and-workflows/segment" icon="share-2">
+    Route analytics data through Segment.
+  </Card>
+
+  <Card title="Heap" href="/integrations-and-workflows/heap" icon="layers">
+    Track user interactions with Heap.
+  </Card>
+
+  <Card title="Plausible" href="/integrations-and-workflows/plausible" icon="shield">
+    Privacy-friendly page view tracking with Plausible.
+  </Card>
+
+  <Card title="Fathom" href="/integrations-and-workflows/fathom" icon="eye">
+    Privacy-first analytics with Fathom.
+  </Card>
+
+  <Card title="Pirsch" href="/integrations-and-workflows/pirsch" icon="shield">
+    Privacy-friendly web traffic monitoring with Pirsch.
+  </Card>
+
+  <Card title="Hotjar" href="/integrations-and-workflows/hotjar" icon="mouse-pointer">
+    Heatmaps and session recordings with Hotjar.
+  </Card>
+
+  <Card title="Microsoft Clarity" href="/integrations-and-workflows/clarity" icon="monitor">
+    Heatmaps and session replays with Microsoft Clarity.
+  </Card>
+
+  <Card title="Clearbit" href="/integrations-and-workflows/clearbit" icon="user-check">
+    Enrich visitor data with Clearbit.
+  </Card>
+
+  <Card title="LogRocket" href="/integrations-and-workflows/logrocket" icon="video">
+    Session replay and error tracking with LogRocket.
+  </Card>
+
+  <Card title="Hightouch" href="/integrations-and-workflows/hightouch" icon="upload">
+    Send events to Hightouch for reverse ETL.
+  </Card>
+</Columns>
+
+## Troubleshooting
+
+**Integration not appearing on the live site**: Verify you have published after adding the integration. Check the browser developer console for script loading errors.
+
+**Ad blockers**: Many analytics scripts are blocked by browser ad-blocking extensions. This is expected behavior and does not indicate a configuration issue.
+
+**Wrong tracking ID**: Double-check the exact property name and value format. For example, Google Tag Manager expects a `tagId` starting with `GTM-`, while Google Analytics expects a `measurementId` starting with `G-`.

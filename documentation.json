@@ -381,14 +381,14 @@
                 "icon": "github"
               },
               {
-                "title": "Analytics & Chat",
-                "path": "integrations-and-workflows/analytics-and-chat",
-                "icon": "bar-chart"
-              },
-              {
                 "group": "Analytics",
                 "icon": "trending-up",
                 "pages": [
+                  {
+                    "title": "Overview",
+                    "path": "integrations-and-workflows/analytics-overview",
+                    "icon": "bar-chart"
+                  },
                   {
                     "title": "Google Tag Manager",
                     "path": "integrations-and-workflows/google-tag-manager",
@@ -470,6 +470,11 @@
                 "group": "Support",
                 "icon": "message-circle",
                 "pages": [
+                  {
+                    "title": "Overview",
+                    "path": "integrations-and-workflows/support-overview",
+                    "icon": "message-circle"
+                  },
                   {
                     "title": "Intercom",
                     "path": "integrations-and-workflows/intercom",
