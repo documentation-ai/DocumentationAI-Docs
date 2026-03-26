@@ -1,17 +1,23 @@
 ---
 title: Interactive Playground Setup
-description: Configure interactive API testing environments with authentication, request customization, and live response previews.
+description: >-
+  Configure interactive API testing environments with authentication, request
+  customization, and live response previews.
 ---
-
 ## Overview
 
 Configure interactive API testing environments that allow developers to make live API calls directly from your documentation. The playground automatically generates request forms from OpenAPI specifications and provides real-time response previews.
 
 Use interactive playgrounds when you want to:
+
 - Allow developers to test endpoints without external tools
+
 - Provide immediate feedback on API responses
-- Demonstrate authentication flows interactively  
+
+- Demonstrate authentication flows interactively
+
 - Enable parameter experimentation within documentation
+
 - Reduce friction in API adoption and testing
 
 ## Basic Configuration
@@ -20,7 +26,7 @@ Use interactive playgrounds when you want to:
 
 Interactive playgrounds are automatically enabled when you include OpenAPI specifications in your documentation. The playground appears in the right sidebar alongside `Request` and `Response` components.
 
-````json
+```json
 {
   "navigation": {
     "groups": [
@@ -37,16 +43,26 @@ Interactive playgrounds are automatically enabled when you include OpenAPI speci
     ]
   }
 }
-````
+```
+
+
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1774533233326-ywrf4en1vzi-Untitled-Project.jpg?q=85&fm=auto&auto=compress%2Cformat" width="3072" height="2048" alt="Interactive API playground with request forms and live response preview" />
+
+
 
 ### Playground Components
 
 The interactive playground automatically generates:
 
 - **Parameter forms** for path, query, and body parameters
+
 - **Authentication inputs** based on security schemes
+
 - **Request preview** showing the actual HTTP request
+
 - **Response viewer** with syntax highlighting and formatting
+
 - **Status indicators** for successful and failed requests
 
 ## Authentication Configuration
@@ -55,7 +71,7 @@ The interactive playground automatically generates:
 
 For APIs using API key authentication, the playground provides secure input fields:
 
-````yaml
+```yaml
 # In your OpenAPI specification
 security:
   - ApiKeyAuth: []
@@ -66,18 +82,21 @@ components:
       type: apiKey
       in: header
       name: X-API-Key
-````
+```
 
 The playground renders:
+
 - **Secure input field** for the API key
+
 - **Header preview** showing how the key will be sent
+
 - **Test button** to validate authentication
 
 ### Bearer Token Authentication
 
 Configure Bearer token authentication for JWT-based APIs:
 
-````yaml
+```yaml
 security:
   - BearerAuth: []
 
@@ -87,18 +106,21 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-````
+```
 
 Features include:
+
 - **Token input field** with secure handling
+
 - **Automatic header injection** (`Authorization: Bearer <token>`)
+
 - **Token validation** indicators
 
 ### OAuth 2.0 Integration
 
 For OAuth 2.0 flows, the playground provides comprehensive authentication support:
 
-````yaml
+```yaml
 security:
   - OAuth2: [read, write]
 
@@ -113,12 +135,16 @@ components:
           scopes:
             read: Read access to resources
             write: Write access to resources
-````
+```
 
 The playground includes:
+
 - **OAuth flow initiation** with proper redirect handling
+
 - **Scope selection** interface
+
 - **Token management** with refresh capabilities
+
 - **Automatic token injection** in requests
 
 ## Request Customization
@@ -127,26 +153,30 @@ The playground includes:
 
 The playground automatically generates forms for all OpenAPI parameters:
 
-<Request>
-```javascript
-// For an endpoint: GET /users/{id}?include=profile
-const response = await fetch('/api/users/123?include=profile', {
-  headers: { 'Authorization': 'Bearer TOKEN' }
-});
-```
+<Request show-lines="true" tabs={[]}>
+  ```javascript
+  // For an endpoint: GET /users/{id}?include=profile
+  const response = await fetch('/api/users/123?include=profile', {
+    headers: { 'Authorization': 'Bearer TOKEN' }
+  });
+  ```
 </Request>
 
 Generated form includes:
+
 - **Path parameter input** for `id`
+
 - **Query parameter checkbox** for `include`
+
 - **Header management** for authentication
+
 - **Validation** based on OpenAPI schema constraints
 
 ### Request Body Editing
 
 For endpoints accepting request bodies, the playground provides:
 
-````yaml
+```yaml
 paths:
   /users:
     post:
@@ -162,23 +192,27 @@ paths:
                   type: string
                   format: email
               required: [name, email]
-````
+```
 
 Features include:
+
 - **JSON editor** with syntax highlighting
+
 - **Schema validation** with real-time feedback
+
 - **Example generation** from OpenAPI examples
+
 - **Format validation** for email, date, etc.
 
 ### Custom Headers
 
 Add custom headers through the playground interface:
 
-<ParamField header="X-Custom-Header" param-type="string" required="false" showLocation="false">
+<ParamField header="X-Custom-Header" param-type="string" required="false" deprecated="false">
   Custom header value for specialized API requirements.
 </ParamField>
 
-<ParamField header="Content-Type" param-type="string" required="false" showLocation="false">
+<ParamField header="Content-Type" param-type="string" required="false" deprecated="false">
   Media type for request body. Automatically set for JSON requests.
 </ParamField>
 
@@ -188,46 +222,50 @@ Add custom headers through the playground interface:
 
 The playground shows real-time responses with comprehensive formatting:
 
-<Response tabs="200 Success,400 Bad Request,500 Server Error">
-```json
-{
-  "id": "user_123",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "created_at": "2024-01-15T10:30:00Z",
-  "profile": {
-    "avatar_url": "https://example.com/avatar.jpg",
-    "bio": "Software engineer"
+<Response show-lines="true" tabs={[]}>
+  ```json
+  {
+    "id": "user_123",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "created_at": "2024-01-15T10:30:00Z",
+    "profile": {
+      "avatar_url": "https://example.com/avatar.jpg",
+      "bio": "Software engineer"
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "error": "Validation failed",
-  "code": "VALIDATION_ERROR",
-  "details": {
-    "email": ["Invalid email format"],
-    "name": ["Name is required"]
+  ```json
+  {
+    "error": "Validation failed",
+    "code": "VALIDATION_ERROR",
+    "details": {
+      "email": ["Invalid email format"],
+      "name": ["Name is required"]
+    }
   }
-}
-```
+  ```
 
-```json
-{
-  "error": "Internal server error",
-  "code": "INTERNAL_ERROR",
-  "message": "An unexpected error occurred"
-}
-```
+  ```json
+  {
+    "error": "Internal server error",
+    "code": "INTERNAL_ERROR",
+    "message": "An unexpected error occurred"
+  }
+  ```
 </Response>
 
 ### Response Analysis Features
 
 - **Status code highlighting** with color-coded indicators
+
 - **Response time tracking** for performance insights
+
 - **Header inspection** showing all response headers
+
 - **Size metrics** for response payload analysis
+
 - **Error categorization** with troubleshooting hints
 
 ## Advanced Features
@@ -236,7 +274,7 @@ The playground shows real-time responses with comprehensive formatting:
 
 Configure multiple environments for testing different API stages:
 
-````json
+```json
 {
   "playground": {
     "environments": [
@@ -258,80 +296,81 @@ Configure multiple environments for testing different API stages:
     ]
   }
 }
-````
+```
 
 ### Request History
 
 The playground maintains request history for developer convenience:
 
 - **Recent requests** with quick replay functionality
+
 - **Saved requests** for frequently used API calls
+
 - **Request bookmarking** with custom names and descriptions
+
 - **History search** to find previous API interactions
 
 ### Code Generation
 
 Generate ready-to-use code snippets from playground interactions:
 
-<CodeGroup tabs="JavaScript,Python,cURL,Go">
-
-```javascript
-const response = await fetch('https://api.example.com/v2/users/123', {
-  method: 'GET',
-  headers: {
-    'Authorization': 'Bearer YOUR_TOKEN',
-    'Content-Type': 'application/json'
-  }
-});
-
-const data = await response.json();
-console.log(data);
-```
-
-```python
-import requests
-
-response = requests.get(
-    'https://api.example.com/v2/users/123',
-    headers={
-        'Authorization': 'Bearer YOUR_TOKEN',
-        'Content-Type': 'application/json'
+<CodeGroup show-lines="true" tabs={[]}>
+  ```javascript
+  const response = await fetch('https://api.example.com/v2/users/123', {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer YOUR_TOKEN',
+      'Content-Type': 'application/json'
     }
-)
+  });
 
-data = response.json()
-print(data)
-```
+  const data = await response.json();
+  console.log(data);
+  ```
 
-```bash
-curl -X GET 'https://api.example.com/v2/users/123' \
-  -H 'Authorization: Bearer YOUR_TOKEN' \
-  -H 'Content-Type: application/json'
-```
+  ```python
+  import requests
 
-```go
-package main
+  response = requests.get(
+      'https://api.example.com/v2/users/123',
+      headers={
+          'Authorization': 'Bearer YOUR_TOKEN',
+          'Content-Type': 'application/json'
+      }
+  )
 
-import (
-    "fmt"
-    "net/http"
-    "io/ioutil"
-)
+  data = response.json()
+  print(data)
+  ```
 
-func main() {
-    req, _ := http.NewRequest("GET", "https://api.example.com/v2/users/123", nil)
-    req.Header.Add("Authorization", "Bearer YOUR_TOKEN")
-    req.Header.Add("Content-Type", "application/json")
-    
-    client := &http.Client{}
-    resp, _ := client.Do(req)
-    defer resp.Body.Close()
-    
-    body, _ := ioutil.ReadAll(resp.Body)
-    fmt.Println(string(body))
-}
-```
+  ```bash
+  curl -X GET 'https://api.example.com/v2/users/123' \
+    -H 'Authorization: Bearer YOUR_TOKEN' \
+    -H 'Content-Type: application/json'
+  ```
 
+  ```go
+  package main
+
+  import (
+      "fmt"
+      "net/http"
+      "io/ioutil"
+  )
+
+  func main() {
+      req, _ := http.NewRequest("GET", "https://api.example.com/v2/users/123", nil)
+      req.Header.Add("Authorization", "Bearer YOUR_TOKEN")
+      req.Header.Add("Content-Type", "application/json")
+      
+      client := &http.Client{}
+      resp, _ := client.Do(req)
+      defer resp.Body.Close()
+      
+      body, _ := ioutil.ReadAll(resp.Body)
+      fmt.Println(string(body))
+  }
+  ```
 </CodeGroup>
 
 ## Security and Privacy
@@ -340,15 +379,15 @@ func main() {
 
 The playground implements secure authentication handling:
 
-<ParamField path="tokenStorage" param-type="string" required="false" showLocation="false">
+<ParamField path="tokenStorage" param-type="string" required="false" deprecated="false">
   Tokens are stored locally in browser storage, never transmitted to Documentation.AI servers.
 </ParamField>
 
-<ParamField path="httpsOnly" param-type="boolean" required="false" showLocation="false">
+<ParamField path="httpsOnly" param-type="boolean" required="false" deprecated="false">
   All API requests use HTTPS encryption for secure data transmission.
 </ParamField>
 
-<ParamField path="tokenExpiry" param-type="boolean" required="false" showLocation="false">
+<ParamField path="tokenExpiry" param-type="boolean" required="false" deprecated="false">
   Automatic token cleanup on session end to prevent unauthorized access.
 </ParamField>
 
@@ -356,7 +395,7 @@ The playground implements secure authentication handling:
 
 Ensure your API supports CORS for playground functionality:
 
-````javascript
+```javascript
 // Example Express.js CORS configuration
 app.use(cors({
   origin: ['https://your-docs.documentationai.app'],
@@ -364,18 +403,18 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key']
 }));
-````
+```
 
 ## Troubleshooting
 
 ### Common Issues
 
-<Callout type="warning">
-**CORS Errors**: If requests fail with CORS errors, ensure your API includes Documentation.AI domains in allowed origins.
+<Callout kind="note" collapsed="false">
+  **CORS Errors**: If requests fail with CORS errors, ensure your API includes Documentation.AI domains in allowed origins.
 </Callout>
 
-<Callout type="info">
-**Authentication Failures**: Verify that authentication tokens are valid and have appropriate permissions for the endpoints being tested.
+<Callout kind="note" collapsed="false">
+  **Authentication Failures**: Verify that authentication tokens are valid and have appropriate permissions for the endpoints being tested.
 </Callout>
 
 ### Playground Not Appearing
@@ -383,8 +422,11 @@ app.use(cors({
 If the interactive playground doesn't appear:
 
 - **Verify OpenAPI specification** is properly referenced in `documentation.json`
+
 - **Check file paths** to ensure OpenAPI files are accessible
+
 - **Validate OpenAPI format** using tools like Swagger Editor
+
 - **Ensure endpoints** have proper `operationId` values
 
 ### Request Failures
@@ -392,8 +434,11 @@ If the interactive playground doesn't appear:
 For failed API requests in the playground:
 
 - **Check network connectivity** to your API servers
+
 - **Verify authentication** credentials and permissions
+
 - **Review CORS configuration** on your API server
+
 - **Validate request parameters** against OpenAPI schema requirements
 
 ### Performance Optimization
@@ -401,6 +446,10 @@ For failed API requests in the playground:
 Optimize playground performance for better user experience:
 
 - **Minimize OpenAPI file size** by removing unused definitions
+
 - **Use response examples** to provide immediate feedback
+
 - **Configure appropriate timeouts** for long-running endpoints
+
 - **Implement request caching** where appropriate
+
