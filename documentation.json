@@ -567,6 +567,114 @@
     {
       "source": "/integrations-and-workflows/github-integration",
       "destination": "/integrations/github"
+    },
+    {
+      "source": "/integrations-and-workflows",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations-and-workflows/overview",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations-and-workflows/analytics-and-chat",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations-and-workflows/google-tag-manager",
+      "destination": "/integrations/google-tag-manager"
+    },
+    {
+      "source": "/integrations-and-workflows/google-analytics",
+      "destination": "/integrations/google-analytics"
+    },
+    {
+      "source": "/integrations-and-workflows/posthog",
+      "destination": "/integrations/posthog"
+    },
+    {
+      "source": "/integrations-and-workflows/amplitude",
+      "destination": "/integrations/amplitude"
+    },
+    {
+      "source": "/integrations-and-workflows/mixpanel",
+      "destination": "/integrations/mixpanel"
+    },
+    {
+      "source": "/integrations-and-workflows/segment",
+      "destination": "/integrations/segment"
+    },
+    {
+      "source": "/integrations-and-workflows/heap",
+      "destination": "/integrations/heap"
+    },
+    {
+      "source": "/integrations-and-workflows/plausible",
+      "destination": "/integrations/plausible"
+    },
+    {
+      "source": "/integrations-and-workflows/fathom",
+      "destination": "/integrations/fathom"
+    },
+    {
+      "source": "/integrations-and-workflows/pirsch",
+      "destination": "/integrations/pirsch"
+    },
+    {
+      "source": "/integrations-and-workflows/hotjar",
+      "destination": "/integrations/hotjar"
+    },
+    {
+      "source": "/integrations-and-workflows/clarity",
+      "destination": "/integrations/clarity"
+    },
+    {
+      "source": "/integrations-and-workflows/clearbit",
+      "destination": "/integrations/clearbit"
+    },
+    {
+      "source": "/integrations-and-workflows/logrocket",
+      "destination": "/integrations/logrocket"
+    },
+    {
+      "source": "/integrations-and-workflows/hightouch",
+      "destination": "/integrations/hightouch"
+    },
+    {
+      "source": "/integrations-and-workflows/intercom",
+      "destination": "/integrations/intercom"
+    },
+    {
+      "source": "/integrations-and-workflows/crisp",
+      "destination": "/integrations/crisp"
+    },
+    {
+      "source": "/integrations-and-workflows/gitlab-integration",
+      "destination": "/integrations/gitlab-integration"
+    },
+    {
+      "source": "/integrations-and-workflows/slack-notifications",
+      "destination": "/integrations/slack-notifications"
+    },
+    {
+      "source": "/integrations-and-workflows/zapier-integration",
+      "destination": "/integrations/zapier-integration"
+    },
+    {
+      "source": "/integrations-and-workflows/webhook-setup",
+      "destination": "/integrations/webhook-setup"
+    },
+    {
+      "source": "/integrations-and-workflows/issue-trackers",
+      "destination": "/integrations/issue-trackers"
+    },
+    {
+      "source": "/integrations-and-workflows/third-party-tools",
+      "destination": "/integrations/third-party-tools"
+    },
+    {
+      "source": "/integrations-and-workflows/analytics-integration",
+      "destination": "/integrations/analytics-integration"
     }
   ]
 }
