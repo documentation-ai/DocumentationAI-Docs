@@ -371,18 +371,18 @@
             ]
           },
           {
-            "group": "Integrations and Workflows",
+            "group": "Integrations",
             "icon": "workflow",
             "expandable": true,
             "pages": [
               {
                 "title": "Overview",
-                "path": "integrations-and-workflows/overview",
+                "path": "integrations/overview",
                 "icon": "info"
               },
               {
-                "title": "GitHub Integration",
-                "path": "integrations-and-workflows/github-integration",
+                "title": "Github",
+                "path": "integrations/github",
                 "icon": "github"
               },
               {
@@ -391,77 +391,77 @@
                 "pages": [
                   {
                     "title": "Google Tag Manager",
-                    "path": "integrations-and-workflows/google-tag-manager",
+                    "path": "integrations/google-tag-manager",
                     "icon": "tag"
                   },
                   {
                     "title": "Google Analytics",
-                    "path": "integrations-and-workflows/google-analytics",
+                    "path": "integrations/google-analytics",
                     "icon": "bar-chart"
                   },
                   {
                     "title": "PostHog",
-                    "path": "integrations-and-workflows/posthog",
+                    "path": "integrations/posthog",
                     "icon": "trending-up"
                   },
                   {
                     "title": "Amplitude",
-                    "path": "integrations-and-workflows/amplitude",
+                    "path": "integrations/amplitude",
                     "icon": "activity"
                   },
                   {
                     "title": "Mixpanel",
-                    "path": "integrations-and-workflows/mixpanel",
+                    "path": "integrations/mixpanel",
                     "icon": "pie-chart"
                   },
                   {
                     "title": "Segment",
-                    "path": "integrations-and-workflows/segment",
+                    "path": "integrations/segment",
                     "icon": "share-2"
                   },
                   {
                     "title": "Heap",
-                    "path": "integrations-and-workflows/heap",
+                    "path": "integrations/heap",
                     "icon": "layers"
                   },
                   {
                     "title": "Plausible",
-                    "path": "integrations-and-workflows/plausible",
+                    "path": "integrations/plausible",
                     "icon": "shield"
                   },
                   {
                     "title": "Fathom",
-                    "path": "integrations-and-workflows/fathom",
+                    "path": "integrations/fathom",
                     "icon": "eye"
                   },
                   {
                     "title": "Pirsch",
-                    "path": "integrations-and-workflows/pirsch",
+                    "path": "integrations/pirsch",
                     "icon": "shield"
                   },
                   {
                     "title": "Hotjar",
-                    "path": "integrations-and-workflows/hotjar",
+                    "path": "integrations/hotjar",
                     "icon": "mouse-pointer"
                   },
                   {
                     "title": "Microsoft Clarity",
-                    "path": "integrations-and-workflows/clarity",
+                    "path": "integrations/clarity",
                     "icon": "monitor"
                   },
                   {
                     "title": "Clearbit",
-                    "path": "integrations-and-workflows/clearbit",
+                    "path": "integrations/clearbit",
                     "icon": "user-check"
                   },
                   {
                     "title": "LogRocket",
-                    "path": "integrations-and-workflows/logrocket",
+                    "path": "integrations/logrocket",
                     "icon": "video"
                   },
                   {
                     "title": "Hightouch",
-                    "path": "integrations-and-workflows/hightouch",
+                    "path": "integrations/hightouch",
                     "icon": "upload"
                   }
                 ]
@@ -472,12 +472,12 @@
                 "pages": [
                   {
                     "title": "Intercom",
-                    "path": "integrations-and-workflows/intercom",
+                    "path": "integrations/intercom",
                     "icon": "message-circle"
                   },
                   {
                     "title": "Crisp",
-                    "path": "integrations-and-workflows/crisp",
+                    "path": "integrations/crisp",
                     "icon": "message-square"
                   }
                 ]
@@ -562,5 +562,11 @@
     "gtm": {
       "tagId": "GTM-NDB4L6DV"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/integrations-and-workflows/github-integration",
+      "destination": "/integrations/github"
+    }
+  ]
 }
