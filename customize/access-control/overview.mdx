@@ -5,7 +5,7 @@ description: Control who can view your documentation with flexible access contro
 
 ## Overview
 
-Control who can view your documentation by configuring access control settings. You can make your documentation fully public or require authentication to access it.
+Control who can view your documentation by configuring access control settings. You can make your documentation fully public, fully private, or a mix of both.
 
 Access control is configured in the dashboard under **Settings > Access Control** and takes effect after you publish (or re-publish) your documentation.
 
@@ -17,33 +17,38 @@ Access control is configured in the dashboard under **Settings > Access Control*
 
 - **Public**: Anyone can access your documentation. No authentication required.
 
-- **Private**: All pages require authentication to access.
+- **Private**: All pages require authentication. Choose from Password, JWT, or OAuth 2.0.
+
+- **Partial**: A mix of public and password-protected pages. Only password authentication is available in this mode.
 
 ## Authentication methods
 
 Documentation.AI offers three authentication methods to protect your documentation:
 
-| Method | Plan | User-level access | Personalization |
-|---|---|---|---|
-| [Password](/docs/customize/access-control/password) | Standard+ | No (shared password) | No |
-| [JWT](/docs/customize/access-control/jwt) | Enterprise+ | Yes (per-user roles) | Yes |
-| [OAuth 2.0](/docs/customize/access-control/oauth) | Enterprise+ | Yes (per-user roles) | Yes |
+| Method | Plan | Available in | User-level access | Personalization |
+|---|---|---|---|---|
+| [Password](/docs/customize/access-control/password) | Standard+ | Private, Partial | No (shared password) | No |
+| [JWT](/docs/customize/access-control/jwt) | Enterprise+ | Private | Yes (per-user roles) | Yes |
+| [OAuth 2.0](/docs/customize/access-control/oauth) | Enterprise+ | Private | Yes (per-user roles) | Yes |
 
 ### Password
 
-Simple shared password protection. Best for internal docs shared with a small team. Supports **full** (all pages) and **partial** (some pages public, others protected) modes.
+Simple shared password protection. Best for internal docs shared with a small team.
+
+- In **Private** mode, all pages are protected.
+- In **Partial** mode, you configure which pages are public and which require the password.
 
 [Set up password authentication ->](/docs/customize/access-control/password)
 
 ### JWT
 
-Integrate with your existing authentication system using JSON Web Tokens. Supports per-user access roles and personalization.
+Integrate with your existing authentication system using JSON Web Tokens. Supports per-user access roles and personalization. Only available in **Private** mode.
 
 [Set up JWT authentication ->](/docs/customize/access-control/jwt)
 
 ### OAuth 2.0
 
-Integrate with OAuth 2.0 or OpenID Connect (OIDC) providers like Okta, Auth0, or Azure AD. Supports per-user access roles and personalization.
+Integrate with OAuth 2.0 or OpenID Connect (OIDC) providers like Okta, Auth0, or Azure AD. Supports per-user access roles and personalization. Only available in **Private** mode.
 
 [Set up OAuth 2.0 authentication ->](/docs/customize/access-control/oauth)
 
@@ -54,7 +59,7 @@ With JWT and OAuth 2.0 authentication, you can control which pages each user can
 Users whose token includes at least one matching role can view the page. Pages without `access-roles` are visible to all authenticated users. A special wildcard role `*` grants access to all pages.
 
 <Callout kind="info" collapsed="false">
-  Role-based access control is only available with JWT and OAuth 2.0 authentication. Password authentication uses the simpler full/partial mode instead.
+  Role-based access control is only available with JWT and OAuth 2.0 authentication in Private mode. Partial mode uses password authentication only.
 </Callout>
 
 ### How it works
