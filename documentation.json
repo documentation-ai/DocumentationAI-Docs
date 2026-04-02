@@ -295,9 +295,31 @@
                 "icon": "file-code"
               },
               {
-                "title": "Access Control",
-                "path": "customize/access-control",
-                "icon": "lock"
+                "group": "Access Control",
+                "icon": "lock",
+                "expandable": true,
+                "pages": [
+                  {
+                    "title": "Overview",
+                    "path": "customize/access-control/overview",
+                    "icon": "info"
+                  },
+                  {
+                    "title": "Password",
+                    "path": "customize/access-control/password",
+                    "icon": "key"
+                  },
+                  {
+                    "title": "JWT",
+                    "path": "customize/access-control/jwt",
+                    "icon": "key-round"
+                  },
+                  {
+                    "title": "OAuth 2.0",
+                    "path": "customize/access-control/oauth",
+                    "icon": "shield"
+                  }
+                ]
               },
               {
                 "title": "Site Configuration",
@@ -675,6 +697,10 @@
     {
       "source": "/integrations-and-workflows/analytics-integration",
       "destination": "/integrations/analytics-integration"
+    },
+    {
+      "source": "/customize/access-control",
+      "destination": "/customize/access-control/overview"
     }
   ]
 }

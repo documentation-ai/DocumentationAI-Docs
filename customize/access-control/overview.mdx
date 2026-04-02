@@ -1,0 +1,142 @@
+---
+title: Access Control
+description: Control who can view your documentation with flexible access control options.
+---
+
+## Overview
+
+Control who can view your documentation by configuring access control settings. You can make your documentation fully public or require authentication to access it.
+
+Access control is configured in the dashboard under **Settings > Access Control** and takes effect after you publish (or re-publish) your documentation.
+
+<Callout kind="alert" collapsed="false">
+  If you store your documentation source in your own Git repository, keep that repository private so the source content is not publicly visible. Access control settings apply only to the deployed documentation site, not to the visibility of your Git repository.
+</Callout>
+
+## Access modes
+
+- **Public**: Anyone can access your documentation. No authentication required.
+
+- **Private**: All pages require authentication to access.
+
+## Authentication methods
+
+Documentation.AI offers three authentication methods to protect your documentation:
+
+| Method | Plan | User-level access | Personalization |
+|---|---|---|---|
+| [Password](/docs/customize/access-control/password) | Standard+ | No (shared password) | No |
+| [JWT](/docs/customize/access-control/jwt) | Enterprise+ | Yes (per-user roles) | Yes |
+| [OAuth 2.0](/docs/customize/access-control/oauth) | Enterprise+ | Yes (per-user roles) | Yes |
+
+### Password
+
+Simple shared password protection. Best for internal docs shared with a small team. Supports **full** (all pages) and **partial** (some pages public, others protected) modes.
+
+[Set up password authentication ->](/docs/customize/access-control/password)
+
+### JWT
+
+Integrate with your existing authentication system using JSON Web Tokens. Supports per-user access roles and personalization.
+
+[Set up JWT authentication ->](/docs/customize/access-control/jwt)
+
+### OAuth 2.0
+
+Integrate with OAuth 2.0 or OpenID Connect (OIDC) providers like Okta, Auth0, or Azure AD. Supports per-user access roles and personalization.
+
+[Set up OAuth 2.0 authentication ->](/docs/customize/access-control/oauth)
+
+## Role-based access control
+
+With JWT and OAuth 2.0 authentication, you can control which pages each user can see using the `access-roles` property in your `documentation.json` navigation.
+
+Users whose token includes at least one matching role can view the page. Pages without `access-roles` are visible to all authenticated users. A special wildcard role `*` grants access to all pages.
+
+<Callout kind="info" collapsed="false">
+  Role-based access control is only available with JWT and OAuth 2.0 authentication. Password authentication uses the simpler full/partial mode instead.
+</Callout>
+
+### How it works
+
+Add the `access-roles` property to any navigation node in your `documentation.json`. It accepts an array of role name strings.
+
+```json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              { "title": "Introduction", "path": "intro" },
+              { "title": "Quick Start", "path": "quick-start" }
+            ]
+          },
+          {
+            "group": "Engineering",
+            "access-roles": ["engineering", "platform"],
+            "pages": [
+              { "title": "Architecture", "path": "engineering/arch" },
+              {
+                "title": "Runbooks",
+                "path": "engineering/runbooks",
+                "access-roles": ["sre"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Admin",
+        "access-roles": ["admin"],
+        "groups": [
+          {
+            "group": "Operations",
+            "pages": [
+              { "title": "Deploy Guide", "path": "admin/deploy" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+In this example:
+
+- **Introduction** and **Quick Start** are visible to all authenticated users (no `access-roles` set).
+- **Architecture** is visible to users with the `engineering` or `platform` role (inherited from the group).
+- **Runbooks** is visible only to users with the `sre` role (overrides the group's roles).
+- **Deploy Guide** is visible only to users with the `admin` role (inherited from the tab).
+
+### Inheritance rules
+
+- **Default**: If no `access-roles` is set anywhere, pages are visible to all authenticated users.
+- **Closest wins**: The closest (nearest) explicit `access-roles` in the navigation tree determines which roles are required for that node and its subtree.
+- **Explicit override**: A child node can override its parent by setting its own `access-roles`.
+- **Empty array**: Setting `access-roles: []` explicitly makes a node visible to all authenticated users, even if a parent has role restrictions.
+
+### Navigation filtering
+
+When a user authenticates with JWT or OAuth 2.0, the sidebar, search results, and page navigation are automatically filtered based on their roles. Pages the user cannot access do not appear anywhere in the UI.
+
+If a user navigates directly to a restricted URL, they see an "Access Restricted" page instead of the content.
+
+### JWT claims format
+
+Your JWT or OAuth provider must include the `accessRoles` field in the token claims:
+
+```json
+{
+  "host": "docs.example.com",
+  "firstname": "Alice",
+  "company": "Acme Inc",
+  "accessRoles": ["engineering", "sre"]
+}
+```
+
+The field names are fixed: `host`, `firstname`, `company`, and `accessRoles`.
