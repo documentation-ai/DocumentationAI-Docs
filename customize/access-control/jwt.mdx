@@ -115,26 +115,24 @@ The optional `redirect` parameter preserves the user's intended destination. If 
 
 ## Authentication flow
 
-```
-User visits docs.example.com/engineering/arch
-    |
-    v
-Not authenticated → Redirect to your login URL
-    |
-    v
-User authenticates in your system
-    |
-    v
-Your backend creates JWT with accessRoles, signs with Ed25519
-    |
-    v
-Redirect to callback URL with signed JWT
-    |
-    v
-Documentation.AI verifies JWT, creates session cookie
-    |
-    v
-User sees /engineering/arch (if their roles allow it)
+```mermaid
+sequenceDiagram
+    participant User
+    participant Docs as Documentation Site
+    participant Login as Your Login System
+    participant Backend as Your Backend
+
+    User->>Docs: Visit /engineering/arch
+    Docs-->>User: Not authenticated, redirect
+    User->>Login: Redirect to login URL
+    Login->>Login: User authenticates
+    Login->>Backend: Authentication successful
+    Backend->>Backend: Create JWT with accessRoles, sign with Ed25519
+    Backend-->>User: Redirect to callback URL with signed JWT
+    User->>Docs: /api/auth/jwt/callback?token=eyJ...&redirect=/engineering/arch
+    Docs->>Docs: Verify JWT signature, extract claims
+    Docs-->>User: Set session cookie, redirect to /engineering/arch
+    User->>Docs: View page (if roles allow it)
 ```
 
 ## Key rotation

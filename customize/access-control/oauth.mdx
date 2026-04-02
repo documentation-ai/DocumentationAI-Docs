@@ -81,30 +81,24 @@ Documentation.AI extracts user identity and access roles from the ID token or th
 
 ## Authentication flow
 
-```
-User visits docs.example.com/admin/deploy
-    |
-    v
-Not authenticated → Redirect to OAuth Authorization URL
-    (with PKCE code challenge + state parameter)
-    |
-    v
-User authenticates with OAuth provider, grants consent
-    |
-    v
-Provider redirects to callback URL with authorization code
-    |
-    v
-Documentation.AI exchanges code for tokens (with PKCE verifier)
-    |
-    v
-Extract user info from ID token or User Info endpoint
-    |
-    v
-Create session cookie with accessRoles
-    |
-    v
-User sees /admin/deploy (if their roles allow it)
+```mermaid
+sequenceDiagram
+    participant User
+    participant Docs as Documentation Site
+    participant Provider as OAuth Provider
+
+    User->>Docs: Visit /admin/deploy
+    Docs-->>User: Not authenticated, redirect
+    User->>Provider: Authorization URL (with PKCE challenge + state)
+    Provider->>Provider: User authenticates, grants consent
+    Provider-->>User: Redirect to callback URL with authorization code
+    User->>Docs: /api/auth/oauth/callback?code=AUTH_CODE&state=...
+    Docs->>Provider: Exchange code for tokens (with PKCE verifier)
+    Provider-->>Docs: Access token + ID token
+    Docs->>Provider: Fetch user info (if configured)
+    Provider-->>Docs: User details + accessRoles
+    Docs-->>User: Set session cookie, redirect to /admin/deploy
+    User->>Docs: View page (if roles allow it)
 ```
 
 ## Security
