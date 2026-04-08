@@ -1,0 +1,228 @@
+---
+title: Collection
+description: >-
+  Reference for displaying navigation children as cards, lists, accordions, or
+  nested trees using the CollectionList and CollectionContent components.
+type: reference
+---
+
+## Overview
+
+Collection components let you render navigation nodes and their children directly inside a page. Instead of manually listing links to child pages, you point a collection component at a navigation node and it automatically displays the children in a layout you choose.
+
+Use collection components to:
+
+- Build landing pages that showcase everything inside a group, tab, or dropdown
+- Create hub pages for large sections so readers can scan and jump to the right topic
+- Display a nested table of contents for an entire section as a collapsible tree
+- Keep navigation-driven content in sync automatically as you add or remove pages
+
+Documentation.AI provides two collection components:
+
+- **CollectionList** – Displays direct children of a navigation node in one of four layouts: cards, accordion, list, or links.
+- **CollectionContent** – Displays the full nested tree under a navigation node as a collapsible accordion structure.
+
+You can add collection components in two ways:
+
+- **Web Editor** – Insert from the slash menu under the **Dynamic** category.
+- **Code Editor (MDX)** – Use the `<CollectionList>` and `<CollectionContent>` components.
+
+<Callout kind="info">
+  Collection components read your live navigation structure. When you add, remove, or reorder pages in a group, the collection updates automatically on your next deploy. Because they resolve against your actual navigation tree, they cannot be previewed as static examples on this page — add one to a page in your own project to see it in action.
+</Callout>
+
+## Understanding the node attribute
+
+Both `CollectionList` and `CollectionContent` require a `node` attribute that tells the component which navigation node's children to display.
+
+The `node` value is a path that walks your navigation tree using the format `type:name`, separated by `/` for each level. For example:
+
+| Node path | What it targets |
+| --- | --- |
+| `tabs:Guides` | The tab named "Guides" |
+| `tabs:API/groups:Authentication` | The "Authentication" group inside the "API" tab |
+| `groups:Getting Started` | The group named "Getting Started" |
+| `dropdowns:Platform/tabs:REST` | The "REST" tab inside the "Platform" dropdown |
+
+The component resolves the node at render time and displays its direct children (for `CollectionList`) or its full descendant tree (for `CollectionContent`).
+
+<Callout kind="tip">
+  In the Web Editor, you do not need to write the node path manually. The slash menu opens a visual navigation tree picker where you select the target node by clicking.
+</Callout>
+
+## CollectionList
+
+`CollectionList` renders the **direct children** of a navigation node in one of four layouts.
+
+### Layouts
+
+<Tabs>
+  <Tab title="Cards" icon="layout-grid">
+    Displays children as a responsive grid of cards. Each card shows the child's name, icon, and a count of descendant pages.
+
+    ```jsx
+    <CollectionList node="tabs:Guides" layout="cards" cols={2} />
+    ```
+
+    Use cards for landing pages and hub pages where visual browsing matters.
+  </Tab>
+
+  <Tab title="Accordion" icon="chevron-down">
+    Displays children as a collapsible accordion. Each section header shows the child's name and expands to list its pages.
+
+    ```jsx
+    <CollectionList node="tabs:Guides" layout="accordion" default-open={true} />
+    ```
+
+    Use accordion when you want a compact overview that readers can expand selectively.
+  </Tab>
+
+  <Tab title="List" icon="list">
+    Displays children as a simple bordered list with hover states and navigation arrows.
+
+    ```jsx
+    <CollectionList node="tabs:API" layout="list" />
+    ```
+
+    Use list for clean, minimal navigation sections without visual clutter.
+  </Tab>
+
+  <Tab title="Links" icon="link">
+    Displays children as plain inline links with minimal styling.
+
+    ```jsx
+    <CollectionList node="groups:Resources" layout="links" />
+    ```
+
+    Use links when you want to embed a lightweight set of navigation links inside other content.
+  </Tab>
+</Tabs>
+
+### Card variants
+
+When using the `cards` layout, you can choose a card style with the `card-variant` attribute:
+
+- **`default`** – Icon on the left, name and page count on the right.
+- **`horizontal`** – Wider card with a horizontal layout.
+- **`centered`** – Icon and text centered for a symmetrical look.
+
+```jsx
+<CollectionList node="tabs:Guides" layout="cards" cols={3} card-variant="centered" />
+```
+
+### Using with Web Editor
+
+1. Place your cursor on a new line.
+2. Type <kbd>/</kbd> and search for **Collection List**.
+3. Select **Collection List** from the **Dynamic** category.
+4. A navigation tree picker opens. Select the node whose children you want to display.
+5. The component is inserted with default settings. Click the edit icon to adjust layout, columns, and card variant.
+
+<Callout kind="info">
+  Prefer writing in code?
+
+  You can switch to **MDX view inside the Web Editor** to write or edit this component using the same syntax as the Code Editor. This is useful if you want full control while staying in the Web Editor.
+</Callout>
+
+### Using with Code Editor
+
+A minimal example with only the required attribute:
+
+```jsx
+<CollectionList node="tabs:Guides" layout="cards" />
+```
+
+A full example showing all optional attributes (some apply only to specific layouts):
+
+```jsx
+<CollectionList
+  node="tabs:Guides"
+  layout="cards"
+  cols={2}
+  card-variant="default"
+/>
+```
+
+<Callout kind="info">
+  `cols` and `card-variant` only apply to the `cards` layout. `default-open` only applies to the `accordion` layout. Attributes that do not match the current layout are ignored.
+</Callout>
+
+### Attribute reference
+
+<ParamField path="node" param-type="string" required="true" deprecated="false">
+  Navigation node path in `type:name/type:name` format. Identifies which node's children to display.
+</ParamField>
+
+<ParamField path="layout" param-type="string" required="false" deprecated="false">
+  Display layout. Accepted values: `"cards"`, `"accordion"`, `"list"`, `"links"`. Defaults to `"cards"`.
+</ParamField>
+
+<ParamField path="cols" param-type="number" required="false" deprecated="false">
+  Number of grid columns for the `cards` layout. Accepted values: `1`, `2`, `3`, `4`. Defaults to `2`. Ignored for other layouts.
+</ParamField>
+
+<ParamField path="card-variant" param-type="string" required="false" deprecated="false">
+  Card display style for the `cards` layout. Accepted values: `"default"`, `"horizontal"`, `"centered"`. Defaults to `"default"`. Ignored for other layouts.
+</ParamField>
+
+<ParamField path="default-open" param-type="boolean" required="false" deprecated="false">
+  Whether the accordion starts expanded. Only applies to the `accordion` layout. Defaults to `true`.
+</ParamField>
+
+## CollectionContent
+
+`CollectionContent` renders the **full nested tree** under a navigation node as a recursive, collapsible accordion. It is useful for displaying the complete structure of a large section so readers can drill down through multiple levels.
+
+### Using with Web Editor
+
+1. Place your cursor on a new line.
+2. Type <kbd>/</kbd> and search for **Collection Content**.
+3. Select **Collection Content** from the **Dynamic** category.
+4. A navigation tree picker opens. Select the target node.
+5. The component is inserted. Click the edit icon to toggle the default expansion state.
+
+### Using with Code Editor
+
+```jsx
+<CollectionContent node="tabs:Guides" default-expanded={false} />
+```
+
+Container nodes (groups, tabs, dropdowns) render as collapsible sections with a chevron. Leaf pages render as clickable links. The tree indents at each level for visual clarity.
+
+### Attribute reference
+
+<ParamField path="node" param-type="string" required="true" deprecated="false">
+  Navigation node path in `type:name/type:name` format. Identifies which node's full tree to display.
+</ParamField>
+
+<ParamField path="default-expanded" param-type="boolean" required="false" deprecated="false">
+  Whether all tree nodes start expanded. Defaults to `false` (collapsed).
+</ParamField>
+
+## When to use CollectionList vs CollectionContent
+
+| Scenario | Recommended component |
+| --- | --- |
+| Landing page for a section with a few groups | `CollectionList` with `cards` layout |
+| Quick navigation links in a sidebar or footer | `CollectionList` with `links` layout |
+| FAQ-style browsing of a section | `CollectionList` with `accordion` layout |
+| Full table of contents for a deep section | `CollectionContent` |
+| Displaying only direct children, not nested items | `CollectionList` |
+| Displaying the entire hierarchy at all levels | `CollectionContent` |
+
+## Best practices
+
+- **Point to container nodes, not pages**
+  Collection components display children of a container (group, tab, dropdown). Pointing to a leaf page produces an empty result.
+
+- **Keep the target section well-organized**
+  Because collections mirror your navigation structure, a clean hierarchy of groups and pages produces a clean layout. Reorganize your navigation if the collection output looks cluttered.
+
+- **Use CollectionList on landing pages**
+  Cards and accordion layouts work well as the primary content of a hub page that introduces a section and links readers to its children.
+
+- **Use CollectionContent sparingly**
+  Full-tree rendering is most useful for reference sections or help centers where readers need to see everything at a glance. For most docs, `CollectionList` is the better default.
+
+- **Combine with content pages on containers**
+  If your groups or tabs have [content pages attached](/organize/groups#content-pages-on-groups), you can use a collection component on that content page to create a self-maintaining hub.

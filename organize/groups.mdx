@@ -263,6 +263,87 @@ Internally, this keeps a clear parent-child relationship:
 
 - API/OpenAPI-backed groups generate their own deeper structure, but still hang off a single group node in the tree.
 
+## Content pages on groups
+
+By default, a group is a structural container with no page of its own. When a reader clicks a group label in the sidebar, it expands or collapses the group — there is nothing to navigate to.
+
+You can change this by attaching a **content page** to a group. A content page gives the group its own MDX-backed page with a unique path, so clicking the group label navigates to that page instead of only toggling expansion.
+
+### When to attach a content page
+
+Attach a content page to a group when:
+
+- You want a **landing page** that introduces the section before readers dive into child pages
+- You need a **hub page** that uses [Collection components](/components/collection) to showcase everything in the group
+- You want the group to appear in **breadcrumb navigation** as a clickable link, not just a label
+- You are building a **help center or FAQ** where each category has its own overview
+
+<Callout kind="tip">
+  A content page on a group is optional. Most groups work fine without one. Add it only when readers would benefit from an overview or entry point for the section.
+</Callout>
+
+### Add a content page in the Web Editor
+
+<Steps>
+  <Step title="Open the group settings" icon="settings" title-type="p">
+    In the editor sidebar, find the group you want to edit. Click the **menu icon** (three dots) next to the group name and select **Edit** or **Attach Content Page**.
+  </Step>
+
+  <Step title="Configure the content page" icon="file-text" title-type="p">
+    Toggle **Include Content Page** on. Enter a path (slug) for the page, for example `guides/overview`. You can also browse unpublished pages to reuse an existing MDX file.
+  </Step>
+
+  <Step title="Write the content" icon="pen-tool" title-type="p">
+    The group now opens its content page when clicked. Write your overview, add [Collection components](/components/collection), or use any other MDX content.
+  </Step>
+</Steps>
+
+### Add a content page in configuration
+
+Add a `path` property to the group entry in your `documentation.json`:
+
+```json
+{
+  "group": "Getting Started",
+  "icon": "info",
+  "expandable": true,
+  "path": "getting-started/overview",
+  "pages": [
+    { "title": "Introduction", "path": "getting-started/introduction" },
+    { "title": "Quickstart", "path": "getting-started/quickstart" }
+  ]
+}
+```
+
+The `path` value follows the same rules as any page path: lowercase kebab-case, unique across your docs, and without the `.mdx` extension.
+
+### Display options on content pages
+
+When a group has a content page, you can configure the same display options available on regular pages:
+
+- `badge` – A short label like `"New"` or `"Beta"` shown as a pill next to the group name
+- `show-sidebar`, `show-toc`, `show-parent-label`, `content-width`, `show-page-navigation`, `ask-feedback` – All work the same as on regular pages (see [Page Configuration](/customize/page-configuration))
+- `method` and `tags` – Available for API-oriented content pages
+
+### How content pages affect navigation
+
+When a group has a content page:
+
+- The group label in the sidebar becomes a **clickable link** that navigates to the content page.
+- The group still **expands and collapses** to show child pages.
+- The content page appears in **breadcrumb navigation** with a clickable link.
+- The content page is included in **search results** and **AI-powered features** like any other page.
+- **Access control** and **public/private** settings on the group are inherited by the content page.
+
+### Detach a content page
+
+To remove a content page from a group without deleting the MDX file:
+
+- In the Web Editor, open the group settings and click **Detach Content Page**.
+- In configuration, remove the `path` property from the group entry.
+
+The MDX file remains as an unpublished page that you can reattach later or add elsewhere.
+
 ## Practical patterns and gotchas
 
 ### Common grouping patterns

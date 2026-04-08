@@ -278,6 +278,76 @@ A common pattern for a dimension might look like:
 
 When designing across multiple dimensions, try to keep **view patterns consistent** so users do not have to relearn navigation for each context.
 
+## Content pages on views
+
+By default, tabs and dropdowns are purely structural — they organize content but do not have pages of their own. Clicking a tab switches the navigation branch; clicking a dropdown expands it.
+
+You can attach a **content page** to any tab or dropdown. This gives the view its own MDX-backed page with a unique path.
+
+### When to attach a content page to a view
+
+- **Tab landing pages** – Give each tab an overview page that introduces its section. For example, an "API" tab could have a content page that explains your API architecture before readers drill into specific endpoints.
+- **Dropdown hub pages** – A dropdown for "Integrations" could have a content page listing supported integrations with a [CollectionList](/components/collection) component.
+- **Breadcrumb navigation** – When a view has a content page, it appears as a clickable link in the breadcrumb trail, helping readers orient themselves in deep navigation hierarchies.
+
+<Callout kind="info">
+  Content pages on views are optional. Most tabs and dropdowns work fine without one. Add a content page when readers would benefit from an entry point or overview for the section.
+</Callout>
+
+### Add a content page in the Web Editor
+
+1. In the editor sidebar, click the **menu icon** next to the tab or dropdown name.
+2. Select **Attach Content Page**.
+3. Enter a path (slug) for the page, or browse unpublished pages to reuse an existing MDX file.
+4. The view now opens its content page when clicked. Write your content or add [Collection components](/components/collection).
+
+### Add a content page in configuration
+
+Add a `path` property to the tab or dropdown entry in `documentation.json`:
+
+```json
+{
+  "tab": "API Reference",
+  "icon": "code",
+  "path": "api/overview",
+  "groups": [
+    {
+      "group": "REST API",
+      "pages": [
+        { "title": "Authentication", "path": "api/authentication" },
+        { "title": "Endpoints", "path": "api/endpoints" }
+      ]
+    }
+  ]
+}
+```
+
+The same approach works for dropdowns:
+
+```json
+{
+  "dropdown": "Platform",
+  "icon": "server",
+  "path": "platform/overview",
+  "tabs": [...]
+}
+```
+
+### How content pages affect view behavior
+
+- The view label in the navbar or sidebar becomes a **navigable link** to the content page.
+- Switching between tabs still changes the active navigation branch as before.
+- The content page appears in **breadcrumb navigation**, **search results**, and **AI features**.
+- **Access control** settings on the view are inherited by its content page.
+
+### Display options
+
+Content pages on views support the same display options as regular pages: `badge`, `show-sidebar`, `show-toc`, `show-parent-label`, `content-width`, `show-page-navigation`, and `ask-feedback`. You can also set `method` and `tags` for API-oriented views. See [Page Configuration](/customize/page-configuration) for the full list.
+
+### Detach a content page
+
+In the Web Editor, open the view settings and click **Detach Content Page**. In configuration, remove the `path` property. The MDX file remains as an unpublished page.
+
 ## Design guidelines and common patterns
 
 ### When to use tabs vs dropdowns

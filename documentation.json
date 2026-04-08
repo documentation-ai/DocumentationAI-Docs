@@ -137,6 +137,11 @@
                     "icon": "lucide-panel-top"
                   },
                   {
+                    "title": "Collection",
+                    "path": "components/collection",
+                    "icon": "layout-grid"
+                  },
+                  {
                     "title": "Update",
                     "path": "components/update",
                     "icon": "clock"

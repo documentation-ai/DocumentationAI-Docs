@@ -234,6 +234,44 @@ For external content:
 
 - The page appears in navigation like any other entry but opens the external URL, typically in a new tab.
 
+## Content pages on containers
+
+In addition to standalone pages, you can attach a content page to any **container node** in your navigation: groups, page groups, tabs, dropdowns, products, versions, and languages.
+
+A content page on a container gives it its own MDX-backed page with a unique path. This means the container is no longer just structural — it becomes a navigable page that readers can visit directly.
+
+### What this enables
+
+- **Landing pages** – Attach a content page to a group to create a section overview. Use [Collection components](/components/collection) to display the group's children automatically.
+- **Clickable breadcrumbs** – When a container has a content page, it appears as a clickable link in the breadcrumb trail. Without a content page, the breadcrumb shows the container name but links to its first child page instead.
+- **Hub pages** – Large documentation sets benefit from hub pages at each level of the hierarchy. A product dimension could have its own welcome page, each version could have release notes, and each tab could have an overview.
+
+### How it works
+
+Add a `path` property to any container entry in your navigation configuration. Here is a tab with its own content page:
+
+```json
+{
+  "tab": "API Reference",
+  "icon": "code",
+  "path": "api/overview",
+  "groups": [
+    {
+      "group": "REST API",
+      "pages": [
+        { "title": "Authentication", "path": "api/authentication" }
+      ]
+    }
+  ]
+}
+```
+
+The same pattern works for groups, dropdowns, products, versions, and languages — add a `path` and the container becomes a navigable page. The `path` follows the same rules as any page path. In the Web Editor, use the **Attach Content Page** option in the container's menu.
+
+Content pages on containers support the full set of page display options (`badge`, `show-sidebar`, `show-toc`, `content-width`, `method`, `tags`, and more). See [Page Configuration](/customize/page-configuration) for details.
+
+For container-specific guidance, see [Content pages on groups](/organize/groups#content-pages-on-groups) and [Content pages on views](/organize/views#content-pages-on-views).
+
 ## How pages relate to groups, views, and dimensions
 
 Pages are content; groups, views, and dimensions are ways of organizing or slicing that content.

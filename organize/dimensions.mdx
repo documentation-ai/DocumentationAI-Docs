@@ -238,6 +238,32 @@ Use this section as a checklist when you plan or refactor dimensions.
   </Step>
 </Steps>
 
+### Content pages on dimensions
+
+Products, versions, and languages are structural containers by default — they define context but do not have pages of their own. You can attach a **content page** to any dimension value by adding a `path` property.
+
+Use content pages on dimensions to:
+
+- Give each **product** a welcome page that introduces the product before readers enter its docs
+- Give each **version** a release notes or "what's new" page
+- Give each **language** a localization status page
+
+In configuration, add a `path` to the dimension entry:
+
+```json
+{
+  "version": "v2",
+  "path": "v2/overview",
+  "tabs": [...]
+}
+```
+
+When a dimension value has a content page, it appears as a clickable link in **breadcrumb navigation** and is included in **search results** and **AI features**. Display options like `badge`, `show-sidebar`, and `content-width` work the same as on regular pages.
+
+In the Web Editor, use the **Attach Content Page** option in the dimension value's menu. To remove the content page later, use **Detach Content Page** — the MDX file remains as an unpublished page.
+
+For the general concept and setup details, see [Content pages on containers](/organize/pages#content-pages-on-containers).
+
 ### Common pitfalls
 
 Avoid these patterns when designing dimensions:
