@@ -75,6 +75,7 @@
               },
               {
                 "group": "Components",
+                "path": "components",
                 "pages": [
                   {
                     "title": "Headings and Text",
