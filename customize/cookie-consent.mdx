@@ -23,6 +23,42 @@ Integrations and scripts without a consent category always load — only the cat
   Documentation.ai does not include a built-in consent banner. You need to add your CMP's script via [Custom Scripts](/customize/custom-scripts). The cookie consent configuration here only controls **when** your other scripts and integrations are allowed to load.
 </Callout>
 
+## Choose your setup
+
+Not every site needs the full cookie consent configuration. Choose the approach that fits your situation:
+
+### I use a CMP with auto-blocking (Osano, CookieBot Strict mode)
+
+Some CMPs like Osano and CookieBot (in Strict mode) automatically detect and block third-party scripts at the network level — you don't need to configure anything extra for them to work.
+
+**What to do:** Add your CMP banner as a [custom script](/customize/custom-scripts). **Do not** enable the Cookies configuration in Site Config. Your CMP will handle blocking and unblocking scripts on its own.
+
+The only thing your CMP cannot control is **Documentation.ai telemetry** (our built-in page view tracking). If you need to gate or disable that, see [Telemetry](#telemetry) below.
+
+### I use a CMP without auto-blocking (CookieYes, Termly, custom banner)
+
+Some CMPs only show a consent banner and store the user's choice — they don't block scripts themselves. In this case, you need Documentation.ai's cookie consent configuration to gate your scripts.
+
+**What to do:** Follow the full setup below — add your CMP script, configure consent categories, and assign categories to your integrations.
+
+### I just want to disable Documentation.ai telemetry
+
+If you don't need a consent banner at all but want to turn off our built-in page view tracking, you don't need cookie consent configuration.
+
+**What to do:** Go to **Site Config > Integrations > Telemetry** in the Editor and toggle it off. Or add this to `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "telemetry": { "enabled": "false" }
+  }
+}
+```
+
+No CMP or cookies setup required.
+
+---
+
 ## Prerequisites
 
 - A documentation project with [integrations](/integrations/overview) or [custom scripts](/customize/custom-scripts) configured
