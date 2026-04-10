@@ -2,6 +2,38 @@
 title: Release Notes
 description: 'Changes, fixes, and improvements across versions'
 ---
+<Update label="2026-04-10" description="Collections, container pages, JWT/OAuth access control, and cookie consent" tags={["feature"]}>
+  ## CollectionList and CollectionContent components
+
+  Two new components are now available to help you build help center-style navigation directly within your documentation pages.
+
+  **CollectionList** renders a grid or list of topic collections, each linking to a dedicated content page. Think of it as the landing page of a typical help center where users see categories like "Getting Started," "Billing," or "Account Settings" laid out as clickable tiles.
+
+  **CollectionContent** displays the articles or entries within a single collection. Use it on a collection detail page to list all related articles with titles, descriptions, and links, giving readers a familiar browse-and-drill-down experience.
+
+  **When to use them**
+
+  - You want a help center, knowledge base, or support hub layout where users browse by topic rather than following a fixed sidebar.
+
+  - You need a category landing page that groups related articles visually, similar to Zendesk, Intercom, or Freshdesk help centers.
+
+  - You want to complement your main documentation with a self-service support section that feels distinct from your API reference or guides.
+
+  Together, these components let you create the classic help center pattern — a top-level collection grid that drills down into per-topic article lists — without leaving Documentation.AI or writing custom code.
+
+  ## Pages for containers
+
+  Groups and other containers in your navigation can now have their own full pages instead of only acting as folders. This lets you introduce a section, provide context, or add navigation helpers at the top level of a group. Existing structures continue to work, and you can progressively add container pages where they add value. See [Pages](/organize/pages) and [Groups](/organize/groups) for setup details and examples.
+
+  ## JWT and OAuth access control
+
+  Access control now supports JWT and OAuth 2.0 so you can protect documentation with the same identity providers and tokens you use in your product. Use JWT to gate docs behind signed tokens you issue from your app, or connect an OAuth 2.0 provider to require sign-in via your existing SSO flow. Both options work alongside existing password protection and integrate with your project-level access settings. Get started in [JWT access control](/customize/access-control/jwt) and [OAuth 2.0 access control](/customize/access-control/oauth).
+
+  ## Cookie consent
+
+  Cookie consent tooling gives you a configurable banner and preference controls that help align your docs with privacy requirements. Decide which analytics and third-party scripts require consent and how they behave before and after a user accepts. The banner layout and copy are customizable so you can match your brand and legal guidance. Configure options in the dashboard and learn more in [Cookie Consent](/customize/cookie-consent).
+</Update>
+
 <Update label="2026-03-25" description="Site Config in Editor, integrations, polish, and unpublish support" tags={["feature","improvement","fix"]}>
   ## Integrations
 
