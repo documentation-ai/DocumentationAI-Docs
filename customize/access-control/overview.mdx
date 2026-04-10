@@ -2,7 +2,6 @@
 title: Access Control
 description: Control who can view your documentation with flexible access control options.
 ---
-
 ## Overview
 
 Control who can view your documentation by configuring access control settings. You can make your documentation fully public, fully private, or a mix of both.
@@ -11,7 +10,11 @@ Access control is configured in the dashboard under **Settings > Access Control*
 
 <Callout kind="alert" collapsed="false">
   If you store your documentation source in your own Git repository, keep that repository private so the source content is not publicly visible. Access control settings apply only to the deployed documentation site, not to the visibility of your Git repository.
+
+
 </Callout>
+
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1775827141092-zbmeenc4z9e-Access-control.png?fm=auto&auto=compress%2Cformat" width="2400" height="1390" alt="" />
 
 ## Access modes
 
@@ -25,17 +28,18 @@ Access control is configured in the dashboard under **Settings > Access Control*
 
 Documentation.AI offers three authentication methods to protect your documentation:
 
-| Method | Plan | Available in | User-level access | Personalization |
-|---|---|---|---|---|
-| [Password](/docs/customize/access-control/password) | Standard+ | Private, Partial | No (shared password) | No |
-| [JWT](/docs/customize/access-control/jwt) | Enterprise+ | Private | Yes (per-user roles) | Yes |
-| [OAuth 2.0](/docs/customize/access-control/oauth) | Enterprise+ | Private | Yes (per-user roles) | Yes |
+| Method                                              | Plan        | Available in     | User-level access    | Personalization |
+| --------------------------------------------------- | ----------- | ---------------- | -------------------- | --------------- |
+| [Password](/docs/customize/access-control/password) | Standard+   | Private, Partial | No (shared password) | No              |
+| [JWT](/docs/customize/access-control/jwt)           | Enterprise+ | Private          | Yes (per-user roles) | Yes             |
+| [OAuth 2.0](/docs/customize/access-control/oauth)   | Enterprise+ | Private          | Yes (per-user roles) | Yes             |
 
 ### Password
 
 Simple shared password protection. Best for internal docs shared with a small team.
 
 - In **Private** mode, all pages are protected.
+
 - In **Partial** mode, you configure which pages are public and which require the password.
 
 [Set up password authentication ->](/docs/customize/access-control/password)
@@ -114,15 +118,21 @@ Add the `access-roles` property to any navigation node in your `documentation.js
 In this example:
 
 - **Introduction** and **Quick Start** are visible to all authenticated users (no `access-roles` set).
+
 - **Architecture** is visible to users with the `engineering` or `platform` role (inherited from the group).
+
 - **Runbooks** is visible only to users with the `sre` role (overrides the group's roles).
+
 - **Deploy Guide** is visible only to users with the `admin` role (inherited from the tab).
 
 ### Inheritance rules
 
 - **Default**: If no `access-roles` is set anywhere, pages are visible to all authenticated users.
+
 - **Closest wins**: The closest (nearest) explicit `access-roles` in the navigation tree determines which roles are required for that node and its subtree.
+
 - **Explicit override**: A child node can override its parent by setting its own `access-roles`.
+
 - **Empty array**: Setting `access-roles: []` explicitly makes a node visible to all authenticated users, even if a parent has role restrictions.
 
 ### Navigation filtering
