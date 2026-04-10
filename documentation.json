@@ -137,9 +137,14 @@
                     "icon": "lucide-panel-top"
                   },
                   {
-                    "title": "Collection",
-                    "path": "components/collection",
+                    "title": "Collection List",
+                    "path": "components/collection-list",
                     "icon": "layout-grid"
+                  },
+                  {
+                    "title": "Collection Content",
+                    "path": "components/collection-content",
+                    "icon": "network"
                   },
                   {
                     "title": "Update",
@@ -711,6 +716,10 @@
     {
       "source": "/customize/access-control",
       "destination": "/customize/access-control/overview"
+    },
+    {
+      "source": "/components/collection",
+      "destination": "/components/collection-list"
     }
   ]
 }
