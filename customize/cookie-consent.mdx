@@ -67,27 +67,55 @@ No CMP or cookies setup required.
 
 ## Step 1: Add your CMP banner script
 
-Your CMP provides a JavaScript snippet to show the consent banner. Add it as a custom script so it loads on every page.
+Your CMP provides a JavaScript snippet or script URL to show the consent banner. Add it as a custom script so it loads on every page.
+
+### From the Editor
 
 <Steps>
-  <Step title="Get your CMP script URL" icon="link" title-type="p">
-    Copy the script URL from your CMP dashboard. For example, CookieBot provides a URL like `https://consent.cookiebot.com/uc.js?cbid=YOUR_ID`.
+  <Step title="Get the embed code from your CMP" icon="clipboard" title-type="p">
+    Log in to your CMP dashboard and copy the JavaScript embed snippet. It typically looks like this:
+
+    ```js
+    var script = document.createElement("script");
+    script.src = "https://consent.cookiebot.com/uc.js?cbid=YOUR_ID";
+    document.head.appendChild(script);
+    ```
   </Step>
 
-  <Step title="Add it as a custom script" icon="file-code" title-type="p">
-    Go to **Site Config > Custom Scripts** in the Editor, or add it to `documentation.json`:
+  <Step title="Create a script file" icon="file-code" title-type="p">
+    In the Editor, go to **Site Config > Custom Scripts**. Click **Add Script > Create New Script**. Name it something like `cmp-banner.js` and paste your CMP's embed code into the editor.
+  </Step>
 
-    ```json
-    {
-      "scripts": [
-        { "src": "https://consent.cookiebot.com/uc.js?cbid=YOUR_ID" }
-      ]
-    }
-    ```
-
-    Scripts without a `category` field default to `essential`, which means they always load — exactly what you need for your consent banner. Do **not** assign a consent category to your CMP script, otherwise the banner itself would be blocked.
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish**. The consent banner will now appear on every page of your documentation site.
   </Step>
 </Steps>
+
+### Via documentation.json
+
+If your CMP provides a direct script URL, you can reference it as an external URL in `documentation.json`:
+
+```json
+{
+  "scripts": [
+    { "src": "https://consent.cookiebot.com/uc.js?cbid=YOUR_ID" }
+  ]
+}
+```
+
+Or if you saved the embed code as a local `.js` file in your project:
+
+```json
+{
+  "scripts": [
+    { "src": "scripts/cmp-banner.js" }
+  ]
+}
+```
+
+<Callout kind="info" collapsed="false">
+  Scripts without a `category` field default to `essential`, which means they always load — exactly what you need for a consent banner. Do **not** assign a consent category to your CMP script, otherwise the banner itself would be blocked.
+</Callout>
 
 ## Step 2: Configure consent categories
 
