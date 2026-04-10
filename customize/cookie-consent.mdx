@@ -5,16 +5,20 @@ description: >-
   telemetry load on your documentation site. Works with any consent management
   platform (CMP).
 ---
-
 Control which integrations and scripts require user consent before loading. When cookie consent is configured, scripts only load after the user accepts the relevant consent category through your consent banner.
 
 This works with any consent management platform (CMP) — CookieBot, OneTrust, CookieYes, Osano, Termly, or a custom consent banner.
 
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1775827184244-b6epeiq2ngc-Cookies.png?fm=auto&auto=compress%2Cformat" width="2400" height="1395" alt="" />
+
 ## How it works
 
 1. You add your CMP banner as a [custom script](/customize/custom-scripts) — this is the popup your visitors see
+
 2. You configure consent categories with a **key** and **value** — this tells us what cookie to look for
+
 3. When a visitor clicks "Accept", your CMP writes that cookie to the browser
+
 4. Documentation.ai checks the browser for that value — if found, scripts in that category load. If not, they stay blocked.
 
 Integrations and scripts without a consent category always load — only the categories you configure are gated.
@@ -148,6 +152,7 @@ You have two options:
     For each category, enter the **key** and **value** from your CMP:
 
     - **Key** — the cookie name or localStorage key your CMP writes (e.g., `CookieConsent`)
+
     - **Value** — the substring that indicates consent for this category (e.g., `statistics:true`)
   </Step>
 
@@ -192,6 +197,7 @@ You have two options:
     <ParamField path="key" param-type="string" required="true" deprecated="false">
       The cookie name or localStorage key that your consent banner writes to.
     </ParamField>
+
     <ParamField path="value" param-type="string" required="true" deprecated="false">
       The substring to look for in the stored value. Documentation.ai checks if the cookie or localStorage value **contains** this string.
     </ParamField>
@@ -204,11 +210,11 @@ You have two options:
 
 Each integration can include an optional `category` field. Most integrations already have a sensible default:
 
-| Integration | Default Category |
-| ----------- | ---------------- |
-| ga4, gtm, posthog, mixpanel, amplitude, segment, plausible, fathom, pirsch, heap, hightouch, hotjar, clarity, logrocket | `analytics` |
-| clearbit | `marketing` |
-| intercom, crisp | `essential` (always loads) |
+| Integration                                                                                                             | Default Category           |
+| ----------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| ga4, gtm, posthog, mixpanel, amplitude, segment, plausible, fathom, pirsch, heap, hightouch, hotjar, clarity, logrocket | `analytics`                |
+| clearbit                                                                                                                | `marketing`                |
+| intercom, crisp                                                                                                         | `essential` (always loads) |
 
 To override a default, add a `category` field:
 
@@ -232,11 +238,11 @@ Custom scripts default to `essential` (always loads). To gate a script behind co
 }
 ```
 
-| Script | Category | Behavior |
-| ------ | -------- | -------- |
+| Script            | Category              | Behavior                                                            |
+| ----------------- | --------------------- | ------------------------------------------------------------------- |
 | CMP banner script | `essential` (default) | Always loads — the banner must show before any consent can be given |
-| `fonts.js` | `essential` (default) | Always loads — no `category` field means essential |
-| `tracking.js` | `analytics` | Only loads after analytics consent is granted |
+| `fonts.js`        | `essential` (default) | Always loads — no `category` field means essential                  |
+| `tracking.js`     | `analytics`           | Only loads after analytics consent is granted                       |
 
 <Callout kind="danger" collapsed="false">
   Never assign a consent category to your CMP banner script. If the banner itself requires consent to load, visitors will never see it and can never grant consent.
@@ -319,9 +325,13 @@ If you built your own consent banner that sets a simple localStorage value when 
 If your CMP isn't listed above, you can find the cookie values yourself:
 
 1. Open your documentation site in a browser
+
 2. Accept all cookies in the consent banner
+
 3. Open **Developer Tools** (F12) > **Application** tab > **Cookies** or **Local Storage**
+
 4. Look for a cookie set by your CMP (usually named after the provider)
+
 5. The cookie value contains the consent state — find the substring that indicates consent for each category
 
 You don't need to match the entire cookie value. Documentation.ai checks if the stored value **contains** your configured substring. For example, if the full cookie value is `{statistics:true,marketing:false}`, setting the value to `statistics:true` is enough.
@@ -383,28 +393,31 @@ Here's a full configuration with CookieBot as the CMP, Google Analytics gated be
 
 **What happens:**
 
-| Script / Integration | Category | Behavior |
-| -------------------- | -------- | -------- |
-| CookieBot banner | `essential` (default) | Always loads |
-| `fonts.js` | `essential` (default) | Always loads |
-| Google Analytics | `analytics` (default) | Loads after analytics consent |
-| PostHog | `analytics` (default) | Loads after analytics consent |
-| Clearbit | `marketing` (default) | Loads after marketing consent |
-| Intercom | `essential` (default) | Always loads |
-| `ad-pixel.js` | `marketing` (explicit) | Loads after marketing consent |
-| Documentation.ai telemetry | `analytics` (default) | Loads after analytics consent |
+| Script / Integration       | Category               | Behavior                      |
+| -------------------------- | ---------------------- | ----------------------------- |
+| CookieBot banner           | `essential` (default)  | Always loads                  |
+| `fonts.js`                 | `essential` (default)  | Always loads                  |
+| Google Analytics           | `analytics` (default)  | Loads after analytics consent |
+| PostHog                    | `analytics` (default)  | Loads after analytics consent |
+| Clearbit                   | `marketing` (default)  | Loads after marketing consent |
+| Intercom                   | `essential` (default)  | Always loads                  |
+| `ad-pixel.js`              | `marketing` (explicit) | Loads after marketing consent |
+| Documentation.ai telemetry | `analytics` (default)  | Loads after analytics consent |
 
 ## How consent detection works
 
 Documentation.ai checks for consent in two places:
 
 1. **localStorage** — checked first
+
 2. **Cookies** — checked as fallback
 
 Consent changes are detected automatically through:
 
 - **CookieStore API** (Chrome, Edge) — instantly detects any cookie change
+
 - **Storage events** — detects localStorage changes across browser tabs
+
 - **Page navigation** — consent state is re-evaluated on every page transition
 
 ## Troubleshooting
@@ -420,5 +433,8 @@ Consent changes are detected automatically through:
 ## What's next
 
 - [Custom Scripts](/customize/custom-scripts) — add your CMP banner script
+
 - [Integrations](/integrations/overview) — connect analytics and chat providers
+
 - [Site Configuration](/customize/site-configuration#cookie-consent) — full configuration reference
+

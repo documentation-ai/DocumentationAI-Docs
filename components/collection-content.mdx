@@ -5,23 +5,27 @@ description: >-
   tree under a navigation node as a collapsible accordion structure.
 type: reference
 ---
-
 ## Overview
 
 `CollectionContent` renders the **full nested tree** under a navigation node as a recursive, collapsible accordion. Instead of showing only direct children, it displays the complete hierarchy at all levels so readers can drill down through multiple layers of your navigation.
 
+<Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1775826597787-9prb77ujzmh-Collections-content.png?fm=auto&auto=compress%2Cformat" width="2400" height="1390" alt="" />
+
 Use `CollectionContent` to:
 
 - Display a nested table of contents for an entire section as a collapsible tree
+
 - Build reference or help center pages where readers need to see everything at a glance
+
 - Keep navigation-driven content in sync automatically as you add or remove pages
 
 You can add the component in two ways:
 
 - **Web Editor** – Insert from the slash menu under the **Dynamic** category.
+
 - **Code Editor (MDX)** – Use the `<CollectionContent>` component directly.
 
-<Callout kind="info">
+<Callout kind="info" collapsed="false">
   Collection components read your live navigation structure. When you add, remove, or reorder pages in a group, the collection updates automatically on your next deploy. Because they resolve against your actual navigation tree, they cannot be previewed as static examples on this page — add one to a page in your own project to see it in action.
 </Callout>
 
@@ -31,25 +35,29 @@ The `node` attribute tells the component which navigation node's full tree to di
 
 The `node` value is a path that walks your navigation tree using the format `type:name`, separated by `/` for each level. For example:
 
-| Node path | What it targets |
-| --- | --- |
-| `tabs:Guides` | The tab named "Guides" |
+| Node path                        | What it targets                                 |
+| -------------------------------- | ----------------------------------------------- |
+| `tabs:Guides`                    | The tab named "Guides"                          |
 | `tabs:API/groups:Authentication` | The "Authentication" group inside the "API" tab |
-| `groups:Getting Started` | The group named "Getting Started" |
-| `dropdowns:Platform/tabs:REST` | The "REST" tab inside the "Platform" dropdown |
+| `groups:Getting Started`         | The group named "Getting Started"               |
+| `dropdowns:Platform/tabs:REST`   | The "REST" tab inside the "Platform" dropdown   |
 
 The component resolves the node at render time and displays its full descendant tree.
 
-<Callout kind="tip">
+<Callout kind="tip" collapsed="false">
   In the Web Editor, you do not need to write the node path manually. The slash menu opens a visual navigation tree picker where you select the target node by clicking.
 </Callout>
 
 ## Using with Web Editor
 
 1. Place your cursor on a new line.
+
 2. Type <kbd>/</kbd> and search for **Collection Content**.
+
 3. Select **Collection Content** from the **Dynamic** category.
+
 4. A navigation tree picker opens. Select the target node.
+
 5. The component is inserted. Click the edit icon to toggle the default expansion state.
 
 ## Using with Code Editor
@@ -72,14 +80,14 @@ Container nodes (groups, tabs, dropdowns) render as collapsible sections with a 
 
 ## When to use CollectionContent vs CollectionList
 
-| Scenario | Recommended component |
-| --- | --- |
-| Landing page for a section with a few groups | `CollectionList` with `cards` layout |
-| Quick navigation links in a sidebar or footer | `CollectionList` with `links` layout |
-| FAQ-style browsing of a section | `CollectionList` with `accordion` layout |
-| Full table of contents for a deep section | `CollectionContent` |
-| Displaying only direct children, not nested items | `CollectionList` |
-| Displaying the entire hierarchy at all levels | `CollectionContent` |
+| Scenario                                          | Recommended component                    |
+| ------------------------------------------------- | ---------------------------------------- |
+| Landing page for a section with a few groups      | `CollectionList` with `cards` layout     |
+| Quick navigation links in a sidebar or footer     | `CollectionList` with `links` layout     |
+| FAQ-style browsing of a section                   | `CollectionList` with `accordion` layout |
+| Full table of contents for a deep section         | `CollectionContent`                      |
+| Displaying only direct children, not nested items | `CollectionList`                         |
+| Displaying the entire hierarchy at all levels     | `CollectionContent`                      |
 
 ## Best practices
 
@@ -94,3 +102,4 @@ Container nodes (groups, tabs, dropdowns) render as collapsible sections with a 
 
 - **Combine with content pages on containers**
   If your groups or tabs have [content pages attached](/organize/groups#content-pages-on-groups), you can use a CollectionContent on that content page to create a self-maintaining hub.
+
