@@ -1335,6 +1335,56 @@ Connect analytics platforms and chat widgets to your documentation site. Each in
   Analytics and chat integrations. Each key corresponds to a provider. See [Analytics and Chat Integrations](/integrations/overview) for all supported providers and their configuration options.
 </ParamField>
 
+### Cookie Consent
+
+Control which integrations and scripts require user consent before loading. Define consent categories under `integrations.cookies`, then assign categories to your integrations and scripts. See the [Cookie Consent guide](/customize/cookie-consent) for step-by-step setup and CMP examples.
+
+```json
+{
+  "integrations": {
+    "cookies": {
+      "analytics": { "key": "CookieConsent", "value": "statistics:true" },
+      "marketing": { "key": "CookieConsent", "value": "marketing:true" }
+    },
+    "ga4": { "measurementId": "G-XXXXXXXXXX", "category": "analytics" },
+    "intercom": { "appId": "abc123" }
+  }
+}
+```
+
+<ParamField path="integrations.cookies" param-type="object" required="false" deprecated="false">
+  Cookie consent configuration. Each key is a consent category name, and its value defines the cookie or localStorage key-value pair to check in the browser. Scripts and integrations assigned to that category only load when the matching value is found.
+
+  <Expandable title="Category entry properties" default-open="false">
+    <ParamField path="key" param-type="string" required="true" deprecated="false">
+      The cookie or localStorage key to check (e.g., `CookieConsent`, `OptanonConsent`).
+    </ParamField>
+    <ParamField path="value" param-type="string" required="true" deprecated="false">
+      The substring to match in the stored value (e.g., `statistics:true`, `C0002:1`).
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Telemetry
+
+Control Documentation.ai's built-in page view tracking.
+
+```json
+{
+  "integrations": {
+    "telemetry": { "enabled": "false" }
+  }
+}
+```
+
+<ParamField path="integrations.telemetry.enabled" param-type="string" required="false" deprecated="false">
+  Set to `"false"` to disable page view tracking. Defaults to enabled.
+</ParamField>
+
+<ParamField path="integrations.telemetry.category" param-type="string" required="false" deprecated="false">
+  Consent category for telemetry when cookie consent is active. Defaults to `"analytics"`.
+</ParamField>
+
 ## Custom Scripts
 
 Inject custom JavaScript files into your published documentation site. Use custom scripts for analytics providers not covered by built-in integrations, consent banners, or any custom functionality.
@@ -1343,7 +1393,7 @@ Inject custom JavaScript files into your published documentation site. Use custo
 {
   "scripts": [
     { "src": "scripts/consent-banner.js" },
-    { "src": "scripts/custom-tracking.mjs" }
+    { "src": "scripts/custom-tracking.mjs", "category": "analytics" }
   ]
 }
 ```
@@ -1353,7 +1403,10 @@ Inject custom JavaScript files into your published documentation site. Use custo
 
   <Expandable title="Script entry properties" default-open="false">
     <ParamField path="src" param-type="string" required="true" deprecated="false">
-      Relative file path to a `.js` or `.mjs` file in your project. Paths must be relative — no leading `/`, `./`, or `../`. Maximum file size is 5 MB.
+      Relative file path to a `.js` or `.mjs` file in your project, or an external URL. Paths must be relative — no leading `/`, `./`, or `../`. Maximum file size is 5 MB.
+    </ParamField>
+    <ParamField path="category" param-type="string" required="false" deprecated="false">
+      Consent category name matching a key in `integrations.cookies`. Scripts without a category default to `essential` (always loads).
     </ParamField>
   </Expandable>
 </ParamField>

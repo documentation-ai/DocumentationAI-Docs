@@ -1,0 +1,309 @@
+---
+title: Cookie Consent
+description: >-
+  Set up cookie consent to control when integrations, custom scripts, and
+  telemetry load on your documentation site. Works with any consent management
+  platform (CMP).
+---
+
+Control which integrations and scripts require user consent before loading. When cookie consent is configured, scripts only load after the user accepts the relevant consent category through your consent banner.
+
+This works with any consent management platform (CMP) — CookieBot, OneTrust, CookieYes, Osano, Termly, or a custom consent banner.
+
+## How it works
+
+1. Your consent banner (CMP) shows a cookie popup to visitors
+2. When a visitor clicks "Accept", the CMP writes a cookie or localStorage value
+3. Documentation.ai checks the browser for that value
+4. If found, scripts in that consent category are loaded. If not, they stay blocked.
+
+Integrations and scripts without a consent category always load — only the categories you configure are gated.
+
+## Prerequisites
+
+- A documentation project with [integrations](/integrations/overview) or [custom scripts](/customize/custom-scripts) configured
+
+- A consent management platform (CMP) or custom consent banner added via [Custom Scripts](/customize/custom-scripts)
+
+## Set up cookie consent from the Editor
+
+<Steps>
+  <Step title="Open Site Config" icon="settings" title-type="p">
+    In the Editor, click **Site Config** in the top toolbar.
+  </Step>
+
+  <Step title="Navigate to Cookies" icon="cookie" title-type="p">
+    Select **Cookies** from the left sidebar.
+  </Step>
+
+  <Step title="Enable and add categories" icon="toggle-right" title-type="p">
+    Toggle cookie consent on. An **analytics** category is created by default. Add more categories using the quick-add buttons (marketing, functional, etc.) or create a custom one.
+  </Step>
+
+  <Step title="Fill in key and value" icon="key" title-type="p">
+    For each category, enter the **key** (cookie or localStorage name) and **value** (the substring to match) that your consent banner sets when the user accepts that category.
+
+    For example, if your CMP writes a cookie called `CookieConsent` with `statistics:true` when analytics are accepted, enter:
+    - **Key**: `CookieConsent`
+    - **Value**: `statistics:true`
+  </Step>
+
+  <Step title="Assign categories to integrations" icon="layers" title-type="p">
+    Go to **Integrations** in the left sidebar. Each integration now shows a **Consent Category** dropdown. Most analytics integrations default to `analytics` automatically. Adjust as needed.
+  </Step>
+
+  <Step title="Publish" icon="upload" title-type="p">
+    Click **Publish** to deploy the consent configuration to your live site.
+  </Step>
+</Steps>
+
+## Set up cookie consent via documentation.json
+
+If you manage configuration in version control, add consent categories directly to `documentation.json`:
+
+```json
+{
+  "integrations": {
+    "cookies": {
+      "analytics": {
+        "key": "CookieConsent",
+        "value": "statistics:true"
+      },
+      "marketing": {
+        "key": "CookieConsent",
+        "value": "marketing:true"
+      }
+    },
+    "ga4": {
+      "measurementId": "G-XXXXXXXXXX",
+      "category": "analytics"
+    },
+    "intercom": {
+      "appId": "abc123"
+    }
+  }
+}
+```
+
+### Cookies configuration
+
+<ParamField path="integrations.cookies" param-type="object" required="false" deprecated="false">
+  Each key is a consent category name you define. The value tells Documentation.ai what to look for in the browser.
+
+  <Expandable title="Category properties" default-open="true">
+    <ParamField path="key" param-type="string" required="true" deprecated="false">
+      The cookie name or localStorage key that your consent banner writes to.
+    </ParamField>
+    <ParamField path="value" param-type="string" required="true" deprecated="false">
+      The substring to look for in the stored value. Documentation.ai checks if the cookie or localStorage value **contains** this string.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Category assignment
+
+Each integration can include an optional `category` field to assign it to a consent category:
+
+```json
+"ga4": { "measurementId": "G-XXXXXXXXXX", "category": "analytics" }
+```
+
+**Default categories** — integrations without an explicit `category` use these defaults:
+
+| Integration | Default Category |
+| ----------- | ---------------- |
+| ga4, gtm, posthog, mixpanel, amplitude, segment, plausible, fathom, pirsch, heap, hightouch, hotjar, clarity, logrocket | `analytics` |
+| clearbit | `marketing` |
+| intercom, crisp | `essential` |
+
+Scripts in the `essential` category always load — no consent check is performed.
+
+### Custom scripts with consent
+
+Custom scripts default to `essential` (always loads). To gate a script behind consent, add a `category` field:
+
+```json
+{
+  "scripts": [
+    { "src": "scripts/fonts.js" },
+    { "src": "scripts/tracking.js", "category": "analytics" },
+    { "src": "https://cmp.example.com/banner.js" }
+  ]
+}
+```
+
+In this example, `fonts.js` and the CMP banner script always load. `tracking.js` only loads after analytics consent is granted.
+
+## CMP setup examples
+
+Below are ready-to-use configurations for popular consent management platforms. Replace the placeholder integration values with your own.
+
+### CookieBot
+
+CookieBot stores consent in a cookie called `CookieConsent` with category flags like `statistics:true`.
+
+```json
+{
+  "integrations": {
+    "cookies": {
+      "analytics": { "key": "CookieConsent", "value": "statistics:true" },
+      "marketing": { "key": "CookieConsent", "value": "marketing:true" },
+      "functional": { "key": "CookieConsent", "value": "preferences:true" }
+    }
+  }
+}
+```
+
+### OneTrust
+
+OneTrust stores consent in a cookie called `OptanonConsent` with group IDs like `C0002:1`.
+
+```json
+{
+  "integrations": {
+    "cookies": {
+      "analytics": { "key": "OptanonConsent", "value": "C0002:1" },
+      "functional": { "key": "OptanonConsent", "value": "C0003:1" },
+      "marketing": { "key": "OptanonConsent", "value": "C0004:1" }
+    }
+  }
+}
+```
+
+### CookieYes
+
+CookieYes stores consent in a cookie called `cookieyes-consent` with category flags like `analytics:yes`.
+
+```json
+{
+  "integrations": {
+    "cookies": {
+      "analytics": { "key": "cookieyes-consent", "value": "analytics:yes" },
+      "functional": { "key": "cookieyes-consent", "value": "functional:yes" },
+      "marketing": { "key": "cookieyes-consent", "value": "advertisement:yes" }
+    }
+  }
+}
+```
+
+### Osano
+
+```json
+{
+  "integrations": {
+    "cookies": {
+      "analytics": { "key": "osano_consentmanager", "value": "ANALYTICS\":\"ACCEPT" },
+      "marketing": { "key": "osano_consentmanager", "value": "MARKETING\":\"ACCEPT" }
+    }
+  }
+}
+```
+
+### Termly
+
+```json
+{
+  "integrations": {
+    "cookies": {
+      "analytics": { "key": "termly_consent_preferences", "value": "\"analytics\":true" },
+      "marketing": { "key": "termly_consent_preferences", "value": "\"advertising\":true" }
+    }
+  }
+}
+```
+
+### Custom consent banner
+
+If you use a custom consent banner that sets a simple localStorage value:
+
+```json
+{
+  "integrations": {
+    "cookies": {
+      "analytics": { "key": "my_site_consent", "value": "accepted" }
+    }
+  }
+}
+```
+
+<Callout kind="info" collapsed="false">
+  Category names are flexible — use whatever names match your CMP's terminology. Common names include `analytics`, `statistics`, `marketing`, `advertising`, `functional`, and `personalization`.
+</Callout>
+
+## Telemetry
+
+Documentation.ai includes built-in page view tracking (telemetry) that powers your [analytics dashboard](/analytics-and-insights/overview). You can disable it or gate it behind consent.
+
+### Disable telemetry
+
+To completely turn off page view tracking:
+
+```json
+{
+  "integrations": {
+    "telemetry": { "enabled": "false" }
+  }
+}
+```
+
+### Gate telemetry behind consent
+
+When cookie consent is configured, telemetry is automatically gated behind the `analytics` consent category. To assign it to a different category:
+
+```json
+{
+  "integrations": {
+    "telemetry": { "category": "statistics" },
+    "cookies": {
+      "statistics": { "key": "CookieConsent", "value": "statistics:true" }
+    }
+  }
+}
+```
+
+You can also manage telemetry from the Editor under **Integrations > Telemetry**.
+
+## Finding your CMP's cookie values
+
+Every CMP writes a specific cookie when a user consents. To find the key and value for your CMP:
+
+1. Open your documentation site in a browser
+2. Accept cookies in the consent banner
+3. Open **Developer Tools** (F12) > **Application** tab > **Cookies** or **Local Storage**
+4. Look for a cookie set by your CMP (e.g., `CookieConsent`, `OptanonConsent`, `cookieyes-consent`)
+5. The cookie value contains the consent state — find the substring that indicates consent for each category
+
+<Callout kind="info" collapsed="false">
+  You don't need to match the entire cookie value. Documentation.ai checks if the stored value **contains** your configured substring. For example, if the cookie value is `{statistics:true,marketing:false}`, setting value to `statistics:true` will match.
+</Callout>
+
+## How consent detection works
+
+Documentation.ai checks for consent in two places:
+
+1. **localStorage** — checked first
+2. **Cookies** — checked as fallback
+
+Consent changes are detected automatically through:
+
+- **CookieStore API** (Chrome, Edge) — instantly detects any cookie change
+- **Storage events** — detects localStorage changes across browser tabs
+- **Page navigation** — consent state is re-evaluated on every page transition
+
+On Safari and Firefox, if your CMP uses a proprietary event system, consent changes are picked up on the next page navigation.
+
+## Troubleshooting
+
+**Scripts loading without consent**: Verify that the `category` field on the integration or script matches a key in your `cookies` configuration. Category names are case-sensitive.
+
+**Consent not detected**: Check that the key and value in your cookies config exactly match what your CMP writes. Open DevTools > Application > Cookies to inspect the actual values.
+
+**CMP banner not showing**: The consent banner itself must be added as a [custom script](/customize/custom-scripts). Cookie consent configuration only controls when other scripts load — it does not provide a banner.
+
+**Telemetry still tracking**: If you disabled telemetry via `"enabled": "false"`, make sure the value is a string `"false"`, not a boolean `false`.
+
+## What's next
+
+- [Custom Scripts](/customize/custom-scripts) — add your CMP banner script
+- [Integrations](/integrations/overview) — connect analytics and chat providers
+- [Site Configuration](/customize/site-configuration#cookie-consent) — full configuration reference

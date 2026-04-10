@@ -47,11 +47,12 @@ If you manage configuration in version control, add scripts directly to `documen
 }
 ```
 
-Each entry in the `scripts` array has a single property:
+Each entry in the `scripts` array supports the following properties:
 
 | Property | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
-| `src` | string | Yes | Relative file path to a `.js` or `.mjs` file in your project |
+| `src` | string | Yes | Relative file path to a `.js` or `.mjs` file in your project, or an external URL |
+| `category` | string | No | Consent category name matching a key in `integrations.cookies`. Defaults to `essential` (always loads). See [Cookie Consent](/customize/site-configuration#cookie-consent). |
 
 ### Script file requirements
 
@@ -86,6 +87,8 @@ Custom scripts execute in your readers' browsers with full page access.
 
 ## What's next
 
-- [Analytics and chat integrations](/integrations-and-workflows/analytics-and-chat) — zero-code setup for popular analytics and chat tools
+- [Cookie Consent](/customize/cookie-consent) — gate scripts behind user consent for GDPR compliance
+
+- [Analytics and chat integrations](/integrations/overview) — zero-code setup for popular analytics and chat tools
 
 - [Site configuration reference](/customize/site-configuration) — full `documentation.json` reference

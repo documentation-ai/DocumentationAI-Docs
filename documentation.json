@@ -300,6 +300,11 @@
                 "icon": "file-code"
               },
               {
+                "title": "Cookie Consent",
+                "path": "customize/cookie-consent",
+                "icon": "cookie"
+              },
+              {
                 "group": "Access Control",
                 "icon": "lock",
                 "expandable": true,
