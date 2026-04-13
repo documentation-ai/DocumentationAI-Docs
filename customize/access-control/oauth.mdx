@@ -7,7 +7,7 @@ description: Integrate with your identity provider using OAuth 2.0 or OpenID Con
   OAuth 2.0 authentication is available on Enterprise plans or higher.
 </Callout>
 
-Authenticate users with OAuth 2.0 or OpenID Connect (OIDC). This method integrates with popular identity providers (Okta, Auth0, Azure AD, Google Workspace, etc.) and supports per-user [role-based access control](/docs/customize/access-control/overview#role-based-access-control) and personalization.
+Authenticate users with OAuth 2.0 or OpenID Connect (OIDC). This method integrates with popular identity providers (Okta, Auth0, Azure AD, Google Workspace, etc.) and supports per-user [role-based access control](/customize/access-control/overview#role-based-access-control) and personalization.
 
 Documentation.AI uses the **Authorization Code flow with PKCE** for enhanced security.
 
@@ -73,7 +73,7 @@ Documentation.AI extracts user identity and access roles from the ID token or th
 | `host` | No | The docs site hostname (for personalization) |
 | `firstname` | No | User's first name (for personalization) |
 | `company` | No | User's company name (for personalization) |
-| `accessRoles` | No | Array of role strings for [role-based access control](/docs/customize/access-control/overview#role-based-access-control). Omit if not using scoped access. Use `["*"]` for full access. |
+| `accessRoles` | No | Array of role strings for [role-based access control](/customize/access-control/overview#role-based-access-control). Omit if not using scoped access. Use `["*"]` for full access. |
 
 <Callout kind="info" collapsed="false">
   If your provider uses different field names (e.g., `groups` instead of `accessRoles`), configure your provider to emit these exact field names, or use a claims transformation in your provider's settings.

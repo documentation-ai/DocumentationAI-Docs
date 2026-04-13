@@ -7,7 +7,7 @@ description: Authenticate users with JSON Web Tokens and control access with rol
   JWT authentication is available on Enterprise plans or higher.
 </Callout>
 
-Authenticate users with JSON Web Tokens (JWT) signed with Ed25519 (EdDSA). This method integrates your documentation with your existing authentication system and supports per-user [role-based access control](/docs/customize/access-control/overview#role-based-access-control) and personalization.
+Authenticate users with JSON Web Tokens (JWT) signed with Ed25519 (EdDSA). This method integrates your documentation with your existing authentication system and supports per-user [role-based access control](/customize/access-control/overview#role-based-access-control) and personalization.
 
 ## Prerequisites
 
@@ -76,7 +76,7 @@ Build a JWT with the following claims:
 | `host` | No | The docs site hostname (for personalization) |
 | `firstname` | No | User's first name (for personalization) |
 | `company` | No | User's company name (for personalization) |
-| `accessRoles` | No | Array of role strings for [role-based access control](/docs/customize/access-control/overview#role-based-access-control). Omit if not using scoped access. Use `["*"]` for full access. |
+| `accessRoles` | No | Array of role strings for [role-based access control](/customize/access-control/overview#role-based-access-control). Omit if not using scoped access. Use `["*"]` for full access. |
 | `iat` | Yes | Issued-at timestamp (standard JWT claim) |
 | `exp` | Yes | Expiration timestamp. Keep this short (30 seconds recommended) since this is a handshake token, not the session. |
 
