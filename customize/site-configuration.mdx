@@ -1411,6 +1411,35 @@ Inject custom JavaScript files into your published documentation site. Use custo
   </Expandable>
 </ParamField>
 
+## AI Configuration
+
+Control end-user AI features from the `ai` object in `documentation.json`.
+
+```json
+{
+  "ai": {
+    "ai-assistant:enabled": true,
+    "ai-assistant:default-open": false
+  }
+}
+```
+
+<ParamField path="ai" param-type="object" required="false" deprecated="false">
+  AI-related site settings, including the AI Assistant and Page Actions. See [AI Assistant](/ai/ai-assistant) and [Page Actions](/page-actions) for feature-specific guidance.
+</ParamField>
+
+<ParamField path="ai.ai-assistant:enabled" param-type="boolean" required="false" deprecated="false">
+  Enables the Ask AI assistant in your documentation. Default: `false` when omitted.
+</ParamField>
+
+<ParamField path="ai.ai-assistant:default-open" param-type="boolean" required="false" deprecated="false">
+  Controls whether the AI Assistant opens by default when readers load your docs. Default: `false` when omitted.
+</ParamField>
+
+<Callout kind="info" collapsed="false">
+  Set `"ai-assistant:enabled": true` before using `"ai-assistant:default-open"`. If the assistant is disabled, the default-open setting has no visible effect.
+</Callout>
+
 ## SEO Configuration
 
 Configure search engine optimization and meta tag behavior.
