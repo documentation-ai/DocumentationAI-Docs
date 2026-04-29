@@ -533,7 +533,7 @@ Example of Update component for version releases:
 
   - Breaking: Old API endpoints deprecated, use v2 endpoints
 
-  **Migration guide:** Follow the [v2 migration guide](/api/migration-v2) to update your integration.
+  **Migration guide:** Follow the [versioning and deprecation policy](/api-documentation-and-playground/versioning-and-deprecation-policy) to update your integration.
 </Update>
 
 <Update label="2024-12-01" description="v1.5.0" tags={["New Feature"]}>
@@ -589,48 +589,6 @@ Example of columns with Cards:
     Built for collaboration and scale.
   </Card>
 </Columns>
-
-### Collection components
-
-Collection components dynamically display navigation nodes from your `documentation.json` structure. They read your live navigation tree and stay in sync automatically as you add or remove pages.
-
-The `node` attribute uses the format `type:name/type:name` to walk your navigation tree (e.g., `tabs:Guides`, `tabs:API/groups:Authentication`). Supported node types: `tabs`, `groups`, `dropdowns`, `dimensions`.
-
-#### CollectionList
-
-Renders the direct children of a navigation node in one of four layouts:
-
-<CollectionList node="tabs:Guides" layout="cards" cols={2} card-variant="default" />
-
-<CollectionList node="tabs:API/groups:Auth" layout="accordion" default-open={false} />
-
-<CollectionList node="groups:Resources" layout="list" />
-
-<CollectionList node="groups:Resources" layout="links" />
-
-Attributes:
-
-- `node` (required) — Navigation node path in `type:name/type:name` format
-
-- `layout` — Display layout: `"cards"` (default), `"accordion"`, `"list"`, or `"links"`
-
-- `cols` — Grid columns for cards layout: `1`, `2`, `3`, `4` (default `2`). Cards layout only.
-
-- `card-variant` — Card style: `"default"`, `"horizontal"`, `"centered"`. Cards layout only.
-
-- `default-open` — Whether accordion starts expanded (default `true`). Accordion layout only.
-
-#### CollectionContent
-
-Renders the full nested tree under a navigation node as a recursive, collapsible accordion. Displays the complete hierarchy at all levels so readers can drill down through multiple layers.
-
-<CollectionContent node="tabs:Guides" default-expanded={false} />
-
-Attributes:
-
-- `node` (required) — Navigation node path in `type:name/type:name` format
-
-- `default-expanded` — Whether all tree nodes start expanded (default `false`)
 
 ## Required page structure
 
@@ -736,10 +694,6 @@ type: "reference"  # or "guide", "tutorial", etc.
 - Use **Update** for changelogs, version releases, and product announcements
 
 - Use **Mermaid** diagrams for flowcharts, sequence diagrams, and architecture visualizations
-
-- Use **CollectionList** to build landing pages and hub pages that display direct children of a navigation node in card, accordion, list, or link layouts
-
-- Use **CollectionContent** to display the full nested tree of a navigation section as a recursive, collapsible accordion
 
 ## documentation.json configuration
 

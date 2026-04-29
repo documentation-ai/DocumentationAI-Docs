@@ -517,7 +517,7 @@ For changelogs:
   - Redesigned dashboard with improved performance
   - Breaking: Old API endpoints deprecated, use v2 endpoints
 
-  **Migration guide:** Follow the [v2 migration guide](/api/migration-v2) to update your integration.
+  **Migration guide:** Follow the [versioning and deprecation policy](/api-documentation-and-playground/versioning-and-deprecation-policy) to update your integration.
 </Update>
 ```
 
@@ -565,41 +565,6 @@ With Cards:
 </Columns>
 ```
 
-### CollectionList
-
-Renders the direct children of a navigation node in one of four layouts. Point the component at a node in your navigation tree and it displays the children automatically.
-
-```jsx
-<CollectionList node="tabs:Guides" layout="cards" cols={2} card-variant="default" />
-
-<CollectionList node="tabs:API/groups:Auth" layout="accordion" default-open={false} />
-
-<CollectionList node="groups:Resources" layout="list" />
-
-<CollectionList node="groups:Resources" layout="links" />
-```
-
-The `node` attribute uses the format `type:name/type:name` to walk your navigation tree (e.g., `tabs:Guides`, `tabs:API/groups:Authentication`). Supported node types: `tabs`, `groups`, `dropdowns`, `dimensions`.
-
-Attributes:
-- `node` (required) — Navigation node path in `type:name/type:name` format
-- `layout` — Display layout: `"cards"` (default), `"accordion"`, `"list"`, or `"links"`
-- `cols` — Grid columns for cards layout: `1`, `2`, `3`, `4` (default `2`). Cards layout only.
-- `card-variant` — Card style: `"default"`, `"horizontal"`, `"centered"`. Cards layout only.
-- `default-open` — Whether accordion starts expanded (default `true`). Accordion layout only.
-
-### CollectionContent
-
-Renders the full nested tree under a navigation node as a recursive, collapsible accordion. Displays the complete hierarchy at all levels so readers can drill down through multiple layers.
-
-```jsx
-<CollectionContent node="tabs:Guides" default-expanded={false} />
-```
-
-Attributes:
-- `node` (required) — Navigation node path in `type:name/type:name` format
-- `default-expanded` — Whether all tree nodes start expanded (default `false`)
-
 ## Component Selection Logic
 
 - Use standard **markdown headings** (H2, H3, H4) for page structure and navigation hierarchy
@@ -617,8 +582,6 @@ Attributes:
 - Use **Video** for demonstrations and tutorials, **Iframe** for interactive embeds
 - Use **Update** for changelogs, version releases, and product announcements
 - Use **Mermaid** diagrams for flowcharts, sequence diagrams, and architecture visualizations
-- Use **CollectionList** to build landing pages and hub pages that display direct children of a navigation node in card, accordion, list, or link layouts
-- Use **CollectionContent** to display the full nested tree of a navigation section as a recursive, collapsible accordion
 
 ## documentation.json Configuration
 
@@ -684,4 +647,3 @@ Navigation paths use forward slashes without `.mdx` extension: `"path": "getting
 
 For complete documentation.json reference, see the [documentation.json schema](https://dashboard.documentation.ai/documentation.json)
 ````
-
