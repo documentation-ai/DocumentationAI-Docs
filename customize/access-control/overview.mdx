@@ -56,9 +56,9 @@ Integrate with OAuth 2.0 or OpenID Connect (OIDC) providers like Okta, Auth0, or
 
 ## Role-based access control
 
-With JWT and OAuth 2.0 authentication, you can control which pages each user can see using the `access-roles` property in your `documentation.json` navigation.
+With JWT and OAuth 2.0 authentication, you can control which pages each user can access using the `pathAccessRoles` property in your `documentation.json`.
 
-Users whose token includes at least one matching role can view the page. Pages without `access-roles` are visible to all authenticated users. A special wildcard role `*` grants access to all pages.
+`pathAccessRoles` maps page paths to arrays of role names. Users whose token includes at least one matching role can access that path. Paths that are not listed remain visible to all authenticated users. A user with the wildcard role `*` can access every restricted path.
 
 <Callout kind="info" collapsed="false">
   Role-based access control is only available with JWT and OAuth 2.0 authentication in Private mode. Partial mode uses password authentication only.
@@ -66,7 +66,7 @@ Users whose token includes at least one matching role can view the page. Pages w
 
 ### How it works
 
-Add the `access-roles` property to any navigation node in your `documentation.json`. It accepts an array of role name strings.
+Add a `pathAccessRoles` object at the top level of your `documentation.json`. Each key is a page path, and each value is an array of allowed roles for that page.
 
 ```json
 {
@@ -84,21 +84,15 @@ Add the `access-roles` property to any navigation node in your `documentation.js
           },
           {
             "group": "Engineering",
-            "access-roles": ["engineering", "platform"],
             "pages": [
               { "title": "Architecture", "path": "engineering/arch" },
-              {
-                "title": "Runbooks",
-                "path": "engineering/runbooks",
-                "access-roles": ["sre"]
-              }
+              { "title": "Runbooks", "path": "engineering/runbooks" }
             ]
           }
         ]
       },
       {
         "tab": "Admin",
-        "access-roles": ["admin"],
         "groups": [
           {
             "group": "Operations",
@@ -109,33 +103,38 @@ Add the `access-roles` property to any navigation node in your `documentation.js
         ]
       }
     ]
+  },
+  "pathAccessRoles": {
+    "engineering/arch": ["engineering", "platform"],
+    "engineering/runbooks": ["sre"],
+    "admin/deploy": ["admin"]
   }
 }
 ```
 
 In this example:
 
-- **Introduction** and **Quick Start** are visible to all authenticated users (no `access-roles` set).
+- **Introduction** and **Quick Start** are visible to all authenticated users because their paths are not listed in `pathAccessRoles`.
 
-- **Architecture** is visible to users with the `engineering` or `platform` role (inherited from the group).
+- **Architecture** is visible to users with the `engineering` or `platform` role.
 
-- **Runbooks** is visible only to users with the `sre` role (overrides the group's roles).
+- **Runbooks** is visible only to users with the `sre` role.
 
-- **Deploy Guide** is visible only to users with the `admin` role (inherited from the tab).
+- **Deploy Guide** is visible only to users with the `admin` role.
 
 ### Inheritance rules
 
-- **Default**: If no `access-roles` is set anywhere, pages are visible to all authenticated users.
+- **Per-path matching**: Role restrictions are applied by page path, not by where the page appears in the navigation tree.
 
-- **Closest wins**: The closest (nearest) explicit `access-roles` in the navigation tree determines which roles are required for that node and its subtree.
+- **No navigation inheritance**: Adding a group or tab in `navigation` does not automatically apply roles to every page inside it.
 
-- **Explicit override**: A child node can override its parent by setting its own `access-roles`.
+- **Unlisted paths stay open**: If a page path is not present in `pathAccessRoles`, any authenticated user can access it.
 
-- **Empty array**: Setting `access-roles: []` explicitly makes a node visible to all authenticated users, even if a parent has role restrictions.
+- **Wildcard access**: A user whose `accessRoles` claim includes `*` can access every restricted page.
 
 ### Navigation filtering
 
-When a user authenticates with JWT or OAuth 2.0, the sidebar, search results, and page navigation are automatically filtered based on their roles. Pages the user cannot access do not appear anywhere in the UI.
+When a user authenticates with JWT or OAuth 2.0, the sidebar, search results, and previous or next page navigation are filtered by that user's roles. Pages the user cannot access do not appear anywhere in the authenticated UI.
 
 If a user navigates directly to a restricted URL, they see an "Access Restricted" page instead of the content.
 

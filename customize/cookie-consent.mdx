@@ -5,9 +5,11 @@ description: >-
   telemetry load on your documentation site. Works with any consent management
   platform (CMP).
 ---
-Control which integrations and scripts require user consent before loading. When cookie consent is configured, scripts only load after the user accepts the relevant consent category through your consent banner.
+Control which integrations and scripts require user consent before loading. When cookie consent is configured, Documentation.ai only loads items assigned to a consent category after the visitor accepts that category. Scripts without a category stay essential and always load.
 
 This works with any consent management platform (CMP) — CookieBot, OneTrust, CookieYes, Osano, Termly, or a custom consent banner.
+
+This behavior applies to supported built-in integrations and your custom scripts, so you can manage consent in one place without changing each integration's implementation.
 
 <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1775827184244-b6epeiq2ngc-Cookies.png?fm=auto&auto=compress%2Cformat" width="2400" height="1395" alt="" />
 
@@ -15,16 +17,16 @@ This works with any consent management platform (CMP) — CookieBot, OneTrust, C
 
 1. You add your CMP banner as a [custom script](/customize/custom-scripts) — this is the popup your visitors see
 
-2. You configure consent categories with a **key** and **value** — this tells us what cookie to look for
+2. You configure consent categories with a **key** and **value** — this tells us what consent choice to look for
 
-3. When a visitor clicks "Accept", your CMP writes that cookie to the browser
+3. When a visitor clicks "Accept", your CMP stores that choice in a cookie or localStorage
 
-4. Documentation.ai checks the browser for that value — if found, scripts in that category load. If not, they stay blocked.
+4. When a visitor grants consent for a category, Documentation.ai loads the integrations and scripts assigned to that category. If the visitor has not granted consent yet, those items stay blocked.
 
-Integrations and scripts without a consent category always load — only the categories you configure are gated.
+Integrations and scripts without a consent category are treated as `essential` and always load. Use this for your CMP banner and any functionality that must be available before consent is collected.
 
-<Callout kind="note" collapsed="false">
-  Documentation.ai does not include a built-in consent banner. You need to add your CMP's script via [Custom Scripts](/customize/custom-scripts). The cookie consent configuration here only controls **when** your other scripts and integrations are allowed to load.
+<Callout kind="info" collapsed="false">
+  Documentation.ai does not include a built-in consent banner. Add your CMP script via [Custom Scripts](/customize/custom-scripts), then use cookie consent settings to decide which other integrations and scripts should wait for consent.
 </Callout>
 
 ## Choose your setup
@@ -208,7 +210,9 @@ You have two options:
 
 ### Integration categories
 
-Each integration can include an optional `category` field. Most integrations already have a sensible default:
+When cookie consent is configured, supported integrations respect their assigned consent category automatically. Existing integrations keep their settings, but they now wait for consent if their category is gated.
+
+Each integration can include an optional `category` field. Most integrations use these defaults:
 
 | Integration                                                                                                             | Default Category           |
 | ----------------------------------------------------------------------------------------------------------------------- | -------------------------- |
@@ -226,7 +230,7 @@ You can also set categories from the Editor — when cookies are configured, eac
 
 ### Custom script categories
 
-Custom scripts default to `essential` (always loads). To gate a script behind consent, add a `category` field:
+Custom scripts without a `category` are treated as `essential` and always load. To gate a script behind consent, add a `category` field:
 
 ```json
 {
@@ -404,21 +408,11 @@ Here's a full configuration with CookieBot as the CMP, Google Analytics gated be
 | `ad-pixel.js`              | `marketing` (explicit) | Loads after marketing consent |
 | Documentation.ai telemetry | `analytics` (default)  | Loads after analytics consent |
 
-## How consent detection works
+## Consent behavior summary
 
-Documentation.ai checks for consent in two places:
-
-1. **localStorage** — checked first
-
-2. **Cookies** — checked as fallback
-
-Consent changes are detected automatically through:
-
-- **CookieStore API** (Chrome, Edge) — instantly detects any cookie change
-
-- **Storage events** — detects localStorage changes across browser tabs
-
-- **Page navigation** — consent state is re-evaluated on every page transition
+- **Essential scripts always load** — use this for your CMP banner and any script that must run before consent is collected.
+- **Categorized integrations and scripts wait for consent** — assign `analytics`, `marketing`, or another configured category when a tool should only load after approval.
+- **Existing supported integrations follow the same rules** — once cookies are configured, built-in integrations respect their assigned category without additional setup.
 
 ## Troubleshooting
 

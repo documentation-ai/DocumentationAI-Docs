@@ -7,7 +7,7 @@ type: reference
 ---
 ## Overview
 
-`CollectionContent` renders the **full nested tree** under a navigation node as a recursive, collapsible accordion. Instead of showing only direct children, it displays the complete hierarchy at all levels so readers can drill down through multiple layers of your navigation.
+`CollectionContent` renders the **full nested tree** under a navigation node as a recursive, collapsible accordion. Instead of showing only direct children, it displays the complete hierarchy at all levels so readers can drill down through multiple layers of your navigation. If you only want the immediate children of a node, use `CollectionList` instead.
 
 <Image src="https://blob-cdn.documentation.ai/org-53a37986-2c9e-4094-b9e8-1e1ffae9e9ee/doc-b389b141-ae58-4fd5-91f9-6702fae9ac58/1775826597787-9prb77ujzmh-Collections-content.png?fm=auto&auto=compress%2Cformat" width="2400" height="1390" alt="" />
 
@@ -42,7 +42,7 @@ The `node` value is a path that walks your navigation tree using the format `typ
 | `groups:Getting Started`         | The group named "Getting Started"               |
 | `dropdowns:Platform/tabs:REST`   | The "REST" tab inside the "Platform" dropdown   |
 
-The component resolves the node at render time and displays its full descendant tree.
+The component resolves the node at render time and recursively displays its full descendant tree.
 
 <Callout kind="tip" collapsed="false">
   In the Web Editor, you do not need to write the node path manually. The slash menu opens a visual navigation tree picker where you select the target node by clicking.
@@ -62,20 +62,28 @@ The component resolves the node at render time and displays its full descendant 
 
 ## Using with Code Editor
 
+A minimal example with only the required attribute. By default, container nodes start collapsed:
+
 ```jsx
-<CollectionContent node="tabs:Guides" default-expanded={false} />
+<CollectionContent node="tabs:Guides" />
 ```
 
-Container nodes (groups, tabs, dropdowns) render as collapsible sections with a chevron. Leaf pages render as clickable links. The tree indents at each level for visual clarity.
+Set `default-expanded="true"` when you want the full recursive tree expanded on first render:
+
+```jsx
+<CollectionContent node="tabs:Guides" default-expanded="true" />
+```
+
+Container nodes render as collapsible sections with a chevron, and `CollectionContent` keeps recursing through nested groups, tabs, and dropdowns until it reaches leaf pages. Leaf pages render as clickable links, and each level is indented for visual clarity.
 
 ## Attribute reference
 
 <ParamField path="node" param-type="string" required="true" deprecated="false">
-  Navigation node path in `type:name/type:name` format. Identifies which node's full tree to display.
+  Navigation node path in `type:name/type:name` format. Identifies which node's full recursive tree to display.
 </ParamField>
 
 <ParamField path="default-expanded" param-type="boolean" required="false" deprecated="false">
-  Whether all tree nodes start expanded. Defaults to `false` (collapsed).
+  Whether tree sections start expanded. Write it as `default-expanded="true"` or `default-expanded="false"` in MDX. Defaults to `false`, so container nodes start collapsed unless you opt in to an expanded tree.
 </ParamField>
 
 ## When to use CollectionContent vs CollectionList
@@ -102,4 +110,3 @@ Container nodes (groups, tabs, dropdowns) render as collapsible sections with a 
 
 - **Combine with content pages on containers**
   If your groups or tabs have [content pages attached](/organize/groups#content-pages-on-groups), you can use a CollectionContent on that content page to create a self-maintaining hub.
-
