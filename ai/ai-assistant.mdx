@@ -69,35 +69,59 @@ If an answer cannot be strongly supported by what’s in your docs, the assistan
 
 - Indicate that it doesn’t have enough information, instead of fabricating details.
 
-## Where users access the assistant
+## How readers access the assistant
 
-The assistant appears in your documentation as an **Ask AI** entry point.
+The assistant appears in your documentation as an **Ask AI** entry point. By default, it opens as an integrated assistant panel. You can also present it as a floating bubble that stays docked in the lower-right corner and expands into chat when readers open it.
 
-1. They click **Ask AI**.
+What readers experience:
 
-2. They type a question in natural language.
+- **Integrated or floating presentation** – choose between the standard in-page assistant and a floating bubble experience.
 
-3. The assistant searches your docs, reasons over the results, and responds with:
+- **Starter questions** – show suggested prompts before the first message so readers can jump straight into common tasks.
 
-   - A concise answer or explanation
+- **Optional default-open behavior** – open the assistant automatically on page load when you want it to be more prominent.
 
-   - Optional step‑by‑step guidance
+- **Voice input and follow-up prompts** – on supported browsers, readers can ask questions by voice and continue with suggested next questions.
 
-   - Citations and links to relevant pages or sections
+- **Docs-aware answers with citations** – every response stays grounded in your published content.
 
-<Callout kind="alert" collapsed="false">
-  Currently, the AI Assistant is enabled for all documentation sites. If you would like to disable it, please contact us.
+<Callout kind="info" collapsed="false">
+  Floating mode changes how the assistant is presented, not how it answers. Citations, grounded responses, and the underlying retrieval behavior stay the same.
 </Callout>
+
+<Callout kind="info" collapsed="false">
+
+  The AI Assistant is enabled by default. To hide the **Ask AI** entry point, set `ai.ai-assistant:enabled` to `false` in `documentation.json`. See [Site Configuration](/customize/site-configuration).
+
+</Callout>
+
+## Conversation experience
+
+Once a reader opens the assistant, they can ask a question in natural language, tap a starter question, or continue from a suggested follow-up.
+
+The assistant can respond with:
+
+- A concise answer or explanation
+
+- Optional step-by-step guidance
+
+- Citations and links to relevant pages or sections
+
+- Suggested follow-up questions to keep the conversation moving
+
+On supported browsers, readers can also use voice input to speak their question instead of typing it.
 
 ## Benefits for admins and doc owners
 
 The AI Assistant can:
 
-- **Improve onboarding** – new users reach first value faster by asking concrete “how do I…” questions.
+- **Improve onboarding** – new users reach first value faster by asking concrete “how do I…” questions and using starter prompts to begin.
 
 - **Reduce support tickets** – many basic “where is…” and “how do I…” questions are handled directly in the docs.
 
-- **Make customer‑facing teams faster** – support and AM/CS teams can use the same assistant to pull accurate, cited answers during conversations.
+- **Make customer-facing teams faster** – support and AM/CS teams can use the same assistant to pull accurate, cited answers during conversations.
+
+- **Increase engagement** – floating mode and default-open behavior make the assistant easier to notice on high-intent pages.
 
 - **Expose documentation gaps** – repeated questions without good citations highlight where your docs need better coverage or structure.
 

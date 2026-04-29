@@ -964,7 +964,9 @@ Pages are the individual documentation files that contain your content.
 </Callout>
 
 <Callout kind="tip" collapsed="false">
-  Page display options like `show-sidebar`, `show-toc`, `show-parent-label`, and `content-width` all have sensible defaults. Only include them when you need to override the default behavior — for example, setting `"show-sidebar": false` on a changelog or landing page.
+
+  Page display options like `show-sidebar`, `show-toc`, `show-parent-label`, and `content-width` all have sensible defaults. Only include them when you need to override the default behavior — for example, setting `"show-sidebar": false` on a changelog or landing page, or setting `"show-parent-label": false` on a page where you want to hide the breadcrumb trail above the title.
+
 </Callout>
 
 **Page Properties:**
@@ -1013,7 +1015,9 @@ Pages are the individual documentation files that contain your content.
 </ParamField>
 
 <ParamField path="show-parent-label" param-type="boolean" required="false" deprecated="false">
-  Controls the group/parent name label that appears above the page title. Set to `false` to hide it. Default: `true`.
+
+  Controls the breadcrumb trail shown above the page title. When enabled, any page with parent navigation items displays its parent labels there. Set to `false` to hide the breadcrumb trail. Default: `true`.
+
 </ParamField>
 
 <ParamField path="content-width" param-type="string" required="false" deprecated="false">
@@ -1337,7 +1341,7 @@ Connect analytics platforms and chat widgets to your documentation site. Each in
 
 ### Cookie Consent
 
-Control which integrations and scripts require user consent before loading. Define consent categories under `integrations.cookies`, then assign categories to your integrations and scripts. See the [Cookie Consent guide](/customize/cookie-consent) for step-by-step setup and CMP examples.
+Use `integrations.cookies` to define the consent signals that Documentation.ai should check before loading non-essential integrations or custom scripts. This configuration does not create a banner; add your CMP separately. If `integrations.cookies` is not configured, consent gating is off and integrations, telemetry, and scripts load normally.
 
 ```json
 {
@@ -1347,13 +1351,18 @@ Control which integrations and scripts require user consent before loading. Defi
       "marketing": { "key": "CookieConsent", "value": "marketing:true" }
     },
     "ga4": { "measurementId": "G-XXXXXXXXXX", "category": "analytics" },
+    "telemetry": { "category": "analytics" },
     "intercom": { "appId": "abc123" }
-  }
+  },
+  "scripts": [
+    { "src": "scripts/cmp-banner.js" },
+    { "src": "scripts/custom-tracking.mjs", "category": "analytics" }
+  ]
 }
 ```
 
 <ParamField path="integrations.cookies" param-type="object" required="false" deprecated="false">
-  Cookie consent configuration. Each key is a consent category name, and its value defines the cookie or localStorage key-value pair to check in the browser. Scripts and integrations assigned to that category only load when the matching value is found.
+  Cookie consent category definitions. Each key is a consent category name, and its value defines the cookie or localStorage key-value pair to check in the browser. Integrations or scripts assigned to that category only load when the matching value is present.
 
   <Expandable title="Category entry properties" default-open="false">
     <ParamField path="key" param-type="string" required="true" deprecated="false">
@@ -1365,9 +1374,13 @@ Control which integrations and scripts require user consent before loading. Defi
   </Expandable>
 </ParamField>
 
+<Callout kind="info" collapsed="false">
+  Scripts without a `category` field default to `essential`. Keep your CMP banner uncategorized so it can load before consent is granted.
+</Callout>
+
 ### Telemetry
 
-Control Documentation.ai's built-in page view tracking.
+Control Documentation.ai's built-in page view tracking. Telemetry is enabled by default. If `integrations.cookies` is configured, telemetry uses the `analytics` category unless you override `integrations.telemetry.category`. If cookie consent is not configured, telemetry loads normally unless you disable it.
 
 ```json
 {
@@ -1378,16 +1391,16 @@ Control Documentation.ai's built-in page view tracking.
 ```
 
 <ParamField path="integrations.telemetry.enabled" param-type="string" required="false" deprecated="false">
-  Set to `"false"` to disable page view tracking. Defaults to enabled.
+  Set to `"false"` to disable page view tracking entirely. Default: enabled.
 </ParamField>
 
 <ParamField path="integrations.telemetry.category" param-type="string" required="false" deprecated="false">
-  Consent category for telemetry when cookie consent is active. Defaults to `"analytics"`.
+  Consent category for telemetry when cookie consent is active. Defaults to `"analytics"`. Override this if your CMP uses a different category name.
 </ParamField>
 
 ## Custom Scripts
 
-Inject custom JavaScript files into your published documentation site. Use custom scripts for analytics providers not covered by built-in integrations, consent banners, or any custom functionality.
+Inject custom JavaScript files into your published documentation site. Use custom scripts for analytics providers not covered by built-in integrations, consent banners, or any custom functionality. When cookie consent is enabled, scripts with a `category` only load after that category is granted. Scripts without a `category` default to `essential` and still load automatically.
 
 ```json
 {
@@ -1406,10 +1419,76 @@ Inject custom JavaScript files into your published documentation site. Use custo
       Relative file path to a `.js` or `.mjs` file in your project, or an external URL. Paths must be relative — no leading `/`, `./`, or `../`. Maximum file size is 5 MB.
     </ParamField>
     <ParamField path="category" param-type="string" required="false" deprecated="false">
-      Consent category name matching a key in `integrations.cookies`. Scripts without a category default to `essential` (always loads).
+      Consent category name matching a key in `integrations.cookies`. Scripts without a category default to `essential`, which always loads. Use that default for CMP banner scripts and other required site scripts.
     </ParamField>
   </Expandable>
 </ParamField>
+
+## AI Configuration
+
+Configure whether the AI Assistant is available, how it appears in your documentation, and how readers begin a conversation.
+
+```json
+{
+  "ai": {
+    "ai-assistant:enabled": true,
+    "ai-assistant:style": "floating",
+    "ai-assistant:position": "bottom-spaced",
+    "ai-assistant:default-open": false,
+    "ai-assistant:starter-questions": [
+      "How do I connect my OpenAPI spec?",
+      "How do I customize the navbar?",
+      "How do I add custom scripts?"
+    ]
+  }
+}
+```
+
+<ParamField path="ai" param-type="object" required="false" deprecated="false">
+
+  Configuration for AI features such as the AI Assistant and page actions.
+
+</ParamField>
+
+### AI Assistant
+
+<ParamField path="ai-assistant:enabled" param-type="boolean" required="false" deprecated="false">
+
+  Enables or disables the AI Assistant. Default: `true`. Set this to `false` to hide the **Ask AI** entry point across your site.
+
+
+</ParamField>
+
+<ParamField path="ai-assistant:style" param-type="string" required="false" deprecated="false">
+
+  Controls how the assistant is presented. Use `"default"` for the standard integrated assistant panel or `"floating"` for a floating chat bubble.
+
+</ParamField>
+
+<ParamField path="ai-assistant:position" param-type="string" required="false" deprecated="false">
+
+  Adjusts the floating assistant position when `"ai-assistant:style"` is set to `"floating"`. Use `"default"` for the standard bottom offset or `"bottom-spaced"` to raise the bubble higher above the page edge.
+
+</ParamField>
+
+<ParamField path="ai-assistant:default-open" param-type="boolean" required="false" deprecated="false">
+
+  Opens the assistant automatically when the page loads. This applies to both the integrated assistant and floating mode.
+
+</ParamField>
+
+<ParamField path="ai-assistant:starter-questions" param-type="array" required="false" deprecated="false">
+
+  List of suggested prompts shown before the first message. Each string becomes a clickable starter question in the empty chat state.
+
+</ParamField>
+
+<Callout kind="info" collapsed="false">
+
+  Voice input, suggested follow-up questions, and citations are built into the assistant experience. They do not require separate `documentation.json` fields.
+
+
+</Callout>
 
 ## SEO Configuration
 

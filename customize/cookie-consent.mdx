@@ -5,7 +5,7 @@ description: >-
   telemetry load on your documentation site. Works with any consent management
   platform (CMP).
 ---
-Control which integrations and scripts require user consent before loading. When cookie consent is configured, scripts only load after the user accepts the relevant consent category through your consent banner.
+Control which integrations, telemetry, and custom scripts require user consent before loading. When `integrations.cookies` is configured, Documentation.ai checks the consent signal written by your CMP and only loads items assigned to that category. Anything in the `essential` category still loads immediately.
 
 This works with any consent management platform (CMP) — CookieBot, OneTrust, CookieYes, Osano, Termly, or a custom consent banner.
 
@@ -13,18 +13,24 @@ This works with any consent management platform (CMP) — CookieBot, OneTrust, C
 
 ## How it works
 
-1. You add your CMP banner as a [custom script](/customize/custom-scripts) — this is the popup your visitors see
+1. You add your CMP banner as a [custom script](/customize/custom-scripts) — this is the popup your visitors see.
 
-2. You configure consent categories with a **key** and **value** — this tells us what cookie to look for
+2. You define consent categories under `integrations.cookies` with a **key** and **value** — this tells Documentation.ai what browser value to check.
 
-3. When a visitor clicks "Accept", your CMP writes that cookie to the browser
+3. Documentation.ai assigns built-in features to default categories unless you override them:
 
-4. Documentation.ai checks the browser for that value — if found, scripts in that category load. If not, they stay blocked.
+   - Analytics tools and telemetry use `analytics`
+   - Clearbit uses `marketing`
+   - Intercom and Crisp use `essential`
 
-Integrations and scripts without a consent category always load — only the categories you configure are gated.
+4. When a visitor grants consent, your CMP writes the matching cookie or localStorage value.
+
+5. Documentation.ai checks that value before loading categorized integrations or scripts. Essential items still load automatically so your CMP banner and required site functionality are not blocked.
+
+If you do not configure `integrations.cookies`, consent gating is off and integrations, telemetry, and scripts load normally.
 
 <Callout kind="note" collapsed="false">
-  Documentation.ai does not include a built-in consent banner. You need to add your CMP's script via [Custom Scripts](/customize/custom-scripts). The cookie consent configuration here only controls **when** your other scripts and integrations are allowed to load.
+  Documentation.ai does not include a built-in consent banner. You need to add your CMP's script via [Custom Scripts](/customize/custom-scripts). The cookie consent configuration here only controls **when** your other scripts, integrations, and telemetry are allowed to load.
 </Callout>
 
 ## Choose your setup
@@ -208,13 +214,14 @@ You have two options:
 
 ### Integration categories
 
-Each integration can include an optional `category` field. Most integrations already have a sensible default:
+Each integration can include an optional `category` field. If you do not set one, Documentation.ai uses these defaults:
 
-| Integration                                                                                                             | Default Category           |
-| ----------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| ga4, gtm, posthog, mixpanel, amplitude, segment, plausible, fathom, pirsch, heap, hightouch, hotjar, clarity, logrocket | `analytics`                |
-| clearbit                                                                                                                | `marketing`                |
-| intercom, crisp                                                                                                         | `essential` (always loads) |
+| Integration / feature | Default category | Behavior when cookie consent is active |
+| --- | --- | --- |
+| ga4, gtm, posthog, mixpanel, amplitude, segment, plausible, fathom, pirsch, heap, hightouch, hotjar, clarity, logrocket | `analytics` | Loads after analytics consent |
+| clearbit | `marketing` | Loads after marketing consent |
+| intercom, crisp | `essential` | Always loads |
+| telemetry | `analytics` | Loads after analytics consent |
 
 To override a default, add a `category` field:
 
@@ -338,7 +345,7 @@ You don't need to match the entire cookie value. Documentation.ai checks if the 
 
 ## Telemetry
 
-Documentation.ai includes built-in page view tracking (telemetry) that powers your [analytics dashboard](/analytics/overview). You can disable it entirely or gate it behind consent.
+Documentation.ai includes built-in page view tracking (telemetry) that powers your [analytics dashboard](/analytics/overview). Telemetry is enabled by default. If you do not configure `integrations.cookies`, telemetry loads normally. When cookie consent is configured, telemetry uses the `analytics` category unless you override it.
 
 ### Disable telemetry
 
@@ -352,7 +359,7 @@ Documentation.ai includes built-in page view tracking (telemetry) that powers yo
 
 ### Gate telemetry behind consent
 
-When cookie consent is configured, telemetry is automatically gated behind the `analytics` consent category. To assign it to a different category:
+When cookie consent is configured, telemetry is gated behind the `analytics` category by default. To assign it to a different category:
 
 ```json
 {
