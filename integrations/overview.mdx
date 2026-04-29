@@ -1,7 +1,8 @@
 ---
 title: Integrations and Workflows
 description: >-
-  Connect analytics platforms, support widgets, and developer tools to your documentation site with zero-code configuration.
+  Connect analytics platforms, support widgets, and developer tools to your
+  documentation site with zero-code configuration.
 ---
 
 Documentation.AI includes built-in integrations for popular analytics, support, and developer tools. Provide your project ID or tracking key and publish — no custom scripts required.
@@ -18,7 +19,9 @@ Documentation.AI includes built-in integrations for popular analytics, support, 
   </Step>
 
   <Step title="Enable an integration" icon="toggle-right" title-type="p">
-    Select the provider you want to connect and enter the required credential. Each provider displays a label indicating the expected value (for example, "GTM Container ID" or "Intercom App ID").
+
+    Select the provider you want to connect and enter the required credential. Each provider displays a label indicating the expected value (for example, "GTM Container ID" or "Intercom App ID"). If cookie consent is configured, each integration also shows a **Consent Category** control so you can gate it behind a category.
+
   </Step>
 
   <Step title="Publish" icon="upload" title-type="p">
@@ -34,14 +37,16 @@ Add integrations directly to `documentation.json` if you manage configuration in
 {
   "integrations": {
     "gtm": {
-      "tagId": "GTM-XXXXXX"
+      "tagId": "GTM-XXXXXX",
+      "category": "analytics"
     },
     "posthog": {
       "apiKey": "phc_your_project_key",
       "apiHost": "https://us.i.posthog.com"
     },
     "intercom": {
-      "appId": "your_app_id"
+      "appId": "your_app_id",
+      "category": "essential"
     }
   }
 }
@@ -49,7 +54,15 @@ Add integrations directly to `documentation.json` if you manage configuration in
 
 ### Cookie Consent
 
-Gate integrations behind user consent for GDPR compliance. Each integration can be assigned a consent category — it only loads after the user accepts that category through your consent banner. See the [Cookie Consent guide](/customize/cookie-consent) for full setup instructions and CMP examples.
+Gate integrations behind user consent for GDPR compliance. Documentation.ai resolves a consent category for each integration before it loads:
+
+- Analytics providers default to `analytics`.
+- Clearbit defaults to `marketing`.
+- Intercom and Crisp default to `essential`.
+- If you set `category` on an integration, that override wins.
+- If `integrations.cookies` is not configured, nothing is gated.
+
+When cookies are configured, Documentation.ai checks `localStorage` first and cookies second. The integration loads when the stored value for that category's configured key **contains** the configured match string. See the [Cookie Consent guide](/customize/cookie-consent) for full setup instructions and CMP examples.
 
 ## Developer Tools
 

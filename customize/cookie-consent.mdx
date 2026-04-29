@@ -13,18 +13,25 @@ This works with any consent management platform (CMP) — CookieBot, OneTrust, C
 
 ## How it works
 
-1. You add your CMP banner as a [custom script](/customize/custom-scripts) — this is the popup your visitors see
+1. Add your CMP banner as a [custom script](/customize/custom-scripts) so visitors can grant or deny consent.
 
-2. You configure consent categories with a **key** and **value** — this tells us what cookie to look for
+2. Define one or more consent categories under `integrations.cookies`. Each category maps to a browser **key** and **value** pair.
 
-3. When a visitor clicks "Accept", your CMP writes that cookie to the browser
+3. Assign a category to any integration, custom script, or telemetry you want to gate.
 
-4. Documentation.ai checks the browser for that value — if found, scripts in that category load. If not, they stay blocked.
+4. Documentation.ai checks `localStorage` first and cookies second. If the stored value for that key **contains** the configured value, that category is treated as granted and the gated item loads.
 
-Integrations and scripts without a consent category always load — only the categories you configure are gated.
+A few defaults are important:
 
-<Callout kind="note" collapsed="false">
-  Documentation.ai does not include a built-in consent banner. You need to add your CMP's script via [Custom Scripts](/customize/custom-scripts). The cookie consent configuration here only controls **when** your other scripts and integrations are allowed to load.
+- `essential` always loads and never waits for consent.
+- Analytics integrations default to `analytics`, Clearbit defaults to `marketing`, and Intercom and Crisp default to `essential`.
+- Custom scripts without a `category` field load as `essential`.
+- If you do not configure `integrations.cookies`, integrations, scripts, and telemetry load normally.
+
+<Callout kind="info" collapsed="false">
+
+  Documentation.ai does not include a built-in consent banner. Add your CMP script via [Custom Scripts](/customize/custom-scripts). The cookie consent configuration here only controls **when** integrations, telemetry, and other scripts are allowed to load.
+
 </Callout>
 
 ## Choose your setup
@@ -199,7 +206,9 @@ You have two options:
     </ParamField>
 
     <ParamField path="value" param-type="string" required="true" deprecated="false">
-      The substring to look for in the stored value. Documentation.ai checks if the cookie or localStorage value **contains** this string.
+
+      The substring to look for in the stored value. Documentation.ai checks `localStorage` first, then cookies, and treats the category as granted when the stored value **contains** this string.
+
     </ParamField>
   </Expandable>
 </ParamField>
@@ -208,13 +217,13 @@ You have two options:
 
 ### Integration categories
 
-Each integration can include an optional `category` field. Most integrations already have a sensible default:
+Each built-in integration resolves to a consent category before it loads. If you set a `category`, that override wins. If you do not set one, Documentation.ai uses provider defaults where available and otherwise falls back to `essential`.
 
-| Integration                                                                                                             | Default Category           |
-| ----------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| Integration                                                                                                               | Default Category           |
+| ------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | ga4, gtm, posthog, mixpanel, amplitude, segment, plausible, fathom, pirsch, heap, hightouch, hotjar, clarity, logrocket | `analytics`                |
-| clearbit                                                                                                                | `marketing`                |
-| intercom, crisp                                                                                                         | `essential` (always loads) |
+| clearbit                                                                                                                  | `marketing`                |
+| intercom, crisp                                                                                                           | `essential` (always loads) |
 
 To override a default, add a `category` field:
 
@@ -222,11 +231,13 @@ To override a default, add a `category` field:
 "ga4": { "measurementId": "G-XXXXXXXXXX", "category": "marketing" }
 ```
 
+Telemetry follows the same model. If cookie consent is configured, telemetry defaults to `analytics` unless you set `integrations.telemetry.category` to a different category.
+
 You can also set categories from the Editor — when cookies are configured, each integration card shows a **Consent Category** dropdown.
 
 ### Custom script categories
 
-Custom scripts default to `essential` (always loads). To gate a script behind consent, add a `category` field:
+Custom scripts without a `category` field load as `essential`. To gate a script behind consent, add a `category` field:
 
 ```json
 {
@@ -406,17 +417,21 @@ Here's a full configuration with CookieBot as the CMP, Google Analytics gated be
 
 ## How consent detection works
 
-Documentation.ai checks for consent in two places:
+Documentation.ai builds consent state from the categories you define in `integrations.cookies`.
 
-1. **localStorage** — checked first
+1. It checks `localStorage` for the configured `key`.
 
-2. **Cookies** — checked as fallback
+2. If no matching `localStorage` value is found, it checks cookies for the same `key`.
+
+3. If the stored value **contains** the configured `value`, that category is treated as granted.
+
+4. If `integrations.cookies` is not configured, nothing is gated.
 
 Consent changes are detected automatically through:
 
-- **CookieStore API** (Chrome, Edge) — instantly detects any cookie change
+- **CookieStore API** (Chrome, Edge) — instantly detects cookie changes
 
-- **Storage events** — detects localStorage changes across browser tabs
+- **Storage events** — detects `localStorage` changes across browser tabs
 
 - **Page navigation** — consent state is re-evaluated on every page transition
 
