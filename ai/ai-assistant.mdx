@@ -71,11 +71,11 @@ If an answer cannot be strongly supported by what’s in your docs, the assistan
 
 ## Where users access the assistant
 
-The assistant appears in your documentation as an **Ask AI** entry point.
+The assistant appears in your documentation as an **Ask AI** entry point. Depending on your configuration, it can open as a full assistant panel or as a floating chat bubble.
 
-1. They click **Ask AI**.
+1. Visitors open **Ask AI**, or land on a page where the assistant opens automatically if **default open** is enabled.
 
-2. They type a question in natural language.
+2. Before they ask a question, they can click one of your configured **conversation starters** to begin with a common task or question.
 
 3. The assistant searches your docs, reasons over the results, and responds with:
 
@@ -85,8 +85,55 @@ The assistant appears in your documentation as an **Ask AI** entry point.
 
    - Citations and links to relevant pages or sections
 
+   - Suggested follow‑up questions when the assistant has relevant next questions to recommend
+
 <Callout kind="alert" collapsed="false">
   Currently, the AI Assistant is enabled for all documentation sites. If you would like to disable it, please contact us.
+</Callout>
+
+## Configure the assistant experience
+
+Use the `ai` section of `documentation.json` to control how the assistant appears for readers.
+
+```json
+{
+  "ai": {
+    "ai-assistant:enabled": true,
+    "ai-assistant:style": "floating",
+    "ai-assistant:position": "bottom-spaced",
+    "ai-assistant:default-open": false,
+    "ai-assistant:starter-questions": [
+      "How do I set up a custom domain?",
+      "How do I import my OpenAPI file?"
+    ]
+  }
+}
+```
+
+<ParamField body="ai-assistant:enabled" param-type="boolean" required="false">
+Turns the AI Assistant on or off for your documentation site.
+</ParamField>
+
+<ParamField body="ai-assistant:style" param-type="string" required="false">
+Controls how the assistant is presented in your docs. Set this to `floating` to show the assistant as a floating chat bubble. Other supported styles continue to render in the standard assistant panel layout for your site.
+</ParamField>
+
+<ParamField body="ai-assistant:position" param-type="string" required="false">
+Controls the vertical placement of the floating assistant. Use `default` for the standard bottom offset, or `bottom-spaced` to raise the bubble higher above the bottom edge. This setting only applies when `ai-assistant:style` is set to `floating`.
+</ParamField>
+
+<ParamField body="ai-assistant:default-open" param-type="boolean" required="false">
+Opens the assistant automatically when a visitor lands on your documentation. Leave this disabled if you want readers to start the conversation manually.
+</ParamField>
+
+<ParamField body="ai-assistant:starter-questions" param-type="string[]" required="false">
+Defines the suggested questions shown before the first message. Use these to highlight common workflows, onboarding questions, or high‑value support topics.
+</ParamField>
+
+Follow‑up suggestions are shown after an answer when the assistant has helpful next questions to recommend. This gives readers a faster way to continue the conversation without retyping context.
+
+<Callout kind="info" collapsed="false">
+  If you previously configured the assistant with `ai-assistant:mode`, rename that key to `ai-assistant:style`. Keep the same style value you want to use, and add `ai-assistant:position` only when you are using the floating assistant.
 </Callout>
 
 ## Benefits for admins and doc owners
@@ -100,6 +147,3 @@ The AI Assistant can:
 - **Make customer‑facing teams faster** – support and AM/CS teams can use the same assistant to pull accurate, cited answers during conversations.
 
 - **Expose documentation gaps** – repeated questions without good citations highlight where your docs need better coverage or structure.
-
-
-

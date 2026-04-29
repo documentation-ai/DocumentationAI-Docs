@@ -1337,7 +1337,7 @@ Connect analytics platforms and chat widgets to your documentation site. Each in
 
 ### Cookie Consent
 
-Control which integrations and scripts require user consent before loading. Define consent categories under `integrations.cookies`, then assign categories to your integrations and scripts. See the [Cookie Consent guide](/customize/cookie-consent) for step-by-step setup and CMP examples.
+Use `integrations.cookies` to map consent categories to the cookie or localStorage values your CMP writes. Once you define categories, Documentation.ai uses them to gate integrations, custom scripts, and telemetry. Without `integrations.cookies`, integrations and scripts keep loading normally.
 
 ```json
 {
@@ -1346,28 +1346,38 @@ Control which integrations and scripts require user consent before loading. Defi
       "analytics": { "key": "CookieConsent", "value": "statistics:true" },
       "marketing": { "key": "CookieConsent", "value": "marketing:true" }
     },
-    "ga4": { "measurementId": "G-XXXXXXXXXX", "category": "analytics" },
-    "intercom": { "appId": "abc123" }
+    "ga4": { "measurementId": "G-ABC123DEF4" },
+    "clearbit": { "publicKey": "pk_example_abc123" },
+    "intercom": { "appId": "abc123xyz" },
+    "telemetry": { "category": "analytics" }
   }
 }
 ```
 
 <ParamField path="integrations.cookies" param-type="object" required="false" deprecated="false">
-  Cookie consent configuration. Each key is a consent category name, and its value defines the cookie or localStorage key-value pair to check in the browser. Scripts and integrations assigned to that category only load when the matching value is found.
+  Cookie consent configuration. Each key is a consent category name you define, and each value tells Documentation.ai which browser value to check before that category is allowed.
 
   <Expandable title="Category entry properties" default-open="false">
     <ParamField path="key" param-type="string" required="true" deprecated="false">
-      The cookie or localStorage key to check (e.g., `CookieConsent`, `OptanonConsent`).
+      The cookie or localStorage key to check, such as `CookieConsent` or `OptanonConsent`.
     </ParamField>
     <ParamField path="value" param-type="string" required="true" deprecated="false">
-      The substring to match in the stored value (e.g., `statistics:true`, `C0002:1`).
+      The substring to match in the stored value, such as `statistics:true` or `C0002:1`.
     </ParamField>
   </Expandable>
 </ParamField>
 
+<Callout kind="info" collapsed="false">
+  When cookie consent is configured, analytics providers default to the `analytics` category, Clearbit defaults to `marketing`, and chat providers such as Intercom and Crisp stay `essential` unless you override `category` on the integration itself.
+</Callout>
+
 ### Telemetry
 
-Control Documentation.ai's built-in page view tracking.
+Control Documentation.ai's built-in page view tracking. Telemetry is enabled by default.
+
+- If `integrations.cookies` is not configured, telemetry starts tracking immediately.
+- If `integrations.cookies` is configured, telemetry waits for the category in `integrations.telemetry.category`.
+- If you do not set a category, telemetry uses `analytics` by default.
 
 ```json
 {
@@ -1377,12 +1387,23 @@ Control Documentation.ai's built-in page view tracking.
 }
 ```
 
+```json
+{
+  "integrations": {
+    "cookies": {
+      "statistics": { "key": "CookieConsent", "value": "statistics:true" }
+    },
+    "telemetry": { "category": "statistics" }
+  }
+}
+```
+
 <ParamField path="integrations.telemetry.enabled" param-type="string" required="false" deprecated="false">
-  Set to `"false"` to disable page view tracking. Defaults to enabled.
+  Set to `"false"` to disable page view tracking. If you omit this field, telemetry stays enabled.
 </ParamField>
 
 <ParamField path="integrations.telemetry.category" param-type="string" required="false" deprecated="false">
-  Consent category for telemetry when cookie consent is active. Defaults to `"analytics"`.
+  Consent category telemetry should wait for when cookie consent is active. Defaults to `"analytics"`.
 </ParamField>
 
 ## Custom Scripts
@@ -1406,7 +1427,7 @@ Inject custom JavaScript files into your published documentation site. Use custo
       Relative file path to a `.js` or `.mjs` file in your project, or an external URL. Paths must be relative — no leading `/`, `./`, or `../`. Maximum file size is 5 MB.
     </ParamField>
     <ParamField path="category" param-type="string" required="false" deprecated="false">
-      Consent category name matching a key in `integrations.cookies`. Scripts without a category default to `essential` (always loads).
+      Consent category name matching a key in `integrations.cookies`. Scripts without a category remain `essential` and always load.
     </ParamField>
   </Expandable>
 </ParamField>
