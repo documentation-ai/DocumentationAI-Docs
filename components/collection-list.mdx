@@ -62,13 +62,13 @@ The component resolves the node at render time and displays its direct children.
   </Tab>
 
   <Tab title="Accordion" icon="chevron-down">
-    Displays children as a collapsible accordion. Each section header shows the child's name and expands to list its pages.
+    Displays one collapsible section for the selected node. When expanded, it shows the node's direct children as a stacked list of links.
 
     ```jsx
     <CollectionList node="tabs:Guides" layout="accordion" default-open={true} />
     ```
 
-    Use accordion when you want a compact overview that readers can expand selectively.
+    Use accordion when you want a compact overview that readers can expand or collapse without taking over the page.
   </Tab>
 
   <Tab title="List" icon="list">
@@ -82,7 +82,7 @@ The component resolves the node at render time and displays its direct children.
   </Tab>
 
   <Tab title="Links" icon="link">
-    Displays children as plain inline links with minimal styling.
+    Displays children as a simple vertical list of text links with minimal styling.
 
     ```jsx
     <CollectionList node="groups:Resources" layout="links" />
@@ -166,7 +166,7 @@ A full example showing all optional attributes (some apply only to specific layo
 </ParamField>
 
 <ParamField path="default-open" param-type="boolean" required="false" deprecated="false">
-  Whether the accordion starts expanded. Only applies to the `accordion` layout. Defaults to `true`.
+  Whether the selected node's accordion section starts expanded. Only applies to the `accordion` layout. Defaults to `true`.
 </ParamField>
 
 ## Best practices
